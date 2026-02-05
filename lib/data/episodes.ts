@@ -1,101 +1,194 @@
 export interface Episode {
   number: number;
   title: string;
+  guest: string;
   description: string;
+  fullDescription: string;
+  takeaways: string[];
+  guestBio: string;
+  topics: string[];
   duration: string;
   date: string;
   featured: boolean;
+  slug: string;
+  podbeanId: string;
+  thumbnail?: string;
 }
 
 export const episodes: Episode[] = [
   {
     number: 47,
-    title: 'The Rise of AI Teaching Assistants: What Faculty Need to Know',
+    title: 'Human-Centered AI Strategy: Empathy, Trust, Access',
+    guest: 'Chesa Caparas',
     description:
-      'We explore how AI teaching assistants are transforming office hours, grading, and student support across campuses nationwide.',
+      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption in higher education.',
+    fullDescription:
+      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption in higher education. They explore how empathy-driven strategies can bridge the gap between institutional mandates and real classroom needs, while keeping equity and access at the center of every decision.',
+    takeaways: [
+      'Ready-to-use survey that maps student comfort with AI',
+      'Tactics that keep feedback human while trimming workload',
+      'Red-flag signs your AI detector policy harms equity',
+      'First steps to close global and local connectivity gaps',
+    ],
+    guestBio:
+      'Chesa Caparas (she/they) is professor of English and Ethnic Studies at De Anza College in Cupertino, CA, where she teaches in the IMPACT AAPI Learning Community and leads professional development workshops on AI in education. She is also a member of CA Learning Lab\'s AI Faculty Innovator in Residence Strategy Team and serves as a Fulbright Scholar Alumni Ambassador promoting international research and teaching opportunities to educators across the country. She has a BA and MA in Modern Literature from UC-Santa Cruz and is currently pursuing an MS in Information and Knowledge Strategy at Columbia University. Her writing has been published in The Journal of Information Ethics, The Journal of California English, ASCCC\'s Rostrum, and the arts and literature journal ANMLY.',
+    topics: ['Equity', 'Faculty Development', 'AI Policy', 'Student Access'],
     duration: '18:24',
-    date: 'Feb 2, 2026',
+    date: 'June 22, 2025',
     featured: true,
+    slug: 'chesa-caparas',
+    podbeanId: 'yn932-18e5c5a-pb',
+    thumbnail:
+      'https://innovatinghighered.com/wp-content/uploads/2025/06/Chesa-Caparas-thumb-1200x.jpg',
   },
   {
     number: 46,
-    title: 'Building AI Literacy Into Your Syllabus',
+    title: 'Assistive AI Tools: Transform Course Design & Assessment',
+    guest: 'Scott James',
     description:
-      'Practical strategies for embedding AI competencies into any course without overhauling your entire curriculum.',
+      'Can a chatbot rewrite your toughest assignments in under five minutes? Scott James explains how his PlayLab custom-bot lets instructors quarantine course materials and surface crystal-clear rubrics.',
+    fullDescription:
+      'Can a chatbot rewrite your toughest assignments in under five minutes? Scott James explains how his PlayLab custom-bot lets instructors quarantine course materials and surface crystal-clear rubrics. From sandboxing sensitive sources to injecting personality into assessments, this episode is packed with actionable strategies for any instructor ready to rethink course design with AI.',
+    takeaways: [
+      'Step-by-step prompt flow to generate AI-resilient assignments',
+      'Tactics to sandbox sources and avoid copyright headaches',
+      'Tips for injecting personality without extra grading time',
+      'Change-management moves that win over hesitant colleagues',
+    ],
+    guestBio:
+      'Professor Scott James is an instructional-design veteran who began in disability services and now builds AI copilots for faculty using PlayLab.',
+    topics: ['Course Design', 'Assessment', 'PlayLab', 'Instructional Design'],
     duration: '22:10',
-    date: 'Jan 29, 2026',
+    date: 'May 17, 2025',
     featured: false,
+    slug: 'scott-james',
+    podbeanId: 'fxjxj-1891ea5-pb',
+    thumbnail:
+      'https://innovatinghighered.com/wp-content/uploads/2025/05/Prof-Scott-James-_thumb.02-585x390.jpg',
   },
   {
     number: 45,
-    title: 'The Ethics of AI Detection Tools',
+    title: 'OER, ZTC & Lightning-Fast AI Translation',
+    guest: 'Sarah Harmon',
     description:
-      'A frank conversation about AI detection accuracy, false positives, and the impact on student-faculty trust.',
+      'Textbooks can cost more than tuition—AI-powered OER wipes that cost out entirely. Dr. Sarah Harmon lays out the five-spoke ZTC Wheel that drives course material costs to $0.',
+    fullDescription:
+      'Textbooks can cost more than tuition—AI-powered OER wipes that cost out entirely. Dr. Sarah Harmon lays out the five-spoke ZTC Wheel that drives course material costs to $0. She walks through how LibreTexts machine translation is opening doors for multilingual learners and how Creative Commons licensing makes global remix possible.',
+    takeaways: [
+      'Five-spoke ZTC Wheel for zero-cost course materials',
+      'LibreTexts machine translation delivers 90%-accurate editions',
+      'Creative Commons tips for global remix',
+      'Open-pedagogy ideas that turn students into co-authors',
+    ],
+    guestBio:
+      'Dr. Sarah Harmon has been teaching Spanish and Linguistics for over 25 years. She specializes in OER and Zero-Textbook-Cost initiatives.',
+    topics: ['OER', 'Zero Textbook Cost', 'AI Translation', 'Open Pedagogy'],
     duration: '25:33',
-    date: 'Jan 26, 2026',
+    date: 'May 11, 2025',
     featured: false,
+    slug: 'sarah-harmon',
+    podbeanId: 'brbx3-18a6904-pb',
+    thumbnail:
+      'https://innovatinghighered.com/wp-content/uploads/2025/05/DR.-SARAH-HARMON-_Thumb.02.-3.2-585x390.jpg',
   },
   {
     number: 44,
-    title: "From Skeptic to Champion: One Dean's AI Journey",
+    title: 'Equity-First AI Curriculum for Every Discipline',
+    guest: 'Suha Al Juboori',
     description:
-      "Dean Maria Lopez shares how she went from banning ChatGPT to leading her college's AI integration strategy.",
+      'Dr. Suha Aljuboori shares her journey from Iraq to establishing one of the first AI departments in the California community college system.',
+    fullDescription:
+      'Dr. Suha Aljuboori shares her journey from Iraq to establishing one of the first AI departments in the California community college system. She details her playbook for launching programs that serve both tech and non-tech tracks, and how multi-level certificates are opening AI education to everyone from refugees to CS majors.',
+    takeaways: [
+      'Playbook for launching an AI department serving tech and non-tech tracks',
+      'Workshop formats that help skeptical faculty try AI',
+      'Multi-level certificates for everyone from refugees to CS majors',
+      'Outreach models that drive equity and enrollment',
+    ],
+    guestBio:
+      'Dr. Suha Aljuboori is a distinguished professor with over 18 years of experience. She serves as Chair of the Artificial Intelligence Department.',
+    topics: ['AI Curriculum', 'Equity', 'Community College', 'Certificates'],
     duration: '19:45',
-    date: 'Jan 22, 2026',
+    date: 'February 21, 2025',
     featured: false,
+    slug: 'suha-al-juboori',
+    podbeanId: 'h6ytf-1810356-pb',
+    thumbnail:
+      'https://innovatinghighered.com/wp-content/uploads/2025/02/Dr.-Suha-Al-Juboori-Thumb.02-585x390.jpg',
   },
   {
     number: 43,
-    title: 'Prompt Engineering for Educators: Beyond the Basics',
+    title: 'VR Rehearsals: Building Confident Nurses Faster',
+    guest: 'Jenna Zeller',
     description:
-      'Advanced prompting techniques that produce better outputs for course design, assessment, and student feedback.',
+      'What if nursing students could practice high-stakes scenarios in VR before touching a real patient? Dr. Jenna Zeller reveals her layered VR workflow.',
+    fullDescription:
+      'What if nursing students could practice high-stakes scenarios in VR before touching a real patient? Dr. Jenna Zeller reveals her layered VR workflow that moves students from skill demos through VR scenarios to mannequin practice and debrief. She also shares AI prompts that turn rough feedback into polished emails in seconds.',
+    takeaways: [
+      'Repeatable stack: skill demo → VR scenario → mannequin → debrief',
+      'Switch cue that turns passive onlookers into problem-solvers',
+      'VR role-plays that build courage to page doctors early',
+      'AI prompts for polished feedback emails in seconds',
+    ],
+    guestBio:
+      'Dr. Jenna Zeller has worked as an RN for 16 years and in nursing education for 10 years. She focuses on integrating VR simulation into nursing education.',
+    topics: ['VR Simulation', 'Nursing Education', 'AI Feedback', 'Clinical Training'],
     duration: '20:18',
-    date: 'Jan 19, 2026',
+    date: 'February 21, 2025',
     featured: false,
+    slug: 'jenna-zeller',
+    podbeanId: 'gxm6e-180f026-pb',
+    thumbnail:
+      'https://innovatinghighered.com/wp-content/uploads/2025/05/Dr-Zeller-Thumb.02-585x390.jpg',
   },
   {
     number: 42,
-    title: 'AI and Accessibility: Closing Gaps in Higher Ed',
+    title: 'XR Learning & AI Engagement Hacks',
+    guest: 'Garrick Grace',
     description:
-      'How AI tools are making education more accessible for students with disabilities and diverse learning needs.',
+      'Dr. Garrick Grace reveals how extended-reality simulations and adaptive AI tools are reshaping classrooms across California community colleges.',
+    fullDescription:
+      'Dr. Garrick Grace reveals how extended-reality simulations and adaptive AI tools are reshaping classrooms across California community colleges. From immersive ladders that guide reflection to belonging boosters for multilingual cohorts, this episode is a masterclass in scaling innovation without draining budgets.',
+    takeaways: [
+      'Immersive ladder: live demo → XR scenario → guided reflection',
+      'Belonging boosters: AI-leveled content for multilingual cohorts',
+      'Mind-shift PD that ripples to 60,000 colleagues',
+      'Budget guardrails: merge AI with XR without draining dollars',
+    ],
+    guestBio:
+      'Dr. Garrick Grace has been in education for sixteen years. He currently serves as Director of Professional Development for the California Virtual Campus.',
+    topics: ['XR/VR', 'Professional Development', 'Multilingual Learners', 'EdTech Budgets'],
     duration: '23:55',
-    date: 'Jan 15, 2026',
+    date: 'February 21, 2025',
     featured: false,
+    slug: 'garrick-grace',
+    podbeanId: '342ra-180ef9c-pb',
+    thumbnail:
+      'https://innovatinghighered.com/wp-content/uploads/2025/02/Dr-Grace-Thumb-.02-585x390.jpg',
   },
   {
     number: 41,
-    title: 'The Community College AI Advantage',
+    title: 'ChatGPT Teaching Assistant: Lesson Plans in Minutes',
+    guest: 'Lynn Dickinson',
     description:
-      'Why community colleges are uniquely positioned to lead AI education and workforce development.',
+      'Author Lynn Dickinson shares the prompt pattern she uses to build full slide decks in about ten minutes and how ChatGPT helped write her faculty guide.',
+    fullDescription:
+      'Author Lynn Dickinson shares the prompt pattern she uses to build full slide decks in about ten minutes and how ChatGPT helped write her faculty guide. She covers discussion prompts students cannot copy-paste, the why/what/how prompt flow, and how to reframe AI as a creativity booster rather than a cheating threat.',
+    takeaways: [
+      'Discussion prompts students cannot copy-paste',
+      'Why/what/how prompt flow for slides and activities',
+      'Reframe AI as creativity booster, not cheating threat',
+      'Build cross-campus resource banks across disciplines',
+    ],
+    guestBio:
+      'Lynn Dickinson is author of the Amazon bestseller "How to Use ChatGPT as a Teaching Assistant" and faculty at Santa Monica College.',
+    topics: ['ChatGPT', 'Lesson Planning', 'Faculty Resources', 'AI Writing'],
     duration: '17:30',
-    date: 'Jan 12, 2026',
+    date: 'October 19, 2024',
     featured: false,
-  },
-  {
-    number: 40,
-    title: 'Student Voices: How Learners Are Actually Using AI',
-    description:
-      'We surveyed 500 college students about their AI habits — the results may surprise you.',
-    duration: '21:12',
-    date: 'Jan 8, 2026',
-    featured: false,
-  },
-  {
-    number: 39,
-    title: 'AI in the Writing Center: Friend or Foe?',
-    description:
-      'Writing center directors discuss how they are adapting their practices for the age of AI-assisted writing.',
-    duration: '24:08',
-    date: 'Jan 5, 2026',
-    featured: false,
-  },
-  {
-    number: 38,
-    title: 'The 2026 AI in Higher Ed Predictions Episode',
-    description:
-      'Our annual predictions episode — what to expect from AI in higher education this year, and what surprised us from 2025.',
-    duration: '28:42',
-    date: 'Jan 1, 2026',
-    featured: false,
+    slug: 'lynn-dickinson',
+    podbeanId: 'jv858-1710904-pb',
+    thumbnail:
+      'https://innovatinghighered.com/wp-content/uploads/2024/10/Lynn-Dickinson-thumb-.02-585x390.jpg',
   },
 ];

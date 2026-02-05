@@ -148,3 +148,77 @@ html {
 .glow-synapse {
   box-shadow: 0 0 20px rgba(200, 80, 192, 0.3);
 }
+
+/* ============================================
+   Card Effects
+   ============================================ */
+
+.card-glow-cyan {
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  transition: all 0.3s ease;
+}
+.card-glow-cyan:hover {
+  border-color: rgba(0, 212, 255, 0.35);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.12), 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.card-glow-fuchsia {
+  border: 1px solid rgba(200, 80, 192, 0.15);
+  transition: all 0.3s ease;
+}
+.card-glow-fuchsia:hover {
+  border-color: rgba(200, 80, 192, 0.35);
+  box-shadow: 0 0 20px rgba(200, 80, 192, 0.12), 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.card-glow-amber {
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  transition: all 0.3s ease;
+}
+.card-glow-amber:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.12), 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.prompt-block {
+  position: relative;
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  background: rgba(0, 212, 255, 0.03);
+}
+.prompt-block::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(200, 80, 192, 0.2));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #00d4ff, #67e8f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-fuchsia {
+  background: linear-gradient(135deg, #c850c0, #e879f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-amber {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

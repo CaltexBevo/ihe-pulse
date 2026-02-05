@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Play, Pause, Mic, Clock, Calendar, Headphones, ExternalLink } from 'lucide-react';
-import AudioPlayer from '@/components/AudioPlayer';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Mic, Clock, Calendar, Headphones, ExternalLink, Play } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
 import { episodes } from '@/lib/data/episodes';
 
@@ -14,8 +14,6 @@ const platforms = [
 ];
 
 export default function PodcastPage() {
-  const [playingEp, setPlayingEp] = useState<number | null>(null);
-
   return (
     <PageTransition>
     <div className="px-4 sm:px-6 lg:px-8 py-12">
@@ -67,33 +65,42 @@ export default function PodcastPage() {
         <h2 className="text-xl font-bold text-white mb-6">All Episodes</h2>
         <div className="space-y-4">
           {episodes.map((ep) => (
-            <div
+            <Link
               key={ep.number}
-              className={`glass rounded-xl p-5 flex items-start gap-5 hover:border-pulse/20 transition-colors ${
+              href={`/podcast/${ep.slug}`}
+              className={`glass rounded-xl p-5 flex items-start gap-5 hover:border-pulse/20 transition-colors block ${
                 ep.featured ? 'border-pulse/10' : ''
               }`}
             >
-              <button
-                onClick={() =>
-                  setPlayingEp(playingEp === ep.number ? null : ep.number)
-                }
-                className="shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-pulse to-synapse flex items-center justify-center hover:opacity-80 transition-opacity mt-1"
-              >
-                {playingEp === ep.number ? (
-                  <Pause size={18} className="text-white" />
-                ) : (
+              {ep.thumbnail ? (
+                <div className="shrink-0 w-24 h-16 sm:w-32 sm:h-[5.3rem] rounded-xl overflow-hidden relative aspect-[3/2]">
+                  <Image
+                    src={ep.thumbnail}
+                    alt={ep.guest || ep.title}
+                    fill
+                    className="object-contain"
+                    sizes="128px"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                    <Play size={20} className="text-white ml-0.5" />
+                  </div>
+                </div>
+              ) : (
+                <div className="shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-pulse to-synapse flex items-center justify-center mt-1">
                   <Play size={18} className="text-white ml-0.5" />
-                )}
-              </button>
+                </div>
+              )}
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-3 mb-1">
-                  <span className="text-xs font-mono text-pulse">
-                    EP. {ep.number}
-                  </span>
                   {ep.featured && (
                     <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-pulse/10 text-pulse uppercase">
                       Latest
+                    </span>
+                  )}
+                  {ep.guest && (
+                    <span className="text-xs text-gray-400">
+                      with {ep.guest}
                     </span>
                   )}
                 </div>
@@ -103,7 +110,6 @@ export default function PodcastPage() {
                 <p className="text-sm text-gray-500 line-clamp-2">
                   {ep.description}
                 </p>
-                {/* Mobile-only metadata */}
                 <div className="sm:hidden flex items-center gap-3 text-xs text-gray-500 mt-2">
                   <span className="flex items-center gap-1">
                     <Clock size={12} />
@@ -114,11 +120,6 @@ export default function PodcastPage() {
                     {ep.date}
                   </span>
                 </div>
-                {playingEp === ep.number && (
-                  <div className="mt-3">
-                    <AudioPlayer title={ep.title} duration={ep.duration} barCount={60} />
-                  </div>
-                )}
               </div>
 
               <div className="shrink-0 text-right hidden sm:block">
@@ -131,7 +132,7 @@ export default function PodcastPage() {
                   {ep.date}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
