@@ -1,0 +1,47 @@
+# Monthly AI Directory Update
+# Runs on the 1st of every month at 9 AM UTC, or manually via workflow_dispatch.
+#
+# SETUP REQUIRED:
+# 1. Go to GitHub repo → Settings → Secrets and variables → Actions
+# 2. Add a new repository secret named ANTHROPIC_API_KEY
+# 3. Paste your Anthropic API key as the value
+#
+# The script uses Claude claude-sonnet-4-5-20250929 to check for pricing/feature changes
+# and suggest new tools. Estimated cost: ~$3-5 per run.
+
+name: Monthly AI Directory Update
+
+on:
+  schedule:
+    - cron: '0 9 1 * *' # 1st of every month at 9 AM UTC
+  workflow_dispatch: # Allow manual trigger from GitHub Actions UI
+
+jobs:
+  update-directory:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run AI directory update script
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/update-ai-directory.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "IHE Bot"
+          git config user.email "bot@innovatinghighered.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "chore: monthly AI directory update [$(date +%Y-%m)]" && git push)
