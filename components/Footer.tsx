@@ -42,6 +42,32 @@ export default function Footer() {
               AI-powered intelligence for higher education. Empowering educators
               to navigate the future of teaching and learning.
             </p>
+
+            {/* Newsletter signup */}
+            <div className="mt-5">
+              <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Get the Daily Pulse
+              </h4>
+              <form action="#" className="mt-2 flex items-center gap-2 max-w-sm">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="your@email.edu"
+                  required
+                  className="flex-1 min-w-0 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-pulse/50 focus:ring-1 focus:ring-pulse/50 transition-colors"
+                />
+                <button
+                  type="submit"
+                  className="shrink-0 rounded-lg bg-gradient-to-r from-pulse to-synapse px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
+                >
+                  Subscribe
+                </button>
+              </form>
+              <p className="mt-2 text-xs text-gray-600">
+                No spam. Unsubscribe anytime.
+              </p>
+            </div>
+
             <div className="mt-4 flex items-center gap-3">
               {socialLinks.map((social) => (
                 <a
