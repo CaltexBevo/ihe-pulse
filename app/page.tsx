@@ -4,12 +4,13 @@ import Link from 'next/link';
 import BrainVisualization from '@/components/BrainVisualization';
 import DiscoveryTicker from '@/components/DiscoveryTicker';
 import AudioPlayer from '@/components/AudioPlayer';
+import EditorialLensBadge from '@/components/EditorialLensBadge';
 import { episodes } from '@/lib/data/episodes';
 import {
-  categoryColors,
+  getLatestEpisode,
   formatPulseDate,
-  getTodayBriefing,
-} from '@/lib/data/daily-pulse';
+  categoryColors,
+} from '@/lib/data/innovation-pulse';
 import { getStaffPicks } from '@/lib/data/ai-apps';
 import { posts } from '@/lib/data/posts';
 import {
@@ -34,8 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const briefing = getTodayBriefing();
-  const todayStories = briefing.stories.slice(0, 4);
+  const pulseEpisode = getLatestEpisode();
   const latestEpisode = episodes[0];
   const latestPost = posts[0];
   const staffPicks = getStaffPicks().slice(0, 3);
@@ -74,11 +74,11 @@ export default function Home() {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link
-                  href="/daily-pulse"
+                  href="/innovation-pulse"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-pulse to-synapse text-white font-semibold hover:opacity-90 transition-opacity"
                 >
                   <Zap size={18} />
-                  Today&apos;s Briefing
+                  Today&apos;s Pulse
                 </Link>
                 <Link
                   href="/prompts"
@@ -104,7 +104,7 @@ export default function Home() {
       <DiscoveryTicker />
 
       {/* ════════════════════════════════════════════
-          SECTION 3: TODAY'S DAILY PULSE
+          SECTION 3: THE INNOVATION PULSE
           ════════════════════════════════════════════ */}
       <section className="px-4 sm:px-6 lg:px-8 py-20">
         <div className="mx-auto max-w-7xl">
@@ -114,97 +114,137 @@ export default function Home() {
               Updated Daily
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              TODAY&apos;S INTELLIGENCE{' '}
-              <span className="gradient-text">BRIEFING</span>
+              THE{' '}
+              <span className="gradient-text">INNOVATION PULSE</span>
             </h2>
-            <p className="mt-3 text-sm text-gray-500 font-mono flex items-center justify-center gap-2">
-              <Calendar size={14} />
-              {formatPulseDate(briefing.date)}
+            <p className="mt-2 text-sm text-gray-500">
+              Daily AI & Innovation in Higher Education
             </p>
           </div>
 
-          {/* Audio player card */}
-          <div className="glass rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto bg-gradient-to-br from-pulse/5 to-synapse/5">
-            <div className="flex flex-col sm:flex-row items-start gap-6">
-              <div className="shrink-0">
-                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-pulse/20 to-synapse/20 border border-white/10 flex items-center justify-center">
-                  <Mic size={32} className="text-pulse" />
+          {pulseEpisode ? (
+            <>
+              {/* Editorial hook card */}
+              <div className="glass rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto bg-gradient-to-br from-pulse/5 to-synapse/5 mb-8">
+                <div className="flex flex-col sm:flex-row items-start gap-6">
+                  <div className="shrink-0">
+                    <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-pulse/20 to-synapse/20 border border-white/10 flex items-center justify-center">
+                      <Mic size={32} className="text-pulse" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <span className="text-xs font-mono text-gray-500 flex items-center gap-1">
+                        <Calendar size={12} />
+                        {formatPulseDate(pulseEpisode.date)}
+                      </span>
+                      <EditorialLensBadge lens={pulseEpisode.editorialLens} size="sm" />
+                      <span className="text-xs text-gray-500 flex items-center gap-1">
+                        <Clock size={12} />
+                        {pulseEpisode.audioDuration}
+                      </span>
+                    </div>
+                    <p className="text-lg sm:text-xl text-white font-medium leading-relaxed mb-4">
+                      {pulseEpisode.editorialHook}
+                    </p>
+
+                    <AudioPlayer
+                      duration={pulseEpisode.audioDuration}
+                      barCount={45}
+                      audioSrc={pulseEpisode.audioUrl}
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-xs font-mono text-pulse bg-pulse/10 px-2 py-0.5 rounded">
-                    DAILY PULSE
-                  </span>
-                  <span className="text-xs text-gray-500 flex items-center gap-1">
-                    <Clock size={12} />
-                    {briefing.audioDuration}
-                  </span>
+              {/* Today's stories preview */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                {/* Deep Dive */}
+                <div className="glass rounded-xl overflow-hidden hover:border-pulse/20 transition-colors col-span-1 sm:col-span-2 lg:col-span-1">
+                  <div
+                    className="h-1"
+                    style={{
+                      background: `linear-gradient(90deg, ${categoryColors[pulseEpisode.deepDive.category]?.hex ?? '#3b82f6'}, #c850c0)`,
+                    }}
+                  />
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[10px] font-bold text-pulse bg-pulse/10 px-2 py-0.5 rounded uppercase tracking-wider">
+                        Deep Dive
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-semibold text-white leading-snug line-clamp-2">
+                      {pulseEpisode.deepDive.title}
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1.5 line-clamp-2">
+                      {pulseEpisode.deepDive.summary}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-1">
-                  Dr. Norma&apos;s Morning Briefing
-                </h3>
-                <p className="text-sm text-gray-400 mb-4">
-                  {briefing.greeting} Here&apos;s what&apos;s moving in AI and
-                  higher education today.
-                </p>
 
-                <AudioPlayer duration={briefing.audioDuration} barCount={45} />
-              </div>
-            </div>
-          </div>
-
-          {/* Today's top stories */}
-          <div className="grid sm:grid-cols-2 gap-4 mt-8 max-w-4xl mx-auto">
-            {todayStories.map((story) => (
-              <div
-                key={story.id}
-                className="glass rounded-xl overflow-hidden hover:border-pulse/20 transition-colors"
-              >
-                {/* Category color band */}
-                <div
-                  className="h-1"
-                  style={{
-                    backgroundColor:
-                      categoryColors[story.category]?.hex ?? '#6b7280',
-                  }}
-                />
-                <div className="p-5">
-                  <span
-                    className={`text-[10px] font-mono uppercase tracking-wider ${
-                      categoryColors[story.category]?.text ?? 'text-gray-400'
-                    }`}
+                {/* Quick Hits */}
+                {pulseEpisode.quickHits.slice(0, 2).map((hit, i) => (
+                  <div
+                    key={i}
+                    className="glass rounded-xl overflow-hidden hover:border-pulse/20 transition-colors"
                   >
-                    {story.category}
-                  </span>
-                  <h4 className="text-sm font-semibold text-white mt-1 leading-snug">
-                    {story.title}
-                  </h4>
-                  <p className="text-xs text-gray-500 mt-1.5 line-clamp-2">
-                    {story.summary}
-                  </p>
-                  <p className="text-[10px] text-gray-600 mt-2 font-mono">
-                    Source: {story.source}
-                  </p>
-                </div>
+                    <div
+                      className="h-1"
+                      style={{
+                        backgroundColor:
+                          categoryColors[hit.category]?.hex ?? '#6b7280',
+                      }}
+                    />
+                    <div className="p-5">
+                      <span
+                        className={`text-[10px] font-mono uppercase tracking-wider ${
+                          categoryColors[hit.category]?.text ?? 'text-gray-400'
+                        }`}
+                      >
+                        {hit.category}
+                      </span>
+                      <h4 className="text-sm font-semibold text-white mt-1 leading-snug line-clamp-2">
+                        {hit.title}
+                      </h4>
+                      <p className="text-xs text-gray-500 mt-1.5 line-clamp-2">
+                        {hit.summary}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          {/* Link to full Daily Pulse */}
-          <div className="text-center mt-8">
-            <Link
-              href="/daily-pulse"
-              className="inline-flex items-center gap-2 text-sm font-medium text-pulse hover:text-white transition-colors group"
-            >
-              See All Stories
-              <ArrowRight
-                size={14}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-          </div>
+              {/* Link to full Innovation Pulse */}
+              <div className="text-center mt-8">
+                <Link
+                  href="/innovation-pulse"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-pulse hover:text-white transition-colors group"
+                >
+                  Listen to Today&apos;s Pulse
+                  <ArrowRight
+                    size={14}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </Link>
+                <span className="mx-3 text-gray-600">|</span>
+                <Link
+                  href="/innovation-pulse"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors group"
+                >
+                  Browse All Episodes
+                  <ArrowRight
+                    size={14}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-gray-500">No episodes available yet.</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -524,7 +564,7 @@ export default function Home() {
               <span className="gradient-text">Stay in the Loop</span>
             </h2>
             <p className="text-gray-400 max-w-lg mx-auto mb-8">
-              Get the Daily Pulse briefing delivered to your inbox every morning.
+              Get The Innovation Pulse delivered to your inbox every morning.
               Curated AI news, tool reviews, and actionable strategies for higher
               education — in under 5 minutes.
             </p>

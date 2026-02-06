@@ -7,7 +7,7 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/daily-pulse', label: 'Daily Pulse' },
+  { href: '/innovation-pulse', label: 'Innovation Pulse' },
   { href: '/prompts', label: 'Prompts' },
   { href: '/ai-directory', label: 'AI Directory' },
   { href: '/educator-tools', label: 'Educator Tools' },

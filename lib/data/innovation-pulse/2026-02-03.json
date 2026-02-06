@@ -1,0 +1,45 @@
+{
+  "date": "2026-02-03",
+  "dayOfWeek": "Tuesday",
+  "editorialLens": "The Hard Question",
+  "editorialHook": "There's a growing gap between what faculty want from AI training and what institutions are actually providing. Let's talk about why.",
+  "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/daily-news/ihe-daily-news-2026-02-03.mp3",
+  "audioDuration": "4:02",
+  "deepDive": {
+    "title": "The Faculty AI Training Gap: Who's Actually Responsible?",
+    "summary": "Yesterday we flagged the Educause survey showing 73% of faculty want more AI training. But here's the hard question: whose job is it to provide that training? Provost offices say it's CTLs. CTLs say they're understaffed. IT says it's not their lane. Meanwhile, faculty are figuring it out on YouTube. Something has to give.",
+    "source": "Educause Review",
+    "sourceUrl": "https://educause.edu/example",
+    "isCallback": true,
+    "callbackThreadId": "faculty-ai-training-gap",
+    "callbackFirstCovered": "2026-02-02",
+    "category": "Leadership & Strategy"
+  },
+  "quickHits": [
+    {
+      "title": "Stanford Releases Open-Source AI Teaching Assistant Framework",
+      "summary": "Stanford's HAI lab released an open-source framework for building course-specific AI assistants. It's free, but the question is whether smaller schools have the technical capacity to actually deploy it.",
+      "source": "Stanford HAI",
+      "sourceUrl": "https://hai.stanford.edu/example",
+      "category": "Tools & Products"
+    },
+    {
+      "title": "UK Universities Push Back on AI Detection Software",
+      "summary": "A consortium of UK universities is recommending against using AI detection tools in formal academic integrity proceedings, citing high false positive rates. The debate is shifting from detection to redesigning assessments.",
+      "source": "Times Higher Education",
+      "sourceUrl": "https://timeshighereducation.com/example",
+      "category": "Policy & Ethics"
+    }
+  ],
+  "storiesWatching": [
+    {
+      "threadId": "boise-state-ai-platform",
+      "label": "Boise State's Campus-Wide AI Platform",
+      "update": "No new developments since yesterday, but we're watching for other institutions announcing similar models.",
+      "daysSinceFirstCovered": 1
+    }
+  ],
+  "closingThought": "Today's stories share an uncomfortable truth: the tools are getting better faster than institutions can figure out how to use them. Stanford can build a framework, but who deploys it? The UK can reject detection software, but what replaces it? The hard question isn't about the technology — it's about the organizational will to actually change.",
+  "categories": ["Leadership & Strategy", "Tools & Products", "Policy & Ethics"],
+  "themes": ["faculty training gap", "institutional responsibility", "AI detection", "open-source AI tools"]
+}

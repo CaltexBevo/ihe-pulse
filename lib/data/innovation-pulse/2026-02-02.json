@@ -1,0 +1,43 @@
+{
+  "date": "2026-02-02",
+  "dayOfWeek": "Monday",
+  "editorialLens": "The Practitioner's Playbook",
+  "editorialHook": "One university just cut their AI costs by 80% — and the model they used is something any campus could replicate.",
+  "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/daily-news/ihe-daily-news-2026-02-02.mp3",
+  "audioDuration": "3:45",
+  "deepDive": {
+    "title": "Boise State Builds Campus-Wide AI on AWS — At a Fraction of the Cost",
+    "summary": "Boise State's new AI platform gives every student and faculty member access to AI tools through a single portal. Built on AWS, they claim an 80% reduction in per-user costs compared to individual licenses. Here's how you could pitch something similar at your institution.",
+    "source": "AWS Education Blog",
+    "sourceUrl": "https://aws.amazon.com/example",
+    "isCallback": false,
+    "category": "Infrastructure & Operations"
+  },
+  "quickHits": [
+    {
+      "title": "Canva Adds AI-Powered Slide Generator for Educators",
+      "summary": "Canva's new feature lets you paste a syllabus and get a full slide deck. It's free for educators with a .edu email. Worth trying this week if you're prepping spring materials.",
+      "source": "The Verge",
+      "sourceUrl": "https://theverge.com/example",
+      "category": "Tools & Products"
+    },
+    {
+      "title": "Survey: 73% of Faculty Say They Need More AI Training",
+      "summary": "A new Educause survey puts a number on what many of us already knew — faculty want help with AI but aren't getting it. The gap between interest and institutional support is widening.",
+      "source": "Educause Review",
+      "sourceUrl": "https://educause.edu/example",
+      "category": "Research & Innovation"
+    },
+    {
+      "title": "Community College in Texas Launches Free AI Literacy Certificate",
+      "summary": "Austin Community College is offering a free, stackable AI literacy credential for both students and community members. A model worth watching for accessibility-focused institutions.",
+      "source": "Community College Daily",
+      "sourceUrl": "https://ccdaily.com/example",
+      "category": "Student Experience"
+    }
+  ],
+  "storiesWatching": [],
+  "closingThought": "The through-line today is access. Whether it's Boise State cutting costs to get AI into every student's hands, Canva making slide creation free, or a community college opening AI training to the public — the institutions getting ahead are the ones removing barriers, not adding them.",
+  "categories": ["Infrastructure & Operations", "Tools & Products", "Research & Innovation", "Student Experience"],
+  "themes": ["cost reduction", "cloud infrastructure", "campus-wide AI access", "faculty training gap", "AI literacy"]
+}

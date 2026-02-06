@@ -1,0 +1,43 @@
+{
+  "date": "2026-02-04",
+  "dayOfWeek": "Wednesday",
+  "editorialLens": "The Student Experience",
+  "editorialHook": "A tool launched this week that I think changes the game for how we give student feedback. I'll tell you which one and why.",
+  "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/daily-news/ihe-daily-news-2026-02-04.mp3",
+  "audioDuration": "3:58",
+  "deepDive": {
+    "title": "What AI Feedback Actually Feels Like to Students",
+    "summary": "A new study from Georgia State tracked student reactions to AI-generated feedback versus human feedback. Students couldn't reliably tell the difference — but they engaged more with feedback that asked them questions rather than just correcting errors. The tool that caught my eye this week, FeedbackLoop, is built around that exact insight. Put yourself in your students' shoes: would you rather get a grade with a comment, or a grade with a question that makes you think?",
+    "source": "Georgia State University Research",
+    "sourceUrl": "https://gsu.edu/example",
+    "isCallback": false,
+    "category": "Teaching & Learning"
+  },
+  "quickHits": [
+    {
+      "title": "OpenAI Partners with 10 HBCUs for AI Access Program",
+      "summary": "OpenAI is providing free API access and training to ten HBCUs. From a student perspective, this matters because it means more students at under-resourced institutions get hands-on AI experience — not just lectures about it.",
+      "source": "OpenAI Blog",
+      "sourceUrl": "https://openai.com/example",
+      "category": "Student Experience"
+    },
+    {
+      "title": "New Data: Students Using AI Tutors Study 40% More Often",
+      "summary": "A Coursera study found students with AI tutor access logged 40% more study sessions. The interesting wrinkle: most of those sessions happened between 10 PM and 2 AM. What does that tell us about when students actually need support?",
+      "source": "Coursera Research",
+      "sourceUrl": "https://coursera.org/example",
+      "category": "Research & Innovation"
+    }
+  ],
+  "storiesWatching": [
+    {
+      "threadId": "faculty-ai-training-gap",
+      "label": "The Faculty AI Training Gap",
+      "update": "Tuesday's deep dive on institutional responsibility sparked significant discussion online. Several provost offices have been tagged. No formal responses yet.",
+      "daysSinceFirstCovered": 2
+    }
+  ],
+  "closingThought": "The student experience stories this week all point in the same direction: students want AI that meets them where they are — at 2 AM, with questions instead of answers, and without a paywall. The institutions that understand this will keep their students. The ones that don't will wonder where they went.",
+  "categories": ["Teaching & Learning", "Student Experience", "Research & Innovation"],
+  "themes": ["AI feedback", "student engagement", "HBCU access", "AI tutoring", "late-night learning"]
+}

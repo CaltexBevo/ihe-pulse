@@ -1,0 +1,49 @@
+{
+  "date": "2026-02-05",
+  "dayOfWeek": "Thursday",
+  "editorialLens": "Connecting the Dots",
+  "editorialHook": "Three separate stories this week all point to the same conclusion — and it's not what you'd expect.",
+  "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/daily-news/ihe-daily-news-2026-02-05.mp3",
+  "audioDuration": "4:15",
+  "deepDive": {
+    "title": "The Pattern Nobody's Talking About: AI Adoption Is a Resource Equity Issue",
+    "summary": "This week we covered Boise State's cost-cutting AI platform, OpenAI's HBCU partnership, and Austin CC's free AI literacy certificate. On the surface, three different stories. But here's the pattern: all three are about making AI accessible to populations that would otherwise be left behind. The schools getting ahead aren't the ones with the biggest budgets — they're the ones solving the access problem first.",
+    "source": "IHE Analysis",
+    "sourceUrl": "https://innovatinghighered.com/example",
+    "isCallback": false,
+    "category": "Leadership & Strategy"
+  },
+  "quickHits": [
+    {
+      "title": "Microsoft Copilot Gets Higher Ed-Specific Features",
+      "summary": "Microsoft announced Copilot features designed for higher ed: syllabus generation, assignment scaffolding, and institutional policy awareness. Requires Microsoft 365 Education license.",
+      "source": "Microsoft Education Blog",
+      "sourceUrl": "https://microsoft.com/example",
+      "category": "Tools & Products"
+    },
+    {
+      "title": "First AI-Generated Textbook Approved for State Adoption",
+      "summary": "California approved an AI-generated introductory statistics textbook for state college adoption. The publisher used GPT-4 for initial drafts with human expert review. Cost: $0 for students. This is either the future of OER or a cautionary tale — time will tell.",
+      "source": "EdSurge",
+      "sourceUrl": "https://edsurge.com/example",
+      "category": "Policy & Ethics"
+    }
+  ],
+  "storiesWatching": [
+    {
+      "threadId": "faculty-ai-training-gap",
+      "label": "The Faculty AI Training Gap",
+      "update": "A provost at a mid-size public university responded to Tuesday's coverage with a commitment to fund AI training. One down, many to go.",
+      "daysSinceFirstCovered": 3
+    },
+    {
+      "threadId": "boise-state-ai-platform",
+      "label": "Boise State's Campus-Wide AI Platform",
+      "update": "Hearing informal reports that University of Oregon is exploring a similar model. Nothing confirmed yet.",
+      "daysSinceFirstCovered": 3
+    }
+  ],
+  "closingThought": "Thursday is for stepping back and seeing what the week's stories are really about. This week, that answer is clear: the AI divide in higher ed isn't about technology — it's about access and equity. The institutions that solve for that will define the next decade of education.",
+  "categories": ["Leadership & Strategy", "Tools & Products", "Policy & Ethics"],
+  "themes": ["AI equity", "resource access", "pattern recognition", "institutional strategy", "OER"]
+}

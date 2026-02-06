@@ -12,6 +12,20 @@ const nextConfig: NextConfig = {
     ],
   },
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/daily-pulse',
+        destination: '/innovation-pulse',
+        permanent: true,
+      },
+      {
+        source: '/daily-pulse/:date',
+        destination: '/innovation-pulse/:date',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

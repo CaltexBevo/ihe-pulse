@@ -1,0 +1,57 @@
+{
+  "date": "2026-02-06",
+  "dayOfWeek": "Friday",
+  "editorialLens": "The Innovator's Edge",
+  "editorialHook": "One university just proved that campus-wide AI doesn't have to cost a fortune — and three others are already copying the playbook.",
+  "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/daily-news/ihe-daily-news-2026-02-06.mp3",
+  "audioDuration": "4:12",
+  "deepDive": {
+    "title": "Boise State's AI Platform Gets Its First Copycats",
+    "summary": "When we first covered Boise State's AWS-based AI platform on Monday, the 80% cost reduction number stood out. Now the University of Oregon and Colorado State have both announced similar initiatives — and the model is spreading faster than anyone expected.",
+    "source": "EdTech Magazine",
+    "sourceUrl": "https://edtechmagazine.com/example",
+    "isCallback": true,
+    "callbackThreadId": "boise-state-ai-platform",
+    "callbackFirstCovered": "2026-02-02",
+    "category": "Infrastructure & Operations"
+  },
+  "quickHits": [
+    {
+      "title": "New AI Grading Tool Claims 90% Time Savings",
+      "summary": "A startup called GradeAssist launched this week targeting large lecture courses. The real question: does faster grading mean better feedback, or just faster feedback?",
+      "source": "Inside Higher Ed",
+      "sourceUrl": "https://insidehighered.com/example",
+      "category": "Teaching & Learning"
+    },
+    {
+      "title": "UNESCO Releases Updated AI Ethics Framework for Universities",
+      "summary": "The new framework addresses generative AI specifically — something the 2023 version didn't cover. Worth reading if your institution is drafting AI policies.",
+      "source": "UNESCO",
+      "sourceUrl": "https://unesco.org/example",
+      "category": "Policy & Ethics"
+    }
+  ],
+  "storiesWatching": [
+    {
+      "threadId": "faculty-ai-training-gap",
+      "label": "The Faculty AI Training Gap",
+      "update": "Still no institutional response to last week's survey showing 73% of faculty feel unsupported. Watching for whether any provost offices step up.",
+      "daysSinceFirstCovered": 4
+    },
+    {
+      "threadId": "boise-state-ai-platform",
+      "label": "Boise State's Campus-Wide AI Platform",
+      "update": "Confirmed: University of Oregon and Colorado State are now pursuing similar models. This is becoming a movement.",
+      "daysSinceFirstCovered": 4
+    },
+    {
+      "threadId": "ai-textbook-california",
+      "label": "California's AI-Generated Textbook",
+      "update": "Faculty reactions are mixed. Some praise the cost savings for students; others worry about accuracy. We'll track adoption numbers.",
+      "daysSinceFirstCovered": 1
+    }
+  ],
+  "closingThought": "What's striking about this week isn't that AI is spreading across campuses — it's how fast the copycats are moving. The gap between early adopters and everyone else is shrinking, and that changes the conversation from 'should we?' to 'how fast can we?'",
+  "categories": ["Infrastructure & Operations", "Teaching & Learning", "Policy & Ethics"],
+  "themes": ["cost reduction", "AI platform adoption", "grading automation", "ethics frameworks"]
+}

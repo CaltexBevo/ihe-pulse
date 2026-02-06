@@ -7,12 +7,14 @@ interface AudioPlayerProps {
   title?: string;
   duration?: string;
   barCount?: number;
+  audioSrc?: string;
 }
 
 export default function AudioPlayer({
   title,
   duration = '18:24',
   barCount = 50,
+  audioSrc,
 }: AudioPlayerProps) {
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);

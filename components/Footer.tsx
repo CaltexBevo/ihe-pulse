@@ -3,7 +3,7 @@ import { Twitter, Linkedin, Youtube, Mail } from 'lucide-react';
 
 const footerLinks = {
   Platform: [
-    { href: '/daily-pulse', label: 'Daily Pulse' },
+    { href: '/innovation-pulse', label: 'Innovation Pulse' },
     { href: '/prompts', label: 'Prompts' },
     { href: '/ai-directory', label: 'AI Directory' },
     { href: '/educator-tools', label: 'Educator Tools' },
@@ -46,7 +46,7 @@ export default function Footer() {
             {/* Newsletter signup */}
             <div className="mt-5">
               <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                Get the Daily Pulse
+                Get The Innovation Pulse
               </h4>
               <form action="#" className="mt-2 flex items-center gap-2 max-w-sm">
                 <input
