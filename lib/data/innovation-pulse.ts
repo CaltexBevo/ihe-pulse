@@ -47,3 +47,82 @@ export function getEpisodeDates(): string[] {
   const episodes = getAllEpisodes();
   return episodes.map((e) => e.date);
 }
+
+// ── Story Aggregation Types ─────────────────────────────────────────────────
+
+export interface AggregatedStory {
+  title: string;
+  summary: string;
+  source: string;
+  sourceUrl: string;
+  category: import('./innovation-pulse-types').StoryCategory;
+  date: string;
+  type: 'deepDive' | 'quickHit';
+  isCallback?: boolean;
+}
+
+// ── Story Aggregation Utilities ─────────────────────────────────────────────
+
+export function getAllStoriesAggregated(): AggregatedStory[] {
+  const episodes = getAllEpisodes();
+  const stories: AggregatedStory[] = [];
+
+  for (const episode of episodes) {
+    // Add deep dive
+    stories.push({
+      title: episode.deepDive.title,
+      summary: episode.deepDive.summary,
+      source: episode.deepDive.source,
+      sourceUrl: episode.deepDive.sourceUrl,
+      category: episode.deepDive.category,
+      date: episode.date,
+      type: 'deepDive',
+      isCallback: episode.deepDive.isCallback,
+    });
+
+    // Add quick hits
+    for (const hit of episode.quickHits) {
+      stories.push({
+        title: hit.title,
+        summary: hit.summary,
+        source: hit.source,
+        sourceUrl: hit.sourceUrl,
+        category: hit.category,
+        date: episode.date,
+        type: 'quickHit',
+      });
+    }
+  }
+
+  // Sort by date (newest first)
+  return stories.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+export function getStoriesByCategory(): Record<
+  import('./innovation-pulse-types').StoryCategory,
+  AggregatedStory[]
+> {
+  const allStories = getAllStoriesAggregated();
+  const categories: import('./innovation-pulse-types').StoryCategory[] = [
+    'Teaching & Learning',
+    'Policy & Ethics',
+    'Infrastructure & Operations',
+    'Tools & Products',
+    'Research & Innovation',
+    'Student Experience',
+    'Leadership & Strategy',
+  ];
+
+  const grouped = {} as Record<
+    import('./innovation-pulse-types').StoryCategory,
+    AggregatedStory[]
+  >;
+
+  for (const category of categories) {
+    grouped[category] = allStories.filter((s) => s.category === category);
+  }
+
+  return grouped;
+}

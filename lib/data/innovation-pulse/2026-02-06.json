@@ -2,56 +2,61 @@
   "date": "2026-02-06",
   "dayOfWeek": "Friday",
   "editorialLens": "The Innovator's Edge",
-  "editorialHook": "One university just proved that campus-wide AI doesn't have to cost a fortune — and three others are already copying the playbook.",
+  "editorialHook": "A massive new OECD report just dropped a bombshell: students using AI scored 127% higher — but when you take the AI away, they actually perform worse. What that means for every faculty member designing a syllabus right now.",
   "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/daily-news/ihe-daily-news-2026-02-06.mp3",
-  "audioDuration": "4:12",
+  "audioDuration": "4:35",
   "deepDive": {
-    "title": "Boise State's AI Platform Gets Its First Copycats",
-    "summary": "When we first covered Boise State's AWS-based AI platform on Monday, the 80% cost reduction number stood out. Now the University of Oregon and Colorado State have both announced similar initiatives — and the model is spreading faster than anyone expected.",
-    "source": "EdTech Magazine",
-    "sourceUrl": "https://edtechmagazine.com/example",
-    "isCallback": true,
-    "callbackThreadId": "boise-state-ai-platform",
-    "callbackFirstCovered": "2026-02-02",
-    "category": "Infrastructure & Operations"
+    "title": "The OECD's AI Education Report Changes the Conversation",
+    "summary": "The OECD Digital Education Outlook 2026 just dropped, and it's the most comprehensive look at AI in education we've seen from any international body. The headline number: students using general-purpose AI tools like GPT-4 saw test scores jump by up to 127%. Sounds great, right? Here's the catch — when researchers removed AI access, those same students performed 17% worse than the control group. The OECD's conclusion is direct: general-purpose AI often learns FOR students rather than helping them learn. But here's the innovator's edge — education-specific AI tools designed with pedagogical intent showed sustained learning gains. The difference isn't whether you use AI. It's whether the AI is designed to make students think or designed to think for them. If you're choosing tools for your courses right now, that distinction matters more than any feature list.",
+    "source": "OECD",
+    "sourceUrl": "https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html",
+    "isCallback": false,
+    "category": "Research & Innovation"
   },
   "quickHits": [
     {
-      "title": "New AI Grading Tool Claims 90% Time Savings",
-      "summary": "A startup called GradeAssist launched this week targeting large lecture courses. The real question: does faster grading mean better feedback, or just faster feedback?",
-      "source": "Inside Higher Ed",
-      "sourceUrl": "https://insidehighered.com/example",
-      "category": "Teaching & Learning"
+      "title": "Arkansas Colleges Launch New AI Degree Programs as Job Market Shifts",
+      "summary": "The University of Arkansas at Little Rock is launching a full bachelor's degree in AI covering machine learning, data analytics, robotics, and ethical AI. Meanwhile, UCA's dean noted that AI has eliminated 78,000 jobs but created 133 million globally. The real takeaway: colleges that move fast on AI curriculum are positioning their graduates for the jobs that actually exist.",
+      "source": "KATV News",
+      "sourceUrl": "https://katv.com/news/local/colleges-adapt-to-ai-driven-job-market-with-new-programs",
+      "category": "Student Experience"
     },
     {
-      "title": "UNESCO Releases Updated AI Ethics Framework for Universities",
-      "summary": "The new framework addresses generative AI specifically — something the 2023 version didn't cover. Worth reading if your institution is drafting AI policies.",
-      "source": "UNESCO",
-      "sourceUrl": "https://unesco.org/example",
-      "category": "Policy & Ethics"
+      "title": "EDUCAUSE Learning Lab on AI and Data Kicks Off Today",
+      "summary": "A four-session EDUCAUSE Learning Lab launched this week focused on harnessing AI for data management in higher ed. It's targeting administrators, IT professionals, and faculty who want to move from being 'data-rich but insight-poor.' If you missed the first session Tuesday, recordings are available — and the remaining sessions run through February 17.",
+      "source": "EDUCAUSE",
+      "sourceUrl": "https://events.educause.edu/learning-labs/2026/from-insight-to-impact-harnessing-ai-and-data-for-the-future-of-higher-ed",
+      "category": "Leadership & Strategy"
+    },
+    {
+      "title": "Survey: College Students Are Lukewarm on Formal AI Courses",
+      "summary": "An Honorlock survey found students are learning AI on their own terms — not through structured coursework. They're teaching themselves rather than waiting for universities to build formal programs. The gap between student self-education and institutional offerings is widening, and it raises an uncomfortable question: are students outpacing their own universities on AI literacy?",
+      "source": "Inside Higher Ed",
+      "sourceUrl": "https://www.insidehighered.com/news/quick-takes/2026/02/02/survey-college-students-lukewarm-ai-courses",
+      "category": "Student Experience"
     }
   ],
   "storiesWatching": [
     {
-      "threadId": "faculty-ai-training-gap",
-      "label": "The Faculty AI Training Gap",
-      "update": "Still no institutional response to last week's survey showing 73% of faculty feel unsupported. Watching for whether any provost offices step up.",
-      "daysSinceFirstCovered": 4
+      "threadId": "oecd-ai-education-outlook",
+      "label": "OECD Digital Education Outlook 2026",
+      "update": "The full report just dropped this month. We're tracking institutional responses and policy changes that emerge from these findings. Expect this to shape AI policy conversations at universities for the next 6-12 months.",
+      "daysSinceFirstCovered": 0
     },
     {
-      "threadId": "boise-state-ai-platform",
-      "label": "Boise State's Campus-Wide AI Platform",
-      "update": "Confirmed: University of Oregon and Colorado State are now pursuing similar models. This is becoming a movement.",
-      "daysSinceFirstCovered": 4
+      "threadId": "ai-curriculum-expansion",
+      "label": "AI Degree Programs Expanding Nationwide",
+      "update": "Arkansas is the latest state with colleges launching dedicated AI programs. We've seen similar moves from Ohio State, Cal State system, and others. Watching for community colleges to follow.",
+      "daysSinceFirstCovered": 0
     },
     {
-      "threadId": "ai-textbook-california",
-      "label": "California's AI-Generated Textbook",
-      "update": "Faculty reactions are mixed. Some praise the cost savings for students; others worry about accuracy. We'll track adoption numbers.",
-      "daysSinceFirstCovered": 1
+      "threadId": "fipse-169m-grants",
+      "label": "$169M FIPSE Grants for AI in Higher Ed",
+      "update": "The Department of Education awarded $169 million in January specifically supporting responsible AI use in teaching and learning. Grant recipients haven't been fully announced yet — watching for which institutions landed funding.",
+      "daysSinceFirstCovered": 3
     }
   ],
-  "closingThought": "What's striking about this week isn't that AI is spreading across campuses — it's how fast the copycats are moving. The gap between early adopters and everyone else is shrinking, and that changes the conversation from 'should we?' to 'how fast can we?'",
-  "categories": ["Infrastructure & Operations", "Teaching & Learning", "Policy & Ethics"],
-  "themes": ["cost reduction", "AI platform adoption", "grading automation", "ethics frameworks"]
+  "closingThought": "Here's what struck me this week: the OECD report essentially says that AI makes students look smarter without making them smarter — unless the tool is specifically designed to preserve the struggle of learning. Meanwhile, students are teaching themselves AI faster than universities can build courses about it. The institutions that figure out how to build AI INTO learning — not as a shortcut around it — are the ones that will still matter in five years. That's the innovator's edge this week. Have a good weekend, and we'll see you Monday.",
+  "categories": ["Research & Innovation", "Student Experience", "Leadership & Strategy"],
+  "themes": ["OECD AI report", "metacognitive laziness", "AI curriculum", "student self-education", "data-driven decision making", "FIPSE grants"]
 }
