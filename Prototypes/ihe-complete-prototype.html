@@ -5231,306 +5231,469 @@ Length: 1 page equivalent</code>
   </div>
 
   <!-- ========================================
-       EPISODE DETAIL PAGES
+       EPISODE DETAIL PAGES (Enhanced Design)
        ======================================== -->
 
   <!-- Episode 1: Human-Centered AI Strategy -->
   <div class="page" id="page-ep-1">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('podcast')">← Back to Podcast</a>
-      <p class="eyebrow">EPISODE 7</p>
-      <h1>Human-Centered AI Strategy: <em>Empathy, Trust, Access</em></h1>
-      <p>with Professor Chesa Caparas</p>
-    </div>
-    <div class="container episode-detail">
-      <div class="episode-hero">
-        <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Episode thumbnail" class="episode-thumb">
-        <div>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-magenta">June 22, 2025</span>
-            <span class="badge">45:00</span>
+    <div class="container" style="max-width: 900px; padding-top: 2rem;">
+      <a class="back-btn" onclick="showPage('podcast')" style="margin-bottom: 1.5rem; display: inline-block;">← Back to Podcast</a>
+
+      <!-- Featured Image -->
+      <img src="https://innovatinghighered.com/wp-content/uploads/2025/06/2025.06-EP-chesa-Thumb.jpg" alt="Human-Centered AI Strategy" style="width: 100%; border-radius: 16px; margin-bottom: 2rem;">
+
+      <!-- Episode Meta -->
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <span class="badge badge-cyan">Innovating Higher Ed Podcast</span>
+        <span style="color: #808080;">June 22, 2025</span>
+        <span style="color: #606060;">•</span>
+        <span style="color: #808080; font-family: var(--font-mono);">45 min</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.5rem;">Human-Centered AI Strategy: Empathy, Trust, Access</h1>
+      <p style="font-size: 1.1rem; color: var(--cyan); font-weight: 600; margin-bottom: 2rem;">with Professor Chesa Caparas</p>
+
+      <!-- Audio Player -->
+      <div class="audio-player" style="margin-bottom: 2rem; background: var(--deep); border: 1px solid var(--border);">
+        <button class="play-btn">▶</button>
+        <div class="waveform"></div>
+        <div class="audio-info">
+          <div class="audio-title">Listen Now</div>
+          <div class="audio-duration">45:00</div>
+        </div>
+      </div>
+
+      <!-- Platform Links -->
+      <div style="margin-bottom: 2.5rem;">
+        <p style="font-size: 0.85rem; color: #606060; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Listen on Your Favorite Platform</p>
+        <div class="platform-badges" style="justify-content: center;">
+          <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple</a>
+          <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
+          <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Amazon</a>
+          <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+        </div>
+      </div>
+
+      <div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin-bottom: 2.5rem;"></div>
+
+      <!-- Description -->
+      <p style="font-size: 1.1rem; color: #c0c0c0; line-height: 1.8; margin-bottom: 2rem;">Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas, media-literacy scholar and Fulbright researcher, about a people-first path to AI adoption in higher education. Chesa shares how a two-question survey surfaces hidden anxieties, how faculty can adapt without burnout, and why over-reliance on AI detectors can damage trust instead of protecting integrity.</p>
+
+      <!-- Key Takeaways -->
+      <div style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 2rem;">
+        <h3 style="margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--cyan);">✦</span> Key Takeaways</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Ready-to-use survey that maps student comfort with AI</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Tactics that keep feedback human while trimming workload</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Red-flag signs your AI detector policy harms equity</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> First steps to close global and local connectivity gaps</li>
+        </ul>
+      </div>
+
+      <!-- Guest Bio -->
+      <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">About the Guest</h3>
+        <div style="display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+          <div style="flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--deep), #1a1a2e); border: 2px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad)"/><path d="M19 11V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V11H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V11H19Z" fill="url(#micGrad)"/><path d="M11 19.93V23H13V19.93" fill="url(#micGrad)"/><defs><linearGradient id="micGrad" x1="5" y1="1" x2="19" y2="23"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#c850c0"/></linearGradient></defs></svg>
           </div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Professor Chesa Caparas explores how to build AI strategies that center empathy, trust, and equitable access for all learners.</p>
-          <div class="audio-player" style="background: var(--deep);">
-            <button class="play-btn">▶</button>
-            <div class="waveform"></div>
-            <div class="audio-info">
-              <div class="audio-duration">45:00</div>
-            </div>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; color: #fff;">Professor Chesa Caparas</h4>
+            <p style="margin: 0 0 0.75rem; color: var(--cyan); font-size: 0.9rem;">Media-Literacy Scholar & Fulbright Researcher</p>
+            <p style="margin: 0; color: #808080; font-size: 0.9rem; line-height: 1.6;">Professor of English and Ethnic Studies at De Anza College in Cupertino, CA. She teaches in the IMPACT AAPI Learning Community and leads professional development workshops on AI in education. Member of CA Learning Lab's AI Faculty Innovator in Residence Strategy Team.</p>
           </div>
         </div>
       </div>
-      <h3 style="margin: 2rem 0 1rem;">Episode Highlights</h3>
-      <ul style="color: #a0a0a0; line-height: 1.8;">
-        <li>Why empathy must be the foundation of any AI integration strategy</li>
-        <li>Building trust with faculty who feel overwhelmed by rapid tech changes</li>
-        <li>Ensuring equitable access to AI tools across diverse student populations</li>
-        <li>Practical frameworks for human-centered AI adoption</li>
-      </ul>
-      <h3 style="margin: 2rem 0 1rem;">Listen On</h3>
-      <div class="platform-badges">
-        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple Podcasts</a>
-        <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
-        <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Audible</a>
-        <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+
+      <!-- Topics -->
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Topics Covered</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">AI Strategy</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Faculty Development</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Student Success</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Academic Integrity</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Media Literacy</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Episode 2: Assistive AI Tools -->
   <div class="page" id="page-ep-2">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('podcast')">← Back to Podcast</a>
-      <p class="eyebrow">EPISODE 6</p>
-      <h1>Assistive AI Tools: <em>Transform Course Design & Assessment</em></h1>
-      <p>with Professor Scott James</p>
-    </div>
-    <div class="container episode-detail">
-      <div class="episode-hero">
-        <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Episode thumbnail" class="episode-thumb">
-        <div>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-magenta">May 17, 2025</span>
-            <span class="badge">42:00</span>
+    <div class="container" style="max-width: 900px; padding-top: 2rem;">
+      <a class="back-btn" onclick="showPage('podcast')" style="margin-bottom: 1.5rem; display: inline-block;">← Back to Podcast</a>
+      <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Assistive AI Tools" style="width: 100%; border-radius: 16px; margin-bottom: 2rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <span class="badge badge-cyan">Innovating Higher Ed Podcast</span>
+        <span style="color: #808080;">May 17, 2025</span>
+        <span style="color: #606060;">•</span>
+        <span style="color: #808080; font-family: var(--font-mono);">42 min</span>
+      </div>
+      <h1 style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.5rem;">Assistive AI Tools: Transform Course Design & Assessment</h1>
+      <p style="font-size: 1.1rem; color: var(--cyan); font-weight: 600; margin-bottom: 2rem;">with Professor Scott James</p>
+      <div class="audio-player" style="margin-bottom: 2rem; background: var(--deep); border: 1px solid var(--border);">
+        <button class="play-btn">▶</button>
+        <div class="waveform"></div>
+        <div class="audio-info"><div class="audio-title">Listen Now</div><div class="audio-duration">42:00</div></div>
+      </div>
+      <div style="margin-bottom: 2.5rem;">
+        <p style="font-size: 0.85rem; color: #606060; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Listen on Your Favorite Platform</p>
+        <div class="platform-badges" style="justify-content: center;">
+          <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple</a>
+          <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
+          <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Amazon</a>
+          <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+        </div>
+      </div>
+      <div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin-bottom: 2.5rem;"></div>
+      <p style="font-size: 1.1rem; color: #c0c0c0; line-height: 1.8; margin-bottom: 2rem;">Can a chatbot rewrite your toughest assignments in under five minutes? Professor Scott James, an instructional design veteran, talks with Dr. Norma Jones about how assistive AI tools are transforming course design and assessment practices. From automatic rubric generation to adaptive quiz creation, discover how these tools save faculty hours while improving learning outcomes.</p>
+      <div style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 2rem;">
+        <h3 style="margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--cyan);">✦</span> Key Takeaways</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> AI-powered rubric generation that maintains academic rigor</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Adaptive quiz creation based on learning objectives</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Accessibility improvements through AI-powered tools</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Balancing efficiency with pedagogical integrity</li>
+        </ul>
+      </div>
+      <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">About the Guest</h3>
+        <div style="display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+          <div style="flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--deep), #1a1a2e); border: 2px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad2)"/><path d="M19 11V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V11H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V11H19Z" fill="url(#micGrad2)"/><path d="M11 19.93V23H13V19.93" fill="url(#micGrad2)"/><defs><linearGradient id="micGrad2" x1="5" y1="1" x2="19" y2="23"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#c850c0"/></linearGradient></defs></svg>
           </div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Can a chatbot rewrite your toughest assignments in under five minutes? Professor Scott James demonstrates how assistive AI tools can revolutionize course design and assessment practices.</p>
-          <div class="audio-player" style="background: var(--deep);">
-            <button class="play-btn">▶</button>
-            <div class="waveform"></div>
-            <div class="audio-info">
-              <div class="audio-duration">42:00</div>
-            </div>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; color: #fff;">Professor Scott James</h4>
+            <p style="margin: 0 0 0.75rem; color: var(--cyan); font-size: 0.9rem;">Instructional Design Specialist</p>
+            <p style="margin: 0; color: #808080; font-size: 0.9rem; line-height: 1.6;">Veteran instructional designer with over 15 years of experience in higher education. Specializes in technology-enhanced learning and assessment design.</p>
           </div>
         </div>
       </div>
-      <h3 style="margin: 2rem 0 1rem;">Episode Highlights</h3>
-      <ul style="color: #a0a0a0; line-height: 1.8;">
-        <li>Rapid assignment redesign using AI assistants</li>
-        <li>Creating more authentic assessments with AI support</li>
-        <li>Accessibility improvements through AI-powered tools</li>
-        <li>Balancing efficiency with pedagogical integrity</li>
-      </ul>
-      <h3 style="margin: 2rem 0 1rem;">Listen On</h3>
-      <div class="platform-badges">
-        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple Podcasts</a>
-        <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
-        <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Audible</a>
-        <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Topics Covered</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Course Design</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Assessment</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Accessibility</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">AI Tools</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Episode 3: OER, ZTC & AI Translation -->
   <div class="page" id="page-ep-3">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('podcast')">← Back to Podcast</a>
-      <p class="eyebrow">EPISODE 5</p>
-      <h1>OER, ZTC & <em>Lightning-Fast AI Translation</em></h1>
-      <p>with Dr. Sarah Harmon</p>
-    </div>
-    <div class="container episode-detail">
-      <div class="episode-hero">
-        <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Episode thumbnail" class="episode-thumb">
-        <div>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-magenta">May 11, 2025</span>
-            <span class="badge">38:00</span>
+    <div class="container" style="max-width: 900px; padding-top: 2rem;">
+      <a class="back-btn" onclick="showPage('podcast')" style="margin-bottom: 1.5rem; display: inline-block;">← Back to Podcast</a>
+      <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="OER ZTC AI Translation" style="width: 100%; border-radius: 16px; margin-bottom: 2rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <span class="badge badge-cyan">Innovating Higher Ed Podcast</span>
+        <span style="color: #808080;">May 11, 2025</span>
+        <span style="color: #606060;">•</span>
+        <span style="color: #808080; font-family: var(--font-mono);">38 min</span>
+      </div>
+      <h1 style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.5rem;">OER, ZTC & Lightning-Fast AI Translation</h1>
+      <p style="font-size: 1.1rem; color: var(--cyan); font-weight: 600; margin-bottom: 2rem;">with Dr. Sarah Harmon</p>
+      <div class="audio-player" style="margin-bottom: 2rem; background: var(--deep); border: 1px solid var(--border);">
+        <button class="play-btn">▶</button>
+        <div class="waveform"></div>
+        <div class="audio-info"><div class="audio-title">Listen Now</div><div class="audio-duration">38:00</div></div>
+      </div>
+      <div style="margin-bottom: 2.5rem;">
+        <p style="font-size: 0.85rem; color: #606060; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Listen on Your Favorite Platform</p>
+        <div class="platform-badges" style="justify-content: center;">
+          <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple</a>
+          <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
+          <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Amazon</a>
+          <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+        </div>
+      </div>
+      <div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin-bottom: 2.5rem;"></div>
+      <p style="font-size: 1.1rem; color: #c0c0c0; line-height: 1.8; margin-bottom: 2rem;">Textbooks can cost more than tuition — AI-powered OER wipes that cost out entirely. Dr. Sarah Harmon, Adjunct Professor, joins to discuss how artificial intelligence is revolutionizing open educational resources, zero-textbook-cost initiatives, and multilingual content translation. Learn how one institution made their entire curriculum accessible in 12 languages overnight.</p>
+      <div style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 2rem;">
+        <h3 style="margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--cyan);">✦</span> Key Takeaways</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Zero-Textbook-Cost initiatives powered by AI</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Real-time translation of OER materials into 12+ languages</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Building inclusive, affordable learning materials</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Strategies for faculty adoption of OER</li>
+        </ul>
+      </div>
+      <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">About the Guest</h3>
+        <div style="display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+          <div style="flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--deep), #1a1a2e); border: 2px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad3)"/><path d="M19 11V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V11H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V11H19Z" fill="url(#micGrad3)"/><path d="M11 19.93V23H13V19.93" fill="url(#micGrad3)"/><defs><linearGradient id="micGrad3" x1="5" y1="1" x2="19" y2="23"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#c850c0"/></linearGradient></defs></svg>
           </div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Textbooks can cost more than tuition — AI-powered OER wipes that cost out entirely. Dr. Sarah Harmon explores how AI translation is making Open Educational Resources accessible to students worldwide.</p>
-          <div class="audio-player" style="background: var(--deep);">
-            <button class="play-btn">▶</button>
-            <div class="waveform"></div>
-            <div class="audio-info">
-              <div class="audio-duration">38:00</div>
-            </div>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; color: #fff;">Dr. Sarah Harmon</h4>
+            <p style="margin: 0 0 0.75rem; color: var(--cyan); font-size: 0.9rem;">OER Advocate & Adjunct Professor</p>
+            <p style="margin: 0; color: #808080; font-size: 0.9rem; line-height: 1.6;">Leading advocate for open educational resources and zero-textbook-cost programs. Pioneer in AI-powered content translation for multilingual learning environments.</p>
           </div>
         </div>
       </div>
-      <h3 style="margin: 2rem 0 1rem;">Episode Highlights</h3>
-      <ul style="color: #a0a0a0; line-height: 1.8;">
-        <li>Zero-Textbook-Cost (ZTC) initiatives powered by AI</li>
-        <li>Breaking language barriers with AI translation</li>
-        <li>Building inclusive, affordable learning materials</li>
-        <li>The future of Open Educational Resources</li>
-      </ul>
-      <h3 style="margin: 2rem 0 1rem;">Listen On</h3>
-      <div class="platform-badges">
-        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple Podcasts</a>
-        <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
-        <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Audible</a>
-        <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Topics Covered</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">OER</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Zero Textbook Cost</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">AI Translation</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Equity</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Episode 4: Equity-First AI Curriculum -->
   <div class="page" id="page-ep-4">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('podcast')">← Back to Podcast</a>
-      <p class="eyebrow">EPISODE 4</p>
-      <h1>Equity-First AI Curriculum <em>for Every Discipline</em></h1>
-      <p>with Dr. Suha Al Juboori</p>
-    </div>
-    <div class="container episode-detail">
-      <div class="episode-hero">
-        <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Episode thumbnail" class="episode-thumb">
-        <div>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-magenta">Feb 21, 2025</span>
-            <span class="badge">40:00</span>
+    <div class="container" style="max-width: 900px; padding-top: 2rem;">
+      <a class="back-btn" onclick="showPage('podcast')" style="margin-bottom: 1.5rem; display: inline-block;">← Back to Podcast</a>
+      <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Equity-First AI Curriculum" style="width: 100%; border-radius: 16px; margin-bottom: 2rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <span class="badge badge-cyan">Innovating Higher Ed Podcast</span>
+        <span style="color: #808080;">February 21, 2025</span>
+        <span style="color: #606060;">•</span>
+        <span style="color: #808080; font-family: var(--font-mono);">41 min</span>
+      </div>
+      <h1 style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.5rem;">Equity-First AI Curriculum for Every Discipline</h1>
+      <p style="font-size: 1.1rem; color: var(--cyan); font-weight: 600; margin-bottom: 2rem;">with Dr. Suha Al Juboori</p>
+      <div class="audio-player" style="margin-bottom: 2rem; background: var(--deep); border: 1px solid var(--border);">
+        <button class="play-btn">▶</button>
+        <div class="waveform"></div>
+        <div class="audio-info"><div class="audio-title">Listen Now</div><div class="audio-duration">41:00</div></div>
+      </div>
+      <div style="margin-bottom: 2.5rem;">
+        <p style="font-size: 0.85rem; color: #606060; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Listen on Your Favorite Platform</p>
+        <div class="platform-badges" style="justify-content: center;">
+          <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple</a>
+          <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
+          <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Amazon</a>
+          <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+        </div>
+      </div>
+      <div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin-bottom: 2.5rem;"></div>
+      <p style="font-size: 1.1rem; color: #c0c0c0; line-height: 1.8; margin-bottom: 2rem;">Dr. Suha Al Juboori is a visionary educator reshaping how every discipline approaches AI integration. In this compelling conversation with Dr. Norma Jones, she shares frameworks for building equity-first AI curriculum that works across departments — from STEM to humanities — ensuring no student or faculty member gets left behind in the AI transformation.</p>
+      <div style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 2rem;">
+        <h3 style="margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--cyan);">✦</span> Key Takeaways</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Frameworks for centering equity in AI curriculum design</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Cross-disciplinary approaches that work in any department</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Addressing bias and representation in AI tools</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Building inclusive learning environments for all students</li>
+        </ul>
+      </div>
+      <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">About the Guest</h3>
+        <div style="display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+          <div style="flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--deep), #1a1a2e); border: 2px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad4)"/><path d="M19 11V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V11H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V11H19Z" fill="url(#micGrad4)"/><path d="M11 19.93V23H13V19.93" fill="url(#micGrad4)"/><defs><linearGradient id="micGrad4" x1="5" y1="1" x2="19" y2="23"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#c850c0"/></linearGradient></defs></svg>
           </div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">A visionary educator reshaping how every discipline approaches AI integration. Dr. Suha Al Juboori shares frameworks for building equity-first AI curriculum across diverse academic fields.</p>
-          <div class="audio-player" style="background: var(--deep);">
-            <button class="play-btn">▶</button>
-            <div class="waveform"></div>
-            <div class="audio-info">
-              <div class="audio-duration">40:00</div>
-            </div>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; color: #fff;">Dr. Suha Al Juboori</h4>
+            <p style="margin: 0 0 0.75rem; color: var(--cyan); font-size: 0.9rem;">Equity & AI Curriculum Specialist</p>
+            <p style="margin: 0; color: #808080; font-size: 0.9rem; line-height: 1.6;">Visionary educator specializing in equity-centered AI curriculum development. Works with institutions nationwide to ensure AI integration benefits all students regardless of background.</p>
           </div>
         </div>
       </div>
-      <h3 style="margin: 2rem 0 1rem;">Episode Highlights</h3>
-      <ul style="color: #a0a0a0; line-height: 1.8;">
-        <li>Centering equity in AI curriculum design</li>
-        <li>Cross-disciplinary approaches to AI integration</li>
-        <li>Addressing bias and representation in AI tools</li>
-        <li>Building inclusive learning environments</li>
-      </ul>
-      <h3 style="margin: 2rem 0 1rem;">Listen On</h3>
-      <div class="platform-badges">
-        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple Podcasts</a>
-        <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
-        <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Audible</a>
-        <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Topics Covered</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Equity</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Curriculum Design</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">AI Bias</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">DEI</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Episode 5: VR Rehearsals for Nurses -->
   <div class="page" id="page-ep-5">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('podcast')">← Back to Podcast</a>
-      <p class="eyebrow">EPISODE 3</p>
-      <h1>VR Rehearsals: <em>Building Confident Nurses Faster</em></h1>
-      <p>with Dr. Jenna Zeller</p>
-    </div>
-    <div class="container episode-detail">
-      <div class="episode-hero">
-        <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Episode thumbnail" class="episode-thumb">
-        <div>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-magenta">Feb 21, 2025</span>
-            <span class="badge">36:00</span>
+    <div class="container" style="max-width: 900px; padding-top: 2rem;">
+      <a class="back-btn" onclick="showPage('podcast')" style="margin-bottom: 1.5rem; display: inline-block;">← Back to Podcast</a>
+      <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="VR Rehearsals for Nurses" style="width: 100%; border-radius: 16px; margin-bottom: 2rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <span class="badge badge-cyan">Innovating Higher Ed Podcast</span>
+        <span style="color: #808080;">February 21, 2025</span>
+        <span style="color: #606060;">•</span>
+        <span style="color: #808080; font-family: var(--font-mono);">36 min</span>
+      </div>
+      <h1 style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.5rem;">VR Rehearsals: Building Confident Nurses Faster</h1>
+      <p style="font-size: 1.1rem; color: var(--cyan); font-weight: 600; margin-bottom: 2rem;">with Dr. Jenna Zeller</p>
+      <div class="audio-player" style="margin-bottom: 2rem; background: var(--deep); border: 1px solid var(--border);">
+        <button class="play-btn">▶</button>
+        <div class="waveform"></div>
+        <div class="audio-info"><div class="audio-title">Listen Now</div><div class="audio-duration">36:00</div></div>
+      </div>
+      <div style="margin-bottom: 2.5rem;">
+        <p style="font-size: 0.85rem; color: #606060; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Listen on Your Favorite Platform</p>
+        <div class="platform-badges" style="justify-content: center;">
+          <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple</a>
+          <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
+          <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Amazon</a>
+          <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+        </div>
+      </div>
+      <div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin-bottom: 2.5rem;"></div>
+      <p style="font-size: 1.1rem; color: #c0c0c0; line-height: 1.8; margin-bottom: 2rem;">Nine in ten rookie nurses freeze during their first real emergency. Dr. Jenna Zeller shares how virtual reality rehearsals combined with AI-powered debriefing are building confidence faster than traditional clinical rotations. The results: students who've completed 50+ VR scenarios perform significantly better in real patient care situations.</p>
+      <div style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 2rem;">
+        <h3 style="margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--cyan);">✦</span> Key Takeaways</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> VR simulation for high-stakes nursing scenarios</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> AI-powered debriefing that accelerates skill mastery</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Measuring competency gains in VR training</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Scaling immersive learning in healthcare education</li>
+        </ul>
+      </div>
+      <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">About the Guest</h3>
+        <div style="display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+          <div style="flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--deep), #1a1a2e); border: 2px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad5)"/><path d="M19 11V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V11H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V11H19Z" fill="url(#micGrad5)"/><path d="M11 19.93V23H13V19.93" fill="url(#micGrad5)"/><defs><linearGradient id="micGrad5" x1="5" y1="1" x2="19" y2="23"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#c850c0"/></linearGradient></defs></svg>
           </div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Nine in ten rookie nurses freeze during their first real emergency. Dr. Jenna Zeller demonstrates how VR rehearsal environments are building confident, capable nurses faster than traditional training methods.</p>
-          <div class="audio-player" style="background: var(--deep);">
-            <button class="play-btn">▶</button>
-            <div class="waveform"></div>
-            <div class="audio-info">
-              <div class="audio-duration">36:00</div>
-            </div>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; color: #fff;">Dr. Jenna Zeller</h4>
+            <p style="margin: 0 0 0.75rem; color: var(--cyan); font-size: 0.9rem;">VR Simulation & Nursing Education Researcher</p>
+            <p style="margin: 0; color: #808080; font-size: 0.9rem; line-height: 1.6;">Pioneering researcher in virtual reality applications for healthcare education. Her work has transformed nursing training programs at multiple institutions.</p>
           </div>
         </div>
       </div>
-      <h3 style="margin: 2rem 0 1rem;">Episode Highlights</h3>
-      <ul style="color: #a0a0a0; line-height: 1.8;">
-        <li>VR simulation for high-stakes nursing scenarios</li>
-        <li>Building confidence through safe practice environments</li>
-        <li>Measuring competency gains in VR training</li>
-        <li>Scaling immersive learning in healthcare education</li>
-      </ul>
-      <h3 style="margin: 2rem 0 1rem;">Listen On</h3>
-      <div class="platform-badges">
-        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple Podcasts</a>
-        <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
-        <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Audible</a>
-        <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Topics Covered</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">VR Simulation</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Nursing Education</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Healthcare</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Immersive Learning</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Episode 6: XR Learning & AI Engagement -->
   <div class="page" id="page-ep-6">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('podcast')">← Back to Podcast</a>
-      <p class="eyebrow">EPISODE 2</p>
-      <h1>XR Learning & <em>AI Engagement Hacks</em></h1>
-      <p>with Dr. Garrick Grace</p>
-    </div>
-    <div class="container episode-detail">
-      <div class="episode-hero">
-        <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Episode thumbnail" class="episode-thumb">
-        <div>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-magenta">Feb 21, 2025</span>
-            <span class="badge">44:00</span>
+    <div class="container" style="max-width: 900px; padding-top: 2rem;">
+      <a class="back-btn" onclick="showPage('podcast')" style="margin-bottom: 1.5rem; display: inline-block;">← Back to Podcast</a>
+      <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="XR Learning & AI Engagement" style="width: 100%; border-radius: 16px; margin-bottom: 2rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <span class="badge badge-cyan">Innovating Higher Ed Podcast</span>
+        <span style="color: #808080;">February 21, 2025</span>
+        <span style="color: #606060;">•</span>
+        <span style="color: #808080; font-family: var(--font-mono);">39 min</span>
+      </div>
+      <h1 style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.5rem;">XR Learning & AI Engagement Hacks</h1>
+      <p style="font-size: 1.1rem; color: var(--cyan); font-weight: 600; margin-bottom: 2rem;">with Dr. Garrick Grace</p>
+      <div class="audio-player" style="margin-bottom: 2rem; background: var(--deep); border: 1px solid var(--border);">
+        <button class="play-btn">▶</button>
+        <div class="waveform"></div>
+        <div class="audio-info"><div class="audio-title">Listen Now</div><div class="audio-duration">39:00</div></div>
+      </div>
+      <div style="margin-bottom: 2.5rem;">
+        <p style="font-size: 0.85rem; color: #606060; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Listen on Your Favorite Platform</p>
+        <div class="platform-badges" style="justify-content: center;">
+          <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple</a>
+          <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
+          <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Amazon</a>
+          <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+        </div>
+      </div>
+      <div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin-bottom: 2.5rem;"></div>
+      <p style="font-size: 1.1rem; color: #c0c0c0; line-height: 1.8; margin-bottom: 2rem;">Can a VR headset and two AI tutors outperform a traditional lecture? Dr. Garrick Grace thinks so. In this episode, he shares groundbreaking research on extended reality (XR) learning environments enhanced by AI engagement tools. Discover practical ways to bring immersive technology into your classroom without breaking the budget.</p>
+      <div style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 2rem;">
+        <h3 style="margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--cyan);">✦</span> Key Takeaways</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Extended Reality (XR) applications in higher education</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> AI tutoring systems that adapt to individual learners</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Measuring engagement in immersive environments</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Budget-friendly implementation strategies</li>
+        </ul>
+      </div>
+      <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">About the Guest</h3>
+        <div style="display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+          <div style="flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--deep), #1a1a2e); border: 2px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad6)"/><path d="M19 11V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V11H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V11H19Z" fill="url(#micGrad6)"/><path d="M11 19.93V23H13V19.93" fill="url(#micGrad6)"/><defs><linearGradient id="micGrad6" x1="5" y1="1" x2="19" y2="23"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#c850c0"/></linearGradient></defs></svg>
           </div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Can a VR headset and two AI tutors outperform a traditional lecture? Dr. Garrick Grace shares cutting-edge research on XR learning environments and AI-powered engagement strategies.</p>
-          <div class="audio-player" style="background: var(--deep);">
-            <button class="play-btn">▶</button>
-            <div class="waveform"></div>
-            <div class="audio-info">
-              <div class="audio-duration">44:00</div>
-            </div>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; color: #fff;">Dr. Garrick Grace</h4>
+            <p style="margin: 0 0 0.75rem; color: var(--cyan); font-size: 0.9rem;">XR Learning & AI Engagement Researcher</p>
+            <p style="margin: 0; color: #808080; font-size: 0.9rem; line-height: 1.6;">Leading researcher in extended reality learning environments and AI-powered engagement systems. His work focuses on making immersive technology accessible to all institutions.</p>
           </div>
         </div>
       </div>
-      <h3 style="margin: 2rem 0 1rem;">Episode Highlights</h3>
-      <ul style="color: #a0a0a0; line-height: 1.8;">
-        <li>Extended Reality (XR) in higher education</li>
-        <li>AI tutoring systems that adapt to learners</li>
-        <li>Engagement metrics in immersive environments</li>
-        <li>Practical implementation strategies for any budget</li>
-      </ul>
-      <h3 style="margin: 2rem 0 1rem;">Listen On</h3>
-      <div class="platform-badges">
-        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple Podcasts</a>
-        <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
-        <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Audible</a>
-        <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Topics Covered</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Extended Reality</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">AI Tutoring</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Engagement</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">EdTech</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Episode 7: ChatGPT Teaching Assistant -->
   <div class="page" id="page-ep-7">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('podcast')">← Back to Podcast</a>
-      <p class="eyebrow">EPISODE 1</p>
-      <h1>ChatGPT Teaching Assistant: <em>Lesson Plans in Minutes</em></h1>
-      <p>with Lynn Dickinson</p>
-    </div>
-    <div class="container episode-detail">
-      <div class="episode-hero">
-        <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="Episode thumbnail" class="episode-thumb">
-        <div>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-            <span class="badge badge-magenta">Oct 19, 2024</span>
-            <span class="badge">35:00</span>
+    <div class="container" style="max-width: 900px; padding-top: 2rem;">
+      <a class="back-btn" onclick="showPage('podcast')" style="margin-bottom: 1.5rem; display: inline-block;">← Back to Podcast</a>
+      <img src="https://innovatinghighered.com/wp-content/uploads/2024/10/INNOVATE-ED-Square-ICON-white.jpg" alt="ChatGPT Teaching Assistant" style="width: 100%; border-radius: 16px; margin-bottom: 2rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <span class="badge badge-cyan">Innovating Higher Ed Podcast</span>
+        <span style="color: #808080;">October 19, 2024</span>
+        <span style="color: #606060;">•</span>
+        <span style="color: #808080; font-family: var(--font-mono);">33 min</span>
+      </div>
+      <h1 style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.5rem;">ChatGPT Teaching Assistant: Lesson Plans in Minutes</h1>
+      <p style="font-size: 1.1rem; color: var(--cyan); font-weight: 600; margin-bottom: 2rem;">with Lynn Dickinson</p>
+      <div class="audio-player" style="margin-bottom: 2rem; background: var(--deep); border: 1px solid var(--border);">
+        <button class="play-btn">▶</button>
+        <div class="waveform"></div>
+        <div class="audio-info"><div class="audio-title">Listen Now</div><div class="audio-duration">33:00</div></div>
+      </div>
+      <div style="margin-bottom: 2.5rem;">
+        <p style="font-size: 0.85rem; color: #606060; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Listen on Your Favorite Platform</p>
+        <div class="platform-badges" style="justify-content: center;">
+          <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple</a>
+          <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
+          <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Amazon</a>
+          <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+        </div>
+      </div>
+      <div style="width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin-bottom: 2.5rem;"></div>
+      <p style="font-size: 1.1rem; color: #c0c0c0; line-height: 1.8; margin-bottom: 2rem;">Eighty-six percent of students already use AI — are you ready? Lynn Dickinson walks through her workflow for using ChatGPT as a teaching assistant, demonstrating how she creates complete lesson plans, generates discussion prompts, and builds assessment rubrics in minutes instead of hours. A practical, no-hype guide for faculty who want to start using AI today.</p>
+      <div style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 2rem;">
+        <h3 style="margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--cyan);">✦</span> Key Takeaways</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Step-by-step workflow for ChatGPT lesson planning</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Generating discussion prompts that spark engagement</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; color: #c0c0c0;"><span style="color: var(--cyan);">→</span> Building assessment rubrics in minutes</li>
+          <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: #c0c0c0;"><span style="color: var(--magenta);">→</span> Getting started with AI — practical first steps</li>
+        </ul>
+      </div>
+      <div style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">About the Guest</h3>
+        <div style="display: flex; gap: 1.25rem; padding: 1.25rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+          <div style="flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--deep), #1a1a2e); border: 2px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad7)"/><path d="M19 11V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V11H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V11H19Z" fill="url(#micGrad7)"/><path d="M11 19.93V23H13V19.93" fill="url(#micGrad7)"/><defs><linearGradient id="micGrad7" x1="5" y1="1" x2="19" y2="23"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#c850c0"/></linearGradient></defs></svg>
           </div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Eighty-six percent of students already use AI. Are you ready? Lynn Dickinson demonstrates how ChatGPT can transform lesson planning from hours to minutes while maintaining pedagogical quality.</p>
-          <div class="audio-player" style="background: var(--deep);">
-            <button class="play-btn">▶</button>
-            <div class="waveform"></div>
-            <div class="audio-info">
-              <div class="audio-duration">35:00</div>
-            </div>
+          <div>
+            <h4 style="margin: 0 0 0.25rem; color: #fff;">Lynn Dickinson</h4>
+            <p style="margin: 0 0 0.75rem; color: var(--cyan); font-size: 0.9rem;">Faculty & AI Practitioner</p>
+            <p style="margin: 0; color: #808080; font-size: 0.9rem; line-height: 1.6;">Experienced educator who has integrated AI tools into her daily teaching workflow. Advocates for practical, accessible approaches to AI adoption for faculty at all comfort levels.</p>
           </div>
         </div>
       </div>
-      <h3 style="margin: 2rem 0 1rem;">Episode Highlights</h3>
-      <ul style="color: #a0a0a0; line-height: 1.8;">
-        <li>Rapid lesson plan generation with ChatGPT</li>
-        <li>Maintaining pedagogical quality with AI assistance</li>
-        <li>Student AI use trends and implications</li>
-        <li>Getting started with AI as a teaching assistant</li>
-      </ul>
-      <h3 style="margin: 2rem 0 1rem;">Listen On</h3>
-      <div class="platform-badges">
-        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" target="_blank" class="platform-badge">🍎 Apple Podcasts</a>
-        <a href="https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" target="_blank" class="platform-badge">🎵 Spotify</a>
-        <a href="https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" target="_blank" class="platform-badge">🎧 Audible</a>
-        <a href="https://innovatinghighered.podbean.com/" target="_blank" class="platform-badge">📦 Podbean</a>
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Topics Covered</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">ChatGPT</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Lesson Planning</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Assessment</span>
+          <span style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; color: #a0a0a0;">Getting Started</span>
+        </div>
       </div>
     </div>
   </div>
