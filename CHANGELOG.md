@@ -1,5 +1,24 @@
 # IHE Pulse Changelog
 
+## [v0.5.1] — February 16, 2026
+
+### Prototype Enhancements
+- Fixed nav logo duplicate text issue
+- Enhanced 7 podcast episode detail pages with rich content:
+  - Large featured thumbnails (custom for Episode 1)
+  - Audio players with waveform animation
+  - Platform links (Apple, Spotify, Amazon, Podbean)
+  - Key Takeaways sections with gradient backgrounds
+  - Guest Bio sections with microphone icons
+  - Topics/Tags sections
+- Verified Tinker Lab detail pages complete with audio and content
+- Verified Prompt Navigator complete (9 techniques, 15 templates, Common Problems, Refinement Workflow, Tuning Checklist)
+
+### AI Directory
+- Complete redesign with 28+ tools, Staff Picks, and filter system
+
+---
+
 ## February 5, 2026
 
 ### Daily Pulse Integration
