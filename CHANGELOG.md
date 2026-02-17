@@ -1,5 +1,54 @@
 # IHE Pulse Changelog
 
+## [v0.6.0] — February 17, 2026 (Build 9 Continuation)
+
+### AI App Directory — Complete Redesign (ai-app-directory-v2.html)
+- Redesigned all 38 tool cards with brand-colored accent strips (unique color per tool: ChatGPT green, Claude orange, Gemini blue, etc.)
+- Added 3 "Why It Matters for Higher Ed" value points on every card — the hook that differentiates from generic ad-board directories
+- Added editorial detail panels with full reviews for 5 flagship tools (ChatGPT, Claude, Gemini, Eduaide, Gradescope) including: What It Does Well, Where It Falls Short, Pricing Breakdown, Getting Started tips
+- Remaining 33 tools have "Full Review Coming Soon" placeholder in detail panel
+- Added Trending / New / Updated badges with sort filtering (4 new, 5 trending, 4 updated)
+- Added role-based filtering (Faculty / Administrator / Student)
+- Added category filters with tool counts (10 categories)
+- Added search across name, description, category, and value points
+- Replaced unreliable Clearbit logos with Google Favicon service (64px)
+- Removed Staff Picks section per user feedback
+- Fixed branding: "Innovating Higher Ed" throughout, zero "IHE Pulse" references
+- Text-only nav branding (logo to be added when deploying to Next.js)
+
+### Prompt Navigator — Engagement-Enriched Redesign (prompt-navigator-v4.html)
+- Complete rebuild with all 5 sections visible as scrollable page (no more hidden tab system)
+- Enriched technique cards now show WITHOUT clicking:
+  - Difficulty badges (Beginner/Intermediate/Advanced) — 3 each
+  - "Start Here" badges on Zero-Shot, Few-Shot, System & Role for newcomers
+  - One-sentence hook explaining what the technique does
+  - Use case tags (Lesson Planning, Grading, Research, etc.) for scanning
+  - Before/After prompt comparison (red "Without technique" vs green "With technique")
+  - Unique color-coded accent strips per technique
+  - "Full guide with copyable prompts" expand link with prompt count
+- Each technique expands to: Definition, Use Case (Higher Ed), When/Why to Use, Example Prompts
+- Template cards now show mono-font preview of the actual prompt text before clicking
+- References section collapsed by default with click-to-expand (19 sources)
+- Switched from Space Grotesk to Outfit font (matching AI Directory)
+- All content verified: 9 techniques, 15 templates, 6 problems, 8 workflow steps, 7 checklist items, 19 references
+- Fixed branding throughout
+
+### Design System Updates
+- Established text-only nav branding pattern: "Innovating Higher Ed" with cyan accent on "Ed"
+- Font standardized to Outfit across all prototypes
+- Confirmed sans-serif heading style (not serif) per user preference
+- Researched and implemented directory best practices (brand colors, editorial depth, social proof patterns)
+
+### Key Decisions Made
+- AI Directory value proposition: "Wirecutter for AI tools" — honest reviews, not marketing fluff
+- 3 value points per tool card = the hook that earns the click into the detail page
+- Weekly automated tool search and update planned for directory freshness
+- Editorial content (strengths/limitations/quickstart) is the competitive differentiator
+- Before/After prompt comparisons are the engagement hook for technique cards
+- Difficulty badges and "Start Here" guide newcomers through progressive complexity
+
+---
+
 ## [v0.5.1] — February 16, 2026
 
 ### Prototype Enhancements

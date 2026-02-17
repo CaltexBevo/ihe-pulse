@@ -14,10 +14,28 @@
 - [x] Be Our Guest page with guest application info
 - [x] Footer with newsletter signup
 - [x] Navigation with logo fix
+- [x] AI App Directory redesign with brand-colored cards and editorial detail panels
+- [x] Prompt Navigator engagement overhaul with before/after previews and difficulty badges
+- [x] Font and branding standardization across prototypes (Outfit, text-only nav)
+- [x] Directory best practices research and implementation
 
 ## In Progress
 
-- [ ] QA pass on all pages
+- [ ] Podcast page prototype (still pending from Build 9 — not yet built)
+- [ ] Innovation Pulse page review against Build 5-1 evolution
+- [ ] Write full editorial reviews for remaining 33 AI directory tools
+- [ ] Actual logo integration (user to upload PNG or integrate in Next.js deployment)
+- [ ] Weekly automated directory update system design
+- [ ] Convert HTML prototypes to Next.js components in ~/Desktop/ihe-pulse/
+- [ ] Connect ihe-tools-server automation to new site architecture
+
+## Backlog
+
+- [ ] Template category filtering in Prompt Navigator (Teaching / Feedback / Assessment / Advising / Policy)
+- [ ] "Dr. Jones Recommends" editorial badges for AI Directory
+- [ ] Tool comparison feature ("Compare ChatGPT vs Claude for grading")
+- [ ] Prompt Navigator search functionality
+- [ ] Interactive prompt builder (guided wizard for constructing prompts)
 
 ## Planned
 
