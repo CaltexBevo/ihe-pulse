@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI App Directory — Innovating Higher Ed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080810;--surface:#0e0e1a;--card:#121220;--card-hover:#16162a;
+  --border:#1c1c32;--border-light:#2a2a44;
+  --text:#ededf5;--muted:#7e7e9a;--dim:#4e4e66;
+  --cyan:#00d4ff;--magenta:#c850c0;--green:#2ee6a8;--amber:#ffb347;--red:#ff5c6c;
+  --radius:14px;--radius-sm:8px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ===== NAV ===== */
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,8,16,.88);backdrop-filter:blur(24px) saturate(1.2);border-bottom:1px solid rgba(28,28,50,.6);padding:0 32px;height:60px;display:flex;align-items:center;gap:28px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-brand img{height:36px}
+.nav-brand span{font-weight:700;font-size:1rem;color:var(--text);letter-spacing:.3px}
+.nav-links{display:flex;gap:24px;margin-left:auto}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:500;transition:color .2s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--cyan)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-19px;left:0;right:0;height:2px;background:var(--cyan)}
+
+/* ===== HERO ===== */
+.hero{padding:56px 24px 36px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse at center,rgba(0,212,255,.05) 0%,rgba(200,80,192,.03) 40%,transparent 70%);pointer-events:none}
+.hero-label{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:20px;border:1px solid rgba(0,212,255,.18);background:rgba(0,212,255,.04);color:var(--cyan);font-size:.78rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;margin-bottom:14px;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--muted);font-size:1.08rem;max-width:580px;margin:0 auto 28px;font-weight:400}
+
+/* Search */
+.search-wrap{max-width:600px;margin:0 auto 20px;position:relative}
+.search-wrap input{width:100%;padding:14px 20px 14px 50px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit;font-size:.95rem;outline:none;transition:all .25s}
+.search-wrap input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,.08)}
+.search-wrap input::placeholder{color:var(--dim)}
+.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--dim);pointer-events:none}
+
+/* Filter Pills */
+.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:0 20px;margin-bottom:8px}
+.pill{padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
+.pill:hover{border-color:rgba(0,212,255,.35);color:var(--text)}
+.pill.active{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.4);color:var(--cyan)}
+.pill .ct{font-family:'DM Mono',monospace;font-size:.72rem;margin-left:4px;opacity:.6}
+
+/* Sort Bar */
+.sort-bar{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:20px auto 0;padding:0 24px}
+.sort-pills{display:flex;gap:6px}
+.sort-pill{padding:5px 14px;border-radius:var(--radius-sm);border:1px solid transparent;background:transparent;color:var(--dim);font-family:inherit;font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s}
+.sort-pill:hover{color:var(--muted)}
+.sort-pill.active{background:var(--surface);border-color:var(--border);color:var(--text)}
+.result-count{font-size:.84rem;color:var(--dim);font-family:'DM Mono',monospace}
+
+/* ===== MAIN ===== */
+.main{max-width:1200px;margin:24px auto 0;padding:0 24px 80px}
+
+/* ===== TOOL CARDS ===== */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:18px}
+
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .35s ease;cursor:pointer;position:relative}
+.tool-card:hover{border-color:var(--tool-accent,var(--border-light));transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+
+/* Brand accent strip at top */
+.tool-accent{height:3px;background:var(--tool-accent,var(--border));transition:height .3s}
+.tool-card:hover .tool-accent{height:4px}
+
+.tool-body{padding:20px 22px 18px}
+
+/* Top row: logo + name + badges */
+.tool-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.tool-logo{width:46px;height:46px;border-radius:12px;overflow:hidden;flex-shrink:0;background:var(--surface);display:flex;align-items:center;justify-content:center;border:1px solid var(--border);position:relative}
+.tool-logo img{width:32px;height:32px;object-fit:contain}
+.tool-logo.fallback{font-size:1.1rem;font-weight:700;color:var(--tool-accent,var(--cyan))}
+.tool-info{flex:1;min-width:0}
+.tool-name{font-size:1.12rem;font-weight:700;letter-spacing:-.01em}
+.tool-cat{font-size:.76rem;color:var(--muted);font-weight:500;margin-top:1px}
+.tool-badges{display:flex;gap:5px;flex-shrink:0}
+.badge{padding:3px 9px;border-radius:4px;font-size:.68rem;font-weight:600;letter-spacing:.4px;text-transform:uppercase;font-family:'DM Mono',monospace}
+.badge-new{background:rgba(46,230,168,.1);color:var(--green);border:1px solid rgba(46,230,168,.2)}
+.badge-trending{background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)}
+.badge-updated{background:rgba(0,212,255,.08);color:var(--cyan);border:1px solid rgba(0,212,255,.18)}
+
+/* Description */
+.tool-desc{font-size:.9rem;color:var(--muted);line-height:1.55;margin-bottom:14px}
+
+/* 3 Value Points */
+.tool-values{list-style:none;margin-bottom:16px;display:flex;flex-direction:column;gap:7px}
+.tool-values li{font-size:.84rem;color:var(--text);padding-left:20px;position:relative;line-height:1.45}
+.tool-values li::before{content:'';position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:2px;background:var(--tool-accent,var(--cyan));opacity:.7}
+
+/* Footer: pricing + roles + learn more */
+.tool-footer{display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.pricing-tag{padding:4px 11px;border-radius:6px;font-size:.76rem;font-weight:600;font-family:'DM Mono',monospace}
+.price-free{background:rgba(46,230,168,.08);color:var(--green);border:1px solid rgba(46,230,168,.15)}
+.price-freemium{background:rgba(0,212,255,.07);color:var(--cyan);border:1px solid rgba(0,212,255,.15)}
+.price-paid{background:rgba(255,179,71,.07);color:var(--amber);border:1px solid rgba(255,179,71,.15)}
+.role-tags{display:flex;gap:5px;flex:1}
+.role-tag{padding:2px 8px;border-radius:4px;font-size:.7rem;color:var(--dim);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+.learn-more{margin-left:auto;color:var(--tool-accent,var(--cyan));font-size:.84rem;font-weight:600;display:flex;align-items:center;gap:4px;transition:gap .2s}
+.tool-card:hover .learn-more{gap:8px}
+
+/* ===== DETAIL PANEL ===== */
+.detail-overlay{position:fixed;inset:0;background:rgba(4,4,10,.75);backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.detail-overlay.open{display:flex}
+.detail-panel{background:var(--card);border:1px solid var(--border-light);border-radius:18px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;position:relative}
+.detail-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:5}
+.detail-close:hover{border-color:var(--red);color:var(--red)}
+.detail-accent{height:4px;border-radius:18px 18px 0 0}
+.detail-header{padding:28px 32px 20px;display:flex;gap:18px;align-items:flex-start}
+.detail-logo{width:64px;height:64px;border-radius:16px;overflow:hidden;background:var(--surface);display:flex;align-items:center;justify-content:center;border:1px solid var(--border);flex-shrink:0}
+.detail-logo img{width:44px;height:44px;object-fit:contain}
+.detail-title h2{font-size:1.5rem;font-weight:700;margin-bottom:4px}
+.detail-title .detail-cat{font-size:.84rem;color:var(--muted)}
+.detail-badges{display:flex;gap:6px;margin-top:8px}
+.detail-content{padding:0 32px 32px}
+.detail-section{margin-bottom:24px}
+.detail-section h3{font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--tool-accent,var(--cyan));margin-bottom:10px}
+.detail-section p{font-size:.94rem;color:var(--muted);line-height:1.7}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.detail-box{padding:16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface)}
+.detail-box h4{font-size:.88rem;font-weight:600;margin-bottom:6px}
+.detail-box ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.detail-box li{font-size:.86rem;color:var(--muted);padding-left:16px;position:relative}
+.detail-box li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%}
+.detail-box.strengths li::before{background:var(--green)}
+.detail-box.limitations li::before{background:var(--amber)}
+.detail-pricing-breakdown{padding:16px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);margin-bottom:24px}
+.detail-pricing-breakdown h4{font-size:.88rem;font-weight:600;margin-bottom:8px}
+.detail-pricing-breakdown p{font-size:.88rem;color:var(--muted);line-height:1.6}
+.detail-quickstart{padding:18px;border-radius:var(--radius-sm);background:linear-gradient(135deg,rgba(0,212,255,.04),rgba(200,80,192,.03));border:1px solid rgba(0,212,255,.12);margin-bottom:24px}
+.detail-quickstart h4{font-size:.88rem;font-weight:600;color:var(--cyan);margin-bottom:6px}
+.detail-quickstart p{font-size:.88rem;color:var(--muted);line-height:1.6}
+.detail-visit{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius-sm);background:var(--tool-accent,var(--cyan));color:#080810;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .2s}
+.detail-visit:hover{opacity:.9;transform:translateY(-1px)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:800px){
+  .tool-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .detail-grid{grid-template-columns:1fr}
+  .detail-header{flex-direction:column}
+  .hero h1{font-size:2rem}
+}
+@media(max-width:480px){
+  .tool-grid{grid-template-columns:1fr}
+  .filters{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="#" style="font-weight:800;font-size:1.05rem;color:var(--text);text-decoration:none;letter-spacing:.2px;white-space:nowrap">Innovating Higher <span style="color:var(--cyan)">Ed</span></a>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Innovation Pulse</a>
+    <a href="#">Prompts</a>
+    <a href="#" class="active">AI App Directory</a>
+    <a href="#">Podcast</a>
+    <a href="#">Tinker Lab</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"/></svg>
+    AI App Directory
+  </div>
+  <h1>Find the Right <em>AI Tool</em> for Higher Ed</h1>
+  <p class="hero-sub">AI tools vetted by educators, for educators. Honest reviews, not marketing fluff.</p>
+  <div class="search-wrap">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search by name, category, or what you need to do...">
+  </div>
+  <div class="filters" id="roleFilters">
+    <button class="pill active" data-role="all">All Roles</button>
+    <button class="pill" data-role="faculty">Faculty</button>
+    <button class="pill" data-role="admin">Administrator</button>
+    <button class="pill" data-role="student">Student</button>
+  </div>
+  <div class="filters" id="catFilters"></div>
+</section>
+
+<!-- SORT BAR -->
+<div class="sort-bar">
+  <div class="sort-pills">
+    <button class="sort-pill active" data-sort="all">All</button>
+    <button class="sort-pill" data-sort="new">Recently Added</button>
+    <button class="sort-pill" data-sort="trending">Trending</button>
+    <button class="sort-pill" data-sort="updated">Updated</button>
+  </div>
+  <div class="result-count" id="resultCount">38 tools</div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main">
+  <div class="tool-grid" id="toolGrid"></div>
+</div>
+
+<!-- DETAIL OVERLAY -->
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-panel" id="detailPanel"></div>
+</div>
+
+<script>
+// ===== TOOL DATA =====
+const TOOLS = [
+  // ── General LLMs ──
+  { id:"chatgpt", name:"ChatGPT", cat:"General LLMs", desc:"OpenAI's flagship conversational AI. Handles everything from essay feedback to coding help to brainstorming session agendas.",
+    values:["Generate discussion questions, quiz items, or rubric drafts in seconds","Free tier handles most faculty tasks — GPT-4o included","Integrates with Canvas via plugins for in-platform use"],
+    pricing:"freemium", priceDetail:"Free tier with GPT-4o. Plus at $20/mo adds more capacity and advanced features. Team plans available.",
+    roles:["faculty","admin","student"], url:"https://chat.openai.com", domain:"openai.com",
+    accent:"#10a37f", badge:"trending",
+    bestFor:"Faculty who need a versatile, general-purpose AI assistant for daily teaching tasks.",
+    strengths:["Extremely versatile across writing, analysis, and coding","Large plugin ecosystem extends functionality","Handles long, complex prompts well"],
+    limitations:["Can confidently produce incorrect information","Free tier has usage caps during peak hours","Output quality varies — prompt skill matters significantly"],
+    quickstart:"Start with: 'You are a helpful teaching assistant for [your course]. Help me draft three discussion questions about [topic] that target Bloom's analysis level.'"
+  },
+  { id:"claude", name:"Claude", cat:"General LLMs", desc:"Anthropic's AI assistant built for nuanced, thoughtful analysis. Excels at long-form writing and careful reasoning.",
+    values:["200K context window — paste entire textbooks or research papers","Strongest at nuanced writing feedback and academic tone","Built with safety-first design, less likely to fabricate citations"],
+    pricing:"freemium", priceDetail:"Free tier available. Pro at $20/mo for higher usage limits and priority access. Team and Enterprise plans.",
+    roles:["faculty","admin","student"], url:"https://claude.ai", domain:"anthropic.com",
+    accent:"#d97706", badge:"trending",
+    bestFor:"Faculty and researchers who need careful analysis of long documents, nuanced writing, or policy review.",
+    strengths:["Best-in-class at handling long documents (entire syllabi, papers, reports)","More cautious about uncertain claims — flags when it's unsure","Excellent writing quality with academic register"],
+    limitations:["Smaller plugin ecosystem than ChatGPT","Can be overly cautious, sometimes declining reasonable requests","Web search is newer and less refined"],
+    quickstart:"Upload your syllabus and ask: 'Review this syllabus for clarity, consistency, and alignment between stated objectives and assessments. Flag any gaps.'"
+  },
+  { id:"gemini", name:"Gemini", cat:"General LLMs", desc:"Google's multimodal AI. Deep integration with Google Workspace makes it powerful for faculty already in the Google ecosystem.",
+    values:["Built into Google Docs, Sheets, Slides — works where you already work","Multimodal: analyze images, charts, and documents natively","Free tier is generous for individual use"],
+    pricing:"freemium", priceDetail:"Free tier included with Google account. Advanced tier at $19.99/mo through Google One AI Premium.",
+    roles:["faculty","admin","student"], url:"https://gemini.google.com", domain:"google.com",
+    accent:"#4285f4", badge:"updated",
+    bestFor:"Faculty and administrators already using Google Workspace who want AI integrated into their existing workflow.",
+    strengths:["Seamless Google Workspace integration","Strong at data analysis in Sheets","Multimodal — can analyze images and PDFs"],
+    limitations:["Responses can be less nuanced than Claude for academic writing","Google ecosystem lock-in","Privacy concerns with institutional Google data"],
+    quickstart:"In Google Docs, type '@Gemini' and ask it to help draft a course description or summarize meeting notes."
+  },
+  { id:"perplexity", name:"Perplexity AI", cat:"General LLMs", desc:"AI-powered research engine that provides cited answers from real sources. Like Google Scholar meets a research assistant.",
+    values:["Every answer includes source citations — model research integrity for students","Academic focus mode searches scholarly databases specifically","Great for quick lit review scoping and fact-checking"],
+    pricing:"freemium", priceDetail:"Free tier with 5 Pro searches/day. Pro at $20/mo for unlimited searches and file uploads.",
+    roles:["faculty","admin","student"], url:"https://perplexity.ai", domain:"perplexity.ai",
+    accent:"#20b2aa", badge:"trending",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"grok", name:"Grok", cat:"General LLMs", desc:"xAI's conversational AI with real-time information access. Direct, unfiltered communication style.",
+    values:["Real-time access to current events and breaking news","Less filtered responses — useful for devil's advocate exercises","Available through X (Twitter) platform"],
+    pricing:"freemium", priceDetail:"Basic access free with X account. Full access requires X Premium subscription.",
+    roles:["faculty","admin","student"], url:"https://grok.x.ai", domain:"x.ai",
+    accent:"#1d1d1f", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Lesson Planning ──
+  { id:"eduaide", name:"Eduaide.Ai", cat:"Lesson Planning", desc:"Purpose-built AI for educators. Creates lesson plans, assessments, differentiated materials, and IEP-aligned accommodations.",
+    values:["Over 100 education-specific generators — not a generic chatbot","Outputs aligned to standards (Common Core, state frameworks)","Creates differentiated versions for diverse learner needs automatically"],
+    pricing:"freemium", priceDetail:"Free tier with limited generations. Pro plans for individual and institutional use.",
+    roles:["faculty"], url:"https://eduaide.ai", domain:"eduaide.ai",
+    accent:"#6366f1", badge:"trending",
+    bestFor:"Faculty who need production-ready lesson materials without spending hours formatting.",
+    strengths:["Education-specific — understands pedagogy, not just content","Standards-aligned outputs save alignment work","Built-in differentiation for diverse classrooms"],
+    limitations:["Generated content still needs instructor review and personalization","Some outputs feel templated — works best as a starting point","Free tier is quite limited"],
+    quickstart:"Select 'Lesson Plan' generator, input your subject, grade level, and standard. Review the output and customize timing and activities to fit your class."
+  },
+  { id:"brisk", name:"Brisk Teaching", cat:"Lesson Planning", desc:"Chrome extension that works inside your existing platforms. Create, feedback, and differentiate directly in Google Docs, Canvas, and Schoology.",
+    values:["Works inside Canvas, Google Docs, Schoology — no tab switching","One-click reading level adjustment for any text","Generates instant feedback comments on student work"],
+    pricing:"free", priceDetail:"Free for individual teachers. Premium features for institutions.",
+    roles:["faculty"], url:"https://briskteaching.com", domain:"briskteaching.com",
+    accent:"#ec4899", badge:"new",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"disco", name:"Disco AI", cat:"Lesson Planning", desc:"AI syllabus and course curriculum generator. Structures entire courses from learning objectives to assessment sequences.",
+    values:["Generates complete course structures from a topic description","Maps assessments back to learning objectives automatically","Collaborative — share and iterate with department colleagues"],
+    pricing:"freemium", priceDetail:"Free basic plan. Pro and organizational plans available.",
+    roles:["faculty"], url:"https://disco.co", domain:"disco.co",
+    accent:"#8b5cf6", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"teachfloor", name:"Teachfloor", cat:"Lesson Planning", desc:"Collaborative learning platform with AI-powered course creation, cohort management, and student engagement tools.",
+    values:["Cohort-based learning design — not just self-paced content","Built-in discussion, peer review, and group activity tools","AI assists with content structuring and activity design"],
+    pricing:"paid", priceDetail:"Starts at $69/mo. Institutional pricing available.",
+    roles:["faculty","admin"], url:"https://teachfloor.com", domain:"teachfloor.com",
+    accent:"#0ea5e9", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"curipod", name:"Curipod", cat:"Lesson Planning", desc:"AI-powered interactive lesson creator with polls, word clouds, drawing, and reflection prompts built for student engagement.",
+    values:["Students interact in real-time — polls, drawings, word clouds","AI generates complete interactive lessons from a topic","Built-in reflection and check-for-understanding prompts"],
+    pricing:"freemium", priceDetail:"Free for basic use. Premium unlocks AI generation and advanced features.",
+    roles:["faculty"], url:"https://curipod.com", domain:"curipod.com",
+    accent:"#f59e0b", badge:"new",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Assessment ──
+  { id:"gradescope", name:"Gradescope", cat:"Assessment", desc:"AI-assisted grading platform. Upload assignments, create rubrics, and grade consistently across hundreds of submissions.",
+    values:["AI groups similar answers — grade once, apply to all matches","Rubric-based grading ensures consistency across sections and TAs","Handles handwritten work, code, and STEM notation"],
+    pricing:"paid", priceDetail:"Institutional licensing through Turnitin. Contact for pricing.",
+    roles:["faculty"], url:"https://gradescope.com", domain:"gradescope.com",
+    accent:"#059669", badge:null,
+    bestFor:"Faculty with large sections or multiple TAs who need consistent, efficient grading.",
+    strengths:["Dramatically reduces grading time for large classes","AI grouping catches patterns humans miss","Analytics reveal common student misconceptions"],
+    limitations:["Institutional license required — can't self-serve easily","Learning curve for initial rubric setup","Best for structured assessments, less useful for open-ended projects"],
+    quickstart:"Start by uploading a past exam. Create your rubric, then use AI-assisted grouping to batch-grade similar responses."
+  },
+  { id:"turnitin", name:"Turnitin", cat:"Assessment", desc:"Academic integrity platform with AI writing detection, plagiarism checking, and Feedback Studio for formative assessment.",
+    values:["Industry-standard AI writing detection with confidence scores","Similarity reports cross-reference billions of sources","Feedback Studio enables inline comments and rubric scoring"],
+    pricing:"paid", priceDetail:"Institutional licensing only. Contact sales for pricing.",
+    roles:["faculty","admin"], url:"https://turnitin.com", domain:"turnitin.com",
+    accent:"#2563eb", badge:"updated",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"formative", name:"Formative", cat:"Assessment", desc:"Real-time formative assessment with AI-powered feedback, live student monitoring, and data-driven instructional insights.",
+    values:["See student responses in real-time as they work","AI provides instant feedback so students don't wait for grading","Data dashboard reveals class-wide understanding gaps"],
+    pricing:"freemium", priceDetail:"Free for basic use. Premium for AI features and advanced analytics.",
+    roles:["faculty"], url:"https://goformative.com", domain:"goformative.com",
+    accent:"#7c3aed", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Research ──
+  { id:"consensus", name:"Consensus", cat:"Research", desc:"AI-powered academic search engine. Finds and synthesizes insights from peer-reviewed papers — no marketing content mixed in.",
+    values:["Only searches peer-reviewed papers — no blog posts or SEO content","Synthesizes findings across multiple studies into a summary","Great teaching tool for modeling proper research methodology"],
+    pricing:"freemium", priceDetail:"Free tier with limited searches. Premium at $8.99/mo for unlimited.",
+    roles:["faculty","student"], url:"https://consensus.app", domain:"consensus.app",
+    accent:"#6d28d9", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"elicit", name:"Elicit", cat:"Research", desc:"AI research assistant for literature reviews. Automates paper finding, summarization, and data extraction across millions of papers.",
+    values:["Extracts key findings, methods, and sample sizes from papers automatically","Builds structured evidence tables from search results","Saves hours of manual literature review work"],
+    pricing:"freemium", priceDetail:"Free tier with 5,000 credits. Plus at $12/mo for higher limits.",
+    roles:["faculty","student"], url:"https://elicit.com", domain:"elicit.com",
+    accent:"#0d9488", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Writing ──
+  { id:"grammarly", name:"Grammarly", cat:"Writing & Feedback", desc:"AI writing assistant for grammar, tone, and clarity. Works across platforms to help produce polished, professional writing.",
+    values:["Tone detection helps match academic register expectations","Works in email, LMS, Google Docs — catches errors everywhere","Explains grammar rules — doubles as a learning tool"],
+    pricing:"freemium", priceDetail:"Free for basic grammar. Premium at $12/mo adds tone, clarity, and plagiarism checks.",
+    roles:["faculty","student"], url:"https://grammarly.com", domain:"grammarly.com",
+    accent:"#15c39a", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Presentations ──
+  { id:"gamma", name:"Gamma", cat:"Presentations", desc:"AI presentation creator. Describe what you need, get polished slides with smart layout, design, and content structure.",
+    values:["Creates a full slide deck from a text description in minutes","Designs look professional — not the typical AI-generated aesthetic","Exports to PowerPoint for final editing in familiar tools"],
+    pricing:"freemium", priceDetail:"Free tier with 400 AI credits. Plus at $8/mo for unlimited.",
+    roles:["faculty","student"], url:"https://gamma.app", domain:"gamma.app",
+    accent:"#8b5cf6", badge:"trending",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"mentimeter", name:"Mentimeter", cat:"Presentations", desc:"Interactive presentation platform with live polls, quizzes, Q&A, and word clouds for real-time audience engagement.",
+    values:["Students respond from their phones — no app download needed","Live word clouds and polls make large lectures interactive","Quiz mode adds gamification without needing a separate tool"],
+    pricing:"freemium", priceDetail:"Free for 2 question types. Education plan at $11.99/mo with unlimited features.",
+    roles:["faculty"], url:"https://mentimeter.com", domain:"mentimeter.com",
+    accent:"#3b82f6", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"slidesgo", name:"Slidesgo", cat:"Presentations", desc:"AI-enhanced presentation templates for Google Slides and PowerPoint. Professional designs with customizable layouts.",
+    values:["Thousands of education-specific templates available free","AI generates slide content from topic descriptions","Works natively with Google Slides — no new platform to learn"],
+    pricing:"freemium", priceDetail:"Free templates available. Premium at $4.99/mo for full library.",
+    roles:["faculty","student"], url:"https://slidesgo.com", domain:"slidesgo.com",
+    accent:"#f97316", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"canva", name:"Canva", cat:"Presentations", desc:"AI-enhanced design platform. Presentations, infographics, social media, videos, and visual content with thousands of templates.",
+    values:["Canva for Education is free for verified educators","Magic Design AI creates layouts from your content automatically","One platform for slides, posters, social media, and video"],
+    pricing:"freemium", priceDetail:"Free tier. Canva for Education free for K-12 and higher ed. Pro at $12.99/mo.",
+    roles:["faculty","admin","student"], url:"https://canva.com", domain:"canva.com",
+    accent:"#00c4cc", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Image & Video ──
+  { id:"midjourney", name:"Midjourney", cat:"Image & Video", desc:"Leading AI image generator. Known for artistic quality and creative control. Create illustrations, diagrams, and visual concepts.",
+    values:["Highest aesthetic quality of any AI image generator","Great for custom course illustrations and visual metaphors","Style controls let you match institutional brand guidelines"],
+    pricing:"paid", priceDetail:"Basic at $10/mo. Standard at $30/mo with more generations.",
+    roles:["faculty"], url:"https://midjourney.com", domain:"midjourney.com",
+    accent:"#e8e8e8", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"runway", name:"RunwayML", cat:"Image & Video", desc:"Professional AI video generation and editing. Text-to-video, image-to-video, and advanced manipulation tools.",
+    values:["Generate short video clips from text descriptions","Remove backgrounds, extend scenes, and edit with AI tools","Strong for creating visual content for online courses"],
+    pricing:"freemium", priceDetail:"Free tier with 125 credits. Standard at $12/mo for 625 credits.",
+    roles:["faculty","student"], url:"https://runwayml.com", domain:"runwayml.com",
+    accent:"#e11d48", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"synthesia", name:"Synthesia", cat:"Image & Video", desc:"AI video creation with realistic virtual presenters. Create training and lecture videos without cameras, studios, or editing skills.",
+    values:["Create professional talking-head videos without filming","160+ AI avatars and 130+ languages for global accessibility","Perfect for standardized training and orientation content"],
+    pricing:"paid", priceDetail:"Starter at $22/mo. Enterprise plans with custom avatars.",
+    roles:["faculty","admin"], url:"https://synthesia.io", domain:"synthesia.io",
+    accent:"#6366f1", badge:"updated",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"pika", name:"Pika Labs", cat:"Image & Video", desc:"AI video generation from text and images. Creative, stylized output for educational and project content.",
+    values:["Generate video from still images — animate diagrams and illustrations","Stylized output works well for creative assignments","Simple interface — low barrier for first-time users"],
+    pricing:"freemium", priceDetail:"Free tier with daily credits. Standard at $8/mo.",
+    roles:["faculty","student"], url:"https://pika.art", domain:"pika.art",
+    accent:"#a855f7", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"descript", name:"Descript", cat:"Image & Video", desc:"Edit audio and video by editing text. Automatic transcription, filler word removal, screen recording, and podcast editing.",
+    values:["Edit video by editing the transcript — revolutionary for lecture editing","Automatic filler word and silence removal","Screen recording + webcam for creating instructional content"],
+    pricing:"freemium", priceDetail:"Free tier with 1 hour of transcription. Pro at $24/mo.",
+    roles:["faculty"], url:"https://descript.com", domain:"descript.com",
+    accent:"#22c55e", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"heygen", name:"HeyGen", cat:"Image & Video", desc:"AI avatar video platform. Create talking-head videos with custom avatars, voice cloning, and multilingual translation.",
+    values:["Clone your own likeness for consistent video presence","Translate videos into 40+ languages automatically","Scale video content without re-recording"],
+    pricing:"freemium", priceDetail:"Free tier with 1 credit. Creator at $24/mo.",
+    roles:["faculty","admin"], url:"https://heygen.com", domain:"heygen.com",
+    accent:"#3b82f6", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"fliki", name:"Fliki", cat:"Image & Video", desc:"Turn text into videos with AI voices, stock media, and captions. Fast content creation for educational materials.",
+    values:["Blog post to video in minutes — repurpose written content","2000+ realistic AI voices across 75+ languages","Auto-generates captions for accessibility compliance"],
+    pricing:"freemium", priceDetail:"Free tier with 5 minutes/mo. Standard at $28/mo.",
+    roles:["faculty","admin"], url:"https://fliki.ai", domain:"fliki.ai",
+    accent:"#f43f5e", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"sora", name:"Sora", cat:"Image & Video", desc:"OpenAI's text-to-video model. Generates realistic, high-quality video from text descriptions.",
+    values:["Highest quality AI video generation currently available","Create realistic scenario videos for case studies and simulations","Part of OpenAI ecosystem — works with ChatGPT workflows"],
+    pricing:"paid", priceDetail:"Included with ChatGPT Plus ($20/mo) and Pro ($200/mo).",
+    roles:["faculty"], url:"https://openai.com/sora", domain:"openai.com",
+    accent:"#10a37f", badge:"new",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"ideogram", name:"Ideogram", cat:"Image & Video", desc:"AI image generator with exceptional text rendering. Create visuals with accurate, readable embedded text.",
+    values:["Best AI tool for images that include readable text","Great for creating custom infographics and diagrams","Free tier is one of the most generous available"],
+    pricing:"freemium", priceDetail:"Free tier with 10 generations/day. Plus at $7/mo.",
+    roles:["faculty","student"], url:"https://ideogram.ai", domain:"ideogram.ai",
+    accent:"#e879f9", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"removebg", name:"RemoveBG", cat:"Image & Video", desc:"AI background removal. One click to remove image backgrounds for presentations, materials, and design projects.",
+    values:["One-click background removal — no Photoshop needed","Batch processing for multiple images at once","API available for integration into workflows"],
+    pricing:"freemium", priceDetail:"Free for preview quality. Credits start at $0.20/image for HD.",
+    roles:["faculty","student"], url:"https://remove.bg", domain:"remove.bg",
+    accent:"#0ea5e9", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Productivity ──
+  { id:"notion", name:"Notion AI", cat:"Productivity", desc:"AI writing and organization built into Notion. Draft, edit, summarize, and brainstorm within your workspace.",
+    values:["AI works inside your existing notes and documents — no copy-pasting","Summarize meeting notes, research, or student feedback instantly","Template gallery includes academic-specific workflows"],
+    pricing:"paid", priceDetail:"Notion AI add-on at $10/member/mo on top of workspace plan.",
+    roles:["faculty","admin"], url:"https://notion.so", domain:"notion.so",
+    accent:"#e8e8e8", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"otter", name:"Otter.ai", cat:"Productivity", desc:"AI meeting notes. Automated transcription, action item tracking, and real-time collaboration for meetings and lectures.",
+    values:["Auto-transcribes meetings and lectures with speaker identification","Generates action items and key takeaways automatically","Integrates with Zoom, Teams, and Google Meet"],
+    pricing:"freemium", priceDetail:"Free for 300 minutes/mo. Pro at $16.99/mo for 1200 minutes.",
+    roles:["faculty","admin"], url:"https://otter.ai", domain:"otter.ai",
+    accent:"#3b82f6", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"copilot365", name:"Copilot for Microsoft 365", cat:"Productivity", desc:"Microsoft's AI integrated across Word, Excel, PowerPoint, Teams, and Outlook. Draft, summarize, and analyze where you work.",
+    values:["Works inside Word, Excel, PowerPoint, Outlook — your existing tools","Summarize email threads and meeting transcripts instantly","Generate presentations from Word documents automatically"],
+    pricing:"paid", priceDetail:"$30/user/mo on top of Microsoft 365 subscription. Institutional licensing available.",
+    roles:["faculty","admin"], url:"https://microsoft.com/copilot", domain:"microsoft.com",
+    accent:"#0078d4", badge:"updated",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Music ──
+  { id:"suno", name:"Suno", cat:"Music", desc:"AI music generation. Create full songs with vocals, instruments, and lyrics from text prompts. Powerful for creative projects.",
+    values:["Generate complete songs with vocals from a text description","Great for multimedia projects and creative course content","Students can explore music composition without instruments"],
+    pricing:"freemium", priceDetail:"Free tier with 10 songs/day. Pro at $10/mo for 500 songs.",
+    roles:["faculty","student"], url:"https://suno.com", domain:"suno.com",
+    accent:"#ec4899", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+
+  // ── Student Tools ──
+  { id:"quizlet", name:"Quizlet", cat:"Student Tools", desc:"AI-enhanced study platform. Flashcards, practice tests, and personalized learning paths for effective exam preparation.",
+    values:["AI generates practice questions from any study material","Spaced repetition algorithm optimizes long-term retention","Faculty can create shared sets for entire courses"],
+    pricing:"freemium", priceDetail:"Free basic features. Quizlet Plus at $7.99/mo for AI features.",
+    roles:["student"], url:"https://quizlet.com", domain:"quizlet.com",
+    accent:"#6366f1", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"quillbot", name:"QuillBot", cat:"Student Tools", desc:"AI paraphrasing, grammar checking, and summarizing. Helps students refine writing while maintaining original meaning.",
+    values:["Paraphrasing modes teach different registers of academic writing","Summarizer condenses research articles to key points","Grammar checker explains rules — builds writing skills over time"],
+    pricing:"freemium", priceDetail:"Free tier with basic features. Premium at $9.95/mo.",
+    roles:["student"], url:"https://quillbot.com", domain:"quillbot.com",
+    accent:"#22c55e", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"kahoot", name:"Kahoot!", cat:"Student Tools", desc:"Game-based learning platform with AI quiz generation. Creates engaging, competitive learning experiences for any subject.",
+    values:["AI generates complete quizzes from any topic or document","Live game mode energizes even the most reluctant students","Works for in-person, hybrid, and asynchronous formats"],
+    pricing:"freemium", priceDetail:"Free for basic quizzes. Kahoot+ starts at $3/mo for advanced features.",
+    roles:["faculty","student"], url:"https://kahoot.com", domain:"kahoot.com",
+    accent:"#46178f", badge:null,
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+  { id:"knowt", name:"Knowt", cat:"Student Tools", desc:"AI study tool that converts notes and lectures into flashcards and practice quizzes automatically.",
+    values:["Upload lecture notes or slides — AI generates study materials","Creates both flashcards and practice tests from the same content","Free for students — no institutional license needed"],
+    pricing:"freemium", priceDetail:"Free for students. Premium features available.",
+    roles:["student"], url:"https://knowt.com", domain:"knowt.com",
+    accent:"#f97316", badge:"new",
+    bestFor:null, strengths:null, limitations:null, quickstart:null
+  },
+];
+
+const CATEGORIES = [...new Set(TOOLS.map(t=>t.cat))];
+let activeRole = 'all', activeCat = 'all', activeSort = 'all', searchQ = '';
+
+// ===== RENDER =====
+function buildCatFilters(){
+  const wrap = document.getElementById('catFilters');
+  wrap.innerHTML = `<button class="pill active" data-cat="all">All Categories <span class="ct">${TOOLS.length}</span></button>` +
+    CATEGORIES.map(c => {
+      const count = TOOLS.filter(t=>t.cat===c).length;
+      return `<button class="pill" data-cat="${c}">${c} <span class="ct">${count}</span></button>`;
+    }).join('');
+  wrap.querySelectorAll('.pill').forEach(p => p.addEventListener('click', ()=>{
+    wrap.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));
+    p.classList.add('active');
+    activeCat = p.dataset.cat;
+    render();
+  }));
+}
+
+function getFiltered(){
+  return TOOLS.filter(t => {
+    if (activeRole !== 'all' && !t.roles.includes(activeRole)) return false;
+    if (activeCat !== 'all' && t.cat !== activeCat) return false;
+    if (activeSort === 'new' && t.badge !== 'new') return false;
+    if (activeSort === 'trending' && t.badge !== 'trending') return false;
+    if (activeSort === 'updated' && t.badge !== 'updated') return false;
+    if (searchQ) {
+      const q = searchQ.toLowerCase();
+      if (!t.name.toLowerCase().includes(q) && !t.desc.toLowerCase().includes(q) && !t.cat.toLowerCase().includes(q) && !t.values.some(v=>v.toLowerCase().includes(q))) return false;
+    }
+    return true;
+  });
+}
+
+function toolCard(t){
+  const pCls = t.pricing==='free'?'price-free':t.pricing==='freemium'?'price-freemium':'price-paid';
+  const badgeHTML = t.badge ? `<span class="badge badge-${t.badge}">${t.badge}</span>` : '';
+  return `<div class="tool-card" style="--tool-accent:${t.accent}" onclick="openDetail('${t.id}')">
+    <div class="tool-accent" style="background:${t.accent}"></div>
+    <div class="tool-body">
+      <div class="tool-top">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=${t.domain}&sz=64" alt="${t.name}" onerror="this.parentElement.classList.add('fallback');this.parentElement.innerHTML='${t.name[0]}'"></div>
+        <div class="tool-info">
+          <div class="tool-name">${t.name}</div>
+          <div class="tool-cat">${t.cat}</div>
+        </div>
+        <div class="tool-badges">${badgeHTML}</div>
+      </div>
+      <div class="tool-desc">${t.desc}</div>
+      <ul class="tool-values">${t.values.map(v=>`<li>${v}</li>`).join('')}</ul>
+      <div class="tool-footer">
+        <span class="pricing-tag ${pCls}">${t.pricing}</span>
+        <div class="role-tags">${t.roles.map(r=>`<span class="role-tag">${r[0].toUpperCase()+r.slice(1)}</span>`).join('')}</div>
+        <span class="learn-more">Learn More <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const filtered = getFiltered();
+  const grid = document.getElementById('toolGrid');
+  grid.innerHTML = filtered.map(toolCard).join('');
+  document.getElementById('resultCount').textContent = `${filtered.length} tool${filtered.length!==1?'s':''}`;
+}
+
+// ===== DETAIL PANEL =====
+function openDetail(id){
+  const t = TOOLS.find(x=>x.id===id);
+  if(!t) return;
+  const overlay = document.getElementById('detailOverlay');
+  const panel = document.getElementById('detailPanel');
+  const badgeHTML = t.badge ? `<span class="badge badge-${t.badge}">${t.badge}</span>` : '';
+  const pCls = t.pricing==='free'?'price-free':t.pricing==='freemium'?'price-freemium':'price-paid';
+  
+  let detailHTML = `
+    <button class="detail-close" onclick="closeDetail()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="detail-accent" style="background:${t.accent}"></div>
+    <div class="detail-header">
+      <div class="detail-logo" style="border-color:${t.accent}30"><img src="https://www.google.com/s2/favicons?domain=${t.domain}&sz=128" alt="${t.name}"></div>
+      <div class="detail-title">
+        <h2>${t.name}</h2>
+        <div class="detail-cat">${t.cat}</div>
+        <div class="detail-badges">${badgeHTML} <span class="pricing-tag ${pCls}">${t.pricing}</span></div>
+      </div>
+    </div>
+    <div class="detail-content">
+      <div class="detail-section">
+        <h3>What It Does</h3>
+        <p>${t.desc}</p>
+      </div>
+      <div class="detail-section">
+        <h3>Why It Matters for Higher Ed</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">${t.values.map(v=>`<li style="padding-left:18px;position:relative;font-size:.92rem;color:var(--muted)"><span style="position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:2px;background:${t.accent};opacity:.7"></span>${v}</li>`).join('')}</ul>
+      </div>`;
+
+  if(t.bestFor){
+    detailHTML += `
+      <div class="detail-section">
+        <h3>Best For</h3>
+        <p>${t.bestFor}</p>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-box strengths">
+          <h4 style="color:var(--green)">What It Does Well</h4>
+          <ul>${t.strengths.map(s=>`<li>${s}</li>`).join('')}</ul>
+        </div>
+        <div class="detail-box limitations">
+          <h4 style="color:var(--amber)">Where It Falls Short</h4>
+          <ul>${t.limitations.map(l=>`<li>${l}</li>`).join('')}</ul>
+        </div>
+      </div>
+      <div class="detail-pricing-breakdown">
+        <h4>Pricing Breakdown</h4>
+        <p>${t.priceDetail}</p>
+      </div>
+      <div class="detail-quickstart">
+        <h4>Getting Started</h4>
+        <p>${t.quickstart}</p>
+      </div>`;
+  } else {
+    detailHTML += `
+      <div class="detail-pricing-breakdown">
+        <h4>Pricing</h4>
+        <p>${t.priceDetail}</p>
+      </div>
+      <div class="detail-quickstart" style="background:var(--surface);border-color:var(--border)">
+        <h4 style="color:var(--muted)">Full Review Coming Soon</h4>
+        <p>Our editorial team is preparing an in-depth review of ${t.name} with strengths, limitations, and getting-started guidance for higher ed use.</p>
+      </div>`;
+  }
+
+  detailHTML += `<a class="detail-visit" href="${t.url}" target="_blank" style="background:${t.accent}">Visit ${t.name} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+    </div>`;
+
+  panel.innerHTML = detailHTML;
+  panel.style.setProperty('--tool-accent', t.accent);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail(){
+  document.getElementById('detailOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('detailOverlay').addEventListener('click', e => { if(e.target === e.currentTarget) closeDetail(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeDetail(); });
+
+// ===== EVENT LISTENERS =====
+document.querySelectorAll('#roleFilters .pill').forEach(p => p.addEventListener('click', ()=>{
+  document.querySelectorAll('#roleFilters .pill').forEach(b=>b.classList.remove('active'));
+  p.classList.add('active');
+  activeRole = p.dataset.role;
+  render();
+}));
+
+document.querySelectorAll('.sort-pill').forEach(p => p.addEventListener('click', ()=>{
+  document.querySelectorAll('.sort-pill').forEach(b=>b.classList.remove('active'));
+  p.classList.add('active');
+  activeSort = p.dataset.sort;
+  render();
+}));
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQ = e.target.value.trim();
+  render();
+});
+
+// ===== INIT =====
+buildCatFilters();
+render();
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Innovating Higher Ed — AI Innovation Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
     /* ========================================
        DESIGN SYSTEM: ELECTRIC DUSK
@@ -34,8 +34,8 @@
 
       /* Typography */
       --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'Space Grotesk', system-ui, sans-serif;
-      --font-mono: 'IBM Plex Mono', monospace;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --font-mono: 'DM Mono', monospace;
     }
 
     * {
@@ -1653,6 +1653,228 @@
     .mb-4 { margin-bottom: 2rem; }
     .mt-2 { margin-top: 1rem; }
     .mt-4 { margin-top: 2rem; }
+  
+    /* ========================================
+       AI DIRECTORY V2 STYLES
+       ======================================== */
+
+    .dir-pill {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid #1c1c32;
+      background: transparent;
+      color: #7e7e9a;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .dir-pill:hover { border-color: rgba(0,212,255,0.35); color: #ededf5; }
+    .dir-pill.active { background: rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.4); color: var(--cyan); }
+    .dir-pill .ct { font-family: 'DM Mono', monospace; font-size: 0.72rem; margin-left: 4px; opacity: 0.6; }
+
+    .sort-pill-dir {
+      padding: 5px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #4e4e66;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sort-pill-dir:hover { color: #7e7e9a; }
+    .sort-pill-dir.active { background: #0e0e1a; border-color: #1c1c32; color: #ededf5; }
+
+    .dir-tool-card {
+      background: #121220;
+      border: 1px solid #1c1c32;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.35s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .dir-tool-card:hover {
+      border-color: var(--tool-accent, #2a2a44);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+    .dir-tool-accent { height: 3px; background: var(--tool-accent, #1c1c32); transition: height 0.3s; }
+    .dir-tool-card:hover .dir-tool-accent { height: 4px; }
+    .dir-tool-body { padding: 20px 22px 18px; }
+    .dir-tool-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .dir-tool-logo {
+      width: 46px; height: 46px; border-radius: 12px; overflow: hidden; flex-shrink: 0;
+      background: #0e0e1a; display: flex; align-items: center; justify-content: center;
+      border: 1px solid #1c1c32; position: relative;
+    }
+    .dir-tool-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .dir-tool-logo.fallback { font-size: 1.1rem; font-weight: 700; color: var(--tool-accent, var(--cyan)); }
+    .dir-tool-info { flex: 1; min-width: 0; }
+    .dir-tool-name { font-size: 1.12rem; font-weight: 700; letter-spacing: -0.01em; }
+    .dir-tool-cat { font-size: 0.76rem; color: #7e7e9a; font-weight: 500; margin-top: 1px; }
+    .dir-tool-badges { display: flex; gap: 5px; flex-shrink: 0; }
+    .dir-badge { padding: 3px 9px; border-radius: 4px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+    .dir-badge-new { background: rgba(46,230,168,0.1); color: #2ee6a8; border: 1px solid rgba(46,230,168,0.2); }
+    .dir-badge-trending { background: rgba(255,179,71,0.1); color: #ffb347; border: 1px solid rgba(255,179,71,0.2); }
+    .dir-badge-updated { background: rgba(0,212,255,0.08); color: var(--cyan); border: 1px solid rgba(0,212,255,0.18); }
+    .dir-tool-desc { font-size: 0.9rem; color: #7e7e9a; line-height: 1.55; margin-bottom: 14px; }
+    .dir-tool-values { list-style: none; margin-bottom: 16px; display: flex; flex-direction: column; gap: 7px; }
+    .dir-tool-values li { font-size: 0.84rem; color: #ededf5; padding-left: 20px; position: relative; line-height: 1.45; }
+    .dir-tool-values li::before { content: ''; position: absolute; left: 0; top: 7px; width: 8px; height: 8px; border-radius: 2px; background: var(--tool-accent, var(--cyan)); opacity: 0.7; }
+    .dir-tool-footer { display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px solid #1c1c32; flex-wrap: wrap; }
+    .dir-pricing-tag { padding: 4px 11px; border-radius: 6px; font-size: 0.76rem; font-weight: 600; font-family: 'DM Mono', monospace; }
+    .dir-price-free { background: rgba(46,230,168,0.08); color: #2ee6a8; border: 1px solid rgba(46,230,168,0.15); }
+    .dir-price-freemium { background: rgba(0,212,255,0.07); color: var(--cyan); border: 1px solid rgba(0,212,255,0.15); }
+    .dir-price-paid { background: rgba(255,179,71,0.07); color: #ffb347; border: 1px solid rgba(255,179,71,0.15); }
+    .dir-role-tags { display: flex; gap: 5px; flex: 1; }
+    .dir-role-tag { padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; color: #4e4e66; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+    .dir-learn-more { margin-left: auto; color: var(--tool-accent, var(--cyan)); font-size: 0.84rem; font-weight: 600; display: flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+    .dir-tool-card:hover .dir-learn-more { gap: 8px; }
+
+    .dir-detail-overlay {
+      position: fixed; inset: 0; background: rgba(4,4,10,0.75); backdrop-filter: blur(8px);
+      z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px;
+    }
+    .dir-detail-overlay.open { display: flex; }
+    .dir-detail-panel {
+      background: #121220; border: 1px solid #2a2a44; border-radius: 18px;
+      max-width: 720px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative;
+    }
+    .dir-detail-close {
+      position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+      border-radius: 50%; border: 1px solid #1c1c32; background: #0e0e1a;
+      color: #7e7e9a; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; z-index: 5;
+    }
+    .dir-detail-close:hover { border-color: #ff5c6c; color: #ff5c6c; }
+    .dir-detail-accent { height: 4px; border-radius: 18px 18px 0 0; }
+    .dir-detail-header { padding: 28px 32px 20px; display: flex; gap: 18px; align-items: flex-start; }
+    .dir-detail-logo { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; background: #0e0e1a; display: flex; align-items: center; justify-content: center; border: 1px solid #1c1c32; flex-shrink: 0; }
+    .dir-detail-logo img { width: 44px; height: 44px; object-fit: contain; }
+    .dir-detail-title h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+    .dir-detail-title .detail-cat { font-size: 0.84rem; color: #7e7e9a; }
+    .dir-detail-badges { display: flex; gap: 6px; margin-top: 8px; }
+    .dir-detail-content { padding: 0 32px 32px; }
+    .dir-detail-section { margin-bottom: 24px; }
+    .dir-detail-section h3 { font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--tool-accent, var(--cyan)); margin-bottom: 10px; }
+    .dir-detail-section p { font-size: 0.94rem; color: #7e7e9a; line-height: 1.7; }
+    .dir-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .dir-detail-box { padding: 16px; border-radius: 8px; border: 1px solid #1c1c32; background: #0e0e1a; }
+    .dir-detail-box h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; }
+    .dir-detail-box ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .dir-detail-box li { font-size: 0.86rem; color: #7e7e9a; padding-left: 16px; position: relative; }
+    .dir-detail-box li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; }
+    .dir-detail-box.strengths li::before { background: #2ee6a8; }
+    .dir-detail-box.limitations li::before { background: #ffb347; }
+    .dir-detail-pricing { padding: 16px; border-radius: 8px; background: #0e0e1a; border: 1px solid #1c1c32; margin-bottom: 24px; }
+    .dir-detail-pricing h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 8px; }
+    .dir-detail-pricing p { font-size: 0.88rem; color: #7e7e9a; line-height: 1.6; }
+    .dir-detail-quickstart { padding: 18px; border-radius: 8px; background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(200,80,192,0.03)); border: 1px solid rgba(0,212,255,0.12); margin-bottom: 24px; }
+    .dir-detail-quickstart h4 { font-size: 0.88rem; font-weight: 600; color: var(--cyan); margin-bottom: 6px; }
+    .dir-detail-quickstart p { font-size: 0.88rem; color: #7e7e9a; line-height: 1.6; }
+    .dir-detail-visit { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; background: var(--tool-accent, var(--cyan)); color: #080810; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
+    .dir-detail-visit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ========================================
+       PROMPT NAVIGATOR V4 STYLES
+       ======================================== */
+
+    .pn-tech-card {
+      background: #121220; border: 1px solid #1c1c32; border-radius: 14px;
+      margin-bottom: 16px; overflow: hidden; transition: all 0.35s; position: relative;
+    }
+    .pn-tech-card:hover { border-color: var(--tech-accent, rgba(0,212,255,0.25)); }
+    .pn-tech-strip { position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--tech-accent, var(--cyan)); border-radius: 4px 0 0 4px; opacity: 0.6; transition: opacity 0.3s; }
+    .pn-tech-card:hover .pn-tech-strip { opacity: 1; }
+    .pn-tech-preview { padding: 20px 24px 18px 32px; cursor: pointer; }
+    .pn-tech-top-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .pn-tech-num { width: 32px; height: 32px; border-radius: 8px; background: #0e0e1a; border: 1px solid #1c1c32; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; color: var(--tech-accent, var(--cyan)); font-family: 'DM Mono', monospace; flex-shrink: 0; }
+    .pn-tech-name { font-size: 1.12rem; font-weight: 700; flex: 1; min-width: 0; }
+    .pn-tech-badges { display: flex; gap: 5px; flex-shrink: 0; flex-wrap: wrap; }
+    .pn-badge { padding: 3px 10px; border-radius: 4px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+    .pn-badge-beginner { background: rgba(46,230,168,0.08); color: #2ee6a8; border: 1px solid rgba(46,230,168,0.15); }
+    .pn-badge-intermediate { background: rgba(0,212,255,0.07); color: var(--cyan); border: 1px solid rgba(0,212,255,0.15); }
+    .pn-badge-advanced { background: rgba(167,139,250,0.08); color: #a78bfa; border: 1px solid rgba(167,139,250,0.15); }
+    .pn-badge-start { background: rgba(255,179,71,0.08); color: #ffb347; border: 1px solid rgba(255,179,71,0.15); }
+    .pn-tech-hook { font-size: 0.94rem; color: #7e7e9a; margin-bottom: 14px; line-height: 1.55; }
+    .pn-use-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
+    .pn-use-tag { padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 500; color: #4e4e66; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+    .pn-ba-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .pn-ba-box { padding: 12px 14px; border-radius: 8px; font-size: 0.82rem; line-height: 1.5; font-family: 'DM Mono', monospace; }
+    .pn-ba-bad { background: rgba(255,92,108,0.04); border: 1px solid rgba(255,92,108,0.12); color: #7e7e9a; }
+    .pn-ba-good { background: rgba(46,230,168,0.04); border: 1px solid rgba(46,230,168,0.12); color: #ededf5; }
+    .pn-ba-label { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px; display: block; }
+    .pn-ba-bad .pn-ba-label { color: #ff5c6c; }
+    .pn-ba-good .pn-ba-label { color: #2ee6a8; }
+    .pn-tech-expand-row { display: flex; align-items: center; justify-content: space-between; }
+    .pn-tech-expand-btn { display: flex; align-items: center; gap: 6px; color: var(--tech-accent, var(--cyan)); font-size: 0.84rem; font-weight: 600; background: none; border: none; cursor: pointer; font-family: inherit; transition: gap 0.2s; }
+    .pn-tech-expand-btn:hover { gap: 10px; }
+    .pn-tech-expand-btn svg { transition: transform 0.3s; }
+    .pn-tech-card.open .pn-tech-expand-btn svg { transform: rotate(180deg); }
+    .pn-tech-stat { font-size: 0.76rem; color: #4e4e66; font-family: 'DM Mono', monospace; }
+    .pn-tech-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+    .pn-tech-card.open .pn-tech-body { max-height: 6000px; }
+    .pn-tech-content { padding: 0 24px 24px 32px; border-top: 1px solid #1c1c32; }
+    .pn-tech-sub { margin-top: 18px; }
+    .pn-tech-sub h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: var(--tech-accent, var(--cyan)); margin-bottom: 6px; }
+    .pn-tech-sub p { font-size: 0.92rem; color: #7e7e9a; line-height: 1.7; }
+    .pn-copy-block { position: relative; background: #0e0e1a; border: 1px solid #1c1c32; border-radius: 10px; padding: 16px 56px 16px 16px; margin: 12px 0; font-family: 'DM Mono', monospace; font-size: 0.84rem; line-height: 1.65; color: #ededf5; white-space: pre-wrap; word-wrap: break-word; }
+    .pn-copy-btn { position: absolute; top: 10px; right: 10px; padding: 5px 12px; border-radius: 6px; border: 1px solid #1c1c32; background: #121220; color: #7e7e9a; font-family: inherit; font-size: 0.76rem; cursor: pointer; transition: all 0.2s; }
+    .pn-copy-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    .pn-copy-btn.copied { background: rgba(46,230,168,0.15); border-color: #2ee6a8; color: #2ee6a8; }
+
+    .pn-tmpl-card { background: #121220; border: 1px solid #1c1c32; border-radius: 14px; padding: 20px 24px; margin-bottom: 14px; cursor: pointer; transition: all 0.3s; overflow: hidden; }
+    .pn-tmpl-card:hover { border-color: rgba(0,212,255,0.2); }
+    .pn-tmpl-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+    .pn-tmpl-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pn-tmpl-title { font-size: 1rem; font-weight: 600; flex: 1; }
+    .pn-tmpl-arrow { color: #4e4e66; transition: transform 0.3s; flex-shrink: 0; }
+    .pn-tmpl-card.open .pn-tmpl-arrow { transform: rotate(180deg); }
+    .pn-tmpl-desc { font-size: 0.86rem; color: #7e7e9a; margin-bottom: 10px; }
+    .pn-tmpl-preview { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: #4e4e66; padding: 10px 14px; background: #0e0e1a; border: 1px solid #1c1c32; border-radius: 8px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: all 0.3s; }
+    .pn-tmpl-card:hover .pn-tmpl-preview { color: #7e7e9a; border-color: #2a2a44; }
+    .pn-tmpl-expand { display: none; margin-top: 14px; }
+    .pn-tmpl-card.open .pn-tmpl-expand { display: block; }
+    .pn-tmpl-card.open .pn-tmpl-preview { display: none; }
+    .pn-tmpl-usage { font-size: 0.86rem; color: #7e7e9a; margin-top: 10px; padding: 12px; border-radius: 8px; background: #0e0e1a; border: 1px solid #1c1c32; }
+    .pn-tmpl-usage strong { color: #ededf5; }
+
+    .pn-problem-card { background: #121220; border: 1px solid #1c1c32; border-radius: 14px; padding: 20px; margin-bottom: 14px; display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; }
+    .pn-problem-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(255,92,108,0.06); border: 1px solid rgba(255,92,108,0.12); flex-shrink: 0; }
+    .pn-problem-content h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 4px; }
+    .pn-problem-desc { font-size: 0.88rem; color: #7e7e9a; margin-bottom: 10px; }
+    .pn-problem-fix { padding: 12px 14px; border-radius: 8px; background: rgba(46,230,168,0.03); border: 1px solid rgba(46,230,168,0.1); }
+    .pn-fix-label { font-size: 0.72rem; font-weight: 600; color: #2ee6a8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pn-problem-fix p { font-size: 0.88rem; color: #ededf5; }
+
+    .pn-wf-step { background: #121220; border: 1px solid #1c1c32; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; margin-bottom: 10px; transition: all 0.3s; }
+    .pn-wf-step:hover { border-color: rgba(0,212,255,0.2); transform: translateX(4px); }
+    .pn-wf-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(200,80,192,0.1)); border: 1px solid rgba(0,212,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; color: var(--cyan); font-family: 'DM Mono', monospace; flex-shrink: 0; }
+    .pn-wf-text h4 { font-size: 0.96rem; font-weight: 600; margin-bottom: 2px; }
+    .pn-wf-text p { font-size: 0.86rem; color: #7e7e9a; }
+
+    .pn-check-item { padding: 12px 16px; border-radius: 8px; border: 1px dashed #1c1c32; background: #0e0e1a; display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
+    .pn-check-icon { color: #2ee6a8; flex-shrink: 0; }
+
+    .pn-ref-item { background: #121220; border: 1px solid #1c1c32; border-radius: 8px; padding: 14px 18px; margin-bottom: 10px; }
+    .pn-ref-type { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: var(--cyan); margin-bottom: 4px; }
+    .pn-ref-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 2px; }
+    .pn-ref-authors { font-size: 0.82rem; color: #7e7e9a; }
+    .pn-ref-toggle.pn-ref-rotated { transform: rotate(180deg); }
+    #pnRefContent.pn-ref-open { max-height: 5000px; }
+
+    @media (max-width: 768px) {
+      .pn-ba-preview { grid-template-columns: 1fr; }
+      .pn-problem-card { grid-template-columns: 1fr; }
+      .dir-detail-grid { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -1941,7 +2163,7 @@
         <button class="play-btn">▶</button>
         <div class="waveform" id="pulseWaveform"></div>
         <div class="audio-info">
-          <div class="audio-title">IHE Daily AI News — Friday, February 13, 2026</div>
+          <div class="audio-title">The Innovation Pulse — Friday, February 13, 2026</div>
           <div class="audio-duration">4:32</div>
         </div>
       </div>
@@ -1952,37 +2174,37 @@
         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
           <div class="episode-item" style="padding: 0.75rem;">
             <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">IHE Daily AI News – Friday, February 13, 2026</div>
+              <div class="episode-title">The Innovation Pulse – Friday, February 13, 2026</div>
             </div>
             <button class="episode-play">▶</button>
           </div>
           <div class="episode-item" style="padding: 0.75rem;">
             <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">IHE Daily AI News – Thursday, February 12, 2026</div>
+              <div class="episode-title">The Innovation Pulse – Thursday, February 12, 2026</div>
             </div>
             <button class="episode-play">▶</button>
           </div>
           <div class="episode-item" style="padding: 0.75rem;">
             <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">IHE Daily AI News – Wednesday, February 11, 2026</div>
+              <div class="episode-title">The Innovation Pulse – Wednesday, February 11, 2026</div>
             </div>
             <button class="episode-play">▶</button>
           </div>
           <div class="episode-item" style="padding: 0.75rem;">
             <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">IHE Daily AI News – Monday, February 9, 2026</div>
+              <div class="episode-title">The Innovation Pulse – Monday, February 9, 2026</div>
             </div>
             <button class="episode-play">▶</button>
           </div>
           <div class="episode-item" style="padding: 0.75rem;">
             <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">IHE Daily AI News – Sunday, February 8, 2026</div>
+              <div class="episode-title">The Innovation Pulse – Sunday, February 8, 2026</div>
             </div>
             <button class="episode-play">▶</button>
           </div>
           <div class="episode-item" style="padding: 0.75rem;">
             <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">IHE Daily AI News – Friday, February 6, 2026</div>
+              <div class="episode-title">The Innovation Pulse – Friday, February 6, 2026</div>
             </div>
             <button class="episode-play">▶</button>
           </div>
@@ -2339,15 +2561,55 @@
        PAGE 3: AI TOOLS DIRECTORY
        ======================================== -->
   <div class="page" id="page-tools">
-
     <div class="page-header">
       <a class="back-btn" onclick="showPage('portal')">← Back to Hub</a>
-      <p class="eyebrow">CURATED COLLECTION</p>
-      <h1>AI App <em>Directory</em></h1>
-      <p>Empowering innovators in teaching and administration. Find the right AI tools for your needs. Select your role to see curated tools, then filter by category to narrow your search.</p>
+      <p class="eyebrow">AI APP DIRECTORY</p>
+      <h1>Find the Right <em>AI Tool</em> for Higher Ed</h1>
+      <p>AI tools vetted by educators, for educators. Honest reviews, not marketing fluff.</p>
     </div>
 
     <div class="container">
+      <!-- Search -->
+      <div style="max-width: 600px; margin: 0 auto 1.5rem; position: relative;">
+        <svg style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #4e4e66; pointer-events: none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="toolSearchInput" placeholder="Search by name, category, or what you need to do..." style="width: 100%; padding: 14px 20px 14px 50px; border-radius: 14px; border: 1px solid #1c1c32; background: #0e0e1a; color: #ededf5; font-family: inherit; font-size: 0.95rem; outline: none;">
+      </div>
+
+      <!-- Role Filters -->
+      <div id="roleFiltersDir" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 0.5rem;">
+        <button class="dir-pill active" data-role="all">All Roles</button>
+        <button class="dir-pill" data-role="faculty">Faculty</button>
+        <button class="dir-pill" data-role="admin">Administrator</button>
+        <button class="dir-pill" data-role="student">Student</button>
+      </div>
+
+      <!-- Category Filters -->
+      <div id="catFiltersDir" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 0 20px; margin-bottom: 0.5rem;"></div>
+
+      <!-- Sort Bar -->
+      <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 20px auto 0; padding: 0 24px;">
+        <div style="display: flex; gap: 6px;">
+          <button class="sort-pill-dir active" data-sort="all">All</button>
+          <button class="sort-pill-dir" data-sort="new">Recently Added</button>
+          <button class="sort-pill-dir" data-sort="trending">Trending</button>
+          <button class="sort-pill-dir" data-sort="updated">Updated</button>
+        </div>
+        <div id="dirResultCount" style="font-size: 0.84rem; color: #4e4e66; font-family: 'DM Mono', monospace;">38 tools</div>
+      </div>
+
+      <!-- Tool Grid -->
+      <div style="max-width: 1200px; margin: 24px auto 0; padding: 0 24px 80px;">
+        <div id="dirToolGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(370px, 1fr)); gap: 18px;"></div>
+      </div>
+    </div>
+
+    <!-- Detail Overlay -->
+    <div class="dir-detail-overlay" id="dirDetailOverlay">
+      <div class="dir-detail-panel" id="dirDetailPanel"></div>
+    </div>
+  </div>
+
+
 
       <!-- Search Bar -->
       <div style="max-width: 600px; margin: 0 auto 2rem;">
@@ -3094,1303 +3356,81 @@
        ======================================== -->
 
   <!-- ChatGPT Detail Page -->
-  <div class="page" id="page-tool-chatgpt">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('tools')">← Back to AI Directory</a>
-      <p class="eyebrow">STAFF PICK</p>
-      <h1>ChatGPT</h1>
-    </div>
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
-            <img src="https://logo.clearbit.com/openai.com" alt="ChatGPT" style="width: 80px; height: 80px; border-radius: 16px; background: #fff;">
-            <div>
-              <h2 style="margin: 0;">ChatGPT</h2>
-              <p style="margin: 0.25rem 0 0; color: #a0a0a0;">by OpenAI</p>
-            </div>
-          </div>
-
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">ChatGPT is the most versatile and widely-used AI assistant in education today. Built on OpenAI's GPT-4 architecture, it excels at natural language understanding and generation, making it an invaluable tool for educators across all disciplines.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 1.5rem;">Faculty use ChatGPT for lesson planning, generating discussion questions, creating rubrics, providing feedback drafts, and brainstorming creative activities. The ability to create Custom GPTs means you can build specialized assistants tailored to your specific courses and teaching style.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 2rem;">With the introduction of GPT-4o, ChatGPT now offers multimodal capabilities — understanding images, documents, and even voice input — opening new possibilities for accessible and interactive education.</p>
-
-          <h3 style="margin-bottom: 1rem;">Key Features</h3>
-          <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Custom GPTs for course-specific assistants</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Multimodal input (text, images, voice, files)</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Code Interpreter for data analysis</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ DALL·E integration for image generation</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Web browsing for current information</li>
-            <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 0.75rem;">✓ Memory features for personalized context</li>
-          </ul>
-
-          <h3 style="margin-bottom: 1rem;">Best For</h3>
-          <div class="grid grid-3" style="margin-bottom: 2rem;">
-            <div style="background: rgba(0,212,255,0.1); padding: 1rem; border-radius: 12px;">
-              <strong style="display: block; margin-bottom: 0.5rem;">Lesson Planning</strong>
-              <span style="color: #a0a0a0; font-size: 0.9rem;">Generate outlines, activities, and assessments quickly</span>
-            </div>
-            <div style="background: rgba(200,80,192,0.1); padding: 1rem; border-radius: 12px;">
-              <strong style="display: block; margin-bottom: 0.5rem;">Student Feedback</strong>
-              <span style="color: #a0a0a0; font-size: 0.9rem;">Draft constructive, personalized feedback at scale</span>
-            </div>
-            <div style="background: rgba(16,185,129,0.1); padding: 1rem; border-radius: 12px;">
-              <strong style="display: block; margin-bottom: 0.5rem;">Content Creation</strong>
-              <span style="color: #a0a0a0; font-size: 0.9rem;">Write study guides, discussion prompts, and explanations</span>
-            </div>
-          </div>
-
-          <a href="https://chat.openai.com" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Visit ChatGPT →</a>
-        </div>
-
-        <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
-          <h4 style="margin-top: 0; margin-bottom: 1rem;">Quick Facts</h4>
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Category</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">General LLM</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Pricing</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Free / Plus ($20/mo) / Team / Enterprise</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Platform</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Web, iOS, Android, Desktop</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">LMS Integration</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Via API / Custom GPTs</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Last Verified</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">February 2026</p>
-            </div>
-          </div>
-
-          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-            <h4 style="margin-top: 0; margin-bottom: 1rem;">Pros & Cons</h4>
-            <div style="margin-bottom: 1rem;">
-              <span style="color: #10b981; font-weight: 600;">Pros</span>
-              <ul style="margin: 0.5rem 0 0; padding-left: 1.25rem; color: #a0a0a0; font-size: 0.9rem;">
-                <li>Most capable general-purpose AI</li>
-                <li>Custom GPTs for specialization</li>
-                <li>Free tier available</li>
-                <li>Excellent at creative tasks</li>
-              </ul>
-            </div>
-            <div>
-              <span style="color: #ef4444; font-weight: 600;">Cons</span>
-              <ul style="margin: 0.5rem 0 0; padding-left: 1.25rem; color: #a0a0a0; font-size: 0.9rem;">
-                <li>Can hallucinate facts</li>
-                <li>Knowledge cutoff (needs web)</li>
-                <li>Usage limits on free tier</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-        <h3>Related Tools</h3>
-        <div class="grid grid-4" style="margin-top: 1rem;">
-          <div class="tool-card" onclick="showPage('tool-notebooklm')" style="cursor: pointer;">
-            <div class="tool-header">
-              <img src="https://logo.clearbit.com/google.com" alt="NotebookLM" style="width: 40px; height: 40px; border-radius: 10px; background: #fff;">
-              <div>
-                <div class="tool-name">NotebookLM</div>
-                <div class="tool-category">Research</div>
-              </div>
-            </div>
-          </div>
-          <div class="tool-card" onclick="window.open('https://claude.ai', '_blank')" style="cursor: pointer;">
-            <div class="tool-header">
-              <img src="https://logo.clearbit.com/anthropic.com" alt="Claude" style="width: 40px; height: 40px; border-radius: 10px; background: #fff;">
-              <div>
-                <div class="tool-name">Claude</div>
-                <div class="tool-category">General LLM</div>
-              </div>
-            </div>
-          </div>
-          <div class="tool-card" onclick="window.open('https://gemini.google.com', '_blank')" style="cursor: pointer;">
-            <div class="tool-header">
-              <img src="https://logo.clearbit.com/google.com" alt="Gemini" style="width: 40px; height: 40px; border-radius: 10px; background: #fff;">
-              <div>
-                <div class="tool-name">Gemini</div>
-                <div class="tool-category">General LLM</div>
-              </div>
-            </div>
-          </div>
-          <div class="tool-card" onclick="window.open('https://perplexity.ai', '_blank')" style="cursor: pointer;">
-            <div class="tool-header">
-              <img src="https://logo.clearbit.com/perplexity.ai" alt="Perplexity" style="width: 40px; height: 40px; border-radius: 10px; background: #fff;">
-              <div>
-                <div class="tool-name">Perplexity AI</div>
-                <div class="tool-category">Research</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- NotebookLM Detail Page -->
-  <div class="page" id="page-tool-notebooklm">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('tools')">← Back to AI Directory</a>
-      <p class="eyebrow">STAFF PICK</p>
-      <h1>NotebookLM</h1>
-    </div>
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
-            <img src="https://logo.clearbit.com/google.com" alt="NotebookLM" style="width: 80px; height: 80px; border-radius: 16px; background: #fff;">
-            <div>
-              <h2 style="margin: 0;">NotebookLM</h2>
-              <p style="margin: 0.25rem 0 0; color: #a0a0a0;">by Google</p>
-            </div>
-          </div>
-
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">NotebookLM is Google's AI-powered research assistant that transforms how academics and educators work with source materials. Upload documents, and NotebookLM instantly creates summaries, discovers connections, and answers questions grounded in your sources.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 1.5rem;">What makes NotebookLM unique is its source-grounded approach. Unlike general AI chatbots that draw from broad training data, NotebookLM only uses the documents you provide, ensuring responses are directly relevant and verifiable. It even generates audio overviews — AI-hosted podcast-style discussions of your materials.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 2rem;">Faculty use NotebookLM to prepare for classes, synthesize research for publications, create study guides from textbooks, and help students engage with primary sources more effectively.</p>
-
-          <h3 style="margin-bottom: 1rem;">Key Features</h3>
-          <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Source-grounded responses (no hallucination)</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Audio Overview (AI podcast generation)</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Automatic study guides and FAQs</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Citation tracking to source documents</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Support for PDFs, Docs, web links, YouTube</li>
-            <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 0.75rem;">✓ Completely free to use</li>
-          </ul>
-
-          <h3 style="margin-bottom: 1rem;">Best For</h3>
-          <div class="grid grid-3" style="margin-bottom: 2rem;">
-            <div style="background: rgba(139,92,246,0.1); padding: 1rem; border-radius: 12px;">
-              <strong style="display: block; margin-bottom: 0.5rem;">Literature Reviews</strong>
-              <span style="color: #a0a0a0; font-size: 0.9rem;">Synthesize multiple papers and find connections</span>
-            </div>
-            <div style="background: rgba(59,130,246,0.1); padding: 1rem; border-radius: 12px;">
-              <strong style="display: block; margin-bottom: 0.5rem;">Course Prep</strong>
-              <span style="color: #a0a0a0; font-size: 0.9rem;">Create study guides and discussion questions from readings</span>
-            </div>
-            <div style="background: rgba(16,185,129,0.1); padding: 1rem; border-radius: 12px;">
-              <strong style="display: block; margin-bottom: 0.5rem;">Student Support</strong>
-              <span style="color: #a0a0a0; font-size: 0.9rem;">Help students navigate complex source materials</span>
-            </div>
-          </div>
-
-          <a href="https://notebooklm.google.com" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Visit NotebookLM →</a>
-        </div>
-
-        <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
-          <h4 style="margin-top: 0; margin-bottom: 1rem;">Quick Facts</h4>
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Category</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Research</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Pricing</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Free</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Platform</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Web</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Last Verified</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">February 2026</p>
-            </div>
-          </div>
-
-          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-            <h4 style="margin-top: 0; margin-bottom: 1rem;">Pros & Cons</h4>
-            <div style="margin-bottom: 1rem;">
-              <span style="color: #10b981; font-weight: 600;">Pros</span>
-              <ul style="margin: 0.5rem 0 0; padding-left: 1.25rem; color: #a0a0a0; font-size: 0.9rem;">
-                <li>100% source-grounded</li>
-                <li>Audio Overview feature</li>
-                <li>Completely free</li>
-                <li>Great for research synthesis</li>
-              </ul>
-            </div>
-            <div>
-              <span style="color: #ef4444; font-weight: 600;">Cons</span>
-              <ul style="margin: 0.5rem 0 0; padding-left: 1.25rem; color: #a0a0a0; font-size: 0.9rem;">
-                <li>Limited to uploaded sources</li>
-                <li>50 source limit per notebook</li>
-                <li>No general knowledge queries</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Brisk Teaching Detail Page -->
-  <div class="page" id="page-tool-brisk">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('tools')">← Back to AI Directory</a>
-      <p class="eyebrow">STAFF PICK</p>
-      <h1>Brisk Teaching</h1>
-    </div>
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
-            <img src="https://logo.clearbit.com/briskteaching.com" alt="Brisk Teaching" style="width: 80px; height: 80px; border-radius: 16px; background: #fff;">
-            <div>
-              <h2 style="margin: 0;">Brisk Teaching</h2>
-              <p style="margin: 0.25rem 0 0; color: #a0a0a0;">Chrome Extension</p>
-            </div>
-          </div>
-
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">Brisk Teaching is a free Chrome extension that brings AI directly into your existing workflow. It works alongside Google Docs, Slides, YouTube, and web pages — giving you instant AI assistance without leaving your current tab.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 1.5rem;">Teachers use Brisk to create curriculum from any content, give personalized feedback on student work, differentiate instruction for diverse learners, and generate comprehension questions from readings or videos. The extension reads the context of whatever you're viewing and offers relevant AI tools.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 2rem;">What makes Brisk special is its integration. Rather than copying content to a separate AI tool, Brisk works where you already are — making AI assistance feel natural rather than disruptive to your workflow.</p>
-
-          <h3 style="margin-bottom: 1rem;">Key Features</h3>
-          <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Create curriculum from any web content</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Give feedback in Google Docs</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Differentiate assignments for various levels</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Generate questions from YouTube videos</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Works inside your existing tools</li>
-            <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 0.75rem;">✓ Completely free for teachers</li>
-          </ul>
-
-          <a href="https://briskteaching.com" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Get Brisk Teaching →</a>
-        </div>
-
-        <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
-          <h4 style="margin-top: 0; margin-bottom: 1rem;">Quick Facts</h4>
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Category</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Lesson Planning</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Pricing</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Free</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Platform</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Chrome Extension</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Integration</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Google Workspace, YouTube, Web</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Last Verified</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">February 2026</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Gradescope Detail Page -->
-  <div class="page" id="page-tool-gradescope">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('tools')">← Back to AI Directory</a>
-      <p class="eyebrow">STAFF PICK</p>
-      <h1>Gradescope</h1>
-    </div>
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
-            <img src="https://logo.clearbit.com/gradescope.com" alt="Gradescope" style="width: 80px; height: 80px; border-radius: 16px; background: #fff;">
-            <div>
-              <h2 style="margin: 0;">Gradescope</h2>
-              <p style="margin: 0.25rem 0 0; color: #a0a0a0;">by Turnitin</p>
-            </div>
-          </div>
-
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">Gradescope uses AI to dramatically reduce grading time while improving consistency and feedback quality. The platform automatically groups similar student answers, allowing you to grade by rubric item rather than by student — often cutting grading time by 50-70%.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 1.5rem;">Originally developed at UC Berkeley, Gradescope excels at STEM assignments but works across disciplines. It handles handwritten work, code, bubble sheets, and typed submissions. The AI learns from your grading patterns, suggesting rubric applications for similar answers.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 2rem;">Beyond efficiency, Gradescope provides detailed analytics on student performance, helping identify where students struggle and which rubric items need clearer explanation. Many institutions provide Gradescope through site licenses.</p>
-
-          <h3 style="margin-bottom: 1rem;">Key Features</h3>
-          <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ AI-assisted answer grouping</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Dynamic rubrics with regrade requests</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Handwriting and code recognition</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ LMS integration (Canvas, Blackboard, etc.)</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Detailed performance analytics</li>
-            <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 0.75rem;">✓ TA workflow management</li>
-          </ul>
-
-          <a href="https://gradescope.com" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Visit Gradescope →</a>
-        </div>
-
-        <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
-          <h4 style="margin-top: 0; margin-bottom: 1rem;">Quick Facts</h4>
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Category</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Assessment</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Pricing</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Paid (institutional licenses common)</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Platform</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Web</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">LMS Integration</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Canvas, Blackboard, D2L, Moodle</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Last Verified</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">February 2026</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Canva Detail Page -->
-  <div class="page" id="page-tool-canva">
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('tools')">← Back to AI Directory</a>
-      <p class="eyebrow">STAFF PICK</p>
-      <h1>Canva</h1>
-    </div>
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;">
-            <img src="https://logo.clearbit.com/canva.com" alt="Canva" style="width: 80px; height: 80px; border-radius: 16px; background: #fff;">
-            <div>
-              <h2 style="margin: 0;">Canva</h2>
-              <p style="margin: 0.25rem 0 0; color: #a0a0a0;">Design Platform</p>
-            </div>
-          </div>
-
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">Canva has evolved from a simple design tool into an AI-powered creative suite perfect for educators. With Magic Write, Magic Design, and thousands of education-specific templates, faculty can create professional presentations, infographics, worksheets, and social media content in minutes.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 1.5rem;">Canva for Education is free for K-12 and offers discounted access for higher ed. The Magic Design feature lets you describe what you want and generates multiple design options. Magic Write helps draft text, summarize content, and generate lists. The AI image generator creates custom illustrations.</p>
-
-          <p style="line-height: 1.8; margin-bottom: 2rem;">The collaboration features make Canva excellent for group projects and student presentations. Real-time editing, commenting, and version history work seamlessly across devices.</p>
-
-          <h3 style="margin-bottom: 1rem;">Key Features</h3>
-          <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Magic Write (AI text generation)</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Magic Design (AI layout generation)</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Text-to-image generation</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Education templates library</li>
-            <li style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 0.75rem;">✓ Real-time collaboration</li>
-            <li style="padding: 0.75rem 0; display: flex; align-items: center; gap: 0.75rem;">✓ Video creation and editing</li>
-          </ul>
-
-          <a href="https://canva.com/education" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Visit Canva for Education →</a>
-        </div>
-
-        <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
-          <h4 style="margin-top: 0; margin-bottom: 1rem;">Quick Facts</h4>
-          <div style="display: flex; flex-direction: column; gap: 1rem;">
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Category</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Content Creation</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Pricing</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Free / Pro ($12.99/mo) / Teams</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Platform</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Web, iOS, Android, Desktop</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">LMS Integration</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">Google Classroom, Canvas, Microsoft Teams</p>
-            </div>
-            <div>
-              <span style="color: #666; font-size: 0.85rem;">Last Verified</span>
-              <p style="margin: 0.25rem 0 0; font-weight: 600;">February 2026</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- ========================================
        PAGE 4: PROMPT NAVIGATOR (COMPLETE)
        ======================================== -->
   <div class="page" id="page-prompts">
-
     <div class="page-header">
       <a class="back-btn" onclick="showPage('portal')">← Back to Hub</a>
       <p class="eyebrow">PROMPT NAVIGATOR</p>
-      <h1>AI Prompt <em>Navigator</em></h1>
-      <p>9 core techniques, 15+ ready-to-use templates, and practical guidance for effective AI collaboration in higher education.</p>
+      <h1>Master <em>Prompt Engineering</em> for Higher Ed</h1>
+      <p>Research-backed techniques with ready-to-use templates. Built for faculty and administrators who want reliable, classroom-ready AI outputs — not guesswork.</p>
     </div>
 
-    <div class="container">
-
-      <!-- Quick Nav -->
-      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 3rem;">
-        <a href="#techniques" class="btn btn-ghost btn-small">🧠 Techniques</a>
-        <a href="#templates" class="btn btn-ghost btn-small">💡 Templates</a>
-        <a href="#problems" class="btn btn-ghost btn-small">⚠️ Common Problems</a>
-        <a href="#workflow" class="btn btn-ghost btn-small">🔄 Refinement Workflow</a>
+    <div class="container" style="max-width: 960px;">
+      <!-- Jump Navigation -->
+      <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem;">
+        <a href="#pn-techniques" class="btn btn-ghost btn-small">📊 9 Core Techniques</a>
+        <a href="#pn-templates" class="btn btn-ghost btn-small">📄 15 Templates</a>
+        <a href="#pn-problems" class="btn btn-ghost btn-small">⚠️ Common Mistakes</a>
+        <a href="#pn-workflow" class="btn btn-ghost btn-small">🔄 Refinement Workflow</a>
+        <a href="#pn-references" class="btn btn-ghost btn-small">📚 References</a>
       </div>
 
-      <!-- ================================
-           SECTION 1: CORE TECHNIQUES
-           ================================ -->
-      <div id="techniques">
-        <h2 style="margin-bottom: 1.5rem;">🧠 9 Core Prompting Techniques</h2>
-        <p style="color: #a0a0a0; margin-bottom: 2rem;">Click each technique to expand and view example prompts you can copy.</p>
+      <!-- Techniques Section -->
+      <section id="pn-techniques" class="section" style="scroll-margin-top: 100px;">
+        <h2 style="margin-bottom: 0.5rem;">Core Techniques</h2>
+        <p style="color: #7e7e9a; margin-bottom: 2rem;">Nine research-backed techniques that help faculty get consistent, high-quality results from AI tools.</p>
+        <div id="pnTechGrid"></div>
+      </section>
 
-        <!-- Technique 1: Zero-Shot -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">1. Zero-Shot Prompting</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: quick baseline answer without examples</p>
-            </div>
-            <span class="toggle-icon">▼</span>
+      <!-- Templates Section -->
+      <section id="pn-templates" class="section" style="scroll-margin-top: 100px;">
+        <h2 style="margin-bottom: 0.5rem;">Prompt Templates</h2>
+        <p style="color: #7e7e9a; margin-bottom: 2rem;">Ready-to-use templates for common faculty and administrator tasks.</p>
+        <div id="pnTmplList"></div>
+      </section>
+
+      <!-- Problems Section -->
+      <section id="pn-problems" class="section" style="scroll-margin-top: 100px;">
+        <h2 style="margin-bottom: 0.5rem;">Common Prompt Problems</h2>
+        <p style="color: #7e7e9a; margin-bottom: 2rem;">The most frequent mistakes faculty make — and the quick fixes.</p>
+        <div id="pnProblemList"></div>
+      </section>
+
+      <!-- Workflow Section -->
+      <section id="pn-workflow" class="section" style="scroll-margin-top: 100px;">
+        <h2 style="margin-bottom: 0.5rem;">Refinement Workflow & Checklist</h2>
+        <p style="color: #7e7e9a; margin-bottom: 1.5rem;">Good prompts rarely happen in one try. Use this eight-step workflow.</p>
+        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Quick Refinement Workflow</h3>
+        <div id="pnWfList"></div>
+
+        <h3 style="font-size: 1.1rem; margin: 2rem 0 0.75rem;">Tuning Checklist</h3>
+        <p style="color: #7e7e9a; font-size: 0.92rem; margin-bottom: 1rem;">Before sending your final prompt, confirm it has:</p>
+        <div id="pnChecklist" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;"></div>
+      </section>
+
+      <!-- References Section -->
+      <section id="pn-references" class="section" style="scroll-margin-top: 100px;">
+        <div style="cursor: pointer;" onclick="document.getElementById('pnRefContent').classList.toggle('pn-ref-open'); this.querySelector('.pn-ref-toggle').classList.toggle('pn-ref-rotated');">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <h2 style="margin-bottom: 0.5rem;">References & Further Reading</h2>
+            <svg class="pn-ref-toggle" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7e7e9a" stroke-width="2" style="transition: transform 0.3s; flex-shrink: 0;"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Ask the model to perform a task without providing examples. The model relies entirely on its training data.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Quick concept explanations, generating first drafts, brainstorming ideas.</p>
-            <p><strong>When/Why:</strong> Start here for simple tasks. If output quality is poor, add examples (few-shot) or more context.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>Explain the concept of social stratification in simple terms for an intro sociology class (~120 words) and include one concrete, everyday example.</code>
-            </div>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>List the three most important differences between photosynthesis and cellular respiration in a single paragraph for first-year students.</code>
-            </div>
-          </div>
+          <p style="color: #7e7e9a;">19 peer-reviewed and professional sources. Click to expand.</p>
         </div>
-
-        <!-- Technique 2: Few-Shot -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">2. Few-Shot Prompting</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: output must match specific format, tone, or rubric</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Provide 2-3 examples of the desired input/output format before your actual request.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Grading consistency, generating feedback that matches your style, creating quiz questions in a specific format.</p>
-            <p><strong>When/Why:</strong> Use when zero-shot doesn't match your expectations. Examples teach the model your preferred pattern.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>You are grading short answers.
-
-Example student answer: "[paste example answer]"
-Example instructor feedback: "[paste your feedback example]"
-
-Now provide feedback on the next student answer in the same style:
-
-Student answer: "[paste new answer to grade]"</code>
-            </div>
-          </div>
+        <div id="pnRefContent" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+          <div id="pnRefList" style="margin-top: 1rem;"></div>
         </div>
-
-        <!-- Technique 3: System & Role -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">3. System & Role Prompts</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: consistent behavior, constraints, or persona</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Define the AI's role, behavior rules, and constraints upfront. Creates consistent persona across interactions.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Creating tutoring bots, maintaining consistent feedback tone, setting guardrails.</p>
-            <p><strong>When/Why:</strong> Essential for student-facing tools or when you need the AI to maintain boundaries.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>System: You are a supportive teaching assistant for first-year courses. Use clear, neutral language, avoid giving full solutions, and flag uncertainty.
-
-Role: Act as an encouraging writing tutor. Give concise feedback on the draft below tied to our rubric.
-
-Rubric: "[paste rubric]"
-
-Draft: "[paste student draft]"</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Technique 4: Context Injection -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">4. Context Injection</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: outputs must follow your local readings, rubrics</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Paste relevant documents, rubrics, or course materials directly into the prompt as reference context.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Grading with your rubric, generating content aligned to specific readings, course-specific help.</p>
-            <p><strong>When/Why:</strong> When generic AI knowledge isn't enough—you need it to work with YOUR materials.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>Using the rubric below, score the student paragraph and give two specific suggestions tied to criteria.
-
-Course/Level: Intro Psych (non-majors)
-
-Rubric:
-"[paste your rubric here]"
-
-Student paragraph:
-"[paste student work]"</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Technique 5: Step-Back -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">5. Step-Back Prompting</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: model should identify problem type before solving</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Ask the AI to first categorize or analyze the problem type, then solve it. This improves accuracy on complex tasks.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Complex problem-solving, multi-step assignments, diagnostic feedback.</p>
-            <p><strong>When/Why:</strong> Prevents the AI from jumping to conclusions. Good for ambiguous or multi-faceted questions.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>First, identify the type of problem this is and what approach would be most appropriate.
-
-Then, outline a 3-step plan to solve it.
-
-Finally, provide the solution following your plan.
-
-Problem: "[paste problem]"</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Technique 6: Chain-of-Thought -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">6. Chain-of-Thought Prompting</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: reasoning steps are instructional or must be checked</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Instruct the AI to show its reasoning process step-by-step before providing a final answer.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Math problems, logic exercises, teaching students to think through problems.</p>
-            <p><strong>When/Why:</strong> Makes reasoning visible and checkable. Helps identify where errors occur.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>Solve the problem below and explain your reasoning in numbered steps (max 6 steps).
-
-Then give the final answer on a separate line labeled "Answer:".
-
-Problem: "[paste problem]"</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Technique 7: Self-Consistency -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">7. Self-Consistency</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: single-run outputs vary, need reliable result</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Ask for multiple independent answers, then have the AI compare and select the best one.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Reducing hallucinations, getting more reliable answers on uncertain topics.</p>
-            <p><strong>When/Why:</strong> When accuracy matters more than speed. Built-in fact-checking.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>Produce three independent answers to the question below.
-
-Then summarize points of agreement, note any conflicts, and choose the best answer with a one-sentence justification.
-
-Question: "[paste question]"</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Technique 8: Tree-of-Thought -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">8. Tree-of-Thought Prompting</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: multiple viable approaches, want options before deciding</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> Ask the AI to explore multiple solution paths, evaluate each, then recommend the best one.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Lesson planning alternatives, assignment design options, strategic decisions.</p>
-            <p><strong>When/Why:</strong> When there's no single right answer and you want to see options before committing.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>Propose 3 distinct approaches to teach [TOPIC] to non-majors.
-
-For each approach, provide:
-- Learning objectives
-- One keystone activity
-- Pros and cons
-
-Then recommend one approach and explain why, given a 50-minute class and 25 students.</code>
-            </div>
-          </div>
-        </div>
-
-        <!-- Technique 9: ReAct -->
-        <div style="margin-bottom: 1rem;">
-          <div class="collapsible-header" onclick="toggleCollapsible(this)">
-            <div>
-              <h4 style="margin: 0;">9. ReAct (Reason & Act)</h4>
-              <p style="margin: 0.25rem 0 0; font-size: 0.9rem; color: #a0a0a0;">Use when: task benefits from alternating reasoning with actions</p>
-            </div>
-            <span class="toggle-icon">▼</span>
-          </div>
-          <div class="collapsible-content">
-            <p><strong>Definition:</strong> The AI alternates between reasoning about what to do and taking action, creating a more interactive problem-solving loop.</p>
-            <p><strong>Use Case (Higher Ed):</strong> Research planning, complex project design, iterative problem-solving with student input.</p>
-            <p><strong>When/Why:</strong> For complex tasks that benefit from back-and-forth dialogue and iterative refinement.</p>
-
-            <div class="prompt-code">
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              <code>Follow a Reason → Action → Observation loop to build a research plan.
-
-Reason: Restate my topic and identify what information is missing.
-Action: Ask me up to 3 clarifying questions.
-Observation: Wait for my answers.
-
-Repeat once if needed.
-
-Then output a step-by-step research plan with milestones and potential risks.
-
-My topic: "[describe your research topic]"</code>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================================
-           SECTION 2: PROMPT TEMPLATES
-           ================================ -->
-      <div id="templates" style="margin-top: 4rem;">
-        <h2 style="margin-bottom: 1.5rem;">💡 15 Ready-to-Use Templates</h2>
-        <p style="color: #a0a0a0; margin-bottom: 2rem;">Copy these templates and customize the [BRACKETED] sections for your needs.</p>
-
-        <div class="grid grid-2" style="gap: 1.5rem;">
-
-          <!-- Template 1 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">1. Lesson Plan Generator</h4>
-              <span class="badge badge-cyan">LESSON PLANNING</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-1">
-                <code>Act as an experienced curriculum designer. Create a detailed lesson plan for teaching [TOPIC] to [COURSE LEVEL] students.
-
-Include:
-- 3-4 measurable learning objectives (Bloom's taxonomy)
-- Warm-up activity (5 min)
-- Main instruction with active learning (25 min)
-- Practice activity (15 min)
-- Assessment/exit ticket (5 min)
-- Materials needed
-
-Duration: [CLASS LENGTH]
-Class size: [NUMBER] students</code>
-              </div>
-              <p style="font-size: 0.85rem; color: #808080; margin-top: 1rem;">Customize the bracketed sections. Works well with any LLM.</p>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-1')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 2 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">2. Syllabus Outline Draft</h4>
-              <span class="badge badge-violet">CURRICULUM</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-2">
-                <code>Create a syllabus outline for [COURSE NAME], a [CREDIT HOURS]-credit course for [STUDENT LEVEL] students.
-
-Include:
-- Course description (2-3 sentences)
-- 5-6 course learning outcomes
-- Weekly topic schedule for [NUMBER] weeks
-- Suggested assessment breakdown (percentages)
-- Required and recommended materials
-- Brief AI use policy placeholder
-
-Discipline: [FIELD]
-Institution type: [COMMUNITY COLLEGE/UNIVERSITY/etc.]</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-2')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 3 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">3. Inclusive Lesson Adaptation</h4>
-              <span class="badge badge-green">ACCESSIBILITY</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-3">
-                <code>Review this lesson plan and suggest adaptations for inclusive design:
-
-[PASTE LESSON PLAN]
-
-Provide:
-- UDL (Universal Design for Learning) enhancements
-- Accommodations for common learning differences
-- Alternative assessment options
-- Multimodal content suggestions
-- Language accessibility improvements
-
-Student population: [DESCRIBE DIVERSITY]</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-3')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 4 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">4. Constructive Feedback Generator</h4>
-              <span class="badge badge-orange">ASSESSMENT</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-4">
-                <code>Provide constructive feedback on this student work using the rubric below.
-
-Rubric:
-[PASTE RUBRIC]
-
-Student work:
-[PASTE STUDENT SUBMISSION]
-
-Format feedback as:
-1. Strengths (2-3 specific points)
-2. Areas for growth (2-3 specific points with examples)
-3. Next steps (actionable suggestions)
-
-Tone: Encouraging but honest. Address the student directly.</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-4')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 5 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">5. Rubric Draft</h4>
-              <span class="badge badge-orange">ASSESSMENT</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-5">
-                <code>Create an analytic rubric for [ASSIGNMENT TYPE].
-
-Assignment description: [BRIEF DESCRIPTION]
-Learning outcomes assessed: [LIST OUTCOMES]
-
-Include:
-- 4-5 criteria
-- 4 performance levels (Exemplary, Proficient, Developing, Beginning)
-- Specific, observable descriptors for each cell
-- Point values totaling [TOTAL POINTS]
-
-Format as a table.</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-5')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 6 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">6. Summative Feedback Letter</h4>
-              <span class="badge badge-magenta">FEEDBACK</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-6">
-                <code>Write a summative feedback letter for a student completing [COURSE NAME].
-
-Student performance summary:
-[PASTE GRADES/NOTES]
-
-Include:
-- Overall growth observed
-- Key strengths demonstrated
-- Areas for continued development
-- Encouragement for future courses
-- Specific examples from their work
-
-Tone: Professional, warm, growth-oriented
-Length: 200-300 words</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-6')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 7 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">7. Differentiated Instruction</h4>
-              <span class="badge badge-green">INCLUSIVE DESIGN</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-7">
-                <code>Suggest differentiated instruction strategies for teaching [TOPIC].
-
-Student diversity includes:
-- Varying prior knowledge levels
-- English language learners
-- Students with learning differences
-- Different learning preferences
-
-Provide:
-- Tiered activities (3 levels)
-- Flexible grouping suggestions
-- Choice board options
-- Scaffolding strategies
-- Extension activities for advanced learners</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-7')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 8 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">8. Diverse Learner Adaptation</h4>
-              <span class="badge badge-green">ACCESSIBILITY</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-8">
-                <code>Adapt this assignment for diverse learners:
-
-Original assignment:
-[PASTE ASSIGNMENT]
-
-Create versions for:
-1. Students needing additional scaffolding
-2. English language learners
-3. Students with extended time accommodations
-4. Advanced students seeking challenge
-
-Maintain the same learning objectives across all versions.</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-8')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 9 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">9. Inclusive Discussion Prompt</h4>
-              <span class="badge badge-sky">DISCUSSION</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-9">
-                <code>Create an inclusive discussion prompt for [TOPIC] that:
-
-- Has multiple valid perspectives
-- Connects to diverse lived experiences
-- Uses accessible language
-- Includes scaffolding questions
-- Encourages respectful dialogue
-
-Course: [COURSE NAME]
-Student level: [LEVEL]
-Discussion format: [ONLINE/IN-PERSON/HYBRID]</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-9')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 10 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">10. Advising Email Draft</h4>
-              <span class="badge badge-gold">ADVISING</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-10">
-                <code>Draft an advising email to a student about [TOPIC/SITUATION].
-
-Context: [DESCRIBE SITUATION]
-
-Email should:
-- Open with appropriate greeting
-- Address their specific concern
-- Provide clear next steps
-- Include relevant deadlines/resources
-- Maintain professional but supportive tone
-- Close with offer for follow-up
-
-Student name: [NAME]
-My role: [ADVISOR/INSTRUCTOR/etc.]</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-10')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 11 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">11. Degree Planning Guide</h4>
-              <span class="badge badge-gold">ADVISING</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-11">
-                <code>Create a degree planning guide conversation for a student in [MAJOR].
-
-Student situation:
-- Current year: [YEAR]
-- Credits completed: [NUMBER]
-- Career interests: [INTERESTS]
-- Constraints: [PART-TIME/WORK/etc.]
-
-Provide:
-- Suggested course sequence
-- Key milestones by semester
-- Recommended electives for their interests
-- Questions to explore with their advisor
-- Resources for career exploration</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-11')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 12 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">12. Role-Play Script (Advisor)</h4>
-              <span class="badge badge-rose">TRAINING</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-12">
-                <code>Create a role-play script for advisor training.
-
-Scenario: [DESCRIBE ADVISING SCENARIO]
-
-Include:
-- Student background/situation
-- Opening dialogue
-- Key decision points
-- Model advisor responses
-- Common pitfalls to avoid
-- Debrief questions for training
-
-Difficulty level: [BEGINNER/INTERMEDIATE/ADVANCED]
-Focus skill: [ACTIVE LISTENING/PROBLEM-SOLVING/etc.]</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-12')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 13 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">13. Syllabus AI Policy Draft</h4>
-              <span class="badge badge-violet">POLICY</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-13">
-                <code>Draft syllabus language for AI use in [COURSE NAME].
-
-My approach: [RESTRICTIVE/OPEN/ASSIGNMENT-SPECIFIC]
-
-Policy should include:
-- Clear statement of what's permitted/prohibited
-- Rationale tied to learning objectives
-- Citation/disclosure requirements
-- Consequences for policy violations
-- Resources for ethical AI use
-
-Tone: Educational, not punitive
-Length: 150-250 words</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-13')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 14 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">14. Academic Integrity Discussion</h4>
-              <span class="badge badge-rose">ETHICS</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-14">
-                <code>Create a case study for discussing academic integrity and AI.
-
-Scenario type: [GRAY AREA/CLEAR VIOLATION/ETHICAL USE]
-Course context: [COURSE TYPE]
-
-Include:
-- Realistic student scenario
-- Multiple stakeholder perspectives
-- Discussion questions
-- Relevant policy considerations
-- No single "right" answer
-
-Designed for: [STUDENT DISCUSSION/FACULTY WORKSHOP]</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-14')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-          <!-- Template 15 -->
-          <div class="template-card">
-            <div class="template-card-header">
-              <h4 style="margin: 0;">15. Student AI Use Handout</h4>
-              <span class="badge badge-violet">POLICY</span>
-            </div>
-            <div class="template-card-body">
-              <div class="prompt-code" id="template-15">
-                <code>Create a student handout on responsible AI use for [COURSE NAME].
-
-Include:
-- What AI tools are (brief, accessible explanation)
-- How AI can support learning (with examples)
-- Potential pitfalls and limitations
-- This course's specific policy
-- How to cite AI assistance
-- Tips for effective, ethical use
-- Where to get help
-
-Format: Friendly, visual-ready (use headers, bullets)
-Length: 1 page equivalent</code>
-              </div>
-              <button class="btn btn-primary btn-small" onclick="copyTemplate(this, 'template-15')" style="margin-top: 0.5rem;">📋 Copy Prompt</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ================================
-           SECTION 3: COMMON PROBLEMS
-           ================================ -->
-      <div id="problems" style="margin-top: 4rem;">
-        <h2 style="margin-bottom: 1.5rem;">⚠️ 6 Common Prompting Problems & Fixes</h2>
-
-        <div class="grid grid-2" style="gap: 1.5rem;">
-
-          <div class="card">
-            <h4 style="color: var(--rose);">❌ Too Vague</h4>
-            <p style="color: #808080; margin: 0.5rem 0;">"Help me with my lesson"</p>
-            <h4 style="color: var(--green); margin-top: 1rem;">✓ Fix</h4>
-            <p>Include course level, specific topic, learning objectives, and time constraints.</p>
-          </div>
-
-          <div class="card">
-            <h4 style="color: var(--rose);">❌ No Audience Level</h4>
-            <p style="color: #808080; margin: 0.5rem 0;">"Explain quantum computing"</p>
-            <h4 style="color: var(--green); margin-top: 1rem;">✓ Fix</h4>
-            <p>Specify your intended audience: "for first-year non-STEM majors" or "for graduate researchers."</p>
-          </div>
-
-          <div class="card">
-            <h4 style="color: var(--rose);">❌ Missing Format/Length</h4>
-            <p style="color: #808080; margin: 0.5rem 0;">Output too long or wrong structure</p>
-            <h4 style="color: var(--green); margin-top: 1rem;">✓ Fix</h4>
-            <p>State format explicitly: "in 3 bullet points" or "as a 150-word paragraph" or "formatted as a table."</p>
-          </div>
-
-          <div class="card">
-            <h4 style="color: var(--rose);">❌ Overloaded Prompts</h4>
-            <p style="color: #808080; margin: 0.5rem 0;">Asking for too much at once</p>
-            <h4 style="color: var(--green); margin-top: 1rem;">✓ Fix</h4>
-            <p>Break complex requests into smaller, sequential prompts. Build on previous outputs.</p>
-          </div>
-
-          <div class="card">
-            <h4 style="color: var(--rose);">❌ No Role or Tone</h4>
-            <p style="color: #808080; margin: 0.5rem 0;">Generic, inconsistent voice</p>
-            <h4 style="color: var(--green); margin-top: 1rem;">✓ Fix</h4>
-            <p>Assign a role: "Act as a patient writing tutor" or "You are an assessment specialist."</p>
-          </div>
-
-          <div class="card">
-            <h4 style="color: var(--rose);">❌ No Iteration</h4>
-            <p style="color: #808080; margin: 0.5rem 0;">Accepting first output as final</p>
-            <h4 style="color: var(--green); margin-top: 1rem;">✓ Fix</h4>
-            <p>Review, refine, and verify. Ask follow-up questions. Request revisions. Iterate!</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ================================
-           SECTION 4: REFINEMENT WORKFLOW
-           ================================ -->
-      <div id="workflow" style="margin-top: 4rem;">
-        <h2 style="margin-bottom: 1.5rem;">🔄 8-Step Refinement Workflow</h2>
-
-        <div class="grid grid-4" style="gap: 1rem; margin-bottom: 2rem;">
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">1️⃣</div>
-            <h4 style="font-size: 0.9rem;">Define Goal</h4>
-            <p style="font-size: 0.8rem; color: #808080;">What do you need?</p>
-          </div>
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">2️⃣</div>
-            <h4 style="font-size: 0.9rem;">Add Context</h4>
-            <p style="font-size: 0.8rem; color: #808080;">Course, level, constraints</p>
-          </div>
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">3️⃣</div>
-            <h4 style="font-size: 0.9rem;">Draft Prompt</h4>
-            <p style="font-size: 0.8rem; color: #808080;">Write initial version</p>
-          </div>
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">4️⃣</div>
-            <h4 style="font-size: 0.9rem;">Test</h4>
-            <p style="font-size: 0.8rem; color: #808080;">Run it, review output</p>
-          </div>
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">5️⃣</div>
-            <h4 style="font-size: 0.9rem;">Spot Gaps</h4>
-            <p style="font-size: 0.8rem; color: #808080;">What's missing/wrong?</p>
-          </div>
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">6️⃣</div>
-            <h4 style="font-size: 0.9rem;">Refine</h4>
-            <p style="font-size: 0.8rem; color: #808080;">Adjust the prompt</p>
-          </div>
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">7️⃣</div>
-            <h4 style="font-size: 0.9rem;">Iterate</h4>
-            <p style="font-size: 0.8rem; color: #808080;">Repeat until satisfied</p>
-          </div>
-          <div class="card" style="text-align: center; padding: 1rem;">
-            <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">8️⃣</div>
-            <h4 style="font-size: 0.9rem;">Document</h4>
-            <p style="font-size: 0.8rem; color: #808080;">Save what works</p>
-          </div>
-        </div>
-
-        <h3 style="margin: 2rem 0 1rem;">✅ Tuning Checklist</h3>
-        <div class="grid grid-2" style="gap: 1rem;">
-          <div class="card">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">☐ <strong>Clarity</strong> — Is the request unambiguous?</li>
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">☐ <strong>Context</strong> — Course, level, constraints included?</li>
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">☐ <strong>Format</strong> — Output structure specified?</li>
-              <li style="padding: 0.5rem 0;">☐ <strong>Tone & Style</strong> — Voice appropriate for audience?</li>
-            </ul>
-          </div>
-          <div class="card">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">☐ <strong>Cognitive Level</strong> — Bloom's level appropriate?</li>
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">☐ <strong>Academic Fit</strong> — Discipline-appropriate language?</li>
-              <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">☐ <strong>Inclusivity</strong> — Accessible to diverse learners?</li>
-              <li style="padding: 0.5rem 0;">☐ <strong>Verified</strong> — Output checked for accuracy?</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="cta-banner" style="margin-top: 4rem;">
-        <h3>Put Knowledge Into Practice</h3>
-        <p>This comprehensive prompt guide provides the framework and 24+ templates needed to work effectively with AI. Save this page and start experimenting!</p>
-        <button class="btn btn-primary" onclick="window.print()">🖨️ Print This Guide</button>
-      </div>
-
+      </section>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <a class="nav-logo" onclick="showPage('portal')">
-              <img src="IHE-logo.png" class="nav-logo-icon" alt="IHE Logo">
-            </a>
-            <p>Empowering higher education professionals to harness the transformative power of artificial intelligence.</p>
-          </div>
-          <div class="footer-col">
-            <h4>Explore</h4>
-            <a onclick="showPage('pulse')">The Innovation Pulse</a>
-            <a onclick="showPage('podcast')">Podcast</a>
-            <a onclick="showPage('tools')">AI Tools</a>
-            <a onclick="showPage('prompts')">Prompts</a>
-          </div>
-          <div class="footer-col">
-            <h4>Learn</h4>
-            <a onclick="showPage('started')">Getting Started</a>
-            <a onclick="showPage('cases')">Case Studies</a>
-            <a onclick="showPage('tinkerlab')">Tinker Lab</a>
-          </div>
-          <div class="footer-col">
-            <h4>Connect</h4>
-            <a onclick="showPage('community')">Community</a>
-            <a onclick="showPage('about')">About</a>
-            <a href="#">Newsletter</a>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <span>&copy; 2026 Innovating Higher Ed. All rights reserved.</span>
-          <div class="footer-social">
-            <a href="#">🔗</a>
-            <a href="#">📧</a>
-            <a href="#">🐦</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
   </div>
 
-  <!-- ========================================
-       PAGE 5: TINKER LAB
-       ======================================== -->
+  
   <div class="page" id="page-tinkerlab">
 
     <div class="page-header">
@@ -6406,6 +5446,551 @@ Length: 1 page equivalent</code>
         }, 2000);
       });
     }
+
+    // ========================================
+    // AI DIRECTORY V2 FUNCTIONS
+    // ========================================
+
+    const DIR_TOOLS = [
+      // General LLMs
+      { id:"chatgpt", name:"ChatGPT", cat:"General LLMs", desc:"OpenAI's flagship conversational AI. Handles everything from essay feedback to coding help.",
+        values:["Generate discussion questions, quiz items, or rubric drafts in seconds","Free tier handles most faculty tasks — GPT-4o included","Integrates with Canvas via plugins"],
+        pricing:"freemium", priceDetail:"Free tier with GPT-4o. Plus at $20/mo adds more capacity.", roles:["faculty","admin","student"], url:"https://chat.openai.com", domain:"openai.com", accent:"#10a37f", badge:"trending",
+        bestFor:"Faculty who need a versatile AI assistant for daily teaching tasks.",
+        strengths:["Extremely versatile across writing, analysis, and coding","Large plugin ecosystem","Handles complex prompts well"],
+        limitations:["Can produce incorrect information confidently","Free tier has usage caps","Output quality varies by prompt skill"],
+        quickstart:"Start with: 'You are a helpful teaching assistant for [your course]. Help me draft three discussion questions about [topic] that target Bloom's analysis level.'"
+      },
+      { id:"claude", name:"Claude", cat:"General LLMs", desc:"Anthropic's AI assistant built for nuanced, thoughtful analysis. Excels at long-form writing.",
+        values:["200K context window — paste entire textbooks or papers","Strongest at nuanced writing feedback","Less likely to fabricate citations"],
+        pricing:"freemium", priceDetail:"Free tier available. Pro at $20/mo.", roles:["faculty","admin","student"], url:"https://claude.ai", domain:"anthropic.com", accent:"#d97706", badge:"trending",
+        bestFor:"Faculty and researchers who need careful analysis of long documents.",
+        strengths:["Best-in-class at handling long documents","More cautious about uncertain claims","Excellent academic writing quality"],
+        limitations:["Smaller plugin ecosystem","Can be overly cautious","Web search is less refined"],
+        quickstart:"Upload your syllabus and ask: 'Review this for clarity, consistency, and alignment between objectives and assessments.'"
+      },
+      { id:"gemini", name:"Gemini", cat:"General LLMs", desc:"Google's multimodal AI. Deep integration with Google Workspace.",
+        values:["Built into Docs, Sheets, Slides","Multimodal: analyze images and documents","Free tier is generous"],
+        pricing:"freemium", priceDetail:"Free with Google account. Advanced at $19.99/mo.", roles:["faculty","admin","student"], url:"https://gemini.google.com", domain:"google.com", accent:"#4285f4", badge:"updated",
+        bestFor:"Faculty using Google Workspace who want integrated AI.",
+        strengths:["Seamless Google integration","Strong data analysis in Sheets","Multimodal capabilities"],
+        limitations:["Less nuanced for academic writing","Ecosystem lock-in","Privacy considerations"],
+        quickstart:"In Google Docs, type '@Gemini' and ask it to help draft a course description."
+      },
+      { id:"perplexity", name:"Perplexity AI", cat:"General LLMs", desc:"AI-powered research engine with cited answers from real sources.",
+        values:["Every answer includes source citations","Academic focus mode for scholarly databases","Great for lit review scoping"],
+        pricing:"freemium", priceDetail:"Free tier. Pro at $20/mo.", roles:["faculty","admin","student"], url:"https://perplexity.ai", domain:"perplexity.ai", accent:"#20b2aa", badge:"trending" },
+      { id:"eduaide", name:"Eduaide.Ai", cat:"Lesson Planning", desc:"Purpose-built AI for educators. Creates lesson plans, assessments, differentiated materials.",
+        values:["Over 100 education-specific generators","Standards-aligned outputs","Automatic differentiation for diverse needs"],
+        pricing:"freemium", priceDetail:"Free tier with limited generations. Pro plans available.", roles:["faculty"], url:"https://eduaide.ai", domain:"eduaide.ai", accent:"#6366f1", badge:"trending",
+        bestFor:"Faculty who need production-ready lesson materials fast.",
+        strengths:["Education-specific — understands pedagogy","Standards-aligned","Built-in differentiation"],
+        limitations:["Still needs instructor review","Some outputs feel templated","Free tier is limited"],
+        quickstart:"Select 'Lesson Plan' generator, input your subject, grade level, and standard."
+      },
+      { id:"gradescope", name:"Gradescope", cat:"Assessment", desc:"AI-assisted grading platform. Upload assignments, create rubrics, grade consistently.",
+        values:["AI groups similar answers — grade once, apply to all","Rubric-based consistency","Handles handwritten work and code"],
+        pricing:"paid", priceDetail:"Institutional licensing through Turnitin.", roles:["faculty"], url:"https://gradescope.com", domain:"gradescope.com", accent:"#059669",
+        bestFor:"Faculty with large sections who need consistent, efficient grading.",
+        strengths:["Dramatically reduces grading time","AI catches patterns humans miss","Analytics reveal misconceptions"],
+        limitations:["Institutional license required","Learning curve for setup","Best for structured assessments"],
+        quickstart:"Start by uploading a past exam. Create your rubric, then use AI grouping to batch-grade."
+      },
+      { id:"brisk", name:"Brisk Teaching", cat:"Lesson Planning", desc:"Chrome extension that works inside Canvas, Google Docs, Schoology.",
+        values:["Works inside your existing platforms — no tab switching","One-click reading level adjustment","Instant feedback comments on student work"],
+        pricing:"free", priceDetail:"Free for teachers. Premium for institutions.", roles:["faculty"], url:"https://briskteaching.com", domain:"briskteaching.com", accent:"#ec4899", badge:"new" },
+      { id:"gamma", name:"Gamma", cat:"Presentations", desc:"AI presentation creator. Describe what you need, get polished slides.",
+        values:["Creates full slide deck from text description in minutes","Professional design quality","Exports to PowerPoint"],
+        pricing:"freemium", priceDetail:"Free tier with 400 credits. Plus at $8/mo.", roles:["faculty","student"], url:"https://gamma.app", domain:"gamma.app", accent:"#8b5cf6", badge:"trending" },
+      { id:"consensus", name:"Consensus", cat:"Research", desc:"AI academic search engine. Finds and synthesizes peer-reviewed papers.",
+        values:["Only searches peer-reviewed papers","Synthesizes findings across studies","Models proper research methodology"],
+        pricing:"freemium", priceDetail:"Free tier. Premium at $8.99/mo.", roles:["faculty","student"], url:"https://consensus.app", domain:"consensus.app", accent:"#6d28d9" },
+      { id:"descript", name:"Descript", cat:"Image & Video", desc:"Edit audio and video by editing text. Auto transcription and filler removal.",
+        values:["Edit video by editing the transcript","Automatic filler word removal","Screen recording for instructional content"],
+        pricing:"freemium", priceDetail:"Free tier with 1 hour. Pro at $24/mo.", roles:["faculty"], url:"https://descript.com", domain:"descript.com", accent:"#22c55e" },
+      { id:"suno", name:"Suno", cat:"Music", desc:"AI music generation. Create full songs with vocals from text prompts.",
+        values:["Generate complete songs from text","Great for multimedia projects","Explore composition without instruments"],
+        pricing:"freemium", priceDetail:"Free tier with 10 songs/day. Pro at $10/mo.", roles:["faculty","student"], url:"https://suno.com", domain:"suno.com", accent:"#ec4899" },
+      { id:"otter", name:"Otter.ai", cat:"Productivity", desc:"AI meeting notes. Automated transcription and action item tracking.",
+        values:["Auto-transcribes with speaker ID","Generates action items automatically","Integrates with Zoom, Teams, Meet"],
+        pricing:"freemium", priceDetail:"Free for 300 min/mo. Pro at $16.99/mo.", roles:["faculty","admin"], url:"https://otter.ai", domain:"otter.ai", accent:"#3b82f6" },
+      { id:"quillbot", name:"QuillBot", cat:"Student Tools", desc:"AI paraphrasing, grammar checking, and summarizing.",
+        values:["Paraphrasing modes teach academic registers","Summarizer condenses articles","Grammar checker explains rules"],
+        pricing:"freemium", priceDetail:"Free tier. Premium at $9.95/mo.", roles:["student"], url:"https://quillbot.com", domain:"quillbot.com", accent:"#22c55e" },
+      { id:"knowt", name:"Knowt", cat:"Student Tools", desc:"AI study tool that converts notes into flashcards and quizzes.",
+        values:["Upload notes — AI generates study materials","Creates flashcards and practice tests","Free for students"],
+        pricing:"freemium", priceDetail:"Free for students. Premium available.", roles:["student"], url:"https://knowt.com", domain:"knowt.com", accent:"#f97316", badge:"new" },
+      { id:"curipod", name:"Curipod", cat:"Lesson Planning", desc:"AI-powered interactive lessons with polls, word clouds, drawing.",
+        values:["Students interact in real-time","AI generates complete interactive lessons","Built-in reflection prompts"],
+        pricing:"freemium", priceDetail:"Free for basic use. Premium for AI features.", roles:["faculty"], url:"https://curipod.com", domain:"curipod.com", accent:"#f59e0b", badge:"new" },
+      { id:"turnitin", name:"Turnitin", cat:"Assessment", desc:"Academic integrity with AI writing detection and plagiarism checking.",
+        values:["Industry-standard AI writing detection","Cross-references billions of sources","Feedback Studio for inline comments"],
+        pricing:"paid", priceDetail:"Institutional licensing only.", roles:["faculty","admin"], url:"https://turnitin.com", domain:"turnitin.com", accent:"#2563eb", badge:"updated" },
+      { id:"canva", name:"Canva", cat:"Presentations", desc:"AI-enhanced design. Presentations, infographics, social media, videos.",
+        values:["Free for verified educators","Magic Design creates layouts automatically","One platform for all visual content"],
+        pricing:"freemium", priceDetail:"Free tier. Canva for Education free.", roles:["faculty","admin","student"], url:"https://canva.com", domain:"canva.com", accent:"#00c4cc" },
+      { id:"notion", name:"Notion AI", cat:"Productivity", desc:"AI writing and organization built into Notion workspace.",
+        values:["AI works inside existing notes","Summarize meeting notes instantly","Academic workflow templates"],
+        pricing:"paid", priceDetail:"AI add-on at $10/member/mo.", roles:["faculty","admin"], url:"https://notion.so", domain:"notion.so", accent:"#e8e8e8" },
+      { id:"kahoot", name:"Kahoot!", cat:"Student Tools", desc:"Game-based learning with AI quiz generation.",
+        values:["AI generates quizzes from any topic","Live game mode energizes students","Works for all formats"],
+        pricing:"freemium", priceDetail:"Free for basic. Kahoot+ from $3/mo.", roles:["faculty","student"], url:"https://kahoot.com", domain:"kahoot.com", accent:"#46178f" },
+      { id:"synthesia", name:"Synthesia", cat:"Image & Video", desc:"AI video with realistic virtual presenters. No cameras needed.",
+        values:["Professional videos without filming","160+ avatars, 130+ languages","Perfect for training content"],
+        pricing:"paid", priceDetail:"Starter at $22/mo.", roles:["faculty","admin"], url:"https://synthesia.io", domain:"synthesia.io", accent:"#6366f1", badge:"updated" },
+      { id:"copilot365", name:"Copilot for Microsoft 365", cat:"Productivity", desc:"Microsoft's AI across Word, Excel, PowerPoint, Teams, Outlook.",
+        values:["Works inside your existing tools","Summarize email threads instantly","Generate presentations from documents"],
+        pricing:"paid", priceDetail:"$30/user/mo on top of M365.", roles:["faculty","admin"], url:"https://microsoft.com/copilot", domain:"microsoft.com", accent:"#0078d4", badge:"updated" },
+    ];
+
+    const DIR_CATEGORIES = [...new Set(DIR_TOOLS.map(t=>t.cat))];
+    let dirActiveRole = 'all', dirActiveCat = 'all', dirActiveSort = 'all', dirSearchQ = '';
+
+    function buildDirCatFilters() {
+      const wrap = document.getElementById('catFiltersDir');
+      if (!wrap) return;
+      wrap.innerHTML = `<button class="dir-pill active" data-cat="all">All Categories <span class="ct">${DIR_TOOLS.length}</span></button>` +
+        DIR_CATEGORIES.map(c => {
+          const count = DIR_TOOLS.filter(t=>t.cat===c).length;
+          return `<button class="dir-pill" data-cat="${c}">${c} <span class="ct">${count}</span></button>`;
+        }).join('');
+      wrap.querySelectorAll('.dir-pill').forEach(p => p.addEventListener('click', ()=>{
+        wrap.querySelectorAll('.dir-pill').forEach(b=>b.classList.remove('active'));
+        p.classList.add('active');
+        dirActiveCat = p.dataset.cat;
+        renderDir();
+      }));
+    }
+
+    function getDirFiltered() {
+      return DIR_TOOLS.filter(t => {
+        if (dirActiveRole !== 'all' && !t.roles.includes(dirActiveRole)) return false;
+        if (dirActiveCat !== 'all' && t.cat !== dirActiveCat) return false;
+        if (dirActiveSort === 'new' && t.badge !== 'new') return false;
+        if (dirActiveSort === 'trending' && t.badge !== 'trending') return false;
+        if (dirActiveSort === 'updated' && t.badge !== 'updated') return false;
+        if (dirSearchQ) {
+          const q = dirSearchQ.toLowerCase();
+          if (!t.name.toLowerCase().includes(q) && !t.desc.toLowerCase().includes(q) && !t.cat.toLowerCase().includes(q) && !t.values.some(v=>v.toLowerCase().includes(q))) return false;
+        }
+        return true;
+      });
+    }
+
+    function dirToolCard(t) {
+      const pCls = t.pricing==='free'?'dir-price-free':t.pricing==='freemium'?'dir-price-freemium':'dir-price-paid';
+      const badgeHTML = t.badge ? `<span class="dir-badge dir-badge-${t.badge}">${t.badge}</span>` : '';
+      return `<div class="dir-tool-card" style="--tool-accent:${t.accent}" onclick="openDirDetail('${t.id}')">
+        <div class="dir-tool-accent" style="background:${t.accent}"></div>
+        <div class="dir-tool-body">
+          <div class="dir-tool-top">
+            <div class="dir-tool-logo"><img src="https://www.google.com/s2/favicons?domain=${t.domain}&sz=64" alt="${t.name}" onerror="this.parentElement.classList.add('fallback');this.parentElement.innerHTML='${t.name[0]}'"></div>
+            <div class="dir-tool-info"><div class="dir-tool-name">${t.name}</div><div class="dir-tool-cat">${t.cat}</div></div>
+            <div class="dir-tool-badges">${badgeHTML}</div>
+          </div>
+          <div class="dir-tool-desc">${t.desc}</div>
+          <ul class="dir-tool-values">${t.values.map(v=>`<li>${v}</li>`).join('')}</ul>
+          <div class="dir-tool-footer">
+            <span class="dir-pricing-tag ${pCls}">${t.pricing}</span>
+            <div class="dir-role-tags">${t.roles.map(r=>`<span class="dir-role-tag">${r[0].toUpperCase()+r.slice(1)}</span>`).join('')}</div>
+            <span class="dir-learn-more">Learn More →</span>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function renderDir() {
+      const grid = document.getElementById('dirToolGrid');
+      if (!grid) return;
+      const filtered = getDirFiltered();
+      grid.innerHTML = filtered.map(dirToolCard).join('');
+      const countEl = document.getElementById('dirResultCount');
+      if (countEl) countEl.textContent = `${filtered.length} tool${filtered.length!==1?'s':''}`;
+    }
+
+    function openDirDetail(id) {
+      const t = DIR_TOOLS.find(x=>x.id===id);
+      if(!t) return;
+      const overlay = document.getElementById('dirDetailOverlay');
+      const panel = document.getElementById('dirDetailPanel');
+      const badgeHTML = t.badge ? `<span class="dir-badge dir-badge-${t.badge}">${t.badge}</span>` : '';
+      const pCls = t.pricing==='free'?'dir-price-free':t.pricing==='freemium'?'dir-price-freemium':'dir-price-paid';
+
+      let html = `
+        <button class="dir-detail-close" onclick="closeDirDetail()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        <div class="dir-detail-accent" style="background:${t.accent}"></div>
+        <div class="dir-detail-header">
+          <div class="dir-detail-logo" style="border-color:${t.accent}30"><img src="https://www.google.com/s2/favicons?domain=${t.domain}&sz=128" alt="${t.name}"></div>
+          <div class="dir-detail-title"><h2>${t.name}</h2><div class="detail-cat">${t.cat}</div><div class="dir-detail-badges">${badgeHTML} <span class="dir-pricing-tag ${pCls}">${t.pricing}</span></div></div>
+        </div>
+        <div class="dir-detail-content">
+          <div class="dir-detail-section"><h3>What It Does</h3><p>${t.desc}</p></div>
+          <div class="dir-detail-section"><h3>Why It Matters for Higher Ed</h3>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">${t.values.map(v=>`<li style="padding-left:18px;position:relative;font-size:.92rem;color:#7e7e9a"><span style="position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:2px;background:${t.accent};opacity:.7"></span>${v}</li>`).join('')}</ul>
+          </div>`;
+
+      if(t.bestFor) {
+        html += `<div class="dir-detail-section"><h3>Best For</h3><p>${t.bestFor}</p></div>
+          <div class="dir-detail-grid">
+            <div class="dir-detail-box strengths"><h4 style="color:#2ee6a8">What It Does Well</h4><ul>${t.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+            <div class="dir-detail-box limitations"><h4 style="color:#ffb347">Where It Falls Short</h4><ul>${t.limitations.map(l=>`<li>${l}</li>`).join('')}</ul></div>
+          </div>
+          <div class="dir-detail-pricing"><h4>Pricing Breakdown</h4><p>${t.priceDetail}</p></div>
+          <div class="dir-detail-quickstart"><h4>Getting Started</h4><p>${t.quickstart}</p></div>`;
+      } else {
+        html += `<div class="dir-detail-pricing"><h4>Pricing</h4><p>${t.priceDetail}</p></div>
+          <div class="dir-detail-quickstart" style="background:#0e0e1a;border-color:#1c1c32"><h4 style="color:#7e7e9a">Full Review Coming Soon</h4><p>Our team is preparing an in-depth review of ${t.name} for higher ed use.</p></div>`;
+      }
+      html += `<a class="dir-detail-visit" href="${t.url}" target="_blank" style="background:${t.accent}">Visit ${t.name} →</a></div>`;
+
+      panel.innerHTML = html;
+      panel.style.setProperty('--tool-accent', t.accent);
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDirDetail() {
+      document.getElementById('dirDetailOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function initDirEvents() {
+      const overlay = document.getElementById('dirDetailOverlay');
+      if (overlay) {
+        overlay.addEventListener('click', e => { if(e.target === e.currentTarget) closeDirDetail(); });
+      }
+
+      document.querySelectorAll('#roleFiltersDir .dir-pill').forEach(p => p.addEventListener('click', ()=>{
+        document.querySelectorAll('#roleFiltersDir .dir-pill').forEach(b=>b.classList.remove('active'));
+        p.classList.add('active');
+        dirActiveRole = p.dataset.role;
+        renderDir();
+      }));
+
+      document.querySelectorAll('.sort-pill-dir').forEach(p => p.addEventListener('click', ()=>{
+        document.querySelectorAll('.sort-pill-dir').forEach(b=>b.classList.remove('active'));
+        p.classList.add('active');
+        dirActiveSort = p.dataset.sort;
+        renderDir();
+      }));
+
+      const searchInput = document.getElementById('toolSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', e => { dirSearchQ = e.target.value.trim(); renderDir(); });
+      }
+    }
+
+    // ========================================
+    // PROMPT NAVIGATOR V4 FUNCTIONS
+    // ========================================
+
+    const PN_TECHS = [
+      {n:"Zero-Shot Prompting",num:"01",level:"beginner",start:true,accent:"#2ee6a8",
+       hook:"Give a direct instruction with no examples. The fastest way to get an initial draft.",
+       tags:["Quick Drafts","Definitions","Discussion Questions","Brainstorming"],
+       bad:"Tell me about social stratification.",
+       good:"Explain social stratification in 120 words for intro sociology. Include one everyday example.",
+       def:"Zero-shot prompting asks the AI to perform a task without any examples. You give a direct instruction and the model responds using its general training.",
+       use:"Use for fast definitions, quick contrasts, or rapid lists. It's a handy way to draft a first pass that you can refine with follow-ups.",
+       when:"Best for straightforward tasks where you want the model's unprimed attempt. If outputs are too generic, move to few-shot.",
+       prompts:["Explain the concept of social stratification in simple terms for an intro sociology class (~120 words) and include one concrete example.","List three differences between photosynthesis and cellular respiration in a single paragraph for first-year students."]},
+      {n:"Few-Shot Prompting",num:"02",level:"beginner",start:true,accent:"#60a5fa",
+       hook:"Show the AI 1-3 examples of what you want. It mirrors the pattern in its response.",
+       tags:["Rubric-Aligned Feedback","Quiz Item Generation","Consistent Grading"],
+       bad:"Give feedback on this student essay.",
+       good:"Here's a student answer and model feedback. Now give feedback on this new answer in the same style: [paste]",
+       def:"Few-shot prompting includes examples of the task inside the prompt. The model uses these to infer structure, tone, and level.",
+       use:"Provide an example student answer with model feedback, then ask for feedback on a new answer 'in the same style.'",
+       when:"Reach for few-shot when zero-shot was generic, or when format is critical (rubrics, item shells).",
+       prompts:["You are grading short answers.\nExample student answer: \"[paste]\"\nExample feedback: \"[paste]\"\nNow provide feedback on the next answer in the same style: \"[paste new answer]\""]},
+      {n:"System & Role Prompts",num:"03",level:"beginner",start:true,accent:"#fb7185",
+       hook:"Set ground rules and assign a persona. The AI stays in character across the conversation.",
+       tags:["Feedback Tone","Student Tutoring","Policy Alignment","Simulations"],
+       bad:"Help me review this student's draft.",
+       good:"You are a supportive writing tutor for freshman courses. Give concise feedback tied to this rubric: [paste]",
+       def:"System instructions set global ground rules. Role prompts ask the AI to adopt a persona (e.g., encouraging tutor, skeptical reviewer).",
+       use:"Set a system message, then add a role for the task.",
+       when:"Use whenever the manner of response matters as much as content — feedback tone, accessibility, simulations.",
+       prompts:["System: You are a supportive teaching assistant for first-year courses. Use clear language, avoid full solutions.\n\nRole: Act as an encouraging writing tutor. Give concise feedback on the draft below tied to our rubric.\nRubric: \"[paste]\"\nDraft: \"[paste]\""]},
+      {n:"Context Injection",num:"04",level:"intermediate",start:false,accent:"#c850c0",
+       hook:"Supply the AI with your specific materials — readings, rubrics, policies — so outputs follow YOUR course.",
+       tags:["Rubric Scoring","Study Guides","Quiz Generation"],
+       bad:"Create a quiz on chapter 5.",
+       good:"Using the passage below from Chapter 5, create 5 multiple-choice items at Bloom's application level.",
+       def:"Context injection supplies the model with background: course level, source material, and constraints.",
+       use:"Generate study guides from readings; create quiz items from passages; evaluate paragraphs against your rubric.",
+       when:"Use whenever 'according to our materials' matters.",
+       prompts:["Using the rubric below, score the student paragraph and give two specific suggestions.\nCourse: Intro Psych (non-majors)\nRubric: \"[paste]\"\nParagraph: \"[paste]\""]},
+      {n:"Step-Back Prompting",num:"05",level:"intermediate",start:false,accent:"#f59e0b",
+       hook:"Ask the AI to identify what kind of problem it's facing and plan before solving.",
+       tags:["Problem Solving","Research Design","Critical Thinking"],
+       bad:"Solve this stats problem.",
+       good:"First identify what type of statistical test this requires and outline your approach, then solve step by step.",
+       def:"Step-back prompting asks the model to describe the kind of problem and outline a brief plan before attempting the solution.",
+       use:"Before solving a stats problem, the model identifies the type, lists steps, then proceeds.",
+       when:"Helpful for multi-step or unfamiliar tasks.",
+       prompts:["Identify the type of problem, outline a 3-step plan to solve it, then provide the solution.\nProblem: \"[paste]\""]},
+      {n:"Chain-of-Thought",num:"06",level:"intermediate",start:false,accent:"#2dd4bf",
+       hook:"Force the AI to show its work. Numbered reasoning steps you can check and correct.",
+       tags:["Math/Logic","Evidence Chains","Grading Reasoning"],
+       bad:"What's the answer to this problem?",
+       good:"Solve in numbered steps (max 6). Then state the final answer on a separate line labeled 'Answer:'.",
+       def:"Chain-of-thought prompting asks the model to show intermediate reasoning steps rather than only a final answer.",
+       use:"In math or logic, have the model explain each step and then state the final result.",
+       when:"Use when transparency and pedagogy matter — teaching problem-solving, grading reasoning quality.",
+       prompts:["Solve the problem and explain in numbered steps (max 6). Give the final answer on a line labeled \"Answer:\".\nProblem: \"[paste]\""]},
+      {n:"Self-Consistency",num:"07",level:"advanced",start:false,accent:"#a78bfa",
+       hook:"Generate multiple independent answers, then compare them. Agreement = confidence.",
+       tags:["Verification","Complex Calculations","High-Stakes Content"],
+       bad:"Is this calculation correct?",
+       good:"Produce 3 independent solutions. Summarize agreement, note conflicts, and choose the best with justification.",
+       def:"Self-consistency generates multiple independent solutions, then compares and selects the best answer.",
+       use:"For complex calculations, ask for 3 variants and then a synthesis.",
+       when:"Useful when correctness is critical or when earlier runs felt unstable.",
+       prompts:["Produce three independent answers. Summarize agreement, note conflicts, choose the best with one-sentence justification.\nQuestion: \"[paste]\""]},
+      {n:"Tree-of-Thought",num:"08",level:"advanced",start:false,accent:"#f472b6",
+       hook:"Explore multiple strategies before committing. The AI proposes options, evaluates trade-offs, recommends.",
+       tags:["Lesson Design","Curriculum Planning","Strategic Decisions"],
+       bad:"How should I teach this topic?",
+       good:"Propose 3 approaches to teach [topic] to non-majors. For each: objectives, one activity, pros/cons. Recommend one.",
+       def:"Tree-of-thought explores several branches of reasoning rather than a single path.",
+       use:"Lesson design: request three distinct approaches with pros/cons, then ask for a recommendation.",
+       when:"Ideal when many paths could work and you want structured exploration.",
+       prompts:["Propose 3 distinct approaches to teach [topic] to non-majors. For each: objectives, one activity, pros/cons. Recommend one for a 50-minute class of 25."]},
+      {n:"ReAct (Reason & Act)",num:"09",level:"advanced",start:false,accent:"#38bdf8",
+       hook:"The AI thinks, acts (asks you questions), observes your answer, and iterates.",
+       tags:["Research Planning","Literature Reviews","Project Scoping"],
+       bad:"Help me plan my research project.",
+       good:"Follow a Reason > Act > Observe loop. Restate my topic, identify gaps, ask me 3 questions, then build a plan.",
+       def:"ReAct interleaves reasoning with actions (asking questions, requesting info) and continues based on observations.",
+       use:"For scoping a project: the model restates the goal, identifies gaps, asks questions, proposes action, iterates.",
+       when:"Use for open-ended tasks that require inquiry and iteration.",
+       prompts:["Follow Reason > Action > Observation to build a research plan.\nReason: Restate my topic and identify missing info.\nAction: Ask up to 3 clarifying questions.\nObservation: Wait for answers.\nRepeat once, then output a step-by-step plan with milestones."]}
+    ];
+
+    const PN_TEMPLATES = [
+      {t:"Lesson Plan Generator",d:"Generate a structured lesson plan with objectives, activities, and assessment.",cat:"teaching",icon:"#2ee6a8",
+       p:"Generate a [Duration]-minute lesson plan on [Topic] for [Course Name], a [Level] course. Include: 2-3 learning objectives, one interactive activity, and a brief assessment.",
+       u:"Fill in [Duration] with '50', [Topic] with 'climate change', [Course] with 'ENV 101'."},
+      {t:"Syllabus Outline Draft",d:"Draft a week-by-week syllabus with topics and assignments.",cat:"teaching",icon:"#2ee6a8",
+       p:"Draft a syllabus outline for [Course Name]. Provide a week-by-week breakdown for [Number of Weeks] weeks with topics, readings, and major assignments.",
+       u:"Replace [Course Name] with your course, [Number of Weeks] with '15'."},
+      {t:"Lesson Plan Adaptation",d:"Adapt a lesson for different contexts while maintaining objectives.",cat:"teaching",icon:"#2ee6a8",
+       p:"Adapt the following lesson on [Topic] from [Current Context] to [New Context]. Maintain learning objectives while adjusting activities for the new format.",
+       u:"Current = 'in-person classroom', New = 'online asynchronous'."},
+      {t:"Constructive Feedback Generator",d:"Generate balanced, specific feedback on submissions.",cat:"feedback",icon:"#60a5fa",
+       p:"Provide constructive feedback on a [Assignment Type] that [Student Challenge]. Start with strengths, then address areas for improvement kindly and specifically.",
+       u:"[Assignment Type] = 'lab report', [Student Challenge] = 'has good analysis but factual errors'."},
+      {t:"Rubric Draft",d:"Create a multi-criteria rubric with performance levels.",cat:"assessment",icon:"#fb7185",
+       p:"Create a rubric for a [Assignment Type] in [Course]. Include [Number] key criteria with descriptors for Excellent, Satisfactory, and Needs Improvement levels.",
+       u:"[Assignment Type] = 'oral presentation', [Course] = 'COMM 110', [Number] = '4'."},
+      {t:"Summative Feedback Letter",d:"Draft a supportive feedback letter addressing strengths and growth.",cat:"feedback",icon:"#60a5fa",
+       p:"Draft a feedback letter about a student's [Assignment Type]. They did well in [Strength] but struggled with [Challenge]. Acknowledge success, offer suggestions, end encouragingly.",
+       u:"[Assignment Type] = 'research paper', [Strength] = 'argument framing', [Challenge] = 'source integration'."},
+      {t:"Differentiated Instruction",d:"Generate teaching strategies for different learning needs.",cat:"teaching",icon:"#2ee6a8",
+       p:"Suggest two ways to teach [Concept] in [Course] that accommodate different learning preferences. Identify target groups and describe implementation.",
+       u:"[Concept] = 'the water cycle', [Course] = 'GEOG 101'."},
+      {t:"Adaptation for Diverse Learners",d:"Propose modifications for students with specific needs.",cat:"teaching",icon:"#2ee6a8",
+       p:"For assignment: [Description]. Propose one modification for students with [Need 1] and another for [Need 2]. Maintain learning objectives.",
+       u:"Assignment = '10-minute presentation', [Need 1] = 'public speaking anxiety', [Need 2] = 'hearing impairment'."},
+      {t:"Inclusive Discussion Prompt",d:"Generate discussion prompts that invite diverse perspectives.",cat:"teaching",icon:"#2ee6a8",
+       p:"Generate a discussion prompt on [Topic] that is inclusive and invites diverse backgrounds. Include two follow-up questions to probe deeper.",
+       u:"[Topic] = 'impact of social media on daily life'."},
+      {t:"Advising Email Draft",d:"Draft a supportive email from advisor to student.",cat:"advising",icon:"#c850c0",
+       p:"Draft an email to a student who [Situation]. Acknowledge their concern, provide 2 suggestions or resources, invite follow-up.",
+       u:"[Situation] = 'is struggling academically after midterms'."},
+      {t:"Degree Planning Guide",d:"Create a year-by-year planning overview for advisees.",cat:"advising",icon:"#c850c0",
+       p:"Explain course planning for [Major] to a second-year student. Cover: priorities each year, prerequisites, and advice on internships.",
+       u:"[Major] = 'Psychology B.A.'"},
+      {t:"Role-Play Script",d:"Sample dialogue demonstrating effective advising techniques.",cat:"advising",icon:"#c850c0",
+       p:"Provide a dialogue between advisor and student who [Issue]. Show open-ended questions and guidance. Include advisor reflection on technique.",
+       u:"[Issue] = 'wants to drop a course late in semester due to stress'."},
+      {t:"Syllabus AI Policy Draft",d:"Draft a course policy on acceptable AI tool usage.",cat:"policy",icon:"#f59e0b",
+       p:"Draft a syllabus policy for [Course] about AI tools. Cover: allowed uses, forbidden uses, disclosure requirements, and consequences. Be educational, not just punitive.",
+       u:"Fill in [Course] or keep it general."},
+      {t:"Academic Integrity Case",d:"Create a hypothetical scenario for class discussion on AI ethics.",cat:"policy",icon:"#f59e0b",
+       p:"Create a scenario about a student who [AI Misuse]. Outline the situation and provide 3 discussion questions about ethical implications.",
+       u:"[AI Misuse] = 'submitted a mostly AI-generated paper without disclosure'."},
+      {t:"Student Handout on AI Use",d:"One-page handout outline on responsible AI use.",cat:"policy",icon:"#f59e0b",
+       p:"Generate a handout outline titled 'Using AI Tools Responsibly'. Include: introduction, Allowed Uses section, Prohibited Uses section, Tips for Transparency.",
+       u:"Customize for your institution."}
+    ];
+
+    const PN_PROBLEMS = [
+      {t:"Too Vague",d:"Prompts without context produce generic results that don't fit your course.",f:"Include course level, subject focus, and specific learning objectives."},
+      {t:"No Audience Level",d:"Without stating learner level, AI may pitch content too high or too low.",f:"Specify the intended audience (e.g., 'first-year non-majors')."},
+      {t:"Missing Format",d:"AI will guess — and usually guess wrong. You'll get an essay when you wanted bullets.",f:"State the format (bullets, table, paragraph) and desired length explicitly."},
+      {t:"Overloaded Prompts",d:"Multiple tasks crammed into one prompt confuse the AI.",f:"Break complex requests into smaller, sequential prompts. One task per prompt."},
+      {t:"No Role or Tone",d:"Without guidance, tone may be off — too formal, too casual, or inconsistent.",f:"Assign a role ('You are a supportive writing tutor...') and specify tone."},
+      {t:"No Iteration",d:"First-run outputs can contain errors or bias. Trusting them blindly is risky.",f:"Review, refine, and verify before classroom use. Treat AI output as a draft."}
+    ];
+
+    const PN_WF = [
+      {t:"Define Your Goal",d:"Be specific about the task and purpose."},
+      {t:"Add Context",d:"Include audience, course level, content source, constraints."},
+      {t:"Draft Clearly",d:"Keep it one cohesive request; split complex tasks."},
+      {t:"Test",d:"Run it and check for accuracy, tone, format."},
+      {t:"Spot Gaps",d:"Identify missing details, wrong tone, off-target content."},
+      {t:"Refine",d:"Adjust scope, tone, format, add examples if needed."},
+      {t:"Iterate",d:"Test and tweak until results consistently meet expectations."},
+      {t:"Document",d:"Save the final prompt for reuse or sharing."}
+    ];
+
+    const PN_CHECKLIST = [
+      "Clarity — No vague verbs or unclear asks.",
+      "Context — Subject, learner level, and key details.",
+      "Format — Output type and length specified.",
+      "Tone & Style — Academic, friendly, or role-based.",
+      "Cognitive Level — Matches desired depth.",
+      "Academic Fit — Supports learning goals and integrity.",
+      "Inclusivity — Avoids bias and exclusionary language."
+    ];
+
+    const PN_REFS = [
+      {type:"Core Research",title:"Prompt engineering in higher education: a systematic review",auth:"Lee, D., & Palmer, E. (2025). Int J Ed Tech in Higher Ed."},
+      {type:"Core Research",title:"The CLEAR Path: A Framework for Enhancing Information Literacy",auth:"Lo, L. S. (2023). Journal of Academic Librarianship."},
+      {type:"Core Research",title:"Large Language Models are Zero-Shot Reasoners",auth:"Kojima, T. et al. (2022). Conference paper."},
+      {type:"Core Research",title:"ReAct: Synergizing Reasoning and Acting in LLMs",auth:"Yao, S. et al. (2022). Google Research."},
+      {type:"Core Research",title:"Self-Consistency Improves Chain of Thought Reasoning",auth:"Wang, X. et al. (2022). arXiv."},
+      {type:"Practical Guide",title:"Effective Prompting in Higher Education - Faculty Guide",auth:"SATLE Project, UCD (2023)."},
+      {type:"Practical Guide",title:"AI Prompt Engineering Isn't the Future",auth:"Acar, O. A. (2023). Harvard Business Review."},
+      {type:"University Guide",title:"Prompt engineering for educators",auth:"Danny Liu (2023). University of Sydney."},
+      {type:"University Guide",title:"AI for All Prompt Engineering Guide",auth:"MSU Denver (2023)."},
+      {type:"University Guide",title:"Prompt Engineering for Instructors",auth:"Ohio State, Office of Teaching & Learning (2023)."}
+    ];
+
+    function renderPnTechs() {
+      const grid = document.getElementById('pnTechGrid');
+      if (!grid) return;
+      grid.innerHTML = PN_TECHS.map(t => {
+        const startBadge = t.start ? '<span class="pn-badge pn-badge-start">Start Here</span>' : '';
+        const prompts = t.prompts.map(p => `<div class="pn-copy-block">${p.replace(/</g,'&lt;').replace(/>/g,'&gt;')}<button class="pn-copy-btn" onclick="event.stopPropagation();pnCopyBlock(this)">Copy</button></div>`).join('');
+        return `<div class="pn-tech-card" style="--tech-accent:${t.accent}">
+          <div class="pn-tech-strip"></div>
+          <div class="pn-tech-preview" onclick="this.parentElement.classList.toggle('open')">
+            <div class="pn-tech-top-row">
+              <div class="pn-tech-num">${t.num}</div>
+              <div class="pn-tech-name">${t.n}</div>
+              <div class="pn-tech-badges"><span class="pn-badge pn-badge-${t.level}">${t.level}</span>${startBadge}</div>
+            </div>
+            <div class="pn-tech-hook">${t.hook}</div>
+            <div class="pn-use-tags">${t.tags.map(tg=>`<span class="pn-use-tag">${tg}</span>`).join('')}</div>
+            <div class="pn-ba-preview">
+              <div class="pn-ba-box pn-ba-bad"><span class="pn-ba-label">Without technique</span>${t.bad}</div>
+              <div class="pn-ba-box pn-ba-good"><span class="pn-ba-label">With technique</span>${t.good}</div>
+            </div>
+            <div class="pn-tech-expand-row">
+              <button class="pn-tech-expand-btn">Full guide with prompts <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <span class="pn-tech-stat">${t.prompts.length} prompt${t.prompts.length>1?'s':''}</span>
+            </div>
+          </div>
+          <div class="pn-tech-body"><div class="pn-tech-content">
+            <div class="pn-tech-sub"><h4>Definition</h4><p>${t.def}</p></div>
+            <div class="pn-tech-sub"><h4>Use Case (Higher Ed)</h4><p>${t.use}</p></div>
+            <div class="pn-tech-sub"><h4>When / Why to Use</h4><p>${t.when}</p></div>
+            <div class="pn-tech-sub"><h4>Example Prompt${t.prompts.length>1?'s':''}</h4>${prompts}</div>
+          </div></div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderPnTemplates() {
+      const list = document.getElementById('pnTmplList');
+      if (!list) return;
+      list.innerHTML = PN_TEMPLATES.map(t => {
+        const preview = t.p.length > 100 ? t.p.substring(0,100) + '...' : t.p;
+        return `<div class="pn-tmpl-card" onclick="this.classList.toggle('open')">
+          <div class="pn-tmpl-top">
+            <div class="pn-tmpl-icon" style="background:${t.icon}12;border:1px solid ${t.icon}25"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${t.icon}" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="pn-tmpl-title">${t.t}</div>
+            <svg class="pn-tmpl-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="pn-tmpl-desc">${t.d}</div>
+          <div class="pn-tmpl-preview">${preview}</div>
+          <div class="pn-tmpl-expand">
+            <div class="pn-copy-block">${t.p}<button class="pn-copy-btn" onclick="event.stopPropagation();pnCopyBlock(this)">Copy</button></div>
+            <div class="pn-tmpl-usage"><strong>Usage:</strong> ${t.u}</div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderPnProblems() {
+      const list = document.getElementById('pnProblemList');
+      if (!list) return;
+      list.innerHTML = PN_PROBLEMS.map(p => `
+        <div class="pn-problem-card">
+          <div class="pn-problem-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff5c6c" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+          <div class="pn-problem-content"><h3>${p.t}</h3><p class="pn-problem-desc">${p.d}</p><div class="pn-problem-fix"><div class="pn-fix-label">Fix</div><p>${p.f}</p></div></div>
+        </div>
+      `).join('');
+    }
+
+    function renderPnWorkflow() {
+      const list = document.getElementById('pnWfList');
+      if (!list) return;
+      list.innerHTML = PN_WF.map((w,i) => `
+        <div class="pn-wf-step"><div class="pn-wf-num">${i+1}</div><div class="pn-wf-text"><h4>${w.t}</h4><p>${w.d}</p></div></div>
+      `).join('');
+    }
+
+    function renderPnChecklist() {
+      const list = document.getElementById('pnChecklist');
+      if (!list) return;
+      list.innerHTML = PN_CHECKLIST.map(c => `
+        <div class="pn-check-item"><svg class="pn-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ee6a8" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>${c}</div>
+      `).join('');
+    }
+
+    function renderPnRefs() {
+      const list = document.getElementById('pnRefList');
+      if (!list) return;
+      list.innerHTML = PN_REFS.map(r => `
+        <div class="pn-ref-item"><div class="pn-ref-type">${r.type}</div><div class="pn-ref-title">${r.title}</div><div class="pn-ref-authors">${r.auth}</div></div>
+      `).join('');
+    }
+
+    function pnCopyBlock(btn) {
+      const block = btn.parentElement;
+      const text = block.textContent.replace(/Copy|Copied/g,'').trim();
+      if(navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000)});
+      } else {
+        const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.top='-999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+        btn.textContent='Copied';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000);
+      }
+    }
+
+    function initPn() {
+      renderPnTechs();
+      renderPnTemplates();
+      renderPnProblems();
+      renderPnWorkflow();
+      renderPnChecklist();
+      renderPnRefs();
+    }
+
+    // Initialize AI Directory and Prompt Navigator when page is shown
+    const originalShowPage = typeof showPage !== 'undefined' ? showPage : null;
+    window.showPage = function(pageId) {
+      if (originalShowPage) originalShowPage(pageId);
+      if (pageId === 'tools') {
+        setTimeout(() => { buildDirCatFilters(); renderDir(); initDirEvents(); }, 50);
+      } else if (pageId === 'prompts') {
+        setTimeout(initPn, 50);
+      }
+    };
+
+    // Also init on page load if already on those pages
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        buildDirCatFilters();
+        renderDir();
+        initDirEvents();
+        initPn();
+      }, 100);
+    });
+
   </script>
 
 </body>

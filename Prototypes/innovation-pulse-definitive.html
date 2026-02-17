@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Innovation Pulse — Daily AI & Innovation in Higher Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Core palette — Electric Dusk refined */
+  --bg: #08080f;
+  --bg-elevated: #0e0e1a;
+  --bg-card: #111120;
+  --bg-card-hover: #16162a;
+  --surface: #1a1a30;
+  --surface-2: #222240;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.12);
+
+  /* Text hierarchy */
+  --text: #f0ede8;
+  --text-secondary: #a8a4b8;
+  --text-muted: #6b6880;
+
+  /* Accent colors */
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.15);
+  --cyan-glow: rgba(0,212,255,0.08);
+  --magenta: #c850c0;
+  --magenta-dim: rgba(200,80,192,0.15);
+  --amber: #f5a623;
+  --amber-dim: rgba(245,166,35,0.12);
+  --green: #4ade80;
+  --green-dim: rgba(74,222,128,0.12);
+  --red: #ef4444;
+  --teal: #0ea5a0;
+  --teal-dim: rgba(14,165,160,0.12);
+
+  /* Editorial lens colors */
+  --lens-mon: #00d4ff;
+  --lens-tue: #f59e0b;
+  --lens-wed: #4ade80;
+  --lens-thu: #c850c0;
+  --lens-fri: linear-gradient(135deg, #00d4ff, #c850c0);
+
+  /* Category colors */
+  --cat-teaching: #4ade80;
+  --cat-policy: #f59e0b;
+  --cat-infra: #3b82f6;
+  --cat-tools: #c850c0;
+  --cat-research: #00d4ff;
+  --cat-student: #f472b6;
+  --cat-leadership: #a78bfa;
+  --cat-workforce: #fb923c;
+
+  /* Typography */
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --max-w: 1200px;
+  --px: clamp(1rem, 4vw, 2rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes pulseDot {
+  0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+  50% { opacity:.7; box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(28px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity:0; transform:translateX(-20px); }
+  to { opacity:1; transform:translateX(0); }
+}
+@keyframes breathe {
+  0%,100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes waveform {
+  0%,100% { transform: scaleY(0.3); }
+  25% { transform: scaleY(0.8); }
+  50% { transform: scaleY(1); }
+  75% { transform: scaleY(0.5); }
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===================== NAV ===================== */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,8,15,0.85);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--px);
+  display: flex; align-items: center; height: 56px;
+}
+.tb-brand {
+  font-family: var(--mono); font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.05em; display: flex; gap: 0.35rem; flex-shrink: 0;
+}
+.tb-ihe { color: var(--text); }
+.tb-pulse { color: var(--cyan); }
+.tb-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; margin-left: 4px; align-self: center; animation: pulseDot 2s infinite; }
+.tb-nav {
+  margin-left: auto; display: flex; gap: 0.15rem;
+}
+.tb-nav a {
+  font-size: 0.78rem; padding: 0.4rem 0.75rem; border-radius: 6px;
+  color: var(--text-secondary); transition: all 0.2s;
+  font-weight: 500; white-space: nowrap;
+}
+.tb-nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.tb-nav a.active { color: var(--cyan); background: var(--cyan-dim); }
+
+/* ===================== DATE BAR ===================== */
+.date-bar {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem var(--px);
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.72rem; font-family: var(--mono);
+  color: var(--text-muted);
+}
+.date-bar-live {
+  display: flex; align-items: center; gap: 0.4rem;
+  color: var(--green); font-weight: 500;
+}
+.date-bar-live .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); animation: pulseDot 2s infinite;
+}
+.date-bar-stats {
+  margin-left: auto; display: flex; gap: 1.5rem;
+}
+.date-bar-stats span { color: var(--text-muted); }
+
+/* ===================== HERO: TODAY'S EPISODE ===================== */
+.hero {
+  padding: 3rem var(--px) 2rem;
+  max-width: var(--max-w); margin: 0 auto;
+}
+.hero-label {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--cyan);
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+.hero-label svg { width: 14px; height: 14px; }
+
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 380px; gap: 2.5rem;
+  align-items: start;
+}
+
+/* Left: Episode content */
+.hero-episode {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.hero-date {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.lens-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.2rem 0.65rem; border-radius: 100px;
+  font-size: 0.68rem; font-weight: 600;
+  font-family: var(--mono); letter-spacing: 0.03em;
+}
+.lens-badge.monday { background: rgba(0,212,255,0.12); color: var(--cyan); }
+.lens-badge.tuesday { background: rgba(245,158,11,0.12); color: #f59e0b; }
+.lens-badge.wednesday { background: rgba(74,222,128,0.12); color: #4ade80; }
+.lens-badge.thursday { background: rgba(200,80,192,0.12); color: #c850c0; }
+.lens-badge.friday {
+  background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(200,80,192,0.12));
+  color: var(--text);
+}
+.lens-badge .lens-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+}
+.lens-badge.monday .lens-dot { background: var(--cyan); }
+.lens-badge.tuesday .lens-dot { background: #f59e0b; }
+.lens-badge.wednesday .lens-dot { background: #4ade80; }
+.lens-badge.thursday .lens-dot { background: #c850c0; }
+.lens-badge.friday .lens-dot {
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+}
+
+.hero-hook {
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  line-height: 1.3; color: var(--text);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.hero-hook::before {
+  content: '';
+  position: absolute; left: 0; top: 0.3rem; bottom: 0.3rem;
+  width: 3px; border-radius: 2px;
+  background: linear-gradient(to bottom, var(--cyan), var(--magenta));
+}
+
+/* Audio Player */
+.audio-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.audio-header {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+.audio-live-badge {
+  display: flex; align-items: center; gap: 0.35rem;
+  background: rgba(74,222,128,0.1); color: var(--green);
+  padding: 0.2rem 0.6rem; border-radius: 100px;
+  font-size: 0.65rem; font-weight: 600;
+  font-family: var(--mono); letter-spacing: 0.06em;
+}
+.audio-live-badge .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green); animation: pulseDot 2s infinite;
+}
+.audio-duration {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted);
+}
+.audio-credit {
+  font-size: 0.72rem; color: var(--text-muted); margin-left: auto;
+}
+
+.audio-player {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.play-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(0,212,255,0.2);
+}
+.play-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 28px rgba(0,212,255,0.3);
+}
+.play-btn svg { width: 20px; height: 20px; fill: white; margin-left: 2px; }
+
+.waveform-wrap {
+  flex: 1; display: flex; align-items: center; height: 44px; gap: 1.5px;
+  cursor: pointer;
+}
+.wave-bar {
+  width: 3px; border-radius: 2px;
+  background: var(--surface-2);
+  transition: background 0.15s;
+}
+.wave-bar.played { background: var(--cyan); }
+.wave-bar.active {
+  background: linear-gradient(to top, var(--cyan), var(--magenta));
+  animation: waveform 0.8s ease-in-out infinite;
+}
+
+.audio-time {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted);
+  flex-shrink: 0; min-width: 72px; text-align: right;
+}
+.audio-vol {
+  width: 28px; height: 28px; fill: none; stroke: var(--text-muted);
+  stroke-width: 1.5; cursor: pointer; flex-shrink: 0;
+  transition: stroke 0.2s;
+}
+.audio-vol:hover { stroke: var(--text); }
+
+/* Right sidebar: Dr. Norma + Today's Stories */
+.hero-sidebar {
+  animation: fadeUp 0.8s 0.15s ease-out both;
+}
+
+.norma-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.norma-header {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+.norma-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan-dim), var(--magenta-dim));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 1.3rem; color: var(--cyan);
+  border: 2px solid var(--border);
+  overflow: hidden;
+}
+.norma-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.norma-info h3 {
+  font-size: 0.9rem; font-weight: 600; color: var(--text);
+  line-height: 1.2;
+}
+.norma-info span {
+  font-size: 0.72rem; color: var(--text-muted);
+}
+.norma-bio {
+  font-size: 0.78rem; color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.toc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+.toc-title {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 0.85rem;
+}
+.toc-list { list-style: none; }
+.toc-item {
+  display: flex; align-items: flex-start; gap: 0.65rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.toc-item:last-child { border-bottom: none; }
+.toc-item:hover { padding-left: 0.3rem; }
+.toc-item:hover .toc-item-title { color: var(--cyan); }
+.toc-type {
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em;
+  padding: 0.15rem 0.45rem; border-radius: 4px;
+  white-space: nowrap; margin-top: 0.15rem;
+  font-weight: 500;
+}
+.toc-type.deep { background: var(--cyan-dim); color: var(--cyan); }
+.toc-type.quick { background: var(--magenta-dim); color: var(--magenta); }
+.toc-type.callback { background: var(--amber-dim); color: var(--amber); }
+.toc-item-title {
+  font-size: 0.8rem; color: var(--text-secondary);
+  line-height: 1.35; transition: color 0.2s;
+}
+.toc-item-cat {
+  font-size: 0.62rem; color: var(--text-muted);
+  font-family: var(--mono); margin-top: 0.15rem;
+}
+
+/* ===================== SECTION DIVIDER ===================== */
+.section-divider {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-hover) 20%, var(--border-hover) 80%, transparent);
+}
+
+/* ===================== DEEP DIVE ===================== */
+.deep-dive {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 3rem var(--px);
+}
+.section-label {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.section-label .icon { font-size: 0.85rem; }
+.section-label .accent { color: var(--cyan); }
+
+.dd-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
+  transition: border-color 0.3s;
+}
+.dd-card:hover { border-color: var(--border-hover); }
+
+.dd-image {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+}
+.dd-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dd-card:hover .dd-image img { transform: scale(1.04); }
+.dd-image-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(8,8,15,0.4), rgba(8,8,15,0.1));
+}
+.dd-badges {
+  position: absolute; top: 1.25rem; left: 1.25rem;
+  display: flex; gap: 0.4rem;
+}
+.dd-badge {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.05em; padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+.dd-badge.deep { background: rgba(0,212,255,0.85); color: #08080f; }
+.dd-badge.cat { background: rgba(255,255,255,0.12); color: var(--text); backdrop-filter: blur(8px); }
+
+.dd-content {
+  padding: 2.25rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.dd-content h2 {
+  font-family: var(--serif); font-size: 1.65rem;
+  line-height: 1.25; margin-bottom: 1rem;
+  color: var(--text);
+}
+.dd-content p {
+  font-size: 0.88rem; line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+.dd-source {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; color: var(--cyan);
+  font-family: var(--mono);
+  padding: 0.35rem 0.75rem; border-radius: 8px;
+  background: var(--cyan-dim);
+  transition: background 0.2s;
+  width: fit-content;
+}
+.dd-source:hover { background: rgba(0,212,255,0.2); }
+.dd-source svg { width: 12px; height: 12px; }
+
+.dd-editorial {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.dd-editorial-label {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--magenta); margin-bottom: 0.5rem;
+}
+.dd-editorial p {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.95rem; color: var(--text);
+  line-height: 1.6; margin-bottom: 0;
+}
+
+/* ===================== QUICK HITS ===================== */
+.quick-hits {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--px) 3rem;
+}
+.qh-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+.qh-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.qh-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.qh-image {
+  height: 160px; overflow: hidden;
+  position: relative;
+}
+.qh-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s;
+}
+.qh-card:hover .qh-image img { transform: scale(1.06); }
+.qh-image-badge {
+  position: absolute; top: 0.75rem; left: 0.75rem;
+  font-family: var(--mono); font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.05em; padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  background: rgba(200,80,192,0.85); color: white;
+}
+.qh-body { padding: 1.1rem; }
+.qh-cat {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
+  text-transform: uppercase; font-weight: 500;
+  margin-bottom: 0.45rem;
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.qh-cat .cat-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+}
+.qh-body h3 {
+  font-size: 0.92rem; font-weight: 600;
+  line-height: 1.3; margin-bottom: 0.55rem;
+  color: var(--text);
+}
+.qh-body p {
+  font-size: 0.78rem; color: var(--text-secondary);
+  line-height: 1.55;
+  display: -webkit-box; -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.qh-footer {
+  padding: 0.65rem 1.1rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.68rem; font-family: var(--mono);
+}
+.qh-source { color: var(--cyan); }
+.qh-date { color: var(--text-muted); }
+
+/* ===================== STORIES WE'RE WATCHING ===================== */
+.watching {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 3rem var(--px);
+}
+.watching-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.watching-header h2 {
+  font-family: var(--serif); font-size: 1.4rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.watching-header .watch-icon {
+  width: 22px; height: 22px; fill: var(--amber);
+  animation: breathe 2.5s ease-in-out infinite;
+}
+.watching-week {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--text-muted); letter-spacing: 0.05em;
+  background: var(--amber-dim); padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+
+.watching-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+.watch-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.watch-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--amber-dim));
+}
+.watch-card:hover {
+  border-color: rgba(245,166,35,0.2);
+  transform: translateY(-2px);
+}
+.watch-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+.watch-card h3 {
+  font-size: 0.9rem; font-weight: 600; color: var(--text);
+  line-height: 1.3;
+}
+.watch-day-badge {
+  font-family: var(--mono); font-size: 0.6rem; font-weight: 600;
+  color: var(--amber); background: var(--amber-dim);
+  padding: 0.15rem 0.5rem; border-radius: 100px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.watch-card p {
+  font-size: 0.78rem; color: var(--text-secondary);
+  line-height: 1.55; margin-bottom: 0.7rem;
+}
+.watch-thread {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.3rem;
+}
+.watch-thread .pulse-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--amber); animation: pulseDot 2s infinite;
+}
+
+/* ===================== CLOSING THOUGHT ===================== */
+.closing {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 2rem var(--px) 3rem;
+}
+.closing-card {
+  background: linear-gradient(135deg, var(--bg-card), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.closing-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+}
+.closing-quote-mark {
+  font-family: var(--serif); font-size: 4rem;
+  color: var(--cyan); opacity: 0.3;
+  line-height: 1; margin-bottom: -1rem;
+}
+.closing-quote {
+  font-family: var(--serif); font-size: 1.2rem;
+  font-style: italic; line-height: 1.6;
+  color: var(--text); margin-bottom: 1.25rem;
+}
+.closing-attribution {
+  display: flex; align-items: center; gap: 0.65rem;
+}
+.closing-attr-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan-dim), var(--magenta-dim));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 0.9rem; color: var(--cyan);
+}
+.closing-attr-text {
+  font-size: 0.8rem; color: var(--text-secondary);
+}
+.closing-attr-text strong { color: var(--text); font-weight: 600; }
+
+/* ===================== EPISODE ARCHIVE ===================== */
+.archive {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 3rem var(--px);
+}
+.archive-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.archive-header h2 {
+  font-family: var(--serif); font-size: 1.4rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.archive-browse {
+  font-family: var(--mono); font-size: 0.72rem;
+  color: var(--cyan); cursor: pointer;
+  display: flex; align-items: center; gap: 0.3rem;
+  transition: opacity 0.2s;
+}
+.archive-browse:hover { opacity: 0.8; }
+
+.archive-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+}
+.ep-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.15rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.ep-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.ep-card.mon::before { background: var(--lens-mon); }
+.ep-card.tue::before { background: var(--lens-tue); }
+.ep-card.wed::before { background: var(--lens-wed); }
+.ep-card.thu::before { background: var(--lens-thu); }
+.ep-card.fri::before { background: linear-gradient(90deg, var(--cyan), var(--magenta)); }
+
+.ep-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+}
+.ep-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+.ep-date-big {
+  font-family: var(--serif); font-size: 1.35rem;
+  color: var(--text); font-weight: 400;
+}
+.ep-lens-small {
+  font-family: var(--mono); font-size: 0.55rem; font-weight: 600;
+  padding: 0.15rem 0.5rem; border-radius: 100px;
+  letter-spacing: 0.04em;
+}
+.ep-lens-small.mon { background: rgba(0,212,255,0.1); color: var(--cyan); }
+.ep-lens-small.tue { background: rgba(245,158,11,0.1); color: #f59e0b; }
+.ep-lens-small.wed { background: rgba(74,222,128,0.1); color: #4ade80; }
+.ep-lens-small.thu { background: rgba(200,80,192,0.1); color: #c850c0; }
+.ep-lens-small.fri { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); color: var(--text); }
+
+.ep-day {
+  font-size: 0.72rem; color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+.ep-hook {
+  font-size: 0.78rem; color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+  margin-bottom: 0.8rem;
+}
+.ep-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--mono); font-size: 0.62rem; color: var(--text-muted);
+}
+.ep-stories { display: flex; align-items: center; gap: 0.3rem; }
+.ep-duration { display: flex; align-items: center; gap: 0.3rem; }
+.ep-play-mini {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--surface-2); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.ep-play-mini:hover { background: var(--cyan-dim); }
+.ep-play-mini svg { width: 10px; height: 10px; fill: var(--cyan); margin-left: 1px; }
+
+/* ===================== WEEK AT A GLANCE ===================== */
+.week-glance {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--px) 3rem;
+}
+.week-strip {
+  display: flex; gap: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.week-day {
+  flex: 1;
+  background: var(--bg-card);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.week-day:last-child { border-right: none; }
+.week-day:hover { background: var(--bg-card-hover); }
+.week-day.active { background: var(--surface); }
+.week-day.active::after {
+  content: '';
+  position: absolute; bottom: 0; left: 20%; right: 20%; height: 2px;
+  border-radius: 2px;
+}
+.week-day.active.wd-mon::after { background: var(--cyan); }
+.week-day.active.wd-fri::after { background: linear-gradient(90deg, var(--cyan), var(--magenta)); }
+
+.wd-name {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 0.25rem;
+}
+.wd-num {
+  font-family: var(--serif); font-size: 1.3rem;
+  color: var(--text);
+}
+.wd-lens {
+  font-size: 0.58rem; color: var(--text-muted);
+  margin-top: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===================== SUBSCRIBE CTA ===================== */
+.subscribe-cta {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--px) 3rem;
+}
+.subscribe-card {
+  background: linear-gradient(135deg, #0e1225, #1a0e25);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(0,212,255,0.06), transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(200,80,192,0.06), transparent 60%);
+}
+.subscribe-card > * { position: relative; }
+.subscribe-card h2 {
+  font-family: var(--serif); font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+}
+.subscribe-card p {
+  font-size: 0.9rem; color: var(--text-secondary);
+  max-width: 500px; margin: 0 auto 1.5rem;
+}
+.subscribe-form {
+  display: flex; gap: 0.5rem;
+  max-width: 420px; margin: 0 auto;
+}
+.subscribe-input {
+  flex: 1; padding: 0.7rem 1rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: var(--sans); font-size: 0.85rem;
+  outline: none; transition: border-color 0.2s;
+}
+.subscribe-input::placeholder { color: var(--text-muted); }
+.subscribe-input:focus { border-color: var(--cyan); }
+.subscribe-btn {
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  border: none; border-radius: 10px;
+  color: white; font-weight: 600; font-size: 0.85rem;
+  cursor: pointer; white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.subscribe-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,212,255,0.25);
+}
+.subscribe-note {
+  font-size: 0.7rem; color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+/* ===================== AI DISCLAIMER ===================== */
+.disclaimer {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 1rem var(--px) 2rem;
+  text-align: center;
+  font-size: 0.7rem; color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem var(--px);
+}
+.footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem;
+}
+.footer-brand {
+  font-family: var(--mono); font-size: 0.85rem; font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.footer-brand .fc { color: var(--cyan); }
+.footer-desc {
+  font-size: 0.78rem; color: var(--text-muted);
+  max-width: 280px; line-height: 1.5;
+}
+.footer-col h4 {
+  font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 0.85rem;
+}
+.footer-col a {
+  display: block; font-size: 0.8rem; color: var(--text-secondary);
+  padding: 0.25rem 0; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--cyan); }
+.footer-bottom {
+  max-width: var(--max-w); margin: 1.5rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between;
+  font-size: 0.68rem; color: var(--text-muted);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .dd-card { grid-template-columns: 1fr; }
+  .dd-image { min-height: 240px; }
+  .archive-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .tb-nav { display: none; }
+  .hero-hook { font-size: 1.3rem; }
+  .qh-grid { grid-template-columns: 1fr; }
+  .watching-grid { grid-template-columns: 1fr; }
+  .hero-sidebar { grid-template-columns: 1fr; }
+  .archive-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .week-strip { flex-direction: column; }
+  .closing-card { padding: 2rem 1.5rem; }
+  .subscribe-form { flex-direction: column; }
+}
+@media (max-width: 480px) {
+  .archive-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- =================== NAV =================== -->
+<nav class="topbar">
+  <a class="tb-brand" href="#">
+    <span class="tb-ihe">INNOVATING HIGHER ED</span>
+    <span class="tb-dot"></span>
+  </a>
+  <div class="tb-nav">
+    <a href="#">Home</a>
+    <a href="#" class="active">Innovation Pulse</a>
+    <a href="#">Prompts</a>
+    <a href="#">AI Directory</a>
+    <a href="#">Educator Tools</a>
+    <a href="#">Podcast</a>
+    <a href="#">Tinker Lab</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<!-- =================== DATE BAR =================== -->
+<div class="date-bar">
+  <div class="date-bar-live"><span class="dot"></span> LIVE</div>
+  <span class="date-bar-date">Monday, February 16, 2026</span>
+  <div class="date-bar-stats">
+    <span>847 AI Tools Indexed</span>
+    <span>2.4k Prompts Curated</span>
+    <span>156 Institutions Connected</span>
+  </div>
+</div>
+
+<!-- =================== HERO =================== -->
+<section class="hero">
+  <div class="hero-label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    THE INNOVATION PULSE
+  </div>
+
+  <div class="hero-grid">
+    <!-- Left: Today's Episode -->
+    <div class="hero-episode">
+      <div class="hero-date">
+        Monday, February 16, 2026
+        <span class="lens-badge monday">
+          <span class="lens-dot"></span>
+          The Practitioner's Playbook
+        </span>
+      </div>
+
+      <div class="hero-hook">
+        "A community college in Texas just rebuilt their entire advising system using a free AI tool — and their retention rate jumped 23% in one semester. Here's what they did that no one's talking about."
+      </div>
+
+      <div class="audio-container">
+        <div class="audio-header">
+          <div class="audio-live-badge"><span class="dot"></span> LISTEN NOW</div>
+          <span class="audio-duration">4:12</span>
+          <span class="audio-credit">Dr. Norma Jones · The Innovation Pulse</span>
+        </div>
+        <div class="audio-player">
+          <button class="play-btn" id="playBtn">
+            <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+          <div class="waveform-wrap" id="waveform"></div>
+          <span class="audio-time">0:00 / 4:12</span>
+          <svg class="audio-vol" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="hero-sidebar">
+      <!-- Dr. Norma Card -->
+      <div class="norma-card">
+        <div class="norma-header">
+          <div class="norma-avatar">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=face" alt="Dr. Norma Jones">
+          </div>
+          <div class="norma-info">
+            <h3>Dr. Norma Jones</h3>
+            <span>Host & Editorial Director</span>
+          </div>
+        </div>
+        <div class="norma-bio">
+          Your daily briefing on AI in higher education — curated, analyzed, and delivered with the questions nobody else is asking.
+        </div>
+      </div>
+
+      <!-- Today's Stories TOC -->
+      <div class="toc-card">
+        <div class="toc-title">Today's Stories</div>
+        <ul class="toc-list">
+          <li class="toc-item">
+            <span class="toc-type deep">DEEP DIVE</span>
+            <div>
+              <div class="toc-item-title">Texas CC Rebuilds Advising with Free AI — Retention Soars</div>
+              <div class="toc-item-cat">Infrastructure & Operations</div>
+            </div>
+          </li>
+          <li class="toc-item">
+            <span class="toc-type quick">QUICK HIT</span>
+            <div>
+              <div class="toc-item-title">Google Classroom Gets AI Grading Assistant</div>
+              <div class="toc-item-cat">Tools & Products</div>
+            </div>
+          </li>
+          <li class="toc-item">
+            <span class="toc-type quick">QUICK HIT</span>
+            <div>
+              <div class="toc-item-title">New Study: AI Tutors Most Effective for First-Gen Students</div>
+              <div class="toc-item-cat">Research & Innovation</div>
+            </div>
+          </li>
+          <li class="toc-item">
+            <span class="toc-type quick">QUICK HIT</span>
+            <div>
+              <div class="toc-item-title">3 State Systems Adopt Shared AI Ethics Policy</div>
+              <div class="toc-item-cat">Policy & Ethics</div>
+            </div>
+          </li>
+          <li class="toc-item">
+            <span class="toc-type callback">CALLBACK</span>
+            <div>
+              <div class="toc-item-title">Update: OECD Report Response — Boise State Releases Full Plan</div>
+              <div class="toc-item-cat">Leadership & Strategy</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- =================== DEEP DIVE =================== -->
+<section class="deep-dive reveal">
+  <div class="section-label">
+    <span class="icon">🔬</span>
+    <span class="accent">DEEP DIVE</span>
+    <span>— Today's Featured Story</span>
+  </div>
+
+  <div class="dd-card">
+    <div class="dd-image">
+      <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=700&h=500&fit=crop" alt="College campus">
+      <div class="dd-image-overlay"></div>
+      <div class="dd-badges">
+        <span class="dd-badge deep">DEEP DIVE</span>
+        <span class="dd-badge cat">Infrastructure & Operations</span>
+      </div>
+    </div>
+    <div class="dd-content">
+      <h2>A Texas Community College Just Proved Free AI Tools Can Transform Student Advising</h2>
+      <p>Lone Star College's Houston campus rolled out an AI-powered advising assistant built entirely on open-source tools — and the results are remarkable. In one semester, student retention in at-risk populations jumped 23%. The system uses a locally-hosted LLM to analyze student course loads, flag potential scheduling conflicts, and generate personalized degree pathway suggestions.</p>
+      <p>The real innovation isn't the technology — it's the implementation. Faculty advisors co-designed every prompt, and the system was integrated as a <em>supplement</em> to human advising, not a replacement. Students still meet with their advisor, but now both arrive better prepared.</p>
+
+      <a class="dd-source" href="#">
+        Campus Technology
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+
+      <div class="dd-editorial">
+        <div class="dd-editorial-label">Dr. Norma's Take — Practitioner's Playbook</div>
+        <p>Here's what I'd tell any advising director listening: the biggest barrier isn't budget or technology — it's designing AI tools WITH advisors instead of FOR them. Lone Star got that right. The 23% number is impressive, but the real metric is that advisor satisfaction went up too. That's the pattern to replicate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- =================== QUICK HITS =================== -->
+<section class="quick-hits">
+  <div class="section-label reveal">
+    <span class="icon">⚡</span>
+    <span class="accent">QUICK HITS</span>
+    <span>— What Else You Need to Know</span>
+  </div>
+
+  <div class="qh-grid">
+    <div class="qh-card reveal reveal-delay-1">
+      <div class="qh-image">
+        <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&fit=crop" alt="AI Technology">
+        <span class="qh-image-badge">QUICK HIT</span>
+      </div>
+      <div class="qh-body">
+        <div class="qh-cat" style="color: var(--cat-tools);">
+          <span class="cat-dot" style="background: var(--cat-tools);"></span>
+          Tools & Products
+        </div>
+        <h3>Google Classroom Gets AI Grading Assistant</h3>
+        <p>Google's latest Classroom update introduces an AI-powered grading assistant that generates rubric-based feedback drafts for written assignments. Instructors review and approve before students see anything. Currently rolling out to institutions with Google Workspace for Education Plus.</p>
+      </div>
+      <div class="qh-footer">
+        <span class="qh-source">Google Education Blog</span>
+        <span class="qh-date">Feb 16</span>
+      </div>
+    </div>
+
+    <div class="qh-card reveal reveal-delay-2">
+      <div class="qh-image">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop" alt="Students studying">
+        <span class="qh-image-badge">QUICK HIT</span>
+      </div>
+      <div class="qh-body">
+        <div class="qh-cat" style="color: var(--cat-research);">
+          <span class="cat-dot" style="background: var(--cat-research);"></span>
+          Research & Innovation
+        </div>
+        <h3>New Study: AI Tutors Most Effective for First-Gen Students</h3>
+        <p>A multi-campus study across 12 institutions found that AI tutoring tools produced the largest learning gains among first-generation college students. The gap in pass rates between first-gen and continuing-gen students narrowed by 40% when AI tutoring was available.</p>
+      </div>
+      <div class="qh-footer">
+        <span class="qh-source">Journal of Higher Ed</span>
+        <span class="qh-date">Feb 15</span>
+      </div>
+    </div>
+
+    <div class="qh-card reveal reveal-delay-3">
+      <div class="qh-image">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&h=300&fit=crop" alt="Policy documents">
+        <span class="qh-image-badge">QUICK HIT</span>
+      </div>
+      <div class="qh-body">
+        <div class="qh-cat" style="color: var(--cat-policy);">
+          <span class="cat-dot" style="background: var(--cat-policy);"></span>
+          Policy & Ethics
+        </div>
+        <h3>3 State University Systems Adopt Shared AI Ethics Policy</h3>
+        <p>California, New York, and Texas state university systems jointly released a shared AI ethics framework — the first cross-state collaboration of its kind. The policy establishes common standards for AI use in admissions, grading, and student services.</p>
+      </div>
+      <div class="qh-footer">
+        <span class="qh-source">Inside Higher Ed</span>
+        <span class="qh-date">Feb 14</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- =================== STORIES WE'RE WATCHING =================== -->
+<section class="watching reveal">
+  <div class="watching-header">
+    <h2>
+      <svg class="watch-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="1.5"/></svg>
+      Stories We're Watching
+    </h2>
+    <span class="watching-week">Active Threads</span>
+  </div>
+
+  <div class="watching-grid">
+    <div class="watch-card reveal reveal-delay-1">
+      <div class="watch-card-header">
+        <h3>OECD Report Fallout Continues</h3>
+        <span class="watch-day-badge">Day 11</span>
+      </div>
+      <p>Boise State released their full implementation plan in response to the OECD's findings on AI dependency. Three more R1 institutions expected to follow this week. We're tracking institutional responses.</p>
+      <div class="watch-thread">
+        <span class="pulse-dot"></span>
+        First covered Feb 6 · 4 updates since
+      </div>
+    </div>
+
+    <div class="watch-card reveal reveal-delay-2">
+      <div class="watch-card-header">
+        <h3>AI Degree Programs Expanding</h3>
+        <span class="watch-day-badge">Day 8</span>
+      </div>
+      <p>Arkansas is the latest state with colleges launching dedicated AI programs. We've seen similar moves from Ohio State, Cal State, and others. Community colleges are next — watching for announcements.</p>
+      <div class="watch-thread">
+        <span class="pulse-dot"></span>
+        First covered Feb 9 · 3 updates since
+      </div>
+    </div>
+
+    <div class="watch-card reveal reveal-delay-3">
+      <div class="watch-card-header">
+        <h3>$169M FIPSE AI Grants</h3>
+        <span class="watch-day-badge">Day 14</span>
+      </div>
+      <p>The Department of Education's $169M for responsible AI in teaching and learning. Grant recipients still being announced — watching for which institutions landed funding and what they plan to build.</p>
+      <div class="watch-thread">
+        <span class="pulse-dot"></span>
+        First covered Feb 3 · 2 updates since
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- =================== CLOSING THOUGHT =================== -->
+<section class="closing reveal">
+  <div class="closing-card">
+    <div class="closing-quote-mark">"</div>
+    <div class="closing-quote">
+      Here's the pattern I keep seeing: the institutions getting the best results from AI aren't the ones with the biggest budgets — they're the ones that designed their tools alongside the people who actually use them. Lone Star College didn't hire consultants; they sat down with advisors. That 23% retention jump didn't come from better algorithms. It came from better questions. If you're rolling something out this semester, start there.
+    </div>
+    <div class="closing-attribution">
+      <div class="closing-attr-av">NJ</div>
+      <div class="closing-attr-text">
+        <strong>Dr. Norma Jones</strong> · The Innovation Pulse, Feb 16
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- =================== WEEK AT A GLANCE =================== -->
+<section class="week-glance reveal">
+  <div class="section-label">
+    <span class="icon">📅</span>
+    <span class="accent">THIS WEEK</span>
+    <span>— Editorial Lens Rotation</span>
+  </div>
+  <div class="week-strip">
+    <div class="week-day active wd-mon">
+      <div class="wd-name">Mon</div>
+      <div class="wd-num">16</div>
+      <div class="wd-lens" style="color:var(--cyan);">Practitioner's Playbook</div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">Tue</div>
+      <div class="wd-num">17</div>
+      <div class="wd-lens" style="color:#f59e0b;">The Hard Question</div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">Wed</div>
+      <div class="wd-num">18</div>
+      <div class="wd-lens" style="color:#4ade80;">Student Experience</div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">Thu</div>
+      <div class="wd-num">19</div>
+      <div class="wd-lens" style="color:#c850c0;">Connecting the Dots</div>
+    </div>
+    <div class="week-day">
+      <div class="wd-name">Fri</div>
+      <div class="wd-num">20</div>
+      <div class="wd-lens" style="color:var(--text-secondary);">Innovator's Edge + Recap</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== EPISODE ARCHIVE =================== -->
+<section class="archive reveal">
+  <div class="archive-header">
+    <h2>📻 Previous Episodes</h2>
+    <a class="archive-browse" href="#">Browse All Episodes →</a>
+  </div>
+
+  <div class="archive-grid">
+    <div class="ep-card fri">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 13</span>
+        <span class="ep-lens-small fri">Innovator's Edge</span>
+      </div>
+      <div class="ep-day">Friday</div>
+      <div class="ep-hook">A tool launched this week that changes the game for how we give student feedback. And: our weekly recap of stories heading into next week.</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 6 stories</span>
+        <span class="ep-duration">⏱ 4:35</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ep-card thu">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 12</span>
+        <span class="ep-lens-small thu">Connecting the Dots</span>
+      </div>
+      <div class="ep-day">Thursday</div>
+      <div class="ep-hook">Three separate stories this week all point to the same conclusion — and it's not what you'd expect from the headlines.</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 5 stories</span>
+        <span class="ep-duration">⏱ 4:15</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ep-card wed">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 11</span>
+        <span class="ep-lens-small wed">Student Experience</span>
+      </div>
+      <div class="ep-day">Wednesday</div>
+      <div class="ep-hook">Students are teaching themselves AI faster than universities can build courses about it. What should that tell us?</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 4 stories</span>
+        <span class="ep-duration">⏱ 3:58</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ep-card tue">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 10</span>
+        <span class="ep-lens-small tue">The Hard Question</span>
+      </div>
+      <div class="ep-day">Tuesday</div>
+      <div class="ep-hook">Every AI vendor says their tool "empowers educators." We looked at the data behind three of the biggest claims.</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 5 stories</span>
+        <span class="ep-duration">⏱ 4:02</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ep-card mon">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 9</span>
+        <span class="ep-lens-small mon">Practitioner's Playbook</span>
+      </div>
+      <div class="ep-day">Monday</div>
+      <div class="ep-hook">One university just cut their AI costs by 80% — and the model they used is something any campus could replicate.</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 4 stories</span>
+        <span class="ep-duration">⏱ 3:45</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ep-card fri">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 6</span>
+        <span class="ep-lens-small fri">Innovator's Edge</span>
+      </div>
+      <div class="ep-day">Friday</div>
+      <div class="ep-hook">A massive new OECD report just dropped a bombshell: students using AI scored 127% higher — but when you take the AI away, they perform worse.</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 7 stories</span>
+        <span class="ep-duration">⏱ 4:35</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ep-card thu">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 5</span>
+        <span class="ep-lens-small thu">Connecting the Dots</span>
+      </div>
+      <div class="ep-day">Thursday</div>
+      <div class="ep-hook">Remember that Boise State story? It just got a sequel. Plus: the pattern emerging across three different budget announcements.</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 5 stories</span>
+        <span class="ep-duration">⏱ 4:15</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ep-card wed">
+      <div class="ep-top">
+        <span class="ep-date-big">Feb 4</span>
+        <span class="ep-lens-small wed">Student Experience</span>
+      </div>
+      <div class="ep-day">Wednesday</div>
+      <div class="ep-hook">A Georgia State study found students prefer AI feedback — but not for the reasons you'd think. What that means for how we design assignments.</div>
+      <div class="ep-meta">
+        <span class="ep-stories">📰 4 stories</span>
+        <span class="ep-duration">⏱ 3:58</span>
+        <button class="ep-play-mini">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- =================== SUBSCRIBE =================== -->
+<section class="subscribe-cta reveal">
+  <div class="subscribe-card">
+    <h2>Never Miss a Pulse</h2>
+    <p>Get the daily briefing delivered to your inbox every morning. Curated AI news for higher education — no fluff, no hype.</p>
+    <div class="subscribe-form">
+      <input class="subscribe-input" type="email" placeholder="your@university.edu">
+      <button class="subscribe-btn">Subscribe Free</button>
+    </div>
+    <div class="subscribe-note">Join 1,200+ educators. No spam. Unsubscribe anytime.</div>
+  </div>
+</section>
+
+<!-- =================== DISCLAIMER =================== -->
+<div class="disclaimer">
+  The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.<br>
+  <a href="#" style="color: var(--cyan);">Learn more about how we use AI responsibly at Innovating Higher Ed.</a>
+</div>
+
+<!-- =================== FOOTER =================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Innovating Higher <span class="fc">Ed</span></div>
+      <p class="footer-desc">Empowering educators to navigate the future of teaching, learning, and innovation in higher education.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="#">Innovation Pulse</a>
+      <a href="#">Prompt Navigator</a>
+      <a href="#">AI Directory</a>
+      <a href="#">Educator Tools</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="#">Podcast</a>
+      <a href="#">Tinker Lab</a>
+      <a href="#">Be Our Guest</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Innovating Higher Ed. All rights reserved.</span>
+    <span>Built with intelligence.</span>
+  </div>
+</footer>
+
+<!-- =================== SCRIPTS =================== -->
+<script>
+// Generate waveform bars
+const waveform = document.getElementById('waveform');
+const barCount = 80;
+const playedPercent = 0;
+
+for (let i = 0; i < barCount; i++) {
+  const bar = document.createElement('div');
+  bar.className = 'wave-bar';
+  if (i < barCount * playedPercent) bar.classList.add('played');
+  const h = 6 + Math.random() * 30 + Math.sin(i * 0.25) * 10 + Math.cos(i * 0.12) * 6;
+  bar.style.height = Math.max(4, h) + 'px';
+  waveform.appendChild(bar);
+}
+
+// Simulate play state
+let isPlaying = false;
+const playBtn = document.getElementById('playBtn');
+playBtn.addEventListener('click', () => {
+  isPlaying = !isPlaying;
+  const bars = document.querySelectorAll('.wave-bar');
+
+  if (isPlaying) {
+    playBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="20" height="20"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+    // Animate first 20% of bars
+    bars.forEach((bar, i) => {
+      if (i < barCount * 0.18) {
+        bar.classList.add('played');
+      }
+      if (i >= barCount * 0.15 && i < barCount * 0.22) {
+        bar.classList.add('active');
+        bar.style.animationDelay = (Math.random() * 0.5) + 's';
+      }
+    });
+  } else {
+    playBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="20" height="20"><polygon points="6,3 20,12 6,21"/></svg>';
+    bars.forEach(bar => {
+      bar.classList.remove('active');
+    });
+  }
+});
+
+// Waveform click to seek
+waveform.addEventListener('click', (e) => {
+  const rect = waveform.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  const bars = document.querySelectorAll('.wave-bar');
+  bars.forEach((bar, i) => {
+    const barPct = i / barCount;
+    bar.classList.toggle('played', barPct <= pct);
+    bar.classList.remove('active');
+  });
+  // Add active bars around click point
+  const activeStart = Math.floor(pct * barCount) - 2;
+  const activeEnd = Math.floor(pct * barCount) + 4;
+  bars.forEach((bar, i) => {
+    if (i >= activeStart && i < activeEnd && isPlaying) {
+      bar.classList.add('active');
+      bar.style.animationDelay = (Math.random() * 0.4) + 's';
+    }
+  });
+  // Update time
+  const totalSeconds = 4 * 60 + 12;
+  const currentSeconds = Math.floor(totalSeconds * pct);
+  const min = Math.floor(currentSeconds / 60);
+  const sec = String(currentSeconds % 60).padStart(2, '0');
+  document.querySelector('.audio-time').textContent = `${min}:${sec} / 4:12`;
+});
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
