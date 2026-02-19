@@ -16,7 +16,8 @@
       "title": "Canvas Announces AI-Powered Feedback Feature",
       "summary": "Canvas LMS has launched a new AI writing assistant that provides instant feedback on student essays using GPT-4.",
       "source": "EdSurge",
-      "sourceUrl": "https://www.edsurge.com/news/2026-02-19-canvas-ai-feedback",
+      "sourceUrl": null,
+      "sourceBroken": true,
       "category": "LATEST AI PRODUCT RELEASES"
     },
     "quickHits": [
@@ -24,14 +25,16 @@
         "title": "University of Michigan Pilots AI Tutoring System",
         "summary": "The University of Michigan is testing an AI tutoring system across 50 introductory courses with promising early results.",
         "source": "Chronicle of Higher Education",
-        "sourceUrl": "https://www.chronicle.com/article/umich-ai-tutoring-2026",
+        "sourceUrl": null,
+        "sourceBroken": true,
         "category": "CASE STUDIES"
       },
       {
         "title": "New Study Questions AI Detection Accuracy",
         "summary": "Investigation found that popular AI detection tools wrongly flag 12-18% of student work as AI-generated.",
         "source": "Chronicle of Higher Education",
-        "sourceUrl": "https://www.chronicle.com/article/ai-detection-accuracy-2026",
+        "sourceUrl": null,
+        "sourceBroken": true,
         "category": "ETHICAL AI"
       }
     ]
@@ -41,7 +44,8 @@
       "title": "Canvas Announces AI-Powered Feedback Feature",
       "summary": "Canvas LMS has launched a new AI writing assistant that provides instant feedback on student essays using GPT-4.",
       "source": "EdSurge",
-      "sourceUrl": "https://www.edsurge.com/news/2026-02-19-canvas-ai-feedback",
+      "sourceUrl": null,
+      "sourceBroken": true,
       "category": "LATEST AI PRODUCT RELEASES",
       "isDeveloping": false,
       "publishedAt": "2026-02-19T09:15:38.526Z"
@@ -50,7 +54,8 @@
       "title": "University of Michigan Pilots AI Tutoring System",
       "summary": "The University of Michigan is testing an AI tutoring system across 50 introductory courses with promising early results.",
       "source": "Chronicle of Higher Education",
-      "sourceUrl": "https://www.chronicle.com/article/umich-ai-tutoring-2026",
+      "sourceUrl": null,
+      "sourceBroken": true,
       "category": "CASE STUDIES",
       "isDeveloping": false,
       "publishedAt": "2026-02-19T09:15:38.526Z"
@@ -59,7 +64,8 @@
       "title": "New Study Questions AI Detection Accuracy",
       "summary": "Investigation found that popular AI detection tools wrongly flag 12-18% of student work as AI-generated.",
       "source": "Chronicle of Higher Education",
-      "sourceUrl": "https://www.chronicle.com/article/ai-detection-accuracy-2026",
+      "sourceUrl": null,
+      "sourceBroken": true,
       "category": "ETHICAL AI",
       "isDeveloping": false,
       "publishedAt": "2026-02-19T09:15:38.526Z"
@@ -67,5 +73,6 @@
   ],
   "callbacks": [],
   "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
-  "publishedAt": "2026-02-19T09:15:38.526Z"
+  "publishedAt": "2026-02-19T09:15:38.526Z",
+  "_note": "This was a test episode with synthetic data. URLs were marked as broken."
 }
