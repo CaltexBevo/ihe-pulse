@@ -1876,6 +1876,872 @@
       .dir-detail-grid { grid-template-columns: 1fr; }
     }
 
+    /* ========================================
+       INNOVATION PULSE PAGE STYLES
+       ======================================== */
+
+    /* Pulse Page Hero */
+    .pulse-hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .pulse-hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .pulse-hero-label svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pulse-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .pulse-hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--cyan), var(--magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pulse-hero-subtitle {
+      font-size: 1.05rem;
+      color: #a0a0a8;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    /* Pulse Grid Layout */
+    .pulse-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .pulse-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Today's Episode Card */
+    .pulse-episode-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pulse-episode-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    }
+
+    .pulse-episode-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #707080;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Lens Badges */
+    .pulse-lens-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.03em;
+    }
+
+    .pulse-lens-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .pulse-lens-monday { background: rgba(0,212,255,0.12); color: var(--cyan); }
+    .pulse-lens-monday .pulse-lens-dot { background: var(--cyan); }
+
+    .pulse-lens-tuesday { background: rgba(244,63,94,0.12); color: #f43f5e; }
+    .pulse-lens-tuesday .pulse-lens-dot { background: #f43f5e; }
+
+    .pulse-lens-wednesday { background: rgba(0,232,138,0.12); color: var(--green); }
+    .pulse-lens-wednesday .pulse-lens-dot { background: var(--green); }
+
+    .pulse-lens-thursday { background: rgba(200,80,192,0.12); color: var(--magenta); }
+    .pulse-lens-thursday .pulse-lens-dot { background: var(--magenta); }
+
+    .pulse-lens-friday {
+      background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(200,80,192,0.12));
+      color: #e0e0e0;
+    }
+    .pulse-lens-friday .pulse-lens-dot {
+      background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    }
+
+    .pulse-episode-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #f0f0f0;
+      margin-bottom: 0.5rem;
+    }
+
+    .pulse-episode-lens-desc {
+      font-size: 0.85rem;
+      color: #808090;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Audio Player */
+    .pulse-audio-player {
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pulse-audio-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .pulse-audio-live {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(0,232,138,0.1);
+      color: var(--green);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+    }
+
+    .pulse-audio-live .pulse-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,232,138,0.5); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(0,232,138,0); }
+    }
+
+    .pulse-audio-duration {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #707080;
+    }
+
+    .pulse-audio-credit {
+      font-size: 0.75rem;
+      color: #606070;
+      margin-left: auto;
+    }
+
+    .pulse-audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .pulse-play-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--magenta));
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,212,255,0.25);
+    }
+
+    .pulse-play-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 6px 30px rgba(0,212,255,0.35);
+    }
+
+    .pulse-play-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
+      margin-left: 3px;
+    }
+
+    .pulse-waveform {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      gap: 2px;
+      cursor: pointer;
+    }
+
+    .pulse-wave-bar {
+      width: 3px;
+      border-radius: 2px;
+      background: #2a2a3e;
+      transition: background 0.15s;
+    }
+
+    .pulse-wave-bar.played {
+      background: var(--cyan);
+    }
+
+    .pulse-wave-bar.active {
+      background: linear-gradient(to top, var(--cyan), var(--magenta));
+      animation: waveAnim 0.8s ease-in-out infinite;
+    }
+
+    @keyframes waveAnim {
+      0%, 100% { transform: scaleY(0.3); }
+      25% { transform: scaleY(0.8); }
+      50% { transform: scaleY(1); }
+      75% { transform: scaleY(0.5); }
+    }
+
+    .pulse-audio-time {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #707080;
+      flex-shrink: 0;
+      min-width: 75px;
+      text-align: right;
+    }
+
+    /* Episode Segments Timeline */
+    .pulse-segments {
+      margin-bottom: 1.5rem;
+    }
+
+    .pulse-segments-title {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #707080;
+      margin-bottom: 1rem;
+    }
+
+    .pulse-segments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .pulse-segment-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pulse-segment-item:hover {
+      border-color: var(--border-active);
+      background: rgba(0,212,255,0.02);
+    }
+
+    .pulse-segment-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .pulse-segment-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pulse-segment-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .pulse-segment-label.deep { color: var(--cyan); }
+    .pulse-segment-label.quick { color: var(--magenta); }
+    .pulse-segment-label.callback { color: #f59e0b; }
+    .pulse-segment-label.opening { color: var(--green); }
+    .pulse-segment-label.closing { color: #a855f7; }
+
+    .pulse-segment-text {
+      font-size: 0.85rem;
+      color: #a0a0a8;
+      line-height: 1.45;
+    }
+
+    .pulse-segment-time {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: #606070;
+      flex-shrink: 0;
+    }
+
+    /* AI Disclosure */
+    .pulse-disclosure {
+      font-size: 0.75rem;
+      color: #606070;
+      font-style: italic;
+      padding: 0.85rem 1rem;
+      background: rgba(200,80,192,0.05);
+      border: 1px solid rgba(200,80,192,0.1);
+      border-radius: 8px;
+    }
+
+    /* Sidebar Cards */
+    .pulse-sidebar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pulse-host-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .pulse-host-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(200,80,192,0.15));
+      border: 2px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      color: var(--cyan);
+    }
+
+    .pulse-host-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pulse-host-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f0f0f0;
+    }
+
+    .pulse-host-role {
+      font-size: 0.75rem;
+      color: #707080;
+    }
+
+    .pulse-host-bio {
+      font-size: 0.82rem;
+      color: #909098;
+      line-height: 1.55;
+    }
+
+    /* Lens Schedule */
+    .pulse-lens-schedule {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+
+    .pulse-schedule-title {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #707080;
+      margin-bottom: 1rem;
+    }
+
+    .pulse-schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .pulse-schedule-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .pulse-schedule-item:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .pulse-schedule-item.active {
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+    }
+
+    .pulse-schedule-day {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #707080;
+      min-width: 32px;
+    }
+
+    .pulse-schedule-item.active .pulse-schedule-day {
+      color: var(--cyan);
+    }
+
+    .pulse-schedule-name {
+      font-size: 0.82rem;
+      color: #a0a0a8;
+      flex: 1;
+    }
+
+    .pulse-schedule-item.active .pulse-schedule-name {
+      color: #e0e0e0;
+    }
+
+    .pulse-schedule-focus {
+      font-size: 0.72rem;
+      color: #606070;
+    }
+
+    /* Story Cards Section */
+    .pulse-stories-section {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .pulse-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .pulse-section-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pulse-section-title svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .pulse-stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .pulse-story-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .pulse-story-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--cyan);
+    }
+
+    .pulse-story-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .pulse-story-card.developing::after {
+      content: 'DEVELOPING';
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(245,158,11,0.15);
+      color: #f59e0b;
+    }
+
+    .pulse-story-body {
+      padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    }
+
+    .pulse-story-category {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pulse-story-category .cat-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .pulse-story-title {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #f0f0f0;
+      margin-bottom: 0.55rem;
+    }
+
+    .pulse-story-summary {
+      font-size: 0.82rem;
+      color: #909098;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .pulse-story-footer {
+      padding: 0.75rem 1.25rem 0.75rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+    }
+
+    .pulse-story-source {
+      color: var(--cyan);
+    }
+
+    .pulse-story-time {
+      color: #606070;
+    }
+
+    /* Episode Archive */
+    .pulse-archive-section {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .pulse-archive-browse {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--cyan);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: opacity 0.2s;
+    }
+
+    .pulse-archive-browse:hover {
+      opacity: 0.8;
+    }
+
+    .pulse-archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .pulse-archive-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.15rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .pulse-archive-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+    }
+
+    .pulse-archive-card.mon::before { background: var(--cyan); }
+    .pulse-archive-card.tue::before { background: #f43f5e; }
+    .pulse-archive-card.wed::before { background: var(--green); }
+    .pulse-archive-card.thu::before { background: var(--magenta); }
+    .pulse-archive-card.fri::before { background: linear-gradient(90deg, var(--cyan), var(--magenta)); }
+
+    .pulse-archive-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    }
+
+    .pulse-archive-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .pulse-archive-date {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e0e0e0;
+    }
+
+    .pulse-archive-lens {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+    }
+
+    .pulse-archive-lens.mon { background: rgba(0,212,255,0.1); color: var(--cyan); }
+    .pulse-archive-lens.tue { background: rgba(244,63,94,0.1); color: #f43f5e; }
+    .pulse-archive-lens.wed { background: rgba(0,232,138,0.1); color: var(--green); }
+    .pulse-archive-lens.thu { background: rgba(200,80,192,0.1); color: var(--magenta); }
+    .pulse-archive-lens.fri { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(200,80,192,0.1)); color: #e0e0e0; }
+
+    .pulse-archive-title {
+      font-size: 0.85rem;
+      color: #a0a0a8;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+
+    .pulse-archive-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: #606070;
+    }
+
+    .pulse-archive-play {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .pulse-archive-play:hover {
+      background: var(--cyan);
+      border-color: var(--cyan);
+    }
+
+    .pulse-archive-play svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--cyan);
+      margin-left: 1px;
+    }
+
+    .pulse-archive-play:hover svg {
+      fill: white;
+    }
+
+    /* Subscribe CTA */
+    .pulse-subscribe {
+      margin-top: 3rem;
+      background: linear-gradient(135deg, #0e1225, #1a0e25);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pulse-subscribe::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(0,212,255,0.06), transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(200,80,192,0.06), transparent 60%);
+    }
+
+    .pulse-subscribe > * {
+      position: relative;
+    }
+
+    .pulse-subscribe h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .pulse-subscribe p {
+      font-size: 0.95rem;
+      color: #909098;
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .pulse-subscribe-form {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .pulse-subscribe-input {
+      flex: 1;
+      padding: 0.75rem 1.1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #e0e0e0;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .pulse-subscribe-input::placeholder {
+      color: #606070;
+    }
+
+    .pulse-subscribe-input:focus {
+      border-color: var(--cyan);
+    }
+
+    .pulse-subscribe-btn {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--cyan), var(--magenta));
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .pulse-subscribe-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,212,255,0.3);
+    }
+
+    .pulse-subscribe-note {
+      font-size: 0.72rem;
+      color: #606070;
+      margin-top: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .pulse-subscribe-form {
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2150,189 +3016,325 @@
        ======================================== -->
   <div class="page" id="page-pulse">
 
-    <div class="page-header">
-      <a class="back-btn" onclick="showPage('portal')">← Back to Hub</a>
-      <p class="eyebrow">DAILY BRIEFING</p>
-      <h1>The Innovation <em>Pulse</em></h1>
-      <p>Your daily digest of AI news, tools, and insights curated for higher education.</p>
-    </div>
-
+    <!-- Hero Section -->
     <div class="container">
+      <section class="pulse-hero">
+        <a class="back-btn" onclick="showPage('portal')">← Back to Hub</a>
+        <div class="pulse-hero-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>
+          DAILY BRIEFING
+        </div>
+        <h1 class="pulse-hero-title">The Innovation <em>Pulse</em></h1>
+        <p class="pulse-hero-subtitle">Your daily AI-in-education briefing. Dr. Norma Jones brings you the stories that matter — with editorial perspective, not press releases.</p>
+      </section>
 
-      <!-- Audio Player -->
-      <div class="audio-player" style="max-width: 700px; margin: 0 auto 3rem;">
-        <button class="play-btn">▶</button>
-        <div class="waveform" id="pulseWaveform"></div>
-        <div class="audio-info">
-          <div class="audio-title">The Innovation Pulse — Friday, February 13, 2026</div>
-          <div class="audio-duration">4:32</div>
+      <!-- Main Grid: Episode + Sidebar -->
+      <div class="pulse-grid">
+
+        <!-- Left: Today's Episode -->
+        <div class="pulse-main">
+
+          <!-- Episode Card -->
+          <div class="pulse-episode-card">
+            <div class="pulse-episode-date">
+              Wednesday, February 18, 2026
+              <span class="pulse-lens-badge pulse-lens-wednesday">
+                <span class="pulse-lens-dot"></span>
+                The Student Experience
+              </span>
+            </div>
+
+            <h2 class="pulse-episode-title">When AI Tutors Know Too Much — Student Privacy in the Spotlight</h2>
+            <p class="pulse-episode-lens-desc">Everything filtered through how it affects actual students</p>
+
+            <!-- Audio Player -->
+            <div class="pulse-audio-player">
+              <div class="pulse-audio-header">
+                <div class="pulse-audio-live">
+                  <span class="pulse-live-dot"></span>
+                  LISTEN NOW
+                </div>
+                <span class="pulse-audio-duration">4:18</span>
+                <span class="pulse-audio-credit">Dr. Norma Jones</span>
+              </div>
+              <div class="pulse-audio-controls">
+                <button class="pulse-play-btn" id="pulsePlayBtn">
+                  <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                </button>
+                <div class="pulse-waveform" id="pulseWaveform"></div>
+                <span class="pulse-audio-time">0:00 / 4:18</span>
+              </div>
+            </div>
+
+            <!-- Episode Segments -->
+            <div class="pulse-segments">
+              <div class="pulse-segments-title">Today's Episode Format</div>
+              <div class="pulse-segments-list">
+                <div class="pulse-segment-item">
+                  <span class="pulse-segment-num">1</span>
+                  <div class="pulse-segment-content">
+                    <div class="pulse-segment-label opening">Opening Hook</div>
+                    <div class="pulse-segment-text">A new study from Stanford found that AI tutoring systems are collecting 47 data points per student session — and most students have no idea.</div>
+                  </div>
+                  <span class="pulse-segment-time">0:15</span>
+                </div>
+                <div class="pulse-segment-item">
+                  <span class="pulse-segment-num">2</span>
+                  <div class="pulse-segment-content">
+                    <div class="pulse-segment-label deep">Deep Dive</div>
+                    <div class="pulse-segment-text">Stanford's AI tutoring data study — what they found, why it matters for your campus, what questions your provost should be asking</div>
+                  </div>
+                  <span class="pulse-segment-time">1:30</span>
+                </div>
+                <div class="pulse-segment-item">
+                  <span class="pulse-segment-num">3</span>
+                  <div class="pulse-segment-content">
+                    <div class="pulse-segment-label quick">Quick Hits</div>
+                    <div class="pulse-segment-text">Canvas AI feedback • UK Russell Group guidelines • Anthropic community college pilots</div>
+                  </div>
+                  <span class="pulse-segment-time">1:15</span>
+                </div>
+                <div class="pulse-segment-item">
+                  <span class="pulse-segment-num">4</span>
+                  <div class="pulse-segment-content">
+                    <div class="pulse-segment-label callback">Callback Check</div>
+                    <div class="pulse-segment-text">Remember the Boise State AI governance story from Monday? The faculty senate voted yesterday — we'll have details tomorrow.</div>
+                  </div>
+                  <span class="pulse-segment-time">0:30</span>
+                </div>
+                <div class="pulse-segment-item">
+                  <span class="pulse-segment-num">5</span>
+                  <div class="pulse-segment-content">
+                    <div class="pulse-segment-label closing">Closing Thought</div>
+                    <div class="pulse-segment-text">Three stories today, three different angles on the same question: who decides how student data gets used in the age of AI?</div>
+                  </div>
+                  <span class="pulse-segment-time">0:20</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Disclosure -->
+            <div class="pulse-disclosure">
+              The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.
+            </div>
+          </div>
+
+          <!-- Today's Stories -->
+          <div class="pulse-stories-section">
+            <div class="pulse-section-header">
+              <h3 class="pulse-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                Today's Stories
+              </h3>
+            </div>
+            <div class="pulse-stories-grid">
+
+              <div class="pulse-story-card" style="--accent: var(--cyan);">
+                <div class="pulse-story-body">
+                  <div class="pulse-story-category" style="color: var(--cyan);">
+                    <span class="cat-dot" style="background: var(--cyan);"></span>
+                    RESEARCH
+                  </div>
+                  <h4 class="pulse-story-title">Stanford Study: AI Tutors Collect 47 Data Points Per Session</h4>
+                  <p class="pulse-story-summary">New research reveals the scope of student data collection in AI tutoring systems — and the privacy implications campuses haven't considered.</p>
+                </div>
+                <div class="pulse-story-footer">
+                  <span class="pulse-story-source">Stanford HAI</span>
+                  <span class="pulse-story-time">Today</span>
+                </div>
+              </div>
+
+              <div class="pulse-story-card" style="--accent: var(--magenta);">
+                <div class="pulse-story-body">
+                  <div class="pulse-story-category" style="color: var(--magenta);">
+                    <span class="cat-dot" style="background: var(--magenta);"></span>
+                    TOOLS
+                  </div>
+                  <h4 class="pulse-story-title">Canvas Announces AI-Powered Assignment Feedback</h4>
+                  <p class="pulse-story-summary">Instructure's new AI grading assistant generates draft feedback — but faculty retain full control over what students see.</p>
+                </div>
+                <div class="pulse-story-footer">
+                  <span class="pulse-story-source">EdSurge</span>
+                  <span class="pulse-story-time">Today</span>
+                </div>
+              </div>
+
+              <div class="pulse-story-card" style="--accent: #f59e0b;">
+                <div class="pulse-story-body">
+                  <div class="pulse-story-category" style="color: #f59e0b;">
+                    <span class="cat-dot" style="background: #f59e0b;"></span>
+                    POLICY
+                  </div>
+                  <h4 class="pulse-story-title">UK Russell Group Releases New AI Assessment Guidelines</h4>
+                  <p class="pulse-story-summary">Britain's leading research universities align on disclosure requirements and acceptable AI use in student work.</p>
+                </div>
+                <div class="pulse-story-footer">
+                  <span class="pulse-story-source">Times Higher Ed</span>
+                  <span class="pulse-story-time">Today</span>
+                </div>
+              </div>
+
+              <div class="pulse-story-card developing" style="--accent: var(--green);">
+                <div class="pulse-story-body">
+                  <div class="pulse-story-category" style="color: var(--green);">
+                    <span class="cat-dot" style="background: var(--green);"></span>
+                    PARTNERSHIPS
+                  </div>
+                  <h4 class="pulse-story-title">Anthropic Partners with 3 Community Colleges for Pilot</h4>
+                  <p class="pulse-story-summary">Claude-based tutoring system launches at Texas, California, and Ohio community colleges this spring.</p>
+                </div>
+                <div class="pulse-story-footer">
+                  <span class="pulse-story-source">Community College Daily</span>
+                  <span class="pulse-story-time">Today</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Episode Archive -->
+          <div class="pulse-archive-section">
+            <div class="pulse-section-header">
+              <h3 class="pulse-section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                Previous Episodes
+              </h3>
+              <span class="pulse-archive-browse">Browse All →</span>
+            </div>
+            <div class="pulse-archive-grid">
+
+              <div class="pulse-archive-card tue">
+                <div class="pulse-archive-top">
+                  <span class="pulse-archive-date">Tue Feb 17</span>
+                  <span class="pulse-archive-lens tue">Hard Question</span>
+                </div>
+                <p class="pulse-archive-title">Are AI Writing Detectors Creating More Problems Than They Solve?</p>
+                <div class="pulse-archive-meta">
+                  <span>4 stories • 4:22</span>
+                  <button class="pulse-archive-play">
+                    <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pulse-archive-card mon">
+                <div class="pulse-archive-top">
+                  <span class="pulse-archive-date">Mon Feb 16</span>
+                  <span class="pulse-archive-lens mon">Playbook</span>
+                </div>
+                <p class="pulse-archive-title">Your Monday Playbook: 3 AI Tools That Actually Save Prep Time</p>
+                <div class="pulse-archive-meta">
+                  <span>5 stories • 4:08</span>
+                  <button class="pulse-archive-play">
+                    <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pulse-archive-card fri">
+                <div class="pulse-archive-top">
+                  <span class="pulse-archive-date">Fri Feb 14</span>
+                  <span class="pulse-archive-lens fri">Innovator's Edge</span>
+                </div>
+                <p class="pulse-archive-title">Week in Review: The Stories That Shaped AI in Higher Ed</p>
+                <div class="pulse-archive-meta">
+                  <span>6 stories • 4:45</span>
+                  <button class="pulse-archive-play">
+                    <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pulse-archive-card thu">
+                <div class="pulse-archive-top">
+                  <span class="pulse-archive-date">Thu Feb 13</span>
+                  <span class="pulse-archive-lens thu">Connecting Dots</span>
+                </div>
+                <p class="pulse-archive-title">Why Every AI Announcement This Week Points to the Same Shift</p>
+                <div class="pulse-archive-meta">
+                  <span>5 stories • 4:15</span>
+                  <button class="pulse-archive-play">
+                    <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pulse-archive-card wed">
+                <div class="pulse-archive-top">
+                  <span class="pulse-archive-date">Wed Feb 12</span>
+                  <span class="pulse-archive-lens wed">Student Exp.</span>
+                </div>
+                <p class="pulse-archive-title">Through Students' Eyes: What Happens When AI Grades Your Essay</p>
+                <div class="pulse-archive-meta">
+                  <span>4 stories • 3:58</span>
+                  <button class="pulse-archive-play">
+                    <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Subscribe CTA -->
+          <div class="pulse-subscribe">
+            <h3>Never Miss a Pulse</h3>
+            <p>Get the daily briefing delivered to your inbox every morning. Curated AI news for higher education — no fluff, no hype.</p>
+            <div class="pulse-subscribe-form">
+              <input type="email" class="pulse-subscribe-input" placeholder="your@university.edu">
+              <button class="pulse-subscribe-btn">Subscribe Free</button>
+            </div>
+            <p class="pulse-subscribe-note">Join 1,200+ educators. No spam. Unsubscribe anytime.</p>
+          </div>
+
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="pulse-sidebar">
+
+          <!-- Dr. Norma Card -->
+          <div class="pulse-sidebar-card">
+            <div class="pulse-host-header">
+              <div class="pulse-host-avatar">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=face" alt="Dr. Norma Jones">
+              </div>
+              <div>
+                <div class="pulse-host-name">Dr. Norma Jones</div>
+                <div class="pulse-host-role">Host & Editorial Director</div>
+              </div>
+            </div>
+            <p class="pulse-host-bio">Your daily briefing on AI in higher education — curated, analyzed, and delivered with the questions nobody else is asking.</p>
+          </div>
+
+          <!-- Editorial Lens Schedule -->
+          <div class="pulse-lens-schedule">
+            <div class="pulse-schedule-title">Editorial Lens Rotation</div>
+            <div class="pulse-schedule-list">
+              <div class="pulse-schedule-item">
+                <span class="pulse-schedule-day" style="color: var(--cyan);">Mon</span>
+                <span class="pulse-schedule-name">The Practitioner's Playbook</span>
+              </div>
+              <div class="pulse-schedule-item">
+                <span class="pulse-schedule-day" style="color: #f43f5e;">Tue</span>
+                <span class="pulse-schedule-name">The Hard Question</span>
+              </div>
+              <div class="pulse-schedule-item active">
+                <span class="pulse-schedule-day" style="color: var(--green);">Wed</span>
+                <span class="pulse-schedule-name">The Student Experience</span>
+              </div>
+              <div class="pulse-schedule-item">
+                <span class="pulse-schedule-day" style="color: var(--magenta);">Thu</span>
+                <span class="pulse-schedule-name">Connecting the Dots</span>
+              </div>
+              <div class="pulse-schedule-item">
+                <span class="pulse-schedule-day" style="background: linear-gradient(135deg, var(--cyan), var(--magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Fri</span>
+                <span class="pulse-schedule-name">The Innovator's Edge</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <!-- Recent Episodes -->
-      <div style="max-width: 700px; margin: 0 auto 3rem;">
-        <h4 style="margin-bottom: 1rem; color: #a0a0a0;">Recent Daily News Episodes</h4>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-          <div class="episode-item" style="padding: 0.75rem;">
-            <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">The Innovation Pulse – Friday, February 13, 2026</div>
-            </div>
-            <button class="episode-play">▶</button>
-          </div>
-          <div class="episode-item" style="padding: 0.75rem;">
-            <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">The Innovation Pulse – Thursday, February 12, 2026</div>
-            </div>
-            <button class="episode-play">▶</button>
-          </div>
-          <div class="episode-item" style="padding: 0.75rem;">
-            <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">The Innovation Pulse – Wednesday, February 11, 2026</div>
-            </div>
-            <button class="episode-play">▶</button>
-          </div>
-          <div class="episode-item" style="padding: 0.75rem;">
-            <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">The Innovation Pulse – Monday, February 9, 2026</div>
-            </div>
-            <button class="episode-play">▶</button>
-          </div>
-          <div class="episode-item" style="padding: 0.75rem;">
-            <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">The Innovation Pulse – Sunday, February 8, 2026</div>
-            </div>
-            <button class="episode-play">▶</button>
-          </div>
-          <div class="episode-item" style="padding: 0.75rem;">
-            <div class="episode-info" style="flex: 1;">
-              <div class="episode-title">The Innovation Pulse – Friday, February 6, 2026</div>
-            </div>
-            <button class="episode-play">▶</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stats Row -->
-      <div class="stats-row" style="max-width: 800px; margin: 0 auto 3rem;">
-        <div class="stat-box">
-          <div class="stat-value">847</div>
-          <div class="stat-label">Stories Curated</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-value">52</div>
-          <div class="stat-label">Tools Reviewed</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-value">6</div>
-          <div class="stat-label">Today</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-value">12K</div>
-          <div class="stat-label">Weekly Readers</div>
-        </div>
-      </div>
-
-      <!-- Filter Bar -->
-      <div class="filter-bar">
-        <button class="filter-btn active" onclick="setFilter(this)">All Stories</button>
-        <button class="filter-btn" onclick="setFilter(this)">Insights & Trends</button>
-        <button class="filter-btn" onclick="setFilter(this)">Product Releases</button>
-        <button class="filter-btn" onclick="setFilter(this)">Tool Spotlight</button>
-        <button class="filter-btn" onclick="setFilter(this)">Case Studies</button>
-        <button class="filter-btn" onclick="setFilter(this)">Policy & Ethics</button>
-      </div>
-
-      <!-- Featured Story -->
-      <div class="featured-card">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop" alt="Campus" class="featured-image">
-        <div class="featured-content">
-          <span class="badge badge-green mb-2">PRODUCT RELEASE</span>
-          <h3>OpenAI Launches Campus AI Program for Universities</h3>
-          <p>OpenAI announces a new initiative offering discounted API access and custom model fine-tuning for research institutions. The program includes dedicated support teams and responsible AI training modules for faculty.</p>
-          <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
-            <span style="font-size: 0.85rem; color: #808080;">OpenAI Blog</span>
-            <span style="font-size: 0.85rem; color: #606060;">2 hours ago</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Story Grid -->
-      <div class="grid grid-3">
-
-        <div class="story-card">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop" alt="AI Ethics" class="story-image">
-          <div class="story-content">
-            <div class="story-meta">
-              <span class="badge badge-violet">POLICY & ETHICS</span>
-            </div>
-            <h4 class="story-title">UNESCO Releases Global Framework for AI in Education</h4>
-            <p class="story-excerpt">New guidelines address equity, privacy, and pedagogical integrity in AI-assisted learning environments.</p>
-            <span class="story-time">4 hours ago • UNESCO</span>
-          </div>
-        </div>
-
-        <div class="story-card">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop" alt="Analytics" class="story-image">
-          <div class="story-content">
-            <div class="story-meta">
-              <span class="badge badge-sky">INSIGHTS & TRENDS</span>
-            </div>
-            <h4 class="story-title">72% of Institutions Now Using AI for Student Success Initiatives</h4>
-            <p class="story-excerpt">EDUCAUSE survey reveals rapid adoption of predictive analytics and AI advising tools.</p>
-            <span class="story-time">6 hours ago • EDUCAUSE</span>
-          </div>
-        </div>
-
-        <div class="story-card">
-          <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=200&fit=crop" alt="Tools" class="story-image">
-          <div class="story-content">
-            <div class="story-meta">
-              <span class="badge badge-orange">TOOL SPOTLIGHT</span>
-            </div>
-            <h4 class="story-title">Magic School AI Adds 15 New Tools for STEM Educators</h4>
-            <p class="story-excerpt">New suite includes lab report generators, scientific writing scaffolds, and data visualization assistants.</p>
-            <span class="story-time">8 hours ago • EdSurge</span>
-          </div>
-        </div>
-
-        <div class="story-card">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=200&fit=crop" alt="Classroom" class="story-image">
-          <div class="story-content">
-            <div class="story-meta">
-              <span class="badge badge-magenta">CASE STUDY</span>
-            </div>
-            <h4 class="story-title">How Georgia State Reduced Drop-Out Rates by 22% with AI Advising</h4>
-            <p class="story-excerpt">Deep dive into the university's comprehensive AI intervention system that has become a national model.</p>
-            <span class="story-time">1 day ago • Chronicle</span>
-          </div>
-        </div>
-
-        <div class="story-card">
-          <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=200&fit=crop" alt="Writing" class="story-image">
-          <div class="story-content">
-            <div class="story-meta">
-              <span class="badge badge-green">PRODUCT RELEASE</span>
-            </div>
-            <h4 class="story-title">Anthropic Releases Claude 4.5 with Enhanced Academic Writing Features</h4>
-            <p class="story-excerpt">New model includes improved citation handling, discipline-specific writing modes, and assignment feedback tools.</p>
-            <span class="story-time">1 day ago • Anthropic</span>
-          </div>
-        </div>
-
-        <div class="story-card">
-          <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=200&fit=crop" alt="Research" class="story-image">
-          <div class="story-content">
-            <div class="story-meta">
-              <span class="badge badge-violet">POLICY & ETHICS</span>
-            </div>
-            <h4 class="story-title">AAU Releases Guidance on AI in Research Integrity</h4>
-            <p class="story-excerpt">Major research universities align on disclosure requirements and acceptable AI use in scholarly publishing.</p>
-            <span class="story-time">2 days ago • AAU</span>
-          </div>
-        </div>
-
-      </div>
-
     </div>
 
     <!-- Footer -->
@@ -4385,6 +5387,18 @@
       }
     }
 
+    // Pulse page waveform generator
+    function generatePulseWaveform(container, barCount) {
+      barCount = barCount || 70;
+      for (let i = 0; i < barCount; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'pulse-wave-bar';
+        const h = 6 + Math.random() * 28 + Math.sin(i * 0.25) * 10 + Math.cos(i * 0.12) * 6;
+        bar.style.height = Math.max(4, h) + 'px';
+        container.appendChild(bar);
+      }
+    }
+
     // ========================================
     // CANVAS VISUALIZATIONS
     // ========================================
@@ -4621,7 +5635,30 @@
     // ========================================
     document.addEventListener('DOMContentLoaded', function() {
       const pulseWaveform = document.getElementById('pulseWaveform');
-      if (pulseWaveform) generateWaveform(pulseWaveform);
+      if (pulseWaveform) generatePulseWaveform(pulseWaveform, 70);
+
+      // Pulse page play button
+      const pulsePlayBtn = document.getElementById('pulsePlayBtn');
+      if (pulsePlayBtn) {
+        let isPlaying = false;
+        pulsePlayBtn.addEventListener('click', function() {
+          isPlaying = !isPlaying;
+          const bars = document.querySelectorAll('.pulse-wave-bar');
+          if (isPlaying) {
+            pulsePlayBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="22" height="22"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+            bars.forEach((bar, i) => {
+              if (i < 15) bar.classList.add('played');
+              if (i >= 12 && i < 20) {
+                bar.classList.add('active');
+                bar.style.animationDelay = (Math.random() * 0.5) + 's';
+              }
+            });
+          } else {
+            pulsePlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>';
+            bars.forEach(bar => bar.classList.remove('active'));
+          }
+        });
+      }
       
       const podcastWaveform = document.getElementById('podcastWaveform');
       if (podcastWaveform) generateWaveform(podcastWaveform, 30);
