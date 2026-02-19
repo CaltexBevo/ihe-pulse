@@ -2426,7 +2426,32 @@
       left: 0;
       width: 4px;
       height: 100%;
-      background: var(--cyan);
+      background: var(--accent, var(--cyan));
+    }
+
+    .pulse-story-source {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .pulse-story-source:hover {
+      color: var(--accent, var(--cyan));
+    }
+
+    .pulse-story-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .pulse-cat-filter:hover {
+      background: rgba(255,255,255,0.1) !important;
+    }
+
+    .pulse-transcript-toggle:hover {
+      background: rgba(255,255,255,0.1) !important;
+      border-color: rgba(255,255,255,0.2) !important;
     }
 
     .pulse-story-card:hover {
@@ -5096,25 +5121,481 @@
        ======================================== -->
   <script>
     // ========================================
+    // PULSE DATA (Auto-loaded from pipeline)
+    // ========================================
+    const PULSE_DATA = {
+      "date": "2026-02-19",
+      "dayOfWeek": "Thursday",
+      "editorialLens": {
+        "name": "Connecting the Dots",
+        "description": "Pattern recognition across stories and across the week.",
+        "color": "#a78bfa"
+      },
+      "episodeTitle": "Canvas Announces AI-Powered Feedback Feature",
+      "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-19.mp3",
+      "audioDuration": "1:58",
+      "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed — it's Thursday, February 19, 2026. I'm Dr. Norma Jones. Today, we dive into a fascinating question: Can AI truly support educators, or are we risking over-reliance on imperfect systems?\n\nLet's take a closer look. Canvas LMS has rolled out a new AI writing assistant powered by GPT-4, designed to give students instant feedback on their essays. This tool promises to enhance learning by offering immediate insights. But here's the puzzle: Are these AI-driven comments enhancing the educator's role or replacing it? As we explore this, consider how AI might change your feedback process. Are we equipping students with better tools, or just outsourcing our guidance? AI's promise is rich, but its impact on the educational dynamic warrants careful thought.\n\nMeanwhile, the University of Michigan is piloting an AI tutoring system in 50 introductory courses, with early indications pointing to success. What's truly intriguing here is the scale of this experiment. Could this be a preview of how AI might transform foundational learning? The potential for personalized support is enormous, but how do we ensure it complements rather than competes with traditional teaching? Keep an eye on how this unfolds.\n\nNext up, a new study raises eyebrows about AI detection tools, revealing that 12-18% of student work is wrongly flagged as AI-generated. This challenges a core assumption: the infallibility of AI in policing academic integrity. As educators, how do we balance trust in these tools with our own judgment? This study suggests a need for critical evaluation of the technologies we adopt.\n\nThat's today's Innovation Pulse. I'm Dr. Norma Jones — find the full stories and links at innovatinghighered.com. Thanks for joining us as we explore new frontiers in educational innovation. See you tomorrow.",
+      "hook": "Today, we dive into a fascinating question: Can AI truly support educators, or are we risking over-reliance on imperfect systems?",
+      "segments": {
+        "deepDive": {
+          "title": "Canvas Announces AI-Powered Feedback Feature",
+          "summary": "Canvas LMS has launched a new AI writing assistant that provides instant feedback on student essays using GPT-4.",
+          "source": "EdSurge",
+          "sourceUrl": "https://www.edsurge.com/news/2026-02-19-canvas-ai-feedback",
+          "category": "LATEST AI PRODUCT RELEASES"
+        },
+        "quickHits": [
+          {
+            "title": "University of Michigan Pilots AI Tutoring System",
+            "summary": "The University of Michigan is testing an AI tutoring system across 50 introductory courses with promising early results.",
+            "source": "Chronicle of Higher Education",
+            "sourceUrl": "https://www.chronicle.com/article/umich-ai-tutoring-2026",
+            "category": "CASE STUDIES"
+          },
+          {
+            "title": "New Study Questions AI Detection Accuracy",
+            "summary": "Investigation found that popular AI detection tools wrongly flag 12-18% of student work as AI-generated.",
+            "source": "Chronicle of Higher Education",
+            "sourceUrl": "https://www.chronicle.com/article/ai-detection-accuracy-2026",
+            "category": "ETHICAL AI"
+          }
+        ]
+      },
+      "stories": [
+        {
+          "title": "Canvas Announces AI-Powered Feedback Feature",
+          "summary": "Canvas LMS has launched a new AI writing assistant that provides instant feedback on student essays using GPT-4.",
+          "source": "EdSurge",
+          "sourceUrl": "https://www.edsurge.com/news/2026-02-19-canvas-ai-feedback",
+          "category": "LATEST AI PRODUCT RELEASES",
+          "isDeveloping": false,
+          "publishedAt": "2026-02-19T09:15:38.526Z"
+        },
+        {
+          "title": "University of Michigan Pilots AI Tutoring System",
+          "summary": "The University of Michigan is testing an AI tutoring system across 50 introductory courses with promising early results.",
+          "source": "Chronicle of Higher Education",
+          "sourceUrl": "https://www.chronicle.com/article/umich-ai-tutoring-2026",
+          "category": "CASE STUDIES",
+          "isDeveloping": false,
+          "publishedAt": "2026-02-19T09:15:38.526Z"
+        },
+        {
+          "title": "New Study Questions AI Detection Accuracy",
+          "summary": "Investigation found that popular AI detection tools wrongly flag 12-18% of student work as AI-generated.",
+          "source": "Chronicle of Higher Education",
+          "sourceUrl": "https://www.chronicle.com/article/ai-detection-accuracy-2026",
+          "category": "ETHICAL AI",
+          "isDeveloping": false,
+          "publishedAt": "2026-02-19T09:15:38.526Z"
+        }
+      ],
+      "callbacks": [],
+      "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
+      "publishedAt": "2026-02-19T09:15:38.526Z"
+    };
+
+    // Category color mapping
+    const CATEGORY_COLORS = {
+      'LATEST AI PRODUCT RELEASES': '#00d4ff',
+      'INSIGHTS & TRENDS': '#c850c0',
+      'CASE STUDIES': '#00e88a',
+      'PRACTICAL TIPS': '#f59e0b',
+      'ETHICAL AI': '#fb7185'
+    };
+
+    // Editorial lens schedule
+    const LENS_SCHEDULE = {
+      'Monday': { name: "The Practitioner's Playbook", color: '#00d4ff', short: 'mon' },
+      'Tuesday': { name: 'The Hard Question', color: '#f43f5e', short: 'tue' },
+      'Wednesday': { name: 'The Student Experience', color: '#00e88a', short: 'wed' },
+      'Thursday': { name: 'Connecting the Dots', color: '#a78bfa', short: 'thu' },
+      'Friday': { name: "The Innovator's Edge", color: 'linear-gradient(135deg, #00d4ff, #c850c0)', short: 'fri' }
+    };
+
+    // Current pulse category filter
+    let currentPulseCategory = 'all';
+
+    // ========================================
+    // LOAD PULSE DATA
+    // ========================================
+    function loadPulseData() {
+      if (!PULSE_DATA) return;
+
+      // Format the date nicely
+      const dateObj = new Date(PULSE_DATA.date + 'T12:00:00');
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = dateObj.toLocaleDateString('en-US', options);
+
+      // Get lens info
+      const lensInfo = LENS_SCHEDULE[PULSE_DATA.dayOfWeek] || LENS_SCHEDULE['Thursday'];
+      const lensColor = PULSE_DATA.editorialLens?.color || lensInfo.color;
+
+      // Update episode date
+      const dateEl = document.querySelector('.pulse-episode-date');
+      if (dateEl) {
+        dateEl.innerHTML = `${formattedDate}
+          <span class="pulse-lens-badge pulse-lens-${lensInfo.short}" style="background: ${lensColor}20; border-color: ${lensColor};">
+            <span class="pulse-lens-dot" style="background: ${lensColor};"></span>
+            ${PULSE_DATA.editorialLens?.name || lensInfo.name}
+          </span>`;
+      }
+
+      // Update episode title
+      const titleEl = document.querySelector('.pulse-episode-title');
+      if (titleEl) titleEl.textContent = PULSE_DATA.episodeTitle;
+
+      // Update lens description
+      const lensDescEl = document.querySelector('.pulse-episode-lens-desc');
+      if (lensDescEl) lensDescEl.textContent = PULSE_DATA.editorialLens?.description || '';
+
+      // Update audio duration
+      const durationEl = document.querySelector('.pulse-audio-duration');
+      if (durationEl) durationEl.textContent = PULSE_DATA.audioDuration;
+
+      const timeEl = document.querySelector('.pulse-audio-time');
+      if (timeEl) timeEl.textContent = `0:00 / ${PULSE_DATA.audioDuration}`;
+
+      // Setup real audio element
+      setupPulseAudio();
+
+      // Render segments
+      renderPulseSegments();
+
+      // Update disclosure
+      const disclosureEl = document.querySelector('.pulse-disclosure');
+      if (disclosureEl) disclosureEl.textContent = PULSE_DATA.voiceDisclosure;
+
+      // Render story cards with category filters
+      renderPulseStories();
+
+      // Update sidebar schedule to highlight today
+      updateLensSchedule();
+
+      // Add transcript section
+      addTranscriptSection();
+    }
+
+    function setupPulseAudio() {
+      // Create audio element if it doesn't exist
+      let audioEl = document.getElementById('pulseAudio');
+      if (!audioEl) {
+        audioEl = document.createElement('audio');
+        audioEl.id = 'pulseAudio';
+        audioEl.preload = 'metadata';
+        document.body.appendChild(audioEl);
+      }
+      audioEl.src = PULSE_DATA.audioUrl;
+
+      const playBtn = document.getElementById('pulsePlayBtn');
+      const timeEl = document.querySelector('.pulse-audio-time');
+      const bars = document.querySelectorAll('.pulse-wave-bar');
+
+      if (playBtn) {
+        // Remove old listeners by cloning
+        const newPlayBtn = playBtn.cloneNode(true);
+        playBtn.parentNode.replaceChild(newPlayBtn, playBtn);
+
+        newPlayBtn.addEventListener('click', function() {
+          if (audioEl.paused) {
+            audioEl.play();
+            newPlayBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="22" height="22"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+            bars.forEach((bar, i) => {
+              bar.classList.add('active');
+              bar.style.animationDelay = (Math.random() * 0.5) + 's';
+            });
+          } else {
+            audioEl.pause();
+            newPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>';
+            bars.forEach(bar => bar.classList.remove('active'));
+          }
+        });
+      }
+
+      audioEl.addEventListener('timeupdate', function() {
+        if (timeEl) {
+          const current = formatTime(audioEl.currentTime);
+          const duration = formatTime(audioEl.duration) || PULSE_DATA.audioDuration;
+          timeEl.textContent = `${current} / ${duration}`;
+
+          // Update waveform progress
+          const progress = audioEl.currentTime / audioEl.duration;
+          bars.forEach((bar, i) => {
+            if (i / bars.length < progress) {
+              bar.classList.add('played');
+            } else {
+              bar.classList.remove('played');
+            }
+          });
+        }
+      });
+
+      audioEl.addEventListener('ended', function() {
+        const btn = document.getElementById('pulsePlayBtn');
+        if (btn) btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>';
+        bars.forEach(bar => {
+          bar.classList.remove('active');
+          bar.classList.remove('played');
+        });
+      });
+    }
+
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function renderPulseSegments() {
+      const segmentsList = document.querySelector('.pulse-segments-list');
+      if (!segmentsList) return;
+
+      const segments = [];
+
+      // Opening Hook
+      segments.push({
+        num: 1,
+        label: 'Opening Hook',
+        labelClass: 'opening',
+        text: PULSE_DATA.hook,
+        time: '0:15'
+      });
+
+      // Deep Dive
+      if (PULSE_DATA.segments?.deepDive) {
+        const dd = PULSE_DATA.segments.deepDive;
+        segments.push({
+          num: 2,
+          label: 'Deep Dive',
+          labelClass: 'deep',
+          text: `${dd.title} — ${dd.summary}`,
+          time: '0:45'
+        });
+      }
+
+      // Quick Hits
+      if (PULSE_DATA.segments?.quickHits?.length) {
+        const qhTitles = PULSE_DATA.segments.quickHits.map(q => q.title).join(' • ');
+        segments.push({
+          num: 3,
+          label: 'Quick Hits',
+          labelClass: 'quick',
+          text: qhTitles,
+          time: '0:45'
+        });
+      }
+
+      // Callback Check (if any)
+      if (PULSE_DATA.callbacks?.length) {
+        segments.push({
+          num: 4,
+          label: 'Callback Check',
+          labelClass: 'callback',
+          text: PULSE_DATA.callbacks[0].text || 'Following up on developing stories...',
+          time: '0:20'
+        });
+      }
+
+      // Closing Thought
+      segments.push({
+        num: segments.length + 1,
+        label: 'Closing Thought',
+        labelClass: 'closing',
+        text: "Find the full stories and links at innovatinghighered.com. Thanks for joining us as we explore new frontiers in educational innovation.",
+        time: '0:13'
+      });
+
+      segmentsList.innerHTML = segments.map(seg => `
+        <div class="pulse-segment-item">
+          <span class="pulse-segment-num">${seg.num}</span>
+          <div class="pulse-segment-content">
+            <div class="pulse-segment-label ${seg.labelClass}">${seg.label}</div>
+            <div class="pulse-segment-text">${seg.text}</div>
+          </div>
+          <span class="pulse-segment-time">${seg.time}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderPulseStories() {
+      const storiesSection = document.querySelector('.pulse-stories-section');
+      if (!storiesSection) return;
+
+      // Build category filter HTML
+      const categories = ['all', ...Object.keys(CATEGORY_COLORS)];
+      const filterHTML = `
+        <div class="pulse-category-filters" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+          ${categories.map(cat => {
+            const isAll = cat === 'all';
+            const color = isAll ? '#fff' : CATEGORY_COLORS[cat];
+            const label = isAll ? 'All Stories' : cat.split(' ').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+            return `<button class="pulse-cat-filter ${isAll ? 'active' : ''}"
+                      data-category="${cat}"
+                      onclick="filterPulseStories('${cat}', this)"
+                      style="padding: 0.4rem 0.8rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600;
+                             background: ${isAll ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.05)'};
+                             border: 1px solid ${isAll ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)'};
+                             color: ${color}; cursor: pointer; transition: all 0.2s;">
+              ${label}
+            </button>`;
+          }).join('')}
+        </div>
+      `;
+
+      // Build story cards HTML
+      const storiesHTML = PULSE_DATA.stories.map(story => {
+        const color = CATEGORY_COLORS[story.category] || '#00d4ff';
+        const categoryLabel = story.category.split(' ').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+        return `
+          <div class="pulse-story-card ${story.isDeveloping ? 'developing' : ''}" data-category="${story.category}" style="--accent: ${color};">
+            <div class="pulse-story-body">
+              <div class="pulse-story-category" style="color: ${color};">
+                <span class="cat-dot" style="background: ${color};"></span>
+                ${categoryLabel}
+              </div>
+              <h4 class="pulse-story-title">${story.title}</h4>
+              <p class="pulse-story-summary">${story.summary}</p>
+            </div>
+            <div class="pulse-story-footer">
+              <a href="${story.sourceUrl}" target="_blank" class="pulse-story-source">${story.source}</a>
+              <span class="pulse-story-time">Today</span>
+            </div>
+            ${story.isDeveloping ? '<span class="pulse-developing-badge">Developing</span>' : ''}
+          </div>
+        `;
+      }).join('');
+
+      // Update the section
+      storiesSection.innerHTML = `
+        <div class="pulse-section-header">
+          <h3 class="pulse-section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            Today's Stories
+          </h3>
+          <span class="pulse-story-count">${PULSE_DATA.stories.length} stories</span>
+        </div>
+        ${filterHTML}
+        <div class="pulse-stories-grid">
+          ${storiesHTML}
+        </div>
+      `;
+    }
+
+    function filterPulseStories(category, btn) {
+      currentPulseCategory = category;
+
+      // Update filter button styles
+      document.querySelectorAll('.pulse-cat-filter').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = 'rgba(255,255,255,0.05)';
+        b.style.borderColor = 'rgba(255,255,255,0.1)';
+      });
+      btn.classList.add('active');
+      btn.style.background = 'rgba(255,255,255,0.15)';
+      btn.style.borderColor = 'rgba(255,255,255,0.3)';
+
+      // Filter story cards
+      document.querySelectorAll('.pulse-story-card').forEach(card => {
+        const cardCat = card.dataset.category;
+        if (category === 'all' || cardCat === category) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function updateLensSchedule() {
+      const scheduleItems = document.querySelectorAll('.pulse-schedule-item');
+      const today = PULSE_DATA.dayOfWeek;
+
+      scheduleItems.forEach(item => {
+        item.classList.remove('active');
+        const daySpan = item.querySelector('.pulse-schedule-day');
+        if (daySpan) {
+          const dayText = daySpan.textContent.trim();
+          const dayMap = { 'Mon': 'Monday', 'Tue': 'Tuesday', 'Wed': 'Wednesday', 'Thu': 'Thursday', 'Fri': 'Friday' };
+          if (dayMap[dayText] === today) {
+            item.classList.add('active');
+          }
+        }
+      });
+    }
+
+    function addTranscriptSection() {
+      const episodeCard = document.querySelector('.pulse-episode-card');
+      if (!episodeCard || document.getElementById('pulseTranscript')) return;
+
+      const transcriptHTML = `
+        <div id="pulseTranscript" class="pulse-transcript" style="margin-top: 1.5rem;">
+          <button class="pulse-transcript-toggle" onclick="toggleTranscript()"
+                  style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.05);
+                         border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.75rem 1rem;
+                         color: #fff; cursor: pointer; width: 100%; font-size: 0.9rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+            </svg>
+            Read the Transcript
+            <svg class="transcript-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="margin-left: auto; transition: transform 0.2s;">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="pulse-transcript-content" style="display: none; margin-top: 1rem; padding: 1.5rem;
+                                                        background: rgba(0,0,0,0.3); border-radius: 12px;
+                                                        border: 1px solid rgba(255,255,255,0.1);">
+            <div style="font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.85); white-space: pre-line;">
+              ${PULSE_DATA.broadcastScript}
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Insert before the disclosure
+      const disclosure = episodeCard.querySelector('.pulse-disclosure');
+      if (disclosure) {
+        disclosure.insertAdjacentHTML('beforebegin', transcriptHTML);
+      } else {
+        episodeCard.insertAdjacentHTML('beforeend', transcriptHTML);
+      }
+    }
+
+    function toggleTranscript() {
+      const content = document.querySelector('.pulse-transcript-content');
+      const chevron = document.querySelector('.transcript-chevron');
+      if (content) {
+        const isOpen = content.style.display !== 'none';
+        content.style.display = isOpen ? 'none' : 'block';
+        if (chevron) chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+      }
+    }
+
+    // ========================================
     // PAGE NAVIGATION
     // ========================================
     function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      
+
       const target = document.getElementById('page-' + id);
       if (target) {
         target.classList.add('active');
       }
-      
+
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
         if (link.dataset.page === id) {
           link.classList.add('active');
         }
       });
-      
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
       document.getElementById('navLinks').classList.remove('open');
+
+      // Load pulse data when navigating to pulse page
+      if (id === 'pulse') {
+        loadPulseData();
+      }
     }
 
     function toggleNav() {
@@ -5634,35 +6115,16 @@
     // INITIALIZATION
     // ========================================
     document.addEventListener('DOMContentLoaded', function() {
+      // Generate waveform bars for pulse audio player
       const pulseWaveform = document.getElementById('pulseWaveform');
       if (pulseWaveform) generatePulseWaveform(pulseWaveform, 70);
 
-      // Pulse page play button
-      const pulsePlayBtn = document.getElementById('pulsePlayBtn');
-      if (pulsePlayBtn) {
-        let isPlaying = false;
-        pulsePlayBtn.addEventListener('click', function() {
-          isPlaying = !isPlaying;
-          const bars = document.querySelectorAll('.pulse-wave-bar');
-          if (isPlaying) {
-            pulsePlayBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="22" height="22"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-            bars.forEach((bar, i) => {
-              if (i < 15) bar.classList.add('played');
-              if (i >= 12 && i < 20) {
-                bar.classList.add('active');
-                bar.style.animationDelay = (Math.random() * 0.5) + 's';
-              }
-            });
-          } else {
-            pulsePlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>';
-            bars.forEach(bar => bar.classList.remove('active'));
-          }
-        });
-      }
-      
+      // Load pulse data (real pipeline content)
+      loadPulseData();
+
       const podcastWaveform = document.getElementById('podcastWaveform');
       if (podcastWaveform) generateWaveform(podcastWaveform, 30);
-      
+
       initCanvasViz('canvas-pulse', 'waveform', '#00d4ff');
       initCanvasViz('canvas-podcast', 'rings', '#c850c0');
       initCanvasViz('canvas-tools', 'dots', '#00e88a');
