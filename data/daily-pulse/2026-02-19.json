@@ -6,73 +6,87 @@
     "description": "Pattern recognition across stories and across the week.",
     "color": "#a78bfa"
   },
-  "episodeTitle": "Canvas Announces AI-Powered Feedback Feature",
+  "episodeTitle": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
   "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-19.mp3",
-  "audioDuration": "1:58",
-  "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed — it's Thursday, February 19, 2026. I'm Dr. Norma Jones. Today, we dive into a fascinating question: Can AI truly support educators, or are we risking over-reliance on imperfect systems?\n\nLet's take a closer look. Canvas LMS has rolled out a new AI writing assistant powered by GPT-4, designed to give students instant feedback on their essays. This tool promises to enhance learning by offering immediate insights. But here's the puzzle: Are these AI-driven comments enhancing the educator's role or replacing it? As we explore this, consider how AI might change your feedback process. Are we equipping students with better tools, or just outsourcing our guidance? AI's promise is rich, but its impact on the educational dynamic warrants careful thought.\n\nMeanwhile, the University of Michigan is piloting an AI tutoring system in 50 introductory courses, with early indications pointing to success. What's truly intriguing here is the scale of this experiment. Could this be a preview of how AI might transform foundational learning? The potential for personalized support is enormous, but how do we ensure it complements rather than competes with traditional teaching? Keep an eye on how this unfolds.\n\nNext up, a new study raises eyebrows about AI detection tools, revealing that 12-18% of student work is wrongly flagged as AI-generated. This challenges a core assumption: the infallibility of AI in policing academic integrity. As educators, how do we balance trust in these tools with our own judgment? This study suggests a need for critical evaluation of the technologies we adopt.\n\nThat's today's Innovation Pulse. I'm Dr. Norma Jones — find the full stories and links at innovatinghighered.com. Thanks for joining us as we explore new frontiers in educational innovation. See you tomorrow.",
-  "hook": "Today, we dive into a fascinating question: Can AI truly support educators, or are we risking over-reliance on imperfect systems?",
+  "audioDuration": "3:32",
+  "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed — it's Thursday, February 19, 2026. I'm Dr. Norma Jones. Today, we explore a provocative claim: the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself.\n\nLet's dive into this thought-provoking perspective from Nir Eisikovits and Jacob Burley at UMass Boston, published in The Conversation. While much of the public debate around AI in universities focuses on academic dishonesty, these researchers warn of a far deeper threat: the degradation of educational ecosystems. They categorize AI systems into nonautonomous tools like admissions and advising, hybrid systems such as tutoring chatbots, and fully autonomous agents capable of conducting research independently. Their core argument is that universities risk transforming into 'output machines' rather than places that cultivate judgment and capacity. The real danger lies in bypassing cognitive challenges—drafting, revising, and even failing—that are essential for building durable understanding. Without this struggle, they argue, learning itself erodes. As educators, we must ask: how do we ensure that AI enhances, rather than diminishes, the educational experience?\n\nNext up, we have a fascinating shift at Purdue and Ohio State Universities, where using AI isn't just accepted—it's a graduation requirement. Purdue is embedding an AI 'working competency' across 35 courses for students starting in fall 2025, aiming for mastery by the class of 2030. Ohio State's AI Fluency initiative requires all graduates from the class of 2029 onward to demonstrate AI competence. A Copyleaks survey reveals nearly 90% of students already use AI academically, with over half engaging with it regularly. The emphasis is on moving beyond basic chatbot use toward creating custom solutions, known as 'vibe coding.' It's a bold move, challenging us to consider: how will these requirements reshape the future workforce?\n\nMeanwhile, Seattle University is fostering crucial conversations on AI ethics through its Technology Ethics Initiative. TEI director Onur Bakiner cautions against the AI hype, stressing the importance of providing basic AI, digital, and media literacy skills. Students voice concerns, like communication major Avani Koganti, who worries AI might diminish work quality and critical thinking. Law student Itzel Gonzalez points out the inconsistency in faculty guidelines on AI use, creating confusion. As AI becomes more ubiquitous, how do we maintain clarity and consistency in its educational application?\n\nTurning to Ithaca College, students are questioning the value of traditional higher education amidst AI's rapid advancements. With AI's expanding capabilities, they're concerned about whether skills from conventional degrees will remain relevant. This tension between traditional educational models and the evolving workforce demands is central for students planning their futures. Are we equipping them with the right skills for a world in flux?\n\nFinally, Northeastern University's President Joseph E. Aoun urges higher education institutions to embrace AI technologies, as highlighted in his Boston Globe op-ed. Aoun has long championed AI on campus and encourages the broader educational community to do the same. The challenge is to integrate AI in ways that genuinely enhance learning without losing sight of essential educational values.\n\nThat's today's Innovation Pulse. I'm Dr. Norma Jones — find the full stories and links at innovatinghighered.com. Thanks for joining us as we explore new frontiers in educational innovation. See you tomorrow.",
+  "hook": "Today, we explore a provocative claim: the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself.",
   "segments": {
     "deepDive": {
-      "title": "Canvas Announces AI-Powered Feedback Feature",
-      "summary": "Canvas LMS has launched a new AI writing assistant that provides instant feedback on student essays using GPT-4.",
-      "source": "EdSurge",
-      "sourceUrl": null,
-      "sourceBroken": true,
-      "category": "LATEST AI PRODUCT RELEASES"
+      "title": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
+      "source": "The Conversation",
+      "sourceUrl": "https://theconversation.com/the-greatest-risk-of-ai-in-higher-education-isnt-cheating-its-the-erosion-of-learning-itself-270243",
+      "category": "INSIGHTS & TRENDS"
     },
     "quickHits": [
       {
-        "title": "University of Michigan Pilots AI Tutoring System",
-        "summary": "The University of Michigan is testing an AI tutoring system across 50 introductory courses with promising early results.",
-        "source": "Chronicle of Higher Education",
-        "sourceUrl": null,
-        "sourceBroken": true,
-        "category": "CASE STUDIES"
+        "title": "At These Universities, Using AI Isn't Shunned — It's a Graduation Requirement",
+        "source": "The 74",
+        "sourceUrl": "https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/",
+        "category": "INSIGHTS & TRENDS"
       },
       {
-        "title": "New Study Questions AI Detection Accuracy",
-        "summary": "Investigation found that popular AI detection tools wrongly flag 12-18% of student work as AI-generated.",
-        "source": "Chronicle of Higher Education",
-        "sourceUrl": null,
-        "sourceBroken": true,
-        "category": "ETHICAL AI"
+        "title": "Is AI Inescapable in Higher Education?",
+        "source": "Seattle Spectator",
+        "sourceUrl": "https://seattlespectator.com/2026/02/18/is-ai-inescapable-in-higher-education/",
+        "category": "INSIGHTS & TRENDS"
+      },
+      {
+        "title": "Students Question Higher Education's Value Amid AI",
+        "source": "The Ithacan",
+        "sourceUrl": "https://theithacan.org/66431/news/students-question-the-value-of-higher-education-amid-ai/",
+        "category": "INSIGHTS & TRENDS"
       }
     ]
   },
   "stories": [
     {
-      "title": "Canvas Announces AI-Powered Feedback Feature",
-      "summary": "Canvas LMS has launched a new AI writing assistant that provides instant feedback on student essays using GPT-4.",
-      "source": "EdSurge",
-      "sourceUrl": null,
-      "sourceBroken": true,
-      "category": "LATEST AI PRODUCT RELEASES",
+      "title": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
+      "summary": "",
+      "source": "The Conversation",
+      "sourceUrl": "https://theconversation.com/the-greatest-risk-of-ai-in-higher-education-isnt-cheating-its-the-erosion-of-learning-itself-270243",
+      "category": "INSIGHTS & TRENDS",
       "isDeveloping": false,
-      "publishedAt": "2026-02-19T09:15:38.526Z"
+      "publishedAt": "2026-02-19"
     },
     {
-      "title": "University of Michigan Pilots AI Tutoring System",
-      "summary": "The University of Michigan is testing an AI tutoring system across 50 introductory courses with promising early results.",
-      "source": "Chronicle of Higher Education",
-      "sourceUrl": null,
-      "sourceBroken": true,
+      "title": "At These Universities, Using AI Isn't Shunned — It's a Graduation Requirement",
+      "summary": "",
+      "source": "The 74",
+      "sourceUrl": "https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/",
+      "category": "INSIGHTS & TRENDS",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-17"
+    },
+    {
+      "title": "Is AI Inescapable in Higher Education?",
+      "summary": "",
+      "source": "Seattle Spectator",
+      "sourceUrl": "https://seattlespectator.com/2026/02/18/is-ai-inescapable-in-higher-education/",
+      "category": "INSIGHTS & TRENDS",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-18"
+    },
+    {
+      "title": "Students Question Higher Education's Value Amid AI",
+      "summary": "",
+      "source": "The Ithacan",
+      "sourceUrl": "https://theithacan.org/66431/news/students-question-the-value-of-higher-education-amid-ai/",
+      "category": "INSIGHTS & TRENDS",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-18"
+    },
+    {
+      "title": "Aoun Urges Higher Education Institutions to Embrace AI",
+      "summary": "",
+      "source": "The Huntington News",
+      "sourceUrl": "https://huntnewsnu.com/91291/campus/aoun-urges-higher-education-institutions-to-embrace-ai-in-boston-globe-op-ed/",
       "category": "CASE STUDIES",
       "isDeveloping": false,
-      "publishedAt": "2026-02-19T09:15:38.526Z"
-    },
-    {
-      "title": "New Study Questions AI Detection Accuracy",
-      "summary": "Investigation found that popular AI detection tools wrongly flag 12-18% of student work as AI-generated.",
-      "source": "Chronicle of Higher Education",
-      "sourceUrl": null,
-      "sourceBroken": true,
-      "category": "ETHICAL AI",
-      "isDeveloping": false,
-      "publishedAt": "2026-02-19T09:15:38.526Z"
+      "publishedAt": "2026-02-13"
     }
   ],
   "callbacks": [],
   "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
-  "publishedAt": "2026-02-19T09:15:38.526Z",
-  "_note": "This was a test episode with synthetic data. URLs were marked as broken."
+  "publishedAt": "2026-02-19T20:43:53.580Z"
 }
