@@ -1,5 +1,50 @@
 # IHE Pulse Changelog
 
+## v0.7.0 — February 19, 2026 (Build 10: Pipeline Live + Page Fixes)
+
+### Pipeline: WordPress → GitHub/Vercel Migration
+- **Removed all WordPress publishing code** — clean break, WP is retired
+- **Added GitHub publishing** — pipeline commits JSON to `data/daily-pulse/YYYY-MM-DD.json`, triggers Vercel auto-deploy
+- **Added @octokit/rest** dependency for GitHub API
+- **Added URL validation** — `urlValidator.js` checks every story link before publishing, removes dead URLs
+- **Updated broadcast format** — 5-segment structure (Opening Hook → Deep Dive → Quick Hits → Callback Check → Closing Thought)
+- **Added editorial lens rotation** — Mon: Practitioner's Playbook, Tue: Hard Question, Wed: Student Experience, Thu: Connecting the Dots, Fri: Innovator's Edge
+- **Added 5 story categories** — Latest AI Product Releases, Insights & Trends, Case Studies, Practical Tips, Ethical AI
+- **Deployed to Cloud Run** — revision ihe-tools-server-00041-5vk
+- **Successful full pipeline run** — Feb 19 episode published with validated URLs, Dr. Norma audio, editorial lens
+
+### Website: Innovation Pulse Page
+- **Redesigned Innovation Pulse page** — editorial layout with hero, lens badges, segment timeline, story cards
+- **Connected to real pipeline data** — page renders from actual `data/daily-pulse/2026-02-19.json`
+- **Real audio player** — plays Dr. Norma's ElevenLabs broadcast from GCS
+- **Category filter pills** — 5 color-coded categories with click-to-filter
+- **Expandable transcript** — "Read the transcript" section with full broadcast script
+- **Editorial lens schedule** — sidebar showing Mon-Fri lens rotation with today highlighted
+
+### Website: Critical Bug Fixes
+- **Fixed missing `</div>` on page-tools** — was causing Prompts, Tinker Lab, About to render blank (all nested inside hidden page-tools)
+- **Removed 755 lines of old duplicate AI Tools content** — Clearbit logos, Staff Picks, hardcoded cards
+- **Standardized heading fonts** — all pages now use Outfit 800, removed Instrument Serif override
+- **Fixed `--font-display` CSS variable** — changed from Instrument Serif to Outfit
+- **Fixed `<em>` font-style** — changed from italic to normal for gradient text
+
+### QA & Process
+- **Created IHE-QA-AGENT.md** — comprehensive post-build verification script (branding, fonts, data counts, page structure)
+- **Created COMPREHENSIVE-DEBUG-AND-FIX prompt pattern** — self-diagnosing, self-fixing, self-verifying agent approach
+- **Established "all permissions granted" prompt pattern** for autonomous execution
+
+### APIs & Infrastructure
+- Serper (news search) — active
+- Firecrawl (web scraping) — active
+- OpenAI Assistant (orchestration + broadcast script) — active
+- ElevenLabs (Dr. Norma voice, ID: 6kjO9NSV6LEGjLPRtTvo) — active
+- Google Cloud Storage (MP3 audio + story tracker) — active
+- Google Cloud Run (daily 8 AM PT automation) — active
+- GitHub API via Octokit (JSON publishing) — NEW
+- Vercel (auto-deploy from GitHub) — active
+
+---
+
 ## [v0.6.0] — February 17, 2026 (Build 9 Continuation)
 
 ### AI App Directory — Complete Redesign (ai-app-directory-v2.html)

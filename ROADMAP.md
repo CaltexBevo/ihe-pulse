@@ -1,48 +1,74 @@
-# IHE Pulse Roadmap
+# IHE Pulse — Project Roadmap
+*Updated: February 19, 2026*
 
-## Completed
+## ✅ Completed
 
-- [x] Electric Dusk design system implementation
-- [x] Homepage with 9 sections (hero, ticker, daily pulse, podcast, tinker lab, AI tools, quick access, newsletter, bio)
-- [x] Daily Pulse / Innovation Pulse news page
-- [x] Prompt Navigator with 9 techniques, 15 templates, Common Problems, Refinement Workflow
-- [x] AI Directory with 28+ tools, Staff Picks, category filters, detail pages
-- [x] Educator Tools page with Syllabot, AI Redesign, EquiGrade Mentor
-- [x] Podcast episode detail pages (7 episodes with audio, Key Takeaways, Guest Bios)
-- [x] Tinker Lab post detail pages (2 posts with audio and content)
-- [x] About page with Dr. Norma Jones and Brent Jones bios
-- [x] Be Our Guest page with guest application info
-- [x] Footer with newsletter signup
-- [x] Navigation with logo fix
-- [x] AI App Directory redesign with brand-colored cards and editorial detail panels
-- [x] Prompt Navigator engagement overhaul with before/after previews and difficulty badges
-- [x] Font and branding standardization across prototypes (Outfit, text-only nav)
-- [x] Directory best practices research and implementation
+### Website Design (Builds 1-10)
+- [x] Portal Homepage with 9 destination cards
+- [x] Electric Dusk theme (cyan/magenta on dark)
+- [x] AI App Directory — 38 tools with brand-colored cards, 3 value points, editorial reviews, search/filters
+- [x] Prompt Navigator — 9 techniques with difficulty badges, before/after previews, 15 templates, 19 references
+- [x] Innovation Pulse page — editorial layout with real data, audio player, category filters, lens schedule
+- [x] Podcast page with 7 episode detail pages
+- [x] Tinker Lab with 2 post detail pages
+- [x] Getting Started, Case Studies, Community, About pages
+- [x] Font standardization (Outfit + DM Mono)
+- [x] Text-only nav branding ("Innovating Higher Ed")
+- [x] QA agent for post-build verification
 
-## In Progress
+### Pipeline (Build 10)
+- [x] WordPress publishing removed — clean break
+- [x] GitHub publishing via Octokit — JSON to data/daily-pulse/
+- [x] URL validation before publishing
+- [x] 5-segment broadcast format (Opening → Deep Dive → Quick Hits → Callback → Closing)
+- [x] Editorial lens rotation (Mon-Fri)
+- [x] 5 story categories (Product Releases, Insights, Case Studies, Tips, Ethical AI)
+- [x] Dr. Norma Jones ElevenLabs audio generation
+- [x] Cloud Run deployment (daily 8 AM PT)
+- [x] Full end-to-end pipeline test successful
 
-- [ ] Podcast page prototype (still pending from Build 9 — not yet built)
-- [ ] Innovation Pulse page review against Build 5-1 evolution
+## 🔄 In Progress
+
+### Innovation Pulse Page Refinement
+- [ ] Review and improve page layout/design (user feedback pending)
+- [ ] Serve prototype via localhost for Chrome extension review
+- [ ] Wire archive section to show multiple days of episodes
+- [ ] Improve audio player UX (progress bar, time scrubbing)
+
+### Pre-Migration QA
+- [ ] Click through ALL pages — verify content renders on each
+- [ ] Test all nav links
+- [ ] Test all story URLs from pipeline
+- [ ] Verify audio playback
+- [ ] Mobile responsive check
+
+## 📋 Next Up — Migration to Live
+
+### Convert HTML Prototype to Next.js
+- [ ] Break ihe-complete-prototype.html into Next.js components
+- [ ] Move data arrays (DIR_TOOLS, PN_TECHS, etc.) to TypeScript data files
+- [ ] Set up Tailwind CSS with Electric Dusk theme tokens
+- [ ] Implement proper image optimization with next/image
+- [ ] Dynamic data loading for Innovation Pulse (fetch daily JSON at build time)
+- [ ] Set up incremental static regeneration for daily content updates
+
+### Content
 - [ ] Write full editorial reviews for remaining 33 AI directory tools
-- [ ] Actual logo integration (user to upload PNG or integrate in Next.js deployment)
-- [ ] Weekly automated directory update system design
-- [ ] Convert HTML prototypes to Next.js components in ~/Desktop/ihe-pulse/
-- [ ] Connect ihe-tools-server automation to new site architecture
+- [ ] Podcast page — connect to actual episode data
+- [ ] Dr. Norma Jones real photo (replace Unsplash placeholder)
+- [ ] Real IHE logo integration (local asset, not hotlinked)
 
-## Backlog
+### Automation Enhancements
+- [ ] Story callback system — track developing stories across days with references
+- [ ] Theme deduplication — prevent repetitive content across episodes
+- [ ] Weekly AI directory auto-update (GitHub Action + Claude API)
+- [ ] Newsletter automation (ConvertKit/Beehiiv integration)
 
-- [ ] Template category filtering in Prompt Navigator (Teaching / Feedback / Assessment / Advising / Policy)
-- [ ] "Dr. Jones Recommends" editorial badges for AI Directory
-- [ ] Tool comparison feature ("Compare ChatGPT vs Claude for grading")
+### Features Backlog
+- [ ] AI chatbot navigator on homepage
+- [ ] Template category filtering in Prompt Navigator
+- [ ] "Dr. Jones Recommends" editorial badges
+- [ ] Tool comparison feature in AI Directory
 - [ ] Prompt Navigator search functionality
-- [ ] Interactive prompt builder (guided wizard for constructing prompts)
-
-## Planned
-
-- [ ] Next.js migration from HTML prototype
-- [ ] Supabase integration for AI Directory
-- [ ] ElevenLabs audio generation for Daily Pulse
-- [ ] Circle.so community embed
-- [ ] Mobile responsive refinements
-- [ ] SEO optimization
-- [ ] Analytics integration
+- [ ] Interactive prompt builder wizard
+- [ ] Hybrid mindmap interface
