@@ -1,293 +1,274 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import PageTransition from '@/components/PageTransition';
-import {
-  GraduationCap,
-  Award,
-  BookOpen,
-  Mic,
-  Users,
-  Heart,
-  Lightbulb,
-  Target,
-  Sparkles,
-  Zap,
-  Brain,
-  ArrowRight,
-  Rocket,
-} from 'lucide-react';
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: 'About Dr. Norma Jones | IHE PULSE',
+export const metadata = {
+  title: "About | Innovating Higher Ed",
   description:
-    'Meet Dr. Norma Jones, educator and researcher driving AI innovation in higher education. Learn about the mission and values behind IHE PULSE.',
+    "Meet Dr. Norma Jones and learn about the mission behind Innovating Higher Ed — empowering educators with AI knowledge, tools, and community.",
 };
-
-const credentials = [
-  { icon: GraduationCap, text: 'PhD in Educational Technology' },
-  { icon: Award, text: '15+ years in higher education leadership' },
-  { icon: Mic, text: 'Podcast host and producer (50+ episodes)' },
-  { icon: Target, text: 'Keynote speaker at national conferences' },
-  { icon: BookOpen, text: 'Published researcher in AI pedagogy' },
-  { icon: Heart, text: 'Advocate for equitable AI adoption' },
-];
 
 const offerings = [
   {
-    icon: Mic,
-    title: 'Podcast',
-    href: '/podcast',
+    icon: "📰",
+    title: "Innovation Pulse",
+    href: "/innovation-pulse",
     description:
-      'Expert conversations with educators, researchers, and innovators shaping the future of AI in higher education.',
+      "Daily briefings on the latest AI news for higher ed, with Dr. Jones's editorial perspective.",
   },
   {
-    icon: Sparkles,
-    title: 'Tinker Lab',
-    href: '/tinker-lab',
+    icon: "🎙️",
+    title: "Podcast",
+    href: "/podcast",
     description:
-      'Hands-on experiments and deep dives into AI tools, with honest reviews from an educator\'s perspective.',
+      "Expert conversations with educators, researchers, and innovators shaping the future of AI in higher education.",
   },
   {
-    icon: Zap,
-    title: 'Daily Pulse',
-    href: '/daily-pulse',
+    icon: "⚡",
+    title: "Prompt Navigator",
+    href: "/prompts",
     description:
-      'Morning briefings on the latest AI news for higher ed, with Dr. Jones\'s editorial perspective.',
+      "Evidence-based prompt engineering techniques, templates, and workflows designed for academic contexts.",
   },
   {
-    icon: Brain,
-    title: 'AI App Directory',
-    href: '/ai-directory',
+    icon: "🛠️",
+    title: "AI App Directory",
+    href: "/ai-app-directory",
     description:
-      '28+ vetted AI tools reviewed for faculty, administrators, and students with detailed pros, cons, and use cases.',
+      "28+ vetted AI tools reviewed for faculty, administrators, and students with detailed pros, cons, and use cases.",
   },
   {
-    icon: BookOpen,
-    title: 'Prompt Navigator',
-    href: '/prompts',
+    icon: "🧪",
+    title: "Tinker Lab",
+    href: "/tinker-lab",
     description:
-      'Evidence-based prompt engineering techniques, templates, and workflows designed for academic contexts.',
+      "Hands-on experiments and explorations into AI tools, with honest reviews from an educator's perspective.",
   },
 ];
 
 const values = [
   {
-    icon: Lightbulb,
-    title: 'Innovation With Purpose',
+    title: "Innovation With Purpose",
     description:
-      'Technology should serve teaching and learning, not replace the human connections that make education transformative.',
+      "Technology should serve teaching and learning, not replace the human connections that make education transformative.",
   },
   {
-    icon: Target,
-    title: 'Practical Over Theoretical',
+    title: "Practical Over Theoretical",
     description:
-      'Every resource on this platform is designed to be used Monday morning. We bridge the gap between AI possibility and classroom reality.',
+      "Every resource on this platform is designed to be used Monday morning. We bridge the gap between AI possibility and classroom reality.",
   },
   {
-    icon: Users,
-    title: 'Community-Driven',
+    title: "Community-Driven",
     description:
-      'The best ideas come from educators sharing what works. IHE Pulse is built by and for the higher ed community.',
+      "The best ideas come from educators sharing what works. Innovating Higher Ed is built by and for the higher ed community.",
   },
   {
-    icon: Heart,
-    title: 'Equity at the Center',
+    title: "Equity at the Center",
     description:
-      'AI has the potential to widen or narrow gaps in education. We are committed to ensuring it serves all students.',
+      "AI has the potential to widen or narrow gaps in education. We are committed to ensuring it serves all students.",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <PageTransition>
-    <div className="px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mx-auto max-w-7xl">
-        {/* ════════════════════════════════════════════
-            HERO — Dr. Norma Jones Bio
-            ════════════════════════════════════════════ */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+    <div className="min-h-screen">
+      {/* Page Header */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-10 animate-[fadeUp_0.7s_ease-out_both]">
+        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-2">
+          ABOUT
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Bio Text */}
           <div>
-            <p className="text-sm font-mono text-pulse uppercase tracking-widest mb-4">
-              About
-            </p>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              Meet{' '}
-              <span className="gradient-text">Dr. Norma Jones</span>
+            <h1 className="font-sans text-[clamp(2rem,5vw,2.4rem)] font-bold leading-[1.1] text-[var(--text)] mb-6">
+              Meet Dr. Norma Jones
             </h1>
-            <p className="text-lg text-gray-400 leading-relaxed mb-6">
-              PhD, recognized leader in AI integration for higher education,
-              with experience spanning academia and industry. Dr. Jones is a
-              podcast host and producer who has spent over 15 years at the
-              intersection of technology and teaching, helping institutions
-              navigate digital transformation — and now, the AI revolution.
+            <p className="text-[1rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
+              PhD, recognized leader in AI integration for higher education, with
+              experience spanning academia and industry. Dr. Jones is a podcast
+              host and producer who has spent over 15 years at the intersection
+              of technology and teaching, helping institutions navigate digital
+              transformation — and now, the AI revolution.
             </p>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-[0.92rem] text-[var(--text-secondary)] leading-[1.65]">
               She founded Innovating Higher Ed to bridge the gap between AI
-              innovation and classroom practice — giving faculty,
-              administrators, and instructional designers the curated tools,
-              evidence-based prompts, and practical insights they need to
-              integrate AI with confidence, equity, and purpose.
+              innovation and classroom practice — giving faculty, administrators,
+              and instructional designers the curated tools, evidence-based
+              prompts, and practical insights they need to integrate AI with
+              confidence, equity, and purpose.
             </p>
           </div>
 
-          {/* Photo placeholder */}
+          {/* Placeholder for photo (no photos per spec) */}
           <div className="flex justify-center">
-            <div className="relative">
-              <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-2xl bg-gradient-to-br from-pulse/20 to-synapse/20 border border-white/10 flex flex-col items-center justify-center">
-                <GraduationCap size={64} className="text-pulse/40 mb-4" />
-                <span className="text-sm text-gray-500 font-mono">
-                  Dr. Norma Jones
-                </span>
-              </div>
-              {/* Decorative glow */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-pulse/5 to-synapse/5 blur-2xl -z-10" />
+            <div className="w-[280px] h-[280px] rounded-[20px] bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] opacity-15 flex items-center justify-center">
+              <span className="font-mono text-[0.9rem] text-[var(--text-muted)]">
+                Dr. Norma Jones
+              </span>
             </div>
-          </div>
-        </div>
-
-        {/* ════════════════════════════════════════════
-            THE PLATFORM VISION — From Podcast to Platform
-            ════════════════════════════════════════════ */}
-        <div className="mb-20 max-w-4xl mx-auto">
-          <div className="glass rounded-2xl p-8 sm:p-12 relative overflow-hidden">
-            {/* Accent gradient bar */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pulse to-synapse" />
-
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pulse/10 to-synapse/10 flex items-center justify-center">
-                <Rocket size={20} className="text-pulse" />
-              </div>
-              <p className="text-xs font-mono text-synapse uppercase tracking-widest">
-                Our Story
-              </p>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
-              From Podcast to{' '}
-              <span className="gradient-text">Platform</span>
-            </h2>
-            <p className="text-gray-400 leading-relaxed mb-6">
-              Innovating Higher Ed started as a podcast in 2024 — a space for
-              candid conversations about how artificial intelligence is
-              reshaping colleges and universities. What began as weekly
-              interviews with educators, researchers, and technologists quickly
-              grew into something larger: a community of higher ed
-              professionals hungry for trustworthy, practical guidance on AI.
-            </p>
-            <p className="text-gray-400 leading-relaxed">
-              Today, IHE Pulse is a one-stop resource for higher education
-              professionals navigating the AI landscape. Our mission is to
-              democratize AI knowledge in higher education — ensuring that
-              every educator, regardless of their technical background, has
-              access to the tools, strategies, and community they need to
-              harness AI responsibly and effectively. From daily news briefings
-              to vetted tool reviews, from prompt libraries to hands-on
-              experiments, everything on this platform is built to help you
-              move from curiosity to confident practice.
-            </p>
-          </div>
-        </div>
-
-        {/* ════════════════════════════════════════════
-            WHAT WE OFFER — 5 Pillars
-            ════════════════════════════════════════════ */}
-        <div className="mb-20">
-          <div className="text-center mb-10">
-            <p className="text-xs font-mono text-synapse/80 uppercase tracking-widest mb-2">
-              The Platform
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              What We <span className="gradient-text">Offer</span>
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {offerings.map((offering, i) => (
-              <Link
-                key={i}
-                href={offering.href}
-                className="glass rounded-xl p-6 hover:border-pulse/20 transition-colors group block"
-              >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pulse/10 to-synapse/10 flex items-center justify-center mb-4 group-hover:from-pulse/20 group-hover:to-synapse/20 transition-colors">
-                  <offering.icon size={20} className="text-pulse" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-pulse transition-colors">
-                  {offering.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed mb-4">
-                  {offering.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-pulse group-hover:gap-2.5 transition-all">
-                  Explore
-                  <ArrowRight size={14} />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* ════════════════════════════════════════════
-            CREDENTIALS — Background & Expertise
-            ════════════════════════════════════════════ */}
-        <div className="mb-20">
-          <h2 className="text-2xl font-bold text-white text-center mb-8">
-            Background & <span className="gradient-text">Expertise</span>
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {credentials.map((cred, i) => (
-              <div
-                key={i}
-                className="glass rounded-xl px-5 py-4 flex items-center gap-3"
-              >
-                <cred.icon size={20} className="text-pulse shrink-0" />
-                <span className="text-sm text-gray-300">{cred.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ════════════════════════════════════════════
-            MISSION QUOTE
-            ════════════════════════════════════════════ */}
-        <div className="mb-20">
-          <div className="glass rounded-2xl p-8 sm:p-12 text-center max-w-4xl mx-auto">
-            <p className="text-xs font-mono text-synapse uppercase tracking-widest mb-4">
-              Our Mission
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 leading-snug">
-              &ldquo;To empower every educator with the AI knowledge, tools, and
-              community they need to transform teaching and learning — with
-              equity, integrity, and humanity at the center.&rdquo;
-            </h2>
-            <p className="text-gray-500">— Dr. Norma Jones, Founder</p>
-          </div>
-        </div>
-
-        {/* ════════════════════════════════════════════
-            VALUES — What We Stand For
-            ════════════════════════════════════════════ */}
-        <div>
-          <h2 className="text-2xl font-bold text-white text-center mb-8">
-            What We <span className="gradient-text">Stand For</span>
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {values.map((value, i) => (
-              <div key={i} className="glass rounded-xl p-6">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pulse/10 to-synapse/10 flex items-center justify-center mb-4">
-                  <value.icon size={20} className="text-pulse" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       </div>
+
+      {/* Our Story */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 lg:p-12 relative overflow-hidden max-w-[800px] mx-auto">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+
+          <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-4">
+            Our Story
+          </div>
+          <h2 className="font-sans text-[1.4rem] font-bold leading-[1.25] mb-4">
+            From Podcast to Platform
+          </h2>
+          <p className="text-[0.92rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
+            Innovating Higher Ed started as a podcast in 2024 — a space for
+            candid conversations about how artificial intelligence is reshaping
+            colleges and universities. What began as weekly interviews with
+            educators, researchers, and technologists quickly grew into something
+            larger: a community of higher ed professionals hungry for
+            trustworthy, practical guidance on AI.
+          </p>
+          <p className="text-[0.92rem] text-[var(--text-secondary)] leading-[1.7]">
+            Today, Innovating Higher Ed is a one-stop resource for higher
+            education professionals navigating the AI landscape. Our mission is
+            to democratize AI knowledge in higher education — ensuring that every
+            educator, regardless of their technical background, has access to the
+            tools, strategies, and community they need to harness AI responsibly
+            and effectively.
+          </p>
+        </div>
+      </div>
+
+      {/* What We Offer */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6 text-center">
+          What We Offer
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {offerings.map((offering) => (
+            <Link
+              key={offering.title}
+              href={offering.href}
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] hover:-translate-y-[1px] transition-all duration-300 group block"
+            >
+              <span className="text-[1.2rem] mb-3 block">{offering.icon}</span>
+              <h3 className="font-sans text-[1rem] font-bold mb-2 group-hover:text-[var(--cyan)] transition-colors">
+                {offering.title}
+              </h3>
+              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55]">
+                {offering.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Mission Quote */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 lg:p-12 text-center relative overflow-hidden max-w-[800px] mx-auto">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+
+          <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--cyan)] mb-6">
+            Our Mission
+          </div>
+          <p className="text-[1.2rem] font-bold leading-[1.5] text-[var(--text)] mb-4">
+            &ldquo;To empower every educator with the AI knowledge, tools, and
+            community they need to transform teaching and learning — with equity,
+            integrity, and humanity at the center.&rdquo;
+          </p>
+          <p className="text-[0.78rem] text-[var(--text-muted)]">
+            — Dr. Norma Jones, Founder
+          </p>
+        </div>
+      </div>
+
+      {/* Values */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6 text-center">
+          What We Stand For
+        </div>
+        <div className="grid md:grid-cols-2 gap-4 max-w-[800px] mx-auto">
+          {values.map((value) => (
+            <div
+              key={value.title}
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5"
+            >
+              <h3 className="font-sans text-[1rem] font-bold mb-2">
+                {value.title}
+              </h3>
+              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55]">
+                {value.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* AI Disclosure */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[20px] p-8 max-w-[800px] mx-auto">
+          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4">
+            AI Disclosure
+          </div>
+          <h3 className="font-sans text-[1.1rem] font-bold mb-3">
+            How We Use AI on This Platform
+          </h3>
+          <p className="text-[0.85rem] text-[var(--text-secondary)] leading-[1.65] mb-4">
+            At Innovating Higher Ed, we practice what we preach. We use AI tools
+            responsibly to enhance our work, with human oversight at every step:
+          </p>
+          <ul className="space-y-2 text-[0.85rem] text-[var(--text-secondary)] leading-[1.6]">
+            <li className="flex items-start gap-2">
+              <span className="text-[var(--cyan)] mt-1">&#8226;</span>
+              <span>
+                <strong>Innovation Pulse audio</strong> is produced using AI
+                voice technology based on Dr. Norma Jones&apos;s voice, with full
+                editorial oversight by Dr. Jones.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[var(--cyan)] mt-1">&#8226;</span>
+              <span>
+                <strong>Content curation</strong> is AI-assisted but
+                human-reviewed. Every story and tool recommendation is verified by
+                our editorial team.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[var(--cyan)] mt-1">&#8226;</span>
+              <span>
+                <strong>All prompts</strong> in the Prompt Navigator are
+                human-written and tested by real educators before publication.
+              </span>
+            </li>
+          </ul>
+          <p className="text-[0.78rem] text-[var(--text-muted)] mt-4">
+            We believe in transparent AI use. If you have questions about how we
+            use AI, please reach out.
+          </p>
+        </div>
+      </div>
+
+      {/* Contact CTA */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+
+          <h2 className="font-sans text-[1.4rem] font-bold mb-2">
+            Get in Touch
+          </h2>
+          <p className="text-[0.88rem] text-[var(--text-secondary)] max-w-[480px] mx-auto mb-6">
+            Have questions, feedback, or partnership inquiries? We&apos;d love to
+            hear from you.
+          </p>
+          <a
+            href="mailto:hello@innovatinghighered.com"
+            className="btn-primary"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
     </div>
-    </PageTransition>
   );
 }

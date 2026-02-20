@@ -1,0 +1,33 @@
+{
+  "lastUpdated": "2026-02-20",
+  "source": "WordPress page lookup",
+  "status": "NOT_FOUND",
+  "note": "Be Our Guest page not found. URLs tried: /be-our-guest/, /guest/ - both returned 404. Page may not exist on WordPress site or may use different URL structure.",
+  "searchedPages": [
+    "https://innovatinghighered.com/be-our-guest/",
+    "https://innovatinghighered.com/guest/"
+  ],
+  "availablePages": [
+    {
+      "id": 5695,
+      "title": "AI News in Education - The IHE Daily",
+      "slug": "ai-news-in-education-daily"
+    },
+    {
+      "id": 5011,
+      "title": "Educator Tools",
+      "slug": "educator-tools"
+    },
+    {
+      "id": 5036,
+      "title": "HOME (Live)",
+      "slug": "home"
+    },
+    {
+      "id": 4957,
+      "title": "Prompt Navigator",
+      "slug": "prompt-navigator"
+    }
+  ],
+  "recommendation": "Guest application content may need to be created manually or obtained from another source. Consider creating a guest application page with typical podcast guest requirements."
+}

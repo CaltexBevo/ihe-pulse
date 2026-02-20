@@ -1,0 +1,24 @@
+{
+  "lastUpdated": "2026-02-20",
+  "source": "WordPress scrape",
+  "description": "The Tinker Lab is a workshop for the mind - exploring how tinkering with new ideas and AI tools can spark creativity and transform our approach to teaching and learning.",
+  "host": "Dr. Norma Jones",
+  "totalPosts": 1,
+  "note": "WordPress category for Tinker Lab not found in REST API. Limited data available from page scrape.",
+  "posts": [
+    {
+      "id": "tinkerlab-001",
+      "title": "The Wonka-Lantern Framework: Creative & Ethical AI in Higher Education",
+      "date": "2025-06-17",
+      "description": "An exploration of creative and ethical approaches to AI integration in higher education settings.",
+      "duration": null,
+      "thumbnailUrl": null,
+      "audioUrl": null,
+      "tags": ["AI Ethics", "Creativity", "Higher Education", "Framework"],
+      "category": "AI in Higher Education"
+    }
+  ],
+  "platformLinks": {
+    "note": "Listen on your favorite podcast platform"
+  }
+}

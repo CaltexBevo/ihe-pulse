@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: 'innovatinghighered.com',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
   poweredByHeader: false,
@@ -22,6 +27,16 @@ const nextConfig: NextConfig = {
       {
         source: '/daily-pulse/:date',
         destination: '/innovation-pulse/:date',
+        permanent: true,
+      },
+      {
+        source: '/ai-directory',
+        destination: '/ai-app-directory',
+        permanent: true,
+      },
+      {
+        source: '/ai-directory/:slug',
+        destination: '/ai-app-directory',
         permanent: true,
       },
     ];

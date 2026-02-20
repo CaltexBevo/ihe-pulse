@@ -1,0 +1,46 @@
+{
+  "lastUpdated": "2026-02-20",
+  "source": "WordPress page scrape",
+  "note": "About page URL returned 404. Content extracted from about-us/ page.",
+  "platform": {
+    "name": "Innovating Higher Ed",
+    "tagline": "Exploring AI in Higher Ed",
+    "mission": "Committed to empowering higher education leaders, faculty, and edtech innovators with insights, strategies, and real-world examples of how artificial intelligence and emerging technologies can transform education.",
+    "description": "The platform delivers this mission through engaging podcast episodes, expert interviews, and practical resources to help educators and administrators confidently navigate the rapidly evolving landscape of AI-driven education.",
+    "focus": "Understanding how artificial intelligence and emerging technologies intersect with higher education"
+  },
+  "team": {
+    "note": "Detailed team bios were not available from the scraped content. Photo downloads intentionally skipped per instructions.",
+    "members": [
+      {
+        "name": "Dr. Norma Jones",
+        "role": "Host / Founder",
+        "bio": "Host of the Innovating Higher Ed Podcast and Tinker Lab series. Dr. Jones leads discussions with higher education experts about AI adoption, equity, and innovation in teaching and learning."
+      },
+      {
+        "name": "Brent Jones",
+        "role": "Co-Founder / Producer",
+        "bio": "Producer and co-founder of Innovating Higher Ed, focused on content development and platform strategy."
+      }
+    ]
+  },
+  "content": {
+    "podcast": {
+      "name": "Innovating Higher Ed Podcast",
+      "description": "Engaging conversations with higher education leaders about AI, technology, and innovation in teaching and learning."
+    },
+    "tinkerLab": {
+      "name": "Tinker Lab",
+      "description": "A workshop for the mind - exploring how tinkering with new ideas and AI tools can spark creativity and transform our approach to teaching and learning."
+    },
+    "dailyNews": {
+      "name": "IHE Daily AI News",
+      "description": "Daily news roundup featuring recent developments in AI adoption within higher education."
+    }
+  },
+  "resources": [
+    "AI App Directory - 38 vetted AI tools for higher education",
+    "Prompt Navigator - 24+ prompt templates with 9 core techniques",
+    "Educator Tools - Practical tools like Syllabot for course policy creation"
+  ]
+}

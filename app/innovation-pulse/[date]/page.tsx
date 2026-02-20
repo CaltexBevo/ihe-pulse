@@ -1,39 +1,23 @@
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import {
-  ArrowLeft,
-  Zap,
-  Mic,
-  Quote,
-  ExternalLink,
-  Calendar,
-  RotateCcw,
-  Eye,
-  Clock,
-} from 'lucide-react';
-import AudioPlayer from '@/components/AudioPlayer';
-import EditorialLensBadge from '@/components/EditorialLensBadge';
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import AudioPlayer from "@/components/AudioPlayer";
+import Card from "@/components/Card";
 import {
   getAllEpisodes,
   getEpisodeByDate,
   getEpisodeDates,
   formatPulseDate,
+  formatShortDate,
   categoryColors,
-  type StoryCategory,
-  type DeepDive,
-  type QuickHit,
-  type StoryWatching,
-} from '@/lib/data/innovation-pulse';
+} from "@/lib/data/innovation-pulse";
 
-// ── Static Params ────────────────────────────────────────────
-
+// Static Params
 export function generateStaticParams() {
   const dates = getEpisodeDates();
   return dates.map((date) => ({ date }));
 }
 
-// ── Metadata ─────────────────────────────────────────────────
-
+// Metadata
 export async function generateMetadata({
   params,
 }: {
@@ -42,173 +26,15 @@ export async function generateMetadata({
   const { date } = await params;
   const episode = getEpisodeByDate(date);
   if (!episode) {
-    return { title: 'Episode Not Found | IHE PULSE' };
+    return { title: "Briefing Not Found | Innovation Pulse" };
   }
   return {
-    title: `The Innovation Pulse — ${formatPulseDate(date)} | IHE PULSE`,
+    title: `${formatPulseDate(date)} | Innovation Pulse`,
     description: episode.editorialHook,
   };
 }
 
-// ── Category Badge Component ─────────────────────────────────────────────────
-
-function CategoryBadge({ category }: { category: StoryCategory }) {
-  const colors = categoryColors[category];
-  return (
-    <span
-      className={`inline-flex px-2.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider ${colors.bg} ${colors.text}`}
-    >
-      {category}
-    </span>
-  );
-}
-
-// ── Deep Dive Card Component ─────────────────────────────────────────────────
-
-function DeepDiveCard({ deepDive }: { deepDive: DeepDive }) {
-  const colors = categoryColors[deepDive.category];
-
-  return (
-    <article className="glass rounded-2xl overflow-hidden group hover:border-pulse/20 transition-all">
-      <div
-        className="h-1.5"
-        style={{ background: `linear-gradient(90deg, ${colors.hex}, #c850c0)` }}
-      />
-
-      <div className="p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-3 mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-pulse/20 to-synapse/20 text-pulse border border-pulse/30">
-            <Zap size={12} />
-            Deep Dive
-          </span>
-
-          {deepDive.isCallback && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
-              <RotateCcw size={10} />
-              Callback
-            </span>
-          )}
-
-          <CategoryBadge category={deepDive.category} />
-        </div>
-
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 group-hover:text-pulse transition-colors">
-          {deepDive.title}
-        </h2>
-
-        <p className="text-base text-gray-300 leading-relaxed mb-6">
-          {deepDive.summary}
-        </p>
-
-        {deepDive.isCallback && deepDive.callbackFirstCovered && (
-          <p className="text-xs text-gray-500 mb-4 font-mono">
-            First covered: {formatPulseDate(deepDive.callbackFirstCovered)}
-          </p>
-        )}
-
-        <a
-          href={deepDive.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm text-pulse hover:text-pulse/80 font-medium transition-colors"
-        >
-          Read Full Story at {deepDive.source}
-          <ExternalLink size={14} />
-        </a>
-      </div>
-    </article>
-  );
-}
-
-// ── Quick Hit Card Component ─────────────────────────────────────────────────
-
-function QuickHitCard({ hit }: { hit: QuickHit }) {
-  const colors = categoryColors[hit.category];
-
-  return (
-    <article className="glass rounded-xl overflow-hidden group hover:border-pulse/20 transition-all hover:-translate-y-0.5">
-      <div className="h-1" style={{ background: colors.hex }} />
-
-      <div className="p-5">
-        <CategoryBadge category={hit.category} />
-
-        <h3 className="text-base font-semibold text-white mt-3 mb-2 group-hover:text-pulse transition-colors leading-snug">
-          {hit.title}
-        </h3>
-
-        <p className="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3">
-          {hit.summary}
-        </p>
-
-        <a
-          href={hit.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs text-pulse hover:text-pulse/80 font-medium transition-colors"
-        >
-          {hit.source}
-          <ExternalLink size={10} />
-        </a>
-      </div>
-    </article>
-  );
-}
-
-// ── Stories We're Watching Component ─────────────────────────────────────────
-
-function StoriesWatching({ stories }: { stories: StoryWatching[] }) {
-  if (stories.length === 0) return null;
-
-  return (
-    <section className="glass rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-synapse/5 to-transparent">
-      <div className="flex items-center gap-2 mb-6">
-        <Eye size={18} className="text-synapse" />
-        <h2 className="text-lg font-bold text-white">Stories We&apos;re Watching</h2>
-      </div>
-
-      <div className="space-y-4">
-        {stories.map((story) => (
-          <div
-            key={story.threadId}
-            className="glass rounded-xl p-4 border-l-2 border-synapse/50"
-          >
-            <div className="flex items-start justify-between gap-3 mb-2">
-              <h3 className="text-sm font-semibold text-white">{story.label}</h3>
-              <span className="flex items-center gap-1.5 text-[10px] font-mono text-synapse shrink-0">
-                <span className="w-2 h-2 rounded-full bg-synapse" />
-                Day {story.daysSinceFirstCovered + 1}
-              </span>
-            </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              {story.update}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ── Closing Thought Component ────────────────────────────────────────────────
-
-function ClosingThought({ thought }: { thought: string }) {
-  return (
-    <section className="glass rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-pulse/5 via-transparent to-synapse/5 border-l-4 border-gradient-to-b from-pulse to-synapse">
-      <div className="flex items-start gap-4">
-        <Quote size={24} className="text-synapse shrink-0 mt-1" />
-        <div>
-          <p className="text-lg text-gray-200 leading-relaxed italic mb-4">
-            &ldquo;{thought}&rdquo;
-          </p>
-          <p className="text-sm text-gray-500">— Dr. Norma Jones</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── Page Component ───────────────────────────────────────────
-
+// Page Component
 export default async function InnovationPulseDatePage({
   params,
 }: {
@@ -221,116 +47,202 @@ export default async function InnovationPulseDatePage({
     notFound();
   }
 
+  const allEpisodes = getAllEpisodes();
+  const currentIndex = allEpisodes.findIndex((ep) => ep.date === date);
+  const prevEpisode = allEpisodes[currentIndex + 1];
+  const nextEpisode = allEpisodes[currentIndex - 1];
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mx-auto max-w-7xl">
-        {/* ── Back Link ─────────────────────────────── */}
+    <div className="min-h-screen">
+      {/* Page Header */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-6">
         <Link
           href="/innovation-pulse"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-pulse transition-colors mb-8"
+          className="font-mono text-[0.62rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mb-4 inline-flex items-center gap-1"
         >
-          <ArrowLeft size={16} />
-          Back to The Innovation Pulse
+          &larr; Back to Innovation Pulse
         </Link>
 
-        {/* ── Date Heading ──────────────────────────── */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-3">
-            <Zap size={18} className="text-pulse" />
-            <p className="text-sm font-mono text-pulse uppercase tracking-widest">
-              The Innovation Pulse Archive
-            </p>
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-bold text-white leading-tight mb-4">
-            {formatPulseDate(date)}
-          </h1>
-          <div className="flex items-center gap-3">
-            <EditorialLensBadge lens={episode.editorialLens} />
-          </div>
+        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-2 flex items-center gap-2 mt-4">
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+          THE INNOVATION PULSE
+        </div>
+        <h1 className="font-serif italic text-[clamp(1.6rem,4vw,2.2rem)] font-normal leading-[1.15] text-[var(--text)] mb-3">
+          {formatPulseDate(date)}
+        </h1>
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-[0.58rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
+            {episode.editorialLens}
+          </span>
+          <span className="font-mono text-[0.58rem] text-[var(--text-muted)]">
+            {episode.audioDuration}
+          </span>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        {/* Editorial Hook & Player */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 mb-8 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+
+          <blockquote className="text-[1.1rem] leading-[1.65] text-[var(--text)] mb-6 max-w-[720px]">
+            &ldquo;{episode.editorialHook}&rdquo;
+          </blockquote>
+
+          <AudioPlayer duration={episode.audioDuration} credit="Dr. Norma Jones" />
         </div>
 
-        {/* ── Editorial Hook ────────────────────────────────── */}
-        <div className="glass rounded-2xl p-6 sm:p-8 mb-8 bg-gradient-to-br from-pulse/5 via-transparent to-synapse/5">
-          <p className="text-xl sm:text-2xl text-white font-medium leading-relaxed">
-            {episode.editorialHook}
-          </p>
-        </div>
+        {/* Lead Story */}
+        <section className="mb-10">
+          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-4">
+            Lead Story
+          </div>
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 relative overflow-hidden">
+            <div
+              className="absolute top-0 left-0 right-0 h-[3px]"
+              style={{
+                background: `linear-gradient(90deg, ${categoryColors[episode.deepDive.category]?.hex}, var(--magenta))`,
+              }}
+            />
 
-        {/* ── Audio Briefing ────────────────────────── */}
-        <section className="mb-12">
-          <div className="glass rounded-2xl p-6 sm:p-8">
-            <div className="flex flex-col sm:flex-row items-start gap-6">
-              <div className="shrink-0">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-pulse/20 to-synapse/20 border border-white/10 flex items-center justify-center">
-                  <Mic size={28} className="text-pulse" />
-                </div>
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-3 mb-1">
-                  <span className="text-xs font-mono text-pulse bg-pulse/10 px-2 py-0.5 rounded">
-                    EPISODE
-                  </span>
-                  <span className="text-xs text-gray-500 flex items-center gap-1">
-                    <Clock size={12} />
-                    {episode.audioDuration}
-                  </span>
-                </div>
-                <h2 className="text-xl font-semibold text-white mb-1">
-                  {episode.dayOfWeek}&apos;s Briefing
-                </h2>
-                <p className="text-sm text-gray-400 mb-4">
-                  Dr. Norma Jones&apos;s daily roundup of what matters in AI and
-                  higher education.
-                </p>
-                <AudioPlayer
-                  duration={episode.audioDuration}
-                  barCount={50}
-                  audioSrc={episode.audioUrl}
-                />
-              </div>
+            <div className="flex items-center gap-2 mb-3">
+              <span
+                className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px]"
+                style={{
+                  backgroundColor: `${categoryColors[episode.deepDive.category]?.hex}20`,
+                  color: categoryColors[episode.deepDive.category]?.hex,
+                }}
+              >
+                {episode.deepDive.category}
+              </span>
+              {episode.deepDive.isCallback && (
+                <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--amber-dim)] text-[var(--amber)]">
+                  Callback
+                </span>
+              )}
             </div>
+
+            <h2 className="text-[1.4rem] font-bold leading-[1.25] mb-4">
+              {episode.deepDive.title}
+            </h2>
+
+            <p className="text-[0.92rem] text-[var(--text-secondary)] leading-[1.7] mb-6">
+              {episode.deepDive.summary}
+            </p>
+
+            <a
+              href={episode.deepDive.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[0.72rem] text-[var(--cyan)] hover:underline inline-flex items-center gap-1"
+            >
+              Read full story at {episode.deepDive.source} &#8599;
+            </a>
           </div>
         </section>
 
-        {/* ── Deep Dive Section ─────────────────────────────── */}
-        <section className="mb-12">
-          <DeepDiveCard deepDive={episode.deepDive} />
-        </section>
-
-        {/* ── Quick Hits Section ────────────────────────────── */}
+        {/* Quick Hits */}
         {episode.quickHits.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <Zap size={18} className="text-pulse" />
-              Quick Hits
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <section className="mb-10">
+            <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
+              Also Today
+            </div>
+
+            <div className="grid-3">
               {episode.quickHits.map((hit, i) => (
-                <QuickHitCard key={i} hit={hit} />
+                <Card
+                  key={i}
+                  title={hit.title}
+                  teaser={hit.summary}
+                  fullContent={hit.summary}
+                  category={hit.category}
+                  categoryColor={categoryColors[hit.category]?.hex}
+                  source={hit.source}
+                  date={formatShortDate(episode.date)}
+                  expandable={true}
+                />
               ))}
             </div>
           </section>
         )}
 
-        {/* ── Stories We're Watching ────────────────────────── */}
+        {/* Stories We're Watching (Friday only) */}
         {episode.storiesWatching.length > 0 && (
-          <section className="mb-12">
-            <StoriesWatching stories={episode.storiesWatching} />
+          <section className="mb-10">
+            <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4">
+              Stories We&apos;re Watching
+            </div>
+
+            <div className="space-y-4">
+              {episode.storiesWatching.map((story) => (
+                <div
+                  key={story.threadId}
+                  className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 border-l-[3px] border-l-[var(--amber)]"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-[0.92rem] font-bold">{story.label}</h3>
+                    <span className="font-mono text-[0.55rem] text-[var(--amber)]">
+                      Day {story.daysSinceFirstCovered + 1}
+                    </span>
+                  </div>
+                  <p className="text-[0.82rem] text-[var(--text-secondary)] leading-[1.55]">
+                    {story.update}
+                  </p>
+                </div>
+              ))}
+            </div>
           </section>
         )}
 
-        {/* ── Closing Thought ───────────────────────────────── */}
-        <section className="mb-16">
-          <ClosingThought thought={episode.closingThought} />
-        </section>
+        {/* Closing Thought */}
+        {episode.closingThought && (
+          <section className="mb-10">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 relative overflow-hidden border-l-[4px] border-l-[var(--magenta)]">
+              <div className="font-mono text-[0.55rem] tracking-[0.08em] uppercase text-[var(--magenta)] mb-3">
+                Closing Thought
+              </div>
+              <p className="text-[1rem] text-[var(--text)] leading-[1.7] italic">
+                &ldquo;{episode.closingThought}&rdquo;
+              </p>
+              <p className="text-[0.72rem] text-[var(--text-muted)] mt-3">
+                — Dr. Norma Jones
+              </p>
+            </div>
+          </section>
+        )}
 
-        {/* ── AI Voice Disclaimer ───────────────────────────── */}
-        <div className="text-center">
-          <p className="text-xs text-gray-600 italic">
-            The Innovation Pulse is produced using AI voice technology based on
-            Dr. Norma Jones&apos; voice, with editorial oversight by Dr. Jones.
-          </p>
+        {/* Episode Navigation */}
+        <div className="flex justify-between items-center pt-8 border-t border-[var(--border)]">
+          {prevEpisode ? (
+            <Link
+              href={`/innovation-pulse/${prevEpisode.date}`}
+              className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+            >
+              &larr; {formatShortDate(prevEpisode.date)}
+            </Link>
+          ) : (
+            <span />
+          )}
+          {nextEpisode ? (
+            <Link
+              href={`/innovation-pulse/${nextEpisode.date}`}
+              className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+            >
+              {formatShortDate(nextEpisode.date)} &rarr;
+            </Link>
+          ) : (
+            <span />
+          )}
         </div>
+      </div>
+
+      {/* AI Voice Disclaimer */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12 text-center">
+        <p className="text-[0.68rem] text-[var(--text-muted)] italic">
+          The Innovation Pulse is produced using AI voice technology based on
+          Dr. Norma Jones&apos; voice, with editorial oversight by Dr. Jones.
+        </p>
       </div>
     </div>
   );

@@ -1,0 +1,262 @@
+{
+  "lastUpdated": "2026-02-20",
+  "source": "WordPress REST API + manual extraction",
+  "totalEpisodes": 9,
+  "episodes": [
+    {
+      "number": 47,
+      "id": 4679,
+      "title": "Human-Centered AI Strategy: Empathy, Trust, Access",
+      "guest": "Professor Chesa Caparas",
+      "guestTitle": "Professor of English and Ethnic Studies at De Anza College",
+      "description": "Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption in higher education.",
+      "fullDescription": "Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption in higher education. They explore how empathy-driven strategies can bridge the gap between institutional mandates and real classroom needs, while keeping equity and access at the center of every decision.",
+      "date": "2025-06-22",
+      "duration": "18:24",
+      "slug": "human-centered-ai-strategy-empathy-trust-access-professor-chesa-caparas",
+      "featuredMediaId": 4681,
+      "thumbnailUrl": "https://innovatinghighered.com/wp-content/uploads/2025/06/Chesa-Caparas-thumb-1200x.jpg",
+      "takeaways": [
+        "Ready-to-use two-question student comfort survey that maps comfort with AI",
+        "Tactics that keep feedback human while trimming workload",
+        "Red-flag signs your AI detector policy harms equity",
+        "First steps to close global and local connectivity gaps"
+      ],
+      "topics": ["Equity", "Faculty Development", "AI Policy", "Student Access"],
+      "platformLinks": {
+        "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
+        "spotify": "https://open.spotify.com/show/innovating-higher-ed",
+        "audible": "https://www.audible.com/pd/Innovating-Higher-Ed",
+        "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
+      },
+      "podbeanId": "yn932-18e5c5a-pb",
+      "featured": true
+    },
+    {
+      "number": 46,
+      "id": 4257,
+      "title": "Assistive AI Tools: Transform Course Design & Assessment",
+      "guest": "Professor Scott James",
+      "guestTitle": "Instructional Design Veteran, PlayLab Developer",
+      "description": "Scott James explains how his PlayLab custom-bot lets instructors quarantine course materials and surface crystal-clear rubrics.",
+      "fullDescription": "Can a chatbot rewrite your toughest assignments in under five minutes? Scott James explains how his PlayLab custom-bot lets instructors quarantine course materials and surface crystal-clear rubrics. From sandboxing sensitive sources to injecting personality into assessments, this episode is packed with actionable strategies for any instructor ready to rethink course design with AI.",
+      "date": "2025-05-17",
+      "duration": "22:10",
+      "slug": "assistive-ai-tools-transform-course-design-assessment-professor-scott-james-2",
+      "featuredMediaId": 4128,
+      "thumbnailUrl": "https://innovatinghighered.com/wp-content/uploads/2025/05/Prof-Scott-James-_thumb.02-585x390.jpg",
+      "takeaways": [
+        "Step-by-step prompt flow to generate AI-resilient assignments",
+        "Tactics to sandbox sources and avoid copyright headaches",
+        "Tips for injecting personality without extra grading time",
+        "Change-management moves that win over hesitant colleagues"
+      ],
+      "topics": ["Course Design", "Assessment", "PlayLab", "Instructional Design"],
+      "platformLinks": {
+        "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
+        "spotify": "https://open.spotify.com/show/innovating-higher-ed",
+        "audible": "https://www.audible.com/pd/Innovating-Higher-Ed",
+        "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
+      },
+      "podbeanId": "fxjxj-1891ea5-pb",
+      "featured": false
+    },
+    {
+      "number": 45,
+      "id": 4104,
+      "title": "OER, ZTC & Lightning-Fast AI Translation",
+      "guest": "Dr. Sarah Harmon",
+      "guestTitle": "OER/ZTC Coordinator, Spanish & Linguistics Professor, Canada College",
+      "description": "Dr. Sarah Harmon lays out the five-spoke ZTC Wheel that drives course material costs to $0.",
+      "fullDescription": "Textbooks can cost more than tuition - AI-powered OER wipes that cost out entirely. Dr. Sarah Harmon lays out the five-spoke ZTC Wheel that drives course material costs to $0. She walks through how LibreTexts machine translation is opening doors for multilingual learners and how Creative Commons licensing makes global remix possible.",
+      "date": "2025-05-11",
+      "duration": "25:33",
+      "slug": "oer-ztc-lightning-fast-ai-translation-dr-sarah-harmon",
+      "featuredMediaId": 4107,
+      "thumbnailUrl": "https://innovatinghighered.com/wp-content/uploads/2025/05/DR.-SARAH-HARMON-_Thumb.02.-3.2-585x390.jpg",
+      "takeaways": [
+        "Five-spoke ZTC Wheel for zero-cost course materials",
+        "LibreTexts machine translation delivers 90%-accurate editions",
+        "Creative Commons tips for global remix",
+        "Open-pedagogy ideas that turn students into co-authors"
+      ],
+      "topics": ["OER", "Zero Textbook Cost", "AI Translation", "Open Pedagogy"],
+      "platformLinks": {
+        "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
+        "spotify": "https://open.spotify.com/show/innovating-higher-ed",
+        "audible": "https://www.audible.com/pd/Innovating-Higher-Ed",
+        "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
+      },
+      "podbeanId": "brbx3-18a6904-pb",
+      "featured": false
+    },
+    {
+      "number": 44,
+      "id": 4256,
+      "title": "Equity-First AI Curriculum for Every Discipline",
+      "guest": "Dr. Suha Al Juboori",
+      "guestTitle": "AI Department Chair, Professor of Computer Science",
+      "description": "Dr. Suha Aljuboori shares her journey from Iraq to establishing one of the first AI departments in the California community college system.",
+      "fullDescription": "Dr. Suha Aljuboori shares her journey from Iraq to establishing one of the first AI departments in the California community college system. She details her playbook for launching programs that serve both tech and non-tech tracks, and how multi-level certificates are opening AI education to everyone from refugees to CS majors.",
+      "date": "2025-02-21",
+      "duration": "19:45",
+      "slug": "equity-first-ai-curriculum-for-every-discipline-dr-suha-al-juboori-2",
+      "featuredMediaId": 4131,
+      "thumbnailUrl": "https://innovatinghighered.com/wp-content/uploads/2025/02/Dr.-Suha-Al-Juboori-Thumb.02-585x390.jpg",
+      "takeaways": [
+        "Playbook for launching an AI department serving tech and non-tech tracks",
+        "Workshop formats that help skeptical faculty try AI",
+        "Multi-level certificates for everyone from refugees to CS majors",
+        "Outreach models that drive equity and enrollment"
+      ],
+      "topics": ["AI Curriculum", "Equity", "Community College", "Certificates"],
+      "platformLinks": {
+        "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
+        "spotify": "https://open.spotify.com/show/innovating-higher-ed",
+        "audible": "https://www.audible.com/pd/Innovating-Higher-Ed",
+        "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
+      },
+      "podbeanId": "h6ytf-1810356-pb",
+      "featured": false
+    },
+    {
+      "number": 43,
+      "id": 4332,
+      "title": "VR Rehearsals: Building Confident Nurses Faster",
+      "guest": "Dr. Jenna Zeller",
+      "guestTitle": "Nursing Educator, Cabrillo College (16-year RN, 10-year educator)",
+      "description": "Dr. Jenna Zeller reveals her layered VR workflow that moves students from skill demos through VR scenarios to mannequin practice and debrief.",
+      "fullDescription": "What if nursing students could practice high-stakes scenarios in VR before touching a real patient? Dr. Jenna Zeller reveals her layered VR workflow that moves students from skill demos through VR scenarios to mannequin practice and debrief. She also shares AI prompts that turn rough feedback into polished emails in seconds.",
+      "date": "2025-02-21",
+      "duration": "20:18",
+      "slug": "vr-rehearsals-building-confident-nurses-faster-dr-jenna-zeller",
+      "featuredMediaId": 4129,
+      "thumbnailUrl": "https://innovatinghighered.com/wp-content/uploads/2025/05/Dr-Zeller-Thumb.02-585x390.jpg",
+      "takeaways": [
+        "Repeatable stack: skill demo -> VR scenario -> mannequin -> debrief",
+        "'Switch' cue that turns passive onlookers into problem-solvers",
+        "VR role-plays that build courage to page doctors early",
+        "AI prompts for polished feedback emails in seconds"
+      ],
+      "topics": ["VR Simulation", "Nursing Education", "AI Feedback", "Clinical Training"],
+      "platformLinks": {
+        "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
+        "spotify": "https://open.spotify.com/show/innovating-higher-ed",
+        "audible": "https://www.audible.com/pd/Innovating-Higher-Ed",
+        "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
+      },
+      "podbeanId": "gxm6e-180f026-pb",
+      "featured": false
+    },
+    {
+      "number": 42,
+      "id": 4338,
+      "title": "XR Learning & AI Engagement Hacks",
+      "guest": "Dr. Garrick Grace",
+      "guestTitle": "Director of Professional Development, California Virtual Campus",
+      "description": "Dr. Garrick Grace reveals how extended-reality simulations and adaptive AI tools are reshaping classrooms across California community colleges.",
+      "fullDescription": "Dr. Garrick Grace reveals how extended-reality simulations and adaptive AI tools are reshaping classrooms across California community colleges. From immersive ladders that guide reflection to belonging boosters for multilingual cohorts, this episode is a masterclass in scaling innovation without draining budgets.",
+      "date": "2025-02-21",
+      "duration": "23:55",
+      "slug": "xr-learning-ai-engagement-hacks-dr-garrick-grace",
+      "featuredMediaId": 4130,
+      "thumbnailUrl": "https://innovatinghighered.com/wp-content/uploads/2025/02/Dr-Grace-Thumb-.02-585x390.jpg",
+      "takeaways": [
+        "Immersive ladder: live demo -> XR scenario -> guided reflection",
+        "Belonging boosters: AI-leveled content for multilingual cohorts",
+        "Mind-shift PD that ripples to 60,000 colleagues",
+        "Budget guardrails: merge AI with XR without draining dollars"
+      ],
+      "topics": ["XR/VR", "Professional Development", "Multilingual Learners", "EdTech Budgets"],
+      "platformLinks": {
+        "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
+        "spotify": "https://open.spotify.com/show/innovating-higher-ed",
+        "audible": "https://www.audible.com/pd/Innovating-Higher-Ed",
+        "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
+      },
+      "podbeanId": "342ra-180ef9c-pb",
+      "featured": false
+    },
+    {
+      "number": 41,
+      "id": 4337,
+      "title": "ChatGPT Teaching Assistant: Lesson Plans in Minutes",
+      "guest": "Lynn Dickinson",
+      "guestTitle": "Author, Faculty at Santa Monica College",
+      "description": "Author Lynn Dickinson shares the prompt pattern she uses to build full slide decks in about ten minutes and how ChatGPT helped write her faculty guide.",
+      "fullDescription": "Author Lynn Dickinson shares the prompt pattern she uses to build full slide decks in about ten minutes and how ChatGPT helped write her faculty guide. She covers discussion prompts students cannot copy-paste, the why/what/how prompt flow, and how to reframe AI as a creativity booster rather than a cheating threat.",
+      "date": "2024-10-19",
+      "duration": "17:30",
+      "slug": "chatgpt-teaching-assistant-lesson-plans-in-minutes-lynn-dickinson-2",
+      "featuredMediaId": 4132,
+      "thumbnailUrl": "https://innovatinghighered.com/wp-content/uploads/2024/10/Lynn-Dickinson-thumb-.02-585x390.jpg",
+      "takeaways": [
+        "Discussion prompts students cannot copy-paste",
+        "Why/what/how prompt flow for slides and activities",
+        "Reframe AI as creativity booster, not cheating threat",
+        "Build cross-campus resource banks across disciplines"
+      ],
+      "topics": ["ChatGPT", "Lesson Planning", "Faculty Resources", "AI Writing"],
+      "platformLinks": {
+        "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
+        "spotify": "https://open.spotify.com/show/innovating-higher-ed",
+        "audible": "https://www.audible.com/pd/Innovating-Higher-Ed",
+        "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
+      },
+      "podbeanId": "jv858-1710904-pb",
+      "featured": false
+    },
+    {
+      "number": 48,
+      "id": 5771,
+      "title": "IHE Daily AI News - Thursday, February 12, 2026",
+      "guest": null,
+      "guestTitle": null,
+      "description": "Daily AI news coverage featuring ETS Research Institute grant, Adelphi University plagiarism lawsuit, Penn State AI integration, and human-centered AI leadership.",
+      "fullDescription": "As higher education grapples with the emergence of AI technologies, many institutions are prioritizing ethical practices alongside educational advancements. This episode covers key developments including the ETS Research Institute's $4M grant, the Adelphi University plagiarism lawsuit, Penn State Smeal's AI integration, and discussions on human-centered AI leadership.",
+      "date": "2026-02-12",
+      "duration": "~10:00",
+      "slug": "ihe-daily-ai-news-thursday-february-12-2026",
+      "featuredMediaId": 0,
+      "thumbnailUrl": null,
+      "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-12.mp3",
+      "takeaways": [
+        "ETS Research Institute receives $4M grant",
+        "Adelphi University plagiarism lawsuit developments",
+        "Penn State Smeal's AI curriculum integration",
+        "Human-centered AI leadership in education"
+      ],
+      "topics": ["AI News", "Higher Ed Policy", "AI Ethics", "Research Funding"],
+      "platformLinks": {},
+      "podbeanId": null,
+      "featured": false,
+      "type": "daily-news"
+    },
+    {
+      "number": 49,
+      "id": 5769,
+      "title": "IHE Daily AI News - Wednesday, February 11, 2026",
+      "guest": null,
+      "guestTitle": null,
+      "description": "Daily AI news featuring faculty moving away from AI bans, shadow AI concepts, Safer Internet Day initiatives, and ethics in educational leadership.",
+      "fullDescription": "This week's headlines reveal the careful balance universities seek between embracing AI for educational innovation and the ethical implications. Topics include academics moving away from AI bans, shadow AI concepts, Safer Internet Day initiatives, and ethics frameworks in educational leadership.",
+      "date": "2026-02-11",
+      "duration": "~10:00",
+      "slug": "ihe-daily-ai-news-wednesday-february-11-2026",
+      "featuredMediaId": 0,
+      "thumbnailUrl": null,
+      "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-11.mp3",
+      "takeaways": [
+        "Faculty moving away from blanket AI bans",
+        "Understanding 'shadow AI' in higher education",
+        "Safer Internet Day initiatives",
+        "LEGO K-8 literacy initiative connections"
+      ],
+      "topics": ["AI News", "AI Policy", "Faculty Development", "Digital Literacy"],
+      "platformLinks": {},
+      "podbeanId": null,
+      "featured": false,
+      "type": "daily-news"
+    }
+  ]
+}

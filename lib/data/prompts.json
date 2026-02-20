@@ -1,0 +1,204 @@
+{
+  "lastUpdated": "2026-02-20",
+  "source": "lib/data/prompts.ts",
+  "description": "Prompt Navigator - A comprehensive guide offering core AI prompting techniques with examples tailored for college faculty.",
+  "totalTechniques": 9,
+  "totalTemplates": 15,
+  "totalProblems": 6,
+  "workflowSteps": 8,
+  "coreTechniques": [
+    {
+      "id": "zero-shot",
+      "name": "Zero-Shot Prompting",
+      "useWhen": "You want a quick baseline answer or definition without providing examples.",
+      "definition": "Zero-shot prompting asks the AI to perform a task without any examples in the prompt. You give a direct instruction or question and the model responds using its general training. It's the fastest way to get an initial draft, explanation, or list because you don't have to prepare demonstrations or special formatting ahead of time.",
+      "useCase": "Use for fast definitions, quick contrasts, or rapid lists. In class prep, it's a handy way to draft a first pass that you can refine with follow-ups.",
+      "whenWhy": "When you need a quick baseline, when preparing early drafts, or when exploring unfamiliar topics.",
+      "examplePrompts": [
+        "Explain the concept of social stratification in simple terms for an intro sociology class (~120 words) and include one concrete, everyday example.",
+        "List the three most important differences between photosynthesis and cellular respiration in a single paragraph for first-year students."
+      ]
+    },
+    {
+      "id": "few-shot",
+      "name": "Few-Shot Prompting",
+      "useWhen": "The output must match a specific format, tone, or rubric.",
+      "definition": "Few-shot prompting includes one or more examples of the task and desired output inside the prompt. The model uses these demonstrations to infer structure, tone, and level, then produces a new response that mirrors the pattern.",
+      "useCase": "Provide an example student answer with model feedback, then ask for feedback on a new answer in the same style. Or show two well-formed quiz items and request five new items that match difficulty and structure.",
+      "whenWhy": "Reach for few-shot when zero-shot was generic, when format is critical, or when you need a stable voice. Good examples = better outputs; 1-3 concise demos are usually enough."
+    },
+    {
+      "id": "system-role",
+      "name": "System & Role Prompts",
+      "useWhen": "You need consistent behavior, constraints, or a specific persona.",
+      "definition": "System and role prompts set global instructions or a persona that persists across the conversation. A system prompt defines boundaries, while a role prompt assigns a character or expertise level."
+    },
+    {
+      "id": "context-injection",
+      "name": "Context Injection",
+      "useWhen": "Outputs must follow your local readings, rubrics, levels, or constraints.",
+      "definition": "Context injection means pasting relevant material directly into the prompt. The AI then grounds its response in your specific content rather than relying on general training data."
+    },
+    {
+      "id": "step-back",
+      "name": "Step-Back Prompting",
+      "useWhen": "You want the model to identify the problem type and plan before solving.",
+      "definition": "Step-back prompting asks the AI to pause before answering, identify the underlying type of problem, and outline an approach or plan."
+    },
+    {
+      "id": "chain-of-thought",
+      "name": "Chain-of-Thought Prompting",
+      "useWhen": "The reasoning steps themselves are instructional or must be checked.",
+      "definition": "Chain-of-thought (CoT) prompting instructs the AI to show its work - explaining each reasoning step before giving the final answer."
+    },
+    {
+      "id": "self-consistency",
+      "name": "Self-Consistency",
+      "useWhen": "Single-run outputs vary and you need a more reliable result.",
+      "definition": "Self-consistency asks the AI to generate multiple independent answers to the same question, then compare them."
+    },
+    {
+      "id": "tree-of-thought",
+      "name": "Tree-of-Thought Prompting",
+      "useWhen": "There are multiple viable approaches and you want options before deciding.",
+      "definition": "Tree-of-thought (ToT) prompting asks the AI to explore multiple solution paths in parallel before evaluating and recommending the best one."
+    },
+    {
+      "id": "react",
+      "name": "ReAct (Reason & Act)",
+      "useWhen": "The task benefits from alternating reasoning with actions or questions.",
+      "definition": "ReAct prompting structures the AI's process as a loop: Reason about what it knows and what's missing, Act by asking a clarifying question or performing a sub-task, then Observe the result before continuing."
+    }
+  ],
+  "promptTemplates": [
+    {
+      "id": "lesson-plan",
+      "title": "Lesson Plan Generator",
+      "category": "Teaching"
+    },
+    {
+      "id": "syllabus-outline",
+      "title": "Syllabus Outline Draft",
+      "category": "Course Design"
+    },
+    {
+      "id": "lesson-adaptation",
+      "title": "Lesson Plan Adaptation (Inclusive Design)",
+      "category": "Teaching"
+    },
+    {
+      "id": "feedback-generator",
+      "title": "Constructive Feedback Generator",
+      "category": "Assessment"
+    },
+    {
+      "id": "rubric-draft",
+      "title": "Rubric Draft",
+      "category": "Assessment"
+    },
+    {
+      "id": "feedback-letter",
+      "title": "Summative Feedback Letter",
+      "category": "Assessment"
+    },
+    {
+      "id": "differentiated-instruction",
+      "title": "Differentiated Instruction Strategies",
+      "category": "Teaching"
+    },
+    {
+      "id": "diverse-learners",
+      "title": "Adaptation for Diverse Learners",
+      "category": "Accessibility"
+    },
+    {
+      "id": "inclusive-discussion",
+      "title": "Inclusive Discussion Prompt",
+      "category": "Teaching"
+    },
+    {
+      "id": "advising-email",
+      "title": "Advising Email Draft",
+      "category": "Advising"
+    },
+    {
+      "id": "degree-planning",
+      "title": "Degree Planning Guide",
+      "category": "Advising"
+    },
+    {
+      "id": "role-play-script",
+      "title": "Role-Play Script (Advisor-Student)",
+      "category": "Advising"
+    },
+    {
+      "id": "ai-policy",
+      "title": "Syllabus AI Policy Draft",
+      "category": "AI Policy"
+    },
+    {
+      "id": "integrity-case",
+      "title": "Academic Integrity Case Discussion",
+      "category": "AI Policy"
+    },
+    {
+      "id": "student-handout",
+      "title": "Student Handout on AI Use",
+      "category": "AI Policy"
+    }
+  ],
+  "commonProblems": [
+    {
+      "problem": "Too Vague",
+      "description": "Prompts without context produce generic results.",
+      "fix": "Include course level, focus, and objectives."
+    },
+    {
+      "problem": "No Audience Level",
+      "description": "Without stating learner level or background, AI may pitch content too high or low.",
+      "fix": "Specify the intended audience."
+    },
+    {
+      "problem": "Missing Format or Length",
+      "description": "AI will guess, often incorrectly.",
+      "fix": "State the format and desired length."
+    },
+    {
+      "problem": "Overloaded Prompts",
+      "description": "Multiple tasks in one prompt can confuse the AI.",
+      "fix": "Break requests into smaller, sequential prompts."
+    },
+    {
+      "problem": "No Role or Tone",
+      "description": "Without guidance, tone and style may be off.",
+      "fix": "Assign a role to anchor the voice."
+    },
+    {
+      "problem": "No Iteration or Verification",
+      "description": "First outputs can contain errors or bias.",
+      "fix": "Review, refine, and verify before use."
+    }
+  ],
+  "workflowSteps": [
+    { "number": 1, "title": "Define Your Goal", "description": "Be specific about the task and purpose." },
+    { "number": 2, "title": "Add Context", "description": "Include audience, course level, content source, and constraints." },
+    { "number": 3, "title": "Draft Clearly", "description": "Keep it one cohesive request; split complex tasks." },
+    { "number": 4, "title": "Test", "description": "Run it and check for accuracy, tone, and format." },
+    { "number": 5, "title": "Spot Gaps", "description": "Identify missing details, wrong tone, or off-target content." },
+    { "number": 6, "title": "Refine", "description": "Adjust scope, tone, format, and add examples if needed." },
+    { "number": 7, "title": "Iterate", "description": "Test and tweak until results consistently meet expectations." },
+    { "number": 8, "title": "Document", "description": "Save the final prompt for reuse or sharing." }
+  ],
+  "references": [
+    "Brown, T. et al. (2020). Language Models are Few-Shot Learners. NeurIPS.",
+    "Wei, J. et al. (2022). Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. NeurIPS.",
+    "Yao, S. et al. (2023). Tree of Thoughts: Deliberate Problem Solving with Large Language Models. NeurIPS.",
+    "Zheng, H. et al. (2023). Take a Step Back: Evoking Reasoning via Abstraction in Large Language Models. arXiv.",
+    "Wang, X. et al. (2023). Self-Consistency Improves Chain of Thought Reasoning in Language Models. ICLR.",
+    "Yao, S. et al. (2023). ReAct: Synergizing Reasoning and Acting in Language Models. ICLR.",
+    "Mollick, E. & Mollick, L. (2023). Using AI to Implement Effective Teaching Strategies in Classrooms. SSRN.",
+    "Bowen, J. & Watson, C. E. (2024). Teaching with AI: A Practical Guide to a New Era of Human Learning. Johns Hopkins University Press.",
+    "OpenAI (2023). GPT-4 Technical Report. arXiv.",
+    "Gibbons, S. (2023). Prompt Engineering for Educators. EDUCAUSE Review."
+  ]
+}

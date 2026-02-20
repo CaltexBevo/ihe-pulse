@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
-import IntelligenceBar from "@/components/IntelligenceBar";
+import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import LivingBackground from "@/components/LivingBackground";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
-  title: "IHE PULSE | Innovating Higher Ed",
+  title: "Innovating Higher Ed | AI Innovation for Education",
   description:
-    "AI-powered intelligence for higher education. Tools, prompts, and resources for educators navigating the AI revolution.",
+    "AI-powered intelligence for higher education. The Innovation Pulse, AI tools, prompts, and resources for educators navigating the AI revolution.",
+  keywords: [
+    "higher education",
+    "AI in education",
+    "educational technology",
+    "Innovation Pulse",
+    "AI tools for educators",
+    "teaching with AI",
+  ],
+  openGraph: {
+    title: "Innovating Higher Ed",
+    description: "AI-powered intelligence for higher education",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -29,15 +30,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dark text-foreground`}
-      >
-        <LivingBackground />
-        <Navigation />
-        <IntelligenceBar />
-        {/* pt-24 accounts for fixed nav (h-16) + intelligence bar (h-8) */}
-        <main className="pt-24 min-h-screen">{children}</main>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased">
+        <Nav />
+        <main className="min-h-screen">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

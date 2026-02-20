@@ -1,0 +1,52 @@
+{
+  "lastUpdated": "2026-02-20",
+  "source": "WordPress REST API + page scrape",
+  "description": "A curated directory of practical tools, authored by innovative educators for their peers.",
+  "totalTools": 3,
+  "tools": [
+    {
+      "id": "syllabot",
+      "wordpressId": 5013,
+      "name": "Syllabot",
+      "slug": "syllabot-2",
+      "description": "A guided tool that helps you generate course-ready language in minutes for creating AI policies in syllabi.",
+      "detailedDescription": "Simplifies the process of drafting fair and clear AI usage policies for course syllabi through an interactive question-and-answer format to produce institutional-ready policy language.",
+      "category": "Syllabus/Course Policy Development",
+      "purpose": "Create AI usage policies for syllabi",
+      "launchUrl": "https://www.playlab.ai/project/cmcxiu07005zbm20uf1mawflg",
+      "pageUrl": "https://innovatinghighered.com/educator-tools/syllabot-2/",
+      "publishedDate": "2025-08-19",
+      "modifiedDate": "2025-09-09",
+      "status": "published",
+      "platform": "PlayLab"
+    },
+    {
+      "id": "ai-redesign",
+      "name": "AI Redesign",
+      "slug": "ai-redesign",
+      "description": "Assessment transformation tool for redesigning course assessments with AI integration in mind.",
+      "category": "Assessment Design",
+      "purpose": "Transform traditional assessments for the AI age",
+      "launchUrl": null,
+      "pageUrl": null,
+      "status": "mentioned",
+      "note": "Referenced in educator-tools page but full details not available"
+    },
+    {
+      "id": "equigrade-mentor",
+      "name": "EquiGrade Mentor",
+      "slug": "equigrade-mentor",
+      "description": "Equitable grading guide to help educators implement fair grading practices.",
+      "category": "Grading",
+      "purpose": "Guide for implementing equitable grading",
+      "launchUrl": null,
+      "pageUrl": null,
+      "status": "mentioned",
+      "note": "Referenced in educator-tools page but full details not available"
+    }
+  ],
+  "additionalResources": {
+    "promptGuides": "24+ prompt templates available in Prompt Navigator",
+    "aiAppDirectory": "38 AI tools vetted for higher education"
+  }
+}

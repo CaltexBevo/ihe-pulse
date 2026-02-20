@@ -1,29 +1,27 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { useState, useEffect, useCallback } from "react";
 
 interface AudioPlayerProps {
-  title?: string;
   duration?: string;
+  credit?: string;
   barCount?: number;
-  audioSrc?: string;
+  compact?: boolean;
 }
 
 export default function AudioPlayer({
-  title,
-  duration = '18:24',
-  barCount = 50,
-  audioSrc,
+  duration = "4:12",
+  credit = "Dr. Norma Jones",
+  barCount = 75,
+  compact = false,
 }: AudioPlayerProps) {
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [muted, setMuted] = useState(false);
-  const [currentTime, setCurrentTime] = useState('0:00');
+  const [currentTime, setCurrentTime] = useState("0:00");
 
   // Parse duration string to seconds
   const parseDuration = useCallback((dur: string) => {
-    const parts = dur.split(':').map(Number);
+    const parts = dur.split(":").map(Number);
     return parts[0] * 60 + parts[1];
   }, []);
 
@@ -33,7 +31,7 @@ export default function AudioPlayer({
   const formatTime = useCallback((seconds: number) => {
     const m = Math.floor(seconds / 60);
     const s = Math.floor(seconds % 60);
-    return `${m}:${s.toString().padStart(2, '0')}`;
+    return `${m}:${s.toString().padStart(2, "0")}`;
   }, []);
 
   // Simulate playback progress
@@ -53,66 +51,107 @@ export default function AudioPlayer({
     return () => clearInterval(interval);
   }, [playing, totalSeconds, formatTime]);
 
-  // Generate static bar heights (seeded by index for consistency)
+  // Generate static bar heights
   const bars = Array.from({ length: barCount }, (_, i) => {
-    const base = 15 + Math.sin(i * 0.4) * 30 + Math.sin(i * 0.15) * 25;
-    return Math.max(8, Math.min(95, base + ((i * 7 + 13) % 20)));
+    const base = 6 + Math.random() * 26 + Math.sin(i * 0.25) * 8;
+    return Math.max(4, base);
   });
 
-  const handleBarClick = (index: number) => {
-    const newProgress = (index / barCount) * 100;
+  const handleBarClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const ratio = x / rect.width;
+    const newProgress = ratio * 100;
     setProgress(newProgress);
     setCurrentTime(formatTime((newProgress / 100) * totalSeconds));
   };
 
-  return (
-    <div className="glass rounded-xl p-4 sm:p-5">
-      {title && (
-        <p className="text-sm font-medium text-white mb-3 truncate">{title}</p>
-      )}
-      <div className="flex items-center gap-3 sm:gap-4">
-        {/* Play/Pause */}
+  if (compact) {
+    return (
+      <div className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4">
+        <div className="flex items-center gap-[0.35rem] font-mono text-[0.65rem] font-semibold text-[var(--green)] tracking-[0.06em]">
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+          LISTEN
+        </div>
         <button
           onClick={() => setPlaying(!playing)}
-          className="shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-pulse to-synapse flex items-center justify-center hover:opacity-80 transition-opacity"
-          aria-label={playing ? 'Pause' : 'Play'}
+          className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 transition-transform hover:scale-105"
         >
           {playing ? (
-            <Pause size={18} className="text-white" />
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white">
+              <rect x="6" y="4" width="4" height="16" />
+              <rect x="14" y="4" width="4" height="16" />
+            </svg>
           ) : (
-            <Play size={18} className="text-white ml-0.5" />
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white ml-[1px]">
+              <polygon points="6,3 20,12 6,21" />
+            </svg>
+          )}
+        </button>
+        <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px] relative cursor-pointer">
+          <div
+            className="h-full bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] rounded-[2px]"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        <span className="font-mono text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap">
+          {currentTime} / {duration}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-[0.3rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-2 py-[0.18rem] rounded-full font-mono text-[0.6rem] font-semibold tracking-[0.06em]">
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+          LISTEN NOW
+        </div>
+        <span className="font-mono text-[0.65rem] text-[var(--text-muted)]">
+          {duration}
+        </span>
+        <span className="text-[0.65rem] text-[var(--text-muted)] ml-auto">
+          {credit}
+        </span>
+      </div>
+
+      {/* Player Row */}
+      <div className="flex items-center gap-3">
+        {/* Play Button */}
+        <button
+          onClick={() => setPlaying(!playing)}
+          className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(0,212,255,0.2)] transition-transform hover:scale-105"
+        >
+          {playing ? (
+            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
+              <rect x="6" y="4" width="4" height="16" />
+              <rect x="14" y="4" width="4" height="16" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white ml-[2px]">
+              <polygon points="6,3 20,12 6,21" />
+            </svg>
           )}
         </button>
 
         {/* Waveform */}
         <div
-          className="flex-1 flex items-end gap-[2px] h-10 cursor-pointer"
-          onClick={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const ratio = x / rect.width;
-            const index = Math.round(ratio * barCount);
-            handleBarClick(Math.max(0, Math.min(barCount - 1, index)));
-          }}
+          className="flex-1 flex items-center h-9 gap-[1.5px] cursor-pointer"
+          onClick={handleBarClick}
         >
           {bars.map((height, i) => {
             const barProgress = (i / barCount) * 100;
             const isPlayed = barProgress <= progress;
-            const isActive =
-              playing && Math.abs(barProgress - progress) < 100 / barCount;
             return (
               <div
                 key={i}
-                className="flex-1 min-w-[2px] max-w-[4px] rounded-full transition-colors duration-150 pointer-events-none"
+                className="rounded-[2px] transition-colors duration-150"
                 style={{
-                  height: `${height}%`,
-                  background: isPlayed
-                    ? isActive
-                      ? '#00d4ff'
-                      : 'linear-gradient(to top, #00d4ff, #c850c0)'
-                    : 'rgba(255,255,255,0.1)',
-                  transform: isActive ? 'scaleY(1.2)' : 'scaleY(1)',
-                  transition: 'transform 0.15s ease, background 0.15s ease',
+                  width: "3px",
+                  height: `${height}px`,
+                  backgroundColor: isPlayed ? "var(--cyan)" : "var(--surface-2)",
                 }}
               />
             );
@@ -120,28 +159,9 @@ export default function AudioPlayer({
         </div>
 
         {/* Time */}
-        <div className="shrink-0 text-right">
-          <span className="text-xs text-gray-500 font-mono tabular-nums">
-            {currentTime} / {duration}
-          </span>
-        </div>
-
-        {/* Mute toggle */}
-        <button
-          onClick={() => setMuted(!muted)}
-          className="shrink-0 text-gray-500 hover:text-pulse transition-colors hidden sm:block"
-          aria-label={muted ? 'Unmute' : 'Mute'}
-        >
-          {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-        </button>
-      </div>
-
-      {/* Progress bar */}
-      <div className="mt-3 h-0.5 bg-white/5 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-pulse to-synapse rounded-full transition-all duration-1000 ease-linear"
-          style={{ width: `${progress}%` }}
-        />
+        <span className="font-mono text-[0.63rem] text-[var(--text-muted)] shrink-0">
+          {currentTime} / {duration}
+        </span>
       </div>
     </div>
   );

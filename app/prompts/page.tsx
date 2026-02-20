@@ -1,335 +1,367 @@
-'use client';
+import Link from "next/link";
 
-import {
-  Sparkles,
-  AlertTriangle,
-  CheckCircle,
-  BookOpen,
-  Lightbulb,
-  Zap,
-  Layers,
-  UserCog,
-  FileInput,
-  Footprints,
-  Link2,
-  ShieldCheck,
-  GitBranch,
-  RefreshCw,
-  type LucideIcon,
-} from 'lucide-react';
-import PageTransition from '@/components/PageTransition';
-import SectionNav from '@/components/SectionNav';
-import Accordion from '@/components/Accordion';
-import type { AccordionItem } from '@/components/Accordion';
-import WorkflowStepper from '@/components/WorkflowStepper';
-import CopyButton from '@/components/CopyButton';
-import {
-  sectionIds,
-  sectionLabels,
-  coreTechniques,
-  promptTemplates,
-  commonProblems,
-  workflowSteps,
-  tuningChecklist,
-  references,
-} from '@/lib/data/prompts';
-
-const navSections = sectionIds.map((id) => ({
-  id,
-  label: sectionLabels[id],
-}));
-
-// ── Icon map for each technique ─────────────────────────
-
-const techniqueIcons: Record<string, LucideIcon> = {
-  'zero-shot': Zap,
-  'few-shot': Layers,
-  'system-role': UserCog,
-  'context-injection': FileInput,
-  'step-back': Footprints,
-  'chain-of-thought': Link2,
-  'self-consistency': ShieldCheck,
-  'tree-of-thought': GitBranch,
-  'react': RefreshCw,
+export const metadata = {
+  title: "Prompt Navigator | Innovating Higher Ed",
+  description:
+    "AI prompts built for higher education. Tested, refined, and rated by real faculty. Every prompt is designed for a specific teaching or administrative task.",
 };
 
-export default function PromptsPage() {
-  // Build accordion items from core techniques
-  const accordionItems: AccordionItem[] = coreTechniques.map((t) => {
-    const Icon = techniqueIcons[t.id] ?? Zap;
-    return {
-      id: t.id,
-      trigger: (
-        <div className="flex items-start gap-3">
-          <div className="mt-0.5 w-8 h-8 rounded-lg bg-gradient-to-br from-pulse/20 to-synapse/20 flex items-center justify-center shrink-0 border border-pulse/20">
-            <Icon size={16} className="text-pulse" />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold gradient-text-cyan">{t.name}</h3>
-            <p className="text-sm text-gray-400 mt-0.5">
-              <span className="text-pulse font-medium">Use when:</span>{' '}
-              {t.useWhen}
-            </p>
-          </div>
-        </div>
-      ),
-      content: (
-        <div className="space-y-5">
-          <div>
-            <h4 className="text-xs font-semibold text-pulse/70 uppercase tracking-wider mb-1.5">
-              Definition
-            </h4>
-            <p className="text-sm text-gray-300 leading-relaxed">
-              {t.definition}
-            </p>
-          </div>
+// Sample prompt data
+const featuredPrompt = {
+  title: "Generate Discussion Questions That Actually Spark Debate",
+  description:
+    "Creates tension-based discussion questions from any reading that students actually want to argue about — not just answer. Tested across 30 courses with consistently higher engagement than generic questions.",
+  difficulty: "Beginner",
+  category: "Discussion Design",
+  uses: "3.1k",
+  rating: "4.9",
+  prompt: `Read this [text/chapter/article]. Identify the central tension or most debatable claim the author makes. Then generate 5 discussion questions that force students to take a side on that tension. Each question should: (1) be arguable from at least two perspectives, (2) connect to students' lived experience, and (3) resist a simple "right answer." Format as numbered questions with a one-line note explaining what makes each one productive.`,
+  tip: `Replace "lived experience" with a specific context for your discipline. For a nursing class: "connect to clinical scenarios." For business: "connect to workplace decisions they've faced."`,
+};
 
-          <div>
-            <h4 className="text-xs font-semibold text-pulse/70 uppercase tracking-wider mb-1.5">
-              Use Case (Higher Ed)
-            </h4>
-            <p className="text-sm text-gray-300 leading-relaxed">{t.useCase}</p>
-          </div>
+const prompts = [
+  {
+    title: "AI-Resistant Assignment Redesigner",
+    description:
+      "Analyzes your existing assignment and suggests modifications that maintain learning outcomes while reducing AI shortcutting.",
+    difficulty: "Intermediate",
+    category: "Assessment",
+    uses: "1.8k",
+    rating: "4.7",
+    preview: `"Here is my assignment: [paste]. Analyze which parts a student could complete using AI without learning..."`,
+  },
+  {
+    title: "Rubric-Based Feedback Draft Generator",
+    description:
+      "Generates detailed, constructive student feedback aligned to your specific rubric. You review and personalize before sending.",
+    difficulty: "Beginner",
+    category: "Feedback",
+    uses: "3.1k",
+    rating: "4.9",
+    trending: true,
+    preview: `"Using this rubric [paste], generate detailed feedback for this student submission [paste]..."`,
+  },
+  {
+    title: "Syllabus FAQ Bot Builder",
+    description:
+      'Turns your syllabus into a Q&A knowledge base students can query. Reduces repetitive "Is this on the exam?" emails by 80%.',
+    difficulty: "Beginner",
+    category: "Course Design",
+    uses: "940",
+    rating: "4.6",
+    isNew: true,
+    preview: `"Here is my course syllabus [paste]. Extract every fact, deadline, policy, and expectation..."`,
+  },
+  {
+    title: "Literature Review Gap Finder",
+    description:
+      "Analyzes a set of papers and identifies where the literature has gaps, contradictions, or underexplored angles for your research.",
+    difficulty: "Advanced",
+    category: "Research",
+    uses: "720",
+    rating: "4.8",
+    preview: `"Here are summaries of [N] papers in my research area [paste]. Identify: (1) the 3 most significant gaps..."`,
+  },
+  {
+    title: "Student Peer Review Guide Generator",
+    description:
+      "Creates structured peer review worksheets tailored to your specific assignment type and learning goals.",
+    difficulty: "Beginner",
+    category: "Writing",
+    uses: "1.2k",
+    rating: "4.5",
+    trending: true,
+    preview: `"For this assignment [paste description], create a peer review guide with 8-10 specific questions..."`,
+  },
+  {
+    title: "Meeting Minutes to Action Items Converter",
+    description:
+      "Turns messy meeting notes into clean action items with owners, deadlines, and dependencies. Built for department and committee meetings.",
+    difficulty: "Intermediate",
+    category: "Admin",
+    uses: "2.1k",
+    rating: "4.8",
+    preview: `"Here are notes from our [department/committee] meeting [paste]. Extract every action item, decision..."`,
+  },
+  {
+    title: "Backward Design Course Builder",
+    description:
+      "Takes your learning outcomes and generates a complete course arc: weekly topics, assessment sequence, and alignment matrix.",
+    difficulty: "Advanced",
+    category: "Course Design",
+    uses: "560",
+    rating: "4.7",
+    preview: `"My course has these learning outcomes: [paste]. Design a 15-week course arc..."`,
+  },
+  {
+    title: "Encouraging Feedback Rewriter",
+    description:
+      "Takes your honest but blunt feedback and rewrites it to be constructive, specific, and growth-oriented while preserving the substance.",
+    difficulty: "Beginner",
+    category: "Feedback",
+    uses: "1.4k",
+    rating: "4.9",
+    isNew: true,
+    preview: `"Here is my feedback for a student [paste]. Rewrite it to: (1) lead with something specific..."`,
+  },
+  {
+    title: "Case Study Scenario Generator",
+    description:
+      "Creates realistic, discipline-specific case studies with built-in ethical dilemmas and decision points for classroom discussion.",
+    difficulty: "Intermediate",
+    category: "Discussion",
+    uses: "890",
+    rating: "4.6",
+    preview: `"Create a realistic case study for a [discipline] course on [topic]. Include: a named protagonist..."`,
+  },
+];
 
-          <div>
-            <h4 className="text-xs font-semibold text-pulse/70 uppercase tracking-wider mb-1.5">
-              When &amp; Why
-            </h4>
-            <p className="text-sm text-gray-300 leading-relaxed">{t.whenWhy}</p>
-          </div>
+const categories = [
+  "All",
+  "Discussion",
+  "Assessment",
+  "Feedback",
+  "Course Design",
+  "Research",
+  "Writing",
+  "Admin",
+];
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold text-pulse/70 uppercase tracking-wider">
-              Example Prompt{t.examplePrompts.length > 1 ? 's' : ''}
-            </h4>
-            {t.examplePrompts.map((ep, idx) => (
-              <div key={idx} className="prompt-block rounded-lg p-4">
-                <pre className="text-sm text-gray-300 font-mono whitespace-pre-wrap leading-relaxed mb-3">
-                  {ep}
-                </pre>
-                <CopyButton text={ep} label="Copy Prompt" />
-              </div>
-            ))}
-          </div>
-        </div>
-      ),
-    };
-  });
+const difficulties = ["All Levels", "Beginner", "Intermediate", "Advanced"];
 
-  return (
-    <PageTransition>
-      <div className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mx-auto max-w-7xl">
-          {/* ── Page Header ─────────────────────────────── */}
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-3">
-              <Sparkles size={18} className="text-pulse" />
-              <p className="text-sm font-mono text-pulse uppercase tracking-widest">
-                Prompt Navigator
-              </p>
-            </div>
-            <h1 className="text-4xl sm:text-6xl font-bold text-white leading-tight">
-              Master{' '}
-              <span className="gradient-text">Prompt Engineering</span>
-            </h1>
-            <p className="mt-4 text-lg text-gray-400 max-w-2xl">
-              Nine core techniques, ready-to-use templates, common pitfalls, and
-              a refinement workflow &mdash; everything you need to get better
-              results from AI in higher education.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Sticky Section Nav ──────────────────────── */}
-      <SectionNav sections={navSections} />
-
-      <div className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mx-auto max-w-7xl space-y-24">
-          {/* ━━ Section 1: Core Techniques ━━━━━━━━━━━━ */}
-          <section id="techniques">
-            <SectionHeading
-              icon={<BookOpen size={22} className="text-pulse" />}
-              title="Core Techniques"
-              subtitle="Nine proven prompting strategies, each with definitions, use cases, and copyable example prompts."
-              gradientClass="gradient-text-cyan"
-            />
-            <Accordion items={accordionItems} glowClass="card-glow-cyan" />
-          </section>
-
-          {/* ━━ Section 2: Prompt Templates ━━━━━━━━━━━ */}
-          <section id="templates">
-            <SectionHeading
-              icon={<Sparkles size={22} className="text-synapse" />}
-              title="Prompt Templates"
-              subtitle="Ready-to-use prompts for teaching, advising, assessment, and AI policy. Copy, customize, deploy."
-              gradientClass="gradient-text-fuchsia"
-            />
-            <div className="grid md:grid-cols-2 gap-6">
-              {promptTemplates.map((t) => (
-                <div
-                  key={t.id}
-                  className="glass rounded-xl p-5 flex flex-col card-glow-fuchsia"
-                >
-                  <h3 className="text-lg font-semibold text-white mb-3">
-                    {t.title}
-                  </h3>
-                  <div className="prompt-block rounded-lg p-4 mb-3 flex-1">
-                    <pre className="text-sm text-gray-300 font-mono whitespace-pre-wrap leading-relaxed">
-                      {t.prompt}
-                    </pre>
-                  </div>
-                  <div className="mb-3">
-                    <CopyButton text={t.prompt} label="Copy Prompt" />
-                  </div>
-                  <details className="group">
-                    <summary className="text-xs font-medium text-synapse/60 cursor-pointer hover:text-synapse transition-colors select-none">
-                      Usage Notes
-                    </summary>
-                    <p className="mt-2 text-xs text-gray-400 leading-relaxed">
-                      {t.usageNotes}
-                    </p>
-                  </details>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* ━━ Section 3: Common Problems ━━━━━━━━━━━━ */}
-          <section id="problems">
-            <SectionHeading
-              icon={<AlertTriangle size={22} className="text-amber-400" />}
-              title="Common Problems & Fixes"
-              subtitle="Six pitfalls that produce weak AI outputs &mdash; and how to fix each one."
-              gradientClass="gradient-text-amber"
-            />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {commonProblems.map((cp, i) => (
-                <div
-                  key={i}
-                  className="glass rounded-xl p-5 card-glow-amber"
-                >
-                  <div className="flex items-start gap-3 mb-3">
-                    <div className="mt-0.5 w-7 h-7 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/20">
-                      <AlertTriangle size={14} className="text-amber-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-white">
-                        {cp.problem}
-                      </h3>
-                      <p className="text-sm text-gray-400 mt-1">
-                        {cp.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 pt-3 border-t border-amber-500/10">
-                    <div className="mt-0.5 w-7 h-7 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0 border border-green-500/20">
-                      <CheckCircle size={14} className="text-green-400" />
-                    </div>
-                    <p className="text-sm text-gray-300 pt-1">{cp.fix}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* ━━ Section 4: Refinement Workflow ━━━━━━━━ */}
-          <section id="workflow">
-            <SectionHeading
-              icon={<Lightbulb size={22} className="text-pulse" />}
-              title="Prompt Refinement Workflow"
-              subtitle="An 8-step process to go from rough idea to polished, reusable prompt."
-              gradientClass="gradient-text"
-            />
-
-            <div className="glass rounded-xl p-6 sm:p-8 mb-8 card-glow-cyan">
-              <WorkflowStepper steps={workflowSteps} />
-            </div>
-
-            {/* Tuning Checklist */}
-            <div className="glass rounded-xl p-6 sm:p-8 card-glow-fuchsia">
-              <h3 className="text-lg font-semibold text-white mb-1">
-                Tuning Checklist
-              </h3>
-              <p className="text-sm text-gray-400 mb-5">
-                Before sending your final prompt, confirm it has:
-              </p>
-              <ul className="space-y-3">
-                {tuningChecklist.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-pulse to-synapse shrink-0" />
-                    <span className="text-sm text-gray-300">
-                      <span className="font-semibold text-white">
-                        {item.label}
-                      </span>{' '}
-                      &mdash; {item.description}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-5 text-xs text-gray-500 italic">
-                Pro Tip: Even good prompts can improve. Test, refine, and save
-                the best versions &mdash; they become powerful templates for
-                future use.
-              </p>
-            </div>
-          </section>
-
-          {/* ━━ Section 5: References ━━━━━━━━━━━━━━━━ */}
-          <section id="references">
-            <SectionHeading
-              icon={<BookOpen size={22} className="text-pulse" />}
-              title="References & Further Reading"
-              subtitle="Key research and resources on prompt engineering and AI in education."
-              gradientClass="gradient-text"
-            />
-            <div className="glass rounded-xl p-6 sm:p-8 card-glow-cyan">
-              <ol className="space-y-2.5 list-none">
-                {references.map((ref, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm">
-                    <span className="text-pulse font-mono shrink-0 mt-px font-bold">
-                      {i + 1}.
-                    </span>
-                    <span className="text-gray-300">{ref.text}</span>
-                  </li>
-                ))}
-              </ol>
-              <p className="mt-6 text-xs text-gray-500 italic">
-                We encourage you to explore these works to broaden your
-                perspective. Prompt engineering is a fast-evolving field &mdash;
-                staying informed through such readings will help you refine your
-                skills and adapt to new AI developments.
-              </p>
-            </div>
-          </section>
-        </div>
-      </div>
-    </PageTransition>
-  );
+function getDifficultyColor(difficulty: string) {
+  switch (difficulty) {
+    case "Beginner":
+      return { bg: "var(--green-dim)", color: "var(--green)" };
+    case "Intermediate":
+      return { bg: "var(--amber-dim)", color: "var(--amber)" };
+    case "Advanced":
+      return { bg: "var(--red-dim)", color: "var(--red)" };
+    default:
+      return { bg: "var(--surface)", color: "var(--text-muted)" };
+  }
 }
 
-// ── Section heading helper ───────────────────────────────
-
-function SectionHeading({
-  icon,
-  title,
-  subtitle,
-  gradientClass = 'gradient-text',
-}: {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  gradientClass?: string;
-}) {
+export default function PromptsPage() {
   return (
-    <div className="mb-10">
-      <div className="flex items-center gap-3 mb-2">
-        {icon}
-        <h2 className={`text-3xl sm:text-4xl font-bold ${gradientClass}`}>
-          {title}
-        </h2>
+    <div className="min-h-screen">
+      {/* Page Header */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-6 animate-[fadeUp_0.7s_ease-out_both]">
+        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--purple)] mb-2 flex items-center gap-2">
+          <span className="text-[1rem]">⚡</span>
+          PROMPT NAVIGATOR
+        </div>
+        <h1 className="font-sans text-[clamp(2rem,5vw,2.4rem)] font-bold leading-[1.1] text-[var(--text)] mb-3">
+          AI Prompts Built for Higher Education
+        </h1>
+        <p className="text-[0.92rem] text-[var(--text-secondary)] max-w-[620px] leading-[1.6]">
+          Tested, refined, and rated by real faculty. Every prompt is designed
+          for a specific teaching or administrative task — not generic templates.
+        </p>
+        <div className="flex gap-6 mt-4 font-mono text-[0.68rem] text-[var(--text-muted)]">
+          <span>
+            <strong className="text-[var(--cyan)]">2,400+</strong> prompts curated
+          </span>
+          <span>
+            <strong className="text-[var(--cyan)]">48k</strong> total uses
+          </span>
+          <span>
+            <strong className="text-[var(--cyan)]">340</strong> contributors
+          </span>
+        </div>
       </div>
-      <p className="text-gray-400 text-lg max-w-2xl">{subtitle}</p>
+
+      {/* Featured Prompt */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-10">
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--purple)] via-[var(--cyan)] to-[var(--magenta)]" />
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Left - Info */}
+            <div>
+              <div className="flex gap-2 mb-3">
+                <span
+                  className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px]"
+                  style={getDifficultyColor(featuredPrompt.difficulty)}
+                >
+                  {featuredPrompt.difficulty}
+                </span>
+                <span className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--purple-dim)] text-[var(--purple)]">
+                  {featuredPrompt.category}
+                </span>
+                <span className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--amber-dim)] text-[var(--amber)]">
+                  Most Used This Week
+                </span>
+              </div>
+              <h2 className="text-[1.4rem] font-bold leading-[1.22] mb-3">
+                {featuredPrompt.title}
+              </h2>
+              <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.65] mb-4">
+                {featuredPrompt.description}
+              </p>
+              <div className="font-mono text-[0.62rem] text-[var(--text-muted)] flex gap-4">
+                <span className="text-[var(--green)]">{featuredPrompt.uses} uses</span>
+                <span>Updated Feb 14</span>
+                <span>★ {featuredPrompt.rating} avg rating</span>
+              </div>
+            </div>
+
+            {/* Right - Prompt */}
+            <div>
+              <div className="font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-2">
+                The Prompt
+              </div>
+              <div className="font-mono text-[0.75rem] text-[var(--cyan)] bg-[rgba(0,212,255,0.04)] border border-[rgba(0,212,255,0.1)] rounded-[10px] p-4 leading-[1.6] mb-4">
+                {featuredPrompt.prompt}
+              </div>
+              <button className="font-mono text-[0.68rem] text-[var(--cyan)] px-4 py-2 rounded-[8px] bg-[var(--cyan-dim)] border border-[rgba(0,212,255,0.2)] hover:bg-[rgba(0,212,255,0.2)] transition-colors">
+                Copy prompt
+              </button>
+              <div className="mt-4 text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] p-3 bg-[rgba(200,80,192,0.04)] border-l-2 border-[var(--magenta)] rounded-r-[6px]">
+                <strong className="text-[var(--magenta)] font-semibold text-[0.6rem] font-mono tracking-[0.06em] uppercase block mb-1">
+                  Pro tip
+                </strong>
+                {featuredPrompt.tip}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-6">
+        <div className="flex flex-wrap items-center gap-3 mb-3">
+          <span className="font-mono text-[0.58rem] text-[var(--text-muted)] tracking-[0.08em] uppercase min-w-[60px]">
+            Difficulty
+          </span>
+          {difficulties.map((d, i) => (
+            <button
+              key={d}
+              className={`filter-pill ${
+                (d === "Beginner" || d === "All Levels") && i === 0 ? "active" : ""
+              }`}
+              style={
+                d !== "All Levels"
+                  ? {
+                      borderColor: `${getDifficultyColor(d).color}30`,
+                    }
+                  : undefined
+              }
+            >
+              {d}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="font-mono text-[0.58rem] text-[var(--text-muted)] tracking-[0.08em] uppercase min-w-[60px]">
+            Category
+          </span>
+          {categories.map((c, i) => (
+            <button
+              key={c}
+              className={`filter-pill ${i === 0 ? "active" : ""}`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Search */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-8">
+        <div className="flex items-center gap-2 bg-[var(--bg-card)] border border-[var(--border)] rounded-[10px] px-4 py-3 max-w-[400px]">
+          <svg className="w-4 h-4 text-[var(--text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search prompts by keyword or task..."
+            className="bg-transparent border-none outline-none text-[0.82rem] text-[var(--text)] placeholder:text-[var(--text-muted)] flex-1"
+          />
+        </div>
+      </div>
+
+      {/* Prompt Grid */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="grid-3">
+          {prompts.map((prompt, i) => (
+            <div
+              key={i}
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] cursor-pointer relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--purple)] to-[var(--cyan)]" />
+
+              {/* Tags */}
+              <div className="flex gap-2 mb-3 flex-wrap">
+                <span
+                  className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px]"
+                  style={getDifficultyColor(prompt.difficulty)}
+                >
+                  {prompt.difficulty}
+                </span>
+                <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--purple-dim)] text-[var(--purple)]">
+                  {prompt.category}
+                </span>
+                {prompt.trending && (
+                  <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--amber-dim)] text-[var(--amber)]">
+                    Trending
+                  </span>
+                )}
+                {prompt.isNew && (
+                  <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
+                    New
+                  </span>
+                )}
+              </div>
+
+              {/* Title */}
+              <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-2">
+                {prompt.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-3">
+                {prompt.description}
+              </p>
+
+              {/* Preview */}
+              <div className="font-mono text-[0.68rem] text-[var(--cyan)] bg-[rgba(0,212,255,0.04)] border border-[rgba(0,212,255,0.08)] rounded-[7px] px-3 py-2 leading-[1.5] mb-3 line-clamp-3">
+                {prompt.preview}
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)] font-mono text-[0.55rem] text-[var(--text-muted)]">
+                <span className="text-[var(--green)]">{prompt.uses} uses</span>
+                <span>★ {prompt.rating}</span>
+                <button className="ml-auto text-[var(--cyan)] px-2 py-[3px] rounded-[4px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] transition-colors">
+                  Copy
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <button className="btn-secondary">Load more prompts</button>
+        </div>
+      </div>
+
+      {/* Submit CTA */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--purple)] to-[var(--cyan)]" />
+
+          <h2 className="font-sans text-[1.5rem] font-bold mb-2">
+            Share Your Best Prompts
+          </h2>
+          <p className="text-[0.88rem] text-[var(--text-secondary)] max-w-[480px] mx-auto mb-6">
+            Built a prompt that works great in your classroom? Submit it to the
+            Navigator and help other educators skip the trial and error.
+          </p>
+          <button className="btn-primary">Submit a Prompt</button>
+        </div>
+      </div>
     </div>
   );
 }
