@@ -3,7 +3,7 @@ import Link from "next/link";
 export const metadata = {
   title: "About | Innovating Higher Ed",
   description:
-    "Meet Dr. Norma Jones and learn about the mission behind Innovating Higher Ed — empowering educators with AI knowledge, tools, and community.",
+    "Meet the team behind Innovating Higher Ed — empowering educators with AI knowledge, tools, and community.",
 };
 
 const offerings = [
@@ -12,7 +12,7 @@ const offerings = [
     title: "Innovation Pulse",
     href: "/innovation-pulse",
     description:
-      "Daily briefings on the latest AI news for higher ed, with Dr. Jones's editorial perspective.",
+      "Daily briefings on the latest AI news for higher ed, with editorial perspective and analysis.",
   },
   {
     icon: "🎙️",
@@ -33,7 +33,7 @@ const offerings = [
     title: "AI App Directory",
     href: "/ai-app-directory",
     description:
-      "28+ vetted AI tools reviewed for faculty, administrators, and students with detailed pros, cons, and use cases.",
+      "38+ vetted AI tools reviewed for faculty, administrators, and students with detailed pros, cons, and use cases.",
   },
   {
     icon: "🧪",
@@ -72,39 +72,61 @@ export default function AboutPage() {
     <div className="min-h-screen">
       {/* Page Header */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-10 animate-[fadeUp_0.7s_ease-out_both]">
-        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-2">
+        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-2 flex items-center gap-2">
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
           ABOUT
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Bio Text */}
+          {/* Bio Text - TEXT ONLY, NO PHOTOS */}
           <div>
             <h1 className="font-sans text-[clamp(2rem,5vw,2.4rem)] font-bold leading-[1.1] text-[var(--text)] mb-6">
-              Meet Dr. Norma Jones
+              Meet the Team
             </h1>
-            <p className="text-[1rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
-              PhD, recognized leader in AI integration for higher education, with
-              experience spanning academia and industry. Dr. Jones is a podcast
-              host and producer who has spent over 15 years at the intersection
-              of technology and teaching, helping institutions navigate digital
-              transformation — and now, the AI revolution.
-            </p>
-            <p className="text-[0.92rem] text-[var(--text-secondary)] leading-[1.65]">
-              She founded Innovating Higher Ed to bridge the gap between AI
-              innovation and classroom practice — giving faculty, administrators,
-              and instructional designers the curated tools, evidence-based
-              prompts, and practical insights they need to integrate AI with
-              confidence, equity, and purpose.
-            </p>
+
+            <div className="space-y-6">
+              {/* Dr. Norma Jones - TEXT ONLY */}
+              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
+                <h2 className="font-sans text-[1.2rem] font-bold mb-1">Dr. Norma Jones</h2>
+                <p className="font-mono text-[0.68rem] text-[var(--cyan)] mb-3">Founder & Host</p>
+                <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
+                  PhD, recognized leader in AI integration for higher education, with
+                  experience spanning academia and industry. Dr. Jones is a podcast
+                  host and producer who has spent over 15 years at the intersection
+                  of technology and teaching, helping institutions navigate digital
+                  transformation — and now, the AI revolution.
+                </p>
+              </div>
+
+              {/* Brent Jones - TEXT ONLY */}
+              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
+                <h2 className="font-sans text-[1.2rem] font-bold mb-1">Brent Jones</h2>
+                <p className="font-mono text-[0.68rem] text-[var(--magenta)] mb-3">Co-Producer & Technology Lead</p>
+                <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
+                  Technology strategist and podcast co-producer with deep expertise in
+                  educational technology, web development, and AI applications. Brent
+                  builds the technical infrastructure that powers Innovating Higher Ed
+                  and ensures every tool and resource we recommend has been thoroughly tested.
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Placeholder for photo (no photos per spec) */}
-          <div className="flex justify-center">
-            <div className="w-[280px] h-[280px] rounded-[20px] bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] opacity-15 flex items-center justify-center">
-              <span className="font-mono text-[0.9rem] text-[var(--text-muted)]">
-                Dr. Norma Jones
-              </span>
+          {/* Mission Card */}
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+
+            <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--cyan)] mb-6">
+              Our Mission
             </div>
+            <p className="text-[1.2rem] font-bold leading-[1.5] text-[var(--text)] mb-4">
+              &ldquo;To empower every educator with the AI knowledge, tools, and
+              community they need to transform teaching and learning — with equity,
+              integrity, and humanity at the center.&rdquo;
+            </p>
+            <p className="font-mono text-[0.78rem] text-[var(--text-muted)]">
+              — Dr. Norma Jones, Founder
+            </p>
           </div>
         </div>
       </div>
@@ -163,25 +185,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Mission Quote */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 lg:p-12 text-center relative overflow-hidden max-w-[800px] mx-auto">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
-
-          <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--cyan)] mb-6">
-            Our Mission
-          </div>
-          <p className="text-[1.2rem] font-bold leading-[1.5] text-[var(--text)] mb-4">
-            &ldquo;To empower every educator with the AI knowledge, tools, and
-            community they need to transform teaching and learning — with equity,
-            integrity, and humanity at the center.&rdquo;
-          </p>
-          <p className="text-[0.78rem] text-[var(--text-muted)]">
-            — Dr. Norma Jones, Founder
-          </p>
-        </div>
-      </div>
-
       {/* Values */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6 text-center">
@@ -207,7 +210,8 @@ export default function AboutPage() {
       {/* AI Disclosure */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[20px] p-8 max-w-[800px] mx-auto">
-          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4">
+          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4 flex items-center gap-2">
+            <span className="w-[5px] h-[5px] rounded-full bg-[var(--amber)]" />
             AI Disclosure
           </div>
           <h3 className="font-sans text-[1.1rem] font-bold mb-3">
@@ -218,26 +222,26 @@ export default function AboutPage() {
             responsibly to enhance our work, with human oversight at every step:
           </p>
           <ul className="space-y-2 text-[0.85rem] text-[var(--text-secondary)] leading-[1.6]">
-            <li className="flex items-start gap-2">
-              <span className="text-[var(--cyan)] mt-1">&#8226;</span>
+            <li className="flex items-start gap-3">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] mt-2 shrink-0" />
               <span>
-                <strong>Innovation Pulse audio</strong> is produced using AI
+                <strong className="text-[var(--text)]">Innovation Pulse audio</strong> is produced using AI
                 voice technology based on Dr. Norma Jones&apos;s voice, with full
                 editorial oversight by Dr. Jones.
               </span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[var(--cyan)] mt-1">&#8226;</span>
+            <li className="flex items-start gap-3">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] mt-2 shrink-0" />
               <span>
-                <strong>Content curation</strong> is AI-assisted but
+                <strong className="text-[var(--text)]">Content curation</strong> is AI-assisted but
                 human-reviewed. Every story and tool recommendation is verified by
                 our editorial team.
               </span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[var(--cyan)] mt-1">&#8226;</span>
+            <li className="flex items-start gap-3">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] mt-2 shrink-0" />
               <span>
-                <strong>All prompts</strong> in the Prompt Navigator are
+                <strong className="text-[var(--text)]">All prompts</strong> in the Prompt Navigator are
                 human-written and tested by real educators before publication.
               </span>
             </li>

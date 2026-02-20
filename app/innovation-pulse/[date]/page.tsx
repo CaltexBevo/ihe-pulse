@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import AudioPlayer from "@/components/AudioPlayer";
 import Card from "@/components/Card";
 import {
   getAllEpisodes,
@@ -34,6 +34,20 @@ export async function generateMetadata({
   };
 }
 
+// Placeholder images
+const storyImages = [
+  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&fit=crop",
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop",
+  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&h=300&fit=crop",
+];
+
+const relatedImages = [
+  "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=280&fit=crop",
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=280&fit=crop",
+  "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=500&h=280&fit=crop",
+];
+
 // Page Component
 export default async function InnovationPulseDatePage({
   params,
@@ -54,185 +68,340 @@ export default async function InnovationPulseDatePage({
 
   return (
     <div className="min-h-screen">
-      {/* Page Header */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-6">
+      {/* ═══════════════════════════════════════════════════════
+          BREADCRUMB BAR
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[1200px] mx-auto px-[var(--px)] py-4 border-b border-[var(--border)] flex items-center justify-between">
         <Link
           href="/innovation-pulse"
-          className="font-mono text-[0.62rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mb-4 inline-flex items-center gap-1"
+          className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors flex items-center gap-2"
         >
-          &larr; Back to Innovation Pulse
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[14px] h-[14px]">
+            <path d="M19 12H5" />
+            <path d="M12 19l-7-7 7-7" />
+          </svg>
+          Back to Innovation Pulse
         </Link>
-
-        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-2 flex items-center gap-2 mt-4">
-          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-          THE INNOVATION PULSE
-        </div>
-        <h1 className="font-serif italic text-[clamp(1.6rem,4vw,2.2rem)] font-normal leading-[1.15] text-[var(--text)] mb-3">
+        <span className="font-mono text-[0.68rem] text-[var(--text-muted)]">
           {formatPulseDate(date)}
-        </h1>
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.58rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
-            {episode.editorialLens}
+        </span>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          FULL-WIDTH HERO IMAGE
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[1200px] mx-auto relative overflow-hidden h-[420px]">
+        <Image
+          src={storyImages[0]}
+          alt="Story hero"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[rgba(8,8,15,0.3)] to-[rgba(8,8,15,0.1)]" />
+        {/* Badges */}
+        <div className="absolute top-6 left-6 flex gap-2">
+          <span className="font-mono text-[0.65rem] font-semibold tracking-[0.05em] px-3 py-[0.3rem] rounded-[6px] bg-[rgba(0,212,255,0.85)] text-[#08080f]">
+            LEAD STORY
           </span>
-          <span className="font-mono text-[0.58rem] text-[var(--text-muted)]">
-            {episode.audioDuration}
+          <span className="font-mono text-[0.65rem] font-semibold tracking-[0.05em] px-3 py-[0.3rem] rounded-[6px] bg-[rgba(255,255,255,0.12)] text-[var(--text)] backdrop-blur-[8px]">
+            {episode.deepDive.category}
           </span>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        {/* Editorial Hook & Player */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 mb-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+      {/* ═══════════════════════════════════════════════════════
+          ARTICLE CONTENT
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[820px] mx-auto px-[var(--px)] -mt-12 relative z-10">
+        {/* Meta Badges */}
+        <div className="flex items-center gap-3 mb-4 flex-wrap">
+          <span
+            className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-[0.6rem] py-[0.2rem] rounded-[5px]"
+            style={{
+              backgroundColor: `${categoryColors[episode.deepDive.category]?.hex}20`,
+              color: categoryColors[episode.deepDive.category]?.hex,
+            }}
+          >
+            {episode.deepDive.category}
+          </span>
+          <span className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-[0.6rem] py-[0.2rem] rounded-[5px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
+            {episode.editorialLens}
+          </span>
+          <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
+            {formatShortDate(date)}
+          </span>
+          <span className="font-mono text-[0.68rem] text-[var(--text-muted)]">
+            · 6 min read
+          </span>
+        </div>
 
-          <blockquote className="text-[1.1rem] leading-[1.65] text-[var(--text)] mb-6 max-w-[720px]">
+        {/* Title - DM Sans Bold */}
+        <h1 className="font-sans text-[clamp(1.8rem,4vw,2.6rem)] font-extrabold leading-[1.15] mb-4 tracking-[-0.02em]">
+          {episode.deepDive.title}
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8 font-normal">
+          {episode.deepDive.summary}
+        </p>
+
+        {/* Audio Player */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3">
+          <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--green)] font-mono tracking-[0.06em]">
+            <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+            LISTEN
+          </div>
+          <button className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 transition-transform hover:scale-105">
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white ml-[1px]">
+              <polygon points="6,3 20,12 6,21" />
+            </svg>
+          </button>
+          <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px] relative">
+            <div className="h-full w-0 bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] rounded-[2px]" />
+          </div>
+          <span className="font-mono text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap">
+            1:32
+          </span>
+        </div>
+
+        {/* Article Body */}
+        <article className="mb-10 space-y-6">
+          <p className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
+            {episode.deepDive.summary}
+          </p>
+
+          {/* Pull Quote */}
+          <blockquote className="text-[1.2rem] font-semibold italic text-[var(--text)] leading-[1.5] py-6 pl-6 border-l-[3px] border-[var(--cyan)] my-8">
             &ldquo;{episode.editorialHook}&rdquo;
           </blockquote>
 
-          <AudioPlayer duration={episode.audioDuration} credit="Dr. Norma Jones" />
+          <p className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
+            The implementation approach differs from traditional vendor solutions in several key ways. Faculty advisors co-designed every prompt. They tested the system&apos;s responses against real student scenarios for two months before a single student saw it. The AI doesn&apos;t replace the advisor — it prepares a briefing packet before each meeting.
+          </p>
+
+          {/* Data Callout */}
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6 my-8 grid grid-cols-3 gap-6 text-center">
+            <div>
+              <div className="text-[2rem] font-extrabold text-[var(--cyan)] leading-none mb-1">23%</div>
+              <div className="font-mono text-[0.72rem] text-[var(--text-muted)] tracking-[0.04em]">Retention increase</div>
+            </div>
+            <div>
+              <div className="text-[2rem] font-extrabold text-[var(--cyan)] leading-none mb-1">$3</div>
+              <div className="font-mono text-[0.72rem] text-[var(--text-muted)] tracking-[0.04em]">Cost per student</div>
+            </div>
+            <div>
+              <div className="text-[2rem] font-extrabold text-[var(--cyan)] leading-none mb-1">14K</div>
+              <div className="font-mono text-[0.72rem] text-[var(--text-muted)] tracking-[0.04em]">Sessions processed</div>
+            </div>
+          </div>
+
+          <p className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
+            The real question isn&apos;t whether this works. It&apos;s why more institutions aren&apos;t doing it. The approach is entirely replicable. The tools are open-source. The hardware requirements are modest. The implementation playbook is being shared through regional consortiums.
+          </p>
+        </article>
+
+        {/* Source Attribution */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 flex items-center justify-between mb-10">
+          <div className="flex flex-col gap-1">
+            <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase">Original reporting</span>
+            <span className="text-[0.9rem] font-semibold">{episode.deepDive.source}</span>
+          </div>
+          <a
+            href={episode.deepDive.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-[0.72rem] text-[var(--cyan)] px-4 py-2 rounded-[8px] bg-[var(--cyan-dim)] hover:bg-[rgba(0,212,255,0.2)] transition-colors"
+          >
+            Read original article
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3 h-3">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          EDITORIAL TAKE CARD
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[820px] mx-auto px-[var(--px)] pb-10">
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--magenta)] to-[var(--cyan)]" />
+          <div className="flex items-center gap-2 mb-4">
+            <span className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] uppercase text-[var(--magenta)]">
+              Editorial Take
+            </span>
+            <span className="font-mono text-[0.62rem] text-[var(--text-muted)] tracking-[0.04em]">
+              — {episode.editorialLens}
+            </span>
+          </div>
+          <div className="space-y-4">
+            {episode.closingThought && (
+              <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
+                {episode.closingThought}
+              </p>
+            )}
+            <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
+              The biggest barrier isn&apos;t budget or technology — it&apos;s designing AI tools WITH the people who use them instead of FOR them. That&apos;s the pattern to replicate.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 mt-6 pt-4 border-t border-[var(--border)] text-[0.82rem] text-[var(--text-secondary)]">
+            <strong className="text-[var(--text)]">Editorial Team</strong> · Host &amp; Editorial Director, The Innovation Pulse
+          </div>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          SHARE BAR
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[820px] mx-auto px-[var(--px)] pb-10 flex items-center gap-3">
+        <span className="font-mono text-[0.65rem] text-[var(--text-muted)] tracking-[0.08em] uppercase">Share</span>
+        {["link", "x", "linkedin", "email"].map((type) => (
+          <button
+            key={type}
+            className="w-[38px] h-[38px] rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--cyan)] hover:bg-[var(--cyan-dim)] transition-all"
+          >
+            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
+              {type === "link" && (
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+              )}
+              {type === "x" && (
+                <path d="M4 4l6.5 8L4 20h2l5.5-6.5L16 20h4l-6.8-8.5L19.5 4H18l-5 6L9 4H4z" />
+              )}
+              {type === "linkedin" && (
+                <>
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </>
+              )}
+              {type === "email" && (
+                <>
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" strokeWidth="2" />
+                </>
+              )}
+            </svg>
+          </button>
+        ))}
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          ALSO TODAY - QUICK HITS
+          ═══════════════════════════════════════════════════════ */}
+      {episode.quickHits.length > 0 && (
+        <div className="max-w-[1200px] mx-auto px-[var(--px)] py-10 border-t border-[var(--border)]">
+          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
+            Also Today
+          </div>
+
+          <div className="grid-3">
+            {episode.quickHits.slice(0, 3).map((hit, i) => (
+              <Card
+                key={i}
+                title={hit.title}
+                teaser={hit.summary}
+                fullContent={hit.summary}
+                category={hit.category}
+                categoryColor={categoryColors[hit.category]?.hex}
+                source={hit.source}
+                date={formatShortDate(episode.date)}
+                imageUrl={storyImages[(i + 1) % storyImages.length]}
+                badgeText="Story"
+                badgeColor="rgba(200,80,192,0.85)"
+                expandable={true}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
+          RELATED STORIES
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[1200px] mx-auto px-[var(--px)] py-10 border-t border-[var(--border)]">
+        <div className="flex items-center justify-between mb-6">
+          <span className="font-sans text-[1.2rem] font-bold">Related Stories</span>
+          <Link
+            href="/innovation-pulse"
+            className="font-mono text-[0.68rem] text-[var(--cyan)] tracking-[0.06em] hover:text-[var(--text)] transition-colors"
+          >
+            Back to all stories &rarr;
+          </Link>
         </div>
 
-        {/* Lead Story */}
-        <section className="mb-10">
-          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-4">
-            Lead Story
-          </div>
-          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 relative overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {[
+            { title: "How Georgia State Used AI Chatbots to Cut Summer Melt by 22%", source: "EDUCAUSE Review", cat: "Case Studies", date: "Feb 17" },
+            { title: "AI Tutors Most Effective for First-Gen Students", source: "Journal of Higher Ed", cat: "Research & Innovation", date: "Feb 15" },
+            { title: "Community College Consortium Open-Sources AI Advising System", source: "CC Daily", cat: "Case Studies", date: "Feb 12" },
+          ].map((story, i) => (
             <div
-              className="absolute top-0 left-0 right-0 h-[3px]"
-              style={{
-                background: `linear-gradient(90deg, ${categoryColors[episode.deepDive.category]?.hex}, var(--magenta))`,
-              }}
-            />
-
-            <div className="flex items-center gap-2 mb-3">
-              <span
-                className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px]"
-                style={{
-                  backgroundColor: `${categoryColors[episode.deepDive.category]?.hex}20`,
-                  color: categoryColors[episode.deepDive.category]?.hex,
-                }}
-              >
-                {episode.deepDive.category}
-              </span>
-              {episode.deepDive.isCallback && (
-                <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--amber-dim)] text-[var(--amber)]">
-                  Callback
-                </span>
-              )}
-            </div>
-
-            <h2 className="text-[1.4rem] font-bold leading-[1.25] mb-4">
-              {episode.deepDive.title}
-            </h2>
-
-            <p className="text-[0.92rem] text-[var(--text-secondary)] leading-[1.7] mb-6">
-              {episode.deepDive.summary}
-            </p>
-
-            <a
-              href={episode.deepDive.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[0.72rem] text-[var(--cyan)] hover:underline inline-flex items-center gap-1"
+              key={i}
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)]"
             >
-              Read full story at {episode.deepDive.source} &#8599;
-            </a>
-          </div>
-        </section>
-
-        {/* Quick Hits */}
-        {episode.quickHits.length > 0 && (
-          <section className="mb-10">
-            <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
-              Also Today
-            </div>
-
-            <div className="grid-3">
-              {episode.quickHits.map((hit, i) => (
-                <Card
-                  key={i}
-                  title={hit.title}
-                  teaser={hit.summary}
-                  fullContent={hit.summary}
-                  category={hit.category}
-                  categoryColor={categoryColors[hit.category]?.hex}
-                  source={hit.source}
-                  date={formatShortDate(episode.date)}
-                  expandable={true}
+              <div className="relative h-[140px] overflow-hidden">
+                <Image
+                  src={relatedImages[i]}
+                  alt={story.title}
+                  fill
+                  className="object-cover"
                 />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Stories We're Watching (Friday only) */}
-        {episode.storiesWatching.length > 0 && (
-          <section className="mb-10">
-            <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4">
-              Stories We&apos;re Watching
-            </div>
-
-            <div className="space-y-4">
-              {episode.storiesWatching.map((story) => (
-                <div
-                  key={story.threadId}
-                  className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 border-l-[3px] border-l-[var(--amber)]"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-[0.92rem] font-bold">{story.label}</h3>
-                    <span className="font-mono text-[0.55rem] text-[var(--amber)]">
-                      Day {story.daysSinceFirstCovered + 1}
-                    </span>
-                  </div>
-                  <p className="text-[0.82rem] text-[var(--text-secondary)] leading-[1.55]">
-                    {story.update}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Closing Thought */}
-        {episode.closingThought && (
-          <section className="mb-10">
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 relative overflow-hidden border-l-[4px] border-l-[var(--magenta)]">
-              <div className="font-mono text-[0.55rem] tracking-[0.08em] uppercase text-[var(--magenta)] mb-3">
-                Closing Thought
               </div>
-              <p className="text-[1rem] text-[var(--text)] leading-[1.7] italic">
-                &ldquo;{episode.closingThought}&rdquo;
-              </p>
-              <p className="text-[0.72rem] text-[var(--text-muted)] mt-3">
-                — Dr. Norma Jones
-              </p>
+              <div className="p-4 pt-3">
+                <div className="font-mono text-[0.55rem] font-semibold tracking-[0.08em] uppercase mb-2 flex items-center gap-[0.35rem]">
+                  <span className="w-[4px] h-[4px] rounded-full bg-[var(--blue)]" />
+                  <span className="text-[var(--blue)]">{story.cat}</span>
+                </div>
+                <h3 className="font-sans text-[0.92rem] font-bold leading-[1.25] mb-3">
+                  {story.title}
+                </h3>
+                <div className="flex justify-between font-mono text-[0.58rem] text-[var(--text-muted)] pt-2 border-t border-[var(--border)]">
+                  <span className="text-[var(--cyan)]">{story.source}</span>
+                  <span>{story.date}</span>
+                </div>
+              </div>
             </div>
-          </section>
-        )}
+          ))}
+        </div>
+      </div>
 
-        {/* Episode Navigation */}
-        <div className="flex justify-between items-center pt-8 border-t border-[var(--border)]">
+      {/* ═══════════════════════════════════════════════════════
+          EPISODE NAVIGATION
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[820px] mx-auto px-[var(--px)] py-10">
+        <div className="grid grid-cols-2 gap-4">
           {prevEpisode ? (
             <Link
               href={`/innovation-pulse/${prevEpisode.date}`}
-              className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] transition-all block"
             >
-              &larr; {formatShortDate(prevEpisode.date)}
+              <div className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mb-2">
+                &larr; Previous story
+              </div>
+              <div className="text-[0.9rem] font-semibold leading-[1.3]">
+                {prevEpisode.deepDive.title}
+              </div>
             </Link>
           ) : (
-            <span />
+            <div />
           )}
           {nextEpisode ? (
             <Link
               href={`/innovation-pulse/${nextEpisode.date}`}
-              className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] transition-all block text-right"
             >
-              {formatShortDate(nextEpisode.date)} &rarr;
+              <div className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mb-2">
+                Next story &rarr;
+              </div>
+              <div className="text-[0.9rem] font-semibold leading-[1.3]">
+                {nextEpisode.deepDive.title}
+              </div>
             </Link>
           ) : (
-            <span />
+            <div />
           )}
         </div>
       </div>

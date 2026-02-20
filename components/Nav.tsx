@@ -24,17 +24,30 @@ export default function Nav() {
   };
 
   return (
-    <nav className="sticky top-0 z-[100] glass border-b border-[var(--border)]">
+    <nav
+      className="sticky top-0 z-[100] border-b border-[var(--border)]"
+      style={{
+        background: "rgba(8, 8, 15, 0.85)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+      }}
+    >
       <div className="flex items-center h-14 px-[var(--px)] max-w-[var(--max-w)] mx-auto">
-        {/* Brand */}
+        {/* Brand - INNOVATING HIGHER ED with green pulse dot */}
         <Link href="/" className="flex items-center gap-1 shrink-0">
-          <span className="font-mono font-semibold text-[0.85rem] tracking-[0.05em]">
+          <span
+            className="font-semibold text-[0.85rem] tracking-[0.05em]"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
             INNOVATING HIGHER ED
           </span>
-          <span className="w-[6px] h-[6px] bg-[var(--green)] rounded-full ml-1 animate-[pulseDot_2s_infinite]" />
+          <span
+            className="w-[6px] h-[6px] bg-[var(--green)] rounded-full ml-1"
+            style={{ animation: "pulseDot 2s infinite" }}
+          />
         </Link>
 
-        {/* Nav Links */}
+        {/* Nav Links - Desktop */}
         <div className="hidden md:flex items-center gap-[0.15rem] ml-auto">
           {navLinks.map((link) => (
             <Link

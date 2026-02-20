@@ -36,7 +36,7 @@ const lookingFor = [
   },
 ];
 
-const process = [
+const processSteps = [
   {
     step: "1",
     title: "Submit Your Story",
@@ -76,7 +76,7 @@ export default function BeOurGuestPage() {
       {/* Page Header */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8 animate-[fadeUp_0.7s_ease-out_both]">
         <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--orange)] mb-2 flex items-center gap-2">
-          <span className="text-[1rem]">🎙️</span>
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--orange)]" />
           BE OUR GUEST
         </div>
         <h1 className="font-sans text-[clamp(2rem,5vw,2.4rem)] font-bold leading-[1.1] text-[var(--text)] mb-3">
@@ -117,7 +117,7 @@ export default function BeOurGuestPage() {
           The Process
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {process.map((item) => (
+          {processSteps.map((item) => (
             <div
               key={item.step}
               className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 relative"
@@ -139,7 +139,8 @@ export default function BeOurGuestPage() {
       {/* What to Expect */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 max-w-[800px] mx-auto">
-          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4">
+          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4 flex items-center gap-2">
+            <span className="w-[5px] h-[5px] rounded-full bg-[var(--amber)]" />
             What to Expect
           </div>
           <h3 className="font-sans text-[1.2rem] font-bold mb-4">
@@ -150,32 +151,32 @@ export default function BeOurGuestPage() {
             Jones guides the discussion, but the goal is to surface your
             authentic experience and insights — not to put you on the spot.
           </p>
-          <ul className="space-y-2 text-[0.85rem] text-[var(--text-secondary)] leading-[1.6]">
-            <li className="flex items-start gap-2">
-              <span className="text-[var(--green)] mt-1">&#10003;</span>
+          <ul className="space-y-3 text-[0.85rem] text-[var(--text-secondary)] leading-[1.6]">
+            <li className="flex items-start gap-3">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] mt-2 shrink-0" />
               <span>
-                <strong>Format:</strong> 30-45 minute remote recording (Zoom or
+                <strong className="text-[var(--text)]">Format:</strong> 30-45 minute remote recording (Zoom or
                 Riverside)
               </span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[var(--green)] mt-1">&#10003;</span>
+            <li className="flex items-start gap-3">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] mt-2 shrink-0" />
               <span>
-                <strong>Prep:</strong> You&apos;ll receive talking points in advance,
+                <strong className="text-[var(--text)]">Prep:</strong> You&apos;ll receive talking points in advance,
                 but no memorization required
               </span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[var(--green)] mt-1">&#10003;</span>
+            <li className="flex items-start gap-3">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] mt-2 shrink-0" />
               <span>
-                <strong>Editing:</strong> We edit for clarity and flow — no
+                <strong className="text-[var(--text)]">Editing:</strong> We edit for clarity and flow — no
                 &quot;gotcha&quot; moments
               </span>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[var(--green)] mt-1">&#10003;</span>
+            <li className="flex items-start gap-3">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] mt-2 shrink-0" />
               <span>
-                <strong>Promotion:</strong> We&apos;ll promote your episode across our
+                <strong className="text-[var(--text)]">Promotion:</strong> We&apos;ll promote your episode across our
                 channels
               </span>
             </li>
@@ -183,7 +184,7 @@ export default function BeOurGuestPage() {
         </div>
       </div>
 
-      {/* Application CTA */}
+      {/* Application Form */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 lg:p-12 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--orange)] to-[var(--magenta)]" />
@@ -198,50 +199,50 @@ export default function BeOurGuestPage() {
                 respond within 2 weeks.
               </p>
 
-              {/* Application Form */}
+              {/* Form */}
               <form
                 onSubmit={handleSubmit}
-                className="max-w-[500px] mx-auto space-y-4"
+                className="max-w-[500px] mx-auto space-y-5"
               >
                 <div>
-                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-1">
+                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-2">
                     Your Name
                   </label>
                   <input
                     type="text"
-                    className="input"
+                    className="w-full px-4 py-3 rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-[0.88rem] outline-none transition-all focus:border-[var(--cyan)] focus:shadow-[0_0_0_3px_rgba(0,212,255,0.08)] placeholder:text-[var(--text-muted)]"
                     placeholder="Dr. Jane Smith"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-1">
+                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-2">
                     Email
                   </label>
                   <input
                     type="email"
-                    className="input"
+                    className="w-full px-4 py-3 rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-[0.88rem] outline-none transition-all focus:border-[var(--cyan)] focus:shadow-[0_0_0_3px_rgba(0,212,255,0.08)] placeholder:text-[var(--text-muted)]"
                     placeholder="jane.smith@university.edu"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-1">
+                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-2">
                     Role & Institution
                   </label>
                   <input
                     type="text"
-                    className="input"
+                    className="w-full px-4 py-3 rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-[0.88rem] outline-none transition-all focus:border-[var(--cyan)] focus:shadow-[0_0_0_3px_rgba(0,212,255,0.08)] placeholder:text-[var(--text-muted)]"
                     placeholder="Associate Professor of Biology, State University"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-1">
+                  <label className="block font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-2">
                     What would you like to discuss?
                   </label>
                   <textarea
-                    className="input min-h-[120px] resize-y"
+                    className="w-full px-4 py-3 rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-[0.88rem] outline-none transition-all focus:border-[var(--cyan)] focus:shadow-[0_0_0_3px_rgba(0,212,255,0.08)] placeholder:text-[var(--text-muted)] min-h-[140px] resize-y"
                     placeholder="Tell us about your experience with AI in higher education and what story you'd like to share..."
                     required
                   />
@@ -256,7 +257,9 @@ export default function BeOurGuestPage() {
           ) : (
             <div className="text-center py-8">
               <div className="w-16 h-16 rounded-full bg-[var(--green-dim)] flex items-center justify-center mx-auto mb-4">
-                <span className="text-[var(--green)] text-3xl">&#10003;</span>
+                <svg viewBox="0 0 24 24" className="w-8 h-8 stroke-[var(--green)]" fill="none" strokeWidth="3">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
               </div>
               <h2 className="font-sans text-[1.5rem] font-bold mb-2">
                 Application Submitted!
@@ -271,7 +274,7 @@ export default function BeOurGuestPage() {
         </div>
       </div>
 
-      {/* Recent Episodes */}
+      {/* Recent Episodes Teaser */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="flex items-center justify-between mb-4">
           <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)]">

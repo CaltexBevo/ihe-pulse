@@ -16,8 +16,11 @@ export interface Post {
 
 export const postTags = [
   'All',
-  'Experiments',
-  'AI Tools',
+  'Experiment',
+  'Walkthrough',
+  'Comparison',
+  'Challenge',
+  'Opinion',
 ] as const;
 
 export type PostTag = (typeof postTags)[number];
@@ -38,7 +41,7 @@ export const posts: Post[] = [
     authorBio:
       'Dr. Norma Jones is the host and creator of Innovating Higher Ed.',
     topics: ['AI Ethics', 'Creativity', 'Innovation Framework', 'Critical Thinking'],
-    tag: 'Experiments',
+    tag: 'Experiment',
     date: 'June 17, 2025',
     readTime: '12 min read',
     featured: true,
@@ -62,7 +65,7 @@ export const posts: Post[] = [
     authorBio:
       'Dr. Norma Jones is the host and creator of Innovating Higher Ed.',
     topics: ['ChatGPT Pro', 'Deep Research', 'OER', 'Tool Review'],
-    tag: 'AI Tools',
+    tag: 'Walkthrough',
     date: 'February 28, 2025',
     readTime: '15 min read',
     featured: false,

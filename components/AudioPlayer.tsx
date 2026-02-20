@@ -11,7 +11,6 @@ interface AudioPlayerProps {
 
 export default function AudioPlayer({
   duration = "4:12",
-  credit = "Dr. Norma Jones",
   barCount = 75,
   compact = false,
 }: AudioPlayerProps) {
@@ -69,7 +68,11 @@ export default function AudioPlayer({
   if (compact) {
     return (
       <div className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4">
-        <div className="flex items-center gap-[0.35rem] font-mono text-[0.65rem] font-semibold text-[var(--green)] tracking-[0.06em]">
+        {/* Live Badge - JetBrains Mono */}
+        <div
+          className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--green)] tracking-[0.06em]"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
           <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
           LISTEN
         </div>
@@ -94,7 +97,11 @@ export default function AudioPlayer({
             style={{ width: `${progress}%` }}
           />
         </div>
-        <span className="font-mono text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap">
+        {/* Time - JetBrains Mono */}
+        <span
+          className="text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
           {currentTime} / {duration}
         </span>
       </div>
@@ -102,35 +109,41 @@ export default function AudioPlayer({
   }
 
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4">
+    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-[1.25rem]">
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
-        <div className="flex items-center gap-[0.3rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-2 py-[0.18rem] rounded-full font-mono text-[0.6rem] font-semibold tracking-[0.06em]">
+        {/* Live Badge - JetBrains Mono */}
+        <div
+          className="flex items-center gap-[0.35rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold tracking-[0.06em]"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
           <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
           LISTEN NOW
         </div>
-        <span className="font-mono text-[0.65rem] text-[var(--text-muted)]">
+        {/* Duration - JetBrains Mono */}
+        <span
+          className="text-[0.7rem] text-[var(--text-muted)]"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
           {duration}
         </span>
-        <span className="text-[0.65rem] text-[var(--text-muted)] ml-auto">
-          {credit}
-        </span>
+        {/* Removed Dr. Norma Jones credit from display per design requirements */}
       </div>
 
       {/* Player Row */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-[0.8rem]">
         {/* Play Button */}
         <button
           onClick={() => setPlaying(!playing)}
-          className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(0,212,255,0.2)] transition-transform hover:scale-105"
+          className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06] hover:shadow-[0_6px_28px_rgba(0,212,255,0.3)]"
         >
           {playing ? (
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
               <rect x="6" y="4" width="4" height="16" />
               <rect x="14" y="4" width="4" height="16" />
             </svg>
           ) : (
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white ml-[2px]">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-[2px]">
               <polygon points="6,3 20,12 6,21" />
             </svg>
           )}
@@ -138,7 +151,7 @@ export default function AudioPlayer({
 
         {/* Waveform */}
         <div
-          className="flex-1 flex items-center h-9 gap-[1.5px] cursor-pointer"
+          className="flex-1 flex items-center h-[44px] gap-[1.5px] cursor-pointer"
           onClick={handleBarClick}
         >
           {bars.map((height, i) => {
@@ -158,8 +171,11 @@ export default function AudioPlayer({
           })}
         </div>
 
-        {/* Time */}
-        <span className="font-mono text-[0.63rem] text-[var(--text-muted)] shrink-0">
+        {/* Time - JetBrains Mono */}
+        <span
+          className="text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[72px] text-right"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
           {currentTime} / {duration}
         </span>
       </div>

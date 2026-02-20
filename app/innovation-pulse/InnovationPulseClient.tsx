@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import AudioPlayer from "@/components/AudioPlayer";
+import Image from "next/image";
 import Card from "@/components/Card";
 import {
   categoryColors,
@@ -33,6 +33,19 @@ const ALL_CATEGORIES: StoryCategory[] = [
   "Research & Innovation",
   "Student Experience",
   "Leadership & Strategy",
+];
+
+// Placeholder images for story cards
+const storyImages = [
+  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=340&fit=crop",
+  "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop",
 ];
 
 // Main Client Component
@@ -85,143 +98,131 @@ export default function InnovationPulseClient({
   return (
     <div className="min-h-screen">
       {/* ═══════════════════════════════════════════════════════
-          PAGE HEADER
+          HERO SECTION
           ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-6 animate-[fadeUp_0.7s_ease-out_both]">
-        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-2 flex items-center gap-2">
-          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
-          THE INNOVATION PULSE
-        </div>
-        <h1 className="font-serif italic text-[clamp(2rem,5vw,2.8rem)] font-normal leading-[1.1] text-[var(--text)] mb-3">
-          AI Innovation for Higher Ed
-        </h1>
-        <p className="text-[0.92rem] text-[var(--text-secondary)] max-w-[620px] leading-[1.6]">
-          Daily briefings on what matters most in AI and higher education.
-          Curated, contextualized, and delivered with the perspective of
-          someone who&apos;s been in the classroom.
-        </p>
-      </div>
-
-      {/* ═══════════════════════════════════════════════════════
-          LATEST EPISODE HERO
-          ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-10">
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden relative">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
-
-          <div className="grid lg:grid-cols-[1fr_320px]">
-            {/* Main Content */}
-            <div className="p-6 lg:p-8">
-              {/* Date & Lens */}
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className="font-mono text-[0.62rem] tracking-[0.06em] text-[var(--text-muted)]">
-                  {formatPulseDate(episode.date)}
-                </span>
-                <span className="font-mono text-[0.58rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
-                  {episode.editorialLens}
-                </span>
-              </div>
-
-              {/* Quote */}
-              <blockquote className="text-[1.15rem] leading-[1.65] text-[var(--text)] mb-6 max-w-[680px]">
-                &ldquo;{episode.editorialHook}&rdquo;
-              </blockquote>
-
-              {/* Audio Player */}
-              <AudioPlayer
-                duration={episode.audioDuration}
-                credit="Dr. Norma Jones"
-              />
-
-              {/* Lead Story */}
-              <div className="mt-6 pt-6 border-t border-[var(--border)]">
-                <div className="font-mono text-[0.55rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-2">
-                  Lead Story
-                </div>
-                <h2 className="text-[1.1rem] font-bold leading-[1.25] mb-2">
-                  {episode.deepDive.title}
-                </h2>
-                <p className="text-[0.85rem] text-[var(--text-secondary)] leading-[1.6] mb-3">
-                  {episode.deepDive.summary}
-                </p>
-                <div className="flex items-center gap-3">
-                  <a
-                    href={episode.deepDive.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-[0.58rem] text-[var(--cyan)] hover:underline"
-                  >
-                    {episode.deepDive.source} &#8599;
-                  </a>
-                  <span
-                    className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px]"
-                    style={{
-                      backgroundColor: `${categoryColors[episode.deepDive.category]?.hex}20`,
-                      color: categoryColors[episode.deepDive.category]?.hex,
-                    }}
-                  >
-                    {episode.deepDive.category}
-                  </span>
-                </div>
-              </div>
+      <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8">
+        <div className="grid lg:grid-cols-[1fr_380px] gap-10">
+          {/* Left: Episode Content */}
+          <div className="animate-[fadeUp_0.8s_ease-out_both]">
+            {/* Label */}
+            <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-4 flex items-center gap-2">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+              THE INNOVATION PULSE
             </div>
 
-            {/* Sidebar */}
-            <div className="bg-[var(--bg-elevated)] p-6 lg:p-8 border-l border-[var(--border)]">
-              <div className="font-mono text-[0.58rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
-                Also in Today&apos;s Briefing
+            {/* Date + Lens Badge */}
+            <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
+              <span>{formatPulseDate(episode.date)}</span>
+              <span className="inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold bg-[var(--magenta-dim)] text-[var(--magenta)]">
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--magenta)]" />
+                {episode.editorialLens}
+              </span>
+            </div>
+
+            {/* Hook Quote with Gradient Border */}
+            <blockquote className="relative pl-6 mb-6">
+              <div className="absolute left-0 top-[0.3rem] bottom-[0.3rem] w-[3px] rounded-[2px] bg-gradient-to-b from-[var(--cyan)] to-[var(--magenta)]" />
+              <p className="font-sans italic text-[clamp(1.6rem,3.2vw,2.3rem)] leading-[1.3] font-bold text-[var(--text)]">
+                &ldquo;{episode.editorialHook}&rdquo;
+              </p>
+            </blockquote>
+
+            {/* Audio Player */}
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                {/* Live Badge - JetBrains Mono */}
+                <div className="flex items-center gap-[0.35rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold font-mono tracking-[0.06em]">
+                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+                  LISTEN NOW
+                </div>
+                {/* Duration */}
+                <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
+                  {episode.audioDuration}
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                {/* Play Button */}
+                <button className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06] hover:shadow-[0_6px_28px_rgba(0,212,255,0.3)]">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-[2px]">
+                    <polygon points="6,3 20,12 6,21" />
+                  </svg>
+                </button>
+                {/* Waveform */}
+                <div className="flex-1 flex items-center h-[44px] gap-[1.5px]">
+                  {Array.from({ length: 80 }, (_, i) => {
+                    const h = 6 + Math.random() * 30 + Math.sin(i * 0.25) * 10 + Math.cos(i * 0.12) * 6;
+                    return (
+                      <div
+                        key={i}
+                        className="w-[3px] rounded-[2px] bg-[var(--surface-2)]"
+                        style={{ height: `${Math.max(4, h)}px` }}
+                      />
+                    );
+                  })}
+                </div>
+                {/* Time */}
+                <span className="font-mono text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[72px] text-right">
+                  0:00 / {episode.audioDuration}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Sidebar: TOC */}
+          <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both]">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5">
+              <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
+                In This Issue
               </div>
 
-              <ul className="space-y-4">
-                {episode.quickHits.map((hit, i) => (
-                  <li key={i} className="pb-4 border-b border-[var(--border)] last:border-b-0 last:pb-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span
-                        className="w-[4px] h-[4px] rounded-full"
-                        style={{ backgroundColor: categoryColors[hit.category]?.hex }}
-                      />
-                      <span
-                        className="font-mono text-[0.48rem] tracking-[0.06em] uppercase"
-                        style={{ color: categoryColors[hit.category]?.hex }}
-                      >
+              <ul className="space-y-0">
+                {/* Lead Story */}
+                <li className="flex items-start gap-3 py-3 border-b border-[var(--border)] cursor-pointer group">
+                  <span className="font-mono text-[0.58rem] tracking-[0.06em] font-medium px-[0.45rem] py-[0.15rem] rounded-[4px] whitespace-nowrap mt-[0.15rem] bg-[var(--cyan-dim)] text-[var(--cyan)]">
+                    LEAD STORY
+                  </span>
+                  <div>
+                    <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
+                      {episode.deepDive.title}
+                    </p>
+                    <span className="text-[0.62rem] text-[var(--text-muted)] font-mono mt-1">
+                      {episode.deepDive.category}
+                    </span>
+                  </div>
+                </li>
+
+                {/* Quick Hits */}
+                {episode.quickHits.slice(0, 4).map((hit, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 py-3 border-b border-[var(--border)] last:border-b-0 cursor-pointer group"
+                  >
+                    <span className="font-mono text-[0.58rem] tracking-[0.06em] font-medium px-[0.45rem] py-[0.15rem] rounded-[4px] whitespace-nowrap mt-[0.15rem] bg-[var(--magenta-dim)] text-[var(--magenta)]">
+                      ALSO TODAY
+                    </span>
+                    <div>
+                      <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
+                        {hit.title}
+                      </p>
+                      <span className="text-[0.62rem] text-[var(--text-muted)] font-mono mt-1">
                         {hit.category}
                       </span>
                     </div>
-                    <p className="text-[0.82rem] text-[var(--text)] leading-[1.35] line-clamp-2">
-                      {hit.title}
-                    </p>
-                    <a
-                      href={hit.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-[0.52rem] text-[var(--text-muted)] hover:text-[var(--cyan)] mt-1 block"
-                    >
-                      {hit.source}
-                    </a>
                   </li>
                 ))}
               </ul>
-
-              {/* Closing Thought */}
-              {episode.closingThought && (
-                <div className="mt-6 pt-4 border-t border-[var(--border)]">
-                  <div className="font-mono text-[0.55rem] tracking-[0.06em] uppercase text-[var(--amber)] mb-2">
-                    Closing Thought
-                  </div>
-                  <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] italic">
-                    &ldquo;{episode.closingThought}&rdquo;
-                  </p>
-                </div>
-              )}
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
           CATEGORY FILTERS
           ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-8">
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="font-mono text-[0.58rem] text-[var(--text-muted)] tracking-[0.08em] uppercase min-w-[60px]">
             Category
@@ -255,12 +256,20 @@ export default function InnovationPulseClient({
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          ALL STORIES GRID
+          ALL STORIES GRID - EVERY CARD HAS IMAGE
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
-          {selectedCategory === "all" ? "Recent Stories" : selectedCategory}
-          <span className="text-[var(--cyan)] ml-2">({filteredStories.length})</span>
+        <div className="flex items-center justify-between mb-4">
+          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)]">
+            {selectedCategory === "all" ? "Recent Stories" : selectedCategory}
+            <span className="text-[var(--cyan)] ml-2">({filteredStories.length})</span>
+          </div>
+          <Link
+            href="#"
+            className="font-mono text-[0.62rem] text-[var(--cyan)] tracking-[0.06em] hover:text-[var(--text)] transition-colors"
+          >
+            MORE &rarr;
+          </Link>
         </div>
 
         <div className="grid-3">
@@ -274,8 +283,9 @@ export default function InnovationPulseClient({
               categoryColor={categoryColors[story.category]?.hex}
               source={story.source}
               date={formatShortDate(story.date)}
-              badgeText={story.type === "deepDive" ? "Lead Story" : undefined}
-              badgeColor="var(--magenta)"
+              imageUrl={storyImages[i % storyImages.length]}
+              badgeText={story.type === "deepDive" ? "Lead Story" : "Story"}
+              badgeColor={story.type === "deepDive" ? "rgba(200,80,192,0.85)" : "rgba(0,180,220,0.85)"}
               expandable={true}
             />
           ))}
@@ -312,7 +322,7 @@ export default function InnovationPulseClient({
                     {ep.editorialLens.split(" ").slice(0, 2).join(" ")}
                   </span>
                 </div>
-                <p className="text-[0.85rem] text-[var(--text)] leading-[1.4] line-clamp-2 group-hover:text-[var(--cyan)] transition-colors">
+                <p className="text-[0.85rem] font-bold text-[var(--text)] leading-[1.4] line-clamp-2 group-hover:text-[var(--cyan)] transition-colors">
                   {ep.deepDive.title}
                 </p>
                 <div className="flex items-center gap-3 mt-2 font-mono text-[0.55rem] text-[var(--text-muted)]">
@@ -332,24 +342,27 @@ export default function InnovationPulseClient({
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
 
-          <h2 className="font-sans text-[1.4rem] font-bold mb-2">
-            Get the Innovation Pulse Delivered
+          <h2 className="font-sans text-[1.6rem] font-bold mb-2">
+            Never Miss a Pulse
           </h2>
-          <p className="text-[0.88rem] text-[var(--text-secondary)] max-w-[480px] mx-auto mb-6">
-            Every morning, the most important AI developments in higher
-            education — curated, contextualized, and ready in under 5 minutes.
+          <p className="text-[0.85rem] text-[var(--text-secondary)] max-w-[480px] mx-auto mb-6">
+            Get the daily briefing delivered to your inbox. Curated AI news for higher education — no fluff, no hype.
           </p>
 
-          <form className="flex flex-col sm:flex-row gap-3 max-w-[400px] mx-auto">
+          <form className="flex flex-col sm:flex-row gap-3 max-w-[400px] mx-auto mb-2">
             <input
               type="email"
-              placeholder="your@email.edu"
+              placeholder="your@university.edu"
               className="input flex-1"
             />
             <button type="submit" className="btn-primary whitespace-nowrap">
-              Subscribe
+              Subscribe Free
             </button>
           </form>
+
+          <p className="text-[0.68rem] text-[var(--text-muted)]">
+            Join 1,200+ educators. No spam. Unsubscribe anytime.
+          </p>
         </div>
       </div>
 

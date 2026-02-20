@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Clock, Calendar, Mic, Lightbulb, User, Tag } from 'lucide-react';
 import { episodes } from '@/lib/data/episodes';
 
 function getPodbeanUrl(podbeanId: string) {
@@ -12,6 +11,13 @@ export function generateStaticParams() {
   return episodes.map((ep) => ({ slug: ep.slug }));
 }
 
+const platforms = [
+  { name: "Apple Podcasts", href: "#" },
+  { name: "Spotify", href: "#" },
+  { name: "YouTube", href: "#" },
+  { name: "Google Podcasts", href: "#" },
+];
+
 export default async function EpisodeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const episode = episodes.find((ep) => ep.slug === slug);
@@ -20,57 +26,76 @@ export default async function EpisodeDetailPage({ params }: { params: Promise<{ 
     notFound();
   }
 
+  // Get related episodes (same topics or recent)
+  const relatedEpisodes = episodes
+    .filter((ep) => ep.slug !== slug)
+    .slice(0, 3);
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mx-auto max-w-4xl">
+    <div className="min-h-screen">
+      {/* Back Link */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-8">
         <Link
           href="/podcast"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-pulse transition-colors mb-8"
+          className="inline-flex items-center gap-2 font-mono text-[0.72rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors"
         >
-          <ArrowLeft size={16} />
+          <svg viewBox="0 0 24 24" className="w-4 h-4 stroke-current" fill="none" strokeWidth="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
           Back to all episodes
         </Link>
+      </div>
 
-        <div className="flex items-center gap-2 mb-4">
-          <Mic size={18} className="text-pulse" />
-          <span className="text-sm font-mono text-pulse uppercase tracking-widest">
+      {/* Episode Header */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-6 pb-8">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-[6px] h-[6px] rounded-full bg-[var(--orange)]" />
+          <span className="font-mono text-[0.62rem] tracking-[0.08em] uppercase text-[var(--orange)]">
             Podcast
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+        <h1 className="font-sans text-[clamp(1.8rem,4vw,2.4rem)] font-bold leading-[1.15] text-[var(--text)] mb-4">
           {episode.title}
         </h1>
 
-        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-8">
+        <div className="flex flex-wrap items-center gap-4 font-mono text-[0.68rem] text-[var(--text-muted)] mb-6">
           {episode.guest && (
-            <span>with {episode.guest}</span>
+            <span className="text-[var(--cyan)]">with {episode.guest}</span>
           )}
-          <span className="flex items-center gap-1">
-            <Clock size={14} />
+          <span className="flex items-center gap-1.5">
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] stroke-current" fill="none" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
             {episode.duration}
           </span>
-          <span className="flex items-center gap-1">
-            <Calendar size={14} />
+          <span className="flex items-center gap-1.5">
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] stroke-current" fill="none" strokeWidth="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
             {episode.date}
           </span>
         </div>
 
+        {/* Hero Image - Contained, not stretched */}
         {episode.thumbnail && (
-          <div className="w-full rounded-2xl overflow-hidden relative mb-8 aspect-[3/2] bg-white/5">
+          <div className="w-full max-w-[800px] rounded-[20px] overflow-hidden relative aspect-[16/9] bg-[var(--bg-card)] border border-[var(--border)] mb-8">
             <Image
               src={episode.thumbnail}
               alt={episode.guest || episode.title}
               fill
               className="object-contain"
-              sizes="(max-width: 896px) 100vw, 896px"
+              sizes="(max-width: 896px) 100vw, 800px"
               priority
             />
           </div>
         )}
 
-        <div className="glass rounded-2xl p-6 sm:p-8 mb-8">
-          <h2 className="text-lg font-semibold text-white mb-4">Listen Now</h2>
+        {/* Audio Player */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 mb-8 max-w-[800px]">
+          <h2 className="font-sans text-[1rem] font-bold mb-4">Listen Now</h2>
           <iframe
             title={episode.title}
             src={getPodbeanUrl(episode.podbeanId)}
@@ -82,65 +107,135 @@ export default async function EpisodeDetailPage({ params }: { params: Promise<{ 
           />
         </div>
 
-        <div className="glass rounded-2xl p-6 sm:p-8 mb-8">
-          <h2 className="text-lg font-semibold text-white mb-3">About This Episode</h2>
-          <p className="text-gray-400 leading-relaxed">
+        {/* Platform Links */}
+        <div className="flex gap-3 flex-wrap mb-8">
+          {platforms.map((p) => (
+            <a
+              key={p.name}
+              href={p.href}
+              className="font-mono text-[0.68rem] font-medium px-4 py-2 rounded-[8px] border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text)] hover:bg-[rgba(255,255,255,0.03)] transition-all"
+            >
+              {p.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Show Notes */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 mb-6 max-w-[800px]">
+          <h2 className="font-sans text-[1rem] font-bold mb-3">About This Episode</h2>
+          <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
             {episode.fullDescription}
           </p>
         </div>
 
-        <div className="glass rounded-2xl p-6 sm:p-8 mb-8">
+        {/* Key Takeaways */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 mb-6 max-w-[800px]">
           <div className="flex items-center gap-2 mb-4">
-            <Lightbulb size={18} className="text-pulse" />
-            <h2 className="text-lg font-semibold text-white">Key Takeaways</h2>
+            <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)]" />
+            <h2 className="font-sans text-[1rem] font-bold">Key Takeaways</h2>
           </div>
           <ul className="space-y-3">
             {episode.takeaways.map((takeaway, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-pulse to-synapse" />
-                <span className="text-gray-400 leading-relaxed">{takeaway}</span>
+                <span className="shrink-0 mt-2 w-[6px] h-[6px] rounded-full bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+                <span className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.6]">{takeaway}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="glass rounded-2xl p-6 sm:p-8 mb-8">
+        {/* Guest Info */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 mb-6 max-w-[800px]">
           <div className="flex items-center gap-2 mb-4">
-            <User size={18} className="text-synapse" />
-            <h2 className="text-lg font-semibold text-white">About Our Guest</h2>
+            <span className="w-[6px] h-[6px] rounded-full bg-[var(--magenta)]" />
+            <h2 className="font-sans text-[1rem] font-bold">About Our Guest</h2>
           </div>
-          <p className="text-gray-400 leading-relaxed">
+          <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
             {episode.guestBio}
           </p>
         </div>
 
-        <div className="glass rounded-2xl p-6 sm:p-8 mb-8">
+        {/* Host Info */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 mb-6 max-w-[800px]">
           <div className="flex items-center gap-2 mb-4">
-            <Mic size={18} className="text-pulse" />
-            <h2 className="text-lg font-semibold text-white">About Our Host</h2>
+            <span className="w-[6px] h-[6px] rounded-full bg-[var(--orange)]" />
+            <h2 className="font-sans text-[1rem] font-bold">About Our Host</h2>
           </div>
-          <p className="text-white font-medium mb-1">Dr. Norma Jones</p>
-          <p className="text-sm text-gray-500 mb-3">Host, Innovating Higher Ed</p>
-          <p className="text-gray-400 leading-relaxed">
+          <p className="font-sans text-[0.92rem] font-bold text-[var(--text)] mb-1">Dr. Norma Jones</p>
+          <p className="font-mono text-[0.68rem] text-[var(--text-muted)] mb-3">Host, Innovating Higher Ed</p>
+          <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
             Dr. Norma Jones is the host and creator of Innovating Higher Ed, exploring how AI and emerging technologies transform teaching and learning in higher education.
           </p>
         </div>
 
-        <div className="glass rounded-2xl p-6 sm:p-8">
+        {/* Topics */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 mb-8 max-w-[800px]">
           <div className="flex items-center gap-2 mb-4">
-            <Tag size={18} className="text-pulse" />
-            <h2 className="text-lg font-semibold text-white">Topics Covered</h2>
+            <span className="w-[6px] h-[6px] rounded-full bg-[var(--purple)]" />
+            <h2 className="font-sans text-[1rem] font-bold">Topics Covered</h2>
           </div>
           <div className="flex flex-wrap gap-2">
             {episode.topics.map((topic) => (
               <span
                 key={topic}
-                className="px-3 py-1.5 rounded-lg text-sm bg-white/5 text-gray-300 border border-white/10"
+                className="font-mono text-[0.68rem] px-3 py-1.5 rounded-[8px] bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)]"
               >
                 {topic}
               </span>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Related Episodes */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
+          Related Episodes
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {relatedEpisodes.map((ep) => (
+            <Link
+              key={ep.slug}
+              href={`/podcast/${ep.slug}`}
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] group block"
+            >
+              {/* Thumbnail - 170px height */}
+              <div className="relative h-[170px] overflow-hidden">
+                {ep.thumbnail ? (
+                  <Image
+                    src={ep.thumbnail}
+                    alt={ep.title}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-[var(--orange)] to-[var(--magenta)]" />
+                )}
+                <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[4px] bg-[var(--orange-dim)] text-[var(--orange)]">
+                  EP. {ep.number}
+                </span>
+              </div>
+
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)]" />
+                  <span className="font-mono text-[0.53rem] tracking-[0.06em] uppercase text-[var(--cyan)]">
+                    Interview
+                  </span>
+                </div>
+                <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-2 group-hover:text-[var(--cyan)] transition-colors">
+                  {ep.title}
+                </h3>
+                <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] line-clamp-2 mb-3">
+                  {ep.description}
+                </p>
+                <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)] font-mono text-[0.58rem] text-[var(--text-muted)]">
+                  <span className="text-[var(--cyan)]">{ep.date}</span>
+                  <span>{ep.duration}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

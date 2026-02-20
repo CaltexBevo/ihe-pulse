@@ -28,7 +28,7 @@ const prompts = [
     category: "Assessment",
     uses: "1.8k",
     rating: "4.7",
-    preview: `"Here is my assignment: [paste]. Analyze which parts a student could complete using AI without learning..."`,
+    preview: `"Here is my assignment: [paste]. Analyze which parts a student could complete using AI without learning. Suggest 3 specific modifications that preserve the learning outcome but require original thinking..."`,
   },
   {
     title: "Rubric-Based Feedback Draft Generator",
@@ -39,7 +39,7 @@ const prompts = [
     uses: "3.1k",
     rating: "4.9",
     trending: true,
-    preview: `"Using this rubric [paste], generate detailed feedback for this student submission [paste]..."`,
+    preview: `"Using this rubric [paste], generate detailed feedback for this student submission [paste]. Score each criterion and provide specific, constructive comments that explain what was done well and how to improve..."`,
   },
   {
     title: "Syllabus FAQ Bot Builder",
@@ -50,7 +50,7 @@ const prompts = [
     uses: "940",
     rating: "4.6",
     isNew: true,
-    preview: `"Here is my course syllabus [paste]. Extract every fact, deadline, policy, and expectation..."`,
+    preview: `"Here is my course syllabus [paste]. Extract every fact, deadline, policy, and expectation. Create a comprehensive Q&A format with 30+ questions a student might ask, and answers drawn only from the syllabus..."`,
   },
   {
     title: "Literature Review Gap Finder",
@@ -60,7 +60,7 @@ const prompts = [
     category: "Research",
     uses: "720",
     rating: "4.8",
-    preview: `"Here are summaries of [N] papers in my research area [paste]. Identify: (1) the 3 most significant gaps..."`,
+    preview: `"Here are summaries of [N] papers in my research area [paste]. Identify: (1) the 3 most significant gaps in the current literature, (2) contradictions between findings, (3) methodological weaknesses that appear across multiple studies..."`,
   },
   {
     title: "Student Peer Review Guide Generator",
@@ -71,7 +71,7 @@ const prompts = [
     uses: "1.2k",
     rating: "4.5",
     trending: true,
-    preview: `"For this assignment [paste description], create a peer review guide with 8-10 specific questions..."`,
+    preview: `"For this assignment [paste description], create a peer review guide with 8-10 specific questions students should answer about their partner's work. Questions should focus on [argument quality / evidence / structure]..."`,
   },
   {
     title: "Meeting Minutes to Action Items Converter",
@@ -81,7 +81,7 @@ const prompts = [
     category: "Admin",
     uses: "2.1k",
     rating: "4.8",
-    preview: `"Here are notes from our [department/committee] meeting [paste]. Extract every action item, decision..."`,
+    preview: `"Here are notes from our [department/committee] meeting [paste]. Extract every action item, decision, and open question. Format as: Action Item | Owner | Deadline | Dependencies. Flag items that need follow-up..."`,
   },
   {
     title: "Backward Design Course Builder",
@@ -91,7 +91,7 @@ const prompts = [
     category: "Course Design",
     uses: "560",
     rating: "4.7",
-    preview: `"My course has these learning outcomes: [paste]. Design a 15-week course arc..."`,
+    preview: `"My course has these learning outcomes: [paste]. Design a 15-week course arc where each week builds toward one or more outcomes. Include: weekly topic, key readings/activities, formative assessment, and which outcomes are addressed..."`,
   },
   {
     title: "Encouraging Feedback Rewriter",
@@ -102,7 +102,7 @@ const prompts = [
     uses: "1.4k",
     rating: "4.9",
     isNew: true,
-    preview: `"Here is my feedback for a student [paste]. Rewrite it to: (1) lead with something specific..."`,
+    preview: `"Here is my feedback for a student [paste]. Rewrite it to: (1) lead with something specific the student did well, (2) frame critiques as opportunities for growth, (3) end with one concrete next step. Keep the substance identical..."`,
   },
   {
     title: "Case Study Scenario Generator",
@@ -112,7 +112,7 @@ const prompts = [
     category: "Discussion",
     uses: "890",
     rating: "4.6",
-    preview: `"Create a realistic case study for a [discipline] course on [topic]. Include: a named protagonist..."`,
+    preview: `"Create a realistic case study for a [discipline] course on [topic]. Include: a named protagonist with a specific role, a realistic organizational context, a decision point with at least 3 viable options, and consequences..."`,
   },
 ];
 
@@ -148,7 +148,7 @@ export default function PromptsPage() {
       {/* Page Header */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-6 animate-[fadeUp_0.7s_ease-out_both]">
         <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--purple)] mb-2 flex items-center gap-2">
-          <span className="text-[1rem]">⚡</span>
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--purple)]" />
           PROMPT NAVIGATOR
         </div>
         <h1 className="font-sans text-[clamp(2rem,5vw,2.4rem)] font-bold leading-[1.1] text-[var(--text)] mb-3">
@@ -171,7 +171,7 @@ export default function PromptsPage() {
         </div>
       </div>
 
-      {/* Featured Prompt */}
+      {/* Featured Prompt - Split Card with Actual Prompt */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-10">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-6 lg:p-8 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--purple)] via-[var(--cyan)] to-[var(--magenta)]" />
@@ -179,7 +179,7 @@ export default function PromptsPage() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Left - Info */}
             <div>
-              <div className="flex gap-2 mb-3">
+              <div className="flex gap-2 mb-3 flex-wrap">
                 <span
                   className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px]"
                   style={getDifficultyColor(featuredPrompt.difficulty)}
@@ -193,7 +193,7 @@ export default function PromptsPage() {
                   Most Used This Week
                 </span>
               </div>
-              <h2 className="text-[1.4rem] font-bold leading-[1.22] mb-3">
+              <h2 className="font-sans text-[1.4rem] font-bold leading-[1.22] mb-3">
                 {featuredPrompt.title}
               </h2>
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.65] mb-4">
@@ -202,19 +202,32 @@ export default function PromptsPage() {
               <div className="font-mono text-[0.62rem] text-[var(--text-muted)] flex gap-4">
                 <span className="text-[var(--green)]">{featuredPrompt.uses} uses</span>
                 <span>Updated Feb 14</span>
-                <span>★ {featuredPrompt.rating} avg rating</span>
+                <span>&#9733; {featuredPrompt.rating} avg rating</span>
               </div>
             </div>
 
-            {/* Right - Prompt */}
+            {/* Right - Prompt Text in Cyan Code Box */}
             <div>
               <div className="font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-2">
                 The Prompt
               </div>
               <div className="font-mono text-[0.75rem] text-[var(--cyan)] bg-[rgba(0,212,255,0.04)] border border-[rgba(0,212,255,0.1)] rounded-[10px] p-4 leading-[1.6] mb-4">
-                {featuredPrompt.prompt}
+                {featuredPrompt.prompt.split('[').map((part, i) => {
+                  if (i === 0) return part;
+                  const [variable, rest] = part.split(']');
+                  return (
+                    <span key={i}>
+                      <span className="text-[var(--amber)] font-semibold">[{variable}]</span>
+                      {rest}
+                    </span>
+                  );
+                })}
               </div>
-              <button className="font-mono text-[0.68rem] text-[var(--cyan)] px-4 py-2 rounded-[8px] bg-[var(--cyan-dim)] border border-[rgba(0,212,255,0.2)] hover:bg-[rgba(0,212,255,0.2)] transition-colors">
+              <button className="inline-flex items-center gap-2 font-mono text-[0.68rem] text-[var(--cyan)] px-4 py-2 rounded-[8px] bg-[var(--cyan-dim)] border border-[rgba(0,212,255,0.2)] hover:bg-[rgba(0,212,255,0.2)] transition-colors font-medium">
+                <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] stroke-current" fill="none" strokeWidth="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
                 Copy prompt
               </button>
               <div className="mt-4 text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] p-3 bg-[rgba(200,80,192,0.04)] border-l-2 border-[var(--magenta)] rounded-r-[6px]">
@@ -228,30 +241,40 @@ export default function PromptsPage() {
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Filters - Two Rows: Difficulty + Category */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-6">
+        {/* Difficulty Row with colored pills */}
         <div className="flex flex-wrap items-center gap-3 mb-3">
           <span className="font-mono text-[0.58rem] text-[var(--text-muted)] tracking-[0.08em] uppercase min-w-[60px]">
             Difficulty
           </span>
-          {difficulties.map((d, i) => (
-            <button
-              key={d}
-              className={`filter-pill ${
-                (d === "Beginner" || d === "All Levels") && i === 0 ? "active" : ""
-              }`}
-              style={
-                d !== "All Levels"
-                  ? {
-                      borderColor: `${getDifficultyColor(d).color}30`,
-                    }
-                  : undefined
-              }
-            >
-              {d}
-            </button>
-          ))}
+          {difficulties.map((d, i) => {
+            const colors = getDifficultyColor(d);
+            const isActive = i === 0;
+            return (
+              <button
+                key={d}
+                className={`font-mono text-[0.62rem] font-medium px-3 py-1 rounded-full border transition-all duration-200 ${
+                  isActive
+                    ? "bg-[rgba(255,255,255,0.08)] text-[var(--text)] border-[rgba(255,255,255,0.15)]"
+                    : "border-[var(--border)] hover:border-[var(--border-hover)]"
+                }`}
+                style={
+                  !isActive && d !== "All Levels"
+                    ? {
+                        color: colors.color,
+                        borderColor: `${colors.color}30`,
+                      }
+                    : undefined
+                }
+              >
+                {d}
+              </button>
+            );
+          })}
         </div>
+
+        {/* Category Row */}
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-mono text-[0.58rem] text-[var(--text-muted)] tracking-[0.08em] uppercase min-w-[60px]">
             Category
@@ -259,7 +282,11 @@ export default function PromptsPage() {
           {categories.map((c, i) => (
             <button
               key={c}
-              className={`filter-pill ${i === 0 ? "active" : ""}`}
+              className={`font-mono text-[0.62rem] font-medium px-3 py-1 rounded-full border transition-all duration-200 ${
+                i === 0
+                  ? "bg-[rgba(255,255,255,0.08)] text-[var(--text)] border-[rgba(255,255,255,0.15)]"
+                  : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text)]"
+              }`}
             >
               {c}
             </button>
@@ -284,7 +311,7 @@ export default function PromptsPage() {
 
       {/* Prompt Grid */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="grid-3">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {prompts.map((prompt, i) => (
             <div
               key={i}
@@ -315,7 +342,7 @@ export default function PromptsPage() {
                 )}
               </div>
 
-              {/* Title */}
+              {/* Title - DM Sans Bold */}
               <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-2">
                 {prompt.title}
               </h3>
@@ -325,15 +352,15 @@ export default function PromptsPage() {
                 {prompt.description}
               </p>
 
-              {/* Preview */}
+              {/* Preview in cyan box */}
               <div className="font-mono text-[0.68rem] text-[var(--cyan)] bg-[rgba(0,212,255,0.04)] border border-[rgba(0,212,255,0.08)] rounded-[7px] px-3 py-2 leading-[1.5] mb-3 line-clamp-3">
                 {prompt.preview}
               </div>
 
-              {/* Footer */}
+              {/* Footer with copy button */}
               <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)] font-mono text-[0.55rem] text-[var(--text-muted)]">
                 <span className="text-[var(--green)]">{prompt.uses} uses</span>
-                <span>★ {prompt.rating}</span>
+                <span>&#9733; {prompt.rating}</span>
                 <button className="ml-auto text-[var(--cyan)] px-2 py-[3px] rounded-[4px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] transition-colors">
                   Copy
                 </button>
@@ -343,11 +370,13 @@ export default function PromptsPage() {
         </div>
 
         <div className="text-center mt-8">
-          <button className="btn-secondary">Load more prompts</button>
+          <button className="font-mono text-[0.72rem] text-[var(--cyan)] px-6 py-2.5 rounded-[8px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] hover:border-[rgba(0,212,255,0.3)] transition-all tracking-[0.04em]">
+            Load more prompts
+          </button>
         </div>
       </div>
 
-      {/* Submit CTA */}
+      {/* Submit a Prompt CTA */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--purple)] to-[var(--cyan)]" />
