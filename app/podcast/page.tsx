@@ -38,7 +38,7 @@ export default function PodcastPage() {
           <span className="w-[5px] h-[5px] rounded-full bg-[var(--orange)]" />
           PODCAST
         </div>
-        <h1 className="font-sans text-[clamp(2rem,5vw,2.4rem)] font-bold leading-[1.1] text-[var(--text)] mb-3">
+        <h1 className="page-title mb-3">
           Conversations with Higher Ed Innovators
         </h1>
         <p className="text-[0.92rem] text-[var(--text-secondary)] max-w-[620px] leading-[1.6]">

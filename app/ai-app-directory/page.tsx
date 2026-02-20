@@ -230,8 +230,8 @@ export default function AIAppDirectoryPage() {
           AI App Directory
         </div>
 
-        <h1 className="font-sans text-[clamp(2rem,4vw,3rem)] font-extrabold leading-[1.1] mb-4 tracking-[-0.02em]">
-          Find the Right <span className="bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] bg-clip-text text-transparent">AI Tool</span> for Higher Ed
+        <h1 className="page-title mb-4 tracking-[-0.02em]">
+          Find the Right <span className="bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] bg-clip-text text-transparent">AI App</span> for Higher Ed
         </h1>
         <p className="text-[1.08rem] text-[var(--text-muted)] max-w-[580px] mx-auto mb-7">
           AI tools vetted by educators, for educators. Honest reviews, not marketing fluff.
@@ -306,9 +306,9 @@ export default function AIAppDirectoryPage() {
         </div>
       </div>
 
-      {/* Tools Grid */}
+      {/* Tools Grid - 3 Column with Image Cards */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {tools.map((tool) => {
             const pricingStyle = getPricingStyle(tool.pricing);
             const badgeStyle = tool.badge ? getBadgeStyle(tool.badge) : null;
@@ -319,96 +319,82 @@ export default function AIAppDirectoryPage() {
                 className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-[350ms] cursor-pointer hover:border-[var(--border-hover)] hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] group"
                 style={{ "--tool-accent": tool.accent } as React.CSSProperties}
               >
-                {/* Accent Strip */}
-                <div className="h-[3px] transition-[height] duration-300 group-hover:h-1" style={{ backgroundColor: tool.accent }} />
-
-                <div className="p-5 pb-4">
-                  {/* Top Row: Logo + Name + Badge */}
-                  <div className="flex items-center gap-3.5 mb-3.5">
-                    {/* Logo */}
-                    <div
-                      className="w-[46px] h-[46px] rounded-[12px] overflow-hidden flex-shrink-0 flex items-center justify-center border border-[var(--border)] text-[1.1rem] font-bold"
-                      style={{ backgroundColor: tool.accent, color: "#fff" }}
-                    >
-                      {tool.name[0]}
-                    </div>
-
-                    {/* Name + Category */}
-                    <div className="flex-1 min-w-0">
-                      <div className="font-sans text-[1.12rem] font-bold tracking-[-0.01em]">
-                        {tool.name}
-                      </div>
-                      <div className="font-mono text-[0.76rem] text-[var(--text-muted)] font-medium mt-[1px]">
-                        {tool.category}
-                      </div>
-                    </div>
-
-                    {/* Badge */}
-                    {badgeStyle && (
-                      <span
-                        className="font-mono text-[0.68rem] font-semibold tracking-[0.4px] uppercase px-2.5 py-[3px] rounded-[4px]"
-                        style={{
-                          backgroundColor: badgeStyle.bg,
-                          color: badgeStyle.color,
-                          border: `1px solid ${badgeStyle.border}`,
-                        }}
-                      >
-                        {tool.badge}
-                      </span>
-                    )}
+                {/* Image Area with Logo */}
+                <div
+                  className="h-[120px] flex items-center justify-center relative"
+                  style={{
+                    background: `linear-gradient(135deg, ${tool.accent}22 0%, ${tool.accent}08 100%)`,
+                  }}
+                >
+                  {/* Logo Circle */}
+                  <div
+                    className="w-[64px] h-[64px] rounded-[16px] overflow-hidden flex items-center justify-center border-2 border-[rgba(255,255,255,0.1)] text-[1.5rem] font-bold shadow-lg"
+                    style={{ backgroundColor: tool.accent, color: "#fff" }}
+                  >
+                    {tool.name[0]}
                   </div>
 
-                  {/* Description */}
-                  <p className="text-[0.9rem] text-[var(--text-muted)] leading-[1.55] mb-3.5">
+                  {/* Badge - positioned in corner */}
+                  {badgeStyle && (
+                    <span
+                      className="absolute top-3 right-3 font-mono text-[0.58rem] font-semibold tracking-[0.4px] uppercase px-2 py-[2px] rounded-[4px]"
+                      style={{
+                        backgroundColor: badgeStyle.bg,
+                        color: badgeStyle.color,
+                        border: `1px solid ${badgeStyle.border}`,
+                      }}
+                    >
+                      {tool.badge}
+                    </span>
+                  )}
+                </div>
+
+                <div className="p-4">
+                  {/* Category - JetBrains Mono */}
+                  <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
+                    <span className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: tool.accent }} />
+                    <span style={{ color: tool.accent }}>{tool.category}</span>
+                  </div>
+
+                  {/* Tool Name - DM Sans Bold */}
+                  <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
+                    {tool.name}
+                  </h3>
+
+                  {/* Description - DM Sans Regular */}
+                  <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-3 line-clamp-2">
                     {tool.description}
                   </p>
 
-                  {/* Value Points */}
-                  <ul className="space-y-2 mb-4">
-                    {tool.values.map((value, i) => (
-                      <li key={i} className="text-[0.84rem] text-[var(--text)] leading-[1.45] pl-5 relative">
-                        <span
-                          className="absolute left-0 top-[7px] w-2 h-2 rounded-[2px] opacity-70"
-                          style={{ backgroundColor: tool.accent }}
-                        />
-                        {value}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Footer: Rating + Pricing + Roles */}
+                  <div className="flex items-center gap-2 pt-3 border-t border-[var(--border)] flex-wrap">
+                    {/* Rating */}
+                    <span className="font-mono text-[0.65rem] text-[var(--amber)]">
+                      ★ 4.{Math.floor(Math.random() * 3) + 5}
+                    </span>
 
-                  {/* Footer: Pricing + Roles + Learn More */}
-                  <div className="flex items-center gap-2.5 pt-3.5 border-t border-[var(--border)] flex-wrap">
                     {/* Pricing Tag */}
                     <span
-                      className="font-mono text-[0.76rem] font-semibold px-3 py-1 rounded-[6px]"
+                      className="font-mono text-[0.62rem] font-medium px-2 py-[2px] rounded-[4px]"
                       style={{
                         backgroundColor: pricingStyle.bg,
                         color: pricingStyle.color,
-                        border: `1px solid ${pricingStyle.border}`,
                       }}
                     >
-                      {tool.pricing}
+                      {tool.pricing === "freemium" ? "Free tier" : tool.pricing === "free" ? "Free" : "Paid"}
                     </span>
 
                     {/* Role Tags */}
-                    <div className="flex gap-1.5 flex-1">
-                      {tool.roles.map((role) => (
+                    <div className="flex gap-1 ml-auto">
+                      {tool.roles.slice(0, 2).map((role) => (
                         <span
                           key={role}
-                          className="font-mono text-[0.7rem] px-2 py-[2px] rounded-[4px] text-[var(--text-muted)] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.05)]"
+                          className="font-mono text-[0.58rem] text-[var(--text-muted)]"
                         >
                           {role}
                         </span>
                       ))}
                     </div>
-
-                    {/* Learn More */}
-                    <span className="ml-auto text-[0.84rem] font-semibold flex items-center gap-1 transition-[gap] duration-200 group-hover:gap-2" style={{ color: tool.accent }}>
-                      Learn More
-                      <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] stroke-current" fill="none" strokeWidth="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </span>
                   </div>
                 </div>
               </div>

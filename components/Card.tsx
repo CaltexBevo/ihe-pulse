@@ -45,11 +45,11 @@ export default function Card({
 
   const CardContent = (
     <>
-      {/* Image Section - 170px height standard, ALWAYS show for cards */}
+      {/* Image Section - 180px height standard, ALWAYS show for cards */}
       <div className="relative overflow-hidden">
         <div
           className={`relative w-full transition-all duration-400 ${
-            isExpanded ? "h-[190px]" : "h-[170px]"
+            isExpanded ? "h-[190px]" : "h-[180px]"
           }`}
         >
           {imageUrl ? (
@@ -61,9 +61,11 @@ export default function Card({
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
-            // Fallback gradient if no image provided
-            <div className="w-full h-full bg-gradient-to-br from-[var(--surface)] to-[var(--surface-2)]" />
+            // Fallback gradient placeholder (cyan-to-magenta at low opacity)
+            <div className="w-full h-full bg-gradient-to-br from-[rgba(0,212,255,0.15)] via-[var(--surface)] to-[rgba(200,80,192,0.15)]" />
           )}
+          {/* Subtle gradient overlay at bottom for badge readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(8,8,15,0.4)] via-transparent to-transparent pointer-events-none" />
         </div>
         {/* Badge Overlay - JetBrains Mono */}
         {badgeText && (

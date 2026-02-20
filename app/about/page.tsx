@@ -80,7 +80,7 @@ export default function AboutPage() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Bio Text - TEXT ONLY, NO PHOTOS */}
           <div>
-            <h1 className="font-sans text-[clamp(2rem,5vw,2.4rem)] font-bold leading-[1.1] text-[var(--text)] mb-6">
+            <h1 className="page-title mb-6">
               Meet the Team
             </h1>
 

@@ -67,14 +67,13 @@ export default function Home() {
               </div>
             )}
 
-            {/* Hook Quote with Gradient Border */}
+            {/* Hook Quote - Contained Card with Gradient Border */}
             {pulseEpisode && (
-              <blockquote className="relative pl-6 mb-6">
-                <div className="absolute left-0 top-[0.3rem] bottom-[0.3rem] w-[3px] rounded-[2px] bg-gradient-to-b from-[var(--cyan)] to-[var(--magenta)]" />
-                <p className="font-sans italic text-[clamp(1.4rem,2.8vw,1.85rem)] leading-[1.3] font-bold text-[var(--text)]">
+              <div className="hero-quote-card mb-6">
+                <p className="hero-quote">
                   &ldquo;{pulseEpisode.editorialHook}&rdquo;
                 </p>
-              </blockquote>
+              </div>
             )}
 
             {/* Audio Player */}
