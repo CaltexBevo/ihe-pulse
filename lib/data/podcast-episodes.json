@@ -22,7 +22,12 @@
         "Red-flag signs your AI detector policy harms equity",
         "First steps to close global and local connectivity gaps"
       ],
-      "topics": ["Equity", "Faculty Development", "AI Policy", "Student Access"],
+      "topics": [
+        "Equity",
+        "Faculty Development",
+        "AI Policy",
+        "Student Access"
+      ],
       "platformLinks": {
         "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
         "spotify": "https://open.spotify.com/show/innovating-higher-ed",
@@ -30,7 +35,8 @@
         "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
       },
       "podbeanId": "yn932-18e5c5a-pb",
-      "featured": true
+      "featured": true,
+      "localThumbnail": "/images/podcast/Chesa-Caparas-thumb-1200x.jpg"
     },
     {
       "number": 46,
@@ -51,7 +57,12 @@
         "Tips for injecting personality without extra grading time",
         "Change-management moves that win over hesitant colleagues"
       ],
-      "topics": ["Course Design", "Assessment", "PlayLab", "Instructional Design"],
+      "topics": [
+        "Course Design",
+        "Assessment",
+        "PlayLab",
+        "Instructional Design"
+      ],
       "platformLinks": {
         "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
         "spotify": "https://open.spotify.com/show/innovating-higher-ed",
@@ -59,7 +70,8 @@
         "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
       },
       "podbeanId": "fxjxj-1891ea5-pb",
-      "featured": false
+      "featured": false,
+      "localThumbnail": "/images/podcast/Prof-Scott-James-_thumb.02-585x390.jpg"
     },
     {
       "number": 45,
@@ -80,7 +92,12 @@
         "Creative Commons tips for global remix",
         "Open-pedagogy ideas that turn students into co-authors"
       ],
-      "topics": ["OER", "Zero Textbook Cost", "AI Translation", "Open Pedagogy"],
+      "topics": [
+        "OER",
+        "Zero Textbook Cost",
+        "AI Translation",
+        "Open Pedagogy"
+      ],
       "platformLinks": {
         "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
         "spotify": "https://open.spotify.com/show/innovating-higher-ed",
@@ -88,7 +105,8 @@
         "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
       },
       "podbeanId": "brbx3-18a6904-pb",
-      "featured": false
+      "featured": false,
+      "localThumbnail": "/images/podcast/DR.-SARAH-HARMON-_Thumb.02.-3.2-585x390.jpg"
     },
     {
       "number": 44,
@@ -109,7 +127,12 @@
         "Multi-level certificates for everyone from refugees to CS majors",
         "Outreach models that drive equity and enrollment"
       ],
-      "topics": ["AI Curriculum", "Equity", "Community College", "Certificates"],
+      "topics": [
+        "AI Curriculum",
+        "Equity",
+        "Community College",
+        "Certificates"
+      ],
       "platformLinks": {
         "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
         "spotify": "https://open.spotify.com/show/innovating-higher-ed",
@@ -117,7 +140,8 @@
         "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
       },
       "podbeanId": "h6ytf-1810356-pb",
-      "featured": false
+      "featured": false,
+      "localThumbnail": "/images/podcast/Dr.-Suha-Al-Juboori-Thumb.02-585x390.jpg"
     },
     {
       "number": 43,
@@ -138,7 +162,12 @@
         "VR role-plays that build courage to page doctors early",
         "AI prompts for polished feedback emails in seconds"
       ],
-      "topics": ["VR Simulation", "Nursing Education", "AI Feedback", "Clinical Training"],
+      "topics": [
+        "VR Simulation",
+        "Nursing Education",
+        "AI Feedback",
+        "Clinical Training"
+      ],
       "platformLinks": {
         "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
         "spotify": "https://open.spotify.com/show/innovating-higher-ed",
@@ -146,7 +175,8 @@
         "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
       },
       "podbeanId": "gxm6e-180f026-pb",
-      "featured": false
+      "featured": false,
+      "localThumbnail": "/images/podcast/Dr-Zeller-Thumb.02-585x390.jpg"
     },
     {
       "number": 42,
@@ -167,7 +197,12 @@
         "Mind-shift PD that ripples to 60,000 colleagues",
         "Budget guardrails: merge AI with XR without draining dollars"
       ],
-      "topics": ["XR/VR", "Professional Development", "Multilingual Learners", "EdTech Budgets"],
+      "topics": [
+        "XR/VR",
+        "Professional Development",
+        "Multilingual Learners",
+        "EdTech Budgets"
+      ],
       "platformLinks": {
         "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
         "spotify": "https://open.spotify.com/show/innovating-higher-ed",
@@ -175,7 +210,8 @@
         "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
       },
       "podbeanId": "342ra-180ef9c-pb",
-      "featured": false
+      "featured": false,
+      "localThumbnail": "/images/podcast/Dr-Grace-Thumb-.02-585x390.jpg"
     },
     {
       "number": 41,
@@ -196,7 +232,12 @@
         "Reframe AI as creativity booster, not cheating threat",
         "Build cross-campus resource banks across disciplines"
       ],
-      "topics": ["ChatGPT", "Lesson Planning", "Faculty Resources", "AI Writing"],
+      "topics": [
+        "ChatGPT",
+        "Lesson Planning",
+        "Faculty Resources",
+        "AI Writing"
+      ],
       "platformLinks": {
         "apple": "https://podcasts.apple.com/us/podcast/innovating-higher-ed",
         "spotify": "https://open.spotify.com/show/innovating-higher-ed",
@@ -204,7 +245,8 @@
         "amazon": "https://music.amazon.com/podcasts/innovating-higher-ed"
       },
       "podbeanId": "jv858-1710904-pb",
-      "featured": false
+      "featured": false,
+      "localThumbnail": "/images/podcast/Lynn-Dickinson-thumb-.02-585x390.jpg"
     },
     {
       "number": 48,
@@ -226,7 +268,12 @@
         "Penn State Smeal's AI curriculum integration",
         "Human-centered AI leadership in education"
       ],
-      "topics": ["AI News", "Higher Ed Policy", "AI Ethics", "Research Funding"],
+      "topics": [
+        "AI News",
+        "Higher Ed Policy",
+        "AI Ethics",
+        "Research Funding"
+      ],
       "platformLinks": {},
       "podbeanId": null,
       "featured": false,
@@ -252,7 +299,12 @@
         "Safer Internet Day initiatives",
         "LEGO K-8 literacy initiative connections"
       ],
-      "topics": ["AI News", "AI Policy", "Faculty Development", "Digital Literacy"],
+      "topics": [
+        "AI News",
+        "AI Policy",
+        "Faculty Development",
+        "Digital Literacy"
+      ],
       "platformLinks": {},
       "podbeanId": null,
       "featured": false,
