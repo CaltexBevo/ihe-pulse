@@ -168,9 +168,9 @@ export default function InnovationPulseClient({
               </span>
             </div>
 
-            {/* FIX 5: Hook Quote with larger font - Updated sizing */}
+            {/* Hero Hook Quote */}
             <div className="hero-quote-card mb-6">
-              <p className="text-[clamp(1.5rem,3vw,2.1rem)] leading-[1.3] font-bold italic relative pl-6 before:content-[''] before:absolute before:left-0 before:top-[0.3rem] before:bottom-[0.3rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
+              <p className="text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.3] font-bold italic relative pl-6 before:content-[''] before:absolute before:left-0 before:top-[0.3rem] before:bottom-[0.3rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
                 &ldquo;{episode.editorialHook}&rdquo;
               </p>
             </div>
@@ -475,9 +475,9 @@ export default function InnovationPulseClient({
                     category={story.category}
                     categoryColor={categoryColors[story.category]?.hex}
                     source={story.source}
+                    sourceUrl={story.sourceUrl}
                     date={formatShortDate(story.date)}
                     imageUrl={storyImages[(sectionIdx * 3 + i) % storyImages.length]}
-                    /* FIX 4: Category-specific badge text */
                     badgeText={
                       story.isCallback
                         ? "CALLBACK"
@@ -492,7 +492,6 @@ export default function InnovationPulseClient({
                           ? "rgba(0,212,255,0.85)"
                           : CATEGORY_BADGE_COLORS[story.category]
                     }
-                    /* FIX 9: Pass callback info */
                     isCallback={story.isCallback}
                     callbackDate={story.callbackDate}
                     expandable={true}

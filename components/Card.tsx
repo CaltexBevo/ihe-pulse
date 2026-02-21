@@ -12,6 +12,7 @@ interface CardProps {
   category: string;
   categoryColor?: string;
   source: string;
+  sourceUrl?: string;
   date: string;
   imageUrl?: string;
   badgeText?: string;
@@ -30,6 +31,7 @@ export default function Card({
   category,
   categoryColor = "var(--cyan)",
   source,
+  sourceUrl,
   date,
   imageUrl,
   badgeText,
@@ -190,12 +192,25 @@ export default function Card({
 
         {/* Footer - JetBrains Mono 0.58rem for source (cyan) + date (muted), border-top */}
         <div className="flex justify-between items-center pt-[0.45rem] border-t border-[var(--border)]">
-          <span
-            className="text-[0.58rem] text-[var(--cyan)] font-medium"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            {source}
-          </span>
+          {sourceUrl ? (
+            <a
+              href={sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-[0.58rem] text-[var(--cyan)] font-medium hover:underline"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {source}
+            </a>
+          ) : (
+            <span
+              className="text-[0.58rem] text-[var(--cyan)] font-medium"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {source}
+            </span>
+          )}
           <span
             className="text-[0.55rem] text-[var(--text-muted)]"
             style={{ fontFamily: "var(--font-mono)" }}
