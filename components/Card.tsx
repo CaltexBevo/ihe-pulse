@@ -18,6 +18,8 @@ interface CardProps {
   badgeColor?: string;
   href?: string;
   expandable?: boolean;
+  isCallback?: boolean;
+  callbackDate?: string;
 }
 
 export default function Card({
@@ -34,6 +36,8 @@ export default function Card({
   badgeColor = "rgba(200, 80, 192, 0.85)",
   href,
   expandable = true,
+  isCallback = false,
+  callbackDate,
 }: CardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -69,15 +73,26 @@ export default function Card({
         </div>
         {/* Badge Overlay - JetBrains Mono */}
         {badgeText && (
-          <span
-            className="absolute top-[10px] left-[10px] text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white backdrop-blur-[8px]"
-            style={{
-              fontFamily: "var(--font-mono)",
-              backgroundColor: badgeColor,
-            }}
-          >
-            {badgeText}
-          </span>
+          <div className="absolute top-[10px] left-[10px] flex flex-col gap-1">
+            <span
+              className="text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white backdrop-blur-[8px] w-fit"
+              style={{
+                fontFamily: "var(--font-mono)",
+                backgroundColor: badgeColor,
+              }}
+            >
+              {isCallback && "↩ "}{badgeText}
+            </span>
+            {/* FIX 9: Callback date indicator */}
+            {isCallback && callbackDate && (
+              <span
+                className="text-[0.48rem] text-[var(--text-secondary)] bg-[rgba(0,0,0,0.5)] backdrop-blur-[8px] px-2 py-[2px] rounded-[4px] w-fit"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Previously covered: {callbackDate}
+              </span>
+            )}
+          </div>
         )}
       </div>
 

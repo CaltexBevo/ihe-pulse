@@ -120,6 +120,7 @@ export interface DeepDive {
   callbackThreadId?: string;
   callbackFirstCovered?: string;
   category: StoryCategory;
+  editorialCallout?: string;
 }
 
 export interface QuickHit {
@@ -128,6 +129,8 @@ export interface QuickHit {
   source: string;
   sourceUrl: string;
   category: StoryCategory;
+  isCallback?: boolean;
+  callbackDate?: string;
 }
 
 export interface StoryWatching {
