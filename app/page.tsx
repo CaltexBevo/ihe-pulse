@@ -26,13 +26,6 @@ export default function Home() {
     "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=320&fit=crop",
   ];
 
-  // Placeholder images for Tinker Lab
-  const tinkerImages = [
-    "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=340&fit=crop",
-    "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=340&fit=crop",
-  ];
-
   // Placeholder images for Podcasts
   const podcastImages = [
     "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=340&fit=crop",
@@ -257,9 +250,9 @@ export default function Home() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
                 />
-                {/* Episode Badge */}
+                {/* Category Badge - no episode numbers */}
                 <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[var(--orange)] backdrop-blur-[8px]">
-                  Episode {ep.number}
+                  Interview
                 </span>
               </div>
 
@@ -511,72 +504,74 @@ export default function Home() {
           viewAllText="View experiments"
         />
 
-        <div className="grid-3">
-          {[
-            {
-              title: "I Graded 100 Papers with 5 Different AI Tools — Here's What Happened",
-              desc: "Running the same set of student essays through five AI grading platforms and comparing the results to human graders.",
-              type: "Experiment",
-              duration: "8 min",
-              date: "Feb 14",
-            },
-            {
-              title: "Building a Custom AI Tutor for Intro Biology — From Scratch",
-              desc: "A walkthrough of creating a subject-specific AI tutor using free tools. No coding required. Total setup time: 2 hours.",
-              type: "Experiment",
-              duration: "12 min",
-              date: "Feb 7",
-            },
-            {
-              title: "Can AI Write a Syllabus? We Put It to the Test",
-              desc: "Three faculty members review an AI-generated syllabus for their own courses — blind. Their reactions are telling.",
-              type: "Experiment",
-              duration: "10 min",
-              date: "Jan 31",
-            },
-          ].map((exp, i) => (
-            <Link
-              key={i}
-              href="/tinker-lab"
-              className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
-            >
-              {/* Image - 170px height */}
-              <div className="relative h-[170px] overflow-hidden">
-                <Image
-                  src={tinkerImages[i]}
-                  alt={exp.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                />
-                {/* Type Badge */}
-                <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(0,212,255,0.85)]">
-                  {exp.type}
-                </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* REAL POST 1: Wonka-Lantern Framework */}
+          <Link
+            href="/tinker-lab/wonka-lantern"
+            className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
+          >
+            <div className="relative h-[170px] overflow-hidden">
+              <Image
+                src="https://innovatinghighered.com/wp-content/uploads/2025/06/Tinker-Lab-WIlly-Wonka.02-585x390.jpg"
+                alt="The Wonka-Lantern Framework"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+              />
+              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(0,212,255,0.85)]">
+                Experiment
+              </span>
+            </div>
+            <div className="p-4 pt-3">
+              <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
+                <span className="text-[var(--cyan)]">Tinker Lab</span>
               </div>
+              <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
+                The Wonka-Lantern Framework: Creative & Ethical AI in Higher Education
+              </h3>
+              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
+                Dr. Norma Jones introduces a framework for AI in higher education by channeling Willy Wonka (imagination) and the Green Lantern (ethical responsibility).
+              </p>
+              <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
+                <span className="text-[var(--cyan)]">12 min read</span>
+                <span>June 17, 2025</span>
+              </div>
+            </div>
+          </Link>
 
-              {/* Body */}
-              <div className="p-4 pt-3">
-                {/* Category - JetBrains Mono */}
-                <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
-                  <span className="text-[var(--cyan)]">Tinker Lab</span>
-                </div>
-                {/* Title - DM Sans Bold */}
-                <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
-                  {exp.title}
-                </h3>
-                {/* Description - DM Sans Regular */}
-                <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
-                  {exp.desc}
-                </p>
-                {/* Footer - JetBrains Mono */}
-                <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
-                  <span className="text-[var(--cyan)]">{exp.duration} listen</span>
-                  <span>{exp.date}</span>
-                </div>
+          {/* REAL POST 2: ChatGPT Pro Deep Research */}
+          <Link
+            href="/tinker-lab/chatgpt-pro"
+            className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
+          >
+            <div className="relative h-[170px] overflow-hidden">
+              <Image
+                src="https://innovatinghighered.com/wp-content/uploads/2025/05/Tinker-Lab-Chat-Pro.-01-585x390.jpg"
+                alt="ChatGPT Pro Deep Research"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+              />
+              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(74,222,128,0.85)]">
+                Walkthrough
+              </span>
+            </div>
+            <div className="p-4 pt-3">
+              <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
+                <span className="text-[var(--cyan)]">Tinker Lab</span>
               </div>
-            </Link>
-          ))}
+              <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
+                ChatGPT Pro Deep Research: Worth It?
+              </h3>
+              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
+                Dr. Norma Jones tests OpenAI&apos;s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking.
+              </p>
+              <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
+                <span className="text-[var(--cyan)]">15 min read</span>
+                <span>February 28, 2025</span>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
 

@@ -24,6 +24,7 @@ const roles = ["All Roles", "Faculty", "Administrator", "Student"];
 const tools = [
   {
     name: "ChatGPT",
+    domain: "chat.openai.com",
     description: "OpenAI's flagship conversational AI. Handles everything from essay feedback to coding help to brainstorming session agendas.",
     category: "General LLMs",
     pricing: "freemium",
@@ -38,6 +39,7 @@ const tools = [
   },
   {
     name: "Claude",
+    domain: "claude.ai",
     description: "Anthropic's AI assistant built for nuanced, thoughtful analysis. Excels at long-form writing and careful reasoning.",
     category: "General LLMs",
     pricing: "freemium",
@@ -52,6 +54,7 @@ const tools = [
   },
   {
     name: "Gemini",
+    domain: "gemini.google.com",
     description: "Google's multimodal AI. Deep integration with Google Workspace makes it powerful for faculty already in the Google ecosystem.",
     category: "General LLMs",
     pricing: "freemium",
@@ -66,6 +69,7 @@ const tools = [
   },
   {
     name: "Perplexity AI",
+    domain: "perplexity.ai",
     description: "AI-powered research engine that provides cited answers from real sources. Like Google Scholar meets a research assistant.",
     category: "General LLMs",
     pricing: "freemium",
@@ -80,6 +84,7 @@ const tools = [
   },
   {
     name: "Eduaide.Ai",
+    domain: "eduaide.ai",
     description: "Purpose-built AI for educators. Creates lesson plans, assessments, differentiated materials, and IEP-aligned accommodations.",
     category: "Lesson Planning",
     pricing: "freemium",
@@ -94,6 +99,7 @@ const tools = [
   },
   {
     name: "Brisk Teaching",
+    domain: "briskteaching.com",
     description: "Chrome extension that works inside your existing platforms. Create, feedback, and differentiate directly in Google Docs, Canvas, and Schoology.",
     category: "Lesson Planning",
     pricing: "free",
@@ -108,6 +114,7 @@ const tools = [
   },
   {
     name: "Gradescope",
+    domain: "gradescope.com",
     description: "AI-assisted grading platform. Upload assignments, create rubrics, and grade consistently across hundreds of submissions.",
     category: "Assessment",
     pricing: "paid",
@@ -121,6 +128,7 @@ const tools = [
   },
   {
     name: "Turnitin",
+    domain: "turnitin.com",
     description: "Academic integrity platform with AI writing detection, plagiarism checking, and Feedback Studio for formative assessment.",
     category: "Assessment",
     pricing: "paid",
@@ -135,6 +143,7 @@ const tools = [
   },
   {
     name: "Gamma",
+    domain: "gamma.app",
     description: "AI presentation creator. Describe what you need, get polished slides with smart layout, design, and content structure.",
     category: "Presentations",
     pricing: "freemium",
@@ -149,6 +158,7 @@ const tools = [
   },
   {
     name: "Consensus",
+    domain: "consensus.app",
     description: "AI-powered academic search engine. Finds and synthesizes insights from peer-reviewed papers — no marketing content mixed in.",
     category: "Research",
     pricing: "freemium",
@@ -162,6 +172,7 @@ const tools = [
   },
   {
     name: "Synthesia",
+    domain: "synthesia.io",
     description: "AI video creation with realistic virtual presenters. Create training and lecture videos without cameras, studios, or editing skills.",
     category: "Image & Video",
     pricing: "paid",
@@ -176,6 +187,7 @@ const tools = [
   },
   {
     name: "Knowt",
+    domain: "knowt.com",
     description: "AI study tool that converts notes and lectures into flashcards and practice quizzes automatically.",
     category: "Student Tools",
     pricing: "freemium",
@@ -326,12 +338,18 @@ export default function AIAppDirectoryPage() {
                     background: `linear-gradient(135deg, ${tool.accent}22 0%, ${tool.accent}08 100%)`,
                   }}
                 >
-                  {/* Logo Circle */}
+                  {/* App Favicon from Google */}
                   <div
-                    className="w-[64px] h-[64px] rounded-[16px] overflow-hidden flex items-center justify-center border-2 border-[rgba(255,255,255,0.1)] text-[1.5rem] font-bold shadow-lg"
-                    style={{ backgroundColor: tool.accent, color: "#fff" }}
+                    className="w-[64px] h-[64px] rounded-[16px] overflow-hidden flex items-center justify-center border-2 border-[rgba(255,255,255,0.1)] shadow-lg bg-white"
                   >
-                    {tool.name[0]}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://www.google.com/s2/favicons?domain=${tool.domain}&sz=64`}
+                      alt={`${tool.name} logo`}
+                      width={48}
+                      height={48}
+                      className="w-[48px] h-[48px] object-contain"
+                    />
                   </div>
 
                   {/* Badge - positioned in corner */}

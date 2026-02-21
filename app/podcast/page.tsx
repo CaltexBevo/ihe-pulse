@@ -9,11 +9,11 @@ export const metadata = {
 };
 
 const platforms = [
-  { name: "Apple Podcasts", href: "#", icon: "🎧" },
-  { name: "Spotify", href: "#" },
-  { name: "YouTube", href: "#" },
-  { name: "RSS Feed", href: "#" },
-  { name: "Google Podcasts", href: "#" },
+  { name: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865", icon: "🎧" },
+  { name: "Spotify", href: "https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" },
+  { name: "YouTube", href: "https://www.youtube.com/@InnovatingHigherEd" },
+  { name: "Amazon Music", href: "https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" },
+  { name: "Podbean", href: "https://innovatinghighered.podbean.com/" },
 ];
 
 const filters = [
@@ -80,7 +80,7 @@ export default function PodcastPage() {
             {/* Right - Content */}
             <div className="p-8 flex flex-col justify-center">
               <div className="font-mono text-[0.62rem] text-[var(--orange)] tracking-[0.08em] uppercase mb-2">
-                Episode {featuredEpisode.number} · {featuredEpisode.date}
+                {featuredEpisode.date}
               </div>
               <h2 className="font-sans text-[1.45rem] font-bold leading-[1.22] mb-3 group-hover:text-[var(--cyan)] transition-colors">
                 {featuredEpisode.title}
@@ -152,10 +152,6 @@ export default function PodcastPage() {
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-[var(--orange)] to-[var(--magenta)]" />
                 )}
-                {/* Episode badge */}
-                <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[4px] bg-[var(--orange-dim)] text-[var(--orange)]">
-                  EP. {ep.number}
-                </span>
               </div>
 
               {/* Body */}
