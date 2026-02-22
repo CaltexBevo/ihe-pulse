@@ -1,61 +1,100 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
 import {
-  categoryColors,
   formatPulseDate,
   formatShortDate,
-  type StoryCategory,
   type InnovationPulseEpisode,
 } from "@/lib/data/innovation-pulse-types";
 
-// Types for aggregated stories
+// ═══════════════════════════════════════════════════════════════════════════
+// V4 CATEGORY SYSTEM
+// ═══════════════════════════════════════════════════════════════════════════
+
+type V4Category =
+  | "Insights & Trends"
+  | "Case Study"
+  | "Practical Tips"
+  | "Ethical AI"
+  | "Latest AI Products"
+  | "Beyond Ed"
+  | "Week in Review";
+
+const V4_CATEGORIES: V4Category[] = [
+  "Insights & Trends",
+  "Case Study",
+  "Practical Tips",
+  "Ethical AI",
+  "Latest AI Products",
+  "Beyond Ed",
+  "Week in Review",
+];
+
+// V4 Category colors
+const V4_CATEGORY_COLORS: Record<V4Category, { hex: string; bg: string; text: string }> = {
+  "Insights & Trends": { hex: "#00d4ff", bg: "rgba(0,212,255,0.15)", text: "text-[#00d4ff]" },
+  "Case Study": { hex: "#10b981", bg: "rgba(16,185,129,0.15)", text: "text-[#10b981]" },
+  "Practical Tips": { hex: "#f59e0b", bg: "rgba(245,158,11,0.15)", text: "text-[#f59e0b]" },
+  "Ethical AI": { hex: "#f43f5e", bg: "rgba(244,63,94,0.15)", text: "text-[#f43f5e]" },
+  "Latest AI Products": { hex: "#8b5cf6", bg: "rgba(139,92,246,0.15)", text: "text-[#8b5cf6]" },
+  "Beyond Ed": { hex: "#0ea5e9", bg: "rgba(14,165,233,0.15)", text: "text-[#0ea5e9]" },
+  "Week in Review": { hex: "#c850c0", bg: "rgba(200,80,192,0.15)", text: "text-[#c850c0]" },
+};
+
+// V4 Category badge text
+const V4_BADGE_TEXT: Record<V4Category, string> = {
+  "Insights & Trends": "INSIGHTS",
+  "Case Study": "CASE STUDY",
+  "Practical Tips": "TIPS",
+  "Ethical AI": "ETHICS",
+  "Latest AI Products": "PRODUCTS",
+  "Beyond Ed": "BEYOND ED",
+  "Week in Review": "WEEK REVIEW",
+};
+
+// Map old categories to V4 categories
+const OLD_TO_V4_MAP: Record<string, V4Category> = {
+  // Direct mappings
+  "Research & Innovation": "Insights & Trends",
+  "Infrastructure & Operations": "Case Study",
+  "Teaching & Learning": "Practical Tips",
+  "Policy & Ethics": "Ethical AI",
+  "Tools & Products": "Latest AI Products",
+  "Student Experience": "Beyond Ed",
+  "Leadership & Strategy": "Insights & Trends",
+  // Already V4
+  "Insights & Trends": "Insights & Trends",
+  "Case Study": "Case Study",
+  "Practical Tips": "Practical Tips",
+  "Ethical AI": "Ethical AI",
+  "Latest AI Products": "Latest AI Products",
+  "Beyond Ed": "Beyond Ed",
+  "Week in Review": "Week in Review",
+};
+
+function mapToV4Category(oldCategory: string): V4Category {
+  return OLD_TO_V4_MAP[oldCategory] || "Insights & Trends";
+}
+
+// Types for aggregated stories (from data layer)
 interface AggregatedStory {
   title: string;
   summary: string;
   source: string;
   sourceUrl: string;
-  category: StoryCategory;
+  category: string;
   date: string;
   type: "deepDive" | "quickHit";
   isCallback?: boolean;
   callbackDate?: string;
 }
 
-// Category Constants
-const ALL_CATEGORIES: StoryCategory[] = [
-  "Teaching & Learning",
-  "Policy & Ethics",
-  "Infrastructure & Operations",
-  "Tools & Products",
-  "Research & Innovation",
-  "Student Experience",
-  "Leadership & Strategy",
-];
-
-// Category badge text mapping
-const CATEGORY_BADGE_TEXT: Record<StoryCategory, string> = {
-  "Teaching & Learning": "TOP STORY",
-  "Student Experience": "STUDENT",
-  "Leadership & Strategy": "LEADERSHIP",
-  "Tools & Products": "PRODUCT",
-  "Research & Innovation": "RESEARCH",
-  "Policy & Ethics": "POLICY",
-  "Infrastructure & Operations": "INFRA",
-};
-
-// Category badge colors
-const CATEGORY_BADGE_COLORS: Record<StoryCategory, string> = {
-  "Teaching & Learning": "rgba(0,212,255,0.85)",
-  "Student Experience": "rgba(46,230,168,0.85)",
-  "Leadership & Strategy": "rgba(200,80,192,0.85)",
-  "Tools & Products": "rgba(139,92,246,0.85)",
-  "Research & Innovation": "rgba(59,130,246,0.85)",
-  "Policy & Ethics": "rgba(245,166,35,0.85)",
-  "Infrastructure & Operations": "rgba(249,115,22,0.85)",
-};
+// Extended type with V4 category
+interface AggregatedStoryWithV4 extends AggregatedStory {
+  v4Category: V4Category;
+}
 
 // Placeholder images for story cards
 const storyImages = [
@@ -74,7 +113,7 @@ const storyImages = [
 interface InnovationPulseClientProps {
   episode: InnovationPulseEpisode | null;
   allEpisodes: InnovationPulseEpisode[];
-  storiesByCategory: Record<StoryCategory, AggregatedStory[]>;
+  storiesByCategory: Record<string, AggregatedStory[]>;
 }
 
 // Editorial lens colors for badges
@@ -86,16 +125,84 @@ const LENS_COLORS: Record<string, { bg: string; text: string }> = {
   "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]" },
 };
 
+// Format time for audio player
+function formatTime(seconds: number): string {
+  if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs.toString().padStart(2, "0")}`;
+}
+
 export default function InnovationPulseClient({
   episode,
   allEpisodes,
   storiesByCategory,
 }: InnovationPulseClientProps) {
-  const [selectedCategory, setSelectedCategory] = useState<StoryCategory | "all">("all");
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<V4Category | "all">("all");
   const [newsletterFrequency, setNewsletterFrequency] = useState<"daily" | "weekly">("daily");
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
-  const waveformRef = useRef<HTMLDivElement>(null);
+
+  // Audio state
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [audioProgress, setAudioProgress] = useState(0);
+
+  // Audio event handlers
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleTimeUpdate = () => {
+      setCurrentTime(audio.currentTime);
+      if (audio.duration > 0) {
+        setAudioProgress((audio.currentTime / audio.duration) * 100);
+      }
+    };
+
+    const handleLoadedMetadata = () => {
+      setDuration(audio.duration);
+    };
+
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setAudioProgress(0);
+      setCurrentTime(0);
+    };
+
+    audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+    audio.addEventListener("ended", handleEnded);
+
+    return () => {
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      audio.removeEventListener("ended", handleEnded);
+    };
+  }, [episode]);
+
+  const togglePlay = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const audio = audioRef.current;
+    if (!audio || !duration) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = clickX / rect.width;
+    audio.currentTime = percentage * duration;
+  };
 
   // Separate this week's episodes from the archive
   const thisWeekEpisodes = useMemo(() => {
@@ -126,33 +233,56 @@ export default function InnovationPulseClient({
     });
   }, [allEpisodes, episode]);
 
-  const storyCounts = useMemo(() => {
-    const counts: Record<StoryCategory, number> = {} as Record<StoryCategory, number>;
-    for (const category of ALL_CATEGORIES) {
-      counts[category] = storiesByCategory[category]?.length || 0;
-    }
-    return counts;
-  }, [storiesByCategory]);
+  // Get all stories from current week only, mapped to V4 categories
+  const thisWeekStories = useMemo((): AggregatedStoryWithV4[] => {
+    if (!episode) return [];
+    const todayDate = new Date(episode.date + "T12:00:00");
+    const dayOfWeek = todayDate.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const mondayDate = new Date(todayDate);
+    mondayDate.setDate(todayDate.getDate() + mondayOffset);
+    const mondayStr = mondayDate.toISOString().split("T")[0];
 
-  // Get stories organized by category for grouped display
+    const stories: AggregatedStoryWithV4[] = [];
+    for (const category of Object.keys(storiesByCategory)) {
+      const categoryStories = storiesByCategory[category] || [];
+      for (const story of categoryStories) {
+        if (story.date >= mondayStr) {
+          stories.push({
+            ...story,
+            v4Category: mapToV4Category(story.category),
+          });
+        }
+      }
+    }
+    return stories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }, [storiesByCategory, episode]);
+
+  // Group stories by V4 category
+  const storiesByV4Category = useMemo(() => {
+    const result: Record<V4Category, AggregatedStoryWithV4[]> = {} as Record<V4Category, AggregatedStoryWithV4[]>;
+    for (const cat of V4_CATEGORIES) {
+      result[cat] = [];
+    }
+    for (const story of thisWeekStories) {
+      if (result[story.v4Category]) {
+        result[story.v4Category].push(story);
+      }
+    }
+    return result;
+  }, [thisWeekStories]);
+
+  // Get V4 categories with stories
   const categorizedStories = useMemo(() => {
-    const result: { category: StoryCategory; stories: AggregatedStory[] }[] = [];
-    for (const category of ALL_CATEGORIES) {
-      const stories = storiesByCategory[category] || [];
+    const result: { category: V4Category; stories: AggregatedStoryWithV4[] }[] = [];
+    for (const category of V4_CATEGORIES) {
+      const stories = storiesByV4Category[category] || [];
       if (stories.length > 0) {
         result.push({ category, stories: stories.slice(0, 3) });
       }
     }
     return result;
-  }, [storiesByCategory]);
-
-  const allStories = useMemo(() => {
-    const stories: AggregatedStory[] = [];
-    for (const category of ALL_CATEGORIES) {
-      stories.push(...(storiesByCategory[category] || []));
-    }
-    return stories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [storiesByCategory]);
+  }, [storiesByV4Category]);
 
   // Scroll to category section
   const scrollToCategory = (categoryId: string) => {
@@ -160,11 +290,6 @@ export default function InnovationPulseClient({
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
-
-  // Toggle play state
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
   };
 
   if (!episode) {
@@ -180,9 +305,17 @@ export default function InnovationPulseClient({
 
   // Get the lead story for the featured section
   const leadStory = episode.deepDive;
+  const leadStoryV4Category = mapToV4Category(leadStory.category);
 
   return (
     <div className="min-h-screen">
+      {/* Hidden Audio Element */}
+      <audio
+        ref={audioRef}
+        src={episode.audioUrl}
+        preload="metadata"
+      />
+
       {/* ═══════════════════════════════════════════════════════
           HERO SECTION
           ═══════════════════════════════════════════════════════ */}
@@ -212,7 +345,7 @@ export default function InnovationPulseClient({
               </p>
             </div>
 
-            {/* FIX 6: Audio Player with Credit Line and Volume Icon */}
+            {/* REAL Audio Player */}
             <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-6">
               <div className="flex items-center gap-2 mb-3">
                 {/* Live Badge */}
@@ -222,7 +355,7 @@ export default function InnovationPulseClient({
                 </div>
                 {/* Duration */}
                 <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
-                  {episode.audioDuration}
+                  {duration > 0 ? formatTime(duration) : episode.audioDuration}
                 </span>
                 {/* Credit Line */}
                 <span className="font-mono text-[0.72rem] text-[var(--text-muted)] ml-auto">
@@ -230,7 +363,7 @@ export default function InnovationPulseClient({
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                {/* FIX 10: Interactive Play Button */}
+                {/* Play Button */}
                 <button
                   onClick={togglePlay}
                   className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06] hover:shadow-[0_6px_28px_rgba(0,212,255,0.3)]"
@@ -246,35 +379,39 @@ export default function InnovationPulseClient({
                     </svg>
                   )}
                 </button>
-                {/* FIX 10: Animated Waveform */}
-                <div ref={waveformRef} className="flex-1 flex items-center h-[44px] gap-[1.5px]">
-                  {Array.from({ length: 80 }, (_, i) => {
-                    const h = 6 + Math.random() * 30 + Math.sin(i * 0.25) * 10 + Math.cos(i * 0.12) * 6;
-                    const isPlayed = i < 14;
-                    const isActive = isPlaying && i >= 12 && i < 18;
-                    return (
-                      <div
-                        key={i}
-                        className={`w-[3px] rounded-[2px] transition-colors ${
-                          isActive
-                            ? "bg-gradient-to-t from-[var(--cyan)] to-[var(--magenta)] animate-[waveform_0.8s_ease-in-out_infinite]"
-                            : isPlayed
+
+                {/* Progress Bar / Waveform - CLICKABLE */}
+                <div
+                  className="flex-1 h-[44px] relative cursor-pointer group"
+                  onClick={handleProgressClick}
+                >
+                  {/* Background waveform */}
+                  <div className="absolute inset-0 flex items-center gap-[1.5px]">
+                    {Array.from({ length: 80 }, (_, i) => {
+                      const h = 6 + Math.random() * 30 + Math.sin(i * 0.25) * 10 + Math.cos(i * 0.12) * 6;
+                      const progressPercent = (i / 80) * 100;
+                      const isPlayed = progressPercent <= audioProgress;
+                      return (
+                        <div
+                          key={i}
+                          className={`w-[3px] rounded-[2px] transition-colors ${
+                            isPlayed
                               ? "bg-[var(--cyan)]"
-                              : "bg-[var(--surface-2)]"
-                        }`}
-                        style={{
-                          height: `${Math.max(4, h)}px`,
-                          animationDelay: isActive ? `${Math.random() * 0.5}s` : undefined
-                        }}
-                      />
-                    );
-                  })}
+                              : "bg-[var(--surface-2)] group-hover:bg-[var(--surface-3)]"
+                          }`}
+                          style={{ height: `${Math.max(4, h)}px` }}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
-                {/* Time */}
+
+                {/* Time Display */}
                 <span className="font-mono text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[72px] text-right">
-                  0:00 / {episode.audioDuration}
+                  {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : episode.audioDuration}
                 </span>
-                {/* FIX 6: Volume Icon */}
+
+                {/* Volume Icon */}
                 <svg
                   className="w-7 h-7 stroke-[var(--text-muted)] hover:stroke-[var(--text)] cursor-pointer transition-colors shrink-0"
                   viewBox="0 0 24 24"
@@ -290,10 +427,9 @@ export default function InnovationPulseClient({
 
           {/* Right Sidebar: Dr. Norma Card + TOC */}
           <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] space-y-5">
-            {/* FIX 1: Dr. Norma Author Card */}
+            {/* Dr. Norma Author Card */}
             <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5">
               <div className="flex items-center gap-3 mb-3">
-                {/* Avatar with gradient placeholder */}
                 <div className="w-[52px] h-[52px] rounded-full border-2 border-[var(--border)] bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center text-white text-[1.2rem] font-bold">
                   NJ
                 </div>
@@ -307,7 +443,7 @@ export default function InnovationPulseClient({
               </p>
             </div>
 
-            {/* FIX 8: TOC Card - Changed title to "Today's Stories" */}
+            {/* TOC Card */}
             <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5">
               <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
                 Today&apos;s Stories
@@ -324,12 +460,12 @@ export default function InnovationPulseClient({
                       {episode.deepDive.title}
                     </p>
                     <span className="text-[0.62rem] text-[var(--text-muted)] font-mono mt-1">
-                      {episode.deepDive.category}
+                      {leadStoryV4Category}
                     </span>
                   </div>
                 </li>
 
-                {/* Quick Hits with FIX 9: CALLBACK support */}
+                {/* Quick Hits */}
                 {episode.quickHits.slice(0, 4).map((hit, i) => (
                   <li
                     key={i}
@@ -347,7 +483,7 @@ export default function InnovationPulseClient({
                         {hit.title}
                       </p>
                       <span className="text-[0.62rem] text-[var(--text-muted)] font-mono mt-1">
-                        {hit.category}
+                        {mapToV4Category(hit.category)}
                       </span>
                     </div>
                   </li>
@@ -362,7 +498,7 @@ export default function InnovationPulseClient({
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          FIX 2: FEATURED STORY SECTION
+          FEATURED STORY SECTION
           ═══════════════════════════════════════════════════════ */}
       <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
         <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2 mb-6">
@@ -383,8 +519,11 @@ export default function InnovationPulseClient({
               <span className="font-mono text-[0.62rem] font-semibold tracking-[0.05em] px-[0.6rem] py-[0.25rem] rounded-[6px] bg-[rgba(0,212,255,0.85)] text-[#08080f]">
                 LEAD STORY
               </span>
-              <span className="font-mono text-[0.62rem] font-semibold tracking-[0.05em] px-[0.6rem] py-[0.25rem] rounded-[6px] bg-[rgba(255,255,255,0.12)] text-[var(--text)] backdrop-blur-[8px]">
-                {leadStory.category}
+              <span
+                className="font-mono text-[0.62rem] font-semibold tracking-[0.05em] px-[0.6rem] py-[0.25rem] rounded-[6px] text-[#08080f]"
+                style={{ backgroundColor: V4_CATEGORY_COLORS[leadStoryV4Category]?.hex || "#00d4ff" }}
+              >
+                {leadStoryV4Category}
               </span>
             </div>
           </div>
@@ -432,7 +571,7 @@ export default function InnovationPulseClient({
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          FIX 3: CATEGORY FILTERS (scroll to sections)
+          V4 CATEGORY FILTERS
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
         <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2 mb-6">
@@ -446,10 +585,11 @@ export default function InnovationPulseClient({
           >
             All Stories
           </button>
-          {ALL_CATEGORIES.map((cat) => {
-            const count = storyCounts[cat] || 0;
+          {V4_CATEGORIES.map((cat) => {
+            const count = storiesByV4Category[cat]?.length || 0;
             if (count === 0) return null;
             const catId = cat.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
+            const catColor = V4_CATEGORY_COLORS[cat];
             return (
               <button
                 key={cat}
@@ -459,9 +599,9 @@ export default function InnovationPulseClient({
                 }}
                 className={`filter-pill ${selectedCategory === cat ? "active" : ""}`}
                 style={{
-                  borderColor: selectedCategory === cat ? categoryColors[cat]?.hex : undefined,
-                  color: selectedCategory === cat ? categoryColors[cat]?.hex : undefined,
-                  backgroundColor: selectedCategory === cat ? `${categoryColors[cat]?.hex}15` : undefined,
+                  borderColor: selectedCategory === cat ? catColor?.hex : undefined,
+                  color: selectedCategory === cat ? catColor?.hex : undefined,
+                  backgroundColor: selectedCategory === cat ? `${catColor?.hex}15` : undefined,
                 }}
               >
                 {cat}
@@ -472,16 +612,16 @@ export default function InnovationPulseClient({
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          FIX 3: GROUPED CATEGORY SECTIONS
+          V4 GROUPED CATEGORY SECTIONS (NO MORE → LINKS)
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         {categorizedStories.map(({ category, stories }, sectionIdx) => {
           const catId = category.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
-          const catColor = categoryColors[category]?.hex || "var(--cyan)";
+          const catColor = V4_CATEGORY_COLORS[category]?.hex || "var(--cyan)";
 
           return (
             <div key={category} id={catId} className="mb-8">
-              {/* FIX 3: Category Row Header */}
+              {/* Category Row Header - NO MORE → LINK */}
               <div className="flex items-center gap-[0.6rem] mb-4 mt-8 first:mt-0">
                 <span
                   className="w-[7px] h-[7px] rounded-full"
@@ -493,12 +633,6 @@ export default function InnovationPulseClient({
                 >
                   {category}
                 </span>
-                <Link
-                  href="#"
-                  className="ml-auto font-mono text-[0.62rem] text-[var(--cyan)] tracking-[0.08em] hover:text-[var(--text)] transition-colors"
-                >
-                  MORE &rarr;
-                </Link>
               </div>
 
               {/* Story Cards Grid */}
@@ -509,8 +643,8 @@ export default function InnovationPulseClient({
                     title={story.title}
                     teaser={story.summary}
                     fullContent={story.summary}
-                    category={story.category}
-                    categoryColor={categoryColors[story.category]?.hex}
+                    category={story.v4Category}
+                    categoryColor={V4_CATEGORY_COLORS[story.v4Category]?.hex}
                     source={story.source}
                     sourceUrl={story.sourceUrl}
                     date={formatShortDate(story.date)}
@@ -520,14 +654,14 @@ export default function InnovationPulseClient({
                         ? "CALLBACK"
                         : story.type === "deepDive"
                           ? "LEAD"
-                          : CATEGORY_BADGE_TEXT[story.category]
+                          : V4_BADGE_TEXT[story.v4Category]
                     }
                     badgeColor={
                       story.isCallback
                         ? "rgba(245,166,35,0.85)"
                         : story.type === "deepDive"
                           ? "rgba(0,212,255,0.85)"
-                          : CATEGORY_BADGE_COLORS[story.category]
+                          : V4_CATEGORY_COLORS[story.v4Category]?.hex || "rgba(0,212,255,0.85)"
                     }
                     isCallback={story.isCallback}
                     callbackDate={story.callbackDate}
@@ -638,7 +772,7 @@ export default function InnovationPulseClient({
                               {ep.deepDive.title}
                             </p>
                             <span className="text-[0.62rem] text-[var(--text-muted)] font-mono">
-                              {ep.deepDive.category} · {ep.deepDive.source}
+                              {mapToV4Category(ep.deepDive.category)} · {ep.deepDive.source}
                             </span>
                           </div>
                         </Link>
@@ -662,7 +796,7 @@ export default function InnovationPulseClient({
                                 {hit.title}
                               </p>
                               <span className="text-[0.62rem] text-[var(--text-muted)] font-mono">
-                                {hit.category} · {hit.source}
+                                {mapToV4Category(hit.category)} · {hit.source}
                               </span>
                             </div>
                           </Link>
@@ -726,7 +860,7 @@ export default function InnovationPulseClient({
       )}
 
       {/* ═══════════════════════════════════════════════════════
-          FIX 7: NEWSLETTER CTA with Daily/Weekly Toggle
+          NEWSLETTER CTA
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[24px] p-8 text-center relative overflow-hidden">
@@ -739,7 +873,7 @@ export default function InnovationPulseClient({
             Get the Innovation Pulse delivered to your inbox. Curated AI news for higher education — no fluff, no hype.
           </p>
 
-          {/* FIX 7: Newsletter Frequency Toggle */}
+          {/* Newsletter Frequency Toggle */}
           <div className="flex justify-center gap-4 mb-5">
             <button
               onClick={() => setNewsletterFrequency("daily")}
@@ -786,7 +920,7 @@ export default function InnovationPulseClient({
           The Innovation Pulse is produced using AI voice technology based on
           Dr. Norma Jones&apos; voice, with editorial oversight by Dr. Jones.
           <br />
-          <Link href="#" className="text-[var(--cyan)] hover:underline">
+          <Link href="/about" className="text-[var(--cyan)] hover:underline">
             Learn more about how we use AI responsibly at Innovating Higher Ed.
           </Link>
         </p>
