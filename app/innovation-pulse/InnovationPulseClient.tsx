@@ -77,6 +77,15 @@ interface InnovationPulseClientProps {
   storiesByCategory: Record<StoryCategory, AggregatedStory[]>;
 }
 
+// Editorial lens colors for badges
+const LENS_COLORS: Record<string, { bg: string; text: string }> = {
+  "The Hard Question": { bg: "bg-[var(--amber-dim)]", text: "text-[var(--amber)]" },
+  "The Student Experience": { bg: "bg-[var(--green-dim)]", text: "text-[var(--green)]" },
+  "The Practitioner's Playbook": { bg: "bg-[var(--cyan-dim)]", text: "text-[var(--cyan)]" },
+  "Connecting the Dots": { bg: "bg-[var(--magenta-dim)]", text: "text-[var(--magenta)]" },
+  "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]" },
+};
+
 export default function InnovationPulseClient({
   episode,
   allEpisodes,
@@ -85,9 +94,37 @@ export default function InnovationPulseClient({
   const [selectedCategory, setSelectedCategory] = useState<StoryCategory | "all">("all");
   const [isPlaying, setIsPlaying] = useState(false);
   const [newsletterFrequency, setNewsletterFrequency] = useState<"daily" | "weekly">("daily");
+  const [expandedDay, setExpandedDay] = useState<string | null>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
 
-  const archiveEpisodes = allEpisodes.slice(1);
+  // Separate this week's episodes from the archive
+  const thisWeekEpisodes = useMemo(() => {
+    if (!episode) return [];
+    const todayDate = new Date(episode.date + "T12:00:00");
+    const dayOfWeek = todayDate.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const mondayDate = new Date(todayDate);
+    mondayDate.setDate(todayDate.getDate() + mondayOffset);
+
+    return allEpisodes.filter(ep => {
+      const epDate = new Date(ep.date + "T12:00:00");
+      return epDate >= mondayDate && epDate < todayDate;
+    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }, [allEpisodes, episode]);
+
+  const archiveEpisodes = useMemo(() => {
+    if (!episode) return allEpisodes.slice(1);
+    const todayDate = new Date(episode.date + "T12:00:00");
+    const dayOfWeek = todayDate.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const mondayDate = new Date(todayDate);
+    mondayDate.setDate(todayDate.getDate() + mondayOffset);
+
+    return allEpisodes.filter(ep => {
+      const epDate = new Date(ep.date + "T12:00:00");
+      return epDate < mondayDate;
+    });
+  }, [allEpisodes, episode]);
 
   const storyCounts = useMemo(() => {
     const counts: Record<StoryCategory, number> = {} as Record<StoryCategory, number>;
@@ -502,6 +539,154 @@ export default function InnovationPulseClient({
           );
         })}
       </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          EARLIER THIS WEEK SECTION
+          ═══════════════════════════════════════════════════════ */}
+      {thisWeekEpisodes.length > 0 && (
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+          <div className="section-divider mb-8" />
+          <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2 mb-6">
+            <span className="text-[var(--cyan)]">EARLIER THIS WEEK</span> — Catch Up
+          </div>
+
+          <div className="space-y-3">
+            {thisWeekEpisodes.map((ep) => {
+              const isExpanded = expandedDay === ep.date;
+              const lensColors = LENS_COLORS[ep.editorialLens] || { bg: "bg-[var(--surface-2)]", text: "text-[var(--text-secondary)]" };
+              const storyCount = 1 + ep.quickHits.length;
+
+              return (
+                <div key={ep.date} className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] overflow-hidden">
+                  {/* Day Card Header - Always Visible */}
+                  <button
+                    onClick={() => setExpandedDay(isExpanded ? null : ep.date)}
+                    className="w-full flex items-center gap-4 p-5 text-left hover:bg-[var(--surface-1)] transition-colors"
+                  >
+                    {/* Date Column */}
+                    <div className="shrink-0 w-[60px] text-center">
+                      <div className="font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[var(--text-muted)]">
+                        {ep.dayOfWeek.slice(0, 3)}
+                      </div>
+                      <div className="text-[1.4rem] font-bold text-[var(--text)]">
+                        {new Date(ep.date + "T12:00:00").getDate()}
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="w-[1px] h-[40px] bg-[var(--border)]" />
+
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className={`inline-flex items-center gap-[0.3rem] px-[0.5rem] py-[0.15rem] rounded-full text-[0.6rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
+                          <span className="w-[4px] h-[4px] rounded-full bg-current" />
+                          {ep.editorialLens}
+                        </span>
+                        <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">
+                          {storyCount} stories
+                        </span>
+                      </div>
+                      <p className="text-[0.95rem] font-semibold text-[var(--text)] leading-[1.35] truncate">
+                        {ep.deepDive.title}
+                      </p>
+                    </div>
+
+                    {/* Mini Audio Duration */}
+                    <div className="shrink-0 flex items-center gap-2">
+                      <div className="flex items-center gap-[0.35rem] bg-[var(--surface-2)] px-[0.6rem] py-[0.25rem] rounded-full">
+                        <svg viewBox="0 0 24 24" className="w-3 h-3 fill-[var(--cyan)]">
+                          <polygon points="6,3 20,12 6,21" />
+                        </svg>
+                        <span className="font-mono text-[0.6rem] text-[var(--text-secondary)]">
+                          {ep.audioDuration}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Expand Icon */}
+                    <svg
+                      viewBox="0 0 24 24"
+                      className={`w-5 h-5 stroke-[var(--text-muted)] transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                      fill="none"
+                      strokeWidth="2"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+
+                  {/* Expanded Content */}
+                  {isExpanded && (
+                    <div className="border-t border-[var(--border)] p-5 bg-[var(--surface-1)] animate-[fadeUp_0.3s_ease-out_both]">
+                      {/* Editorial Hook */}
+                      <p className="text-[0.88rem] italic text-[var(--text-secondary)] leading-[1.5] mb-5 pl-4 border-l-2 border-[var(--cyan)]">
+                        &ldquo;{ep.editorialHook}&rdquo;
+                      </p>
+
+                      {/* Stories List */}
+                      <div className="space-y-3">
+                        {/* Deep Dive */}
+                        <Link
+                          href={`/innovation-pulse/${ep.date}`}
+                          className="flex items-start gap-3 p-3 rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] hover:border-[var(--border-hover)] transition-colors group"
+                        >
+                          <span className="font-mono text-[0.5rem] font-semibold px-[0.4rem] py-[0.15rem] rounded-[4px] bg-[var(--cyan-dim)] text-[var(--cyan)] mt-[0.2rem]">
+                            LEAD
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[0.82rem] font-semibold text-[var(--text)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
+                              {ep.deepDive.title}
+                            </p>
+                            <span className="text-[0.62rem] text-[var(--text-muted)] font-mono">
+                              {ep.deepDive.category} · {ep.deepDive.source}
+                            </span>
+                          </div>
+                        </Link>
+
+                        {/* Quick Hits */}
+                        {ep.quickHits.map((hit, i) => (
+                          <Link
+                            key={i}
+                            href={`/innovation-pulse/${ep.date}`}
+                            className="flex items-start gap-3 p-3 rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] hover:border-[var(--border-hover)] transition-colors group"
+                          >
+                            <span className={`font-mono text-[0.5rem] font-semibold px-[0.4rem] py-[0.15rem] rounded-[4px] mt-[0.2rem] ${
+                              hit.isCallback
+                                ? "bg-[var(--amber-dim)] text-[var(--amber)]"
+                                : "bg-[var(--magenta-dim)] text-[var(--magenta)]"
+                            }`}>
+                              {hit.isCallback ? "CALLBACK" : "STORY"}
+                            </span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-[0.82rem] font-semibold text-[var(--text)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
+                                {hit.title}
+                              </p>
+                              <span className="text-[0.62rem] text-[var(--text-muted)] font-mono">
+                                {hit.category} · {hit.source}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+
+                      {/* View Full Briefing */}
+                      <Link
+                        href={`/innovation-pulse/${ep.date}`}
+                        className="mt-4 inline-flex items-center gap-2 font-mono text-[0.7rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+                      >
+                        View Full Briefing
+                        <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* ═══════════════════════════════════════════════════════
           ARCHIVE SECTION

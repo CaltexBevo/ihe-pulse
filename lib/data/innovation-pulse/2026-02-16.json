@@ -1,0 +1,44 @@
+{
+  "date": "2026-02-16",
+  "dayOfWeek": "Monday",
+  "editorialLens": "The Hard Question",
+  "editorialHook": "Columbia's vice dean for AI just used the phrase 'hostile takeover' to describe what universities are doing to themselves. He's not talking about a corporate raid. He's talking about partnerships most institutions signed willingly.",
+  "audioUrl": "/audio/innovation-pulse/innovation-pulse-2026-02-16.mp3",
+  "audioDuration": "6:45",
+  "deepDive": {
+    "title": "Columbia's AI Vice Dean: 'AI Companies Are Eating Higher Education'",
+    "summary": "Matthew Connelly, Columbia University's vice dean for AI initiatives, published a guest essay in The New York Times arguing that universities rushing to partner with AI companies are 'aiding and abetting a hostile takeover.' His concern: when universities hand tech companies access to students, research, and institutional knowledge, they provide training grounds for systems that compete with their own graduates.",
+    "source": "Inside Higher Ed",
+    "sourceUrl": "https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/02/18/why-one-ai-administrator-skeptical-ai",
+    "isCallback": false,
+    "category": "Policy & Ethics",
+    "editorialCallout": "Connelly isn't arguing for a ban. Columbia is running one of the world's largest randomized controlled trials of undergraduates in a writing course, studying ethical AI use. The distinction he draws is between thoughtful, institution-led AI integration and uncritical adoption of tools from companies whose business model depends on becoming indispensable. For institutions with fewer resources than Columbia, the question is even more pressing."
+  },
+  "quickHits": [
+    {
+      "title": "96% of HBCU Faculty and 98% of Students Already Using AI",
+      "summary": "A new report from the Southern Regional Education Board and Ellucian reveals AI adoption at HBCUs has moved well past experimentation. 96 percent of faculty and 98 percent of students report using AI. But the more interesting finding is the direction HBCU leaders are pushing: not just adoption, but ownership. Building AI systems that reflect their communities rather than consuming tools designed elsewhere.",
+      "source": "Ellucian/SREB",
+      "sourceUrl": "https://www.ellucian.com/blog/hbcu-ai-student-success",
+      "category": "Research & Innovation"
+    },
+    {
+      "title": "HBR Study: AI Doesn't Reduce Work, It Intensifies It",
+      "summary": "UC Berkeley researchers spent eight months embedded at a 200-person tech company. Their finding contradicts the 'AI saves time' narrative: workers experienced 'workload creep.' They took on more tasks, worked longer hours, and felt busier despite being measurably more productive. Burnout rates hit 62 percent among associates. If that pattern shows up in a well-resourced tech company, it's worth considering what it looks like on a campus with less support.",
+      "source": "Harvard Business Review",
+      "sourceUrl": "https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it",
+      "category": "Research & Innovation"
+    },
+    {
+      "title": "OpenAI Launches Ads in ChatGPT for Free Users",
+      "summary": "OpenAI began testing ads on February 9 for U.S. users on the free tier. Ads appear at the bottom of AI responses, personalized by conversation topic and chat history. Education tier subscribers are currently exempt. Most college students use the free tier, meaning the primary AI tool many students reach for when doing homework now includes sponsored content.",
+      "source": "OpenAI Blog",
+      "sourceUrl": "https://openai.com/index/testing-ads-in-chatgpt/",
+      "category": "Tools & Products"
+    }
+  ],
+  "storiesWatching": [],
+  "closingThought": "Today's stories all invite us to look past the surface of AI adoption and examine what's actually happening underneath. That kind of rigor is something we ask of our students every day. Worth applying to our own strategies too.",
+  "categories": ["Policy & Ethics", "Research & Innovation", "Tools & Products"],
+  "themes": ["AI partnerships", "institutional autonomy", "HBCU leadership", "workload creep", "ChatGPT advertising"]
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-02-17",
+  "dayOfWeek": "Tuesday",
+  "editorialLens": "The Student Experience",
+  "editorialHook": "A student reporter at Ithaca College put into words what a lot of educators are hearing in office hours but haven't figured out how to answer yet. It's not about cheating.",
+  "audioUrl": "/audio/innovation-pulse/innovation-pulse-2026-02-17.mp3",
+  "audioDuration": "5:30",
+  "deepDive": {
+    "title": "Students Question the Value of Higher Education Amid AI",
+    "summary": "Student reporters at The Ithacan wrote about something many educators are hearing in office hours: students aren't asking 'can I use AI for this assignment?' They're asking 'does my degree still matter if AI can do what I'm being trained to do?' They're reevaluating majors, questioning career paths, and wondering whether the financial investment makes sense.",
+    "source": "The Ithacan",
+    "sourceUrl": "https://theithacan.org/66431/news/students-question-the-value-of-higher-education-amid-ai/",
+    "isCallback": false,
+    "category": "Student Experience",
+    "editorialCallout": "This is happening at a mid-size, teaching-focused college where students and faculty have close relationships. The shift reframes the AI conversation entirely. We've spent two years focused on academic integrity. But some students have moved past cheating to something more fundamental: questioning whether the system itself is still worth the investment."
+  },
+  "quickHits": [
+    {
+      "title": "California Community Colleges Launch AI Tutors for 2.1 Million Students",
+      "summary": "California's community college system, the largest in the nation with 2.1 million students, is rolling out AI tutoring chatbots with a critical design choice: faculty control everything. Instructors upload their own course materials, decide whether the AI uses the Socratic method or provides direct guidance, and can restrict it from giving homework answers. A pilot found a 20 percent GPA jump and a 36 percent boost in intrinsic motivation.",
+      "source": "EdSource",
+      "sourceUrl": "https://edsource.org/updates/california-community-colleges-to-launch-artificial-intelligence-tutors",
+      "category": "Teaching & Learning"
+    },
+    {
+      "title": "Murray State Spanish Professor Uses AI as a Language Tutor",
+      "summary": "Robert 'Moses' Fritz, an associate professor of Spanish at Murray State University in Kentucky, redesigned his homework around a simple insight: if students are going to use AI anyway, make the AI interaction itself the learning experience. Students use ChatGPT and Gemini as Spanish conversation partners, then submit full transcripts and write reflections. His approach runs on free tools at a regional public university.",
+      "source": "WKMS Public Radio",
+      "sourceUrl": "https://www.wkms.org/sounds-good-conversations/2026-02-19/murray-state-professor-to-discuss-positive-usage-of-artificial-intelligence-in-the-classroom",
+      "category": "Teaching & Learning"
+    },
+    {
+      "title": "ChatGPT-4o Retirement Sparks Backlash From Users Who Used It for Companionship",
+      "summary": "When OpenAI retired ChatGPT-4o and replaced it with a version with stronger guardrails, thousands of users protested, claiming the chatbot had filled a real gap for mental health support and companionship. The backlash reveals how quickly emotional dependency on AI can form. Students between 18 and 22 are especially vulnerable to this.",
+      "source": "AI for Education",
+      "sourceUrl": "https://www.aiforeducation.io/blog/ai-education-weekly-update-feb162026",
+      "category": "Student Experience"
+    }
+  ],
+  "storiesWatching": [],
+  "closingThought": "Today was about hearing what students are actually saying and what they're actually doing with AI, from California to Kentucky to upstate New York. The common thread: they're ahead of us. We should be listening.",
+  "categories": ["Student Experience", "Teaching & Learning"],
+  "themes": ["student doubt", "degree value", "AI tutoring", "language learning", "AI companionship"]
+}

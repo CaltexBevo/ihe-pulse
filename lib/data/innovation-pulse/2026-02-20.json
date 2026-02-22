@@ -1,0 +1,44 @@
+{
+  "date": "2026-02-20",
+  "dayOfWeek": "Friday",
+  "editorialLens": "The Innovator's Edge",
+  "editorialHook": "This week we covered a Columbia vice dean sounding an alarm, students questioning whether degrees still matter, and an OECD study that should worry every institution measuring success by output quality. And somehow, the answer to all of it came from the same unlikely place.",
+  "audioUrl": "/audio/innovation-pulse/innovation-pulse-2026-02-20.mp3",
+  "audioDuration": "7:00",
+  "deepDive": {
+    "title": "The Week's Through-Line: Innovation Doesn't Require a Massive Budget",
+    "summary": "This week's pattern: Columbia warned about AI partnerships. Ithaca students questioned degree value. OECD revealed false mastery. Community colleges answered with action. And throughout, the most compelling stories came from institutions you'd least expect to be leading: Murray State, Forsyth Tech, California CCs, Howard, WSU.",
+    "source": "Innovating Higher Ed",
+    "sourceUrl": "/innovation-pulse",
+    "isCallback": false,
+    "category": "Leadership & Strategy",
+    "editorialCallout": "The thread: innovation doesn't require a massive endowment. It requires educators who see their students clearly, understand their communities, and have the courage to experiment. The future of AI in education won't be decided in boardrooms. It'll be decided by individual educators in individual classrooms, making choices one assignment at a time."
+  },
+  "quickHits": [
+    {
+      "title": "'Workslop': The New Scourge of AI-Generated Low-Effort Work",
+      "summary": "Stanford and BetterUp researchers coined 'workslop' for AI-generated work that looks polished but offloads cognitive effort onto the reader. Someone uses AI to write a 2,000-word email they could have said in 100 words. The reader's time becomes the cost. In education, workslop shows up as student papers that are longer and shinier but emptier.",
+      "source": "Harvard Business Review",
+      "sourceUrl": "https://hbr.org/2026/01/why-people-create-ai-workslop-and-how-to-stop-it",
+      "category": "Research & Innovation"
+    },
+    {
+      "title": "WSU Researchers Build AI Roadmap for Rural Schools",
+      "summary": "Washington State University won a Microsoft AI for Good grant to build the RAISE Roadmap for rural K-12 classrooms. Their finding: rural teachers have far less AI support. Their approach: start by listening. Workshops, interviews, observations, then build. The 'listen first, build second' model is deceptively simple and universally applicable.",
+      "source": "WSU News",
+      "sourceUrl": "https://news.wsu.edu/news/2026/02/10/wsu-weaving-ai-into-the-classroom-aiding-k-12-teachers/",
+      "category": "Teaching & Learning"
+    },
+    {
+      "title": "HBCU AI Conference: 'AI Is Rewriting the World. HBCUs Are Rewriting the Rules.'",
+      "summary": "Huston-Tillotson University in Austin hosts the 2nd Annual HBCU AI Conference April 1-3. Machine learning, data science, robotics, ethical AI, centered on the premise the future of AI should reflect everyone. The second year signals sustained infrastructure, not trend-chasing.",
+      "source": "Huston-Tillotson",
+      "sourceUrl": "https://htu.edu/academics/college-school/university-college/hbcu-ai-conference-training-summit-2026/",
+      "category": "Research & Innovation"
+    }
+  ],
+  "storiesWatching": [],
+  "closingThought": "That's your week. The future of AI in education won't be decided in boardrooms or at conferences with $2,000 registration fees. It'll be decided by individual educators in individual classrooms making choices one assignment at a time. This week's stories are proof of that.",
+  "categories": ["Leadership & Strategy", "Research & Innovation", "Teaching & Learning"],
+  "themes": ["week synthesis", "workslop", "rural education", "HBCU leadership", "educator autonomy"]
+}

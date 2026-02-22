@@ -6,11 +6,21 @@ import Card from "@/components/Card";
 import { getLatestEpisode, getAllStoriesAggregated, formatPulseDate, categoryColors } from "@/lib/data/innovation-pulse";
 import { episodes } from "@/lib/data/episodes";
 
+// Editorial lens colors (matching Innovation Pulse page)
+const LENS_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
+  "The Hard Question": { bg: "bg-[var(--amber-dim)]", text: "text-[var(--amber)]", dot: "bg-[var(--amber)]" },
+  "The Student Experience": { bg: "bg-[var(--green-dim)]", text: "text-[var(--green)]", dot: "bg-[var(--green)]" },
+  "The Practitioner's Playbook": { bg: "bg-[var(--cyan-dim)]", text: "text-[var(--cyan)]", dot: "bg-[var(--cyan)]" },
+  "Connecting the Dots": { bg: "bg-[var(--magenta-dim)]", text: "text-[var(--magenta)]", dot: "bg-[var(--magenta)]" },
+  "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]", dot: "bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" },
+};
+
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
   const allStories = getAllStoriesAggregated();
   const topStories = allStories.slice(0, 3);
   const latestPodcastEpisodes = episodes.slice(0, 3);
+  const lensColors = pulseEpisode ? LENS_COLORS[pulseEpisode.editorialLens] || LENS_COLORS["The Hard Question"] : LENS_COLORS["The Hard Question"];
 
   // Placeholder images for Top Stories
   const storyImages = [
@@ -53,8 +63,8 @@ export default function Home() {
             {pulseEpisode && (
               <div className="font-mono text-[0.72rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
                 <span>{formatPulseDate(pulseEpisode.date)}</span>
-                <span className="inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold bg-[var(--amber-dim)] text-[var(--amber)]">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--amber)]" />
+                <span className={`inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
+                  <span className={`w-[5px] h-[5px] rounded-full ${lensColors.dot}`} />
                   {pulseEpisode.editorialLens}
                 </span>
               </div>

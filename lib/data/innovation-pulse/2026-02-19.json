@@ -1,0 +1,44 @@
+{
+  "date": "2026-02-19",
+  "dayOfWeek": "Thursday",
+  "editorialLens": "Connecting the Dots",
+  "editorialHook": "Something clicked for me putting today's stories together. We've been covering warnings, doubts, and data all week. Today a group of institutions answered all of it. And they're not the ones you'd expect.",
+  "audioUrl": "/audio/innovation-pulse/innovation-pulse-2026-02-19.mp3",
+  "audioDuration": "6:30",
+  "deepDive": {
+    "title": "Community Colleges Are Uniquely Positioned to Train the Nation's AI Workforce",
+    "summary": "The Hechinger Report argues community colleges are where the AI workforce will actually be built. They educate nearly half of all undergraduates with programs rooted in regional economies. Miami Dade offers stackable AI credentials. Maricopa partners with Mayo Clinic. Houston CC aligns with energy. Five CCs formed a national consortium designing 25 courses with $500K from Axim Collaborative.",
+    "source": "The Hechinger Report",
+    "sourceUrl": "https://hechingerreport.org/opinion-community-colleges-are-uniquely-positioned-to-train-the-nations-ai-workforce/",
+    "isCallback": false,
+    "category": "Leadership & Strategy",
+    "editorialCallout": "The five consortium colleges: Tri-C Cleveland (42,000 students), Atlanta Metropolitan State, City Colleges of Chicago, Pikes Peak State Colorado, and CUNY. They're designing courses in manufacturing, social sciences, and allied health. These institutions serve students who most need AI fluency and aren't waiting for perfect conditions."
+  },
+  "quickHits": [
+    {
+      "title": "HBR: Why Gen AI Feels So Threatening to Workers — The AWARE Framework",
+      "summary": "A new HBR study identifies three psychological needs AI threatens: competence, autonomy, and belonging. When organizations address those needs, adoption succeeds. When they don't, people covertly sabotage. The AWARE framework: Acknowledge concerns, Watch for coping behaviors, Align AI with roles, Redesign workflows collaboratively, Empower through transparency.",
+      "source": "Harvard Business Review",
+      "sourceUrl": "https://hbr.org/2026/03/why-gen-ai-feels-so-threatening-to-workers",
+      "category": "Leadership & Strategy"
+    },
+    {
+      "title": "The Professor's AI Action Plan: Three Goals for 2026",
+      "summary": "Three concrete goals: connect with your institution's AI strategy, test AI on your own assignments (if you can't tell the difference, redesign), and pair written submissions with evidence requiring human judgment. Also warns about agentic browsers that can complete LMS homework automatically while the student walks away. Lockdown browsers don't prevent this.",
+      "source": "Faculty eCommons",
+      "sourceUrl": "https://faculty.risepoint.com/the-professors-ai-action-plan/",
+      "category": "Teaching & Learning"
+    },
+    {
+      "title": "Front Range Community College Launches 'Ask Apollo' AI Chatbot",
+      "summary": "Front Range CC in Colorado launched 'Ask Apollo' on February 9, trained on institutional data for enrollment, programs, financial aid, and campus services. Another community college meeting students outside business hours, joining a growing pattern of CCs deploying AI to serve non-traditional students when staff aren't available.",
+      "source": "FRCC Blog",
+      "sourceUrl": "https://blog.frontrange.edu/2026/02/09/leveling-up-student-support-with-frccs-new-ai-chatbot-ask-apollo/",
+      "category": "Infrastructure & Operations"
+    }
+  ],
+  "storiesWatching": [],
+  "closingThought": "The dots today connect into one clear picture: the institutions closest to their communities are the ones moving fastest. That's not an accident. That's what responsiveness looks like.",
+  "categories": ["Leadership & Strategy", "Teaching & Learning", "Infrastructure & Operations"],
+  "themes": ["community colleges", "workforce development", "AWARE framework", "agentic browsers", "student services"]
+}

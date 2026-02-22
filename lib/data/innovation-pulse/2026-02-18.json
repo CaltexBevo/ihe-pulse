@@ -1,0 +1,44 @@
+{
+  "date": "2026-02-18",
+  "dayOfWeek": "Wednesday",
+  "editorialLens": "The Practitioner's Playbook",
+  "editorialHook": "There's a number in a new OECD report that looks like the strongest case for AI in education anyone's made yet. 48 percent improvement. Until you see what happened when the tools were taken away.",
+  "audioUrl": "/audio/innovation-pulse/innovation-pulse-2026-02-18.mp3",
+  "audioDuration": "6:15",
+  "deepDive": {
+    "title": "OECD Report: AI Boosts Student Performance 48%, But They Score 17% Worse Without It",
+    "summary": "The OECD Digital Education Outlook 2026 found students using AI improved performance by 48 percent (127 percent with tutoring AI). But without the tools, they scored 17 percent worse than peers who never used AI. The OECD calls this 'the mirage of false mastery.' Education-specific AI with Socratic questioning showed sustained gains even after removal.",
+    "source": "OECD",
+    "sourceUrl": "https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html",
+    "isCallback": false,
+    "category": "Research & Innovation",
+    "editorialCallout": "The distinction isn't AI versus no AI. It's AI as shortcut versus AI as thinking partner. General-purpose tools that answer directly created the false mastery pattern. Purpose-built educational AI designed around questioning showed sustained learning. The design of the AI experience determines the outcome, and that design is in the educator's hands."
+  },
+  "quickHits": [
+    {
+      "title": "Forsyth Tech's BlazeBot: 79% of Student Inquiries Resolved by AI",
+      "summary": "Forsyth Technical Community College in Winston-Salem, North Carolina launched BlazeBot and embedded AI across every program. 79 percent of inquiries resolved without human intervention. Admissions answer rate jumped from 53 percent to 85 percent. Staff saved over 183,000 minutes — roughly 3,050 staff hours redirected from routine questions to higher-touch interactions.",
+      "source": "U.S. News",
+      "sourceUrl": "https://www.usnews.com/education/u-s-news-higher-ground/articles/2026-02-19/artificial-intelligence-higher-education-chatbot",
+      "category": "Infrastructure & Operations"
+    },
+    {
+      "title": "Howard Launches Applied AI Course: Students Build With AI, Not Just Use It",
+      "summary": "Howard University partnered with CodePath (funded by the Thurgood Marshall College Fund) for an applied AI course. Faculty jointly teach data structures, AI literacy, and agentic workflows. Students learn to build with AI tools inside a core academic setting. Howard is positioning students as creators in the AI economy, not consumers.",
+      "source": "People of Color in Tech",
+      "sourceUrl": "https://peopleofcolorintech.com/articles/howard-university-brings-applied-ai-to-hbcu-classrooms-with-game-changing-codepath-partnership/",
+      "category": "Teaching & Learning"
+    },
+    {
+      "title": "Seattle University's Ethics Initiative: Is AI Inescapable in Higher Ed?",
+      "summary": "Nearly 90 percent of college students now use AI for academic purposes, a third daily. Seattle University's Technology Ethics Initiative is asking harder questions: not just policy, but whether AI is fundamentally undermining writing quality, critical thinking, and the skills that make a degree meaningful.",
+      "source": "The Spectator (Seattle U)",
+      "sourceUrl": "https://seattlespectator.com/2026/02/18/is-ai-inescapable-in-higher-education/",
+      "category": "Policy & Ethics"
+    }
+  ],
+  "storiesWatching": [],
+  "closingThought": "Today was about what works and what only looks like it works. From Forsyth Tech's measurable efficiency gains to Howard's builder-focused curriculum to the OECD's warning about false mastery, the pattern is the same: intentional design matters more than adoption speed.",
+  "categories": ["Research & Innovation", "Infrastructure & Operations", "Teaching & Learning", "Policy & Ethics"],
+  "themes": ["false mastery", "OECD report", "chatbot efficiency", "AI builders", "ethics"]
+}
