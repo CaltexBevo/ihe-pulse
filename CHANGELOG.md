@@ -1,5 +1,36 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-22] Session: Production Deployment + Critical Bug Fixes
+
+### Deployed
+- Innovation Pulse week Feb 16-20 with all 20 stories live on ihe-pulse.vercel.app
+- Earlier This Week section added (Mon-Thu expandable, Fri as today)
+- Story data: 5 big stories + 15 short stories across 5 days
+- Correct editorial lens assignments: Mon=Hard Question, Tue=Student Experience, Wed=Practitioner's Playbook, Thu=Connecting the Dots, Fri=Innovator's Edge
+- Vermont AI Guidance story added to Monday (was missing from V3)
+- Audio files generated: 5 MP3s (~24MB total) via ElevenLabs
+
+### Critical Bugs Fixed
+- **Audio player now functional**: Added real `<audio>` element with React refs, event handlers for play/pause, time updates, progress tracking, and seeking. Previously was cosmetic-only with no actual audio playback.
+- **V4 categories implemented**: Replaced old taxonomy (Teaching & Learning, Policy & Ethics, etc.) with correct V4 categories: Insights & Trends, Case Study, Practical Tips, Ethical AI, Latest AI Products, Beyond Ed. Created automatic mapping from old → new categories.
+- **Dead links removed**: Removed non-functional "MORE →" links from story cards.
+- **Day-to-lens mapping fixed**: Corrected `dayToLens` mapping in `innovation-pulse-types.ts` (Monday=Hard Question, not Practitioner's Playbook).
+
+### Technical Changes
+- `InnovationPulseClient.tsx`: Major rewrite (~800 lines) with real audio player, V4 category system, TypeScript improvements
+- `innovation-pulse-types.ts`: Fixed `dayToLens` record
+- `2026-02-16.json`: Added missing Vermont story to quickHits
+
+### Audio Files Verified
+- innovation-pulse-2026-02-16.mp3 (5.4MB)
+- innovation-pulse-2026-02-17.mp3 (4.0MB)
+- innovation-pulse-2026-02-18.mp3 (4.7MB)
+- innovation-pulse-2026-02-19.mp3 (4.4MB)
+- innovation-pulse-2026-02-20.mp3 (4.6MB)
+- All verified: MPEG Layer III, 128 kbps, 44.1 kHz
+
+---
+
 ## [2026-02-22] — Innovation Pulse V4: Audio Production, Teases, Archive Design
 
 ### Content

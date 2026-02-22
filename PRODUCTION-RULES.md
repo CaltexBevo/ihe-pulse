@@ -190,7 +190,38 @@ The lead story should challenge what the audience assumes to be true.
 
 - **Stack:** Next.js 14, Vercel deployment
 - **Repo:** github.com/CaltexBevo/ihe-pulse
-- **Local dev:** /Volumes/Bevo_2TB/ihe-pulse/
-- **Tools server:** /Volumes/Bevo_2TB/ihe-tools-server/
+- **Local dev:** /Volumes/Bevo 2TB/ihe-pulse/
+- **Tools server:** /Volumes/Bevo 2TB/ihe-tools-server/
 - **Audio pipeline:** Google Cloud Run → OpenAI Assistant → Serper → Firecrawl → ElevenLabs
+- **Audio files:** /public/audio/innovation-pulse/innovation-pulse-YYYY-MM-DD.mp3
+- **Story data:** /lib/data/innovation-pulse/YYYY-MM-DD.json
+- **Types:** /lib/data/innovation-pulse-types.ts
 - **Update CHANGELOG.md, ROADMAP.md, and PRODUCTION-RULES.md** at end of each session when requested
+
+---
+
+## 13. V4 Category Implementation (Feb 22, 2026)
+
+The V4 category system is now live in `InnovationPulseClient.tsx`:
+
+```typescript
+type V4Category =
+  | "Insights & Trends"
+  | "Case Study"
+  | "Practical Tips"
+  | "Ethical AI"
+  | "Latest AI Products"
+  | "Beyond Ed"
+  | "Week in Review";
+```
+
+Automatic mapping from old taxonomy categories to V4:
+- Infrastructure & Operations → Insights & Trends
+- Teaching & Learning → Practical Tips
+- Policy & Ethics → Ethical AI
+- Tools & Products → Latest AI Products
+- Research & Innovation → Insights & Trends
+- Student Experience → Case Study
+- Leadership & Strategy → Beyond Ed
+
+Story JSON files can use either old or new category names; the client maps them automatically.

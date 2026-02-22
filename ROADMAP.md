@@ -1,19 +1,32 @@
 # ROADMAP — Innovating Higher Ed (ihe-pulse)
 
+## Completed This Sprint (Feb 22, 2026)
+
+### Innovation Pulse Week Feb 16-20
+- [x] 20 stories created (5 big + 15 short)
+- [x] 5 audio files generated via ElevenLabs (~24MB total)
+- [x] Full week deployed to production
+- [x] Real audio player with play/pause, progress, seeking
+- [x] V4 category system implemented (Insights & Trends, Case Study, Practical Tips, Ethical AI, Latest AI Products, Beyond Ed)
+- [x] Editorial lens rotation working (Mon-Fri)
+- [x] Earlier This Week section (expandable previous days)
+
+---
+
 ## Current Sprint
 
 ### IN PROGRESS
-- [ ] Generate Monday-Friday audio via ElevenLabs (test run)
-- [ ] Deploy Feb 16-20 stories to live Innovation Pulse page
-- [ ] Update front page with current week's content
+- [ ] Test audio playback in browser (Turbopack had permission issues locally)
+- [ ] Visual QA pass on Innovation Pulse page
+- [ ] Verify all story links work
 
 ### READY TO BUILD
-- [ ] "Earlier This Week" section on Innovation Pulse page
 - [ ] Archive page at /innovation-pulse/archive (week view + category view)
 - [ ] Archive link on main Innovation Pulse page
+- [ ] Week in Review category for Friday synthesis
 
 ### BLOCKED / WAITING
-- [ ] Audio generation requires ElevenLabs (Studio or ihe-tools-server API)
+- [ ] None currently
 
 ---
 
@@ -21,7 +34,7 @@
 
 ### Email System
 - [ ] Daily email: link to that day's audio + story cards
-- [ ] Weekly digest email: Friday recap for people who want weekly only
+- [ ] Weekly digest email: Friday recap for weekly-only subscribers
 - [ ] "Never Miss a Pulse" signup form wired to actual email service
 - [ ] Email subject lines function as teases
 
@@ -35,7 +48,6 @@
 - [ ] OpenAI Assistant orchestration for news gathering
 - [ ] Serper search + Firecrawl scraping
 - [ ] Story callback system for tracking developing stories
-- [ ] Editorial lens rotation (Mon-Fri)
 - [ ] ElevenLabs voice synthesis integration
 - [ ] Auto-publish to Innovation Pulse page
 
