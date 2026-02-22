@@ -43,9 +43,9 @@ export const editorialLensColors: Record<
 };
 
 export const dayToLens: Record<string, EditorialLens> = {
-  Monday: "The Practitioner's Playbook",
-  Tuesday: 'The Hard Question',
-  Wednesday: 'The Student Experience',
+  Monday: 'The Hard Question',
+  Tuesday: 'The Student Experience',
+  Wednesday: "The Practitioner's Playbook",
   Thursday: 'Connecting the Dots',
   Friday: "The Innovator's Edge",
 };
