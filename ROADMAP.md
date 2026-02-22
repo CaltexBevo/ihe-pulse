@@ -1,74 +1,70 @@
-# IHE Pulse — Project Roadmap
-*Updated: February 19, 2026*
+# ROADMAP — Innovating Higher Ed (ihe-pulse)
 
-## ✅ Completed
+## Current Sprint
 
-### Website Design (Builds 1-10)
-- [x] Portal Homepage with 9 destination cards
-- [x] Electric Dusk theme (cyan/magenta on dark)
-- [x] AI App Directory — 38 tools with brand-colored cards, 3 value points, editorial reviews, search/filters
-- [x] Prompt Navigator — 9 techniques with difficulty badges, before/after previews, 15 templates, 19 references
-- [x] Innovation Pulse page — editorial layout with real data, audio player, category filters, lens schedule
-- [x] Podcast page with 7 episode detail pages
-- [x] Tinker Lab with 2 post detail pages
-- [x] Getting Started, Case Studies, Community, About pages
-- [x] Font standardization (Outfit + DM Mono)
-- [x] Text-only nav branding ("Innovating Higher Ed")
-- [x] QA agent for post-build verification
+### IN PROGRESS
+- [ ] Generate Monday-Friday audio via ElevenLabs (test run)
+- [ ] Deploy Feb 16-20 stories to live Innovation Pulse page
+- [ ] Update front page with current week's content
 
-### Pipeline (Build 10)
-- [x] WordPress publishing removed — clean break
-- [x] GitHub publishing via Octokit — JSON to data/daily-pulse/
-- [x] URL validation before publishing
-- [x] 5-segment broadcast format (Opening → Deep Dive → Quick Hits → Callback → Closing)
-- [x] Editorial lens rotation (Mon-Fri)
-- [x] 5 story categories (Product Releases, Insights, Case Studies, Tips, Ethical AI)
-- [x] Dr. Norma Jones ElevenLabs audio generation
-- [x] Cloud Run deployment (daily 8 AM PT)
-- [x] Full end-to-end pipeline test successful
+### READY TO BUILD
+- [ ] "Earlier This Week" section on Innovation Pulse page
+- [ ] Archive page at /innovation-pulse/archive (week view + category view)
+- [ ] Archive link on main Innovation Pulse page
 
-## 🔄 In Progress
+### BLOCKED / WAITING
+- [ ] Audio generation requires ElevenLabs (Studio or ihe-tools-server API)
 
-### Innovation Pulse Page Refinement
-- [ ] Review and improve page layout/design (user feedback pending)
-- [ ] Serve prototype via localhost for Chrome extension review
-- [ ] Wire archive section to show multiple days of episodes
-- [ ] Improve audio player UX (progress bar, time scrubbing)
+---
 
-### Pre-Migration QA
-- [ ] Click through ALL pages — verify content renders on each
-- [ ] Test all nav links
-- [ ] Test all story URLs from pipeline
-- [ ] Verify audio playback
-- [ ] Mobile responsive check
+## Next Sprint
 
-## 📋 Next Up — Migration to Live
+### Email System
+- [ ] Daily email: link to that day's audio + story cards
+- [ ] Weekly digest email: Friday recap for people who want weekly only
+- [ ] "Never Miss a Pulse" signup form wired to actual email service
+- [ ] Email subject lines function as teases
 
-### Convert HTML Prototype to Next.js
-- [ ] Break ihe-complete-prototype.html into Next.js components
-- [ ] Move data arrays (DIR_TOOLS, PN_TECHS, etc.) to TypeScript data files
-- [ ] Set up Tailwind CSS with Electric Dusk theme tokens
-- [ ] Implement proper image optimization with next/image
-- [ ] Dynamic data loading for Innovation Pulse (fetch daily JSON at build time)
-- [ ] Set up incremental static regeneration for daily content updates
+### Friday Recap (Deferred)
+- [ ] Separate Friday recap audio file (3-4 min, week through-line only)
+- [ ] Recap as preview card in archive week view
+- [ ] Recap-only option for weekly digest subscribers
+
+### Automation Pipeline
+- [ ] Daily 8 AM PT automated pipeline (Google Cloud Run)
+- [ ] OpenAI Assistant orchestration for news gathering
+- [ ] Serper search + Firecrawl scraping
+- [ ] Story callback system for tracking developing stories
+- [ ] Editorial lens rotation (Mon-Fri)
+- [ ] ElevenLabs voice synthesis integration
+- [ ] Auto-publish to Innovation Pulse page
+
+---
+
+## Backlog
 
 ### Content
-- [ ] Write full editorial reviews for remaining 33 AI directory tools
-- [ ] Podcast page — connect to actual episode data
-- [ ] Dr. Norma Jones real photo (replace Unsplash placeholder)
-- [ ] Real IHE logo integration (local asset, not hotlinked)
+- [ ] Story callback system across weeks (permanent memory)
+- [ ] Source diversity dashboard/tracker
+- [ ] Category-specific RSS feeds
+- [ ] Searchable story archive with keyword search
 
-### Automation Enhancements
-- [ ] Story callback system — track developing stories across days with references
-- [ ] Theme deduplication — prevent repetitive content across episodes
-- [ ] Weekly AI directory auto-update (GitHub Action + Claude API)
-- [ ] Newsletter automation (ConvertKit/Beehiiv integration)
+### Design
+- [ ] Mobile-optimized audio player
+- [ ] Story card image generation system
+- [ ] Category color system refinement
+- [ ] Dark mode audio player waveform visualization
 
-### Features Backlog
-- [ ] AI chatbot navigator on homepage
-- [ ] Template category filtering in Prompt Navigator
-- [ ] "Dr. Jones Recommends" editorial badges
-- [ ] Tool comparison feature in AI Directory
-- [ ] Prompt Navigator search functionality
-- [ ] Interactive prompt builder wizard
-- [ ] Hybrid mindmap interface
+### Infrastructure
+- [ ] Story data format standardized (JSON schema)
+- [ ] Automated story deduplication
+- [ ] Audio file CDN/hosting solution
+- [ ] Analytics: which stories get clicked, which audio gets played
+
+### Other Pages
+- [ ] A.I. App Directory updates
+- [ ] Prompt Navigator / Educator Tools
+- [ ] Tinker Lab content
+- [ ] Getting Started guide
+- [ ] Case Studies page
+- [ ] Community features
