@@ -189,14 +189,14 @@ export default function TinkerLabPage() {
                 href={`/tinker-lab/${post.slug}`}
                 className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] group block"
               >
-                {/* Image with overlays */}
-                <div className="relative h-[180px] overflow-hidden">
+                {/* Image with overlays - full artwork visible */}
+                <div className="relative h-[180px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
                   {post.thumbnail ? (
                     <Image
                       src={post.thumbnail}
                       alt={post.title}
                       fill
-                      className="object-cover"
+                      className="object-contain p-2"
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)]" />

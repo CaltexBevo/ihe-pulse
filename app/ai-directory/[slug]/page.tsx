@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const app = getAppBySlug(slug);
   if (!app) return {};
   return {
-    title: `${app.name} — AI Directory | IHE PULSE`,
+    title: `${app.name} — AI Directory | Innovating Higher Ed`,
     description: app.tagline,
   };
 }

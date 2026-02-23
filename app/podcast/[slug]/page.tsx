@@ -79,17 +79,19 @@ export default async function EpisodeDetailPage({ params }: { params: Promise<{ 
           </span>
         </div>
 
-        {/* Hero Image - Contained, not stretched */}
+        {/* Hero Image - Container matches image size, centered */}
         {episode.thumbnail && (
-          <div className="w-full max-w-[800px] rounded-[20px] overflow-hidden relative aspect-[16/9] bg-[var(--bg-card)] border border-[var(--border)] mb-8">
-            <Image
-              src={episode.thumbnail}
-              alt={episode.guest || episode.title}
-              fill
-              className="object-contain"
-              sizes="(max-width: 896px) 100vw, 800px"
-              priority
-            />
+          <div className="flex justify-start mb-8">
+            <div className="rounded-[14px] overflow-hidden bg-[var(--bg-card)] border border-[var(--border)] max-w-[500px]">
+              <Image
+                src={episode.thumbnail}
+                alt={episode.guest || episode.title}
+                width={500}
+                height={500}
+                className="w-full h-auto object-contain"
+                priority
+              />
+            </div>
           </div>
         )}
 

@@ -227,13 +227,13 @@ export default function Home() {
               href={`/podcast/${ep.slug}`}
               className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
             >
-              {/* Image - 170px height */}
-              <div className="relative h-[170px] overflow-hidden">
+              {/* Image - constrained with dark background */}
+              <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
                 <Image
                   src={ep.thumbnail || podcastImages[idx]}
                   alt={ep.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                  className="object-contain p-2"
                 />
                 {/* Category Badge - no episode numbers */}
                 <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[var(--orange)] backdrop-blur-[8px]">
@@ -291,28 +291,31 @@ export default function Home() {
         <div className="grid-3">
           {[
             {
-              name: "GradeAssist AI",
-              desc: "AI-powered rubric-based grading with detailed feedback generation. Integrates with Canvas, Blackboard, and Moodle.",
-              category: "Grading",
-              pricing: "Free tier available",
-              rating: "4.7",
-              badges: ["NEW"],
+              name: "ChatGPT",
+              desc: "OpenAI's flagship conversational AI. Handles everything from essay feedback to coding help to brainstorming.",
+              category: "General LLMs",
+              pricing: "Free tier + $20/mo Pro",
+              domain: "openai.com",
+              accent: "#10a37f",
+              badge: "TRENDING",
             },
             {
-              name: "ResearchBuddy",
-              desc: "Literature review assistant that finds, summarizes, and maps connections between academic papers using AI.",
-              category: "Research",
-              pricing: "Free for .edu",
-              rating: "4.8",
-              badges: ["TRENDING"],
+              name: "Claude",
+              desc: "Anthropic's AI assistant built for nuanced, thoughtful analysis. Excels at long-form writing and careful reasoning.",
+              category: "General LLMs",
+              pricing: "Free tier + $20/mo Pro",
+              domain: "anthropic.com",
+              accent: "#d97706",
+              badge: "TRENDING",
             },
             {
-              name: "SyllabusAI",
-              desc: "Generate complete course structures from learning objectives. Creates modules, assignments, rubrics, and discussion prompts.",
-              category: "Course Design",
-              pricing: "$9/mo educator",
-              rating: "4.5",
-              badges: ["NEW", "TRENDING"],
+              name: "Eduaide.Ai",
+              desc: "Purpose-built AI for educators. Creates lesson plans, assessments, differentiated materials, and IEP-aligned content.",
+              category: "Lesson Planning",
+              pricing: "Freemium",
+              domain: "eduaide.ai",
+              accent: "#6366f1",
+              badge: "NEW",
             },
           ].map((tool, i) => (
             <Link
@@ -320,50 +323,52 @@ export default function Home() {
               href="/ai-app-directory"
               className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
             >
-              {/* Image - 170px height */}
-              <div className="relative h-[170px] overflow-hidden">
-                <Image
-                  src={toolImages[i]}
-                  alt={tool.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                />
-                {/* Badges */}
-                <div className="absolute top-[10px] left-[10px] flex gap-2">
-                  {tool.badges.map((badge, bi) => (
-                    <span
-                      key={bi}
-                      className={`font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] ${
-                        badge === "NEW"
-                          ? "bg-[var(--green-dim)] text-[var(--green)]"
-                          : "bg-[var(--amber-dim)] text-[var(--amber)]"
-                      }`}
-                    >
-                      {badge}
-                    </span>
-                  ))}
+              {/* Header with logo and accent bar */}
+              <div className="relative">
+                <div className="h-[3px]" style={{ background: tool.accent }} />
+                <div className="flex items-center gap-3 p-4 pb-3">
+                  {/* App Logo via Clearbit */}
+                  <div className="w-[48px] h-[48px] rounded-[12px] bg-[var(--surface-1)] border border-[var(--border)] flex items-center justify-center overflow-hidden shrink-0">
+                    <Image
+                      src={`https://logo.clearbit.com/${tool.domain}`}
+                      alt={tool.name}
+                      width={32}
+                      height={32}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-sans text-[1rem] font-bold leading-[1.22]">
+                      {tool.name}
+                    </h3>
+                    <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase flex items-center gap-[0.35rem]" style={{ color: tool.accent }}>
+                      <span className="w-[5px] h-[5px] rounded-full" style={{ background: tool.accent }} />
+                      {tool.category}
+                    </div>
+                  </div>
+                  {/* Badge */}
+                  <span className={`font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] ${
+                    tool.badge === "NEW"
+                      ? "bg-[var(--green-dim)] text-[var(--green)]"
+                      : "bg-[var(--amber-dim)] text-[var(--amber)]"
+                  }`}>
+                    {tool.badge}
+                  </span>
                 </div>
               </div>
 
               {/* Body */}
-              <div className="p-4 pt-3">
-                {/* Category - JetBrains Mono */}
-                <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--teal)]" />
-                  <span className="text-[var(--teal)]">{tool.category}</span>
-                </div>
-                {/* Title - DM Sans Bold */}
-                <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
-                  {tool.name}
-                </h3>
-                {/* Description - DM Sans Regular */}
-                <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
+              <div className="px-4 pb-4">
+                {/* Description */}
+                <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-3 line-clamp-2">
                   {tool.desc}
                 </p>
-                {/* Footer - JetBrains Mono */}
-                <div className="flex items-center gap-[0.5rem] font-mono text-[0.56rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
-                  <span className="text-[var(--amber)]">★ {tool.rating}</span>
+                {/* Footer */}
+                <div className="flex items-center justify-between font-mono text-[0.56rem] text-[var(--text-muted)] pt-3 border-t border-[var(--border)]">
                   <span>{tool.pricing}</span>
+                  <span className="text-[var(--cyan)] group-hover:text-[var(--text)] transition-colors">
+                    Learn more →
+                  </span>
                 </div>
               </div>
             </Link>
@@ -495,12 +500,12 @@ export default function Home() {
             href="/tinker-lab/wonka-lantern"
             className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
           >
-            <div className="relative h-[170px] overflow-hidden">
+            <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
               <Image
                 src="https://innovatinghighered.com/wp-content/uploads/2025/06/Tinker-Lab-WIlly-Wonka.02-585x390.jpg"
                 alt="The Wonka-Lantern Framework"
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                className="object-contain p-2"
               />
               <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(0,212,255,0.85)]">
                 Experiment
@@ -529,12 +534,12 @@ export default function Home() {
             href="/tinker-lab/chatgpt-pro"
             className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
           >
-            <div className="relative h-[170px] overflow-hidden">
+            <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
               <Image
                 src="https://innovatinghighered.com/wp-content/uploads/2025/05/Tinker-Lab-Chat-Pro.-01-585x390.jpg"
                 alt="ChatGPT Pro Deep Research"
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                className="object-contain p-2"
               />
               <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(74,222,128,0.85)]">
                 Walkthrough

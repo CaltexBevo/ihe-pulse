@@ -140,14 +140,14 @@ export default function PodcastPage() {
               href={`/podcast/${ep.slug}`}
               className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] group block"
             >
-              {/* Thumbnail - 170px height */}
-              <div className="relative h-[170px] overflow-hidden">
+              {/* Thumbnail - 170px height with full artwork visible */}
+              <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
                 {ep.thumbnail ? (
                   <Image
                     src={ep.thumbnail}
                     alt={ep.title}
                     fill
-                    className="object-cover"
+                    className="object-contain p-2"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-[var(--orange)] to-[var(--magenta)]" />

@@ -1,5 +1,39 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-23] Build 13.1: Site-Wide Fixes
+
+### Navigation & Branding
+- **Logo in nav**: Replaced "IHE PULSE" text with actual logo image (`/images/ihe-logo.png`)
+- **"IHE" abbreviation fix**: Changed all metadata titles from "IHE PULSE" to "Innovating Higher Ed" (conflicts with Inside Higher Ed)
+- **Files updated**: 7 layout files across be-our-guest, prompts, ai-directory, educator-tools, podcast, tinker-lab, innovation-pulse
+
+### Image Fixes
+- **Podcast cards**: Changed from `object-cover` to `object-contain` so cover art shows in full
+- **Tinker Lab cards**: Same fix — full artwork visible with dark background
+- **Podcast detail page**: Image container now matches natural image size (not forced 16:9)
+- **Homepage podcast/tinker lab sections**: Same `object-contain` fix applied
+
+### Innovation Pulse Page
+- **Removed "Earlier This Week" section**: Day pills at top now handle day selection (removed ~150 lines of redundant UI)
+- **Day pill updates all content**: Clicking a day now updates date, editorial lens, quote, stories sidebar, and lead story section
+- **`displayedEpisode` pattern**: Created centralized state for which day's content to show
+
+### Homepage
+- **AI App Directory cards**: Replaced fake tools with real data (ChatGPT, Claude, Eduaide.Ai)
+- **Clearbit logos**: Using `logo.clearbit.com/{domain}` for actual app logos instead of stock photos
+- **Tool card redesign**: Accent color bars, proper category styling, "Learn more" links
+
+### Files Modified
+- `components/Navigation.tsx` — logo image instead of text
+- `app/page.tsx` — image fixes, AI app directory cards
+- `app/innovation-pulse/InnovationPulseClient.tsx` — removed Earlier This Week, day-switch updates all content
+- `app/podcast/page.tsx` — image contain fix
+- `app/podcast/[slug]/page.tsx` — image container sizing
+- `app/tinker-lab/page.tsx` — image contain fix
+- 7 layout files — IHE → Innovating Higher Ed
+
+---
+
 ## [2026-02-23] Build 13 Fixes: Audio Reload + Branding
 
 ### Bug Fixes

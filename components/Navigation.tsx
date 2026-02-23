@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
@@ -26,14 +27,15 @@ export default function Navigation() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1 group">
-            <span className="text-xl font-bold text-white tracking-wider">
-              IHE
-            </span>
-            <span className="text-xl font-bold gradient-text tracking-wider">
-              PULSE
-            </span>
-            <span className="ml-2 h-2 w-2 rounded-full bg-pulse opacity-80 group-hover:animate-pulse-glow transition-all" />
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/images/ihe-logo.png"
+              alt="Innovating Higher Ed"
+              width={180}
+              height={40}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}

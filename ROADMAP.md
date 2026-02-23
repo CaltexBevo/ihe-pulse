@@ -2,6 +2,15 @@
 
 ## Completed This Sprint (Feb 23, 2026)
 
+### Build 13.1: Site-Wide Fixes (Feb 23)
+- [x] Logo image in navigation bar (replaces "IHE PULSE" text)
+- [x] Image fixes: podcast and tinker lab cards use `object-contain` (full artwork visible)
+- [x] Removed "Earlier This Week" section (redundant with day pills)
+- [x] Day pill selection now updates ALL page content (date, lens, quote, stories sidebar, lead story)
+- [x] Homepage AI App Directory shows real tools (ChatGPT, Claude, Eduaide.Ai) with Clearbit logos
+- [x] Fixed all "IHE" abbreviations in metadata → "Innovating Higher Ed" (7 layout files)
+- [x] Podcast detail page image container matches image size
+
 ### Build 13: Innovation Pulse Page Architecture (Feb 22-23)
 - [x] Audio day pills below main player for quick access to this week's episodes
 - [x] Story detail pages at `/innovation-pulse/story/[slug]` with full article, Our Take section
@@ -12,7 +21,6 @@
 - [x] Removed all "Dr. Norma" references per branding rules
 - [x] V4 category system applied site-wide
 - [x] Audio player properly reloads when switching between days (Feb 23 fix)
-- [x] "Earlier This Week" play buttons now work and scroll to main player (Feb 23 fix)
 - [x] Updated voice disclosure to remove personal name attribution
 
 ### Innovation Pulse Week Feb 16-20

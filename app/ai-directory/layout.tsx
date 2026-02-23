@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AI Tools Directory — Curated for Higher Ed | IHE PULSE',
+  title: 'AI Tools Directory — Curated for Higher Ed | Innovating Higher Ed',
   description:
     'Discover vetted and reviewed AI tools for higher education. Filter by use case to find the right tools for teaching, research, and administration.',
 };
