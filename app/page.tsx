@@ -3,6 +3,8 @@ import Image from "next/image";
 import SectionHeader from "@/components/SectionHeader";
 import Card from "@/components/Card";
 import HomeAudioPlayer from "@/components/HomeAudioPlayer";
+import HomePromptCards from "@/components/HomePromptCards";
+import HomeAIAppCards from "@/components/HomeAIAppCards";
 import { getLatestEpisode, getAllStoriesAggregated, formatPulseDate, categoryColors, generateSlug, mapToV4Category, V4_CATEGORY_COLORS, V4_CATEGORY_SLUGS } from "@/lib/data/innovation-pulse";
 import { episodes } from "@/lib/data/episodes";
 
@@ -284,96 +286,11 @@ export default function Home() {
           title="AI App Directory"
           titleColor="var(--teal)"
           description="Tools vetted for higher education"
-          viewAllHref="/ai-app-directory"
+          viewAllHref="/ai-directory"
           viewAllText="Browse all tools"
         />
 
-        <div className="grid-3">
-          {[
-            {
-              name: "ChatGPT",
-              desc: "OpenAI's flagship conversational AI. Handles everything from essay feedback to coding help to brainstorming.",
-              category: "General LLMs",
-              pricing: "Free tier + $20/mo Pro",
-              domain: "openai.com",
-              accent: "#10a37f",
-              badge: "TRENDING",
-            },
-            {
-              name: "Claude",
-              desc: "Anthropic's AI assistant built for nuanced, thoughtful analysis. Excels at long-form writing and careful reasoning.",
-              category: "General LLMs",
-              pricing: "Free tier + $20/mo Pro",
-              domain: "anthropic.com",
-              accent: "#d97706",
-              badge: "TRENDING",
-            },
-            {
-              name: "Eduaide.Ai",
-              desc: "Purpose-built AI for educators. Creates lesson plans, assessments, differentiated materials, and IEP-aligned content.",
-              category: "Lesson Planning",
-              pricing: "Freemium",
-              domain: "eduaide.ai",
-              accent: "#6366f1",
-              badge: "NEW",
-            },
-          ].map((tool, i) => (
-            <Link
-              key={i}
-              href="/ai-app-directory"
-              className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
-            >
-              {/* Header with logo and accent bar */}
-              <div className="relative">
-                <div className="h-[3px]" style={{ background: tool.accent }} />
-                <div className="flex items-center gap-3 p-4 pb-3">
-                  {/* App Logo via Clearbit */}
-                  <div className="w-[48px] h-[48px] rounded-[12px] bg-[var(--surface-1)] border border-[var(--border)] flex items-center justify-center overflow-hidden shrink-0">
-                    <Image
-                      src={`https://logo.clearbit.com/${tool.domain}`}
-                      alt={tool.name}
-                      width={32}
-                      height={32}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-sans text-[1rem] font-bold leading-[1.22]">
-                      {tool.name}
-                    </h3>
-                    <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase flex items-center gap-[0.35rem]" style={{ color: tool.accent }}>
-                      <span className="w-[5px] h-[5px] rounded-full" style={{ background: tool.accent }} />
-                      {tool.category}
-                    </div>
-                  </div>
-                  {/* Badge */}
-                  <span className={`font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] ${
-                    tool.badge === "NEW"
-                      ? "bg-[var(--green-dim)] text-[var(--green)]"
-                      : "bg-[var(--amber-dim)] text-[var(--amber)]"
-                  }`}>
-                    {tool.badge}
-                  </span>
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="px-4 pb-4">
-                {/* Description */}
-                <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-3 line-clamp-2">
-                  {tool.desc}
-                </p>
-                {/* Footer */}
-                <div className="flex items-center justify-between font-mono text-[0.56rem] text-[var(--text-muted)] pt-3 border-t border-[var(--border)]">
-                  <span>{tool.pricing}</span>
-                  <span className="text-[var(--cyan)] group-hover:text-[var(--text)] transition-colors">
-                    Learn more →
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <HomeAIAppCards />
       </section>
 
       {/* Section Divider */}
@@ -392,90 +309,7 @@ export default function Home() {
           viewAllText="Browse all prompts"
         />
 
-        <div className="grid-3">
-          {[
-            {
-              title: "Generate Discussion Questions That Actually Spark Debate",
-              desc: "Creates tension-based discussion questions from any reading that students actually want to argue about — not just answer.",
-              difficulty: "Beginner",
-              category: "Discussion",
-              uses: "2.4k",
-              trending: true,
-              preview: '"Read this [text]. Identify the central tension or most debatable claim. Generate 5 discussion questions that force students to take a side..."',
-            },
-            {
-              title: "AI-Resistant Assignment Redesigner",
-              desc: "Analyzes your existing assignment and suggests modifications that maintain learning outcomes while reducing AI shortcutting.",
-              difficulty: "Intermediate",
-              category: "Assessment",
-              uses: "1.8k",
-              trending: false,
-              preview: '"Here is my assignment: [paste]. Analyze which parts a student could complete using AI without learning. Suggest modifications..."',
-            },
-            {
-              title: "Rubric-Based Feedback Draft Generator",
-              desc: "Generates detailed, constructive student feedback aligned to your specific rubric criteria. You review and personalize before sending.",
-              difficulty: "Beginner",
-              category: "Feedback",
-              uses: "3.1k",
-              trending: true,
-              preview: '"Using this rubric [paste rubric], generate detailed feedback for this student submission [paste]. Score each criterion..."',
-            },
-          ].map((prompt, i) => (
-            <Link
-              key={i}
-              href="/prompts"
-              className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block relative overflow-hidden"
-            >
-              {/* Gradient Top Border */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--purple)] to-[var(--cyan)]" />
-
-              {/* Badges - JetBrains Mono */}
-              <div className="flex gap-2 mb-3 flex-wrap">
-                <span
-                  className={`font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] ${
-                    prompt.difficulty === "Beginner"
-                      ? "bg-[var(--green-dim)] text-[var(--green)]"
-                      : prompt.difficulty === "Intermediate"
-                        ? "bg-[var(--amber-dim)] text-[var(--amber)]"
-                        : "bg-[var(--red-dim)] text-[var(--red)]"
-                  }`}
-                >
-                  {prompt.difficulty}
-                </span>
-                <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--purple-dim)] text-[var(--purple)]">
-                  {prompt.category}
-                </span>
-                {prompt.trending && (
-                  <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--amber-dim)] text-[var(--amber)]">
-                    🔥 Trending
-                  </span>
-                )}
-              </div>
-
-              {/* Title - DM Sans Bold */}
-              <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-2">
-                {prompt.title}
-              </h3>
-
-              {/* Description - DM Sans Regular */}
-              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-3">
-                {prompt.desc}
-              </p>
-
-              {/* Prompt Preview Box - JetBrains Mono on dark background */}
-              <div className="font-mono text-[0.7rem] text-[var(--cyan)] bg-[rgba(0,212,255,0.04)] border border-[rgba(0,212,255,0.1)] rounded-[7px] p-3 leading-[1.5] mb-3 line-clamp-2">
-                {prompt.preview}
-              </div>
-
-              {/* Footer - JetBrains Mono */}
-              <div className="flex items-center gap-[0.5rem] font-mono text-[0.56rem] text-[var(--text-muted)]">
-                <span className="text-[var(--green)]">{prompt.uses} uses</span>
-                <span>{prompt.category}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <HomePromptCards />
       </section>
 
       {/* Section Divider */}

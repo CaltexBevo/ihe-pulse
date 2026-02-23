@@ -1,5 +1,24 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-23] Build 13.2: Interactive Components
+
+### Homepage Interactive Features
+- **Prompts expand in place**: Clicking a prompt card now opens a modal overlay with the full prompt text, copy button, and pro tips — no navigation away from homepage
+- **AI App Directory with logo fallbacks**: Clearbit logos now have proper fallback handling; if logo fails to load, shows a colored circle with the app's first letter
+- **Client components**: Created `HomePromptCards.tsx` and `HomeAIAppCards.tsx` for interactive homepage sections
+
+### New Components
+- `components/HomePromptCards.tsx` — Client component with 3 prompts, modal expansion, copy-to-clipboard
+- `components/HomeAIAppCards.tsx` — Client component with logo fallback using `onError` handler
+
+### Improvements
+- AI App Directory cards now link to individual app pages (`/ai-directory/[slug]`)
+- Added "STAFF PICK" badge variant for Claude
+- Modal animations with fadeIn/fadeUp effects
+- Prompt variables highlighted in amber color in modal view
+
+---
+
 ## [2026-02-23] Build 13.1: Site-Wide Fixes
 
 ### Navigation & Branding

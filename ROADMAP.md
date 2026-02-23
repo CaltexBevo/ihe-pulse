@@ -2,6 +2,12 @@
 
 ## Completed This Sprint (Feb 23, 2026)
 
+### Build 13.2: Interactive Components (Feb 23)
+- [x] Homepage prompts expand in place (modal overlay with full prompt, copy button, pro tips)
+- [x] Clearbit logo fallbacks (shows colored circle with first letter on error)
+- [x] Created `HomePromptCards.tsx` and `HomeAIAppCards.tsx` client components
+- [x] AI App Directory cards link to individual app pages
+
 ### Build 13.1: Site-Wide Fixes (Feb 23)
 - [x] Logo image in navigation bar (replaces "IHE PULSE" text)
 - [x] Image fixes: podcast and tinker lab cards use `object-contain` (full artwork visible)
@@ -37,11 +43,11 @@
 ## Current Sprint
 
 ### IN PROGRESS
-- [ ] Visual QA pass on new pages (story pages, category pages, archive)
 - [ ] Verify Vercel deployment and test all new routes
 
 ### READY TO BUILD
 - [ ] Week in Review category for Friday synthesis
+- [ ] Visual QA pass on new pages (story pages, category pages, archive)
 
 ### BLOCKED / WAITING
 - [ ] None currently
