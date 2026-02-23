@@ -225,3 +225,25 @@ Automatic mapping from old taxonomy categories to V4:
 - Leadership & Strategy → Beyond Ed
 
 Story JSON files can use either old or new category names; the client maps them automatically.
+
+---
+
+## 14. Branding Rules (Build 13, Feb 22, 2026)
+
+### NEVER use:
+- "Dr. Norma Jones" — use "The Innovation Pulse" or "Innovating Higher Ed"
+- "Dr. Norma's Take" — use "OUR TAKE"
+- "IHE" as abbreviation — conflicts with Inside Higher Ed; always write "Innovating Higher Ed" in full
+- "Deep Dive" — use "Lead Story" or "Featured Story"
+- "AI" without periods in audio scripts — always write "A.I."
+
+### Editorial signatures:
+- Article/story byline: "The Innovation Pulse · Innovating Higher Ed"
+- Audio credit: "The Innovation Pulse · Innovating Higher Ed"
+- Voice disclosure: "A.I. voice technology with editorial oversight by the Innovating Higher Ed team"
+
+### URL Structure (Build 13):
+- Story pages: `/innovation-pulse/story/[slug]`
+- Category archives: `/innovation-pulse/category/[category-slug]`
+- Audio archive: `/innovation-pulse/archive`
+- Category slugs: insights-and-trends, case-study, practical-tips, ethical-ai, latest-ai-products, beyond-ed, week-in-review
