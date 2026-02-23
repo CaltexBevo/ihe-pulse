@@ -1,8 +1,8 @@
 # ROADMAP — Innovating Higher Ed (ihe-pulse)
 
-## Completed This Sprint (Feb 22, 2026)
+## Completed This Sprint (Feb 23, 2026)
 
-### Build 13: Innovation Pulse Page Architecture (Feb 22)
+### Build 13: Innovation Pulse Page Architecture (Feb 22-23)
 - [x] Audio day pills below main player for quick access to this week's episodes
 - [x] Story detail pages at `/innovation-pulse/story/[slug]` with full article, Our Take section
 - [x] Category archive pages at `/innovation-pulse/category/[category-slug]` with all stories
@@ -11,6 +11,9 @@
 - [x] Audio archive page at `/innovation-pulse/archive` with all episodes by week
 - [x] Removed all "Dr. Norma" references per branding rules
 - [x] V4 category system applied site-wide
+- [x] Audio player properly reloads when switching between days (Feb 23 fix)
+- [x] "Earlier This Week" play buttons now work and scroll to main player (Feb 23 fix)
+- [x] Updated voice disclosure to remove personal name attribution
 
 ### Innovation Pulse Week Feb 16-20
 - [x] 20 stories created (5 big + 15 short)

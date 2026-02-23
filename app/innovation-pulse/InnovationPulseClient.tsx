@@ -224,6 +224,14 @@ export default function InnovationPulseClient({
     setDuration(0);
   }, []);
 
+  // Reload audio when source changes
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio && selectedAudioEpisode?.audioUrl) {
+      audio.load();
+    }
+  }, [selectedAudioEpisode?.audioUrl]);
+
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -840,9 +848,21 @@ export default function InnovationPulseClient({
                       </p>
                     </div>
 
-                    {/* Mini Audio Duration */}
-                    <div className="shrink-0 flex items-center gap-2">
-                      <div className="flex items-center gap-[0.35rem] bg-[var(--surface-2)] px-[0.6rem] py-[0.25rem] rounded-full">
+                    {/* Mini Audio Play Button */}
+                    <div
+                      className="shrink-0 flex items-center gap-2"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        selectAudioDay(ep.date);
+                        // Scroll to top to see the main player
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                    >
+                      <div className={`flex items-center gap-[0.35rem] px-[0.6rem] py-[0.25rem] rounded-full cursor-pointer transition-colors ${
+                        selectedAudioDate === ep.date
+                          ? "bg-[var(--cyan-dim)] border border-[var(--cyan)]"
+                          : "bg-[var(--surface-2)] hover:bg-[var(--surface-3)]"
+                      }`}>
                         <svg viewBox="0 0 24 24" className="w-3 h-3 fill-[var(--cyan)]">
                           <polygon points="6,3 20,12 6,21" />
                         </svg>

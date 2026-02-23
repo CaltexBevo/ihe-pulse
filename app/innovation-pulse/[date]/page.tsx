@@ -231,7 +231,7 @@ export default async function InnovationPulseDatePage({
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--magenta)] to-[var(--cyan)]" />
           <div className="flex items-center gap-2 mb-4">
             <span className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] uppercase text-[var(--magenta)]">
-              Editorial Take
+              OUR TAKE
             </span>
             <span className="font-mono text-[0.62rem] text-[var(--text-muted)] tracking-[0.04em]">
               — {episode.editorialLens}
@@ -248,7 +248,9 @@ export default async function InnovationPulseDatePage({
             </p>
           </div>
           <div className="flex items-center gap-2 mt-6 pt-4 border-t border-[var(--border)] text-[0.82rem] text-[var(--text-secondary)]">
-            <strong className="text-[var(--text)]">Editorial Team</strong> · Host &amp; Editorial Director, The Innovation Pulse
+            <strong className="text-[var(--text)]">The Innovation Pulse</strong>
+            <span>·</span>
+            <span>Innovating Higher Ed</span>
           </div>
         </div>
       </div>
@@ -409,8 +411,8 @@ export default async function InnovationPulseDatePage({
       {/* AI Voice Disclaimer */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12 text-center">
         <p className="text-[0.68rem] text-[var(--text-muted)] italic">
-          The Innovation Pulse is produced using AI voice technology based on
-          Dr. Norma Jones&apos; voice, with editorial oversight by Dr. Jones.
+          The Innovation Pulse is produced using A.I. voice technology with
+          editorial oversight by the Innovating Higher Ed team.
         </p>
       </div>
     </div>

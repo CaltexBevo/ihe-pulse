@@ -1,5 +1,25 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-23] Build 13 Fixes: Audio Reload + Branding
+
+### Bug Fixes
+- **Audio player reload**: Fixed issue where switching between day pills didn't reload the audio source. Added `useEffect` to call `audio.load()` when source changes.
+- **Earlier This Week play buttons**: Made play buttons actually work — clicking now selects that day's audio and scrolls to the main player.
+- **Branding cleanup**: Removed remaining "Dr. Norma Jones" references from homepage Tinker Lab descriptions.
+- **Voice disclosure**: Updated Innovation Pulse voice disclaimer to remove personal name attribution.
+
+### Files Modified
+- `app/innovation-pulse/InnovationPulseClient.tsx` — audio reload effect, working play buttons in Earlier section
+- `app/innovation-pulse/layout.tsx` — metadata description branding
+- `app/innovation-pulse/[date]/page.tsx` — OUR TAKE label, signature, voice disclaimer
+- `app/page.tsx` — Tinker Lab descriptions
+
+### Documentation
+- Updated ROADMAP.md with Feb 23 fixes
+- Created `tasks/lessons.md` with development lessons learned
+
+---
+
 ## [2026-02-22] Build 13: Innovation Pulse Page Architecture
 
 ### New Features

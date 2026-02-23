@@ -515,7 +515,7 @@ export default function Home() {
                 The Wonka-Lantern Framework: Creative & Ethical AI in Higher Education
               </h3>
               <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
-                Dr. Norma Jones introduces a framework for AI in higher education by channeling Willy Wonka (imagination) and the Green Lantern (ethical responsibility).
+                A framework for A.I. in higher education that channels Willy Wonka (imagination) and the Green Lantern (ethical responsibility).
               </p>
               <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
                 <span className="text-[var(--cyan)]">12 min read</span>
@@ -549,7 +549,7 @@ export default function Home() {
                 ChatGPT Pro Deep Research: Worth It?
               </h3>
               <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
-                Dr. Norma Jones tests OpenAI&apos;s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking.
+                We test OpenAI&apos;s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking.
               </p>
               <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
                 <span className="text-[var(--cyan)]">15 min read</span>
