@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Texas CC Proves Free AI Tools Can Transform Advising — The Innovation Pulse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #08080f;
+  --bg-elevated: #0e0e1a;
+  --bg-card: #111120;
+  --surface: #1a1a30;
+  --surface-2: #222240;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.12);
+  --text: #f0ede8;
+  --text-secondary: #a8a4b8;
+  --text-muted: #6b6880;
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.15);
+  --magenta: #c850c0;
+  --magenta-dim: rgba(200,80,192,0.15);
+  --amber: #f5a623;
+  --amber-dim: rgba(245,166,35,0.12);
+  --green: #4ade80;
+  --green-dim: rgba(74,222,128,0.12);
+  --blue: #3b82f6;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+  --teal: #0ea5a0;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max-w: 820px;
+  --max-w-wide: 1200px;
+  --px: clamp(1rem, 4vw, 2rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+@keyframes pulseDot { 0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(74,222,128,0.5); } 50% { opacity:.7; box-shadow: 0 0 0 6px rgba(74,222,128,0); } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+/* ===================== NAV ===================== */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,8,15,0.85); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--px); display: flex; align-items: center; height: 56px;
+}
+.tb-brand { font-family: var(--mono); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.05em; display: flex; gap: 0.35rem; flex-shrink: 0; }
+.tb-ihe { color: var(--text); }
+.tb-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; margin-left: 4px; align-self: center; animation: pulseDot 2s infinite; }
+.tb-nav { margin-left: auto; display: flex; gap: 0.15rem; }
+.tb-nav a { font-size: 0.78rem; padding: 0.4rem 0.75rem; border-radius: 6px; color: var(--text-secondary); transition: all 0.2s; font-weight: 500; white-space: nowrap; }
+.tb-nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.tb-nav a.active { color: var(--cyan); background: var(--cyan-dim); }
+
+/* ===================== BACK BAR ===================== */
+.back-bar {
+  max-width: var(--max-w-wide); margin: 0 auto;
+  padding: 0.85rem var(--px);
+  display: flex; align-items: center; gap: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.back-link {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--cyan);
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--text); }
+.back-link svg { width: 14px; height: 14px; }
+.back-date {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--text-muted);
+  margin-left: auto;
+}
+
+/* ===================== HERO IMAGE ===================== */
+.story-hero {
+  max-width: var(--max-w-wide); margin: 0 auto;
+  position: relative; overflow: hidden;
+  height: 420px;
+}
+.story-hero img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.story-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--bg) 0%, rgba(8,8,15,0.3) 40%, rgba(8,8,15,0.1) 100%);
+}
+.story-hero-badges {
+  position: absolute; top: 1.5rem; left: 1.5rem;
+  display: flex; gap: 0.5rem;
+}
+.hero-badge {
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.05em; padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+}
+.hero-badge.lead { background: rgba(0,212,255,0.85); color: #08080f; }
+.hero-badge.cat { background: rgba(255,255,255,0.12); color: var(--text); backdrop-filter: blur(8px); }
+
+/* ===================== ARTICLE ===================== */
+.article-wrap {
+  max-width: var(--max-w); margin: -3rem auto 0; position: relative; z-index: 2;
+  padding: 0 var(--px);
+  animation: fadeUp 0.7s ease-out both;
+}
+
+.article-meta {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.meta-badge {
+  font-family: var(--mono); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.2rem 0.6rem; border-radius: 5px;
+}
+.meta-badge.infra { background: rgba(59,130,246,0.12); color: var(--blue); }
+.meta-badge.lens { background: var(--magenta-dim); color: var(--magenta); }
+.meta-date { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); }
+.meta-read { font-family: var(--mono); font-size: 0.68rem; color: var(--text-muted); }
+
+.article-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800;
+  line-height: 1.15; margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.article-subtitle {
+  font-size: 1.15rem; color: var(--text-secondary);
+  line-height: 1.55; margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+/* Audio clip */
+.story-audio {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1rem 1.25rem;
+  margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.story-audio-label {
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+  color: var(--green); letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 0.35rem;
+  white-space: nowrap;
+}
+.story-audio-label .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulseDot 2s infinite; }
+.mini-play {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: transform 0.2s;
+}
+.mini-play:hover { transform: scale(1.08); }
+.mini-play svg { width: 14px; height: 14px; fill: white; margin-left: 1px; }
+.story-audio-bar { flex: 1; height: 4px; background: var(--surface-2); border-radius: 2px; position: relative; cursor: pointer; }
+.story-audio-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--cyan), var(--magenta)); border-radius: 2px; }
+.story-audio-time { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); white-space: nowrap; }
+
+/* Article body */
+.article-body { margin-bottom: 2.5rem; }
+.article-body p {
+  font-size: 1.05rem; line-height: 1.8;
+  color: var(--text-secondary); margin-bottom: 1.5rem;
+}
+.article-body p strong { color: var(--text); font-weight: 600; }
+.article-body p em { color: var(--text); }
+
+.article-body .pull-quote {
+  font-size: 1.2rem; font-weight: 600; font-style: italic;
+  color: var(--text); line-height: 1.5;
+  padding: 1.5rem 0 1.5rem 1.5rem;
+  border-left: 3px solid var(--cyan);
+  margin: 2rem 0;
+}
+
+.article-body .data-callout {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.5rem;
+  margin: 2rem 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  text-align: center;
+}
+.data-callout .stat-num {
+  font-size: 2rem; font-weight: 800; color: var(--cyan);
+  line-height: 1; margin-bottom: 0.3rem;
+}
+.data-callout .stat-label {
+  font-size: 0.72rem; color: var(--text-muted);
+  font-family: var(--mono); letter-spacing: 0.04em;
+}
+
+/* Source attribution */
+.source-block {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.25rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+.source-info { display: flex; flex-direction: column; gap: 0.2rem; }
+.source-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.source-name { font-size: 0.9rem; font-weight: 600; }
+.source-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--cyan);
+  padding: 0.4rem 0.9rem; border-radius: 8px; background: var(--cyan-dim);
+  transition: background 0.2s;
+}
+.source-link:hover { background: rgba(0,212,255,0.2); }
+.source-link svg { width: 12px; height: 12px; }
+
+/* ===================== EDITORIAL TAKE ===================== */
+.editorial-section {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--px) 2.5rem;
+}
+.editorial-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 2rem;
+  position: relative; overflow: hidden;
+}
+.editorial-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--magenta), var(--cyan));
+}
+.editorial-header {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.editorial-badge {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--magenta);
+}
+.editorial-lens {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--text-muted); letter-spacing: 0.04em;
+}
+.editorial-body p {
+  font-size: 1rem; line-height: 1.75; color: var(--text);
+  font-style: italic; margin-bottom: 1rem;
+}
+.editorial-body p:last-child { margin-bottom: 0; }
+.editorial-sig {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 1.25rem; padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem; color: var(--text-secondary);
+}
+.editorial-sig strong { color: var(--text); }
+
+/* ===================== SHARE BAR ===================== */
+.share-bar {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--px) 2.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.share-label { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.share-btn {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s;
+  color: var(--text-secondary);
+}
+.share-btn:hover { border-color: var(--border-hover); color: var(--cyan); background: var(--cyan-dim); }
+.share-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* ===================== RELATED STORIES ===================== */
+.related {
+  max-width: var(--max-w-wide); margin: 0 auto;
+  padding: 2.5rem var(--px) 3rem;
+  border-top: 1px solid var(--border);
+}
+.related-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.related-title { font-size: 1.2rem; font-weight: 700; }
+.related-link { font-family: var(--mono); font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.06em; }
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+.related-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; transition: all 0.3s; cursor: pointer;
+}
+.related-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.related-card img { width: 100%; height: 140px; object-fit: cover; }
+.related-card-body { padding: 0.85rem 1rem 1rem; }
+.related-card-cat { font-family: var(--mono); font-size: 0.55rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.35rem; }
+.related-card-cat .dot { width: 4px; height: 4px; border-radius: 50%; }
+.related-card-title { font-size: 0.92rem; font-weight: 700; line-height: 1.25; margin-bottom: 0.4rem; }
+.related-card-meta { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.58rem; color: var(--text-muted); padding-top: 0.5rem; border-top: 1px solid var(--border); }
+.related-card-source { color: var(--cyan); }
+
+/* ===================== NEXT/PREV ===================== */
+.story-nav {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--px) 3rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.story-nav-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.25rem;
+  transition: all 0.2s; cursor: pointer;
+}
+.story-nav-card:hover { border-color: var(--border-hover); }
+.story-nav-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.story-nav-title { font-size: 0.9rem; font-weight: 600; line-height: 1.3; }
+.story-nav-card.next { text-align: right; }
+
+/* ===================== FOOTER ===================== */
+.footer { background: var(--bg-elevated); border-top: 1px solid var(--border); padding: 3rem var(--px) 1.5rem; }
+.footer-inner { max-width: var(--max-w-wide); margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+.footer-brand { font-family: var(--mono); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.6rem; }
+.footer-brand .fc { color: var(--cyan); }
+.footer-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; max-width: 280px; }
+.footer-col h4 { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.85rem; }
+.footer-col a { display: block; font-size: 0.8rem; color: var(--text-secondary); padding: 0.25rem 0; transition: color 0.2s; }
+.footer-col a:hover { color: var(--cyan); }
+.footer-bottom { max-width: var(--max-w-wide); margin: 1.5rem auto 0; padding-top: 1.25rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--text-muted); }
+.footer-bottom a { color: var(--text-muted); transition: color 0.2s; margin-left: 1.5rem; }
+.footer-bottom a:hover { color: var(--cyan); }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .tb-nav { display: none; }
+  .story-hero { height: 260px; }
+  .article-body .data-callout { grid-template-columns: 1fr; gap: 1rem; }
+  .related-grid { grid-template-columns: 1fr; }
+  .story-nav { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .story-audio { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- =================== NAV =================== -->
+<nav class="topbar">
+  <a class="tb-brand" href="#"><span class="tb-ihe">INNOVATING HIGHER ED</span><span class="tb-dot"></span></a>
+  <div class="tb-nav">
+    <a href="#">Home</a>
+    <a href="#" class="active">Innovation Pulse</a>
+    <a href="#">Prompts</a>
+    <a href="#">AI Tools</a>
+    <a href="#">Podcast</a>
+    <a href="#">Tinker Lab</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<!-- =================== BACK BAR =================== -->
+<div class="back-bar">
+  <a class="back-link" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    Back to Innovation Pulse
+  </a>
+  <span class="back-date">Thursday, February 19, 2026</span>
+</div>
+
+<!-- =================== HERO IMAGE =================== -->
+<div class="story-hero">
+  <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop" alt="College campus with students">
+  <div class="story-hero-overlay"></div>
+  <div class="story-hero-badges">
+    <span class="hero-badge lead">LEAD STORY</span>
+    <span class="hero-badge cat">Infrastructure & Operations</span>
+  </div>
+</div>
+
+<!-- =================== ARTICLE =================== -->
+<div class="article-wrap">
+  <div class="article-meta">
+    <span class="meta-badge infra">Infrastructure & Operations</span>
+    <span class="meta-badge lens">Connecting the Dots</span>
+    <span class="meta-date">Feb 19, 2026</span>
+    <span class="meta-read">· 6 min read</span>
+  </div>
+
+  <h1 class="article-title">A Texas Community College Just Proved Free AI Tools Can Transform Student Advising</h1>
+
+  <p class="article-subtitle">Lone Star College spent $15,000 to build what commercial vendors charge $200,000+ for — and their retention numbers beat every benchmark. Here's exactly how they did it.</p>
+
+  <!-- Audio clip for this story -->
+  <div class="story-audio">
+    <div class="story-audio-label"><span class="dot"></span> LISTEN</div>
+    <button class="mini-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+    <div class="story-audio-bar"><div class="story-audio-bar-fill"></div></div>
+    <span class="story-audio-time">1:32</span>
+  </div>
+
+  <!-- Article body -->
+  <div class="article-body">
+    <p>Lone Star College's Houston campus rolled out an AI-powered advising assistant built entirely on open-source tools this past fall — and the results are turning heads across higher education. <strong>In one semester, student retention in at-risk populations jumped 23%.</strong> That's not a pilot with 50 students. That's system-wide, across 14,000 advising sessions.</p>
+
+    <p>The system uses a locally-hosted large language model to analyze student course loads, flag potential scheduling conflicts, and generate personalized degree pathway suggestions. But what makes Lone Star's implementation different from a dozen other AI advising experiments isn't the technology. It's the process.</p>
+
+    <div class="pull-quote">
+      "We didn't buy a product and hope it worked. We sat down with every advisor in the building and asked: what takes you the longest? What do students ask that you've answered a thousand times? That's where we started."
+    </div>
+
+    <p><strong>Faculty advisors co-designed every prompt.</strong> They tested the system's responses against real student scenarios for two months before a single student saw it. They identified 47 common advising scenarios and wrote custom system prompts for each. The AI doesn't replace the advisor — it prepares a briefing packet before each meeting so both the student and advisor arrive ready to have a meaningful conversation instead of spending 20 minutes looking up prerequisites.</p>
+
+    <!-- Data callout -->
+    <div class="data-callout">
+      <div>
+        <div class="stat-num">23%</div>
+        <div class="stat-label">Retention increase (at-risk students)</div>
+      </div>
+      <div>
+        <div class="stat-num">$3</div>
+        <div class="stat-label">Cost per student served</div>
+      </div>
+      <div>
+        <div class="stat-num">14K</div>
+        <div class="stat-label">Advising sessions processed</div>
+      </div>
+    </div>
+
+    <p>The cost breakdown is where this gets really interesting for other institutions. Lone Star spent less than $15,000 on the entire implementation: existing campus servers hosted the open-source model, two IT staff members handled the technical setup over six weeks, and advisors were trained in four half-day workshops. <strong>The total cost per student served was under $3</strong> — compared to the $800+ per session that peer institutions report spending on commercial AI advising platforms.</p>
+
+    <p>That's not a typo. Three dollars versus eight hundred.</p>
+
+    <p>The model they used — a fine-tuned version of Llama running locally — doesn't send student data to any external servers. That eliminates the FERPA concerns that have stalled AI adoption at dozens of institutions. Student records never leave campus infrastructure.</p>
+
+    <p>There are limitations. The system struggles with complex edge cases — students with unusual transfer credit situations, double majors with conflicting requirements, or students returning after long gaps. Advisors handle those cases directly. But those edge cases represent roughly 15% of advising volume. The other 85% of routine advising work — schedule checks, prerequisite verification, degree audit reviews — the AI handles in seconds what used to take 20-30 minutes per student.</p>
+
+    <p><strong>The real question isn't whether this works. It's why more institutions aren't doing it.</strong></p>
+
+    <p>Lone Star's approach is entirely replicable. The tools are open-source. The hardware requirements are modest — a single server with a decent GPU. The implementation playbook they developed is being shared through the Texas community college consortium. Three other colleges are already adapting it.</p>
+
+    <p>The barrier, as it turns out, isn't money or technology. It's the willingness to involve advisors in the design process from day one — and the patience to spend two months testing before going live. Most institutions want results in two weeks. Lone Star took twelve. The difference shows.</p>
+  </div>
+
+  <!-- Source -->
+  <div class="source-block">
+    <div class="source-info">
+      <span class="source-label">Original reporting</span>
+      <span class="source-name">Campus Technology</span>
+    </div>
+    <a class="source-link" href="#">
+      Read original article
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- =================== EDITORIAL TAKE =================== -->
+<div class="editorial-section">
+  <div class="editorial-card">
+    <div class="editorial-header">
+      <span class="editorial-badge">Dr. Norma's Take</span>
+      <span class="editorial-lens">— Connecting the Dots</span>
+    </div>
+    <div class="editorial-body">
+      <p>Here's what I'd tell any advising director listening: the biggest barrier isn't budget or technology — it's designing AI tools WITH advisors instead of FOR them. Lone Star got that right. The 23% number is impressive, but the real metric is that advisor satisfaction went up too. That's the pattern to replicate.</p>
+      <p>I keep seeing this across different stories: the institutions getting the best results from AI aren't the ones with the biggest budgets — they're the ones that designed their tools alongside the people who actually use them. Lone Star didn't hire consultants; they sat down with advisors. That 23% retention jump didn't come from better algorithms. It came from better questions.</p>
+      <p>If you're rolling something out this semester, start there.</p>
+    </div>
+    <div class="editorial-sig">
+      <strong>Dr. Norma Jones</strong> · Host & Editorial Director, The Innovation Pulse
+    </div>
+  </div>
+</div>
+
+<!-- =================== SHARE =================== -->
+<div class="share-bar">
+  <span class="share-label">Share</span>
+  <button class="share-btn" title="Copy link">
+    <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+  </button>
+  <button class="share-btn" title="Share on X">
+    <svg viewBox="0 0 24 24"><path d="M4 4l6.5 8L4 20h2l5.5-6.5L16 20h4l-6.8-8.5L19.5 4H18l-5 6L9 4H4z"/></svg>
+  </button>
+  <button class="share-btn" title="Share on LinkedIn">
+    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+  </button>
+  <button class="share-btn" title="Email">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  </button>
+</div>
+
+<!-- =================== RELATED STORIES =================== -->
+<div class="related">
+  <div class="related-header">
+    <span class="related-title">Related Stories</span>
+    <a class="related-link" href="#">Back to all stories →</a>
+  </div>
+  <div class="related-grid">
+    <div class="related-card">
+      <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=280&fit=crop" alt="">
+      <div class="related-card-body">
+        <div class="related-card-cat"><span class="dot" style="background:var(--blue)"></span> CASE STUDIES</div>
+        <div class="related-card-title">How Georgia State Used AI Chatbots to Cut Summer Melt by 22%</div>
+        <div class="related-card-meta"><span class="related-card-source">EDUCAUSE Review</span><span>Feb 17</span></div>
+      </div>
+    </div>
+    <div class="related-card">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=280&fit=crop" alt="">
+      <div class="related-card-body">
+        <div class="related-card-cat"><span class="dot" style="background:var(--cyan)"></span> RESEARCH & INNOVATION</div>
+        <div class="related-card-title">AI Tutors Most Effective for First-Gen Students</div>
+        <div class="related-card-meta"><span class="related-card-source">Journal of Higher Ed</span><span>Feb 15</span></div>
+      </div>
+    </div>
+    <div class="related-card">
+      <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=500&h=280&fit=crop" alt="">
+      <div class="related-card-body">
+        <div class="related-card-cat"><span class="dot" style="background:var(--blue)"></span> CASE STUDIES</div>
+        <div class="related-card-title">Community College Consortium Open-Sources AI Advising System</div>
+        <div class="related-card-meta"><span class="related-card-source">CC Daily</span><span>Feb 12</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:820px;margin:0 auto;padding:0 var(--px);"></div>
+
+<!-- =================== NEXT / PREV =================== -->
+<div class="story-nav">
+  <div class="story-nav-card">
+    <div class="story-nav-label">← Previous story</div>
+    <div class="story-nav-title">Google Classroom Gets AI Grading Assistant</div>
+  </div>
+  <div class="story-nav-card next">
+    <div class="story-nav-label">Next story →</div>
+    <div class="story-nav-title">3 State University Systems Adopt Shared AI Ethics Policy</div>
+  </div>
+</div>
+
+<!-- =================== FOOTER =================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Innovating Higher <span class="fc">Ed</span></div>
+      <p class="footer-desc">Empowering educators to navigate the future of teaching, learning, and innovation in higher education.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="#">Innovation Pulse</a>
+      <a href="#">Prompt Navigator</a>
+      <a href="#">AI Directory</a>
+      <a href="#">Educator Tools</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="#">Podcast</a>
+      <a href="#">Tinker Lab</a>
+      <a href="#">Be Our Guest</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Innovating Higher Ed. All rights reserved.</span>
+    <span>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">AI Disclosure</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

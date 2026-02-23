@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
 import {
@@ -8,6 +8,16 @@ import {
   formatShortDate,
   type InnovationPulseEpisode,
 } from "@/lib/data/innovation-pulse-types";
+
+// Helper to generate slug from title
+function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 60);
+}
 
 // ═══════════════════════════════════════════════════════════════════════════
 // V4 CATEGORY SYSTEM
@@ -52,6 +62,17 @@ const V4_BADGE_TEXT: Record<V4Category, string> = {
   "Latest AI Products": "PRODUCTS",
   "Beyond Ed": "BEYOND ED",
   "Week in Review": "WEEK REVIEW",
+};
+
+// V4 Category slugs for archive links
+const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
+  "Insights & Trends": "insights-and-trends",
+  "Case Study": "case-study",
+  "Practical Tips": "practical-tips",
+  "Ethical AI": "ethical-ai",
+  "Latest AI Products": "latest-ai-products",
+  "Beyond Ed": "beyond-ed",
+  "Week in Review": "week-in-review",
 };
 
 // Map old categories to V4 categories
@@ -142,12 +163,20 @@ export default function InnovationPulseClient({
   const [newsletterFrequency, setNewsletterFrequency] = useState<"daily" | "weekly">("daily");
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
 
-  // Audio state
+  // Audio state - now supports selecting different days
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [selectedAudioDate, setSelectedAudioDate] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [audioProgress, setAudioProgress] = useState(0);
+
+  // Get the currently selected episode's audio info
+  const selectedAudioEpisode = useMemo(() => {
+    if (!selectedAudioDate) return episode;
+    const found = allEpisodes.find(ep => ep.date === selectedAudioDate);
+    return found || episode;
+  }, [selectedAudioDate, allEpisodes, episode]);
 
   // Audio event handlers
   useEffect(() => {
@@ -180,7 +209,20 @@ export default function InnovationPulseClient({
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [episode]);
+  }, [selectedAudioEpisode]);
+
+  // Handle selecting a different day's audio
+  const selectAudioDay = useCallback((date: string) => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      setIsPlaying(false);
+    }
+    setSelectedAudioDate(date);
+    setCurrentTime(0);
+    setAudioProgress(0);
+    setDuration(0);
+  }, []);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -309,10 +351,10 @@ export default function InnovationPulseClient({
 
   return (
     <div className="min-h-screen">
-      {/* Hidden Audio Element */}
+      {/* Hidden Audio Element - uses selected episode's audio */}
       <audio
         ref={audioRef}
-        src={episode.audioUrl}
+        src={selectedAudioEpisode?.audioUrl || episode.audioUrl}
         preload="metadata"
       />
 
@@ -355,11 +397,17 @@ export default function InnovationPulseClient({
                 </div>
                 {/* Duration */}
                 <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
-                  {duration > 0 ? formatTime(duration) : episode.audioDuration}
+                  {duration > 0 ? formatTime(duration) : (selectedAudioEpisode?.audioDuration || episode.audioDuration)}
                 </span>
+                {/* Date indicator when playing different day */}
+                {selectedAudioDate && (
+                  <span className="font-mono text-[0.65rem] text-[var(--amber)] bg-[var(--amber-dim)] px-2 py-[0.15rem] rounded-full">
+                    {formatShortDate(selectedAudioDate)}
+                  </span>
+                )}
                 {/* Credit Line */}
                 <span className="font-mono text-[0.72rem] text-[var(--text-muted)] ml-auto">
-                  Dr. Norma Jones &middot; The Innovation Pulse
+                  The Innovation Pulse &middot; Innovating Higher Ed
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -408,7 +456,7 @@ export default function InnovationPulseClient({
 
                 {/* Time Display */}
                 <span className="font-mono text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[72px] text-right">
-                  {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : episode.audioDuration}
+                  {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : (selectedAudioEpisode?.audioDuration || episode.audioDuration)}
                 </span>
 
                 {/* Volume Icon */}
@@ -423,23 +471,74 @@ export default function InnovationPulseClient({
                 </svg>
               </div>
             </div>
+
+            {/* ═══════════════════════════════════════════════════════
+                DAY PILLS - Quick access to this week's audio
+                ═══════════════════════════════════════════════════════ */}
+            {thisWeekEpisodes.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 mt-4">
+                <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mr-1">
+                  This Week:
+                </span>
+                {/* Today's pill (always first) */}
+                <button
+                  onClick={() => setSelectedAudioDate(null)}
+                  className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
+                    !selectedAudioDate
+                      ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
+                      : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
+                  }`}
+                >
+                  <span className="font-mono text-[0.65rem] font-semibold">
+                    {episode.dayOfWeek.slice(0, 3)} {new Date(episode.date + "T12:00:00").getDate()}
+                  </span>
+                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+                  <span className="font-mono text-[0.6rem]">{episode.audioDuration}</span>
+                </button>
+                {/* Previous days */}
+                {thisWeekEpisodes.map((ep) => (
+                  <button
+                    key={ep.date}
+                    onClick={() => selectAudioDay(ep.date)}
+                    className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
+                      selectedAudioDate === ep.date
+                        ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
+                        : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
+                    }`}
+                  >
+                    <span className="font-mono text-[0.65rem] font-semibold">
+                      {ep.dayOfWeek.slice(0, 3)} {new Date(ep.date + "T12:00:00").getDate()}
+                    </span>
+                    <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+                    <span className="font-mono text-[0.6rem]">{ep.audioDuration}</span>
+                  </button>
+                ))}
+                {/* Archive link */}
+                <Link
+                  href="/innovation-pulse/archive"
+                  className="font-mono text-[0.6rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors ml-2"
+                >
+                  Full archive →
+                </Link>
+              </div>
+            )}
           </div>
 
-          {/* Right Sidebar: Dr. Norma Card + TOC */}
+          {/* Right Sidebar: About Card + TOC */}
           <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] space-y-5">
-            {/* Dr. Norma Author Card */}
+            {/* About Card */}
             <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-[52px] h-[52px] rounded-full border-2 border-[var(--border)] bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center text-white text-[1.2rem] font-bold">
-                  NJ
+                  IP
                 </div>
                 <div>
-                  <h3 className="text-[0.9rem] font-semibold text-[var(--text)]">Dr. Norma Jones</h3>
-                  <span className="font-mono text-[0.72rem] text-[var(--cyan)]">Host & Founder</span>
+                  <h3 className="text-[0.9rem] font-semibold text-[var(--text)]">The Innovation Pulse</h3>
+                  <span className="font-mono text-[0.72rem] text-[var(--cyan)]">by Innovating Higher Ed</span>
                 </div>
               </div>
               <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55]">
-                Your daily guide to AI in higher education. Connecting the dots between innovation and practice.
+                Your daily guide to A.I. in higher education. Connecting the dots between innovation and practice.
               </p>
             </div>
 
@@ -537,26 +636,34 @@ export default function InnovationPulseClient({
               {leadStory.summary}
             </p>
 
-            {/* Source Link */}
-            <a
-              href={leadStory.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[0.75rem] text-[var(--cyan)] font-mono px-3 py-[0.35rem] rounded-[8px] bg-[var(--cyan-dim)] hover:bg-[rgba(0,212,255,0.2)] transition-colors w-fit mb-6"
-            >
-              {leadStory.source}
-              <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2">
-                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
+            {/* Action Links */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <Link
+                href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
+                className="btn-primary text-[0.75rem]"
+              >
+                Read full story →
+              </Link>
+              <a
+                href={leadStory.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[0.75rem] text-[var(--cyan)] font-mono px-3 py-[0.35rem] rounded-[8px] bg-[var(--cyan-dim)] hover:bg-[rgba(0,212,255,0.2)] transition-colors"
+              >
+                {leadStory.source}
+                <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
+            </div>
 
-            {/* Dr. Norma's Take */}
+            {/* Our Take */}
             {leadStory.editorialCallout && (
               <div className="border-t border-[var(--border)] pt-5">
                 <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-2">
-                  Dr. Norma&apos;s Take — {episode.editorialLens}
+                  OUR TAKE — {episode.editorialLens}
                 </div>
                 <p className="italic text-[0.95rem] text-[var(--text)] leading-[1.6]">
                   {leadStory.editorialCallout}
@@ -612,16 +719,17 @@ export default function InnovationPulseClient({
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          V4 GROUPED CATEGORY SECTIONS (NO MORE → LINKS)
+          V4 GROUPED CATEGORY SECTIONS WITH VIEW ALL LINKS
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         {categorizedStories.map(({ category, stories }, sectionIdx) => {
           const catId = category.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
           const catColor = V4_CATEGORY_COLORS[category]?.hex || "var(--cyan)";
+          const catSlug = V4_CATEGORY_SLUGS[category];
 
           return (
             <div key={category} id={catId} className="mb-8">
-              {/* Category Row Header - NO MORE → LINK */}
+              {/* Category Row Header with View All Link */}
               <div className="flex items-center gap-[0.6rem] mb-4 mt-8 first:mt-0">
                 <span
                   className="w-[7px] h-[7px] rounded-full"
@@ -633,6 +741,12 @@ export default function InnovationPulseClient({
                 >
                   {category}
                 </span>
+                <Link
+                  href={`/innovation-pulse/category/${catSlug}`}
+                  className="ml-auto font-mono text-[0.65rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors"
+                >
+                  View all →
+                </Link>
               </div>
 
               {/* Story Cards Grid */}
@@ -917,11 +1031,11 @@ export default function InnovationPulseClient({
       {/* AI Voice Disclaimer */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12 text-center border-t border-[var(--border)] pt-4">
         <p className="text-[0.72rem] text-[var(--text-muted)]">
-          The Innovation Pulse is produced using AI voice technology based on
-          Dr. Norma Jones&apos; voice, with editorial oversight by Dr. Jones.
+          The Innovation Pulse is produced using A.I. voice technology with
+          editorial oversight by the Innovating Higher Ed team.
           <br />
           <Link href="/about" className="text-[var(--cyan)] hover:underline">
-            Learn more about how we use AI responsibly at Innovating Higher Ed.
+            Learn more about how we use A.I. responsibly at Innovating Higher Ed.
           </Link>
         </p>
       </div>

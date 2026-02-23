@@ -1,5 +1,70 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-22] Build 13: Innovation Pulse Page Architecture
+
+### New Features
+
+#### Audio Day Pills
+- Added clickable date pills directly under main audio player (Mon-Thu previous days + today)
+- Each pill shows: abbreviated day, date, green dot, and duration
+- Clicking a pill loads that day's audio into the main player
+- Currently playing day shows highlighted state (cyan border/bg)
+- "Full archive →" link added to pills row
+
+#### Story Detail Pages (`/innovation-pulse/story/[slug]`)
+- Full story page with hero image, article body, pull quotes
+- "OUR TAKE" editorial section (replaced "Dr. Norma's Take" per branding rules)
+- Share bar with copy link, X, LinkedIn, email buttons
+- Related stories section showing 3 stories from same category
+- Navigation between Innovation Pulse and full episode pages
+- Audio clip player for lead stories
+
+#### Category Archive Pages (`/innovation-pulse/category/[category-slug]`)
+- Archive page for each V4 category showing all stories
+- Category descriptions and story counts
+- Grid layout with story cards linking to detail pages
+- Cross-links to other categories at bottom
+- 7 category slugs: insights-and-trends, case-study, practical-tips, ethical-ai, latest-ai-products, beyond-ed, week-in-review
+
+#### Audio Archive Page (`/innovation-pulse/archive`)
+- Complete episode archive grouped by week
+- Each episode shows date, editorial lens, lead story title, story count, duration
+- Expand/collapse for full episode content
+- Working play buttons with progress bar
+- Links to lead story pages and full briefing pages
+
+#### Homepage Improvements
+- Real working audio player connected to actual mp3 files
+- Lead story in sidebar now links to story detail page
+- "Browse Archive" link now goes to archive page
+- Top Stories cards link to story pages for lead stories
+- Updated categories to V4 system throughout
+
+### Branding Fixes
+- Replaced all "Dr. Norma Jones" references with "The Innovation Pulse" or "Innovating Higher Ed"
+- Changed "Dr. Norma's Take" to "OUR TAKE" everywhere
+- Editorial signature: "The Innovation Pulse · Innovating Higher Ed"
+- A.I. voice disclaimer updated to remove personal name attribution
+- Sidebar "Dr. Norma Author Card" → "The Innovation Pulse About Card"
+
+### Technical Changes
+- Added `generateSlug()`, `getStoryBySlug()`, `getRelatedStories()`, `getStoriesByV4Category()` to data layer
+- Added V4 category slugs, colors, and descriptions to `innovation-pulse.ts`
+- Created `HomeAudioPlayer.tsx` component for homepage
+- Created `StoryPageClient.tsx` for story page audio
+- Created `ArchiveClient.tsx` for archive page audio with expand/collapse
+- Added "View all →" links to each category section on Innovation Pulse page
+
+### Files Created
+- `app/innovation-pulse/story/[slug]/page.tsx`
+- `app/innovation-pulse/story/[slug]/StoryPageClient.tsx`
+- `app/innovation-pulse/category/[category]/page.tsx`
+- `app/innovation-pulse/archive/page.tsx`
+- `app/innovation-pulse/archive/ArchiveClient.tsx`
+- `components/HomeAudioPlayer.tsx`
+
+---
+
 ## [2026-02-22] Session: Production Deployment + Critical Bug Fixes
 
 ### Deployed

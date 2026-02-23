@@ -2,6 +2,16 @@
 
 ## Completed This Sprint (Feb 22, 2026)
 
+### Build 13: Innovation Pulse Page Architecture (Feb 22)
+- [x] Audio day pills below main player for quick access to this week's episodes
+- [x] Story detail pages at `/innovation-pulse/story/[slug]` with full article, Our Take section
+- [x] Category archive pages at `/innovation-pulse/category/[category-slug]` with all stories
+- [x] Homepage audio player now actually plays mp3 files
+- [x] Lead story links work throughout the site
+- [x] Audio archive page at `/innovation-pulse/archive` with all episodes by week
+- [x] Removed all "Dr. Norma" references per branding rules
+- [x] V4 category system applied site-wide
+
 ### Innovation Pulse Week Feb 16-20
 - [x] 20 stories created (5 big + 15 short)
 - [x] 5 audio files generated via ElevenLabs (~24MB total)
@@ -16,13 +26,10 @@
 ## Current Sprint
 
 ### IN PROGRESS
-- [ ] Test audio playback in browser (Turbopack had permission issues locally)
-- [ ] Visual QA pass on Innovation Pulse page
-- [ ] Verify all story links work
+- [ ] Visual QA pass on new pages (story pages, category pages, archive)
+- [ ] Verify Vercel deployment and test all new routes
 
 ### READY TO BUILD
-- [ ] Archive page at /innovation-pulse/archive (week view + category view)
-- [ ] Archive link on main Innovation Pulse page
 - [ ] Week in Review category for Friday synthesis
 
 ### BLOCKED / WAITING

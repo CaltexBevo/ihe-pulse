@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import AudioPlayer from "@/components/AudioPlayer";
 import SectionHeader from "@/components/SectionHeader";
 import Card from "@/components/Card";
-import { getLatestEpisode, getAllStoriesAggregated, formatPulseDate, categoryColors } from "@/lib/data/innovation-pulse";
+import HomeAudioPlayer from "@/components/HomeAudioPlayer";
+import { getLatestEpisode, getAllStoriesAggregated, formatPulseDate, categoryColors, generateSlug, mapToV4Category, V4_CATEGORY_COLORS, V4_CATEGORY_SLUGS } from "@/lib/data/innovation-pulse";
 import { episodes } from "@/lib/data/episodes";
 
 // Editorial lens colors (matching Innovation Pulse page)
@@ -79,46 +79,12 @@ export default function Home() {
               </div>
             )}
 
-            {/* Audio Player */}
+            {/* Audio Player - Real working player */}
             {pulseEpisode && (
-              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-6">
-                <div className="flex items-center gap-2 mb-3">
-                  {/* Live Badge */}
-                  <div className="flex items-center gap-[0.3rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.5rem] py-[0.18rem] rounded-full text-[0.6rem] font-semibold font-mono tracking-[0.06em]">
-                    <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
-                    LISTEN NOW
-                  </div>
-                  {/* Duration */}
-                  <span className="font-mono text-[0.65rem] text-[var(--text-muted)]">
-                    {pulseEpisode.audioDuration}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  {/* Play Button */}
-                  <button className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(0,212,255,0.2)] transition-transform hover:scale-[1.06]">
-                    <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white ml-[2px]">
-                      <polygon points="6,3 20,12 6,21" />
-                    </svg>
-                  </button>
-                  {/* Waveform Visualization */}
-                  <div className="flex-1 flex items-center h-[36px] gap-[1.5px]">
-                    {Array.from({ length: 75 }, (_, i) => {
-                      const h = Math.max(4, 6 + Math.random() * 26 + Math.sin(i * 0.25) * 8);
-                      return (
-                        <div
-                          key={i}
-                          className="w-[3px] rounded-[2px] bg-[var(--surface-2)]"
-                          style={{ height: `${h}px` }}
-                        />
-                      );
-                    })}
-                  </div>
-                  {/* Time */}
-                  <span className="font-mono text-[0.63rem] text-[var(--text-muted)] shrink-0">
-                    0:00 / {pulseEpisode.audioDuration}
-                  </span>
-                </div>
-              </div>
+              <HomeAudioPlayer
+                audioUrl={pulseEpisode.audioUrl}
+                audioDuration={pulseEpisode.audioDuration}
+              />
             )}
 
             {/* CTA */}
@@ -130,7 +96,7 @@ export default function Home() {
                 Read Today&apos;s Briefing
               </Link>
               <Link
-                href="/innovation-pulse"
+                href="/innovation-pulse/archive"
                 className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
               >
                 Browse Archive &rarr;
@@ -147,8 +113,11 @@ export default function Home() {
                 </div>
 
                 <ul className="space-y-0">
-                  {/* Lead Story */}
-                  <li className="flex items-start gap-2 py-2 border-b border-[var(--border)] cursor-pointer group">
+                  {/* Lead Story - Links to story page */}
+                  <Link
+                    href={`/innovation-pulse/story/${generateSlug(pulseEpisode.deepDive.title)}`}
+                    className="flex items-start gap-2 py-2 border-b border-[var(--border)] cursor-pointer group"
+                  >
                     <span className="font-mono text-[0.48rem] tracking-[0.05em] font-semibold px-[0.35rem] py-[0.1rem] rounded-[3px] whitespace-nowrap mt-[0.1rem] bg-[var(--cyan-dim)] text-[var(--cyan)]">
                       LEAD STORY
                     </span>
@@ -157,10 +126,10 @@ export default function Home() {
                         {pulseEpisode.deepDive.title}
                       </p>
                       <span className="text-[0.55rem] text-[var(--text-muted)] font-mono">
-                        {pulseEpisode.deepDive.category}
+                        {mapToV4Category(pulseEpisode.deepDive.category)}
                       </span>
                     </div>
-                  </li>
+                  </Link>
 
                   {/* Quick Hits */}
                   {pulseEpisode.quickHits.slice(0, 4).map((hit, i) => (
@@ -176,7 +145,7 @@ export default function Home() {
                           {hit.title}
                         </p>
                         <span className="text-[0.55rem] text-[var(--text-muted)] font-mono">
-                          {hit.category}
+                          {mapToV4Category(hit.category)}
                         </span>
                       </div>
                     </li>
@@ -205,27 +174,33 @@ export default function Home() {
         />
 
         <div className="grid-3">
-          {topStories.map((story, i) => (
-            <Card
-              key={i}
-              title={story.title}
-              teaser={story.summary}
-              fullContent={story.summary}
-              editorialCallout={
-                story.type === "deepDive"
-                  ? "This story represents a significant shift in how institutions are approaching AI integration."
-                  : undefined
-              }
-              category={story.category}
-              categoryColor={categoryColors[story.category]?.hex || "var(--cyan)"}
-              source={story.source}
-              date={formatPulseDate(story.date)}
-              imageUrl={storyImages[i]}
-              badgeText={story.type === "deepDive" ? "Lead Story" : "Top Story"}
-              badgeColor={story.type === "deepDive" ? "rgba(200,80,192,0.85)" : "rgba(0,180,220,0.85)"}
-              expandable={true}
-            />
-          ))}
+          {topStories.map((story, i) => {
+            const v4Category = mapToV4Category(story.category);
+            const v4Color = V4_CATEGORY_COLORS[v4Category] || "#00d4ff";
+
+            return (
+              <Card
+                key={i}
+                title={story.title}
+                teaser={story.summary}
+                fullContent={story.summary}
+                editorialCallout={
+                  story.type === "deepDive"
+                    ? "This story represents a significant shift in how institutions are approaching A.I. integration."
+                    : undefined
+                }
+                category={v4Category}
+                categoryColor={v4Color}
+                source={story.source}
+                date={formatPulseDate(story.date)}
+                imageUrl={storyImages[i]}
+                badgeText={story.type === "deepDive" ? "Lead Story" : "Top Story"}
+                badgeColor={story.type === "deepDive" ? "rgba(200,80,192,0.85)" : "rgba(0,180,220,0.85)"}
+                expandable={story.type !== "deepDive"}
+                href={story.type === "deepDive" ? `/innovation-pulse/story/${generateSlug(story.title)}` : undefined}
+              />
+            );
+          })}
         </div>
       </section>
 
