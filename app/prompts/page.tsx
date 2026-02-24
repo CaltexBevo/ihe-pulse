@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PromptNavigatorSections from "@/components/PromptNavigatorSections";
 
 export const metadata = {
   title: "Prompt Navigator | Innovating Higher Ed",
@@ -239,6 +240,25 @@ export default function PromptsPage() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Core Techniques, Common Problems, Workflow, References */}
+      <PromptNavigatorSections />
+
+      {/* Section divider before templates */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
+        <div className="border-t border-[var(--border)]" />
+      </div>
+
+      {/* PROMPT TEMPLATES section header */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-6">
+        <h2 className="font-sans text-[1.5rem] font-bold mb-2">
+          Prompt Templates
+        </h2>
+        <div className="h-[2px] w-24 bg-gradient-to-r from-[var(--purple)] to-transparent rounded-full mb-3" />
+        <p className="text-[0.88rem] text-[var(--text-secondary)] max-w-[600px]">
+          Ready-to-use prompts for common teaching tasks. Copy, customize, and deploy.
+        </p>
       </div>
 
       {/* Filters - Two Rows: Difficulty + Category */}

@@ -1,5 +1,27 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-24] Build 13.3: Branding Cleanup & Verification
+
+### Branding Fixes
+- **Removed "Dr." prefix**: Changed "Dr. Norma Jones" to "Norma Jones, PhD" format across all pages (about, podcast, be-our-guest)
+- **Fixed IHE abbreviation**: Changed "IHE Pulse" to "Innovating Higher Ed" in educator-tools page
+- **Cleaned up comments**: Removed obsolete comments referencing old branding
+
+### Files Modified
+- `app/be-our-guest/page.tsx` — host reference updated
+- `app/about/page.tsx` — team bios and mission attribution updated
+- `app/podcast/[slug]/page.tsx` — host info updated
+- `app/educator-tools/page.tsx` — fixed "IHE" to full name
+- `components/AudioPlayer.tsx` — removed obsolete comment
+
+### Verification Completed
+- Logo file confirmed at `public/images/ihe-logo.png` (permissions fixed to 644)
+- PromptNavigatorSections.tsx contains all 9 techniques, 6 problems, 8 workflow steps, 7 checklist items, 19 references
+- AI App Directory contains 39 tools with all requested categories (Gamification, Avatars, Music, Text to Speech)
+- Podcast images use `object-contain` with dark background
+
+---
+
 ## [2026-02-23] Build 13.2: Interactive Components
 
 ### Homepage Interactive Features

@@ -414,7 +414,7 @@ export default function EducatorToolsPage() {
                 </h2>
 
                 <p className="text-gray-400 max-w-xl mx-auto mb-6 leading-relaxed">
-                  IHE Pulse is built by and for the higher education community. If you
+                  Innovating Higher Ed is built by and for the higher education community. If you
                   have a template, guide, reading recommendation, or tool that has
                   helped you integrate AI into your teaching, we would love to feature it.
                 </p>

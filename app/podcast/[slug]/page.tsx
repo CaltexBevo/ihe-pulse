@@ -163,10 +163,10 @@ export default async function EpisodeDetailPage({ params }: { params: Promise<{ 
             <span className="w-[6px] h-[6px] rounded-full bg-[var(--orange)]" />
             <h2 className="font-sans text-[1rem] font-bold">About Our Host</h2>
           </div>
-          <p className="font-sans text-[0.92rem] font-bold text-[var(--text)] mb-1">Dr. Norma Jones</p>
+          <p className="font-sans text-[0.92rem] font-bold text-[var(--text)] mb-1">Norma Jones, PhD</p>
           <p className="font-mono text-[0.68rem] text-[var(--text-muted)] mb-3">Host, Innovating Higher Ed</p>
           <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
-            Dr. Norma Jones is the host and creator of Innovating Higher Ed, exploring how AI and emerging technologies transform teaching and learning in higher education.
+            Norma Jones is the host and creator of Innovating Higher Ed, exploring how AI and emerging technologies transform teaching and learning in higher education.
           </p>
         </div>
 

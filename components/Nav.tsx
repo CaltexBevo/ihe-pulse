@@ -1,16 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/innovation-pulse", label: "Innovation Pulse" },
   { href: "/prompts", label: "Prompts" },
-  { href: "/ai-app-directory", label: "AI App Directory" },
+  { href: "/ai-directory", label: "AI Directory" },
+  { href: "/educator-tools", label: "Educator Tools" },
   { href: "/podcast", label: "Podcast" },
   { href: "/tinker-lab", label: "Tinker Lab" },
   { href: "/about", label: "About" },
+  { href: "/be-our-guest", label: "Be Our Guest" },
 ];
 
 export default function Nav() {
@@ -33,16 +36,18 @@ export default function Nav() {
       }}
     >
       <div className="flex items-center h-14 px-[var(--px)] max-w-[var(--max-w)] mx-auto">
-        {/* Brand - INNOVATING HIGHER ED with green pulse dot */}
-        <Link href="/" className="flex items-center gap-1 shrink-0">
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center shrink-0">
+          <Image
+            src="/images/ihe-logo.png"
+            alt="Innovating Higher Ed"
+            width={180}
+            height={40}
+            className="h-9 w-auto object-contain"
+            priority
+          />
           <span
-            className="font-semibold text-[0.85rem] tracking-[0.05em]"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            INNOVATING HIGHER ED
-          </span>
-          <span
-            className="w-[6px] h-[6px] bg-[var(--green)] rounded-full ml-1"
+            className="w-[6px] h-[6px] bg-[var(--green)] rounded-full ml-2"
             style={{ animation: "pulseDot 2s infinite" }}
           />
         </Link>

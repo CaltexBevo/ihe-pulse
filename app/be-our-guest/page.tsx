@@ -147,8 +147,8 @@ export default function BeOurGuestPage() {
             A Conversation, Not an Interview
           </h3>
           <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
-            Our podcast episodes are conversations between colleagues. Dr. Norma
-            Jones guides the discussion, but the goal is to surface your
+            Our podcast episodes are conversations between colleagues. The host
+            guides the discussion, but the goal is to surface your
             authentic experience and insights — not to put you on the spot.
           </p>
           <ul className="space-y-3 text-[0.85rem] text-[var(--text-secondary)] leading-[1.6]">

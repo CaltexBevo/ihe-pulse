@@ -85,9 +85,9 @@ export default function AboutPage() {
             </h1>
 
             <div className="space-y-6">
-              {/* Dr. Norma Jones - TEXT ONLY */}
+              {/* Norma Jones, PhD - TEXT ONLY */}
               <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
-                <h2 className="font-sans text-[1.2rem] font-bold mb-1">Dr. Norma Jones</h2>
+                <h2 className="font-sans text-[1.2rem] font-bold mb-1">Norma Jones, PhD</h2>
                 <p className="font-mono text-[0.68rem] text-[var(--cyan)] mb-3">Founder & Host</p>
                 <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
                   PhD, recognized leader in AI integration for higher education, with
@@ -125,7 +125,7 @@ export default function AboutPage() {
               integrity, and humanity at the center.&rdquo;
             </p>
             <p className="font-mono text-[0.78rem] text-[var(--text-muted)]">
-              — Dr. Norma Jones, Founder
+              — The Innovating Higher Ed Team
             </p>
           </div>
         </div>
@@ -226,8 +226,7 @@ export default function AboutPage() {
               <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] mt-2 shrink-0" />
               <span>
                 <strong className="text-[var(--text)]">Innovation Pulse audio</strong> is produced using AI
-                voice technology based on Dr. Norma Jones&apos;s voice, with full
-                editorial oversight by Dr. Jones.
+                voice technology, with full editorial oversight by our team.
               </span>
             </li>
             <li className="flex items-start gap-3">

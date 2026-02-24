@@ -127,7 +127,6 @@ export default function AudioPlayer({
         >
           {duration}
         </span>
-        {/* Removed Dr. Norma Jones credit from display per design requirements */}
       </div>
 
       {/* Player Row */}

@@ -65,3 +65,25 @@ This preserves historical accuracy while displaying consistent modern categories
 
 ### Static Generation with Dynamic Data
 Use `generateStaticParams()` for pages like `/innovation-pulse/[date]` and `/innovation-pulse/story/[slug]` to pre-render all known routes at build time. This improves performance and SEO.
+
+---
+
+## Session: Feb 24, 2026 — Build 13.3 Verification
+
+### Verification Before Claiming Completion
+**Problem**: In Build 13.1 and 13.2, features were claimed as "added" but visual verification showed they weren't working as expected (logo not displaying, content sections missing).
+
+**Solution**: Always run explicit verification checks:
+1. `ls -la` to confirm files exist with proper permissions
+2. `grep -c "pattern"` to count expected content
+3. `npm run build` to verify no compilation errors
+4. Visual checks in browser after deployment
+
+**Lesson**: Never assume code changes are working. Run grep/count checks to PROVE content exists before claiming it does. Verify, don't trust.
+
+### File Permissions for Assets
+**Problem**: Logo file existed but had restrictive permissions (`-rw-------`) that could cause issues.
+
+**Solution**: Run `chmod 644` on public assets to ensure they're readable by the web server.
+
+**Lesson**: Check file permissions when assets don't display despite correct code references.
