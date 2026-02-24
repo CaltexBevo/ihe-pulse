@@ -29,9 +29,9 @@ export const posts: Post[] = [
   {
     title: 'The Wonka-Lantern Framework: Creative & Ethical AI in Higher Education',
     excerpt:
-      'Dr. Norma Jones introduces a framework for AI in higher education by channeling Willy Wonka (imagination) and the Green Lantern (ethical responsibility).',
+      'A framework for AI in higher education that channels Willy Wonka (imagination) and the Green Lantern (ethical responsibility).',
     fullDescription:
-      'Dr. Norma Jones introduces a framework for AI in higher education by channeling Willy Wonka (imagination) and the Green Lantern (ethical responsibility). The Wonka mindset encourages educators to dream big with AI, while the Green Lantern lens reminds us that AI amplifies our values and biases. Together they form a practical framework for building innovation sprints and AI sandboxes that keep ethics front and center.',
+      'This framework for AI in higher education channels Willy Wonka (imagination) and the Green Lantern (ethical responsibility). The Wonka mindset encourages educators to dream big with AI, while the Green Lantern lens reminds us that AI amplifies our values and biases. Together they form a practical framework for building innovation sprints and AI sandboxes that keep ethics front and center.',
     takeaways: [
       'Wonka mindset: Dream big with AI in education',
       'Green Lantern responsibility: AI amplifies our values and biases',
@@ -39,7 +39,7 @@ export const posts: Post[] = [
       'Building innovation sprints and AI sandboxes',
     ],
     authorBio:
-      'Dr. Norma Jones is the host and creator of Innovating Higher Ed.',
+      'The Innovating Higher Ed team explores emerging technologies in education.',
     topics: ['AI Ethics', 'Creativity', 'Innovation Framework', 'Critical Thinking'],
     tag: 'Experiment',
     date: 'June 17, 2025',
@@ -53,9 +53,9 @@ export const posts: Post[] = [
   {
     title: 'ChatGPT Pro Deep Research: Worth It?',
     excerpt:
-      'Dr. Norma Jones tests OpenAI\'s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking.',
+      'We test OpenAI\'s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking.',
     fullDescription:
-      'Dr. Norma Jones tests OpenAI\'s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking. She breaks down when Deep Research shines—cross-disciplinary scans in minutes—and where it stumbles, including phantom URLs that require Google Scholar back-checks. The bottom line: lower-cost plans cover most course prep, but Deep Research has niche superpowers.',
+      'We test OpenAI\'s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking. This walkthrough breaks down when Deep Research shines—cross-disciplinary scans in minutes—and where it stumbles, including phantom URLs that require Google Scholar back-checks. The bottom line: lower-cost plans cover most course prep, but Deep Research has niche superpowers.',
     takeaways: [
       'When Deep Research shines: cross-disciplinary scans in minutes',
       'Hidden gems: accessibility standards and medical-presentation insights',
@@ -63,7 +63,7 @@ export const posts: Post[] = [
       'Budget math: why lower-cost plans cover most course prep',
     ],
     authorBio:
-      'Dr. Norma Jones is the host and creator of Innovating Higher Ed.',
+      'The Innovating Higher Ed team explores emerging technologies in education.',
     topics: ['ChatGPT Pro', 'Deep Research', 'OER', 'Tool Review'],
     tag: 'Walkthrough',
     date: 'February 28, 2025',

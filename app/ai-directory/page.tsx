@@ -231,7 +231,7 @@ export default function AIDirectoryPage() {
                       </p>
                       <div className="flex items-center gap-1.5 text-pulse text-xs font-medium">
                         <BadgeCheck size={13} />
-                        Verified by IHE
+                        Verified
                       </div>
                     </Link>
                   );

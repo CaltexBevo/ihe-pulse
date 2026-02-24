@@ -21,9 +21,9 @@ export const episodes: Episode[] = [
     title: 'Human-Centered AI Strategy: Empathy, Trust, Access',
     guest: 'Chesa Caparas',
     description:
-      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption in higher education.',
+      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. This episode explores a people-first path to AI adoption in higher education with Professor Chesa Caparas.',
     fullDescription:
-      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption in higher education. They explore how empathy-driven strategies can bridge the gap between institutional mandates and real classroom needs, while keeping equity and access at the center of every decision.',
+      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. This episode explores a people-first path to AI adoption in higher education with Professor Chesa Caparas. They explore how empathy-driven strategies can bridge the gap between institutional mandates and real classroom needs, while keeping equity and access at the center of every decision.',
     takeaways: [
       'Ready-to-use survey that maps student comfort with AI',
       'Tactics that keep feedback human while trimming workload',

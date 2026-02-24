@@ -1,5 +1,28 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-24] Build 13.4: AI Directory & Final Branding
+
+### AI App Directory
+- **39 tools with comprehensive detail pages**: Each tool page includes overview, key features, pros/cons, best for, pricing details, and integrations
+- **Detail pages at `/ai-directory/[slug]`**: Full tool information with category-colored icons and badges
+- **Fixed "Verified by IHE" badge**: Changed to simply "Verified" (no IHE abbreviation)
+
+### Branding Cleanup (Complete)
+- **Removed all "Dr. Norma Jones" content attribution**: Episode descriptions, story authors, post excerpts now use team-based language
+- **Podcast host section**: Changed to "Innovating Higher Ed Podcast Team"
+- **Tinker Lab posts**: Excerpts rewritten to remove personal attribution
+- **About page**: Norma Jones, PhD retained as team member bio (not content author)
+
+### Files Modified
+- `app/ai-directory/page.tsx` — Fixed "Verified by IHE" badge
+- `app/ai-directory/[slug]/page.tsx` — Fixed "Verified by IHE" badge
+- `app/podcast/[slug]/page.tsx` — Replaced host bio with team description
+- `lib/data/episodes.ts` — Removed personal attribution from descriptions
+- `lib/data/stories.ts` — Changed featured story author
+- `lib/data/posts.ts` — Rewrote excerpts and author bios
+
+---
+
 ## [2026-02-24] Build 13.3: Branding Cleanup & Verification
 
 ### Branding Fixes

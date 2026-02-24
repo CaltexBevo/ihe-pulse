@@ -93,7 +93,7 @@ export default async function AppDetailPage({
               {app.verified && (
                 <span className="flex items-center gap-1 text-pulse text-sm font-medium">
                   <BadgeCheck size={16} />
-                  Verified by IHE
+                  Verified
                 </span>
               )}
             </div>

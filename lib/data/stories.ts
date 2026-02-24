@@ -24,7 +24,7 @@ export const featuredStory: Story = {
   title: 'White House Releases Comprehensive AI Framework for Higher Education',
   excerpt:
     'The new executive guidance outlines how universities should integrate AI across curriculum, research, and administration while maintaining academic integrity and equity.',
-  author: 'Dr. Norma Jones',
+  author: 'Innovating Higher Ed',
   date: 'Feb 2, 2026',
   readTime: '8 min read',
   tag: 'Breaking',
