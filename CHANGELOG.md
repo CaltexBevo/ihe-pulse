@@ -1,5 +1,20 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-24] Build 13.4.1: Route Fix & URL Standardization
+
+### Route Fixes
+- **Standardized AI Directory URL**: All links now point to `/ai-directory` (was inconsistent between `/ai-directory` and `/ai-app-directory`)
+- **Redirect from old URL**: `/ai-app-directory` now redirects to `/ai-directory`
+- **Fixed Footer and About page**: Updated links to use correct URL
+- **Detail pages working**: `/ai-directory/[slug]` routes properly generated for all 39 tools
+
+### Files Modified
+- `app/ai-app-directory/page.tsx` — Replaced with redirect to `/ai-directory`
+- `components/Footer.tsx` — Fixed link to `/ai-directory`
+- `app/about/page.tsx` — Fixed link to `/ai-directory`
+
+---
+
 ## [2026-02-24] Build 13.4: AI Directory & Final Branding
 
 ### AI App Directory

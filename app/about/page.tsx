@@ -30,10 +30,10 @@ const offerings = [
   },
   {
     icon: "🛠️",
-    title: "AI App Directory",
-    href: "/ai-app-directory",
+    title: "AI Directory",
+    href: "/ai-directory",
     description:
-      "38+ vetted AI tools reviewed for faculty, administrators, and students with detailed pros, cons, and use cases.",
+      "39+ vetted AI tools reviewed for faculty, administrators, and students with detailed pros, cons, and use cases.",
   },
   {
     icon: "🧪",

@@ -3,7 +3,7 @@ import Link from "next/link";
 const platformLinks = [
   { href: "/innovation-pulse", label: "Innovation Pulse" },
   { href: "/prompts", label: "Prompt Navigator" },
-  { href: "/ai-app-directory", label: "AI App Directory" },
+  { href: "/ai-directory", label: "AI Directory" },
 ];
 
 const communityLinks = [
