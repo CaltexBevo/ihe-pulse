@@ -29,14 +29,15 @@ const nextConfig: NextConfig = {
         destination: '/innovation-pulse/:date',
         permanent: true,
       },
+      // ai-app-directory redirects to ai-directory (canonical URL)
       {
-        source: '/ai-directory',
-        destination: '/ai-app-directory',
+        source: '/ai-app-directory',
+        destination: '/ai-directory',
         permanent: true,
       },
       {
-        source: '/ai-directory/:slug',
-        destination: '/ai-app-directory',
+        source: '/ai-app-directory/:slug',
+        destination: '/ai-directory/:slug',
         permanent: true,
       },
     ];
