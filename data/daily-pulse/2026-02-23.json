@@ -6,14 +6,114 @@
     "description": "What can you DO with this? Practical, tactical, classroom-ready.",
     "color": "#22c55e"
   },
-  "episodeTitle": "Now — over to governance. EdTech Magazine highlights the urgent need for clear AI governance in educ",
+  "episodeTitle": "Survey: How High Schoolers Are Using AI in College Search",
   "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-23.mp3",
-  "audioDuration": "2:28",
-  "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed — it's Monday, February 23, 2026. I'm Dr. Norma Jones. Today, we're diving into a critical question: Is AI in higher education helping or hindering true learning experiences?\n\nLet's explore a growing concern in academia: the risk AI poses to genuine learning. According to a recent piece from The Conversation, the biggest threat isn't academic dishonesty but the potential erosion of authentic academic engagement. As AI tools proliferate, we must ensure they enhance rather than obstruct the learning process. For educators, this means rethinking how AI is integrated into instructional design. How can we utilize AI to foster critical thinking rather than diminish it? The challenge lies in preserving the essence of education — authentic learning experiences must remain central.\n\nNow — over to governance. EdTech Magazine highlights the urgent need for clear AI governance in educational settings. Establishing robust policies can support ethical AI use, promoting trust and accountability. This is crucial as institutions innovate. Are your governance frameworks guiding responsible AI adoption? As educators, we have to pave the way with ethical guidelines for sustainable AI integration.\n\nMeanwhile — Google has partnered to boost AI literacy among educators, aiming to train teachers nationwide. This initiative is a significant step toward empowering educators to incorporate AI effectively. It's about keeping classrooms future-ready. Stay tuned to see how this partnership unfolds.\n\nLet's talk about practical application. EdWeek suggests using generative AI to increase classroom interactivity. By integrating AI language models into lesson plans, teachers can foster dynamic discussions and tailor learning experiences to student interests. This approach encourages active participation and deeper understanding. Have you tried using AI to spark more interactive sessions in your classes?\n\nTurning to tools — interactive displays are making waves in higher education by enhancing collaboration. Advances in Science News reports that these displays provide real-time feedback and engagement, bridging traditional and modern teaching methods. They offer a more dynamic teaching approach, accommodating diverse learning styles. How might these tools revolutionize your teaching environment?\n\nThat's today's Innovation Pulse. I'm Dr. Norma Jones — find the full stories and links at innovatinghighered.com. Thanks for joining us as we explore new frontiers in educational innovation. See you tomorrow.",
-  "hook": "Today, we're diving into a critical question: Is AI in higher education helping or hindering true learning experiences?",
-  "segments": {},
-  "stories": [],
+  "audioDuration": "2:44",
+  "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed — it's Monday, February 23, 2026. <break time=\"0.8s\"/> Imagine a world where the college search process is no longer just about campus tours and brochures, but guided by artificial intelligence. <break time=\"0.5s\"/>\n\nLet's dive into a new survey from EAB, which highlights how high school students are leveraging AI in their college search. This survey, covering over 5,000 students, reveals that 46% of them are using AI tools to find colleges, with a significant number utilizing this technology to identify institutions that align with their needs, research application requirements, and discover new schools. However, there's an interesting twist: while AI is influencing their decisions, as 34% reported increased interest in certain schools due to AI insights, 18% have removed colleges from their list based on AI-generated information. Yet, there's a catch — more than half of these students react negatively to college communications they perceive as AI-generated. For educators, this raises a practical question: how can institutions effectively integrate AI in their outreach without losing the personal touch students value? \n\nNow — over at Dartmouth College, the campus is buzzing with debates about AI's role in academia. Dartmouth has been aggressively implementing AI across its campus, stirring conversations among students and faculty. While the college isn't mandating AI use, the rapid introduction has been unsettling for some, who fear it might erode the school's traditional liberal arts focus and close-knit community. For practitioners, the takeaway might be the importance of balancing AI integration with maintaining institutional identity and culture. \n\nMeanwhile — the AAC&U is preparing for its upcoming conference on AI and higher education in October 2026. This event aims to provide educators with practical strategies for adopting AI responsibly, focusing on academic integrity, curricular transformation, and the ethical implications of AI. It's an opportunity for faculty and administrators to gain insights and tools to navigate AI's role in academia. \n\nAnd over at UC Irvine, they're launching a new course specifically for postsecondary instructors on integrating AI into teaching. This ten-week program is designed to help educators critically evaluate AI tools and create AI-enhanced learning resources, emphasizing the use of AI as an instructional scaffold rather than a shortcut. It's a practical step for educators looking to enhance their teaching methods with AI. \n\nThat's today's Innovation Pulse. Find the full stories and links at innovatinghighered.com. Thanks for joining us as we explore new frontiers in educational innovation. See you tomorrow.",
+  "hook": "Imagine a world where the college search process is no longer just about campus tours and brochures, but guided by artificial intelligence.",
+  "segments": {
+    "deepDive": {
+      "title": "Survey: How High Schoolers Are Using AI in College Search",
+      "source": "www.insidehighered.com",
+      "sourceUrl": "https://www.insidehighered.com/news/quick-takes/2026/02/25/survey-how-high-schoolers-are-using-ai-college-search",
+      "category": "CASE STUDIES"
+    },
+    "quickHits": [
+      {
+        "title": "How Dartmouth College went all-in on AI",
+        "source": "www.bostonglobe.com",
+        "sourceUrl": "https://www.bostonglobe.com/2026/02/25/business/dartmouth-college-artificial-intelligence/",
+        "category": "LATEST AI PRODUCT RELEASES"
+      },
+      {
+        "title": "Conference on AI and Higher Education | AAC&U",
+        "source": "www.aacu.org",
+        "sourceUrl": "https://www.aacu.org/event/conference-on-ai-and-higher-education",
+        "category": "CASE STUDIES"
+      },
+      {
+        "title": "ESCP Business School hosts AI in Higher Education Summit | Newswise",
+        "source": "www.newswise.com",
+        "sourceUrl": "https://www.newswise.com/articles/escp-business-school-hosts-ai-in-higher-education-summit",
+        "category": "CASE STUDIES"
+      }
+    ]
+  },
+  "stories": [
+    {
+      "title": "Survey: How High Schoolers Are Using AI in College Search",
+      "summary": "",
+      "source": "www.insidehighered.com",
+      "sourceUrl": "https://www.insidehighered.com/news/quick-takes/2026/02/25/survey-how-high-schoolers-are-using-ai-college-search",
+      "category": "CASE STUDIES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    },
+    {
+      "title": "How Dartmouth College went all-in on AI",
+      "summary": "",
+      "source": "www.bostonglobe.com",
+      "sourceUrl": "https://www.bostonglobe.com/2026/02/25/business/dartmouth-college-artificial-intelligence/",
+      "category": "LATEST AI PRODUCT RELEASES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    },
+    {
+      "title": "Conference on AI and Higher Education | AAC&U",
+      "summary": "",
+      "source": "www.aacu.org",
+      "sourceUrl": "https://www.aacu.org/event/conference-on-ai-and-higher-education",
+      "category": "CASE STUDIES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    },
+    {
+      "title": "ESCP Business School hosts AI in Higher Education Summit | Newswise",
+      "summary": "",
+      "source": "www.newswise.com",
+      "sourceUrl": "https://www.newswise.com/articles/escp-business-school-hosts-ai-in-higher-education-summit",
+      "category": "CASE STUDIES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    },
+    {
+      "title": "Coursera: 4 in 5 students say AI improves performance | COUR Stock News",
+      "summary": "",
+      "source": "www.stocktitan.net",
+      "sourceUrl": "https://www.stocktitan.net/news/COUR/4-in-5-students-say-ai-improved-their-academic-performance-but-only-am2g9d3cc1dl.html",
+      "category": "LATEST AI PRODUCT RELEASES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    },
+    {
+      "title": "UC Irvine launches AI in Higher Education course | ETIH EdTech News — EdTech Innovation Hub",
+      "summary": "",
+      "source": "www.edtechinnovationhub.com",
+      "sourceUrl": "https://www.edtechinnovationhub.com/news/uc-irvine-introduces-ai-in-higher-education-course-for-postsecondary-instructors",
+      "category": "LATEST AI PRODUCT RELEASES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    },
+    {
+      "title": "Punk attitude of UK art schools is the antidote to AI blandness",
+      "summary": "",
+      "source": "www.timeshighereducation.com",
+      "sourceUrl": "https://www.timeshighereducation.com/opinion/punk-attitude-art-schools-can-help-uk-rise-above-tsunami-ai-blandness",
+      "category": "LATEST AI PRODUCT RELEASES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    },
+    {
+      "title": "Education Minister Emphasizes AI-Human Balance, Invites Spanish Universities to India",
+      "summary": "",
+      "source": "www.entrepreneurindia.com",
+      "sourceUrl": "https://www.entrepreneurindia.com/blog/en/news/education-minister-emphasizes-ai-human-balance-invites-spanish-universities-to-india.59337",
+      "category": "LATEST AI PRODUCT RELEASES",
+      "isDeveloping": false,
+      "publishedAt": "2026-02-25T19:15:53.491Z"
+    }
+  ],
   "callbacks": [],
   "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
-  "publishedAt": "2026-02-23T16:12:39.700Z"
+  "publishedAt": "2026-02-25T19:15:53.491Z"
 }
