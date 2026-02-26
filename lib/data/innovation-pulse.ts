@@ -16,6 +16,109 @@ import type { InnovationPulseEpisode } from './innovation-pulse-types';
 const PRIMARY_DATA_DIR = path.join(process.cwd(), 'data/daily-pulse');
 const LEGACY_DATA_DIR = path.join(process.cwd(), 'lib/data/innovation-pulse');
 
+// ── Schema Normalization Helpers ─────────────────────────────────────────────
+// These handle differences between old format and new pipeline format
+
+// Map new pipeline category format to legacy StoryCategory type
+function mapCategory(cat: string): import('./innovation-pulse-types').StoryCategory {
+  const categoryMap: Record<string, import('./innovation-pulse-types').StoryCategory> = {
+    'CASE STUDIES': 'Teaching & Learning',
+    'LATEST AI PRODUCT RELEASES': 'Tools & Products',
+    'INSIGHTS & TRENDS': 'Research & Innovation',
+    'PRACTICAL TIPS': 'Teaching & Learning',
+    'ETHICAL AI': 'Policy & Ethics',
+    'BEYOND ED': 'Infrastructure & Operations',
+    'WEEK IN REVIEW': 'Leadership & Strategy',
+  };
+  // Check if it's already a valid StoryCategory
+  const validCategories = [
+    'Infrastructure & Operations',
+    'Teaching & Learning',
+    'Policy & Ethics',
+    'Tools & Products',
+    'Research & Innovation',
+    'Student Experience',
+    'Leadership & Strategy',
+  ];
+  if (validCategories.includes(cat)) {
+    return cat as import('./innovation-pulse-types').StoryCategory;
+  }
+  return categoryMap[cat] || 'Teaching & Learning';
+}
+
+// Helper to normalize episode data (handles both old and new formats)
+function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode | null {
+  // New format has segments.deepDive and segments.quickHits
+  // Old format has top-level deepDive and quickHits
+  const segments = raw.segments as Record<string, unknown> | undefined;
+  const rawDeepDive = (segments?.deepDive || raw.deepDive) as Record<string, unknown> | undefined;
+  const rawQuickHits = (segments?.quickHits || raw.quickHits) as Record<string, unknown>[] | undefined;
+
+  if (!rawDeepDive || !rawQuickHits) {
+    return null;
+  }
+
+  // Extract text fields that might contain summary info
+  const broadcastScript = raw.broadcastScript as string || '';
+  const hook = raw.hook as string || '';
+
+  // Normalize deep dive - provide defaults for missing fields
+  const deepDive: InnovationPulseEpisode['deepDive'] = {
+    title: rawDeepDive.title as string || '',
+    summary: (rawDeepDive.summary as string) || hook || broadcastScript.slice(0, 500) || 'Read the full story for details.',
+    source: rawDeepDive.source as string || '',
+    sourceUrl: rawDeepDive.sourceUrl as string || '',
+    isCallback: (rawDeepDive.isCallback as boolean) ?? false,
+    category: mapCategory(rawDeepDive.category as string || ''),
+    editorialCallout: rawDeepDive.editorialCallout as string | undefined,
+  };
+
+  // Normalize quick hits - provide defaults for missing fields
+  const quickHits: InnovationPulseEpisode['quickHits'] = rawQuickHits.map((hit) => ({
+    title: hit.title as string || '',
+    summary: (hit.summary as string) || 'Read the full story for details.',
+    source: hit.source as string || '',
+    sourceUrl: hit.sourceUrl as string || '',
+    category: mapCategory(hit.category as string || ''),
+    isCallback: hit.isCallback as boolean | undefined,
+  }));
+
+  // Handle editorialLens - new format is an object with name/description/color
+  // Old format is a string matching EditorialLens type
+  let editorialLens: InnovationPulseEpisode['editorialLens'];
+  const rawLens = raw.editorialLens as unknown;
+  if (typeof rawLens === 'object' && rawLens !== null && 'name' in rawLens) {
+    // New format - extract the name which should match EditorialLens
+    editorialLens = (rawLens as { name: string }).name as InnovationPulseEpisode['editorialLens'];
+  } else if (typeof rawLens === 'string') {
+    editorialLens = rawLens as InnovationPulseEpisode['editorialLens'];
+  } else {
+    // Default fallback
+    editorialLens = "The Practitioner's Playbook";
+  }
+
+  // Build the normalized episode with all required fields
+  const normalizedEpisode: InnovationPulseEpisode = {
+    date: raw.date as string,
+    dayOfWeek: raw.dayOfWeek as string,
+    editorialLens,
+    editorialHook: hook || (raw.editorialHook as string) || '',
+    audioUrl: (raw.audioUrl as string) || '',
+    audioDuration: (raw.audioDuration as string) || '',
+    deepDive,
+    quickHits,
+    storiesWatching: (raw.storiesWatching as InnovationPulseEpisode['storiesWatching']) || [],
+    closingThought: (raw.closingThought as string) || '',
+    categories: (raw.categories as InnovationPulseEpisode['categories']) ||
+      [deepDive.category, ...quickHits.map(q => q.category)].filter((v, i, a) => a.indexOf(v) === i) as InnovationPulseEpisode['categories'],
+    themes: (raw.themes as string[]) || [],
+  };
+
+  return normalizedEpisode;
+}
+
+// ── Episode Loading Functions ────────────────────────────────────────────────
+
 export function getAllEpisodes(): InnovationPulseEpisode[] {
   const episodes: InnovationPulseEpisode[] = [];
   const seenDates = new Set<string>();
@@ -28,7 +131,12 @@ export function getAllEpisodes(): InnovationPulseEpisode[] {
       for (const file of files) {
         try {
           const content = fs.readFileSync(path.join(dir, file), 'utf-8');
-          const episode = JSON.parse(content) as InnovationPulseEpisode;
+          const raw = JSON.parse(content) as Record<string, unknown>;
+          const episode = normalizeEpisode(raw);
+          // Skip episodes that couldn't be normalized
+          if (!episode) {
+            continue;
+          }
           // Avoid duplicates - prefer primary source
           if (!seenDates.has(episode.date)) {
             seenDates.add(episode.date);
@@ -58,7 +166,9 @@ export function getEpisodeByDate(date: string): InnovationPulseEpisode | null {
     const primaryPath = path.join(PRIMARY_DATA_DIR, `${date}.json`);
     if (fs.existsSync(primaryPath)) {
       const content = fs.readFileSync(primaryPath, 'utf-8');
-      return JSON.parse(content) as InnovationPulseEpisode;
+      const raw = JSON.parse(content) as Record<string, unknown>;
+      const episode = normalizeEpisode(raw);
+      if (episode) return episode;
     }
   } catch { /* continue to fallback */ }
 
@@ -67,7 +177,9 @@ export function getEpisodeByDate(date: string): InnovationPulseEpisode | null {
     const legacyPath = path.join(LEGACY_DATA_DIR, `${date}.json`);
     if (fs.existsSync(legacyPath)) {
       const content = fs.readFileSync(legacyPath, 'utf-8');
-      return JSON.parse(content) as InnovationPulseEpisode;
+      const raw = JSON.parse(content) as Record<string, unknown>;
+      const episode = normalizeEpisode(raw);
+      if (episode) return episode;
     }
   } catch { /* not found */ }
 

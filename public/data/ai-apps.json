@@ -1,0 +1,2476 @@
+{
+  "tools": [
+    {
+      "slug": "chatgpt",
+      "name": "ChatGPT",
+      "tagline": "The versatile AI assistant for dialogue and content creation",
+      "description": "ChatGPT by OpenAI is the most widely used large language model, capable of generating text, answering questions, writing code, and assisting with a huge range of educational tasks. The Edu tier adds enterprise-grade security, custom GPTs for departments, and data analytics dashboards designed for institutions.",
+      "category": "General LLMs",
+      "accent": "#10a37f",
+      "badge": "trending",
+      "values": [
+        "Generate discussion questions, quiz items, or rubric drafts in seconds",
+        "Free tier handles most faculty tasks — GPT-4o included",
+        "Integrates with Canvas via plugins for in-platform use"
+      ],
+      "tasks": ["General LLM", "Lesson Planning", "Writing Feedback", "Research", "Content Creation"],
+      "roles": ["faculty", "administrator", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$20/mo",
+        "details": "Free tier available. Plus $20/mo. Team $25/user/mo. ChatGPT Edu available for institutions with volume pricing."
+      },
+      "keyFeatures": [
+        "GPT-4o multimodal model (text, image, voice)",
+        "Custom GPTs for specific department needs",
+        "Code Interpreter for data analysis",
+        "DALL-E image generation built in",
+        "Web browsing for current information",
+        "Canvas for collaborative writing and code"
+      ],
+      "pros": [
+        "Largest ecosystem of plugins and GPTs",
+        "Strong at creative writing and brainstorming",
+        "Edu tier has FERPA compliance options",
+        "Most students already familiar with it"
+      ],
+      "cons": [
+        "Can hallucinate facts and citations",
+        "Free tier has usage limits during peak times",
+        "Privacy concerns with training data for free tier"
+      ],
+      "bestFor": [
+        "Quick drafts and brainstorming sessions",
+        "Creating course materials and lesson plans",
+        "Student writing assistance (with guardrails)",
+        "Administrative document drafting"
+      ],
+      "strengths": [
+        "Extremely versatile across writing, analysis, and coding",
+        "Large plugin ecosystem extends functionality",
+        "Handles long, complex prompts well"
+      ],
+      "limitations": [
+        "Can confidently produce incorrect information",
+        "Free tier has usage caps during peak hours",
+        "Output quality varies — prompt skill matters significantly"
+      ],
+      "quickstart": "Start with: 'You are a helpful teaching assistant for [your course]. Help me draft three discussion questions about [topic] that target Bloom's analysis level.'",
+      "integrations": ["Google Workspace", "Microsoft 365", "Zapier", "API access"],
+      "platformUrl": "https://chat.openai.com",
+      "domain": "openai.com",
+      "lastUpdated": "2025-12-15",
+      "verified": true,
+      "staffPick": true
+    },
+    {
+      "slug": "claude",
+      "name": "Claude",
+      "tagline": "A next-generation AI assistant built for thoughtful analysis",
+      "description": "Claude by Anthropic excels at nuanced, long-form tasks thanks to its industry-leading 200K token context window. It can analyze entire textbooks, research papers, or policy documents in a single conversation. Known for being more cautious and less likely to hallucinate than competitors, it is especially well-suited for academic environments where accuracy matters.",
+      "category": "General LLMs",
+      "accent": "#d97706",
+      "badge": "trending",
+      "values": [
+        "200K context window — paste entire textbooks or research papers",
+        "Strongest at nuanced writing feedback and academic tone",
+        "Built with safety-first design, less likely to fabricate citations"
+      ],
+      "tasks": ["General LLM", "Research", "Writing Feedback", "Lesson Planning", "Content Creation"],
+      "roles": ["faculty", "administrator", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$20/mo",
+        "details": "Free tier with daily limits. Pro $20/mo with higher limits. Team $25/user/mo. Enterprise with SSO and admin controls."
+      },
+      "keyFeatures": [
+        "200K token context window for long documents",
+        "Artifacts for code, documents, and visualizations",
+        "Projects for organized research workflows",
+        "Strong reasoning and analysis capabilities",
+        "Less prone to hallucination than competitors",
+        "Computer use and tool integration"
+      ],
+      "pros": [
+        "Best-in-class for document analysis and research",
+        "More honest about uncertainty",
+        "Excellent at following complex instructions",
+        "Strong coding and technical writing"
+      ],
+      "cons": [
+        "Smaller plugin ecosystem than ChatGPT",
+        "No native image generation",
+        "Free tier has stricter daily limits"
+      ],
+      "bestFor": [
+        "Research paper analysis and literature reviews",
+        "Policy document drafting and review",
+        "Detailed feedback on student writing",
+        "Complex reasoning and problem-solving tasks"
+      ],
+      "strengths": [
+        "Best-in-class at handling long documents (entire syllabi, papers, reports)",
+        "More cautious about uncertain claims — flags when it's unsure",
+        "Excellent writing quality with academic register"
+      ],
+      "limitations": [
+        "Smaller plugin ecosystem than ChatGPT",
+        "Can be overly cautious, sometimes declining reasonable requests",
+        "Web search is newer and less refined"
+      ],
+      "quickstart": "Upload your syllabus and ask: 'Review this syllabus for clarity, consistency, and alignment between stated objectives and assessments. Flag any gaps.'",
+      "integrations": ["API access", "Google Workspace (via integrations)", "Zapier"],
+      "platformUrl": "https://claude.ai",
+      "domain": "anthropic.com",
+      "lastUpdated": "2025-12-20",
+      "verified": true,
+      "staffPick": true
+    },
+    {
+      "slug": "gemini",
+      "name": "Gemini",
+      "tagline": "Google's most capable AI model, built to be multimodal",
+      "description": "Google Gemini is deeply integrated into the Google ecosystem, making it a natural fit for institutions already using Google Workspace. It can analyze images, generate text, search the web in real-time, and work directly inside Docs, Sheets, Slides, and Gmail. The Advanced plan includes Gemini in Google Workspace apps for seamless productivity.",
+      "category": "General LLMs",
+      "accent": "#4285f4",
+      "badge": "updated",
+      "values": [
+        "Built into Google Docs, Sheets, Slides — works where you already work",
+        "Multimodal: analyze images, charts, and documents natively",
+        "Free tier is generous for individual use"
+      ],
+      "tasks": ["General LLM", "Content Creation", "Research", "Presentations", "Administration"],
+      "roles": ["faculty", "administrator", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$19.99/mo",
+        "details": "Free tier available. Advanced through Google One at $19.99/mo. Education pricing available for institutions."
+      },
+      "keyFeatures": [
+        "Deep Google Workspace integration",
+        "Multimodal input (text, images, audio, video)",
+        "Real-time web search built in",
+        "Works in Docs, Sheets, Slides, Gmail",
+        "NotebookLM for research synthesis",
+        "Long context window (up to 1M tokens)"
+      ],
+      "pros": [
+        "Seamless if your institution uses Google Workspace",
+        "Strong multimodal capabilities",
+        "NotebookLM is excellent for research",
+        "Competitive pricing for education"
+      ],
+      "cons": [
+        "Ecosystem lock-in with Google",
+        "Advanced features require paid plan",
+        "Less consistent than ChatGPT for creative tasks"
+      ],
+      "bestFor": [
+        "Institutions already on Google Workspace",
+        "Multimodal content analysis",
+        "Research synthesis with NotebookLM",
+        "Creating presentations and documents"
+      ],
+      "strengths": [
+        "Seamless Google Workspace integration",
+        "Strong at data analysis in Sheets",
+        "Multimodal — can analyze images and PDFs"
+      ],
+      "limitations": [
+        "Responses can be less nuanced than Claude for academic writing",
+        "Google ecosystem lock-in",
+        "Privacy concerns with institutional Google data"
+      ],
+      "quickstart": "In Google Docs, type '@Gemini' and ask it to help draft a course description or summarize meeting notes.",
+      "integrations": ["Google Workspace", "Google Drive", "YouTube", "Google Search"],
+      "platformUrl": "https://gemini.google.com",
+      "domain": "google.com",
+      "lastUpdated": "2025-11-30",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "perplexity",
+      "name": "Perplexity AI",
+      "tagline": "The conversational answer engine with cited sources",
+      "description": "Perplexity AI combines the conversational interface of a chatbot with the citation rigor of academic search. Every answer includes inline citations linked to source material, making it ideal for research, fact-checking, and teaching students how to verify AI outputs. The Pro plan adds access to multiple models and file upload for document analysis.",
+      "category": "General LLMs",
+      "accent": "#20b2aa",
+      "badge": "trending",
+      "values": [
+        "Every answer includes source citations — model research integrity for students",
+        "Academic focus mode searches scholarly databases specifically",
+        "Great for quick lit review scoping and fact-checking"
+      ],
+      "tasks": ["Research", "General LLM", "Writing Feedback"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$20/mo",
+        "details": "Free tier with limited Pro searches. Pro $20/mo with unlimited searches and access to multiple models."
+      },
+      "keyFeatures": [
+        "Inline citations on every answer",
+        "Real-time web search with source verification",
+        "Multiple model access (GPT-4, Claude, etc.)",
+        "Collections for organized research",
+        "File upload for document analysis",
+        "Focus modes (Academic, Writing, Math, etc.)"
+      ],
+      "pros": [
+        "Best citation practices of any AI tool",
+        "Great for teaching research verification skills",
+        "Academic focus mode filters for scholarly sources",
+        "Clean, distraction-free interface"
+      ],
+      "cons": [
+        "Less creative than ChatGPT or Claude",
+        "Free tier limits Pro searches significantly",
+        "Not great for long-form content generation"
+      ],
+      "bestFor": [
+        "Quick academic research with citations",
+        "Fact-checking and source verification",
+        "Teaching students about AI-assisted research",
+        "Literature discovery and review"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Chrome extension", "API access", "iOS/Android apps"],
+      "platformUrl": "https://perplexity.ai",
+      "domain": "perplexity.ai",
+      "lastUpdated": "2025-11-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "grok",
+      "name": "Grok",
+      "tagline": "Real-time AI with access to live data from X",
+      "description": "Grok by xAI is integrated into the X (formerly Twitter) platform, giving it access to real-time conversations and trending topics. It takes a more irreverent, conversational tone and is particularly useful for monitoring current events and public discourse around higher education topics.",
+      "category": "General LLMs",
+      "accent": "#1d1d1f",
+      "badge": null,
+      "values": [
+        "Real-time access to current events and breaking news",
+        "Less filtered responses — useful for devil's advocate exercises",
+        "Available through X (Twitter) platform"
+      ],
+      "tasks": ["General LLM", "Research", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "paid",
+        "startingPrice": "$16/mo",
+        "details": "Available through X Premium+ subscription at $16/mo. No free tier."
+      },
+      "keyFeatures": [
+        "Real-time access to X/Twitter data",
+        "Image generation with Aurora",
+        "Conversational and witty tone",
+        "Current events analysis",
+        "DeepSearch for research queries"
+      ],
+      "pros": [
+        "Excellent for current events and trending topics",
+        "Real-time data access unique among LLMs",
+        "Good image generation built in"
+      ],
+      "cons": [
+        "Requires X Premium+ subscription",
+        "Less polished than ChatGPT or Claude",
+        "Limited academic-specific features",
+        "No free tier to evaluate"
+      ],
+      "bestFor": [
+        "Monitoring higher ed discourse on social media",
+        "Current events analysis for classes",
+        "Quick fact-checks against live data"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["X (Twitter)", "iOS app"],
+      "platformUrl": "https://grok.x.ai",
+      "domain": "x.ai",
+      "lastUpdated": "2025-10-20",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "eduaide",
+      "name": "Eduaide.Ai",
+      "tagline": "An AI-powered workspace to maximize teacher impact",
+      "description": "Eduaide.Ai provides over 100 generative AI tools specifically designed for educators. It can create lesson plans, assessments, rubrics, feedback comments, and differentiated materials in seconds. The platform is built by educators for educators and understands pedagogical frameworks like UDL, Bloom's Taxonomy, and Webb's Depth of Knowledge.",
+      "category": "Lesson Planning",
+      "accent": "#6366f1",
+      "badge": "trending",
+      "values": [
+        "Over 100 education-specific generators — not a generic chatbot",
+        "Outputs aligned to standards (Common Core, state frameworks)",
+        "Creates differentiated versions for diverse learner needs automatically"
+      ],
+      "tasks": ["Lesson Planning", "Assessment", "Writing Feedback", "Content Creation"],
+      "roles": ["faculty"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$5.99/mo",
+        "details": "Free plan with limited generations per day. Pro plan at $5.99/mo with unlimited access. School/district pricing available."
+      },
+      "keyFeatures": [
+        "100+ education-specific AI generators",
+        "Lesson plan creator with standards alignment",
+        "Assessment and rubric builder",
+        "Feedback Bot for student work",
+        "Differentiation tools for diverse learners",
+        "Content aligned to Bloom's Taxonomy and UDL"
+      ],
+      "pros": [
+        "Purpose-built for educators, not a generic LLM",
+        "Very affordable Pro plan",
+        "Understands pedagogical frameworks",
+        "Fast, template-driven workflow"
+      ],
+      "cons": [
+        "Less flexible than a general-purpose LLM",
+        "Limited customization of output format",
+        "Smaller user community than major LLMs"
+      ],
+      "bestFor": [
+        "Rapid lesson plan generation",
+        "Creating standards-aligned assessments",
+        "Generating differentiated materials",
+        "Quick feedback drafts on student work"
+      ],
+      "strengths": [
+        "Education-specific — understands pedagogy, not just content",
+        "Standards-aligned outputs save alignment work",
+        "Built-in differentiation for diverse classrooms"
+      ],
+      "limitations": [
+        "Generated content still needs instructor review and personalization",
+        "Some outputs feel templated — works best as a starting point",
+        "Free tier is quite limited"
+      ],
+      "quickstart": "Select 'Lesson Plan' generator, input your subject, grade level, and standard. Review the output and customize timing and activities to fit your class.",
+      "integrations": ["Google Docs export", "PDF export"],
+      "platformUrl": "https://eduaide.ai",
+      "domain": "eduaide.ai",
+      "lastUpdated": "2025-08-10",
+      "verified": true,
+      "staffPick": true
+    },
+    {
+      "slug": "brisk-teaching",
+      "name": "Brisk Teaching",
+      "tagline": "Teach smarter, not harder — AI right in your browser",
+      "description": "Brisk Teaching is a Chrome extension that brings AI-powered tools directly into Google Docs, Slides, YouTube, and other web apps teachers already use. With one click, teachers can create curriculum materials, level text for different reading abilities, generate quizzes from content, and provide writing feedback — all without leaving their workflow.",
+      "category": "Lesson Planning",
+      "accent": "#ec4899",
+      "badge": "new",
+      "values": [
+        "Works inside Canvas, Google Docs, Schoology — no tab switching",
+        "One-click reading level adjustment for any text",
+        "Generates instant feedback comments on student work"
+      ],
+      "tasks": ["Lesson Planning", "Writing Feedback", "Content Creation", "Grading"],
+      "roles": ["faculty"],
+      "pricing": {
+        "model": "freemium",
+        "details": "Free for individual teachers with core features. Premium plans for schools and districts with advanced features and admin controls."
+      },
+      "keyFeatures": [
+        "Chrome extension works inside existing tools",
+        "One-click curriculum creation from any content",
+        "Text leveling for different reading abilities",
+        "AI writing feedback for student work",
+        "Quiz and assessment generation",
+        "Works in Google Docs, Slides, YouTube"
+      ],
+      "pros": [
+        "Zero learning curve — works in tools you already use",
+        "Free for individual teachers",
+        "Fast, contextual AI assistance",
+        "Privacy-focused design"
+      ],
+      "cons": [
+        "Chrome-only (no Firefox/Safari support)",
+        "Requires Google Workspace",
+        "Advanced features require school license"
+      ],
+      "bestFor": [
+        "Teachers who live in Google Workspace",
+        "Quick text leveling and differentiation",
+        "Generating quizzes from existing content",
+        "In-context writing feedback"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Workspace", "YouTube", "Chrome browser"],
+      "platformUrl": "https://briskteaching.com",
+      "domain": "briskteaching.com",
+      "lastUpdated": "2025-08-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "curipod",
+      "name": "Curipod",
+      "tagline": "Spark curiosity in your classroom with AI-powered lessons",
+      "description": "Curipod generates complete, standards-aligned interactive slide decks with embedded student activities like polls, word clouds, open-ended questions, and drawing prompts. Teachers enter a topic and grade level, and Curipod produces a ready-to-teach lesson in minutes. It also provides AI feedback on student responses.",
+      "category": "Lesson Planning",
+      "accent": "#f59e0b",
+      "badge": "new",
+      "values": [
+        "Students interact in real-time — polls, drawings, word clouds",
+        "AI generates complete interactive lessons from a topic",
+        "Built-in reflection and check-for-understanding prompts"
+      ],
+      "tasks": ["Lesson Planning", "Student Engagement", "Assessment"],
+      "roles": ["faculty"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$90/yr",
+        "details": "Free plan with limited slide generation. Premium at ~$90/year with unlimited lessons and features."
+      },
+      "keyFeatures": [
+        "AI-generated interactive slide decks",
+        "Standards-aligned lesson creation",
+        "Embedded polls, word clouds, and activities",
+        "AI feedback on student responses",
+        "Drawing and open-ended prompts",
+        "Real-time student participation tracking"
+      ],
+      "pros": [
+        "Produces complete, ready-to-teach lessons",
+        "Interactive elements boost engagement",
+        "Standards alignment built in",
+        "Very fast — topic to lesson in minutes"
+      ],
+      "cons": [
+        "Slide-based format may not suit all teaching styles",
+        "Free tier is quite limited",
+        "Less customizable than building from scratch"
+      ],
+      "bestFor": [
+        "Quick interactive lesson creation",
+        "Formative assessment during class",
+        "Substitute teacher lesson plans",
+        "Student engagement activities"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Classroom", "Microsoft Teams", "Canvas LMS"],
+      "platformUrl": "https://curipod.com",
+      "domain": "curipod.com",
+      "lastUpdated": "2025-07-20",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "disco",
+      "name": "Disco AI",
+      "tagline": "The AI-first platform for learning communities",
+      "description": "Disco AI is a modern learning platform that combines community building with AI-powered curriculum generation. It can automatically create course content from existing materials (documents, videos, URLs), generate discussion prompts, and adapt learning paths. Popular with professional development programs and corporate training at universities.",
+      "category": "Lesson Planning",
+      "accent": "#8b5cf6",
+      "badge": null,
+      "values": [
+        "Generates complete course structures from a topic description",
+        "Maps assessments back to learning objectives automatically",
+        "Collaborative — share and iterate with department colleagues"
+      ],
+      "tasks": ["Lesson Planning", "Student Engagement", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "paid",
+        "details": "Custom enterprise pricing. Contact for education institution rates. Free trial available."
+      },
+      "keyFeatures": [
+        "AI curriculum generation from existing content",
+        "Community-based learning environment",
+        "Automated discussion and engagement prompts",
+        "Progress tracking and analytics",
+        "White-label branding options",
+        "Integration with Zoom for live sessions"
+      ],
+      "pros": [
+        "Excellent for cohort-based programs",
+        "AI content generation from uploads",
+        "Modern, attractive interface",
+        "Strong community features"
+      ],
+      "cons": [
+        "No transparent pricing (sales-driven)",
+        "Overkill for simple course delivery",
+        "Less established than traditional LMS"
+      ],
+      "bestFor": [
+        "Executive education programs",
+        "Faculty development cohorts",
+        "Professional certificate programs",
+        "Community-driven learning initiatives"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Zoom", "Slack", "Zapier", "Stripe"],
+      "platformUrl": "https://disco.co",
+      "domain": "disco.co",
+      "lastUpdated": "2025-08-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "teachfloor",
+      "name": "Teachfloor",
+      "tagline": "The all-in-one platform for collaborative learning",
+      "description": "Teachfloor combines an LMS with collaborative learning features including peer review, group projects, live Zoom sessions, and AI-assisted content creation. It is designed for cohort-based learning programs where interaction between participants is as important as the content itself.",
+      "category": "Lesson Planning",
+      "accent": "#0ea5e9",
+      "badge": null,
+      "values": [
+        "Cohort-based learning design — not just self-paced content",
+        "Built-in discussion, peer review, and group activity tools",
+        "AI assists with content structuring and activity design"
+      ],
+      "tasks": ["Lesson Planning", "Student Engagement", "Administration"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "paid",
+        "startingPrice": "$99/mo",
+        "details": "Pro plan starts at $99/mo. Business and Enterprise plans available with additional features."
+      },
+      "keyFeatures": [
+        "Cohort-based course delivery",
+        "Built-in peer review system",
+        "Live Zoom session integration",
+        "AI-assisted content creation",
+        "Group project management",
+        "Progress analytics and reporting"
+      ],
+      "pros": [
+        "Purpose-built for collaborative learning",
+        "Peer review features are well-designed",
+        "Zoom integration is seamless",
+        "Good analytics dashboard"
+      ],
+      "cons": [
+        "Expensive for individual instructors",
+        "Overkill for simple self-paced courses",
+        "Smaller user community than major LMS"
+      ],
+      "bestFor": [
+        "Cohort-based certificate programs",
+        "Professional development courses",
+        "Programs emphasizing peer learning",
+        "Executive education and workshops"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Zoom", "Stripe", "Zapier", "Slack"],
+      "platformUrl": "https://teachfloor.com",
+      "domain": "teachfloor.com",
+      "lastUpdated": "2025-07-10",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "gradescope",
+      "name": "Gradescope",
+      "tagline": "AI-assisted grading that saves hours every week",
+      "description": "Gradescope uses AI to streamline grading of exams, homework, and projects. Instructors create rubrics, and the AI groups similar answers together so you can grade by question across the entire class. It supports handwritten work via OCR, code autograding, and detailed analytics on student performance patterns.",
+      "category": "Grading & Assessment",
+      "accent": "#059669",
+      "badge": null,
+      "values": [
+        "AI groups similar answers — grade once, apply to all matches",
+        "Rubric-based grading ensures consistency across sections and TAs",
+        "Handles handwritten work, code, and STEM notation"
+      ],
+      "tasks": ["Grading", "Assessment", "Administration"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "details": "Free basic tier for individual instructors. Institutional licensing through Turnitin (parent company) for full features including LMS integration."
+      },
+      "keyFeatures": [
+        "AI-assisted answer grouping for batch grading",
+        "Handwritten work recognition (OCR)",
+        "Code autograding for CS courses",
+        "Rubric-based evaluation system",
+        "Detailed analytics on student performance",
+        "Regrade request management"
+      ],
+      "pros": [
+        "Dramatically reduces grading time",
+        "Works with handwritten and typed submissions",
+        "Strong analytics for identifying struggling students",
+        "Rubric consistency across large sections"
+      ],
+      "cons": [
+        "Learning curve for initial setup",
+        "Full features require institutional license",
+        "OCR can struggle with messy handwriting"
+      ],
+      "bestFor": [
+        "Large-section courses with many submissions",
+        "STEM courses with problem-based assessments",
+        "Maintaining grading consistency across TAs",
+        "Identifying patterns in student performance"
+      ],
+      "strengths": [
+        "Dramatically reduces grading time for large classes",
+        "AI grouping catches patterns humans miss",
+        "Analytics reveal common student misconceptions"
+      ],
+      "limitations": [
+        "Institutional license required — can't self-serve easily",
+        "Learning curve for initial rubric setup",
+        "Best for structured assessments, less useful for open-ended projects"
+      ],
+      "quickstart": "Start by uploading a past exam. Create your rubric, then use AI-assisted grouping to batch-grade similar responses.",
+      "integrations": ["Canvas", "Blackboard", "Sakai", "Brightspace", "Moodle"],
+      "platformUrl": "https://gradescope.com",
+      "domain": "gradescope.com",
+      "lastUpdated": "2025-09-10",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "turnitin",
+      "name": "Turnitin",
+      "tagline": "Academic integrity and AI writing detection platform",
+      "description": "Turnitin is the industry-standard platform for plagiarism detection, now with AI writing detection capabilities. It identifies text likely generated by AI tools and provides similarity reports against a massive database of academic papers, websites, and student submissions. The Feedback Studio includes inline commenting and QuickMark rubrics.",
+      "category": "Grading & Assessment",
+      "accent": "#2563eb",
+      "badge": "updated",
+      "values": [
+        "Industry-standard AI writing detection with confidence scores",
+        "Similarity reports cross-reference billions of sources",
+        "Feedback Studio enables inline comments and rubric scoring"
+      ],
+      "tasks": ["Grading", "Writing Feedback", "Assessment"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "paid",
+        "details": "Institutional licensing only. Contact for pricing. Typically bundled with Gradescope and iThenticate."
+      },
+      "keyFeatures": [
+        "AI writing detection indicator",
+        "Similarity checking against 100B+ sources",
+        "Feedback Studio with inline comments",
+        "QuickMark rubrics for consistent evaluation",
+        "Draft Coach for student self-checking",
+        "Originality reports with source matching"
+      ],
+      "pros": [
+        "Industry standard — widely trusted by institutions",
+        "AI detection improving with each update",
+        "Comprehensive similarity database",
+        "Integrates with all major LMS platforms"
+      ],
+      "cons": [
+        "AI detection has false positive concerns",
+        "Expensive for smaller institutions",
+        "Students find it punitive rather than educational",
+        "No free tier for evaluation"
+      ],
+      "bestFor": [
+        "Institutional academic integrity programs",
+        "Writing-heavy courses",
+        "Detecting AI-generated submissions",
+        "Providing structured writing feedback"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Canvas", "Blackboard", "Moodle", "Brightspace", "Google Classroom"],
+      "platformUrl": "https://turnitin.com",
+      "domain": "turnitin.com",
+      "lastUpdated": "2025-10-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "formative",
+      "name": "Formative",
+      "tagline": "Real-time formative assessment with instant AI feedback",
+      "description": "Formative provides real-time formative assessment with AI-powered feedback, live student monitoring, and data-driven instructional insights. Teachers can see student responses as they work, and AI provides instant feedback so students don't have to wait for grading.",
+      "category": "Grading & Assessment",
+      "accent": "#7c3aed",
+      "badge": null,
+      "values": [
+        "See student responses in real-time as they work",
+        "AI provides instant feedback so students don't wait for grading",
+        "Data dashboard reveals class-wide understanding gaps"
+      ],
+      "tasks": ["Assessment", "Student Engagement"],
+      "roles": ["faculty"],
+      "pricing": {
+        "model": "freemium",
+        "details": "Free for basic use. Premium for AI features and advanced analytics."
+      },
+      "keyFeatures": [
+        "Real-time student response monitoring",
+        "AI-powered instant feedback",
+        "Live data dashboard",
+        "Multiple question types",
+        "Student engagement analytics",
+        "LMS integration"
+      ],
+      "pros": [
+        "Real-time visibility into student understanding",
+        "AI feedback saves grading time",
+        "Great for formative assessment",
+        "Easy to get started"
+      ],
+      "cons": [
+        "Premium features require paid plan",
+        "Best for structured assessments",
+        "Requires reliable internet"
+      ],
+      "bestFor": [
+        "Real-time classroom assessment",
+        "Checking for understanding during lessons",
+        "Quick quizzes and polls",
+        "Data-driven instruction"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Classroom", "Canvas", "Microsoft Teams"],
+      "platformUrl": "https://goformative.com",
+      "domain": "goformative.com",
+      "lastUpdated": "2025-08-20",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "consensus",
+      "name": "Consensus",
+      "tagline": "AI-powered search engine for peer-reviewed research",
+      "description": "Consensus searches through over 200 million peer-reviewed papers to find and synthesize answers to research questions. It uses AI to extract key findings and present them with links to the original papers. The Consensus Meter shows the balance of evidence for or against a claim, making it a powerful tool for evidence-based decision-making.",
+      "category": "Research",
+      "accent": "#6d28d9",
+      "badge": null,
+      "values": [
+        "Only searches peer-reviewed papers — no blog posts or SEO content",
+        "Synthesizes findings across multiple studies into a summary",
+        "Great teaching tool for modeling proper research methodology"
+      ],
+      "tasks": ["Research"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$6.99/mo",
+        "details": "Free tier with limited searches. Premium $6.99/mo with unlimited searches, GPT-4 summaries, and bookmarks."
+      },
+      "keyFeatures": [
+        "Search 200M+ peer-reviewed papers",
+        "AI-synthesized answers from research",
+        "Consensus Meter shows evidence balance",
+        "Paper summaries and key findings extraction",
+        "Bookmark and organize research",
+        "Citation export in multiple formats"
+      ],
+      "pros": [
+        "Only searches peer-reviewed sources",
+        "Consensus Meter unique and useful",
+        "Faster than manual literature searches",
+        "Good for evidence-based practice"
+      ],
+      "cons": [
+        "Limited to indexed papers (not all journals)",
+        "Summaries can oversimplify nuanced findings",
+        "No full-text access (links to sources)"
+      ],
+      "bestFor": [
+        "Quick evidence checks for lectures",
+        "Literature review starting points",
+        "Teaching evidence-based reasoning",
+        "Faculty research support"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Chrome extension", "API access"],
+      "platformUrl": "https://consensus.app",
+      "domain": "consensus.app",
+      "lastUpdated": "2025-09-20",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "elicit",
+      "name": "Elicit",
+      "tagline": "Automate your literature review with AI research assistance",
+      "description": "Elicit helps researchers find relevant papers, extract key data points, and synthesize findings across multiple studies. It goes beyond simple search by letting you define columns of information to extract from each paper (methods, sample size, findings, etc.) and building structured comparison tables automatically.",
+      "category": "Research",
+      "accent": "#0d9488",
+      "badge": null,
+      "values": [
+        "Extracts key findings, methods, and sample sizes from papers automatically",
+        "Builds structured evidence tables from search results",
+        "Saves hours of manual literature review work"
+      ],
+      "tasks": ["Research"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$10/mo",
+        "details": "Free tier with limited paper analysis. Plus $10/mo. Enterprise pricing for institutions."
+      },
+      "keyFeatures": [
+        "Automated literature review workflows",
+        "Custom data extraction from papers",
+        "Structured comparison tables",
+        "Semantic search across papers",
+        "Study quality assessment",
+        "Citation management and export"
+      ],
+      "pros": [
+        "Structured data extraction is a game-changer",
+        "Builds comparison tables automatically",
+        "Great for systematic reviews",
+        "Saves significant research time"
+      ],
+      "cons": [
+        "Learning curve to set up extraction columns",
+        "Free tier quite limited",
+        "Better for quantitative than qualitative research"
+      ],
+      "bestFor": [
+        "Systematic literature reviews",
+        "Graduate student research projects",
+        "Faculty tenure and promotion evidence gathering",
+        "Cross-study comparison and synthesis"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Zotero", "Citation export"],
+      "platformUrl": "https://elicit.com",
+      "domain": "elicit.com",
+      "lastUpdated": "2025-08-25",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "grammarly",
+      "name": "Grammarly",
+      "tagline": "AI writing assistant with institution-wide analytics",
+      "description": "Grammarly goes beyond spell-check to provide AI-powered writing suggestions for clarity, tone, engagement, and delivery. The EDU plan adds plagiarism detection, citation support, organization-wide analytics, and FERPA-compliant data handling. It works across all browsers, email clients, and writing apps.",
+      "category": "Writing & Feedback",
+      "accent": "#15c39a",
+      "badge": null,
+      "values": [
+        "Tone detection helps match academic register expectations",
+        "Works in email, LMS, Google Docs — catches errors everywhere",
+        "Explains grammar rules — doubles as a learning tool"
+      ],
+      "tasks": ["Writing Feedback", "Student Engagement"],
+      "roles": ["faculty", "administrator", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$12/mo",
+        "details": "Free basic plan. Premium $12/mo individual. Grammarly for Education with institutional pricing and admin controls."
+      },
+      "keyFeatures": [
+        "Real-time writing suggestions across apps",
+        "Tone detection and adjustment",
+        "Plagiarism detection",
+        "Citation style formatting",
+        "Organization-wide analytics dashboard",
+        "Custom style guides for your institution"
+      ],
+      "pros": [
+        "Works everywhere students write",
+        "Helps non-native English speakers significantly",
+        "Institution-wide deployment options",
+        "FERPA compliance for EDU plan"
+      ],
+      "cons": [
+        "Can over-correct creative writing",
+        "Premium features needed for full value",
+        "May create dependency rather than learning"
+      ],
+      "bestFor": [
+        "Writing-across-the-curriculum programs",
+        "ESL/ELL student support",
+        "Institution-wide writing quality improvement",
+        "Faculty and staff communication quality"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Workspace", "Microsoft 365", "Canvas", "All browsers"],
+      "platformUrl": "https://grammarly.com/edu",
+      "domain": "grammarly.com",
+      "lastUpdated": "2025-11-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "gamma",
+      "name": "Gamma",
+      "tagline": "A new medium for presenting ideas, powered by AI",
+      "description": "Gamma generates polished presentations, documents, and web pages from simple text prompts or existing content. Unlike traditional slide tools, Gamma creates interactive card-based layouts that work beautifully on any device. It supports embedding videos, charts, and interactive elements directly into the presentation.",
+      "category": "Presentations",
+      "accent": "#8b5cf6",
+      "badge": "trending",
+      "values": [
+        "Creates a full slide deck from a text description in minutes",
+        "Designs look professional — not the typical AI-generated aesthetic",
+        "Exports to PowerPoint for final editing in familiar tools"
+      ],
+      "tasks": ["Presentations", "Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$10/mo",
+        "details": "Free tier with Gamma branding. Plus $10/mo. Pro $20/mo with unlimited AI and custom branding."
+      },
+      "keyFeatures": [
+        "AI-generated presentations from text prompts",
+        "Interactive card-based layout",
+        "Responsive design for any device",
+        "Embed videos, charts, and web content",
+        "Import and enhance existing presentations",
+        "Real-time collaboration"
+      ],
+      "pros": [
+        "Much faster than building in PowerPoint",
+        "Card-based design looks modern and professional",
+        "Interactive elements boost engagement",
+        "Great on mobile devices"
+      ],
+      "cons": [
+        "Less design control than traditional tools",
+        "Free tier includes Gamma branding",
+        "Export to PowerPoint can lose formatting"
+      ],
+      "bestFor": [
+        "Quick lecture slide creation",
+        "Student presentation projects",
+        "Conference talk preparation",
+        "Interactive course materials"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Drive", "PowerPoint export", "PDF export", "Web embedding"],
+      "platformUrl": "https://gamma.app",
+      "domain": "gamma.app",
+      "lastUpdated": "2025-09-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "mentimeter",
+      "name": "Mentimeter",
+      "tagline": "Make your audience feel heard with interactive presentations",
+      "description": "Mentimeter turns passive lectures into interactive experiences with live polls, quizzes, Q&A sessions, and word clouds that students participate in from their phones. The AI Menti Builder can generate entire interactive presentations from a topic description, including engagement activities and assessment questions.",
+      "category": "Presentations",
+      "accent": "#3b82f6",
+      "badge": null,
+      "values": [
+        "Students respond from their phones — no app download needed",
+        "Live word clouds and polls make large lectures interactive",
+        "Quiz mode adds gamification without needing a separate tool"
+      ],
+      "tasks": ["Presentations", "Student Engagement", "Assessment"],
+      "roles": ["faculty"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$12/mo",
+        "details": "Free tier with limited questions per presentation. Pro $12/mo. Enterprise/Education pricing available."
+      },
+      "keyFeatures": [
+        "Live polls, quizzes, and word clouds",
+        "AI Menti Builder for presentation generation",
+        "Real-time audience participation",
+        "Anonymous Q&A mode",
+        "Engagement analytics and reports",
+        "Integration with existing slide decks"
+      ],
+      "pros": [
+        "Instantly boosts classroom engagement",
+        "Anonymous mode encourages shy students",
+        "Works on any device — no app install needed",
+        "AI builder saves significant prep time"
+      ],
+      "cons": [
+        "Free tier very limited (2 question slides)",
+        "Requires reliable internet for all students",
+        "Can feel gimmicky if overused"
+      ],
+      "bestFor": [
+        "Large lecture engagement",
+        "Formative assessment during class",
+        "Conference presentations",
+        "Gathering student feedback anonymously"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["PowerPoint", "Google Slides", "Microsoft Teams", "Zoom", "LTI (Canvas, Blackboard)"],
+      "platformUrl": "https://mentimeter.com",
+      "domain": "mentimeter.com",
+      "lastUpdated": "2025-08-30",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "slidesgo",
+      "name": "Slidesgo",
+      "tagline": "Stunning presentation templates with AI generation",
+      "description": "Slidesgo offers thousands of professionally designed presentation templates for Google Slides and PowerPoint, plus an AI presentation maker that generates complete slide decks from a text prompt. Templates span education themes, infographics, thesis presentations, and more. Part of the Freepik ecosystem.",
+      "category": "Presentations",
+      "accent": "#f97316",
+      "badge": null,
+      "values": [
+        "Thousands of education-specific templates available free",
+        "AI generates slide content from topic descriptions",
+        "Works natively with Google Slides — no new platform to learn"
+      ],
+      "tasks": ["Presentations", "Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$4/mo",
+        "details": "Free templates with attribution. Premium $4-6/mo for all templates without attribution."
+      },
+      "keyFeatures": [
+        "Thousands of free presentation templates",
+        "AI presentation maker from prompts",
+        "Google Slides and PowerPoint compatible",
+        "Education-specific template categories",
+        "Infographic and data visualization templates",
+        "Customizable themes and color schemes"
+      ],
+      "pros": [
+        "Huge free template library",
+        "Very affordable premium tier",
+        "Education-specific designs",
+        "Works with tools students already know"
+      ],
+      "cons": [
+        "Free templates require attribution",
+        "AI generator less sophisticated than Gamma",
+        "Can lead to 'template fatigue' if overused"
+      ],
+      "bestFor": [
+        "Quick professional-looking course slides",
+        "Student presentation projects",
+        "Conference posters and infographics",
+        "Thesis defense presentations"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Slides", "PowerPoint", "Canva"],
+      "platformUrl": "https://slidesgo.com",
+      "domain": "slidesgo.com",
+      "lastUpdated": "2025-07-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "canva",
+      "name": "Canva",
+      "tagline": "AI-enhanced design platform for everyone",
+      "description": "Canva democratizes design with drag-and-drop tools now supercharged with AI features including Magic Write for text generation, Magic Design for instant layouts, Background Remover, and text-to-image generation. Canva for Education is completely free for K-12 and higher ed institutions, making it the most accessible design tool available.",
+      "category": "Image & Video",
+      "accent": "#00c4cc",
+      "badge": null,
+      "values": [
+        "Canva for Education is free for verified educators",
+        "Magic Design AI creates layouts from your content automatically",
+        "One platform for slides, posters, social media, and video"
+      ],
+      "tasks": ["Content Creation", "Presentations", "Video & Media"],
+      "roles": ["faculty", "administrator", "student"],
+      "pricing": {
+        "model": "freemium",
+        "details": "Canva for Education is FREE for verified educational institutions. Pro $13/mo for individuals. Teams $10/user/mo."
+      },
+      "keyFeatures": [
+        "Magic Write AI text generation",
+        "Magic Design instant layouts",
+        "Text-to-image AI generation",
+        "Background Remover tool",
+        "Video editor with AI features",
+        "Brand Kit for institutional consistency"
+      ],
+      "pros": [
+        "FREE for Education — best value in the market",
+        "Extremely intuitive for non-designers",
+        "Massive template library",
+        "Real-time collaboration"
+      ],
+      "cons": [
+        "Design quality ceiling lower than Adobe",
+        "Can lead to generic-looking materials",
+        "Advanced features occasionally laggy"
+      ],
+      "bestFor": [
+        "Course material design (all levels)",
+        "Social media graphics for departments",
+        "Student projects and portfolios",
+        "Infographics and visual summaries"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Drive", "Google Classroom", "Microsoft Teams", "LMS embedding"],
+      "platformUrl": "https://canva.com/education",
+      "domain": "canva.com",
+      "lastUpdated": "2025-11-20",
+      "verified": true,
+      "staffPick": true
+    },
+    {
+      "slug": "midjourney",
+      "name": "Midjourney",
+      "tagline": "Advancing creativity with high-quality AI image generation",
+      "description": "Midjourney produces the highest-quality AI-generated images available, with a distinctive aesthetic that leans photorealistic or painterly depending on prompts. Accessed through Discord or a new web editor, it excels at creating visual aids, conceptual illustrations, and educational graphics that would otherwise require a professional designer.",
+      "category": "Image & Video",
+      "accent": "#e8e8e8",
+      "badge": null,
+      "values": [
+        "Highest aesthetic quality of any AI image generator",
+        "Great for custom course illustrations and visual metaphors",
+        "Style controls let you match institutional brand guidelines"
+      ],
+      "tasks": ["Content Creation", "Video & Media"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "paid",
+        "startingPrice": "$10/mo",
+        "details": "Basic $10/mo. Standard $30/mo. Pro $60/mo. No free tier."
+      },
+      "keyFeatures": [
+        "Industry-leading image quality",
+        "Web editor and Discord interface",
+        "Style reference and consistency features",
+        "Upscaling and variation tools",
+        "Pan, zoom, and extend capabilities",
+        "Describe mode for reverse-engineering prompts"
+      ],
+      "pros": [
+        "Highest quality AI images available",
+        "Great for educational illustrations",
+        "Active community sharing techniques",
+        "Improving rapidly with each version"
+      ],
+      "cons": [
+        "No free tier to evaluate",
+        "Discord interface has learning curve",
+        "Copyright and usage concerns in academia",
+        "Limited text rendering in images"
+      ],
+      "bestFor": [
+        "Creating visual aids for lectures",
+        "Marketing materials for programs",
+        "Conceptual illustrations for complex topics",
+        "Course thumbnail and banner graphics"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Discord", "Web editor", "API access"],
+      "platformUrl": "https://midjourney.com",
+      "domain": "midjourney.com",
+      "lastUpdated": "2025-10-10",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "synthesia",
+      "name": "Synthesia",
+      "tagline": "Create professional AI avatar videos in minutes",
+      "description": "Synthesia creates professional videos featuring AI avatars that speak any script in over 140 languages. No camera, studio, or actors needed. Ideal for creating training videos, lecture supplements, course introductions, and multilingual content. The platform offers 230+ diverse avatars or custom avatar creation.",
+      "category": "Image & Video",
+      "accent": "#6366f1",
+      "badge": "updated",
+      "values": [
+        "Create professional talking-head videos without filming",
+        "160+ AI avatars and 130+ languages for global accessibility",
+        "Perfect for standardized training and orientation content"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "paid",
+        "startingPrice": "$30/mo",
+        "details": "Personal $30/mo (5 videos). Enterprise with custom pricing for institutions."
+      },
+      "keyFeatures": [
+        "230+ diverse AI avatars",
+        "140+ language support",
+        "Custom avatar creation from video upload",
+        "Screen recording integration",
+        "Template library for education",
+        "Brand kit customization"
+      ],
+      "pros": [
+        "No filming or editing skills needed",
+        "Multilingual content without translators",
+        "Consistent, professional quality",
+        "Great for asynchronous course content"
+      ],
+      "cons": [
+        "Avatars can feel uncanny to some viewers",
+        "Expensive for individual instructors",
+        "Limited free tier for evaluation",
+        "Lip sync not perfect in all languages"
+      ],
+      "bestFor": [
+        "Multilingual training materials",
+        "Asynchronous lecture supplements",
+        "Faculty development modules",
+        "Course introduction videos"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["LMS embed", "YouTube", "Vimeo", "PowerPoint embed"],
+      "platformUrl": "https://synthesia.io",
+      "domain": "synthesia.io",
+      "lastUpdated": "2025-09-05",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "runwayml",
+      "name": "RunwayML",
+      "tagline": "The next frontier of AI-powered video creation",
+      "description": "RunwayML offers a comprehensive suite of AI video tools including Gen-3 Alpha for text-to-video, image-to-video transformation, motion brush for animating still images, and advanced video editing features. It is at the forefront of generative AI video and is used by filmmakers, marketers, and increasingly by educators creating visual content.",
+      "category": "Image & Video",
+      "accent": "#e11d48",
+      "badge": null,
+      "values": [
+        "Generate short video clips from text descriptions",
+        "Remove backgrounds, extend scenes, and edit with AI tools",
+        "Strong for creating visual content for online courses"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$15/mo",
+        "details": "Free tier with limited credits. Standard $15/mo. Pro $35/mo. Enterprise pricing available."
+      },
+      "keyFeatures": [
+        "Gen-3 Alpha text-to-video generation",
+        "Image-to-video animation",
+        "Motion Brush for selective animation",
+        "Background removal and replacement",
+        "Video upscaling and enhancement",
+        "Green screen without a green screen"
+      ],
+      "pros": [
+        "Most advanced AI video generation available",
+        "Creative flexibility with multiple tools",
+        "Free tier allows experimentation",
+        "Rapid improvement with each model version"
+      ],
+      "cons": [
+        "Generated video still has artifacts",
+        "Credits consumed quickly on free tier",
+        "Steep learning curve for advanced features"
+      ],
+      "bestFor": [
+        "Creating visual explanations for complex topics",
+        "Animating diagrams and concepts",
+        "Marketing and recruitment videos",
+        "Experimental digital media courses"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["API access", "Web-based editor"],
+      "platformUrl": "https://runwayml.com",
+      "domain": "runwayml.com",
+      "lastUpdated": "2025-10-05",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "pika",
+      "name": "Pika Labs",
+      "tagline": "Put your imagination in motion with AI video",
+      "description": "Pika Labs makes AI video generation accessible with a simple interface for creating short videos from text prompts or images. While less feature-rich than RunwayML, it is more approachable for educators who just want to quickly generate a visual clip to illustrate a concept without learning complex tools.",
+      "category": "Image & Video",
+      "accent": "#a855f7",
+      "badge": null,
+      "values": [
+        "Generate video from still images — animate diagrams and illustrations",
+        "Stylized output works well for creative assignments",
+        "Simple interface — low barrier for first-time users"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$8/mo",
+        "details": "Free tier with daily credits. Standard $8/mo. Pro $28/mo."
+      },
+      "keyFeatures": [
+        "Text-to-video generation",
+        "Image-to-video animation",
+        "Lip sync and character animation",
+        "Simple, approachable interface",
+        "Modify specific regions of video",
+        "Sound effects generation"
+      ],
+      "pros": [
+        "Very easy to get started",
+        "Affordable pricing",
+        "Quick generation times",
+        "Fun for student projects"
+      ],
+      "cons": [
+        "Lower quality than Midjourney/RunwayML",
+        "Short clip duration limits",
+        "Less control over output"
+      ],
+      "bestFor": [
+        "Quick concept visualization",
+        "Student creative projects",
+        "Social media content for departments",
+        "Animating educational diagrams"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Web-based", "Discord"],
+      "platformUrl": "https://pika.art",
+      "domain": "pika.art",
+      "lastUpdated": "2025-08-20",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "descript",
+      "name": "Descript",
+      "tagline": "Edit video and podcasts as easily as editing a document",
+      "description": "Descript transforms video and audio editing by letting you edit media by editing text. Record or upload content, and Descript transcribes it — then you edit the transcript to edit the video. AI features include filler word removal, eye contact correction, studio sound enhancement, and AI voiceover cloning.",
+      "category": "Image & Video",
+      "accent": "#22c55e",
+      "badge": null,
+      "values": [
+        "Edit video by editing the transcript — revolutionary for lecture editing",
+        "Automatic filler word and silence removal",
+        "Screen recording + webcam for creating instructional content"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$24/mo",
+        "details": "Free tier with limited exports. Hobbyist $24/mo. Pro $33/mo. Enterprise pricing available."
+      },
+      "keyFeatures": [
+        "Text-based video and audio editing",
+        "AI transcription with speaker detection",
+        "Filler word removal (um, uh, like)",
+        "Eye contact correction",
+        "AI voiceover and voice cloning",
+        "Screen recording with webcam overlay"
+      ],
+      "pros": [
+        "Revolutionary text-based editing paradigm",
+        "Filler word removal is a game-changer",
+        "Great for lecture recording post-production",
+        "Handles both audio and video"
+      ],
+      "cons": [
+        "Free tier very limited",
+        "Processing can be slow for long recordings",
+        "Voice cloning raises ethical questions"
+      ],
+      "bestFor": [
+        "Lecture recording cleanup and editing",
+        "Podcast production for academic content",
+        "Creating polished instructional videos",
+        "Transcription and captioning"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["YouTube", "Vimeo", "Google Drive", "Dropbox"],
+      "platformUrl": "https://descript.com",
+      "domain": "descript.com",
+      "lastUpdated": "2025-10-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "heygen",
+      "name": "HeyGen",
+      "tagline": "AI video generation with customizable avatars",
+      "description": "HeyGen creates professional videos featuring AI avatars that speak any script in 40+ languages. Choose from 100+ stock avatars or create a custom avatar from a short video of yourself. Particularly popular for training videos, course content, and social media where consistent, professional video is needed at scale.",
+      "category": "Avatars",
+      "accent": "#3b82f6",
+      "badge": null,
+      "values": [
+        "Clone your own likeness for consistent video presence",
+        "Translate videos into 40+ languages automatically",
+        "Scale video content without re-recording"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$24/mo",
+        "details": "Free trial. Creator $24/mo. Business $72/mo. Enterprise custom pricing."
+      },
+      "keyFeatures": [
+        "100+ diverse stock avatars",
+        "Custom avatar from 2-minute video",
+        "40+ languages with native accents",
+        "Instant avatar (real-time generation)",
+        "Template library for quick creation",
+        "Multi-scene video editor"
+      ],
+      "pros": [
+        "Higher quality than most competitors",
+        "Instant avatar is impressive",
+        "Good selection of diverse avatars",
+        "Relatively affordable for quality"
+      ],
+      "cons": [
+        "Custom avatars require good source video",
+        "Some avatars still look artificial",
+        "Limited free trial"
+      ],
+      "bestFor": [
+        "Asynchronous lecture content",
+        "Training and onboarding videos",
+        "Multilingual course offerings",
+        "Social media for departments"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["API access", "Zapier", "Various LMS embed"],
+      "platformUrl": "https://heygen.com",
+      "domain": "heygen.com",
+      "lastUpdated": "2025-10-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "fliki",
+      "name": "Fliki",
+      "tagline": "Turn text into videos with AI voices and media",
+      "description": "Fliki enables fast content creation by turning text into videos with AI voices, stock media, and captions. It's perfect for creating educational materials, explainer videos, and social media content without filming.",
+      "category": "Image & Video",
+      "accent": "#f43f5e",
+      "badge": null,
+      "values": [
+        "Blog post to video in minutes — repurpose written content",
+        "2000+ realistic AI voices across 75+ languages",
+        "Auto-generates captions for accessibility compliance"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$28/mo",
+        "details": "Free tier with 5 minutes/mo. Standard at $28/mo."
+      },
+      "keyFeatures": [
+        "Text-to-video conversion",
+        "2000+ AI voices",
+        "75+ language support",
+        "Auto-captions",
+        "Stock media library",
+        "Brand kit support"
+      ],
+      "pros": [
+        "Very fast content creation",
+        "Large voice selection",
+        "Easy to use interface",
+        "Good for repurposing content"
+      ],
+      "cons": [
+        "Video quality varies",
+        "Limited customization",
+        "Can feel generic"
+      ],
+      "bestFor": [
+        "Quick explainer videos",
+        "Social media content",
+        "Repurposing blog content",
+        "Accessibility compliance"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["YouTube", "Social media platforms"],
+      "platformUrl": "https://fliki.ai",
+      "domain": "fliki.ai",
+      "lastUpdated": "2025-08-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "sora",
+      "name": "Sora",
+      "tagline": "OpenAI's groundbreaking text-to-video model",
+      "description": "Sora is OpenAI's text-to-video model that generates realistic, high-quality video from text descriptions. It can create up to a minute of video maintaining visual quality and adherence to the user's prompt.",
+      "category": "Image & Video",
+      "accent": "#10a37f",
+      "badge": "new",
+      "values": [
+        "Highest quality AI video generation currently available",
+        "Create realistic scenario videos for case studies and simulations",
+        "Part of OpenAI ecosystem — works with ChatGPT workflows"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty"],
+      "pricing": {
+        "model": "paid",
+        "startingPrice": "$20/mo",
+        "details": "Included with ChatGPT Plus ($20/mo) and Pro ($200/mo)."
+      },
+      "keyFeatures": [
+        "Text-to-video generation",
+        "Up to 1 minute of video",
+        "High visual quality",
+        "Scene consistency",
+        "Multiple aspect ratios",
+        "Integration with ChatGPT"
+      ],
+      "pros": [
+        "Highest quality AI video",
+        "Integrated with ChatGPT",
+        "Realistic motion and physics",
+        "Good prompt adherence"
+      ],
+      "cons": [
+        "Still has limitations with complex scenes",
+        "Generation times can be long",
+        "Expensive at Pro tier"
+      ],
+      "bestFor": [
+        "Case study visualizations",
+        "Concept demonstrations",
+        "Marketing materials",
+        "Creative projects"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["ChatGPT", "OpenAI API"],
+      "platformUrl": "https://openai.com/sora",
+      "domain": "openai.com",
+      "lastUpdated": "2025-12-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "ideogram",
+      "name": "Ideogram",
+      "tagline": "AI image generation with exceptional text rendering",
+      "description": "Ideogram is an AI image generator that excels at rendering readable text within images, making it ideal for creating infographics, diagrams, posters, and educational materials where text accuracy matters.",
+      "category": "Image & Video",
+      "accent": "#e879f9",
+      "badge": null,
+      "values": [
+        "Best AI tool for images that include readable text",
+        "Great for creating custom infographics and diagrams",
+        "Free tier is one of the most generous available"
+      ],
+      "tasks": ["Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$7/mo",
+        "details": "Free tier with 10 generations/day. Plus at $7/mo."
+      },
+      "keyFeatures": [
+        "Accurate text rendering in images",
+        "Multiple style options",
+        "Free daily generations",
+        "High-resolution output",
+        "Style customization",
+        "Prompt suggestions"
+      ],
+      "pros": [
+        "Best text rendering of any AI image tool",
+        "Generous free tier",
+        "Good for educational content",
+        "Easy to use"
+      ],
+      "cons": [
+        "Less artistic flexibility than Midjourney",
+        "Newer platform with smaller community",
+        "Limited advanced features"
+      ],
+      "bestFor": [
+        "Infographics with text",
+        "Educational diagrams",
+        "Posters and signage",
+        "Social media graphics"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Web-based"],
+      "platformUrl": "https://ideogram.ai",
+      "domain": "ideogram.ai",
+      "lastUpdated": "2025-09-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "removebg",
+      "name": "RemoveBG",
+      "tagline": "Instant AI background removal for any image",
+      "description": "RemoveBG uses AI to remove image backgrounds instantly with a single click. It's perfect for creating clean product photos, presentation graphics, and design assets without needing photo editing skills.",
+      "category": "Image & Video",
+      "accent": "#0ea5e9",
+      "badge": null,
+      "values": [
+        "One-click background removal — no Photoshop needed",
+        "Batch processing for multiple images at once",
+        "API available for integration into workflows"
+      ],
+      "tasks": ["Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$0.20/image",
+        "details": "Free for preview quality. Credits start at $0.20/image for HD."
+      },
+      "keyFeatures": [
+        "One-click background removal",
+        "Batch processing",
+        "API integration",
+        "High-resolution output",
+        "Background replacement",
+        "Browser extension"
+      ],
+      "pros": [
+        "Very fast and accurate",
+        "No learning curve",
+        "Good edge detection",
+        "API for automation"
+      ],
+      "cons": [
+        "Pay per image for HD",
+        "Limited editing features",
+        "Struggles with complex edges"
+      ],
+      "bestFor": [
+        "Presentation graphics",
+        "Marketing materials",
+        "Product photos",
+        "Quick edits"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["API", "Browser extension", "Adobe Photoshop"],
+      "platformUrl": "https://remove.bg",
+      "domain": "remove.bg",
+      "lastUpdated": "2025-07-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "notion-ai",
+      "name": "Notion AI",
+      "tagline": "AI-integrated workspace for notes, docs, and knowledge management",
+      "description": "Notion AI enhances the already-powerful Notion workspace with AI writing, summarization, and analysis capabilities. It can draft meeting notes, summarize long documents, generate action items, translate content, and answer questions about your workspace. Popular with academic departments for knowledge management, meeting documentation, and project coordination.",
+      "category": "Productivity",
+      "accent": "#e8e8e8",
+      "badge": null,
+      "values": [
+        "AI works inside your existing notes and documents — no copy-pasting",
+        "Summarize meeting notes, research, or student feedback instantly",
+        "Template gallery includes academic-specific workflows"
+      ],
+      "tasks": ["Administration", "Note-Taking", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$10/mo",
+        "details": "Free plan for individuals. Plus $10/mo. Business $18/mo. AI add-on $10/member/mo. Education discounts available."
+      },
+      "keyFeatures": [
+        "AI writing and editing within docs",
+        "Document summarization",
+        "Meeting notes with action items",
+        "Database and knowledge management",
+        "Project and task tracking",
+        "Wiki-style team documentation"
+      ],
+      "pros": [
+        "All-in-one workspace — notes, projects, wiki",
+        "AI feels natural in existing workflow",
+        "Great for department knowledge management",
+        "Flexible enough for any use case"
+      ],
+      "cons": [
+        "AI is an additional cost on top of plan",
+        "Can be overwhelming for simple needs",
+        "Learning curve for database features"
+      ],
+      "bestFor": [
+        "Department documentation and knowledge bases",
+        "Committee meeting management",
+        "Research project coordination",
+        "Personal productivity for academics"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Drive", "Slack", "GitHub", "Zapier", "Calendar apps"],
+      "platformUrl": "https://notion.so",
+      "domain": "notion.so",
+      "lastUpdated": "2025-11-10",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "otter",
+      "name": "Otter.ai",
+      "tagline": "Real-time meeting transcription and AI notes",
+      "description": "Otter.ai provides real-time transcription for meetings, lectures, and interviews with AI-generated summaries and action items. It can join Zoom, Teams, and Google Meet calls automatically, transcribe in real-time, and produce searchable, shareable notes. OtterPilot can even auto-generate follow-up emails from meeting content.",
+      "category": "Productivity",
+      "accent": "#3b82f6",
+      "badge": null,
+      "values": [
+        "Auto-transcribes meetings and lectures with speaker identification",
+        "Generates action items and key takeaways automatically",
+        "Integrates with Zoom, Teams, and Google Meet"
+      ],
+      "tasks": ["Note-Taking", "Administration"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$10/mo",
+        "details": "Free tier with 300 minutes/month. Pro $10/mo. Business $20/user/mo. Enterprise pricing available."
+      },
+      "keyFeatures": [
+        "Real-time meeting transcription",
+        "AI-generated summaries and action items",
+        "Auto-joins Zoom, Teams, Google Meet",
+        "Speaker identification",
+        "Searchable transcript archive",
+        "OtterPilot automated follow-ups"
+      ],
+      "pros": [
+        "Excellent transcription accuracy",
+        "Auto-join saves setup hassle",
+        "Searchable archive invaluable for reference",
+        "Free tier is genuinely useful"
+      ],
+      "cons": [
+        "Accuracy drops with heavy accents",
+        "Privacy concerns with recording meetings",
+        "Free tier minutes limit reached quickly"
+      ],
+      "bestFor": [
+        "Faculty committee meeting documentation",
+        "Lecture transcription for accessibility",
+        "Interview transcription for research",
+        "Administrative meeting records"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Zoom", "Microsoft Teams", "Google Meet", "Salesforce", "HubSpot"],
+      "platformUrl": "https://otter.ai",
+      "domain": "otter.ai",
+      "lastUpdated": "2025-10-25",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "copilot",
+      "name": "Copilot for Microsoft 365",
+      "tagline": "AI assistant across Word, Excel, PowerPoint, and Teams",
+      "description": "Microsoft Copilot integrates AI directly into the Microsoft 365 apps that many institutions already use. It can draft documents in Word, analyze data and create charts in Excel, generate presentations in PowerPoint, summarize Teams meetings, and manage email in Outlook. For institutions on Microsoft 365, it is the lowest-friction AI deployment option.",
+      "category": "Productivity",
+      "accent": "#0078d4",
+      "badge": "updated",
+      "values": [
+        "Works inside Word, Excel, PowerPoint, Outlook — your existing tools",
+        "Summarize email threads and meeting transcripts instantly",
+        "Generate presentations from Word documents automatically"
+      ],
+      "tasks": ["Administration", "Presentations", "Content Creation", "Note-Taking"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "paid",
+        "startingPrice": "$30/user/mo",
+        "details": "Copilot for Microsoft 365 at $30/user/mo. Requires Microsoft 365 E3/E5 or Business Standard/Premium license. Education pricing may vary."
+      },
+      "keyFeatures": [
+        "AI in Word, Excel, PowerPoint, Outlook, Teams",
+        "Draft documents from prompts in Word",
+        "Data analysis and chart creation in Excel",
+        "Presentation generation in PowerPoint",
+        "Meeting summaries in Teams",
+        "Email drafting and management in Outlook"
+      ],
+      "pros": [
+        "Works in tools your institution already pays for",
+        "No new app to learn — same Microsoft interface",
+        "Enterprise-grade security and compliance",
+        "Strong for administrative productivity"
+      ],
+      "cons": [
+        "Expensive per-user cost",
+        "Requires M365 enterprise license as prerequisite",
+        "AI quality inconsistent across apps",
+        "PowerPoint generation still behind Gamma/Canva"
+      ],
+      "bestFor": [
+        "Institutions fully invested in Microsoft ecosystem",
+        "Administrative productivity improvement",
+        "Meeting management and follow-up",
+        "Report and document generation"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Microsoft 365 suite", "SharePoint", "OneDrive", "Microsoft Teams"],
+      "platformUrl": "https://microsoft.com/microsoft-365/copilot",
+      "domain": "microsoft.com",
+      "lastUpdated": "2025-12-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "quizlet",
+      "name": "Quizlet",
+      "tagline": "AI-powered study platform with adaptive learning",
+      "description": "Quizlet has evolved from a simple flashcard app into an AI-powered study platform. Q-Chat acts as a personal tutor, adapting to each student's knowledge gaps. Magic Notes creates study materials from uploaded class notes or textbook photos. The platform supports 500+ million user-created study sets across every academic discipline.",
+      "category": "Student Tools",
+      "accent": "#6366f1",
+      "badge": null,
+      "values": [
+        "AI generates practice questions from any study material",
+        "Spaced repetition algorithm optimizes long-term retention",
+        "Faculty can create shared sets for entire courses"
+      ],
+      "tasks": ["Student Engagement", "Assessment"],
+      "roles": ["student", "faculty"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$8/mo",
+        "details": "Free tier with basic flashcards. Quizlet Plus $8/mo with AI features. Teacher plans available."
+      },
+      "keyFeatures": [
+        "Q-Chat AI personal tutor",
+        "Magic Notes from uploaded content",
+        "Adaptive study paths",
+        "500M+ existing study sets",
+        "Learn, Test, and Match study modes",
+        "Classroom activity modes (Quizlet Live)"
+      ],
+      "pros": [
+        "Students already know and use it",
+        "Massive existing content library",
+        "AI tutor adapts to knowledge gaps",
+        "Quizlet Live great for class engagement"
+      ],
+      "cons": [
+        "AI features require paid plan",
+        "User-generated content can have errors",
+        "Over-reliance on flashcards may not suit all subjects"
+      ],
+      "bestFor": [
+        "Vocabulary and terminology-heavy courses",
+        "Student self-study and review",
+        "In-class review games",
+        "Quick formative assessment"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Classroom", "Canvas", "iOS/Android apps"],
+      "platformUrl": "https://quizlet.com",
+      "domain": "quizlet.com",
+      "lastUpdated": "2025-09-25",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "quillbot",
+      "name": "QuillBot",
+      "tagline": "AI paraphrasing and writing enhancement tool",
+      "description": "QuillBot helps students and educators refine writing through AI-powered paraphrasing, grammar checking, and summarizing. It maintains original meaning while improving clarity and style, making it a valuable tool for developing academic writing skills.",
+      "category": "Student Tools",
+      "accent": "#22c55e",
+      "badge": null,
+      "values": [
+        "Paraphrasing modes teach different registers of academic writing",
+        "Summarizer condenses research articles to key points",
+        "Grammar checker explains rules — builds writing skills over time"
+      ],
+      "tasks": ["Writing Feedback"],
+      "roles": ["student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$9.95/mo",
+        "details": "Free tier with basic features. Premium at $9.95/mo."
+      },
+      "keyFeatures": [
+        "Multiple paraphrasing modes",
+        "Grammar and spelling check",
+        "Summarizer tool",
+        "Citation generator",
+        "Tone adjustment",
+        "Word suggestions"
+      ],
+      "pros": [
+        "Helps improve writing skills",
+        "Multiple paraphrasing styles",
+        "Good for ESL students",
+        "Easy to use"
+      ],
+      "cons": [
+        "Can encourage over-reliance",
+        "Free tier is limited",
+        "Sometimes awkward phrasing"
+      ],
+      "bestFor": [
+        "Academic writing improvement",
+        "ESL student support",
+        "Paraphrasing practice",
+        "Research summarization"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Chrome extension", "Microsoft Word", "Google Docs"],
+      "platformUrl": "https://quillbot.com",
+      "domain": "quillbot.com",
+      "lastUpdated": "2025-08-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "knowt",
+      "name": "Knowt",
+      "tagline": "AI study tool that turns notes into flashcards",
+      "description": "Knowt converts lecture notes, slides, and documents into flashcards and practice quizzes automatically using AI. It's free for students and designed to reduce study prep time while improving retention.",
+      "category": "Student Tools",
+      "accent": "#f97316",
+      "badge": "new",
+      "values": [
+        "Upload lecture notes or slides — AI generates study materials",
+        "Creates both flashcards and practice tests from the same content",
+        "Free for students — no institutional license needed"
+      ],
+      "tasks": ["Student Engagement"],
+      "roles": ["student"],
+      "pricing": {
+        "model": "freemium",
+        "details": "Free for students. Premium features available."
+      },
+      "keyFeatures": [
+        "AI note-to-flashcard conversion",
+        "Practice quiz generation",
+        "Spaced repetition learning",
+        "Document upload support",
+        "Study progress tracking",
+        "Collaborative study sets"
+      ],
+      "pros": [
+        "Free for students",
+        "Automatic study material creation",
+        "Saves significant prep time",
+        "Multiple content import options"
+      ],
+      "cons": [
+        "Newer platform",
+        "Less content library than Quizlet",
+        "AI accuracy varies"
+      ],
+      "bestFor": [
+        "Converting lecture notes to study materials",
+        "Quick quiz creation",
+        "Student self-study",
+        "Test preparation"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Web-based", "iOS/Android apps"],
+      "platformUrl": "https://knowt.com",
+      "domain": "knowt.com",
+      "lastUpdated": "2025-10-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "kahoot",
+      "name": "Kahoot!",
+      "tagline": "Game-based learning that makes education fun",
+      "description": "Kahoot! transforms classroom engagement through gamified quizzes, polls, and challenges. Students compete in real-time, earning points and climbing leaderboards. The AI Quiz feature can automatically generate quiz questions from any content, making prep faster. Widely used across K-12 and higher ed for formative assessment and review.",
+      "category": "Gamification",
+      "accent": "#46178f",
+      "badge": null,
+      "values": [
+        "AI generates complete quizzes from any topic or document",
+        "Live game mode energizes even the most reluctant students",
+        "Works for in-person, hybrid, and asynchronous formats"
+      ],
+      "tasks": ["Student Engagement", "Assessment"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$5/mo",
+        "details": "Free for basic quizzes. Kahoot+ starts at $3/mo for advanced features."
+      },
+      "keyFeatures": [
+        "Real-time multiplayer quizzes",
+        "AI Quiz generator from text/topics",
+        "Live polls and word clouds",
+        "Leaderboards and point systems",
+        "Assign as homework (self-paced)",
+        "Massive public quiz library"
+      ],
+      "pros": [
+        "Students love the game format",
+        "Instant engagement boost",
+        "Easy to create or find existing quizzes",
+        "Great for review sessions"
+      ],
+      "cons": [
+        "Can prioritize speed over learning",
+        "Free tier has limited features",
+        "May not suit every subject well"
+      ],
+      "bestFor": [
+        "Class review before exams",
+        "Icebreakers and warm-ups",
+        "Formative assessment during class",
+        "Making dry content more engaging"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Microsoft Teams", "Zoom", "Google Classroom", "Canvas", "Blackboard"],
+      "platformUrl": "https://kahoot.com",
+      "domain": "kahoot.com",
+      "lastUpdated": "2025-11-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "gimkit",
+      "name": "Gimkit",
+      "tagline": "The game show for the classroom",
+      "description": "Gimkit is a game-based learning platform where students answer questions to earn virtual currency, then use that currency to buy power-ups and upgrades. Created by a high school student, it has a uniquely engaging format that keeps students playing longer. The AI features help generate question sets quickly from any topic.",
+      "category": "Gamification",
+      "accent": "#0ea5e9",
+      "badge": null,
+      "values": [
+        "In-game economy with power-ups keeps students engaged longer",
+        "Multiple creative game modes (Classic, Trust No One, etc.)",
+        "AI question generation from any topic"
+      ],
+      "tasks": ["Student Engagement", "Assessment"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$10/mo",
+        "details": "Free tier with 5 games. Pro $10/mo. Gimkit Pro passes for students available."
+      },
+      "keyFeatures": [
+        "In-game economy with power-ups",
+        "Multiple game modes (Classic, Trust No One, etc.)",
+        "AI question generation",
+        "Homework mode for asynchronous play",
+        "Student-created kits",
+        "Real-time class analytics"
+      ],
+      "pros": [
+        "More engaging than traditional quizzes",
+        "Students genuinely want to play",
+        "Creative game modes keep it fresh",
+        "Good analytics on student performance"
+      ],
+      "cons": [
+        "Can get loud/competitive in class",
+        "Free tier is restrictive",
+        "Some modes distract from learning"
+      ],
+      "bestFor": [
+        "High-energy review sessions",
+        "End-of-unit assessments",
+        "Classes that struggle with engagement",
+        "Making homework more appealing"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Google Classroom", "Clever", "Canvas"],
+      "platformUrl": "https://gimkit.com",
+      "domain": "gimkit.com",
+      "lastUpdated": "2025-10-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "d-id",
+      "name": "D-ID",
+      "tagline": "Create AI presenters and talking head videos",
+      "description": "D-ID creates realistic talking head videos from a single photo and a script. Upload any portrait, type your text, and get a video of that face speaking your words. Used for creating personalized video messages, course introductions, and educational content where a human presenter is desired but not available.",
+      "category": "Avatars",
+      "accent": "#ec4899",
+      "badge": null,
+      "values": [
+        "Photo-to-video avatar creation in seconds",
+        "Custom avatar from your own photo",
+        "Multiple language and voice options"
+      ],
+      "tasks": ["Video & Media", "Content Creation"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$6/mo",
+        "details": "Free trial with limited credits. Lite $6/mo. Pro $24/mo. Enterprise available."
+      },
+      "keyFeatures": [
+        "Photo-to-video avatar creation",
+        "Custom avatar from your own photo",
+        "Multiple language support",
+        "Voice cloning integration",
+        "API for programmatic video creation",
+        "Batch video generation"
+      ],
+      "pros": [
+        "Very realistic lip sync",
+        "Easy to create personalized videos",
+        "Good for multilingual content",
+        "Fast video generation"
+      ],
+      "cons": [
+        "Can feel uncanny with certain photos",
+        "Ethical concerns about deepfakes",
+        "Credits run out quickly"
+      ],
+      "bestFor": [
+        "Personalized student messages",
+        "Course introduction videos",
+        "Multilingual course content",
+        "Marketing videos for programs"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["API access", "PowerPoint plugin"],
+      "platformUrl": "https://d-id.com",
+      "domain": "d-id.com",
+      "lastUpdated": "2025-09-20",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "suno",
+      "name": "Suno",
+      "tagline": "Create original songs with AI in seconds",
+      "description": "Suno generates complete, original songs including vocals, lyrics, and instrumentals from a simple text prompt. Describe the style, mood, and topic, and get a professional-sounding track in seconds. Useful for creating custom jingles, educational songs, podcast intros, or demonstrating music concepts in class.",
+      "category": "Music",
+      "accent": "#ec4899",
+      "badge": null,
+      "values": [
+        "Generate complete songs with vocals from a text description",
+        "Great for multimedia projects and creative course content",
+        "Students can explore music composition without instruments"
+      ],
+      "tasks": ["Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$10/mo",
+        "details": "Free tier with limited daily songs. Pro $10/mo. Premier $30/mo with commercial rights."
+      },
+      "keyFeatures": [
+        "Full song generation from text",
+        "Vocals with AI-generated lyrics",
+        "Multiple genre and style options",
+        "Extend and remix existing songs",
+        "Cover song creation",
+        "Instrumental-only option"
+      ],
+      "pros": [
+        "Incredibly easy to use",
+        "Quality is surprisingly good",
+        "Great for creative projects",
+        "Fast generation time"
+      ],
+      "cons": [
+        "Vocals can sound generic",
+        "Limited control over exact output",
+        "Copyright/licensing unclear for some uses"
+      ],
+      "bestFor": [
+        "Music education demonstrations",
+        "Podcast and video intros",
+        "Creative writing prompts",
+        "Student multimedia projects"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Web-based", "API access"],
+      "platformUrl": "https://suno.ai",
+      "domain": "suno.com",
+      "lastUpdated": "2025-11-01",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "aiva",
+      "name": "AIVA",
+      "tagline": "AI composer for emotional soundtrack music",
+      "description": "AIVA (Artificial Intelligence Virtual Artist) composes original classical, cinematic, and ambient music. Unlike Suno, it focuses on instrumental compositions with more control over style and emotion. Useful for creating background music for educational videos, presentations, and multimedia projects without licensing concerns.",
+      "category": "Music",
+      "accent": "#6366f1",
+      "badge": null,
+      "values": [
+        "Orchestral and cinematic compositions for professional content",
+        "Emotion and style presets for quick creation",
+        "Clear licensing for educational use"
+      ],
+      "tasks": ["Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$15/mo",
+        "details": "Free tier (limited, no commercial use). Standard $15/mo. Pro $49/mo with full ownership."
+      },
+      "keyFeatures": [
+        "Orchestral and cinematic compositions",
+        "Emotion and style presets",
+        "MIDI and stem export",
+        "Influence by uploading reference tracks",
+        "Variation generation",
+        "Loop and section control"
+      ],
+      "pros": [
+        "High-quality instrumental music",
+        "Good for video backgrounds",
+        "More control than fully automatic tools",
+        "Clear licensing for Pro users"
+      ],
+      "cons": [
+        "No vocals",
+        "Less intuitive than Suno",
+        "Classical/cinematic bias"
+      ],
+      "bestFor": [
+        "Educational video soundtracks",
+        "Presentation background music",
+        "Music theory demonstrations",
+        "Student film/media projects"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Web-based", "DAW export (MIDI)"],
+      "platformUrl": "https://aiva.ai",
+      "domain": "aiva.ai",
+      "lastUpdated": "2025-08-15",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "elevenlabs",
+      "name": "ElevenLabs",
+      "tagline": "The most realistic AI voice generation available",
+      "description": "ElevenLabs produces remarkably natural-sounding speech from text, with options for voice cloning, multiple languages, and fine-tuned emotion control. Widely considered the highest quality text-to-speech available. Used for narrating course content, creating audiobooks from course materials, and accessibility applications.",
+      "category": "Text to Speech",
+      "accent": "#00d4ff",
+      "badge": null,
+      "values": [
+        "Industry-leading voice quality — sounds truly human",
+        "Voice cloning from just a few minutes of audio",
+        "30+ languages with natural accents and intonation"
+      ],
+      "tasks": ["Content Creation", "Video & Media"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$5/mo",
+        "details": "Free tier with limited characters. Starter $5/mo. Creator $22/mo. Pro $99/mo."
+      },
+      "keyFeatures": [
+        "Industry-leading voice quality",
+        "Voice cloning from audio samples",
+        "30+ languages with native accents",
+        "Emotion and style control",
+        "Projects for long-form content",
+        "API for integration"
+      ],
+      "pros": [
+        "Best-in-class voice quality",
+        "Excellent for audiobook-style content",
+        "Voice cloning is remarkably accurate",
+        "Active development with frequent updates"
+      ],
+      "cons": [
+        "Free tier very limited",
+        "Voice cloning raises ethical concerns",
+        "Can be expensive for heavy use"
+      ],
+      "bestFor": [
+        "Narrating course videos",
+        "Creating audio versions of readings",
+        "Accessibility accommodations",
+        "Podcast production"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["API", "Descript", "Various video editors"],
+      "platformUrl": "https://elevenlabs.io",
+      "domain": "elevenlabs.io",
+      "lastUpdated": "2025-11-05",
+      "verified": true,
+      "staffPick": true
+    },
+    {
+      "slug": "murf",
+      "name": "Murf AI",
+      "tagline": "Studio-quality AI voiceovers in minutes",
+      "description": "Murf AI offers professional text-to-speech with 120+ voices across 20+ languages. The web-based studio includes a timeline editor for syncing voiceover with video, pitch/speed controls, and background music. Designed specifically for creating polished voiceover content rather than just raw text-to-speech.",
+      "category": "Text to Speech",
+      "accent": "#a855f7",
+      "badge": null,
+      "values": [
+        "Complete voiceover production tool — not just TTS",
+        "120+ AI voices across 20+ languages",
+        "Built-in timeline editor syncs with video"
+      ],
+      "tasks": ["Content Creation", "Video & Media"],
+      "roles": ["faculty", "administrator"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$29/mo",
+        "details": "Free trial. Basic $29/mo. Pro $59/mo. Enterprise available for institutions."
+      },
+      "keyFeatures": [
+        "120+ AI voices",
+        "Built-in video timeline editor",
+        "Voice cloning from samples",
+        "Pitch, speed, and pause control",
+        "Background music library",
+        "Collaboration features"
+      ],
+      "pros": [
+        "Complete voiceover production tool",
+        "Good variety of voices",
+        "Easy video synchronization",
+        "Team collaboration support"
+      ],
+      "cons": [
+        "More expensive than some alternatives",
+        "Voice quality below ElevenLabs",
+        "Some voices sound robotic"
+      ],
+      "bestFor": [
+        "Complete video voiceover production",
+        "Marketing and promotional videos",
+        "eLearning module narration",
+        "Training video production"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Canva", "Google Slides", "API"],
+      "platformUrl": "https://murf.ai",
+      "domain": "murf.ai",
+      "lastUpdated": "2025-09-10",
+      "verified": true,
+      "staffPick": false
+    },
+    {
+      "slug": "naturalreader",
+      "name": "NaturalReader",
+      "tagline": "Text-to-speech for accessibility and learning",
+      "description": "NaturalReader converts text to speech with a focus on accessibility and learning applications. It can read PDFs, web pages, and documents aloud, making it ideal for students with reading disabilities or anyone who prefers audio learning. The education version includes features for dyslexia support.",
+      "category": "Text to Speech",
+      "accent": "#22c55e",
+      "badge": null,
+      "values": [
+        "Read any document or webpage aloud",
+        "Chrome extension for instant web reading",
+        "Dyslexia-friendly features built in"
+      ],
+      "tasks": ["Content Creation"],
+      "roles": ["faculty", "student"],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": "$10/mo",
+        "details": "Free tier with basic voices. Premium $10/mo. Plus $15/mo with more voices."
+      },
+      "keyFeatures": [
+        "Read any document or webpage",
+        "Chrome extension for web reading",
+        "PDF and file upload support",
+        "Dyslexia-friendly features",
+        "Adjustable speed and voice",
+        "Offline desktop app"
+      ],
+      "pros": [
+        "Excellent accessibility tool",
+        "Very easy to use",
+        "Good for students with disabilities",
+        "Free tier is usable"
+      ],
+      "cons": [
+        "Voice quality not top-tier",
+        "Limited creative applications",
+        "Best for reading, not production"
+      ],
+      "bestFor": [
+        "Accessibility accommodations",
+        "Students who prefer audio",
+        "Proofreading by listening",
+        "Reading-intensive courses"
+      ],
+      "strengths": null,
+      "limitations": null,
+      "quickstart": null,
+      "integrations": ["Chrome extension", "Microsoft Word", "Google Docs"],
+      "platformUrl": "https://naturalreaders.com",
+      "domain": "naturalreaders.com",
+      "lastUpdated": "2025-07-20",
+      "verified": true,
+      "staffPick": false
+    }
+  ],
+  "categories": [
+    "All",
+    "General LLMs",
+    "Lesson Planning",
+    "Grading & Assessment",
+    "Research",
+    "Writing & Feedback",
+    "Presentations",
+    "Image & Video",
+    "Productivity",
+    "Student Tools",
+    "Gamification",
+    "Avatars",
+    "Music",
+    "Text to Speech"
+  ],
+  "lastUpdated": "2026-02-24"
+}
