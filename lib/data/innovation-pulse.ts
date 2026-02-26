@@ -19,31 +19,82 @@ const LEGACY_DATA_DIR = path.join(process.cwd(), 'lib/data/innovation-pulse');
 // ── Schema Normalization Helpers ─────────────────────────────────────────────
 // These handle differences between old format and new pipeline format
 
-// Map new pipeline category format to legacy StoryCategory type
-function mapCategory(cat: string): import('./innovation-pulse-types').StoryCategory {
-  const categoryMap: Record<string, import('./innovation-pulse-types').StoryCategory> = {
-    'CASE STUDIES': 'Teaching & Learning',
-    'LATEST AI PRODUCT RELEASES': 'Tools & Products',
-    'INSIGHTS & TRENDS': 'Research & Innovation',
-    'PRACTICAL TIPS': 'Teaching & Learning',
-    'ETHICAL AI': 'Policy & Ethics',
-    'BEYOND ED': 'Infrastructure & Operations',
-    'WEEK IN REVIEW': 'Leadership & Strategy',
-  };
-  // Check if it's already a valid StoryCategory
-  const validCategories = [
-    'Infrastructure & Operations',
-    'Teaching & Learning',
-    'Policy & Ethics',
-    'Tools & Products',
-    'Research & Innovation',
-    'Student Experience',
-    'Leadership & Strategy',
-  ];
-  if (validCategories.includes(cat)) {
-    return cat as import('./innovation-pulse-types').StoryCategory;
+// V4 Category type for direct mapping
+type V4CategoryName =
+  | "Insights & Trends"
+  | "Case Study"
+  | "Practical Tips"
+  | "Ethical AI"
+  | "Latest AI Products"
+  | "Beyond Ed"
+  | "Week in Review";
+
+// Valid V4 category names for validation
+const VALID_V4_CATEGORIES: V4CategoryName[] = [
+  "Insights & Trends",
+  "Case Study",
+  "Practical Tips",
+  "Ethical AI",
+  "Latest AI Products",
+  "Beyond Ed",
+  "Week in Review",
+];
+
+// UNIFIED category mapping: all input formats → V4 category names
+// This eliminates the double mapping (pipeline→old→V4) that was breaking categories
+const UNIFIED_TO_V4_MAP: Record<string, V4CategoryName> = {
+  // Pipeline uppercase format → V4
+  "CASE STUDIES": "Case Study",
+  "LATEST AI PRODUCT RELEASES": "Latest AI Products",
+  "INSIGHTS & TRENDS": "Insights & Trends",
+  "PRACTICAL TIPS": "Practical Tips",
+  "ETHICAL AI": "Ethical AI",
+  "BEYOND ED": "Beyond Ed",
+  "WEEK IN REVIEW": "Week in Review",
+  // Legacy format → V4
+  "Teaching & Learning": "Practical Tips",
+  "Research & Innovation": "Insights & Trends",
+  "Policy & Ethics": "Ethical AI",
+  "Tools & Products": "Latest AI Products",
+  "Infrastructure & Operations": "Case Study",
+  "Student Experience": "Beyond Ed",
+  "Leadership & Strategy": "Insights & Trends",
+  // V4 names pass through
+  "Insights & Trends": "Insights & Trends",
+  "Case Study": "Case Study",
+  "Practical Tips": "Practical Tips",
+  "Ethical AI": "Ethical AI",
+  "Latest AI Products": "Latest AI Products",
+  "Beyond Ed": "Beyond Ed",
+  "Week in Review": "Week in Review",
+};
+
+// Map ANY category format directly to V4 category name
+function mapCategoryToV4(cat: string): V4CategoryName {
+  // Check if it's already a valid V4 category
+  if (VALID_V4_CATEGORIES.includes(cat as V4CategoryName)) {
+    return cat as V4CategoryName;
   }
-  return categoryMap[cat] || 'Teaching & Learning';
+  // Otherwise map through unified mapping
+  return UNIFIED_TO_V4_MAP[cat] || "Insights & Trends";
+}
+
+// Map category for the internal StoryCategory type (for backward compat with types)
+// This now returns V4 names cast as StoryCategory since the UI handles both
+function mapCategory(cat: string): import('./innovation-pulse-types').StoryCategory {
+  const v4Category = mapCategoryToV4(cat);
+  // Return as StoryCategory - the UI's mapToV4Category will handle display
+  // Map V4 back to closest StoryCategory for type compatibility
+  const v4ToLegacyMap: Record<V4CategoryName, import('./innovation-pulse-types').StoryCategory> = {
+    "Insights & Trends": "Research & Innovation",
+    "Case Study": "Infrastructure & Operations",
+    "Practical Tips": "Teaching & Learning",
+    "Ethical AI": "Policy & Ethics",
+    "Latest AI Products": "Tools & Products",
+    "Beyond Ed": "Student Experience",
+    "Week in Review": "Leadership & Strategy",
+  };
+  return v4ToLegacyMap[v4Category];
 }
 
 // Helper to normalize episode data (handles both old and new formats)

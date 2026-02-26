@@ -14,74 +14,79 @@
   "segments": {
     "deepDive": {
       "title": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
+      "summary": "Researchers at UMass Boston warn that the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself. They argue universities risk transforming into 'output machines' rather than places that cultivate judgment. Without the cognitive challenges of drafting, revising, and failing, learning itself erodes.",
       "source": "The Conversation",
       "sourceUrl": "https://theconversation.com/the-greatest-risk-of-ai-in-higher-education-isnt-cheating-its-the-erosion-of-learning-itself-270243",
-      "category": "INSIGHTS & TRENDS"
+      "category": "Insights & Trends",
+      "editorialCallout": "This piece forces us to confront an uncomfortable truth: the convenience of AI may be antithetical to education's core purpose. The cognitive struggle of learning—including failure—isn't a bug to be optimized away; it's the feature."
     },
     "quickHits": [
       {
         "title": "At These Universities, Using AI Isn't Shunned — It's a Graduation Requirement",
+        "summary": "Purdue and Ohio State Universities are making AI competency a graduation requirement. Purdue is embedding AI 'working competency' across 35 courses starting fall 2025, while Ohio State's AI Fluency initiative requires all 2029 graduates to demonstrate AI competence. Nearly 90% of students already use AI academically.",
         "source": "The 74",
         "sourceUrl": "https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/",
-        "category": "INSIGHTS & TRENDS"
+        "category": "Practical Tips"
       },
       {
         "title": "Is AI Inescapable in Higher Education?",
+        "summary": "Seattle University's Technology Ethics Initiative is fostering crucial conversations on AI ethics. Director Onur Bakiner stresses the importance of providing basic AI, digital, and media literacy skills. Students voice concerns about AI diminishing work quality and critical thinking.",
         "source": "Seattle Spectator",
         "sourceUrl": "https://seattlespectator.com/2026/02/18/is-ai-inescapable-in-higher-education/",
-        "category": "INSIGHTS & TRENDS"
+        "category": "Ethical AI"
       },
       {
         "title": "Students Question Higher Education's Value Amid AI",
+        "summary": "Students at Ithaca College are questioning the value of traditional higher education amidst AI's rapid advancements. They're concerned about whether skills from conventional degrees will remain relevant as AI capabilities expand, highlighting tension between traditional education and evolving workforce demands.",
         "source": "The Ithacan",
         "sourceUrl": "https://theithacan.org/66431/news/students-question-the-value-of-higher-education-amid-ai/",
-        "category": "INSIGHTS & TRENDS"
+        "category": "Beyond Ed"
       }
     ]
   },
   "stories": [
     {
       "title": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
-      "summary": "",
+      "summary": "Researchers at UMass Boston warn that the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself. They argue universities risk transforming into 'output machines' rather than places that cultivate judgment. Without the cognitive challenges of drafting, revising, and failing, learning itself erodes.",
       "source": "The Conversation",
       "sourceUrl": "https://theconversation.com/the-greatest-risk-of-ai-in-higher-education-isnt-cheating-its-the-erosion-of-learning-itself-270243",
-      "category": "INSIGHTS & TRENDS",
+      "category": "Insights & Trends",
       "isDeveloping": false,
       "publishedAt": "2026-02-19"
     },
     {
       "title": "At These Universities, Using AI Isn't Shunned — It's a Graduation Requirement",
-      "summary": "",
+      "summary": "Purdue and Ohio State Universities are making AI competency a graduation requirement. Purdue is embedding AI 'working competency' across 35 courses starting fall 2025, while Ohio State's AI Fluency initiative requires all 2029 graduates to demonstrate AI competence.",
       "source": "The 74",
       "sourceUrl": "https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/",
-      "category": "INSIGHTS & TRENDS",
+      "category": "Practical Tips",
       "isDeveloping": false,
       "publishedAt": "2026-02-17"
     },
     {
       "title": "Is AI Inescapable in Higher Education?",
-      "summary": "",
+      "summary": "Seattle University's Technology Ethics Initiative is fostering crucial conversations on AI ethics. Director Onur Bakiner stresses the importance of providing basic AI, digital, and media literacy skills. Students voice concerns about AI diminishing work quality and critical thinking.",
       "source": "Seattle Spectator",
       "sourceUrl": "https://seattlespectator.com/2026/02/18/is-ai-inescapable-in-higher-education/",
-      "category": "INSIGHTS & TRENDS",
+      "category": "Ethical AI",
       "isDeveloping": false,
       "publishedAt": "2026-02-18"
     },
     {
       "title": "Students Question Higher Education's Value Amid AI",
-      "summary": "",
+      "summary": "Students at Ithaca College are questioning the value of traditional higher education amidst AI's rapid advancements. They're concerned about whether skills from conventional degrees will remain relevant as AI capabilities expand.",
       "source": "The Ithacan",
       "sourceUrl": "https://theithacan.org/66431/news/students-question-the-value-of-higher-education-amid-ai/",
-      "category": "INSIGHTS & TRENDS",
+      "category": "Beyond Ed",
       "isDeveloping": false,
       "publishedAt": "2026-02-18"
     },
     {
       "title": "Aoun Urges Higher Education Institutions to Embrace AI",
-      "summary": "",
+      "summary": "Northeastern University's President Joseph E. Aoun urges higher education institutions to embrace AI technologies. Aoun has long championed AI on campus and encourages the broader educational community to integrate AI in ways that genuinely enhance learning.",
       "source": "The Huntington News",
       "sourceUrl": "https://huntnewsnu.com/91291/campus/aoun-urges-higher-education-institutions-to-embrace-ai-in-boston-globe-op-ed/",
-      "category": "CASE STUDIES",
+      "category": "Insights & Trends",
       "isDeveloping": false,
       "publishedAt": "2026-02-13"
     }

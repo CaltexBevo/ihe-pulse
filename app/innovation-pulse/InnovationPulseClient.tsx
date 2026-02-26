@@ -254,7 +254,35 @@ export default function InnovationPulseClient({
     audio.currentTime = percentage * duration;
   };
 
-  // Separate this week's episodes from the archive
+  // Generate all 5 weekday slots (Mon-Fri) for the current week
+  const weekdaySlots = useMemo(() => {
+    if (!episode) return [];
+    const todayDate = new Date(episode.date + "T12:00:00");
+    const dayOfWeek = todayDate.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const mondayDate = new Date(todayDate);
+    mondayDate.setDate(todayDate.getDate() + mondayOffset);
+
+    const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    const slots: { date: string; dayName: string; dayNum: number; episode: InnovationPulseEpisode | null; isToday: boolean }[] = [];
+
+    for (let i = 0; i < 5; i++) {
+      const slotDate = new Date(mondayDate);
+      slotDate.setDate(mondayDate.getDate() + i);
+      const dateStr = slotDate.toISOString().split("T")[0];
+      const ep = allEpisodes.find(e => e.date === dateStr) || null;
+      slots.push({
+        date: dateStr,
+        dayName: weekdays[i],
+        dayNum: slotDate.getDate(),
+        episode: ep,
+        isToday: dateStr === episode.date,
+      });
+    }
+    return slots;
+  }, [allEpisodes, episode]);
+
+  // Separate this week's episodes from the archive (for other uses)
   const thisWeekEpisodes = useMemo(() => {
     if (!episode) return [];
     const todayDate = new Date(episode.date + "T12:00:00");
@@ -283,7 +311,22 @@ export default function InnovationPulseClient({
     });
   }, [allEpisodes, episode]);
 
-  // Get all stories from current week only, mapped to V4 categories
+  // Get ALL stories from all episodes, mapped to V4 categories (for category sections)
+  const allStoriesWithV4 = useMemo((): AggregatedStoryWithV4[] => {
+    const stories: AggregatedStoryWithV4[] = [];
+    for (const category of Object.keys(storiesByCategory)) {
+      const categoryStories = storiesByCategory[category] || [];
+      for (const story of categoryStories) {
+        stories.push({
+          ...story,
+          v4Category: mapToV4Category(story.category),
+        });
+      }
+    }
+    return stories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }, [storiesByCategory]);
+
+  // Get stories from current week only (for "This Week" context)
   const thisWeekStories = useMemo((): AggregatedStoryWithV4[] => {
     if (!episode) return [];
     const todayDate = new Date(episode.date + "T12:00:00");
@@ -293,34 +336,22 @@ export default function InnovationPulseClient({
     mondayDate.setDate(todayDate.getDate() + mondayOffset);
     const mondayStr = mondayDate.toISOString().split("T")[0];
 
-    const stories: AggregatedStoryWithV4[] = [];
-    for (const category of Object.keys(storiesByCategory)) {
-      const categoryStories = storiesByCategory[category] || [];
-      for (const story of categoryStories) {
-        if (story.date >= mondayStr) {
-          stories.push({
-            ...story,
-            v4Category: mapToV4Category(story.category),
-          });
-        }
-      }
-    }
-    return stories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [storiesByCategory, episode]);
+    return allStoriesWithV4.filter(story => story.date >= mondayStr);
+  }, [allStoriesWithV4, episode]);
 
-  // Group stories by V4 category
+  // Group ALL stories by V4 category (for category sections showing all data)
   const storiesByV4Category = useMemo(() => {
     const result: Record<V4Category, AggregatedStoryWithV4[]> = {} as Record<V4Category, AggregatedStoryWithV4[]>;
     for (const cat of V4_CATEGORIES) {
       result[cat] = [];
     }
-    for (const story of thisWeekStories) {
+    for (const story of allStoriesWithV4) {
       if (result[story.v4Category]) {
         result[story.v4Category].push(story);
       }
     }
     return result;
-  }, [thisWeekStories]);
+  }, [allStoriesWithV4]);
 
   // Get V4 categories with stories
   const categorizedStories = useMemo(() => {
@@ -482,45 +513,51 @@ export default function InnovationPulseClient({
             </div>
 
             {/* ═══════════════════════════════════════════════════════
-                DAY PILLS - Quick access to this week's audio
+                DAY PILLS - All 5 weekdays (Mon-Fri)
                 ═══════════════════════════════════════════════════════ */}
             <div className="flex flex-wrap items-center gap-2 mt-4">
               <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mr-1">
                 This Week:
               </span>
-              {/* Today's pill (always first) */}
-              <button
-                onClick={() => setSelectedAudioDate(null)}
-                className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
-                  !selectedAudioDate
-                    ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
-                    : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
-                }`}
-              >
-                <span className="font-mono text-[0.65rem] font-semibold">
-                  {episode.dayOfWeek.slice(0, 3)} {new Date(episode.date + "T12:00:00").getDate()}
-                </span>
-                <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-                <span className="font-mono text-[0.6rem]">{episode.audioDuration}</span>
-              </button>
-              {/* Previous days this week */}
-              {thisWeekEpisodes.map((ep) => (
-                <button
-                  key={ep.date}
-                  onClick={() => selectAudioDay(ep.date)}
-                  className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
-                    selectedAudioDate === ep.date
-                      ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
-                      : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
-                  }`}
-                >
-                  <span className="font-mono text-[0.65rem] font-semibold">
-                    {ep.dayOfWeek.slice(0, 3)} {new Date(ep.date + "T12:00:00").getDate()}
-                  </span>
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-                  <span className="font-mono text-[0.6rem]">{ep.audioDuration}</span>
-                </button>
-              ))}
+              {/* All 5 weekday pills (Mon-Fri) */}
+              {weekdaySlots.map((slot) => {
+                const hasEpisode = !!slot.episode;
+                const isSelected = slot.isToday ? !selectedAudioDate : selectedAudioDate === slot.date;
+
+                if (hasEpisode) {
+                  return (
+                    <button
+                      key={slot.date}
+                      onClick={() => slot.isToday ? setSelectedAudioDate(null) : selectAudioDay(slot.date)}
+                      className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
+                        isSelected
+                          ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
+                          : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
+                      }`}
+                    >
+                      <span className="font-mono text-[0.65rem] font-semibold">
+                        {slot.dayName} {slot.dayNum}
+                      </span>
+                      <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+                      <span className="font-mono text-[0.6rem]">{slot.episode?.audioDuration}</span>
+                    </button>
+                  );
+                } else {
+                  // No episode for this day - show dimmed/disabled pill
+                  return (
+                    <span
+                      key={slot.date}
+                      className="flex items-center gap-2 px-3 py-[0.4rem] rounded-full border border-[var(--border)] text-[var(--text-muted)] opacity-50 cursor-not-allowed"
+                    >
+                      <span className="font-mono text-[0.65rem] font-semibold">
+                        {slot.dayName} {slot.dayNum}
+                      </span>
+                      <span className="w-[5px] h-[5px] rounded-full bg-[var(--surface-2)]" />
+                      <span className="font-mono text-[0.6rem]">--:--</span>
+                    </span>
+                  );
+                }
+              })}
               {/* Archive link */}
               <Link
                 href="/innovation-pulse/archive"

@@ -1,5 +1,35 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## v1.0.0 — February 26, 2026 (Critical Data & UI Fix)
+
+### Data Fixes
+- Restored story summaries for Feb 23 (extracted from broadcast script)
+- Fixed category assignments across all 7 V4 categories
+- Merged legacy + pipeline data sources so no content is lost
+- All stories now have non-empty summaries (no more empty strings)
+
+### Category Mapping Fix
+- Eliminated double category mapping (pipeline → old → V4)
+- V4 category names from pipeline now pass through directly
+- Pipeline uppercase categories (CASE STUDIES, etc.) map directly to V4
+- Legacy category names properly mapped to V4
+- Unified mapping in `lib/data/innovation-pulse.ts`
+
+### UI Fixes
+- Restored 5 weekday pills below audio player (Mon-Fri)
+- Days without episodes show as dimmed/disabled pills
+- Days with episodes show green dot + duration
+- Category sections now pull from ALL available data (legacy + pipeline)
+- All 7 V4 category filter pills visible (dimmed if no stories)
+- Story aggregation includes all episodes, not just current week
+
+### Files Modified
+- `data/daily-pulse/2026-02-23.json` — Populated summaries, fixed categories
+- `lib/data/innovation-pulse.ts` — Unified category mapping to V4
+- `app/innovation-pulse/InnovationPulseClient.tsx` — 5 weekday pills, all-episode aggregation
+
+---
+
 ## [2026-02-25] Data Source Fix: Pipeline Integration
 
 ### Data Loading Fix (lib/data/innovation-pulse.ts)
