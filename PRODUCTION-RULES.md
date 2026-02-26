@@ -247,3 +247,29 @@ Story JSON files can use either old or new category names; the client maps them 
 - Category archives: `/innovation-pulse/category/[category-slug]`
 - Audio archive: `/innovation-pulse/archive`
 - Category slugs: insights-and-trends, case-study, practical-tips, ethical-ai, latest-ai-products, beyond-ed, week-in-review
+
+---
+
+## 15. Deployment Rules (Added Feb 26, 2026)
+
+### Local-First Verification
+- NEVER push to origin/main without reviewing at localhost:3000 first
+- Workflow: make changes → npm run dev → verify visually → stakeholder approves → git push
+- Vercel deploys automatically on push to main — treat every push as a production deploy
+
+### Data Integrity Rules
+- Every story MUST have a non-empty `summary` field (minimum: "Read the full story for details.")
+- Pipeline must not overwrite existing date files without explicit --force flag
+- After any data routing change, verify that ALL data sources are still loading (legacy + pipeline)
+- Run `grep -r '"summary": ""' data/` after any pipeline run to catch empty summaries
+
+### Category Rules (V4 Categories)
+- 7 categories: Insights & Trends, Case Study, Practical Tips, Ethical AI, Latest AI Products, Beyond Ed, Week in Review
+- Use V4 names directly in pipeline output — no uppercase, no old format names
+- Single mapping layer only — UNIFIED_TO_V4_MAP in innovation-pulse.ts is the source of truth
+- Every story must have a category from the V4 list
+
+### Version Tracking
+- Semantic versioning in CHANGELOG.md (MAJOR.MINOR.PATCH)
+- Every push to main gets a changelog entry with date and description
+- Breaking changes increment MAJOR, new features MINOR, fixes PATCH

@@ -40,10 +40,28 @@
 
 ---
 
+## Completed This Sprint (Feb 26, 2026)
+
+### Build 12: Data Recovery + Category Fix + UI Restoration (Feb 26)
+- [x] Fix category mapping (unified V4 mapping) — Feb 26
+- [x] Merge legacy + pipeline data sources — Feb 26
+- [x] 5 weekday pills below audio player — Feb 26
+- [x] Lead story full editorial treatment — Feb 26
+- [x] Story cards with real summaries — Feb 26
+- [x] All 7 V4 category sections — Feb 26
+- [x] Restored Feb 19 & Feb 23 data with summaries extracted from broadcast scripts
+- [x] Local-first verification workflow (localhost review before push)
+
+---
+
 ## Current Sprint
 
 ### IN PROGRESS
-- [ ] Verify Vercel deployment and test all new routes
+- [ ] Pipeline: populate story summaries automatically (not empty strings)
+- [ ] Pipeline: date-collision protection (don't overwrite existing data without flag)
+- [ ] Pipeline: proper V4 category assignment in broadcastRewriter.js
+- [ ] Generate full week of pipeline data (Mon-Fri) to populate weekday pills
+- [ ] Local verification workflow enforcement (never push without localhost review)
 
 ### READY TO BUILD
 - [ ] Week in Review category for Friday synthesis

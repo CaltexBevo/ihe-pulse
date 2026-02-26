@@ -1,30 +1,49 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
-## v1.0.0 — February 26, 2026 (Critical Data & UI Fix)
+## v1.1.0 — February 26, 2026 (Build 12: Data Recovery + Category Fix + UI Restoration)
 
-### Data Fixes
-- Restored story summaries for Feb 23 (extracted from broadcast script)
-- Fixed category assignments across all 7 V4 categories
-- Merged legacy + pipeline data sources so no content is lost
-- All stories now have non-empty summaries (no more empty strings)
+### Critical Fix: Data Recovery
+- Pipeline re-run (commit ffccb89) had overwritten Feb 23 data with empty story summaries
+- Extracted real summaries from broadcast scripts for all Feb 23 stories
+- Restored Feb 19 data with proper summaries and editorial callouts
+- All story files now verified: zero empty summary fields
 
-### Category Mapping Fix
-- Eliminated double category mapping (pipeline → old → V4)
-- V4 category names from pipeline now pass through directly
-- Pipeline uppercase categories (CASE STUDIES, etc.) map directly to V4
-- Legacy category names properly mapped to V4
-- Unified mapping in `lib/data/innovation-pulse.ts`
+### Category Mapping Overhaul
+- Eliminated broken double-mapping (pipeline → old format → V4) that mangled category names
+- Created unified UNIFIED_TO_V4_MAP handling all formats in one pass:
+  - V4 names pass through directly (no mapping needed)
+  - Pipeline uppercase names (e.g., "CASE STUDIES" → "Case Study")
+  - Legacy names (e.g., "Teaching & Learning" → "Practical Tips")
+- Fixed incorrect category assignments on Feb 23 stories (Dartmouth → Insights & Trends, AAC&U → Practical Tips, etc.)
 
-### UI Fixes
-- Restored 5 weekday pills below audio player (Mon-Fri)
-- Days without episodes show as dimmed/disabled pills
-- Days with episodes show green dot + duration
-- Category sections now pull from ALL available data (legacy + pipeline)
-- All 7 V4 category filter pills visible (dimmed if no stories)
-- Story aggregation includes all episodes, not just current week
+### Data Routing Fix
+- Page now merges BOTH data sources: `data/daily-pulse/` (pipeline) + `lib/data/innovation-pulse/` (legacy)
+- Primary source preferred for duplicate dates, legacy fills gaps
+- Stories aggregate across ALL episodes for category sections
+
+### UI Restoration
+- 5 weekday pills (Mon-Fri) always shown below audio player
+  - Active day: green dot + duration
+  - Future/missing days: dimmed with "--:--"
+- Lead story section now shows full editorial treatment with complete summary + "Our Take" editorial callout
+- All 7 V4 category filter pills visible (Insights & Trends, Case Study, Practical Tips, Ethical AI, Latest AI Products, Beyond Ed, Week in Review)
+- Category sections populated from all available episodes (legacy + pipeline combined)
+- Story cards show real summaries with "+ Read more" expand toggle
+
+### Process Improvement
+- Adopted local-first verification: `npm run dev` → review at localhost → approve → then push
+- No more pushing broken code directly to Vercel production
+- Added revision tracking with semantic versioning in CHANGELOG
+
+### Lessons Learned
+- Pipeline can overwrite good data if it re-runs for the same date — need date-collision protection
+- Data routing changes must be tested against BOTH data sources before deploying
+- Empty summary fields break the entire user experience — pipeline must enforce non-empty summaries
+- Double category mapping creates silent bugs — use single unified mapping
 
 ### Files Modified
 - `data/daily-pulse/2026-02-23.json` — Populated summaries, fixed categories
+- `data/daily-pulse/2026-02-19.json` — Populated summaries, fixed categories
 - `lib/data/innovation-pulse.ts` — Unified category mapping to V4
 - `app/innovation-pulse/InnovationPulseClient.tsx` — 5 weekday pills, all-episode aggregation
 
