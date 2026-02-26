@@ -484,53 +484,51 @@ export default function InnovationPulseClient({
             {/* ═══════════════════════════════════════════════════════
                 DAY PILLS - Quick access to this week's audio
                 ═══════════════════════════════════════════════════════ */}
-            {thisWeekEpisodes.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2 mt-4">
-                <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mr-1">
-                  This Week:
+            <div className="flex flex-wrap items-center gap-2 mt-4">
+              <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mr-1">
+                This Week:
+              </span>
+              {/* Today's pill (always first) */}
+              <button
+                onClick={() => setSelectedAudioDate(null)}
+                className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
+                  !selectedAudioDate
+                    ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
+                    : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
+                }`}
+              >
+                <span className="font-mono text-[0.65rem] font-semibold">
+                  {episode.dayOfWeek.slice(0, 3)} {new Date(episode.date + "T12:00:00").getDate()}
                 </span>
-                {/* Today's pill (always first) */}
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+                <span className="font-mono text-[0.6rem]">{episode.audioDuration}</span>
+              </button>
+              {/* Previous days this week */}
+              {thisWeekEpisodes.map((ep) => (
                 <button
-                  onClick={() => setSelectedAudioDate(null)}
+                  key={ep.date}
+                  onClick={() => selectAudioDay(ep.date)}
                   className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
-                    !selectedAudioDate
+                    selectedAudioDate === ep.date
                       ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
                       : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
                   }`}
                 >
                   <span className="font-mono text-[0.65rem] font-semibold">
-                    {episode.dayOfWeek.slice(0, 3)} {new Date(episode.date + "T12:00:00").getDate()}
+                    {ep.dayOfWeek.slice(0, 3)} {new Date(ep.date + "T12:00:00").getDate()}
                   </span>
                   <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-                  <span className="font-mono text-[0.6rem]">{episode.audioDuration}</span>
+                  <span className="font-mono text-[0.6rem]">{ep.audioDuration}</span>
                 </button>
-                {/* Previous days */}
-                {thisWeekEpisodes.map((ep) => (
-                  <button
-                    key={ep.date}
-                    onClick={() => selectAudioDay(ep.date)}
-                    className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
-                      selectedAudioDate === ep.date
-                        ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
-                        : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
-                    }`}
-                  >
-                    <span className="font-mono text-[0.65rem] font-semibold">
-                      {ep.dayOfWeek.slice(0, 3)} {new Date(ep.date + "T12:00:00").getDate()}
-                    </span>
-                    <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-                    <span className="font-mono text-[0.6rem]">{ep.audioDuration}</span>
-                  </button>
-                ))}
-                {/* Archive link */}
-                <Link
-                  href="/innovation-pulse/archive"
-                  className="font-mono text-[0.6rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors ml-2"
-                >
-                  Full archive →
-                </Link>
-              </div>
-            )}
+              ))}
+              {/* Archive link */}
+              <Link
+                href="/innovation-pulse/archive"
+                className="font-mono text-[0.6rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors ml-2"
+              >
+                Full archive →
+              </Link>
+            </div>
           </div>
 
           {/* Right Sidebar: About Card + TOC */}
@@ -703,26 +701,46 @@ export default function InnovationPulseClient({
           </button>
           {V4_CATEGORIES.map((cat) => {
             const count = storiesByV4Category[cat]?.length || 0;
-            if (count === 0) return null;
+            const hasStoriesThisWeek = count > 0;
             const catId = cat.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
+            const catSlug = V4_CATEGORY_SLUGS[cat];
             const catColor = V4_CATEGORY_COLORS[cat];
-            return (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  scrollToCategory(catId);
-                }}
-                className={`filter-pill ${selectedCategory === cat ? "active" : ""}`}
-                style={{
-                  borderColor: selectedCategory === cat ? catColor?.hex : undefined,
-                  color: selectedCategory === cat ? catColor?.hex : undefined,
-                  backgroundColor: selectedCategory === cat ? `${catColor?.hex}15` : undefined,
-                }}
-              >
-                {cat}
-              </button>
-            );
+
+            // If category has stories this week, scroll to section; otherwise link to archive
+            if (hasStoriesThisWeek) {
+              return (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    scrollToCategory(catId);
+                  }}
+                  className={`filter-pill ${selectedCategory === cat ? "active" : ""}`}
+                  style={{
+                    borderColor: selectedCategory === cat ? catColor?.hex : undefined,
+                    color: selectedCategory === cat ? catColor?.hex : undefined,
+                    backgroundColor: selectedCategory === cat ? `${catColor?.hex}15` : undefined,
+                  }}
+                >
+                  {cat}
+                </button>
+              );
+            } else {
+              // No stories this week - link to category archive
+              return (
+                <Link
+                  key={cat}
+                  href={`/innovation-pulse/category/${catSlug}`}
+                  className="filter-pill opacity-60 hover:opacity-100"
+                  style={{
+                    borderColor: `${catColor?.hex}40`,
+                    color: catColor?.hex,
+                  }}
+                >
+                  {cat}
+                </Link>
+              );
+            }
           })}
         </div>
       </div>
