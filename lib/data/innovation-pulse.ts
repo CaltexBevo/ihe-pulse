@@ -11,31 +11,67 @@ import type { InnovationPulseEpisode } from './innovation-pulse-types';
 
 // ── Data Loading Utilities ───────────────────────────────────────────────────
 
-const DATA_DIR = path.join(process.cwd(), 'lib/data/innovation-pulse');
+// Primary data source: data/daily-pulse (where pipeline publishes new episodes)
+// Fallback: lib/data/innovation-pulse (legacy static data)
+const PRIMARY_DATA_DIR = path.join(process.cwd(), 'data/daily-pulse');
+const LEGACY_DATA_DIR = path.join(process.cwd(), 'lib/data/innovation-pulse');
 
 export function getAllEpisodes(): InnovationPulseEpisode[] {
-  try {
-    const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith('.json'));
-    const episodes: InnovationPulseEpisode[] = files
-      .map((file) => {
-        const content = fs.readFileSync(path.join(DATA_DIR, file), 'utf-8');
-        return JSON.parse(content) as InnovationPulseEpisode;
-      })
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    return episodes;
-  } catch {
-    return [];
-  }
+  const episodes: InnovationPulseEpisode[] = [];
+  const seenDates = new Set<string>();
+
+  // Helper to load episodes from a directory
+  const loadFromDir = (dir: string) => {
+    try {
+      if (!fs.existsSync(dir)) return;
+      const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json') && !f.startsWith('.'));
+      for (const file of files) {
+        try {
+          const content = fs.readFileSync(path.join(dir, file), 'utf-8');
+          const episode = JSON.parse(content) as InnovationPulseEpisode;
+          // Avoid duplicates - prefer primary source
+          if (!seenDates.has(episode.date)) {
+            seenDates.add(episode.date);
+            episodes.push(episode);
+          }
+        } catch {
+          // Skip invalid JSON files
+        }
+      }
+    } catch {
+      // Directory doesn't exist or isn't readable
+    }
+  };
+
+  // Load from primary source first (pipeline-published episodes)
+  loadFromDir(PRIMARY_DATA_DIR);
+  // Then load legacy data (avoids duplicates via seenDates)
+  loadFromDir(LEGACY_DATA_DIR);
+
+  // Sort by date, newest first
+  return episodes.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getEpisodeByDate(date: string): InnovationPulseEpisode | null {
+  // Try primary source first
   try {
-    const filePath = path.join(DATA_DIR, `${date}.json`);
-    const content = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(content) as InnovationPulseEpisode;
-  } catch {
-    return null;
-  }
+    const primaryPath = path.join(PRIMARY_DATA_DIR, `${date}.json`);
+    if (fs.existsSync(primaryPath)) {
+      const content = fs.readFileSync(primaryPath, 'utf-8');
+      return JSON.parse(content) as InnovationPulseEpisode;
+    }
+  } catch { /* continue to fallback */ }
+
+  // Try legacy source
+  try {
+    const legacyPath = path.join(LEGACY_DATA_DIR, `${date}.json`);
+    if (fs.existsSync(legacyPath)) {
+      const content = fs.readFileSync(legacyPath, 'utf-8');
+      return JSON.parse(content) as InnovationPulseEpisode;
+    }
+  } catch { /* not found */ }
+
+  return null;
 }
 
 export function getLatestEpisode(): InnovationPulseEpisode | null {
