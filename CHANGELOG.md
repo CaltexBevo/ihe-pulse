@@ -1,5 +1,22 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-02-25] Data Source Fix: Pipeline Integration
+
+### Data Loading Fix (lib/data/innovation-pulse.ts)
+- **Fixed data directory mismatch**: App now reads from `data/daily-pulse/` where the pipeline publishes new episodes
+- **Dual source support**: Reads from primary (`data/daily-pulse/`) then fallback (`lib/data/innovation-pulse/`) for legacy data
+- **Automatic deduplication**: Episodes from primary source take precedence
+- **Feb 23 episode now visible**: Monday's Practitioner's Playbook episode appears on homepage and Innovation Pulse page
+
+### Pipeline Integration
+- Episodes published by ihe-tools-server pipeline now automatically appear on the site
+- No manual copying required — Vercel auto-deploys when GitHub receives new episode JSON
+
+### Files Modified
+- `lib/data/innovation-pulse.ts` — Updated `getAllEpisodes()` and `getEpisodeByDate()` to read from dual sources
+
+---
+
 ## [2026-02-24] Build 13.4.1: Route Fix & URL Standardization
 
 ### Route Fixes
