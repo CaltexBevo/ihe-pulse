@@ -6,92 +6,92 @@
     "description": "Challenge assumptions. Question hype. Push back on easy narratives.",
     "color": "#fb7185"
   },
-  "episodeTitle": "Colleges face a choice: Try to shape AI's impact on learning, or be redefined by it. | Guest Commentaries | columbiamissourian.com",
+  "episodeTitle": "Colleges face a choice: Try to shape AI's impact on learning, or be redefined by it.",
   "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-24.mp3",
   "audioDuration": "2:50",
   "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed dot com, where we cover the latest stories in A.I. in Education. It's Tuesday, February 24, 2026. Today, we delve into a crucial decision facing colleges: Will they shape A.I.'s impact on learning, or be redefined by it?\n\nLet's take a closer look at a provocative piece from the Columbia Missourian that questions whether higher education institutions are taking active steps to integrate A.I. into their learning ecosystems, or passively allowing themselves to be reshaped by the technology. The article highlights the growing tension between embracing A.I. as a tool for enhancing education versus the risk of being left behind as A.I. reshapes the educational landscape. The real question is, are universities taking strategic steps to ensure A.I. serves their educational missions, or are they at risk of having those missions dictated by technological advancements? As educators, it's worth considering how actively your own institution is engaging with A.I. — is there a plan, or just a hope that it will all work out? \n\nMeanwhile, at a recent summit hosted by Florida International University, leaders from various sectors discussed how higher education must adapt to thrive amidst rapid technological change. The key takeaway was the urgent need for universities to collaborate with industry to ensure students are equipped with not just the knowledge, but the skills to navigate an A.I.-infused job market. It's not just about keeping pace; it's about redefining what education needs to be in this new era.\n\nShifting to South Korea, Chungnam National University is making waves with its bold integration of A.I. across campus life. From an A.I. chatbot to an academic support system, they're embedding technology deeply into their operations. It's an ambitious move and raises a question: How can institutions balance the use of A.I. with maintaining a human touch in education?\n\nOver in North Carolina, N.C. A&T faculty members are being recognized as A.I. champions, an indication that individual educators are also stepping up to lead in this space. This recognition underscores the importance of having champions within institutions who can drive thoughtful A.I. integration.\n\nAs a final note, half of U.S. academics report that universities are unprepared for A.I., despite its widespread use. This underscores a critical gap between A.I. adoption and institutional readiness. Are your policies and training keeping up with the pace of change?\n\nThat's today's Innovation Pulse. Find the full stories and links at innovating higher ed dot com. Thanks for joining us as we explore new frontiers in educational innovation. See you tomorrow.",
-  "hook": "I.",
+  "hook": "Colleges face a crucial choice: shape A.I.'s impact on learning, or be redefined by it.",
   "segments": {
     "deepDive": {
-      "title": "Colleges face a choice: Try to shape AI's impact on learning, or be redefined by it. | Guest Commentaries | columbiamissourian.com",
-      "summary": "Read the full story for details.",
+      "title": "Colleges face a choice: Try to shape AI's impact on learning, or be redefined by it.",
+      "summary": "A provocative piece from the Columbia Missourian questions whether higher education institutions are taking active steps to integrate A.I. into their learning ecosystems, or passively allowing themselves to be reshaped by the technology.",
       "source": "www.columbiamissourian.com",
       "sourceUrl": "https://www.columbiamissourian.com/opinion/guest_commentaries/colleges-face-a-choice-try-to-shape-ais-impact-on-learning-or-be-redefined-by/article_79ce6a89-74ed-410c-8b0f-6f57d4d8a732.html",
-      "category": "Latest AI Products"
+      "category": "Insights & Trends"
     },
     "quickHits": [
       {
-        "title": "Presidential summit recap: The disruption of higher education is here | \n                            FIU News - Florida International University\n                        ",
-        "summary": "Read the full story for details.",
+        "title": "Presidential summit recap: The disruption of higher education is here",
+        "summary": "At a recent summit hosted by Florida International University, leaders from various sectors discussed how higher education must adapt to thrive amidst rapid technological change.",
         "source": "news.fiu.edu",
         "sourceUrl": "https://news.fiu.edu/2026/presidential-summit-recap-the-disruption-of-higher-education-is-here",
-        "category": "Latest AI Products"
+        "category": "Case Study"
       },
       {
-        "title": "Chungnam National University Leads AI Education Revolution - Grand Pinnacle Tribune",
-        "summary": "Read the full story for details.",
+        "title": "Chungnam National University Leads AI Education Revolution",
+        "summary": "Chungnam National University is making waves with its bold integration of A.I. across campus life, from chatbots to academic support systems.",
         "source": "evrimagaci.org",
         "sourceUrl": "https://evrimagaci.org/gpt/chungnam-national-university-leads-ai-education-revolution-531591",
-        "category": "Latest AI Products"
+        "category": "Case Study"
       },
       {
-        "title": "N.C. A&T Faculty Selected for CAA’s AI Technologies Champion Network, Inaugural Award | Education | yesweekly.com",
-        "summary": "Read the full story for details.",
+        "title": "N.C. A&T Faculty Selected for CAA's AI Technologies Champion Network",
+        "summary": "N.C. A&T faculty members are being recognized as A.I. champions, underscoring the importance of having educators who can drive thoughtful A.I. integration.",
         "source": "www.yesweekly.com",
         "sourceUrl": "https://www.yesweekly.com/education/n-c-a-t-faculty-selected-for-caa-s-ai-technologies-champion-network-inaugural-award/article_8c9b5468-a5ca-4ba7-8226-ffcbe574ef41.html",
-        "category": "Latest AI Products"
+        "category": "Practical Tips"
       }
     ]
   },
   "stories": [
     {
-      "title": "Colleges face a choice: Try to shape AI's impact on learning, or be redefined by it. | Guest Commentaries | columbiamissourian.com",
-      "summary": "Today, we delve into a crucial decision facing colleges: Will they shape A.",
+      "title": "Colleges face a choice: Try to shape AI's impact on learning, or be redefined by it.",
+      "summary": "A provocative piece from the Columbia Missourian questions whether higher education institutions are taking active steps to integrate A.I. into their learning ecosystems, or passively allowing themselves to be reshaped by the technology.",
       "source": "www.columbiamissourian.com",
       "sourceUrl": "https://www.columbiamissourian.com/opinion/guest_commentaries/colleges-face-a-choice-try-to-shape-ais-impact-on-learning-or-be-redefined-by/article_79ce6a89-74ed-410c-8b0f-6f57d4d8a732.html",
-      "category": "Latest AI Products",
+      "category": "Insights & Trends",
       "isDeveloping": false,
       "publishedAt": "2026-02-26T19:12:25.746Z"
     },
     {
-      "title": "Presidential summit recap: The disruption of higher education is here | \n                            FIU News - Florida International University\n                        ",
-      "summary": "Let's take a closer look at a provocative piece from the Columbia Missourian that questions whether higher education institutions are taking active steps to integrate A.",
+      "title": "Presidential summit recap: The disruption of higher education is here",
+      "summary": "At a recent summit hosted by Florida International University, leaders from various sectors discussed how higher education must adapt to thrive amidst rapid technological change.",
       "source": "news.fiu.edu",
       "sourceUrl": "https://news.fiu.edu/2026/presidential-summit-recap-the-disruption-of-higher-education-is-here",
-      "category": "Latest AI Products",
+      "category": "Case Study",
       "isDeveloping": false,
       "publishedAt": "2026-02-26T19:12:25.746Z"
     },
     {
-      "title": "Chungnam National University Leads AI Education Revolution - Grand Pinnacle Tribune",
-      "summary": "Meanwhile, at a recent summit hosted by Florida International University, leaders from various sectors discussed how higher education must adapt to thrive amidst rapid technological change.",
+      "title": "Chungnam National University Leads AI Education Revolution",
+      "summary": "Chungnam National University is making waves with its bold integration of A.I. across campus life, from chatbots to academic support systems.",
       "source": "evrimagaci.org",
       "sourceUrl": "https://evrimagaci.org/gpt/chungnam-national-university-leads-ai-education-revolution-531591",
-      "category": "Latest AI Products",
+      "category": "Case Study",
       "isDeveloping": false,
       "publishedAt": "2026-02-26T19:12:25.746Z"
     },
     {
-      "title": "N.C. A&T Faculty Selected for CAA’s AI Technologies Champion Network, Inaugural Award | Education | yesweekly.com",
-      "summary": "Read the full story for details.",
+      "title": "N.C. A&T Faculty Selected for CAA's AI Technologies Champion Network",
+      "summary": "N.C. A&T faculty members are being recognized as A.I. champions, underscoring the importance of having educators who can drive thoughtful A.I. integration.",
       "source": "www.yesweekly.com",
       "sourceUrl": "https://www.yesweekly.com/education/n-c-a-t-faculty-selected-for-caa-s-ai-technologies-champion-network-inaugural-award/article_8c9b5468-a5ca-4ba7-8226-ffcbe574ef41.html",
-      "category": "Latest AI Products",
+      "category": "Practical Tips",
       "isDeveloping": false,
       "publishedAt": "2026-02-26T19:12:25.746Z"
     },
     {
-      "title": "Half of U.S. Academics Say Universities Are Unprepared for",
-      "summary": "academics report that universities are unprepared for A.",
+      "title": "Half of U.S. Academics Say Universities Are Unprepared for AI Despite Widespread Use",
+      "summary": "Half of U.S. academics report that universities are unprepared for A.I., despite its widespread use. This underscores a critical gap between A.I. adoption and institutional readiness.",
       "source": "www.varindia.com",
       "sourceUrl": "https://www.varindia.com/news/half-of-u-s-academics-say-universities-are-unprepared-for-ai-despite-widespread-use",
-      "category": "Latest AI Products",
+      "category": "Insights & Trends",
       "isDeveloping": false,
       "publishedAt": "2026-02-26T19:12:25.746Z"
     },
     {
-      "title": "Pearson AI study tools linked to active reading gains | ETIH EdTech News — EdTech Innovation Hub",
-      "summary": "Read the full story for details.",
+      "title": "Pearson AI study tools linked to active reading gains",
+      "summary": "Pearson data links A.I. study tools to a surge in active reading among college students, suggesting technology-enhanced learning may boost engagement.",
       "source": "www.edtechinnovationhub.com",
       "sourceUrl": "https://www.edtechinnovationhub.com/news/pearson-data-links-ai-study-tools-to-surge-in-active-reading-among-college-students",
       "category": "Latest AI Products",
@@ -99,11 +99,11 @@
       "publishedAt": "2026-02-26T19:12:25.746Z"
     },
     {
-      "title": "",
-      "summary": "Read the full story for details.",
+      "title": "Strategy Before Technology",
+      "summary": "Community colleges are learning that successful A.I. adoption requires putting strategy before technology — focusing on educational goals rather than chasing the latest tools.",
       "source": "www.ccdaily.com",
       "sourceUrl": "https://www.ccdaily.com/2026/02/strategy-before-technology/",
-      "category": "Case Study",
+      "category": "Practical Tips",
       "isDeveloping": false,
       "publishedAt": "2026-02-26T19:12:25.746Z"
     }
