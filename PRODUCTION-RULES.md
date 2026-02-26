@@ -273,3 +273,34 @@ Story JSON files can use either old or new category names; the client maps them 
 - Semantic versioning in CHANGELOG.md (MAJOR.MINOR.PATCH)
 - Every push to main gets a changelog entry with date and description
 - Breaking changes increment MAJOR, new features MINOR, fixes PATCH
+
+---
+
+## 16. Pipeline Data Quality Expectations (Added Feb 26, 2026)
+
+If incoming pipeline data fails these checks, the normalizeEpisode() function should repair or flag:
+
+### Hook Validation
+- hook < 20 chars → use episodeTitle as fallback
+- hook ends with single letter + period (truncated at "A.I.") → extend from broadcastScript
+
+### Category Validation
+- All stories same category → log warning (display issue, not blocking)
+- Category not in V4 list → map using UNIFIED_TO_V4_MAP or default to "Insights & Trends"
+
+### Summary Validation
+- Empty summaries → use "Read the full story for details."
+- Summary truncated at "A." → flag for review
+
+### Title Validation
+- Empty titles → skip story in display OR extract from URL slug
+- Whitespace in titles (newlines, multiple spaces) → sanitize on load
+- Truncated titles (< 20 chars) → log warning
+
+### Segment Sync
+- segments.deepDive and segments.quickHits[] must have summaries/categories matching stories[]
+- If mismatched, pull from stories[] by sourceUrl
+
+### A.I. Handling
+- "A.I." abbreviation must NOT be truncated in any text field
+- Check for fields ending in "A." or "A.I" (missing final period)
