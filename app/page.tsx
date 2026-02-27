@@ -48,18 +48,28 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* ═══════════════════════════════════════════════════════
-          INNOVATION PULSE HERO
+          INNOVATION PULSE HERO - FLAGSHIP SECTION
           ═══════════════════════════════════════════════════════ */}
-      <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8">
-        {/* Hero Grid */}
-        <div className="grid lg:grid-cols-[1fr_340px] gap-10">
-          {/* Main Content */}
-          <div className="animate-[fadeUp_0.7s_ease-out_both]">
-            {/* Label */}
-            <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-4 flex items-center gap-2">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
-              THE INNOVATION PULSE
-            </div>
+      <section className="relative">
+        {/* Premium gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.03)] via-transparent to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(0,212,255,0.3)] to-transparent" />
+
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8 relative">
+          {/* Hero Grid */}
+          <div className="grid lg:grid-cols-[1fr_340px] gap-10">
+            {/* Main Content */}
+            <div className="animate-[fadeUp_0.7s_ease-out_both]">
+              {/* Premium Label with tagline */}
+              <div className="mb-4">
+                <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] flex items-center gap-2 mb-1">
+                  <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+                  THE INNOVATION PULSE
+                </div>
+                <p className="text-[0.85rem] text-[var(--text-muted)] pl-4">
+                  Your daily A.I. briefing for higher ed — curated, analyzed, delivered.
+                </p>
+              </div>
 
             {/* Date + Lens Badge */}
             {pulseEpisode && (
@@ -155,7 +165,8 @@ export default function Home() {
                 </ul>
               </div>
             </aside>
-          )}
+            )}
+          </div>
         </div>
       </section>
 
@@ -167,10 +178,10 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <SectionHeader
-          icon="📰"
           title="Top Stories"
           titleColor="var(--cyan)"
-          description="Latest from the Innovation Pulse"
+          tagline="The latest from the Innovation Pulse — curated daily."
+          accentColor="var(--cyan)"
           viewAllHref="/innovation-pulse"
           viewAllText="View all stories"
         />
@@ -214,10 +225,10 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <SectionHeader
-          icon="🎙️"
           title="Podcast"
           titleColor="var(--orange)"
-          description="Conversations with leaders in higher ed"
+          tagline="Conversations with the people shaping higher ed's future."
+          accentColor="var(--orange)"
           viewAllHref="/podcast"
           viewAllText="All episodes"
         />
@@ -282,13 +293,19 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <SectionHeader
-          icon="🛠️"
           title="AI App Directory"
           titleColor="var(--teal)"
-          description="Tools vetted for higher education"
+          tagline="Every A.I. tool worth knowing about, reviewed for higher education."
+          accentColor="var(--teal)"
           viewAllHref="/ai-directory"
           viewAllText="Browse all tools"
         />
+
+        {/* Recently Added Label */}
+        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--green)] mb-4 flex items-center gap-2">
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+          Recently Added
+        </div>
 
         <HomeAIAppCards />
       </section>
@@ -301,10 +318,10 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <SectionHeader
-          icon="⚡"
           title="Top Prompts"
           titleColor="var(--purple)"
-          description="Trending in the Prompt Navigator"
+          tagline="Ready-to-use prompts built for educators and administrators."
+          accentColor="var(--purple)"
           viewAllHref="/prompts"
           viewAllText="Browse all prompts"
         />
@@ -320,10 +337,10 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <SectionHeader
-          icon="🧪"
           title="Tinker Lab"
           titleColor="var(--cyan)"
-          description="Quick experiments and AI explorations"
+          tagline="Experiments, prototypes, and ideas in progress."
+          accentColor="var(--cyan)"
           viewAllHref="/tinker-lab"
           viewAllText="View experiments"
         />

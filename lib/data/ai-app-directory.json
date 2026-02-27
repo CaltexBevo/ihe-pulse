@@ -1,5 +1,6 @@
 {
-  "lastUpdated": "2026-02-20",
+  "_comment": "AI App Directory - Updated weekly. Add new tools at the top with today's date as dateAdded. Fields: dateAdded (YYYY-MM-DD), lastUpdated (YYYY-MM-DD), trending (boolean)",
+  "lastUpdated": "2026-02-27",
   "source": "Prototypes/ai-app-directory-v2.html",
   "totalTools": 38,
   "categories": [
@@ -19,6 +20,9 @@
       "id": "chatgpt",
       "name": "ChatGPT",
       "category": "General LLMs",
+      "dateAdded": "2025-09-15",
+      "lastUpdated": "2026-02-20",
+      "trending": true,
       "description": "OpenAI's flagship conversational AI. Handles everything from essay feedback to coding help to brainstorming session agendas.",
       "values": [
         "Generate discussion questions, quiz items, or rubric drafts in seconds",
@@ -163,6 +167,9 @@
       "id": "brisk",
       "name": "Brisk Teaching",
       "category": "Lesson Planning",
+      "dateAdded": "2026-02-25",
+      "lastUpdated": "2026-02-25",
+      "trending": false,
       "description": "Chrome extension that works inside your existing platforms. Create, feedback, and differentiate directly in Google Docs, Canvas, and Schoology.",
       "values": [
         "Works inside Canvas, Google Docs, Schoology - no tab switching",
@@ -217,6 +224,9 @@
       "id": "curipod",
       "name": "Curipod",
       "category": "Lesson Planning",
+      "dateAdded": "2026-02-22",
+      "lastUpdated": "2026-02-22",
+      "trending": true,
       "description": "AI-powered interactive lesson creator with polls, word clouds, drawing, and reflection prompts built for student engagement.",
       "values": [
         "Students interact in real-time - polls, drawings, word clouds",
@@ -553,6 +563,9 @@
       "id": "sora",
       "name": "Sora",
       "category": "Image & Video",
+      "dateAdded": "2026-02-27",
+      "lastUpdated": "2026-02-27",
+      "trending": true,
       "description": "OpenAI's text-to-video model. Generates realistic, high-quality video from text descriptions.",
       "values": [
         "Highest quality AI video generation currently available",
@@ -733,6 +746,9 @@
       "id": "knowt",
       "name": "Knowt",
       "category": "Student Tools",
+      "dateAdded": "2026-02-20",
+      "lastUpdated": "2026-02-20",
+      "trending": false,
       "description": "AI study tool that converts notes and lectures into flashcards and practice quizzes automatically.",
       "values": [
         "Upload lecture notes or slides - AI generates study materials",

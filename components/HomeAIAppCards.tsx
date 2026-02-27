@@ -2,50 +2,40 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import aiAppData from '@/lib/data/ai-app-directory.json';
 
 interface Tool {
+  id: string;
   name: string;
-  desc: string;
   category: string;
+  description: string;
+  values?: string[];
   pricing: string;
+  priceDetail?: string;
+  roles?: string[];
+  url: string;
   domain: string;
   accent: string;
-  badge: 'TRENDING' | 'NEW' | 'STAFF PICK';
-  href: string;
+  badge?: string | null;
+  dateAdded?: string;
+  lastUpdated?: string;
+  trending?: boolean;
 }
 
-const tools: Tool[] = [
-  {
-    name: "ChatGPT",
-    desc: "OpenAI's flagship conversational AI. Handles everything from essay feedback to coding help to brainstorming.",
-    category: "General LLMs",
-    pricing: "Free tier + $20/mo Pro",
-    domain: "openai.com",
-    accent: "#10a37f",
-    badge: "TRENDING",
-    href: "/ai-directory/chatgpt",
-  },
-  {
-    name: "Claude",
-    desc: "Anthropic's AI assistant built for nuanced, thoughtful analysis. Excels at long-form writing and careful reasoning.",
-    category: "General LLMs",
-    pricing: "Free tier + $20/mo Pro",
-    domain: "anthropic.com",
-    accent: "#d97706",
-    badge: "STAFF PICK",
-    href: "/ai-directory/claude",
-  },
-  {
-    name: "Eduaide.Ai",
-    desc: "Purpose-built AI for educators. Creates lesson plans, assessments, differentiated materials, and IEP-aligned content.",
-    category: "Lesson Planning",
-    pricing: "Freemium",
-    domain: "eduaide.ai",
-    accent: "#6366f1",
-    badge: "NEW",
-    href: "/ai-directory/eduaide",
-  },
-];
+// Get 3 most recently added tools
+function getRecentlyAddedTools(): Tool[] {
+  const tools = aiAppData.tools as Tool[];
+
+  // Filter tools that have dateAdded, then sort by dateAdded descending
+  const toolsWithDates = tools.filter(t => t.dateAdded);
+  toolsWithDates.sort((a, b) => {
+    const dateA = new Date(a.dateAdded || '2020-01-01');
+    const dateB = new Date(b.dateAdded || '2020-01-01');
+    return dateB.getTime() - dateA.getTime();
+  });
+
+  return toolsWithDates.slice(0, 3);
+}
 
 function LogoWithFallback({
   domain,
@@ -83,13 +73,28 @@ function LogoWithFallback({
   );
 }
 
+function getBadgeStyle(badge: string | null | undefined) {
+  if (!badge) return null;
+  const upperBadge = badge.toUpperCase();
+  if (upperBadge === "NEW") {
+    return "bg-[var(--green-dim)] text-[var(--green)]";
+  } else if (upperBadge === "TRENDING") {
+    return "bg-[var(--amber-dim)] text-[var(--amber)]";
+  } else if (upperBadge === "UPDATED") {
+    return "bg-[var(--cyan-dim)] text-[var(--cyan)]";
+  }
+  return "bg-[var(--cyan-dim)] text-[var(--cyan)]";
+}
+
 export default function HomeAIAppCards() {
+  const recentTools = getRecentlyAddedTools();
+
   return (
     <div className="grid-3">
-      {tools.map((tool, i) => (
+      {recentTools.map((tool) => (
         <Link
-          key={i}
-          href={tool.href}
+          key={tool.id}
+          href={`/ai-directory/${tool.id}`}
           className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
         >
           {/* Header with logo and accent bar */}
@@ -120,15 +125,11 @@ export default function HomeAIAppCards() {
                 </div>
               </div>
               {/* Badge */}
-              <span className={`font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] ${
-                tool.badge === "NEW"
-                  ? "bg-[var(--green-dim)] text-[var(--green)]"
-                  : tool.badge === "STAFF PICK"
-                    ? "bg-[var(--cyan-dim)] text-[var(--cyan)]"
-                    : "bg-[var(--amber-dim)] text-[var(--amber)]"
-              }`}>
-                {tool.badge}
-              </span>
+              {tool.badge && (
+                <span className={`font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] uppercase ${getBadgeStyle(tool.badge)}`}>
+                  {tool.badge}
+                </span>
+              )}
             </div>
           </div>
 
@@ -136,11 +137,38 @@ export default function HomeAIAppCards() {
           <div className="px-4 pb-4">
             {/* Description */}
             <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-3 line-clamp-2">
-              {tool.desc}
+              {tool.description}
             </p>
+
+            {/* Value bullets (if available) */}
+            {tool.values && tool.values.length > 0 && (
+              <ul className="text-[0.72rem] text-[var(--text-muted)] mb-3 space-y-1">
+                {tool.values.slice(0, 2).map((value, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-[var(--green)] mt-[2px]">✓</span>
+                    <span className="line-clamp-1">{value}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* Role tags */}
+            {tool.roles && tool.roles.length > 0 && (
+              <div className="flex flex-wrap gap-1 mb-3">
+                {tool.roles.map((role) => (
+                  <span
+                    key={role}
+                    className="font-mono text-[0.5rem] uppercase px-[6px] py-[2px] rounded-[3px] bg-[var(--surface-2)] text-[var(--text-muted)]"
+                  >
+                    {role}
+                  </span>
+                ))}
+              </div>
+            )}
+
             {/* Footer */}
             <div className="flex items-center justify-between font-mono text-[0.56rem] text-[var(--text-muted)] pt-3 border-t border-[var(--border)]">
-              <span>{tool.pricing}</span>
+              <span className="capitalize">{tool.pricing}</span>
               <span className="text-[var(--cyan)] group-hover:text-[var(--text)] transition-colors">
                 Learn more →
               </span>
