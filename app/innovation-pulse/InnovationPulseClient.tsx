@@ -719,79 +719,111 @@ export default function InnovationPulseClient({
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          FEATURED STORY SECTION
+          FEATURED STORY SECTION - Premium Editorial Card
           ═══════════════════════════════════════════════════════ */}
       <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
-        <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2 mb-6">
-          <span className="text-[var(--cyan)]">LEAD STORY</span> — {selectedAudioDate ? formatShortDate(selectedAudioDate) : "Today's"} Featured
-        </div>
+        {/* Lead Story Card - Full Width, Gradient Background */}
+        <div className="relative rounded-[24px] overflow-hidden">
+          {/* Subtle Electric Dusk gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0c0c14] via-[#0f0f1a] to-[#0a0a12]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(0,212,255,0.03)] via-transparent to-[rgba(200,80,192,0.03)]" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--cyan)] via-[rgba(200,80,192,0.6)] to-[var(--cyan)]" />
 
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden grid md:grid-cols-2 hover:border-[var(--border-hover)] transition-colors">
-          {/* Image Side - 16:9 aspect ratio container */}
-          <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[360px] overflow-hidden">
-            <img
-              src={getStoryImage(leadStory.title)}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-600 hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(8,8,15,0.4)] to-[rgba(8,8,15,0.1)]" />
-            {/* Badges */}
-            <div className="absolute top-5 left-5 flex gap-2">
-              <span className="font-mono text-[0.62rem] font-semibold tracking-[0.05em] px-[0.6rem] py-[0.25rem] rounded-[6px] bg-[rgba(0,212,255,0.85)] text-[#08080f]">
-                LEAD STORY
+          {/* Subtle corner accents */}
+          <div className="absolute top-0 left-0 w-[200px] h-[200px] bg-gradient-to-br from-[rgba(0,212,255,0.06)] to-transparent rounded-full blur-[80px]" />
+          <div className="absolute bottom-0 right-0 w-[200px] h-[200px] bg-gradient-to-tl from-[rgba(200,80,192,0.06)] to-transparent rounded-full blur-[80px]" />
+
+          {/* Content */}
+          <div className="relative p-8 md:p-12 lg:p-16">
+            {/* Badges Row */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <span className="font-mono text-[0.65rem] font-semibold tracking-[0.08em] px-[0.75rem] py-[0.3rem] rounded-[6px] bg-gradient-to-r from-[var(--cyan)] to-[rgba(0,212,255,0.8)] text-[#08080f] uppercase">
+                Lead Story
               </span>
               <span
-                className="font-mono text-[0.62rem] font-semibold tracking-[0.05em] px-[0.6rem] py-[0.25rem] rounded-[6px] text-[#08080f]"
+                className="font-mono text-[0.65rem] font-semibold tracking-[0.08em] px-[0.75rem] py-[0.3rem] rounded-[6px] text-[#08080f] uppercase"
                 style={{ backgroundColor: V4_CATEGORY_COLORS[leadStoryV4Category]?.hex || "#00d4ff" }}
               >
                 {leadStoryV4Category}
               </span>
+              <span className="font-mono text-[0.65rem] tracking-[0.06em] px-[0.75rem] py-[0.3rem] rounded-[6px] border border-[var(--border)] text-[var(--text-muted)]">
+                {selectedAudioDate ? formatShortDate(selectedAudioDate) : formatShortDate(episode.date)}
+              </span>
+              <span
+                className={`font-mono text-[0.65rem] tracking-[0.06em] px-[0.75rem] py-[0.3rem] rounded-[6px] ${LENS_COLORS[displayedEpisode.editorialLens]?.bg || "bg-[var(--magenta-dim)]"} ${LENS_COLORS[displayedEpisode.editorialLens]?.text || "text-[var(--magenta)]"}`}
+              >
+                {displayedEpisode.editorialLens}
+              </span>
             </div>
-          </div>
 
-          {/* Content Side */}
-          <div className="p-8 flex flex-col justify-center">
-            <h2 className="text-[1.5rem] font-bold leading-[1.25] mb-4">
+            {/* Headline - Large Instrument Serif */}
+            <h2
+              className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-[1.15] text-white mb-6 max-w-[900px]"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
               {leadStory.title}
             </h2>
-            <div className="mb-5">
-              {renderParagraphs(leadStory.summary, "text-[0.88rem] leading-[1.7] text-[var(--text-secondary)]")}
+
+            {/* Editorial Take / Summary */}
+            <div className="max-w-[800px] mb-8">
+              {renderParagraphs(
+                leadStory.summary,
+                "text-[1rem] md:text-[1.1rem] leading-[1.75] text-[var(--text-secondary)]"
+              )}
             </div>
 
-            {/* Action Links */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-4">
               <Link
                 href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
-                className="btn-primary text-[0.75rem]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-[10px] bg-gradient-to-r from-[var(--cyan)] to-[rgba(0,180,220,0.9)] text-[#08080f] font-semibold text-[0.85rem] hover:opacity-90 transition-opacity shadow-[0_4px_20px_rgba(0,212,255,0.25)]"
               >
-                Read full story →
+                Read full story
+                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
               </Link>
               <a
                 href={leadStory.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[0.75rem] text-[var(--cyan)] font-mono px-3 py-[0.35rem] rounded-[8px] bg-[var(--cyan-dim)] hover:bg-[rgba(0,212,255,0.2)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-[10px] border border-[var(--border)] text-[var(--text-secondary)] font-mono text-[0.8rem] hover:border-[var(--cyan)] hover:text-[var(--cyan)] transition-all"
               >
                 {leadStory.source}
-                <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2">
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2">
                   <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
                   <polyline points="15 3 21 3 21 9" />
                   <line x1="10" y1="14" x2="21" y2="3" />
                 </svg>
               </a>
             </div>
-
-            {/* Our Take */}
-            {leadStory.editorialCallout && (
-              <div className="border-t border-[var(--border)] pt-5">
-                <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-2">
-                  OUR TAKE — {displayedEpisode.editorialLens}
-                </div>
-                {renderParagraphs(leadStory.editorialCallout, "italic text-[0.95rem] text-[var(--text)] leading-[1.6]")}
-              </div>
-            )}
           </div>
         </div>
+
+        {/* Our Take - Separate Block Below */}
+        {leadStory.editorialCallout && (
+          <div className="mt-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 md:p-8 relative overflow-hidden">
+            {/* Accent line */}
+            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[var(--magenta)] to-[var(--cyan)]" />
+
+            <div className="pl-4">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-mono text-[0.68rem] tracking-[0.1em] uppercase font-semibold text-[var(--magenta)]">
+                  Our Take
+                </span>
+                <span className="font-mono text-[0.62rem] tracking-[0.06em] px-[0.6rem] py-[0.2rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
+                  {displayedEpisode.editorialLens}
+                </span>
+              </div>
+              <div className="max-w-[800px]">
+                {renderParagraphs(
+                  leadStory.editorialCallout,
+                  "text-[1.05rem] md:text-[1.15rem] leading-[1.7] text-[var(--text)] italic"
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Section Divider */}
