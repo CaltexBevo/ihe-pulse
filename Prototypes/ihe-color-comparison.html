@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHE Color Palette Comparison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #05050a;
+            --deep: #0a0a12;
+            --surface: #0f0f1a;
+            --elevated: #14141f;
+            --border: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            
+            /* Brand Colors */
+            --ihe-orange: #D77412;
+            --ihe-blue: #319ab2;
+            
+            /* Accent Options */
+            --plum: #7C3A6B;
+            --soft-teal: #4ECDC4;
+            --deep-navy: #1E3A5F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            font-size: 18px;
+        }
+
+        /* Brand Colors Display */
+        .brand-colors {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .brand-swatch {
+            text-align: center;
+        }
+
+        .brand-swatch .color {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+        }
+
+        .brand-swatch .label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .brand-swatch .hex {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .option-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .option-card.plum:hover { border-color: var(--plum); }
+        .option-card.teal:hover { border-color: var(--soft-teal); }
+        .option-card.navy:hover { border-color: var(--deep-navy); }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .accent-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+        }
+
+        .accent-swatch.plum { background: var(--plum); }
+        .accent-swatch.teal { background: var(--soft-teal); }
+        .accent-swatch.navy { background: var(--deep-navy); }
+
+        .option-info h2 {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .option-info .hex {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .option-info .vibe {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        /* Color Palette Strip */
+        .palette-strip {
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            height: 40px;
+        }
+
+        .palette-strip .swatch {
+            flex: 1;
+        }
+
+        /* Sample UI Elements */
+        .sample-elements {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* IHE Perspective Box */
+        .perspective-box {
+            background: var(--deep);
+            border-left: 3px solid;
+            padding: 14px 16px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .perspective-box.plum { border-color: var(--plum); }
+        .perspective-box.teal { border-color: var(--soft-teal); }
+        .perspective-box.navy { border-color: var(--deep-navy); }
+
+        .perspective-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .perspective-label.plum { color: var(--plum); }
+        .perspective-label.teal { color: var(--soft-teal); }
+        .perspective-label.navy { color: var(--deep-navy); }
+
+        .perspective-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Button */
+        .sample-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .sample-btn.plum { background: linear-gradient(135deg, var(--ihe-orange), var(--plum)); }
+        .sample-btn.teal { background: linear-gradient(135deg, var(--ihe-orange), var(--soft-teal)); }
+        .sample-btn.navy { background: linear-gradient(135deg, var(--ihe-orange), var(--deep-navy)); }
+
+        /* Tag */
+        .sample-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .tag.orange { background: var(--ihe-orange); }
+        .tag.blue { background: var(--ihe-blue); }
+        .tag.plum { background: var(--plum); }
+        .tag.teal { background: var(--soft-teal); }
+        .tag.navy { background: var(--deep-navy); }
+
+        /* Card with accent */
+        .mini-card {
+            background: var(--elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mini-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+
+        .mini-card.plum::before { background: linear-gradient(90deg, var(--ihe-orange), var(--ihe-blue), var(--plum)); }
+        .mini-card.teal::before { background: linear-gradient(90deg, var(--ihe-orange), var(--ihe-blue), var(--soft-teal)); }
+        .mini-card.navy::before { background: linear-gradient(90deg, var(--ihe-orange), var(--ihe-blue), var(--deep-navy)); }
+
+        .mini-card h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .mini-card p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Link style */
+        .sample-link {
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sample-link.plum { color: var(--plum); }
+        .sample-link.teal { color: var(--soft-teal); }
+        .sample-link.navy { color: var(--deep-navy); }
+
+        /* Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .status-badge.plum { 
+            background: rgba(124, 58, 107, 0.2); 
+            border: 1px solid var(--plum);
+            color: var(--plum);
+        }
+        .status-badge.teal { 
+            background: rgba(78, 205, 196, 0.2); 
+            border: 1px solid var(--soft-teal);
+            color: var(--soft-teal);
+        }
+        .status-badge.navy { 
+            background: rgba(30, 58, 95, 0.3); 
+            border: 1px solid var(--deep-navy);
+            color: #5a8ac4;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-badge.plum::before { background: var(--plum); }
+        .status-badge.teal::before { background: var(--soft-teal); }
+        .status-badge.navy::before { background: var(--deep-navy); }
+
+        /* Recommendation */
+        .recommendation {
+            margin-top: 50px;
+            text-align: center;
+            padding: 30px;
+            background: var(--surface);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .recommendation h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .recommendation p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .rec-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            background: var(--plum);
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-colors {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Accent Color Comparison</h1>
+        <p class="subtitle">See how each option pairs with your IHE Orange & Blue</p>
+
+        <!-- Brand Colors -->
+        <div class="brand-colors">
+            <div class="brand-swatch">
+                <div class="color" style="background: var(--ihe-orange);"></div>
+                <div class="label">IHE Orange</div>
+                <div class="hex">#D77412</div>
+            </div>
+            <div class="brand-swatch">
+                <div class="color" style="background: var(--ihe-blue);"></div>
+                <div class="label">IHE Blue</div>
+                <div class="hex">#319ab2</div>
+            </div>
+            <div class="brand-swatch">
+                <div class="color" style="background: var(--void); border: 2px solid var(--border);"></div>
+                <div class="label">Background</div>
+                <div class="hex">#05050a</div>
+            </div>
+        </div>
+
+        <!-- Comparison Grid -->
+        <div class="comparison-grid">
+            <!-- PLUM -->
+            <div class="option-card plum">
+                <div class="option-header">
+                    <div class="accent-swatch plum"></div>
+                    <div class="option-info">
+                        <h2>🟣 Plum</h2>
+                        <div class="hex">#7C3A6B</div>
+                        <div class="vibe">Sophisticated, unique</div>
+                    </div>
+                </div>
+
+                <div class="palette-strip">
+                    <div class="swatch" style="background: var(--ihe-orange);"></div>
+                    <div class="swatch" style="background: var(--ihe-blue);"></div>
+                    <div class="swatch" style="background: var(--plum);"></div>
+                </div>
+
+                <div class="sample-elements">
+                    <div class="perspective-box plum">
+                        <div class="perspective-label plum">🎯 IHE Perspective</div>
+                        <div class="perspective-text">AI integration requires both strategy and empathy...</div>
+                    </div>
+
+                    <button class="sample-btn plum">🚀 Publish Now</button>
+
+                    <div class="sample-tags">
+                        <span class="tag orange">AI Tools</span>
+                        <span class="tag blue">Higher Ed</span>
+                        <span class="tag plum">Featured</span>
+                    </div>
+
+                    <div class="mini-card plum">
+                        <h4>Audio Briefing Ready</h4>
+                        <p>Today's news with Dr. Norma Jones</p>
+                    </div>
+
+                    <a href="#" class="sample-link plum">Read Full Story →</a>
+
+                    <div class="status-badge plum">Awaiting Review</div>
+                </div>
+            </div>
+
+            <!-- SOFT TEAL -->
+            <div class="option-card teal">
+                <div class="option-header">
+                    <div class="accent-swatch teal"></div>
+                    <div class="option-info">
+                        <h2>🩵 Soft Teal</h2>
+                        <div class="hex">#4ECDC4</div>
+                        <div class="vibe">Fresh, modern</div>
+                    </div>
+                </div>
+
+                <div class="palette-strip">
+                    <div class="swatch" style="background: var(--ihe-orange);"></div>
+                    <div class="swatch" style="background: var(--ihe-blue);"></div>
+                    <div class="swatch" style="background: var(--soft-teal);"></div>
+                </div>
+
+                <div class="sample-elements">
+                    <div class="perspective-box teal">
+                        <div class="perspective-label teal">🎯 IHE Perspective</div>
+                        <div class="perspective-text">AI integration requires both strategy and empathy...</div>
+                    </div>
+
+                    <button class="sample-btn teal">🚀 Publish Now</button>
+
+                    <div class="sample-tags">
+                        <span class="tag orange">AI Tools</span>
+                        <span class="tag blue">Higher Ed</span>
+                        <span class="tag teal">Featured</span>
+                    </div>
+
+                    <div class="mini-card teal">
+                        <h4>Audio Briefing Ready</h4>
+                        <p>Today's news with Dr. Norma Jones</p>
+                    </div>
+
+                    <a href="#" class="sample-link teal">Read Full Story →</a>
+
+                    <div class="status-badge teal">Awaiting Review</div>
+                </div>
+            </div>
+
+            <!-- DEEP NAVY -->
+            <div class="option-card navy">
+                <div class="option-header">
+                    <div class="accent-swatch navy"></div>
+                    <div class="option-info">
+                        <h2>🔵 Deep Navy</h2>
+                        <div class="hex">#1E3A5F</div>
+                        <div class="vibe">Professional, authoritative</div>
+                    </div>
+                </div>
+
+                <div class="palette-strip">
+                    <div class="swatch" style="background: var(--ihe-orange);"></div>
+                    <div class="swatch" style="background: var(--ihe-blue);"></div>
+                    <div class="swatch" style="background: var(--deep-navy);"></div>
+                </div>
+
+                <div class="sample-elements">
+                    <div class="perspective-box navy">
+                        <div class="perspective-label navy">🎯 IHE Perspective</div>
+                        <div class="perspective-text">AI integration requires both strategy and empathy...</div>
+                    </div>
+
+                    <button class="sample-btn navy">🚀 Publish Now</button>
+
+                    <div class="sample-tags">
+                        <span class="tag orange">AI Tools</span>
+                        <span class="tag blue">Higher Ed</span>
+                        <span class="tag navy">Featured</span>
+                    </div>
+
+                    <div class="mini-card navy">
+                        <h4>Audio Briefing Ready</h4>
+                        <p>Today's news with Dr. Norma Jones</p>
+                    </div>
+
+                    <a href="#" class="sample-link navy">Read Full Story →</a>
+
+                    <div class="status-badge navy">Awaiting Review</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendation -->
+        <div class="recommendation">
+            <h3>💡 My Recommendation</h3>
+            <p>
+                <span class="rec-highlight">🟣 Plum</span> creates the strongest visual distinction while harmonizing with both orange and blue. It adds warmth that connects to your orange, while the purple undertones complement your blue. The soft teal is fresh but may feel too similar to your existing blue. The navy is subtle but might get lost against the dark background.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

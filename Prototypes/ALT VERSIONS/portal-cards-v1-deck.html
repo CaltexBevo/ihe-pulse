@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IHE — Command Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --void: #08090e;
+    --card: rgba(12, 14, 22, 0.85);
+    --border: rgba(255,255,255,0.06);
+    --cyan: #00e5ff;
+    --magenta: #c850c0;
+    --green: #00ff88;
+    --gold: #ffd700;
+    --rose: #ff6b9d;
+    --violet: #a855f7;
+    --orange: #ff8c42;
+    --teal: #14b8a6;
+    --blue: #3b82f6;
+    --red: #ef4444;
+    --amber: #f59e0b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--void);
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* BG texture */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+        radial-gradient(ellipse at 50% 40%, rgba(0,229,255,0.03) 0%, transparent 60%),
+        radial-gradient(ellipse at 30% 70%, rgba(200,80,192,0.02) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(0,255,136,0.015) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* === TOPBAR === */
+.topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 52px;
+    background: rgba(8,9,14,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 100;
+}
+
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar-logo {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800;
+}
+
+.topbar-name {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+}
+
+.topbar-name em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.topbar-right {
+    display: flex; gap: 6px;
+}
+
+.topbar-btn {
+    padding: 7px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.topbar-btn:hover {
+    background: rgba(0,229,255,0.06);
+    border-color: rgba(0,229,255,0.15);
+    color: var(--cyan);
+}
+
+.topbar-btn.cta {
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* === MAIN LAYOUT === */
+.page {
+    padding: 72px 20px 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* === CHAT HUB (center) === */
+.chat-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 24px auto 32px;
+    text-align: center;
+}
+
+.chat-hero {
+    margin-bottom: 20px;
+}
+
+.chat-hero h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.chat-hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--cyan), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.chat-hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 400;
+}
+
+.chat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 60px rgba(0,229,255,0.04), 0 8px 32px rgba(0,0,0,0.3);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.chat-bar:focus-within {
+    border-color: rgba(0,229,255,0.2);
+    box-shadow: 0 0 80px rgba(0,229,255,0.06), 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.chat-orb {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--cyan));
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    animation: orbSpin 5s linear infinite;
+    box-shadow: 0 0 20px rgba(0,229,255,0.2);
+}
+
+.chat-orb-inner {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--void);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+}
+
+@keyframes orbSpin { to { transform: rotate(360deg); } }
+
+.chat-bar input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 8px 4px;
+}
+
+.chat-bar input::placeholder { color: rgba(255,255,255,0.2); }
+
+.chat-btn {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.btn-mic {
+    background: rgba(255,255,255,0.03);
+    color: rgba(255,255,255,0.3);
+    border: 1px solid var(--border);
+}
+
+.btn-send {
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    color: #fff;
+    font-weight: 700;
+}
+
+.btn-send:hover { transform: scale(1.06); }
+
+/* Quick chips */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.chip {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.35);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.chip:hover {
+    background: rgba(0,229,255,0.05);
+    border-color: rgba(0,229,255,0.15);
+    color: var(--cyan);
+}
+
+/* === RESPONSE === */
+.response {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.response.visible {
+    opacity: 1;
+    max-height: 200px;
+    margin-bottom: 20px;
+}
+
+.response-inner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    backdrop-filter: blur(20px);
+}
+
+.response-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+}
+
+.response-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.response-btn {
+    padding: 6px 14px;
+    background: rgba(0,229,255,0.05);
+    border: 1px solid rgba(0,229,255,0.1);
+    border-radius: 8px;
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.response-btn:hover { background: rgba(0,229,255,0.1); }
+
+/* === SECTION LABEL === */
+.section-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+/* === CARD GRID === */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    width: 100%;
+    max-width: 980px;
+}
+
+/* === PAGE CARDS === */
+.page-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.page-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.page-card.active {
+    box-shadow: 0 0 30px var(--glow-color, rgba(0,229,255,0.15));
+}
+
+/* Card visualization area */
+.card-viz {
+    height: 110px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.card-viz canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Card content */
+.card-body {
+    padding: 14px 16px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.card-icon {
+    font-size: 18px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.card-tag {
+    margin-left: auto;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.card-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.5;
+}
+
+.card-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.card-stat .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Per-card accent glow on hover */
+.page-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.page-card:hover::after,
+.page-card.active::after {
+    opacity: 1;
+}
+
+/* === STATUS BAR === */
+.statusbar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 24px;
+    background: rgba(8,9,14,0.9);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 60;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.2);
+}
+
+.statusbar .live {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--green);
+    display: inline-block;
+    margin-right: 4px;
+    animation: pulse 2s ease-in-out infinite;
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+    <div class="topbar-brand">
+        <div class="topbar-logo">IHE</div>
+        <div class="topbar-name"><em>Innovating Higher Ed</em></div>
+    </div>
+    <div class="topbar-right">
+        <button class="topbar-btn">About</button>
+        <button class="topbar-btn">Community</button>
+        <button class="topbar-btn cta">Subscribe</button>
+    </div>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+    <!-- CHAT HUB -->
+    <div class="chat-section">
+        <div class="chat-hero">
+            <h1>Where do you want to <em>explore</em>?</h1>
+            <p>Ask me anything or click a destination below</p>
+        </div>
+        <div class="chat-bar">
+            <div class="chat-orb"><div class="chat-orb-inner">🧭</div></div>
+            <input type="text" id="chatInput" placeholder="Take me to AI tools for grading..." autocomplete="off">
+            <button class="chat-btn btn-mic">🎙</button>
+            <button class="chat-btn btn-send" id="sendBtn">→</button>
+        </div>
+        <div class="chips">
+            <button class="chip" data-q="new to AI">🌱 I'm new to AI</button>
+            <button class="chip" data-q="play news">▶ Today's Pulse</button>
+            <button class="chip" data-q="tools">🛠 AI Tools</button>
+            <button class="chip" data-q="podcast">🎙 Podcast</button>
+            <button class="chip" data-q="prompts">💡 Prompts</button>
+        </div>
+    </div>
+
+    <!-- RESPONSE -->
+    <div class="response" id="response">
+        <div class="response-inner">
+            <div class="response-text" id="responseText"></div>
+            <div class="response-actions" id="responseActions"></div>
+        </div>
+    </div>
+
+    <!-- SECTION LABEL -->
+    <div class="section-label">⬡ Explore Destinations</div>
+
+    <!-- CARD GRID -->
+    <div class="card-grid" id="cardGrid"></div>
+
+</div>
+
+<!-- STATUS -->
+<div class="statusbar">
+    <span><span class="live"></span>Portal Online</span>
+    <span>9 destinations • 51 resources</span>
+    <span>IHE PULSE • Feb 7, 2026</span>
+</div>
+
+<script>
+// === PAGE DATA ===
+const pages = [
+    {
+        id: 'pulse', icon: '📡', title: 'Innovation Pulse', tag: 'DAILY', tagColor: '#00e5ff',
+        desc: 'AI news briefing narrated by Dr. Jones. 4 stories, 1 deep dive, every morning.',
+        stat: 'Updated today', statColor: '#00e5ff', accent: '#00e5ff',
+        viz: 'waveform', // audio waveform
+        kw: ['news','pulse','daily','play','today','briefing','morning'],
+        resp: { text: "Your morning briefing is ready — 4 AI stories narrated by Dr. Jones.", actions: ['▶ Play Briefing', 'Read Stories'] }
+    },
+    {
+        id: 'podcast', icon: '🎙', title: 'Podcast', tag: 'WEEKLY', tagColor: '#c850c0',
+        desc: 'Long-form interviews with educators transforming their campuses through AI.',
+        stat: '24 episodes', statColor: '#c850c0', accent: '#c850c0',
+        viz: 'circles', // overlapping circles / sound visualization
+        kw: ['podcast','episode','listen','interview','norma'],
+        resp: { text: "Latest episode: A dean who turned their campus into an AI-first institution. 38 min.", actions: ['▶ Play Episode', 'All Episodes'] }
+    },
+    {
+        id: 'tools', icon: '🛠', title: 'AI Tools Directory', tag: '50+ TOOLS', tagColor: '#00ff88',
+        desc: 'Curated, vetted AI tools for teaching, grading, advising, and admin. Filtered by role.',
+        stat: '52 tools vetted', statColor: '#00ff88', accent: '#00ff88',
+        viz: 'grid', // grid of small dots/icons
+        kw: ['tool','app','software','directory','chatgpt','grading'],
+        resp: { text: "50+ AI tools vetted for higher ed. I can filter by your role or task.", actions: ['Browse All', 'Teaching Tools', 'Admin Tools'] }
+    },
+    {
+        id: 'prompts', icon: '💡', title: 'Prompt Library', tag: 'COPY & USE', tagColor: '#ffd700',
+        desc: 'Ready-to-use AI prompts for lesson plans, feedback, rubrics, and more.',
+        stat: '120+ prompts', statColor: '#ffd700', accent: '#ffd700',
+        viz: 'text', // flowing text lines
+        kw: ['prompt','template','write','generate'],
+        resp: { text: "Copy-paste prompts built for higher ed. From syllabus design to student feedback.", actions: ['Browse All', 'For Beginners', 'By Subject'] }
+    },
+    {
+        id: 'tinkerlab', icon: '🔬', title: 'Tinker Lab', tag: 'EXPERIMENT', tagColor: '#ff8c42',
+        desc: "Dr. Jones' quick experiments — try something new with AI in 5 minutes.",
+        stat: '18 experiments', statColor: '#ff8c42', accent: '#ff8c42',
+        viz: 'particles', // floating particles
+        kw: ['tinker','lab','experiment','try'],
+        resp: { text: "Quick experiments from Dr. Jones. Try something new in 5 minutes.", actions: ['Latest', 'Browse All'] }
+    },
+    {
+        id: 'guides', icon: '🌱', title: 'Getting Started', tag: 'START HERE', tagColor: '#14b8a6',
+        desc: 'AI fundamentals for faculty. No jargon, no panic. Step-by-step paths.',
+        stat: 'Beginner friendly', statColor: '#14b8a6', accent: '#14b8a6',
+        viz: 'path', // stepping stones / path
+        kw: ['new','start','begin','learn','teach','faculty','professor','help','biology','english'],
+        resp: { text: "Welcome. Let's start with fundamentals — no jargon, no panic. I'll walk you through it.", actions: ['Start Learning', 'Quick-Start Guide'] }
+    },
+    {
+        id: 'cases', icon: '📊', title: 'Case Studies', tag: 'EVIDENCE', tagColor: '#a855f7',
+        desc: 'Real outcomes from real campuses. Measurable results, honest challenges.',
+        stat: '12 case studies', statColor: '#a855f7', accent: '#a855f7',
+        viz: 'bars', // bar chart
+        kw: ['case','study','example','success','outcome'],
+        resp: { text: "Real outcomes from real campuses. Measurable results you can bring to your leadership.", actions: ['Browse All', 'By Institution Size'] }
+    },
+    {
+        id: 'community', icon: '🤝', title: 'Community', tag: 'JOIN', tagColor: '#ff6b9d',
+        desc: '200+ educators navigating AI together. Questions, wins, honest conversations.',
+        stat: '214 members', statColor: '#ff6b9d', accent: '#ff6b9d',
+        viz: 'network', // network graph
+        kw: ['community','connect','forum','discuss','join'],
+        resp: { text: "200+ educators navigating AI together. Real questions, real answers.", actions: ['Join Now', 'Upcoming Events'] }
+    },
+    {
+        id: 'about', icon: '👩‍🏫', title: 'About Dr. Jones', tag: 'FOUNDER', tagColor: '#f59e0b',
+        desc: 'The mission, the vision, and the educator behind Innovating Higher Ed.',
+        stat: 'Est. 2024', statColor: '#f59e0b', accent: '#f59e0b',
+        viz: 'rings', // concentric rings
+        kw: ['about','norma','jones','mission','who','guest','contribute'],
+        resp: { text: "Dr. Norma Jones — AI integration leader, educator, and your guide to innovation.", actions: ['Read Bio', 'Our Mission'] }
+    },
+];
+
+// === BUILD CARDS ===
+const grid = document.getElementById('cardGrid');
+pages.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'page-card';
+    card.style.setProperty('--accent', p.accent);
+    card.style.setProperty('--glow-color', p.accent + '25');
+    card.dataset.id = p.id;
+    card.innerHTML = `
+        <div class="card-viz"><canvas data-viz="${p.viz}" data-color="${p.accent}"></canvas></div>
+        <div class="card-body">
+            <div class="card-header">
+                <span class="card-icon">${p.icon}</span>
+                <span class="card-title">${p.title}</span>
+                <span class="card-tag" style="background:${p.tagColor}15;color:${p.tagColor}">${p.tag}</span>
+            </div>
+            <div class="card-desc">${p.desc}</div>
+            <div class="card-stat">
+                <span class="dot" style="background:${p.statColor}"></span>
+                ${p.stat}
+            </div>
+        </div>
+    `;
+    card.addEventListener('click', () => selectPage(p));
+    grid.appendChild(card);
+});
+
+// === CARD VISUALIZATIONS ===
+function initViz() {
+    document.querySelectorAll('.card-viz canvas').forEach(canvas => {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        const viz = canvas.dataset.viz;
+        const color = canvas.dataset.color;
+        const w = rect.width, h = rect.height;
+
+        function hexToRGB(hex) {
+            return {
+                r: parseInt(hex.slice(1,3),16),
+                g: parseInt(hex.slice(3,5),16),
+                b: parseInt(hex.slice(5,7),16)
+            };
+        }
+        const rgb = hexToRGB(color);
+
+        let frame = 0;
+        function draw() {
+            frame += 0.02;
+            ctx.clearRect(0,0,w,h);
+
+            // Dark bg
+            ctx.fillStyle = 'rgba(8,9,14,0.3)';
+            ctx.fillRect(0,0,w,h);
+
+            if (viz === 'waveform') {
+                // Audio waveform
+                ctx.beginPath();
+                for (let x = 0; x < w; x++) {
+                    const val = Math.sin(x*0.04+frame*2)*15 + Math.sin(x*0.08+frame*3)*8 + Math.sin(x*0.02+frame)*20;
+                    const y = h/2 + val;
+                    x === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+                }
+                ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.5)`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                // Mirror
+                ctx.beginPath();
+                for (let x = 0; x < w; x++) {
+                    const val = Math.sin(x*0.04+frame*2)*15 + Math.sin(x*0.08+frame*3)*8 + Math.sin(x*0.02+frame)*20;
+                    const y = h/2 - val;
+                    x === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+                }
+                ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.2)`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                // Center line
+                ctx.beginPath();ctx.moveTo(0,h/2);ctx.lineTo(w,h/2);
+                ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.08)`;ctx.lineWidth=1;ctx.stroke();
+            }
+
+            else if (viz === 'circles') {
+                for (let i = 0; i < 5; i++) {
+                    const x = w*0.3 + i*25 + Math.sin(frame+i)*8;
+                    const y = h/2 + Math.cos(frame*1.3+i*0.8)*12;
+                    const r = 18 + Math.sin(frame*2+i)*6;
+                    ctx.beginPath();ctx.arc(x,y,r,0,6.28);
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.06+i*0.02})`;
+                    ctx.fill();
+                    ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.15)`;ctx.lineWidth=1;ctx.stroke();
+                }
+            }
+
+            else if (viz === 'grid') {
+                const cols = 8, rows = 4;
+                const gw = w/(cols+1), gh = h/(rows+1);
+                for (let r = 1; r <= rows; r++) {
+                    for (let c = 1; c <= cols; c++) {
+                        const pulse = Math.sin(frame*2 + r*0.5 + c*0.3)*0.4+0.6;
+                        const sz = 3 + pulse*2;
+                        ctx.beginPath();
+                        ctx.arc(c*gw, r*gh, sz, 0, 6.28);
+                        ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.15*pulse})`;
+                        ctx.fill();
+                    }
+                }
+            }
+
+            else if (viz === 'text') {
+                ctx.font = '10px "IBM Plex Mono"';
+                const lines = ['> Create a rubric for...','> Write feedback for...','> Design a lesson on...','> Summarize this for...','> Generate quiz about...'];
+                lines.forEach((line, i) => {
+                    const scroll = (frame * 15 + i * 22) % (h + 30) - 10;
+                    const a = Math.max(0, 1 - Math.abs(scroll - h/2)/(h/2));
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.3*a})`;
+                    ctx.fillText(line, 12, scroll);
+                });
+            }
+
+            else if (viz === 'particles') {
+                for (let i = 0; i < 20; i++) {
+                    const x = (Math.sin(frame*0.5+i*1.7)*0.4+0.5)*w;
+                    const y = (Math.cos(frame*0.7+i*1.3)*0.4+0.5)*h;
+                    const sz = 2 + Math.sin(frame*2+i)*1.5;
+                    ctx.beginPath();ctx.arc(x,y,sz,0,6.28);
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.25+Math.sin(frame+i)*0.15})`;
+                    ctx.fill();
+                    // trails
+                    ctx.beginPath();ctx.arc(x,y,sz+6,0,6.28);
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.04)`;ctx.fill();
+                }
+            }
+
+            else if (viz === 'path') {
+                const steps = 6;
+                for (let i = 0; i < steps; i++) {
+                    const x = 20 + i * (w-40)/(steps-1);
+                    const y = h/2 + Math.sin(i*0.8)*15;
+                    const active = Math.sin(frame*1.5 - i*0.5) > 0.3;
+                    const sz = active ? 8 : 5;
+                    ctx.beginPath();ctx.arc(x,y,sz,0,6.28);
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${active?0.4:0.1})`;ctx.fill();
+                    if (i < steps-1) {
+                        const nx = 20 + (i+1) * (w-40)/(steps-1);
+                        const ny = h/2 + Math.sin((i+1)*0.8)*15;
+                        ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(nx,ny);
+                        ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.08)`;ctx.lineWidth=1;ctx.stroke();
+                    }
+                }
+            }
+
+            else if (viz === 'bars') {
+                const bars = 8;
+                const bw = (w-40)/bars;
+                for (let i = 0; i < bars; i++) {
+                    const bh = 15 + Math.sin(frame*1.5+i*0.7)*10 + (i/bars)*40;
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.12+i*0.03})`;
+                    ctx.fillRect(20+i*bw+2, h-10-bh, bw-4, bh);
+                }
+            }
+
+            else if (viz === 'network') {
+                const pts = [];
+                for (let i = 0; i < 12; i++) {
+                    pts.push({
+                        x: (Math.sin(frame*0.3+i*2.1)*0.35+0.5)*w,
+                        y: (Math.cos(frame*0.4+i*1.7)*0.35+0.5)*h
+                    });
+                }
+                // connections
+                pts.forEach((a,i) => {
+                    pts.forEach((b,j) => {
+                        if (j <= i) return;
+                        const d = Math.hypot(a.x-b.x, a.y-b.y);
+                        if (d < 90) {
+                            ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+                            ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.08*(1-d/90)})`;
+                            ctx.lineWidth=1;ctx.stroke();
+                        }
+                    });
+                });
+                pts.forEach(p => {
+                    ctx.beginPath();ctx.arc(p.x,p.y,3,0,6.28);
+                    ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.3)`;ctx.fill();
+                });
+            }
+
+            else if (viz === 'rings') {
+                for (let i = 0; i < 4; i++) {
+                    const r = 12 + i*14 + Math.sin(frame+i)*3;
+                    ctx.beginPath();ctx.arc(w/2,h/2,r,0,6.28);
+                    ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.1-i*0.015})`;
+                    ctx.lineWidth = 1 + (3-i)*0.3;ctx.stroke();
+                }
+                ctx.beginPath();ctx.arc(w/2,h/2,5,0,6.28);
+                ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},0.35)`;ctx.fill();
+            }
+
+            requestAnimationFrame(draw);
+        }
+        draw();
+    });
+}
+
+// Wait for layout then init
+setTimeout(initViz, 100);
+window.addEventListener('resize', () => { setTimeout(initViz, 200); });
+
+// === INTERACTION ===
+function selectPage(p) {
+    document.querySelectorAll('.page-card').forEach(c => c.classList.remove('active'));
+    document.querySelector(`[data-id="${p.id}"]`).classList.add('active');
+    document.getElementById('responseText').textContent = p.resp.text;
+    document.getElementById('responseActions').innerHTML = p.resp.actions.map(a => `<button class="response-btn">${a}</button>`).join('');
+    document.getElementById('response').classList.add('visible');
+    // Scroll response into view
+    document.getElementById('response').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function processInput(text) {
+    if (!text.trim()) return;
+    const lower = text.toLowerCase();
+    let best = null, bestScore = 0;
+    pages.forEach(p => {
+        let score = 0;
+        p.kw.forEach(kw => { if (lower.includes(kw)) score += 2; });
+        if (score > bestScore) { bestScore = score; best = p; }
+    });
+    if (!best) best = pages.find(p => p.id === 'guides');
+    selectPage(best);
+}
+
+document.getElementById('sendBtn').addEventListener('click', () => {
+    const inp = document.getElementById('chatInput');
+    processInput(inp.value); inp.value = '';
+});
+document.getElementById('chatInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { processInput(e.target.value); e.target.value = ''; }
+});
+document.querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => processInput(c.dataset.q));
+});
+</script>
+</body>
+</html>

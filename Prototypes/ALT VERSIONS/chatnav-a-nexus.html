@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT-NAV Prototype A: The Nexus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #020208;
+            --deep: #06060f;
+            --surface: #0c0c1a;
+            --card: #12122a;
+            --elevated: #1a1a3a;
+            --cyan: #00e5ff;
+            --cyan-glow: rgba(0, 229, 255, 0.35);
+            --magenta: #c850c0;
+            --magenta-glow: rgba(200, 80, 192, 0.3);
+            --green: #00ff88;
+            --gold: #ffd700;
+            --rose: #ff6b9d;
+            --violet: #a855f7;
+            --orange: #ff8c42;
+            --text-bright: #ffffff;
+            --text-primary: #e0e0f0;
+            --text-secondary: #8888aa;
+            --text-muted: #555570;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        /* === TOP NAV BAR === */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: rgba(6, 6, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            z-index: 100;
+        }
+
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topbar-brand .logo-mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+        }
+
+        .topbar-brand .brand-text {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: -0.3px;
+        }
+
+        .topbar-brand .brand-text span {
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbar-link {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .topbar-link:hover { color: var(--cyan); }
+
+        .topbar-cta {
+            padding: 7px 16px;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* === CANVAS BACKGROUND === */
+        #nexusCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* === MAIN LAYOUT === */
+        .nexus-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 56px;
+        }
+
+        /* === WELCOME STATE === */
+        .welcome-state {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+            max-width: 600px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .welcome-state.minimized {
+            transform: translateY(-30vh);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--cyan);
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+        }
+
+        .welcome-title {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+        }
+
+        .welcome-title .gradient {
+            background: linear-gradient(135deg, var(--cyan), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.7s forwards;
+        }
+
+        /* === CHAT INPUT (CENTER HUB) === */
+        .chat-hub {
+            position: relative;
+            width: 100%;
+            max-width: 580px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.9s forwards;
+        }
+
+        .chat-hub.active-mode {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 620px;
+            z-index: 50;
+            opacity: 1;
+            animation: none;
+        }
+
+        .chat-input-wrapper {
+            position: relative;
+            background: rgba(12, 12, 26, 0.9);
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            border-radius: 16px;
+            padding: 4px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.06), inset 0 1px 0 rgba(255,255,255,0.03);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .chat-input-wrapper:focus-within {
+            border-color: rgba(0, 229, 255, 0.35);
+            box-shadow: 0 0 60px rgba(0, 229, 255, 0.12), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .chat-input-inner {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px var(--cyan-glow);
+            animation: avatarPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { box-shadow: 0 0 20px var(--cyan-glow); }
+            50% { box-shadow: 0 0 35px var(--cyan-glow), 0 0 60px rgba(0, 229, 255, 0.1); }
+        }
+
+        .chat-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-bright);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            padding: 8px 0;
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .chat-send {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            flex-shrink: 0;
+        }
+
+        .chat-send:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 20px var(--cyan-glow);
+        }
+
+        .chat-mic {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-secondary);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .chat-mic:hover {
+            background: rgba(0, 229, 255, 0.1);
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        /* === QUICK ACTIONS === */
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 16px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1.1s forwards;
+        }
+
+        .quick-action {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: inherit;
+        }
+
+        .quick-action:hover {
+            background: rgba(0, 229, 255, 0.08);
+            border-color: rgba(0, 229, 255, 0.3);
+            color: var(--cyan);
+            transform: translateY(-2px);
+        }
+
+        .quick-action .icon { margin-right: 6px; }
+
+        /* === CONTENT NODES (RADIAL) === */
+        .content-nodes {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            bottom: 80px;
+            pointer-events: none;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .content-nodes.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .content-node {
+            position: absolute;
+            width: 200px;
+            padding: 16px;
+            background: rgba(12, 12, 26, 0.92);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            backdrop-filter: blur(16px);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        .content-node.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .content-node:hover {
+            border-color: var(--node-color, var(--cyan));
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .content-node.highlighted {
+            border-color: var(--node-color, var(--cyan));
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .content-node.highlighted .node-label {
+            color: var(--text-bright);
+        }
+
+        .node-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .node-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .node-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .node-color-bar {
+            position: absolute;
+            top: 0;
+            left: 16px;
+            right: 16px;
+            height: 2px;
+            border-radius: 0 0 2px 2px;
+            background: var(--node-color, var(--cyan));
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .content-node:hover .node-color-bar,
+        .content-node.highlighted .node-color-bar { opacity: 1; }
+
+        /* === CHAT RESPONSE AREA === */
+        .chat-response {
+            position: fixed;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 580px;
+            width: 90%;
+            z-index: 40;
+            display: none;
+        }
+
+        .chat-response.visible { display: block; }
+
+        .response-bubble {
+            background: rgba(12, 12, 26, 0.95);
+            border: 1px solid rgba(0, 229, 255, 0.12);
+            border-radius: 16px;
+            padding: 16px 20px;
+            backdrop-filter: blur(20px);
+            animation: bubbleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .response-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .response-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .response-action {
+            padding: 6px 14px;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 8px;
+            color: var(--cyan);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .response-action:hover {
+            background: rgba(0, 229, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        @keyframes bubbleIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === CONNECTION LINES (SVG OVERLAY) === */
+        .connection-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+
+        .connection-lines.visible { opacity: 1; }
+
+        /* === AMBIENT PARTICLES === */
+        .particle {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: var(--cyan);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* === STATUS BAR === */
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 28px;
+            background: rgba(6, 6, 15, 0.9);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            z-index: 60;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Location breadcrumb */
+        .location-breadcrumb {
+            position: fixed;
+            top: 68px;
+            left: 28px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .location-breadcrumb.visible { opacity: 1; }
+
+        .location-breadcrumb .loc-icon {
+            color: var(--cyan);
+        }
+
+        .location-breadcrumb .loc-path {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <nav class="topbar">
+        <div class="topbar-brand">
+            <div class="logo-mark">IHE</div>
+            <div class="brand-text"><span>Innovating Higher Ed</span></div>
+        </div>
+        <div class="topbar-right">
+            <a href="#" class="topbar-link">About</a>
+            <a href="#" class="topbar-link">Podcast</a>
+            <a href="#" class="topbar-link">Community</a>
+            <button class="topbar-cta">Subscribe</button>
+        </div>
+    </nav>
+
+    <!-- CANVAS FOR CONSTELLATION -->
+    <canvas id="nexusCanvas"></canvas>
+
+    <!-- SVG CONNECTION LINES -->
+    <svg class="connection-lines" id="connectionLines"></svg>
+
+    <!-- LOCATION BREADCRUMB -->
+    <div class="location-breadcrumb" id="locationBreadcrumb">
+        <span class="loc-icon">◉</span>
+        <span class="loc-path" id="locPath">Home → Nexus</span>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="nexus-container">
+        <!-- WELCOME STATE -->
+        <div class="welcome-state" id="welcomeState">
+            <div class="welcome-tagline">AI-Powered Navigation</div>
+            <h1 class="welcome-title">
+                Where do you want<br><span class="gradient">to explore?</span>
+            </h1>
+            <p class="welcome-subtitle">
+                Tell me what you need. I'll take you there instantly —<br>
+                no menus, no searching, just ask.
+            </p>
+
+            <!-- CHAT HUB -->
+            <div class="chat-hub" id="chatHub">
+                <div class="chat-input-wrapper">
+                    <div class="chat-input-inner">
+                        <div class="chat-avatar">🧭</div>
+                        <input type="text" class="chat-input" id="chatInput"
+                               placeholder="I teach biology and I'm new to AI..."
+                               autocomplete="off">
+                        <button class="chat-mic" id="micBtn" title="Voice input">🎙</button>
+                        <button class="chat-send" id="sendBtn">→</button>
+                    </div>
+                </div>
+
+                <!-- QUICK ACTIONS -->
+                <div class="quick-actions" id="quickActions">
+                    <button class="quick-action" data-query="new to AI"><span class="icon">🌱</span>I'm new to AI</button>
+                    <button class="quick-action" data-query="play news"><span class="icon">▶</span>Play today's news</button>
+                    <button class="quick-action" data-query="AI tools"><span class="icon">🛠</span>Find AI tools</button>
+                    <button class="quick-action" data-query="podcast"><span class="icon">🎙</span>Latest podcast</button>
+                    <button class="quick-action" data-query="prompts"><span class="icon">💡</span>Prompt library</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT NODES (appear after interaction) -->
+    <div class="content-nodes" id="contentNodes">
+        <!-- Nodes positioned via JS -->
+    </div>
+
+    <!-- CHAT RESPONSE -->
+    <div class="chat-response" id="chatResponse"></div>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-dot"></div>
+            <span>Navigator Online</span>
+        </div>
+        <div class="status-item">
+            <span>51 resources indexed</span>
+        </div>
+        <div class="status-item">
+            <span>Feb 7, 2026 • 8:14 AM</span>
+        </div>
+    </div>
+
+    <script>
+        // === CONSTELLATION CANVAS ===
+        const canvas = document.getElementById('nexusCanvas');
+        const ctx = canvas.getContext('2d');
+        let W, H;
+        let stars = [];
+        let nodes = [];
+        let connections = [];
+        let animFrame;
+        let mouseX = W/2, mouseY = H/2;
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // Create background stars
+        for (let i = 0; i < 200; i++) {
+            stars.push({
+                x: Math.random() * 3000 - 500,
+                y: Math.random() * 2000 - 200,
+                r: Math.random() * 1.5 + 0.3,
+                a: Math.random() * 0.5 + 0.1,
+                speed: Math.random() * 0.02 + 0.005
+            });
+        }
+
+        // Content node data
+        const nodeData = [
+            { id: 'news', label: 'Innovation Pulse', desc: 'Daily AI news for higher ed', icon: '📡', color: '#00e5ff', keywords: ['news', 'pulse', 'daily', 'today', 'morning', 'play'] },
+            { id: 'podcast', label: 'Podcast', desc: 'Dr. Jones interviews innovators', icon: '🎙', color: '#c850c0', keywords: ['podcast', 'episode', 'listen', 'interview', 'norma', 'jones'] },
+            { id: 'tools', label: 'AI Tools Directory', desc: '50+ vetted tools for educators', icon: '🛠', color: '#00ff88', keywords: ['tool', 'app', 'software', 'directory', 'find', 'chatgpt', 'grading'] },
+            { id: 'prompts', label: 'Prompt Navigator', desc: 'Copy-paste prompts that work', icon: '💡', color: '#ffd700', keywords: ['prompt', 'template', 'write', 'generate', 'create'] },
+            { id: 'tinkerlab', label: 'Tinker Lab', desc: 'Quick experiments & insights', icon: '🔬', color: '#ff8c42', keywords: ['tinker', 'lab', 'experiment', 'try', 'explore', 'test'] },
+            { id: 'guides', label: 'Getting Started', desc: 'AI fundamentals for faculty', icon: '🌱', color: '#4ade80', keywords: ['new', 'start', 'begin', 'learn', 'beginner', 'teach', 'faculty', 'first'] },
+            { id: 'cases', label: 'Case Studies', desc: 'Real outcomes from real campuses', icon: '📊', color: '#a855f7', keywords: ['case', 'study', 'example', 'success', 'outcome', 'result', 'campus'] },
+            { id: 'community', label: 'Community', desc: 'Connect with fellow innovators', icon: '🤝', color: '#ff6b9d', keywords: ['community', 'connect', 'forum', 'discuss', 'share', 'join'] },
+        ];
+
+        // Calculate node positions in a radial layout
+        function positionNodes() {
+            const cx = W / 2;
+            const cy = H / 2;
+            const radiusX = Math.min(W * 0.38, 420);
+            const radiusY = Math.min(H * 0.34, 300);
+
+            nodeData.forEach((node, i) => {
+                const angle = (i / nodeData.length) * Math.PI * 2 - Math.PI / 2;
+                node.x = cx + Math.cos(angle) * radiusX;
+                node.y = cy + Math.sin(angle) * radiusY;
+                node.targetX = node.x;
+                node.targetY = node.y;
+                node.currentX = cx;
+                node.currentY = cy;
+                node.visible = false;
+                node.highlighted = false;
+            });
+        }
+        positionNodes();
+        window.addEventListener('resize', positionNodes);
+
+        // Render loop
+        let time = 0;
+        function render() {
+            time += 0.01;
+            ctx.clearRect(0, 0, W, H);
+
+            // Draw stars
+            stars.forEach(s => {
+                const twinkle = Math.sin(time * 2 + s.x) * 0.3 + 0.7;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 210, 255, ${s.a * twinkle})`;
+                ctx.fill();
+            });
+
+            // Draw connection lines from center to visible nodes
+            const cx = W / 2, cy = H / 2;
+            nodeData.forEach(node => {
+                if (!node.visible) return;
+                // Lerp positions
+                node.currentX += (node.targetX - node.currentX) * 0.04;
+                node.currentY += (node.targetY - node.currentY) * 0.04;
+
+                const grad = ctx.createLinearGradient(cx, cy, node.currentX, node.currentY);
+                grad.addColorStop(0, 'rgba(0, 229, 255, 0.15)');
+                grad.addColorStop(1, node.highlighted ? node.color + '66' : 'rgba(0, 229, 255, 0.03)');
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+
+                // Curved line
+                const midX = (cx + node.currentX) / 2 + Math.sin(time + node.x) * 20;
+                const midY = (cy + node.currentY) / 2 + Math.cos(time + node.y) * 20;
+                ctx.quadraticCurveTo(midX, midY, node.currentX, node.currentY);
+
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = node.highlighted ? 2 : 1;
+                ctx.stroke();
+
+                // Traveling particle along line
+                if (node.highlighted) {
+                    const t = (Math.sin(time * 3) + 1) / 2;
+                    const px = cx + (node.currentX - cx) * t;
+                    const py = cy + (node.currentY - cy) * t;
+                    ctx.beginPath();
+                    ctx.arc(px, py, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(px, py, 8, 0, Math.PI * 2);
+                    ctx.fillStyle = node.color + '33';
+                    ctx.fill();
+                }
+            });
+
+            // Center hub glow
+            if (isActive) {
+                const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, 100);
+                gradient.addColorStop(0, 'rgba(0, 229, 255, 0.08)');
+                gradient.addColorStop(1, 'rgba(0, 229, 255, 0)');
+                ctx.beginPath();
+                ctx.arc(cx, cy, 100, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+
+            animFrame = requestAnimationFrame(render);
+        }
+        render();
+
+        // === INTERACTION LOGIC ===
+        let isActive = false;
+
+        function activateNexus() {
+            if (isActive) return;
+            isActive = true;
+
+            // Minimize welcome, move chat to bottom
+            document.getElementById('welcomeState').classList.add('minimized');
+
+            setTimeout(() => {
+                const hub = document.getElementById('chatHub');
+                hub.classList.add('active-mode');
+                document.body.appendChild(hub);
+
+                // Show nodes
+                const nodesContainer = document.getElementById('contentNodes');
+                nodesContainer.classList.add('visible');
+                nodesContainer.innerHTML = '';
+
+                nodeData.forEach((node, i) => {
+                    const el = document.createElement('div');
+                    el.className = 'content-node';
+                    el.style.cssText = `
+                        left: ${node.targetX - 100}px;
+                        top: ${node.targetY - 50}px;
+                        --node-color: ${node.color};
+                    `;
+                    el.innerHTML = `
+                        <div class="node-color-bar"></div>
+                        <div class="node-icon">${node.icon}</div>
+                        <div class="node-label">${node.label}</div>
+                        <div class="node-desc">${node.desc}</div>
+                    `;
+                    el.addEventListener('click', () => navigateToNode(node));
+                    nodesContainer.appendChild(el);
+
+                    node.visible = true;
+                    setTimeout(() => el.classList.add('show'), 100 + i * 80);
+                });
+
+                // Show breadcrumb
+                document.getElementById('locationBreadcrumb').classList.add('visible');
+
+            }, 400);
+        }
+
+        function navigateToNode(node) {
+            // Highlight the selected node
+            nodeData.forEach(n => n.highlighted = false);
+            node.highlighted = true;
+
+            // Update breadcrumb
+            document.getElementById('locPath').textContent = `Home → ${node.label}`;
+
+            // Update node visuals
+            document.querySelectorAll('.content-node').forEach((el, i) => {
+                el.classList.toggle('highlighted', nodeData[i].id === node.id);
+            });
+
+            // Show response
+            showResponse(node);
+        }
+
+        function showResponse(node) {
+            const resp = document.getElementById('chatResponse');
+            resp.classList.add('visible');
+
+            const messages = {
+                news: { text: "Here's today's Innovation Pulse — your morning AI briefing. Hit play and get caught up in 4 minutes.", actions: ['▶ Play Audio Briefing', 'Read Stories', 'See This Week'] },
+                podcast: { text: "Latest episode: Dr. Jones talks with a dean who transformed their college's approach to AI ethics. 38 min.", actions: ['▶ Play Episode', 'All Episodes', 'Be a Guest'] },
+                tools: { text: "50+ AI tools vetted for higher ed. I can filter by what you teach, your role, or what task you need help with.", actions: ['Browse All Tools', 'Tools for Teaching', 'Tools for Research'] },
+                prompts: { text: "Copy-paste prompts designed for educators. From syllabus design to student feedback — tested and refined.", actions: ['Browse Prompts', 'Prompts for Beginners', 'Create Custom Prompt'] },
+                tinkerlab: { text: "Quick experiments and bite-sized insights on AI in education. Perfect for a coffee break exploration.", actions: ['Latest Experiment', 'Browse All', 'Submit Your Own'] },
+                guides: { text: "Welcome! Let's start with the basics. I've got a path designed for faculty who are completely new to AI.", actions: ['Start Learning Path', 'What is AI?', 'AI Classroom Quick-Start'] },
+                cases: { text: "Real outcomes from real campuses. See how institutions like yours are implementing AI — with measurable results.", actions: ['Browse Case Studies', 'Filter by Institution Size', 'Submit Your Story'] },
+                community: { text: "Join 200+ educators navigating AI together. Ask questions, share wins, and find your people.", actions: ['Join Community', 'Upcoming Events', 'Discussion Forum'] },
+            };
+
+            const msg = messages[node.id] || { text: 'Let me take you there.', actions: ['Go'] };
+
+            resp.innerHTML = `
+                <div class="response-bubble">
+                    <div class="response-text">${msg.text}</div>
+                    <div class="response-actions">
+                        ${msg.actions.map(a => `<button class="response-action">${a}</button>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function processInput(text) {
+            if (!text.trim()) return;
+            activateNexus();
+
+            const lower = text.toLowerCase();
+
+            // Find best matching node
+            let bestMatch = null;
+            let bestScore = 0;
+
+            nodeData.forEach(node => {
+                let score = 0;
+                node.keywords.forEach(kw => {
+                    if (lower.includes(kw)) score += 2;
+                });
+                // Partial matching
+                if (lower.includes('biology') || lower.includes('teach') || lower.includes('professor') || lower.includes('class')) {
+                    if (node.id === 'guides') score += 3;
+                    if (node.id === 'tools') score += 2;
+                    if (node.id === 'prompts') score += 1;
+                }
+                if (lower.includes('new') || lower.includes('start') || lower.includes('help') || lower.includes('beginner')) {
+                    if (node.id === 'guides') score += 4;
+                }
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMatch = node;
+                }
+            });
+
+            if (!bestMatch) bestMatch = nodeData[5]; // Default to Getting Started
+
+            setTimeout(() => navigateToNode(bestMatch), 600);
+        }
+
+        // Event listeners
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const input = document.getElementById('chatInput');
+            processInput(input.value);
+            input.value = '';
+        });
+
+        document.getElementById('chatInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                processInput(e.target.value);
+                e.target.value = '';
+            }
+        });
+
+        document.querySelectorAll('.quick-action').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const query = btn.dataset.query;
+                document.getElementById('chatInput').value = '';
+                processInput(query);
+            });
+        });
+
+        // Track mouse for subtle parallax
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+    </script>
+</body>
+</html>

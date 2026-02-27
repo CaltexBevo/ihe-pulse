@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT-NAV Prototype C: The Compass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf8;
+            --bg-warm: #f5f4f0;
+            --surface: #ffffff;
+            --border: #e8e6e1;
+            --border-light: #f0eeea;
+            --ink: #1a1a1a;
+            --ink-secondary: #6b6b6b;
+            --ink-muted: #a0a0a0;
+            --accent: #0066ff;
+            --accent-glow: rgba(0, 102, 255, 0.12);
+            --accent-deep: #003cbd;
+            --coral: #ff6b4a;
+            --green: #00b07a;
+            --violet: #7c5cfc;
+            --gold: #e6a817;
+            --rose: #e84670;
+            --cyan: #00a3cc;
+            --orange: #f08c00;
+            --teal: #0d9488;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* === TOP BAR === */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: rgba(250, 250, 248, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            z-index: 100;
+        }
+
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topbar-brand .mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--ink);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .topbar-brand .name {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: -0.3px;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topbar-link {
+            font-size: 14px;
+            color: var(--ink-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .topbar-link:hover { color: var(--ink); }
+
+        .topbar-cta {
+            padding: 8px 18px;
+            background: var(--ink);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* === MAIN === */
+        .main {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 60px;
+        }
+
+        /* === WELCOME === */
+        .welcome {
+            text-align: center;
+            max-width: 520px;
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .welcome.minimized {
+            transform: translateY(-35vh);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: enterUp 0.5s ease 0.2s forwards;
+        }
+
+        .welcome h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+            opacity: 0;
+            animation: enterUp 0.5s ease 0.35s forwards;
+        }
+
+        .welcome h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .welcome p {
+            font-size: 17px;
+            color: var(--ink-secondary);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: enterUp 0.5s ease 0.5s forwards;
+        }
+
+        @keyframes enterUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === SEARCH BAR === */
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            opacity: 0;
+            animation: enterUp 0.5s ease 0.65s forwards;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-bar.docked {
+            position: fixed;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 560px;
+            z-index: 50;
+            opacity: 1;
+            animation: none;
+        }
+
+        .search-inner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-inner:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 4px 24px rgba(0, 102, 255, 0.08), 0 0 0 3px rgba(0, 102, 255, 0.06);
+        }
+
+        .search-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: var(--ink);
+            padding: 8px 0;
+        }
+
+        .search-input::placeholder { color: var(--ink-muted); }
+
+        .search-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .btn-voice {
+            background: var(--bg-warm);
+            color: var(--ink-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-voice:hover {
+            background: var(--accent-glow);
+            color: var(--accent);
+            border-color: rgba(0, 102, 255, 0.2);
+        }
+
+        .btn-go {
+            background: var(--ink);
+            color: white;
+        }
+
+        .btn-go:hover { transform: scale(1.05); }
+
+        /* === SUGGESTIONS === */
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 18px;
+            opacity: 0;
+            animation: enterUp 0.5s ease 0.8s forwards;
+        }
+
+        .suggestion {
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--ink-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .suggestion:hover {
+            background: var(--accent-glow);
+            border-color: rgba(0, 102, 255, 0.2);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.08);
+        }
+
+        /* === CONTENT CARDS (radial) === */
+        .cards-layer {
+            position: fixed;
+            top: 60px; left: 0; right: 0; bottom: 60px;
+            pointer-events: none;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .cards-layer.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .card {
+            position: absolute;
+            width: 185px;
+            padding: 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.7);
+            opacity: 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .card.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border-color: var(--card-color, var(--accent));
+        }
+
+        .card.selected {
+            border-color: var(--card-color, var(--accent));
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 0 3px color-mix(in srgb, var(--card-color, var(--accent)) 12%, transparent);
+            transform: scale(1.08);
+        }
+
+        .card-color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--card-color, var(--accent));
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .card-label {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: -0.2px;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: var(--ink-muted);
+            line-height: 1.4;
+        }
+
+        /* === CONNECTION LINES (SVG) === */
+        .connections-svg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .connections-svg.visible { opacity: 1; }
+
+        .connections-svg line {
+            stroke: var(--border);
+            stroke-width: 1;
+            stroke-dasharray: 4 4;
+            transition: stroke 0.3s;
+        }
+
+        /* === RESPONSE === */
+        .response-area {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 520px;
+            width: 90%;
+            z-index: 40;
+            display: none;
+        }
+
+        .response-area.visible { display: block; }
+
+        .response-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 22px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            animation: popUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes popUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .response-box p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--ink);
+            margin-bottom: 14px;
+        }
+
+        .response-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .response-action {
+            padding: 7px 16px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(0, 102, 255, 0.15);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .response-action:hover {
+            background: rgba(0, 102, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* === SUBTLE GRID BG === */
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                radial-gradient(circle at center, rgba(0, 102, 255, 0.02) 0%, transparent 70%),
+                linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 60px 60px, 60px 60px;
+            z-index: 0;
+        }
+
+        /* === STATUS === */
+        .status-strip {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 28px;
+            background: rgba(250, 250, 248, 0.9);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            z-index: 60;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--ink-muted);
+        }
+
+        .status-strip .live {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-strip .live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <nav class="topbar">
+        <div class="topbar-brand">
+            <div class="mark">IHE</div>
+            <div class="name">Innovating Higher Ed</div>
+        </div>
+        <div class="topbar-right">
+            <a href="#" class="topbar-link">About</a>
+            <a href="#" class="topbar-link">Podcast</a>
+            <a href="#" class="topbar-link">Community</a>
+            <button class="topbar-cta">Subscribe</button>
+        </div>
+    </nav>
+
+    <svg class="connections-svg" id="connectionsSvg"></svg>
+
+    <div class="main">
+        <div class="welcome" id="welcome">
+            <div class="welcome-label">Intelligent Navigation</div>
+            <h1>Ask me <em>anything</em><br>about AI in higher ed</h1>
+            <p>No menus to learn. No pages to hunt through.<br>Just tell me what you need.</p>
+
+            <div class="search-bar" id="searchBar">
+                <div class="search-inner">
+                    <div class="search-icon">◎</div>
+                    <input type="text" class="search-input" id="searchInput"
+                           placeholder="I teach English and want to try AI..."
+                           autocomplete="off">
+                    <button class="search-btn btn-voice">🎙</button>
+                    <button class="search-btn btn-go" id="goBtn">→</button>
+                </div>
+
+                <div class="suggestions">
+                    <button class="suggestion" data-q="new to AI">🌱 I'm new to AI</button>
+                    <button class="suggestion" data-q="play news">▶ Today's briefing</button>
+                    <button class="suggestion" data-q="find tools">🛠 Find tools</button>
+                    <button class="suggestion" data-q="podcast">🎙 Podcast</button>
+                    <button class="suggestion" data-q="prompts">💡 Prompts</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cards-layer" id="cardsLayer"></div>
+    <div class="response-area" id="responseArea"></div>
+
+    <div class="status-strip">
+        <div class="live">Compass Online</div>
+        <span>51 resources indexed</span>
+        <span>Feb 7, 2026</span>
+    </div>
+
+    <script>
+        const cardData = [
+            { id: 'news', label: 'Innovation Pulse', desc: 'Daily AI briefing', icon: '📡', color: '#0066ff', keywords: ['news', 'pulse', 'daily', 'today', 'morning', 'play'] },
+            { id: 'podcast', label: 'Podcast', desc: 'Expert interviews', icon: '🎙', color: '#7c5cfc', keywords: ['podcast', 'episode', 'listen'] },
+            { id: 'tools', label: 'AI Tools', desc: '50+ for educators', icon: '🛠', color: '#00b07a', keywords: ['tool', 'app', 'software', 'chatgpt'] },
+            { id: 'prompts', label: 'Prompts', desc: 'Copy & paste', icon: '💡', color: '#e6a817', keywords: ['prompt', 'template', 'write'] },
+            { id: 'tinkerlab', label: 'Tinker Lab', desc: 'Quick experiments', icon: '🔬', color: '#f08c00', keywords: ['tinker', 'lab', 'experiment'] },
+            { id: 'guides', label: 'Getting Started', desc: 'AI for faculty', icon: '🌱', color: '#0d9488', keywords: ['new', 'start', 'begin', 'learn', 'faculty', 'teach', 'professor', 'help', 'english'] },
+            { id: 'cases', label: 'Case Studies', desc: 'Real outcomes', icon: '📊', color: '#e84670', keywords: ['case', 'study', 'example', 'success'] },
+            { id: 'community', label: 'Community', desc: 'Connect & share', icon: '🤝', color: '#ff6b4a', keywords: ['community', 'connect', 'forum'] },
+        ];
+
+        let isActive = false;
+
+        function getCardPositions() {
+            const W = window.innerWidth;
+            const H = window.innerHeight;
+            const cx = W / 2;
+            const cy = H / 2;
+            const rx = Math.min(W * 0.36, 380);
+            const ry = Math.min(H * 0.32, 260);
+
+            return cardData.map((_, i) => {
+                const angle = (i / cardData.length) * Math.PI * 2 - Math.PI / 2;
+                return {
+                    x: cx + Math.cos(angle) * rx - 92,
+                    y: cy + Math.sin(angle) * ry - 55
+                };
+            });
+        }
+
+        function activate() {
+            if (isActive) return;
+            isActive = true;
+
+            document.getElementById('welcome').classList.add('minimized');
+
+            setTimeout(() => {
+                const bar = document.getElementById('searchBar');
+                bar.classList.add('docked');
+                document.body.appendChild(bar);
+
+                const layer = document.getElementById('cardsLayer');
+                layer.classList.add('visible');
+                layer.innerHTML = '';
+
+                const positions = getCardPositions();
+                const svgEl = document.getElementById('connectionsSvg');
+                svgEl.classList.add('visible');
+                svgEl.innerHTML = '';
+
+                const cx = window.innerWidth / 2;
+                const cy = window.innerHeight / 2;
+
+                cardData.forEach((d, i) => {
+                    const el = document.createElement('div');
+                    el.className = 'card';
+                    el.style.cssText = `
+                        left: ${positions[i].x}px;
+                        top: ${positions[i].y}px;
+                        --card-color: ${d.color};
+                    `;
+                    el.innerHTML = `
+                        <div class="card-color-dot"></div>
+                        <div class="card-icon">${d.icon}</div>
+                        <div class="card-label">${d.label}</div>
+                        <div class="card-desc">${d.desc}</div>
+                    `;
+                    el.addEventListener('click', () => selectCard(d));
+                    layer.appendChild(el);
+
+                    // Connection line
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', cx);
+                    line.setAttribute('y1', cy);
+                    line.setAttribute('x2', positions[i].x + 92);
+                    line.setAttribute('y2', positions[i].y + 55);
+                    svgEl.appendChild(line);
+
+                    setTimeout(() => el.classList.add('show'), 120 + i * 70);
+                });
+            }, 450);
+        }
+
+        function selectCard(card) {
+            document.querySelectorAll('.card').forEach((el, i) => {
+                el.classList.toggle('selected', cardData[i].id === card.id);
+            });
+            showResponse(card);
+        }
+
+        function showResponse(card) {
+            const area = document.getElementById('responseArea');
+            area.classList.add('visible');
+
+            const msgs = {
+                news: { text: "Your morning briefing is ready — 4 stories narrated by Dr. Norma Jones. Takes about 4 minutes.", actions: ['▶ Play Briefing', 'Read Stories'] },
+                podcast: { text: "Latest episode explores how a small liberal arts college became an AI leader.", actions: ['▶ Listen Now', 'All Episodes'] },
+                tools: { text: "50+ AI tools categorized for higher ed. I can filter by your discipline or task.", actions: ['Browse Tools', 'For Teaching', 'For Research'] },
+                prompts: { text: "Tested prompts designed for educators. Copy, paste, customize.", actions: ['Browse All', 'Beginner Prompts'] },
+                tinkerlab: { text: "Five-minute experiments from Dr. Jones's lab. Try something new today.", actions: ['Latest', 'Browse All'] },
+                guides: { text: "Great starting point. I'll walk you through AI fundamentals — clear, simple, no jargon.", actions: ['Start Here', 'Quick-Start Guide'] },
+                cases: { text: "Real results from real campuses. Data-backed, honestly reported.", actions: ['Browse Cases', 'By Discipline'] },
+                community: { text: "Join educators navigating AI together. Ask questions, share wins.", actions: ['Join', 'Events'] },
+            };
+
+            const msg = msgs[card.id] || { text: 'Let me take you there.', actions: ['Go'] };
+
+            area.innerHTML = `
+                <div class="response-box">
+                    <p>${msg.text}</p>
+                    <div class="response-actions">
+                        ${msg.actions.map(a => `<button class="response-action">${a}</button>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function processInput(text) {
+            if (!text.trim()) return;
+            activate();
+
+            const lower = text.toLowerCase();
+            let best = null, bestScore = 0;
+
+            cardData.forEach(d => {
+                let score = 0;
+                d.keywords.forEach(kw => { if (lower.includes(kw)) score += 2; });
+                if (lower.includes('new') || lower.includes('start') || lower.includes('help')) {
+                    if (d.id === 'guides') score += 4;
+                }
+                if (lower.includes('teach') || lower.includes('class') || lower.includes('professor')) {
+                    if (d.id === 'guides') score += 3;
+                    if (d.id === 'tools') score += 2;
+                }
+                if (score > bestScore) { bestScore = score; best = d; }
+            });
+
+            if (!best) best = cardData[5];
+            setTimeout(() => selectCard(best), 700);
+        }
+
+        document.getElementById('goBtn').addEventListener('click', () => {
+            const inp = document.getElementById('searchInput');
+            processInput(inp.value);
+            inp.value = '';
+        });
+
+        document.getElementById('searchInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') { processInput(e.target.value); e.target.value = ''; }
+        });
+
+        document.querySelectorAll('.suggestion').forEach(s => {
+            s.addEventListener('click', () => processInput(s.dataset.q));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IHE Pulse - Episode Detail (Updated Design)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #0a0a0f; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #00d4ff 0%, #ffffff 50%, #c850c0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .glow-cyan { box-shadow: 0 0 40px rgba(0, 212, 255, 0.4); }
+    .glow-magenta { box-shadow: 0 0 40px rgba(200, 80, 192, 0.4); }
+  </style>
+</head>
+<body class="min-h-screen text-white">
+  <!-- Background -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-fuchsia-500/5 rounded-full blur-[150px]"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-gray-800/50">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-fuchsia-500 flex items-center justify-center">
+          <span class="text-white font-bold text-sm">IHE</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-white">Innovating Higher Ed</span>
+          <span class="text-xs text-cyan-400">PULSE</span>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="relative max-w-4xl mx-auto px-6 pt-28 pb-20">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+      <a href="#" class="hover:text-cyan-400 transition-colors">Home</a>
+      <span class="text-gray-600">/</span>
+      <a href="#" class="text-cyan-400">Podcast</a>
+      <span class="text-gray-600">/</span>
+      <span class="text-gray-400">Human-Centered AI Strategy...</span>
+    </nav>
+
+    <!-- ===================== -->
+    <!-- FIXED: Featured Image - Now full size, no cropping -->
+    <!-- ===================== -->
+    <div class="relative mb-10 rounded-3xl overflow-hidden bg-gray-900">
+      <img 
+        src="https://innovatinghighered.com/wp-content/uploads/2025/06/Chesa-Caparas-thumb-1200x.jpg" 
+        alt="Human-Centered AI Strategy: Empathy, Trust, Access"
+        class="w-full h-auto object-contain"
+      />
+      <!-- Play overlay -->
+      <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer group">
+        <div class="w-20 h-20 bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full flex items-center justify-center glow-cyan group-hover:scale-110 transition-transform">
+          <svg class="w-8 h-8 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Episode Meta -->
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="px-4 py-2 rounded-full text-sm font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+          Innovating Higher Ed Podcast
+        </span>
+        <span class="text-gray-500">June 22, 2025</span>
+        <span class="text-gray-600">•</span>
+        <span class="text-gray-500 font-mono">42 min</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-5xl font-black mb-4 leading-tight">
+        Human-Centered AI Strategy: Empathy, Trust, Access
+      </h1>
+      
+      <p class="text-xl text-cyan-400 font-semibold">
+        with Professor Chesa Caparas
+      </p>
+    </div>
+
+    <!-- ===================== -->
+    <!-- FIXED: Audio Player - Actual Buzzsprout Embed -->
+    <!-- ===================== -->
+    <div class="mb-10">
+      <div class="rounded-2xl overflow-hidden bg-gray-900/50 border border-gray-800">
+        <!-- Real Buzzsprout embed - each episode has its own ID -->
+        <div id="buzzsprout-player-16699498" class="w-full"></div>
+        <script src="https://www.buzzsprout.com/2389007/episodes/16699498-human-centered-ai-strategy-empathy-trust-access-professor-chesa-caparas.js?container_id=buzzsprout-player-16699498&player=small" type="text/javascript" charset="utf-8"></script>
+        
+        <!-- Fallback if Buzzsprout doesn't load -->
+        <noscript>
+          <div class="p-6 text-center">
+            <p class="text-gray-400">Audio player requires JavaScript.</p>
+            <a href="https://www.buzzsprout.com/2389007/episodes/16699498" class="text-cyan-400 hover:underline">Listen on Buzzsprout →</a>
+          </div>
+        </noscript>
+      </div>
+      
+      <!-- Clean label - just the podcast name, no "Buzzsprout" branding -->
+      <p class="text-xs text-gray-600 mt-3 text-center">
+        Innovating Higher Ed Podcast • Episode 12
+      </p>
+    </div>
+
+    <!-- ===================== -->
+    <!-- Platform Links with YOUTUBE added -->
+    <!-- ===================== -->
+    <div class="mb-12">
+      <h3 class="text-sm font-semibold text-gray-400 mb-6 text-center uppercase tracking-wider">
+        Listen on Your Favorite Platform
+      </h3>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <!-- Apple Podcasts -->
+        <a href="https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335?i=1000714248484" target="_blank"
+           class="group flex flex-col items-center gap-3 p-4 rounded-2xl bg-gray-800/30 border border-gray-700/50 hover:border-pink-500/50 hover:bg-gray-800/60 transition-all duration-300 w-24">
+          <img src="https://innovatinghighered.com/wp-content/uploads/2025/05/apple_podcasts-logo-2.png" alt="Apple Podcasts" class="w-10 h-10 object-contain group-hover:scale-110 transition-transform"/>
+          <span class="text-xs text-gray-400 group-hover:text-pink-400 transition-colors font-medium">Apple</span>
+        </a>
+
+        <!-- Spotify -->
+        <a href="https://open.spotify.com/episode/7srqvHE95Wiy2pAjPTjKoU?si=68b8fa9488c04e67" target="_blank"
+           class="group flex flex-col items-center gap-3 p-4 rounded-2xl bg-gray-800/30 border border-gray-700/50 hover:border-green-500/50 hover:bg-gray-800/60 transition-all duration-300 w-24">
+          <img src="https://innovatinghighered.com/wp-content/uploads/2025/05/Spotify-Logo-2.png" alt="Spotify" class="w-10 h-10 object-contain group-hover:scale-110 transition-transform"/>
+          <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors font-medium">Spotify</span>
+        </a>
+
+        <!-- Audible -->
+        <a href="https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/episodes/c379d33a-dc34-4c89-8af2-c610f9a10760/innovating-higher-ed-human-centered-ai-strategy-empathy-trust-access-professor-chesa-caparas" target="_blank"
+           class="group flex flex-col items-center gap-3 p-4 rounded-2xl bg-gray-800/30 border border-gray-700/50 hover:border-orange-500/50 hover:bg-gray-800/60 transition-all duration-300 w-24">
+          <img src="https://innovatinghighered.com/wp-content/uploads/2025/05/audible-1.png" alt="Audible" class="w-10 h-10 object-contain group-hover:scale-110 transition-transform"/>
+          <span class="text-xs text-gray-400 group-hover:text-orange-400 transition-colors font-medium">Audible</span>
+        </a>
+
+        <!-- Amazon Music -->
+        <a href="https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/episodes/c379d33a-dc34-4c89-8af2-c610f9a10760/innovating-higher-ed-human-centered-ai-strategy-empathy-trust-access-professor-chesa-caparas" target="_blank"
+           class="group flex flex-col items-center gap-3 p-4 rounded-2xl bg-gray-800/30 border border-gray-700/50 hover:border-blue-500/50 hover:bg-gray-800/60 transition-all duration-300 w-24">
+          <img src="https://innovatinghighered.com/wp-content/uploads/2025/05/Amazon-Music-1.png" alt="Amazon Music" class="w-10 h-10 object-contain group-hover:scale-110 transition-transform"/>
+          <span class="text-xs text-gray-400 group-hover:text-blue-400 transition-colors font-medium">Amazon</span>
+        </a>
+
+        <!-- ===================== -->
+        <!-- YOUTUBE - Red Logo Added -->
+        <!-- ===================== -->
+        <a href="https://www.youtube.com/@InnovatingHigherEd" target="_blank"
+           class="group flex flex-col items-center gap-3 p-4 rounded-2xl bg-gray-800/30 border border-gray-700/50 hover:border-red-500/50 hover:bg-gray-800/60 transition-all duration-300 w-24">
+          <!-- Official YouTube Red Logo SVG -->
+          <svg class="w-10 h-10 group-hover:scale-110 transition-transform" viewBox="0 0 48 48" fill="none">
+            <path d="M43.2 12.3c-.5-1.8-1.9-3.2-3.7-3.7C36.2 7.5 24 7.5 24 7.5s-12.2 0-15.5 1.1c-1.8.5-3.2 1.9-3.7 3.7C3.5 15.6 3.5 24 3.5 24s0 8.4 1.3 11.7c.5 1.8 1.9 3.2 3.7 3.7 3.3 1.1 15.5 1.1 15.5 1.1s12.2 0 15.5-1.1c1.8-.5 3.2-1.9 3.7-3.7 1.3-3.3 1.3-11.7 1.3-11.7s0-8.4-1.3-11.7z" fill="#FF0000"/>
+            <path d="M19.5 30.5l10-6.5-10-6.5v13z" fill="white"/>
+          </svg>
+          <span class="text-xs text-gray-400 group-hover:text-red-400 transition-colors font-medium">YouTube</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-12"></div>
+
+    <!-- Description -->
+    <div class="mb-10">
+      <p class="text-gray-300 text-lg leading-relaxed">
+        Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas, media-literacy scholar and Fulbright researcher, about a people-first path to AI adoption in higher education. Chesa shares how a two-question survey surfaces hidden anxieties, how faculty can adapt without burnout, and why over-reliance on AI detectors can damage trust instead of protecting integrity.
+      </p>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="bg-gradient-to-r from-cyan-500/10 to-fuchsia-500/10 rounded-2xl p-8 border border-cyan-500/20 mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+        <span class="text-cyan-400">✦</span> Key Takeaways
+      </h2>
+      <ul class="space-y-4">
+        <li class="flex items-start gap-4">
+          <span class="text-cyan-400 mt-1 text-lg">→</span>
+          <span class="text-gray-300">Ready-to-use survey that maps student comfort with AI</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="text-fuchsia-400 mt-1 text-lg">→</span>
+          <span class="text-gray-300">Tactics that keep feedback human while trimming workload</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="text-cyan-400 mt-1 text-lg">→</span>
+          <span class="text-gray-300">Red-flag signs your AI detector policy harms equity</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="text-fuchsia-400 mt-1 text-lg">→</span>
+          <span class="text-gray-300">First steps to close global and local connectivity gaps</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ===================== -->
+    <!-- FIXED: Guest Bio with Custom Themed Avatar Options -->
+    <!-- ===================== -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-6">About the Guest</h2>
+      
+      <!-- Option A: Gradient Ring with Initials -->
+      <div class="p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50 mb-8">
+        <p class="text-xs text-fuchsia-400 mb-4 font-semibold uppercase tracking-wider">Option A: Gradient Ring + Initials</p>
+        <div class="flex flex-col md:flex-row items-start gap-6">
+          <div class="relative flex-shrink-0">
+            <!-- Outer glow -->
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-fuchsia-500 rounded-full blur-md opacity-60"></div>
+            <!-- Gradient ring -->
+            <div class="relative w-24 h-24 rounded-full p-[3px] bg-gradient-to-br from-cyan-500 via-fuchsia-500 to-cyan-500">
+              <div class="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
+                <span class="text-2xl font-bold bg-gradient-to-br from-cyan-400 to-fuchsia-400 bg-clip-text text-transparent">CC</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-xl mb-1">Professor Chesa Caparas</h3>
+            <p class="text-cyan-400 mb-3">Media-Literacy Scholar & Fulbright Researcher</p>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Professor of English and Ethnic Studies at De Anza College. Member of CA Learning Lab's AI Faculty Innovator in Residence Strategy Team.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Option B: Geometric Pattern -->
+      <div class="p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50 mb-8">
+        <p class="text-xs text-fuchsia-400 mb-4 font-semibold uppercase tracking-wider">Option B: Geometric Pattern</p>
+        <div class="flex flex-col md:flex-row items-start gap-6">
+          <div class="relative flex-shrink-0">
+            <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-fuchsia-500/20 border border-cyan-500/30 flex items-center justify-center overflow-hidden">
+              <!-- Geometric pattern -->
+              <svg class="w-full h-full" viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#c850c0;stop-opacity:0.3" />
+                  </linearGradient>
+                </defs>
+                <polygon points="50,10 90,35 90,75 50,100 10,75 10,35" fill="url(#grad1)" stroke="#00d4ff" stroke-width="1"/>
+                <polygon points="50,25 75,40 75,70 50,85 25,70 25,40" fill="none" stroke="#c850c0" stroke-width="1"/>
+                <circle cx="50" cy="55" r="15" fill="none" stroke="#00d4ff" stroke-width="1"/>
+              </svg>
+              <span class="absolute text-xl font-bold text-white">CC</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-xl mb-1">Professor Chesa Caparas</h3>
+            <p class="text-cyan-400 mb-3">Media-Literacy Scholar & Fulbright Researcher</p>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Professor of English and Ethnic Studies at De Anza College. Member of CA Learning Lab's AI Faculty Innovator in Residence Strategy Team.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Option C: Microphone Icon (for podcast guests) -->
+      <div class="p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50 mb-8">
+        <p class="text-xs text-fuchsia-400 mb-4 font-semibold uppercase tracking-wider">Option C: Themed Microphone Icon</p>
+        <div class="flex flex-col md:flex-row items-start gap-6">
+          <div class="relative flex-shrink-0">
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-cyan-500/30 flex items-center justify-center">
+              <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none">
+                <path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z" fill="url(#micGrad)"/>
+                <path d="M17 11C17 14.53 14.39 17.44 11 17.93V21H13V23H11H9V21H11V17.93C7.61 17.44 5 14.53 5 11H7C7 13.76 9.24 16 12 16C14.76 16 17 13.76 17 11H19C19 14.53 16.39 17.44 13 17.93" fill="url(#micGrad)"/>
+                <defs>
+                  <linearGradient id="micGrad" x1="5" y1="1" x2="19" y2="23">
+                    <stop offset="0%" stop-color="#00d4ff"/>
+                    <stop offset="100%" stop-color="#c850c0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-xl mb-1">Professor Chesa Caparas</h3>
+            <p class="text-cyan-400 mb-3">Media-Literacy Scholar & Fulbright Researcher</p>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Professor of English and Ethnic Studies at De Anza College. Member of CA Learning Lab's AI Faculty Innovator in Residence Strategy Team.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Option D: Photo with gradient border (if you have guest photos) -->
+      <div class="p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50">
+        <p class="text-xs text-fuchsia-400 mb-4 font-semibold uppercase tracking-wider">Option D: Real Photo with Gradient Border</p>
+        <div class="flex flex-col md:flex-row items-start gap-6">
+          <div class="relative flex-shrink-0">
+            <div class="w-24 h-24 rounded-full p-[3px] bg-gradient-to-br from-cyan-500 to-fuchsia-500">
+              <!-- Replace with actual guest photo -->
+              <div class="w-full h-full rounded-full bg-gray-800 overflow-hidden">
+                <img src="https://via.placeholder.com/96x96/1a1a2e/00d4ff?text=Photo" alt="Guest" class="w-full h-full object-cover"/>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-xl mb-1">Professor Chesa Caparas</h3>
+            <p class="text-cyan-400 mb-3">Media-Literacy Scholar & Fulbright Researcher</p>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Professor of English and Ethnic Studies at De Anza College. Member of CA Learning Lab's AI Faculty Innovator in Residence Strategy Team.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="pt-8 border-t border-gray-800">
+      <h3 class="text-sm font-semibold text-gray-400 mb-5 uppercase tracking-wider">Topics Covered</h3>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">AI Strategy</span>
+        <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">Faculty Development</span>
+        <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">Student Success</span>
+        <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">Academic Integrity</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Summary Box -->
+  <div class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="p-6 rounded-2xl bg-cyan-500/10 border border-cyan-500/30">
+      <h3 class="text-lg font-bold text-cyan-400 mb-3">✅ Updates Made</h3>
+      <ul class="text-gray-300 space-y-2 text-sm">
+        <li>✅ <strong>Featured Image:</strong> Now uses <code class="bg-gray-800 px-2 py-0.5 rounded">object-contain</code> - no cropping!</li>
+        <li>✅ <strong>Audio Player:</strong> Real Buzzsprout embed (replace ID for each episode)</li>
+        <li>✅ <strong>YouTube:</strong> Red logo added with link to your channel</li>
+        <li>✅ <strong>Guest Avatar:</strong> 4 themed options to choose from</li>
+        <li>✅ <strong>No Buzzsprout branding:</strong> Just shows "Innovating Higher Ed Podcast"</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

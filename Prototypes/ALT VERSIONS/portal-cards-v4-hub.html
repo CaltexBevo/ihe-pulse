@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IHE — The Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #08090e;
+    --card-bg: rgba(12,14,24,0.88);
+    --border: rgba(255,255,255,0.05);
+    --cyan: #00e5ff;
+    --magenta: #c850c0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    background: var(--bg);
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Ambient BG */
+.bg-glow {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+        radial-gradient(ellipse at 50% 50%, rgba(0,229,255,0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 60%, rgba(200,80,192,0.02) 0%, transparent 40%),
+        radial-gradient(ellipse at 70% 40%, rgba(0,255,136,0.015) 0%, transparent 40%);
+}
+
+/* Canvas for beam lines */
+#beams {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+}
+
+/* Topbar */
+.topbar {
+    position: fixed; top:0; left:0; right:0; height:48px;
+    background: rgba(8,9,14,0.85); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; z-index: 100;
+}
+.brand { font-weight: 800; font-size: 15px; letter-spacing: -0.3px; }
+.brand em { font-style: normal; background: linear-gradient(90deg, var(--cyan), var(--magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.topbar-r { display: flex; gap: 6px; }
+.topbar-r button { padding:6px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:7px; color:rgba(255,255,255,0.4); font-size:11px; font-weight:500; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.topbar-r button:hover { border-color:rgba(0,229,255,0.15); color:var(--cyan); }
+.topbar-r .cta { background:linear-gradient(135deg,var(--cyan),var(--magenta)); border:none; color:#fff; font-weight:600; }
+
+/* === MAIN LAYOUT: Centered hub with orbiting cards === */
+.universe {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 40px;
+    z-index: 2;
+}
+
+/* The center chat hub */
+.hub {
+    position: relative;
+    z-index: 20;
+    width: 400px;
+    max-width: 90vw;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.hub-title {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 4px;
+}
+.hub-title em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--cyan), #00ff88);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hub-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    margin-bottom: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.chat-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px;
+    background: var(--card-bg);
+    border: 1px solid rgba(0,229,255,0.08);
+    border-radius: 14px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 60px rgba(0,229,255,0.04), 0 8px 32px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+}
+.chat-bar:focus-within {
+    border-color: rgba(0,229,255,0.2);
+    box-shadow: 0 0 80px rgba(0,229,255,0.06), 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.orb {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--cyan));
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; animation: spin 5s linear infinite;
+    box-shadow: 0 0 18px rgba(0,229,255,0.2);
+}
+.orb-inner {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.chat-bar input {
+    flex: 1; background: none; border: none; outline: none;
+    color: #fff; font-family: 'Outfit'; font-size: 14px; padding: 6px;
+}
+.chat-bar input::placeholder { color: rgba(255,255,255,0.15); }
+.chat-bar .btn {
+    width: 32px; height: 32px; border-radius: 8px; border: none;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0; transition: all 0.2s;
+}
+.btn-send { background: linear-gradient(135deg, var(--cyan), var(--magenta)); color: #fff; font-weight: 700; }
+.btn-mic { background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.2); border: 1px solid var(--border); }
+
+.chips {
+    display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-top: 10px;
+}
+.chip {
+    padding: 4px 11px; background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border); border-radius: 14px;
+    color: rgba(255,255,255,0.25); font-size: 10px; cursor: pointer;
+    font-family: inherit; transition: all 0.2s;
+}
+.chip:hover { background: rgba(0,229,255,0.05); border-color: rgba(0,229,255,0.12); color: var(--cyan); }
+
+/* Response bubble */
+.response {
+    margin-top: 10px;
+    opacity: 0; max-height: 0; overflow: hidden; transition: all 0.4s;
+}
+.response.on { opacity: 1; max-height: 160px; }
+.resp-box {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px 16px; backdrop-filter: blur(16px);
+    text-align: left;
+}
+.resp-box p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 8px; }
+.resp-box .acts { display: flex; gap: 5px; }
+.resp-box .acts button {
+    padding: 4px 11px; background: rgba(0,229,255,0.05);
+    border: 1px solid rgba(0,229,255,0.1); border-radius: 6px;
+    color: var(--cyan); font-size: 10px; font-weight: 600;
+    cursor: pointer; font-family: inherit;
+}
+
+/* === SURROUNDING CARDS === */
+.cards-ring {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.page-card {
+    position: absolute;
+    width: 170px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.35s ease;
+    z-index: 10;
+}
+.page-card:hover {
+    transform: scale(1.05);
+    border-color: rgba(255,255,255,0.12);
+    box-shadow: 0 10px 36px rgba(0,0,0,0.5);
+    z-index: 30;
+}
+.page-card.active {
+    border-color: var(--ac);
+    box-shadow: 0 0 24px var(--ac-glow);
+    z-index: 30;
+}
+
+/* Accent top line */
+.page-card::after {
+    content: ''; position: absolute; top:0; left:0; right:0; height:2px;
+    background: var(--ac); opacity:0; transition: opacity 0.3s; z-index:5;
+}
+.page-card:hover::after, .page-card.active::after { opacity: 1; }
+
+.card-viz {
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+.card-viz canvas { width: 100%; height: 100%; display: block; }
+
+.card-body { padding: 10px 12px 12px; }
+.card-head {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 4px;
+}
+.card-icon { font-size: 14px; }
+.card-name { font-size: 12px; font-weight: 700; letter-spacing: -0.2px; }
+.card-tag {
+    margin-left: auto;
+    padding: 1px 6px; border-radius: 3px;
+    font-size: 7px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.card-desc {
+    font-size: 10px; color: rgba(255,255,255,0.3); line-height: 1.4;
+}
+.card-meta {
+    display: flex; align-items: center; gap: 4px;
+    margin-top: 5px; font-size: 8px; color: rgba(255,255,255,0.18);
+    font-family: 'IBM Plex Mono', monospace;
+}
+.card-meta .dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* Status */
+.status {
+    position: fixed; bottom:0; left:0; right:0; height:22px;
+    background: rgba(8,9,14,0.9); border-top:1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    z-index: 60; font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; color: rgba(255,255,255,0.18);
+}
+.status .live { width:5px; height:5px; border-radius:50%; background:#00ff88; display:inline-block; margin-right:3px; animation: pulse 2s ease-in-out infinite; }
+
+/* Responsive fallback */
+@media (max-width: 900px) {
+    .page-card { position: relative !important; width: 100% !important; left: auto !important; top: auto !important; }
+    .cards-ring {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10px;
+        padding: 20px;
+        pointer-events: all;
+    }
+    .universe { flex-direction: column; }
+    .hub { margin-bottom: 20px; }
+    #beams { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<canvas id="beams"></canvas>
+
+<nav class="topbar">
+    <div class="brand"><em>Innovating Higher Ed</em></div>
+    <div class="topbar-r">
+        <button>About</button>
+        <button class="cta">Subscribe</button>
+    </div>
+</nav>
+
+<div class="universe" id="universe">
+    <!-- Center Hub -->
+    <div class="hub" id="hub">
+        <div class="hub-title">Where do you want to <em>go</em>?</div>
+        <div class="hub-sub">ask or click a destination</div>
+        <div class="chat-bar">
+            <div class="orb"><div class="orb-inner">🧭</div></div>
+            <input type="text" id="inp" placeholder="Take me to AI tools for grading..." autocomplete="off">
+            <button class="btn btn-mic">🎙</button>
+            <button class="btn btn-send" id="go">→</button>
+        </div>
+        <div class="chips">
+            <button class="chip" data-q="new to AI">🌱 New</button>
+            <button class="chip" data-q="play news">▶ Pulse</button>
+            <button class="chip" data-q="tools">🛠 Tools</button>
+            <button class="chip" data-q="podcast">🎙 Pod</button>
+            <button class="chip" data-q="prompts">💡 Prompts</button>
+        </div>
+        <div class="response" id="resp">
+            <div class="resp-box">
+                <p id="rT"></p>
+                <div class="acts" id="rA"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Surrounding cards container -->
+    <div class="cards-ring" id="ring"></div>
+</div>
+
+<div class="status"><span class="live"></span>Hub Online &nbsp;·&nbsp; 9 destinations &nbsp;·&nbsp; IHE Pulse</div>
+
+<script>
+const pages = [
+    { id:'pulse', icon:'📡', title:'Innovation Pulse', tag:'DAILY', tc:'#00e5ff', desc:'AI news by Dr. Jones', stat:'Updated today', viz:'waveform', kw:['news','pulse','daily','play','today','briefing'], resp:{t:"Morning briefing: 4 AI stories by Dr. Jones.",a:['▶ Play','Read']} },
+    { id:'podcast', icon:'🎙', title:'Podcast', tag:'WEEKLY', tc:'#c850c0', desc:'Deep faculty interviews', stat:'24 episodes', viz:'circles', kw:['podcast','episode','listen','interview'], resp:{t:"Latest: AI-first campus. 38 min.",a:['▶ Play','All']} },
+    { id:'tools', icon:'🛠', title:'AI Tools', tag:'50+', tc:'#00ff88', desc:'Vetted tools by role', stat:'52 tools', viz:'grid', kw:['tool','app','software','directory','chatgpt','grading'], resp:{t:"50+ AI tools for higher ed.",a:['Browse','Teaching']} },
+    { id:'prompts', icon:'💡', title:'Prompts', tag:'COPY', tc:'#ffd700', desc:'Ready-to-use templates', stat:'120+ prompts', viz:'text', kw:['prompt','template','write'], resp:{t:"Copy-paste prompts for educators.",a:['Browse','Beginner']} },
+    { id:'tinkerlab', icon:'🔬', title:'Tinker Lab', tag:'5 MIN', tc:'#ff8c42', desc:'Quick AI experiments', stat:'18 labs', viz:'particles', kw:['tinker','lab','experiment','try'], resp:{t:"5-minute experiments. Jump in.",a:['Latest','All']} },
+    { id:'guides', icon:'🌱', title:'Getting Started', tag:'START', tc:'#14b8a6', desc:'AI basics for faculty', stat:'Beginner', viz:'path', kw:['new','start','begin','learn','teach','faculty','help','professor'], resp:{t:"No jargon, no panic. Let's start.",a:['Start','Quick']} },
+    { id:'cases', icon:'📊', title:'Case Studies', tag:'DATA', tc:'#a855f7', desc:'Real campus outcomes', stat:'12 cases', viz:'bars', kw:['case','study','success','outcome','evidence'], resp:{t:"Measurable results from campuses.",a:['Browse','Filter']} },
+    { id:'community', icon:'🤝', title:'Community', tag:'JOIN', tc:'#ff6b9d', desc:'200+ educators together', stat:'214 members', viz:'network', kw:['community','connect','forum','join'], resp:{t:"200+ educators navigating AI.",a:['Join','Events']} },
+    { id:'about', icon:'👩‍🏫', title:'About Dr. Jones', tag:'FOUNDER', tc:'#f59e0b', desc:'Mission & vision', stat:'Est. 2024', viz:'rings', kw:['about','norma','jones','mission','guest'], resp:{t:"Dr. Norma Jones — your guide.",a:['Bio','Mission']} },
+];
+
+// Build cards
+const ring = document.getElementById('ring');
+const cardEls = [];
+pages.forEach((p, i) => {
+    const c = document.createElement('div');
+    c.className = 'page-card';
+    c.dataset.id = p.id;
+    c.dataset.idx = i;
+    c.style.setProperty('--ac', p.tc);
+    c.style.setProperty('--ac-glow', p.tc + '20');
+    c.innerHTML = `
+        <div class="card-viz"><canvas data-viz="${p.viz}" data-color="${p.tc}"></canvas></div>
+        <div class="card-body">
+            <div class="card-head">
+                <span class="card-icon">${p.icon}</span>
+                <span class="card-name">${p.title}</span>
+                <span class="card-tag" style="background:${p.tc}15;color:${p.tc}">${p.tag}</span>
+            </div>
+            <div class="card-desc">${p.desc}</div>
+            <div class="card-meta"><span class="dot" style="background:${p.tc}"></span>${p.stat}</div>
+        </div>
+    `;
+    c.addEventListener('click', () => selectP(p));
+    ring.appendChild(c);
+    cardEls.push(c);
+});
+
+// === POSITION CARDS IN RING AROUND HUB ===
+function layoutCards() {
+    const isMobile = window.innerWidth <= 900;
+    if (isMobile) return; // CSS grid fallback
+
+    const universe = document.getElementById('universe');
+    const hub = document.getElementById('hub');
+    const uRect = universe.getBoundingClientRect();
+    const hRect = hub.getBoundingClientRect();
+
+    const cx = hRect.left - uRect.left + hRect.width / 2;
+    const cy = hRect.top - uRect.top + hRect.height / 2;
+
+    const n = cardEls.length;
+    // Elliptical radius
+    const rx = Math.min(uRect.width * 0.4, 380);
+    const ry = Math.min(uRect.height * 0.38, 280);
+
+    const startAngle = -Math.PI / 2; // top center
+
+    cardEls.forEach((card, i) => {
+        const angle = startAngle + (i / n) * Math.PI * 2;
+        const x = cx + Math.cos(angle) * rx - 85; // 85 = half card width
+        const y = cy + Math.sin(angle) * ry - 70; // approx half card height
+        card.style.left = x + 'px';
+        card.style.top = y + 'px';
+    });
+}
+
+// === BEAM LINES from cards to hub ===
+const beamsCanvas = document.getElementById('beams');
+const bCtx = beamsCanvas.getContext('2d');
+let animFrame = 0;
+
+function resizeBeams() {
+    const dpr = devicePixelRatio || 1;
+    beamsCanvas.width = window.innerWidth * dpr;
+    beamsCanvas.height = window.innerHeight * dpr;
+    bCtx.scale(dpr, dpr);
+}
+
+function drawBeams() {
+    animFrame += 0.01;
+    const isMobile = window.innerWidth <= 900;
+    bCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    if (isMobile) { requestAnimationFrame(drawBeams); return; }
+
+    const hub = document.getElementById('hub');
+    const hRect = hub.getBoundingClientRect();
+    const hx = hRect.left + hRect.width / 2;
+    const hy = hRect.top + hRect.height / 2;
+
+    cardEls.forEach((card, i) => {
+        const p = pages[i];
+        const cr = card.getBoundingClientRect();
+        const cx = cr.left + cr.width / 2;
+        const cy = cr.top + cr.height / 2;
+
+        const isActive = card.classList.contains('active');
+        const isHover = card.matches(':hover');
+
+        const alpha = isActive ? 0.15 : isHover ? 0.08 : 0.025;
+
+        // Parse color
+        const tc = p.tc;
+        const r = parseInt(tc.slice(1,3),16);
+        const g = parseInt(tc.slice(3,5),16);
+        const b = parseInt(tc.slice(5,7),16);
+
+        bCtx.beginPath();
+        bCtx.moveTo(cx, cy);
+        // Curve toward hub
+        const mx = (cx + hx) / 2 + Math.sin(animFrame + i) * 15;
+        const my = (cy + hy) / 2 + Math.cos(animFrame + i) * 15;
+        bCtx.quadraticCurveTo(mx, my, hx, hy);
+        bCtx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
+        bCtx.lineWidth = isActive ? 2 : 1;
+        bCtx.stroke();
+
+        // Traveling dot on active beams
+        if (isActive || isHover) {
+            const t = (animFrame * 2 + i) % 1;
+            const dotX = (1-t)*(1-t)*cx + 2*(1-t)*t*mx + t*t*hx;
+            const dotY = (1-t)*(1-t)*cy + 2*(1-t)*t*my + t*t*hy;
+            bCtx.beginPath();
+            bCtx.arc(dotX, dotY, isActive ? 3 : 2, 0, 6.28);
+            bCtx.fillStyle = `rgba(${r},${g},${b},${isActive ? 0.6 : 0.3})`;
+            bCtx.fill();
+        }
+    });
+
+    requestAnimationFrame(drawBeams);
+}
+
+// === CARD VISUALIZATIONS ===
+function initViz() {
+    document.querySelectorAll('.card-viz canvas').forEach(cv => {
+        const dpr = devicePixelRatio || 1;
+        const r = cv.getBoundingClientRect();
+        if (r.width === 0) return;
+        cv.width = r.width * dpr;
+        cv.height = r.height * dpr;
+        const ctx = cv.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        const viz = cv.dataset.viz, color = cv.dataset.color;
+        const w = r.width, h = r.height;
+        const rgb = { r: parseInt(color.slice(1,3),16), g: parseInt(color.slice(3,5),16), b: parseInt(color.slice(5,7),16) };
+        let f = Math.random() * 100;
+
+        function draw() {
+            f += 0.018;
+            ctx.clearRect(0, 0, w, h);
+            const c = `${rgb.r},${rgb.g},${rgb.b}`;
+
+            if (viz === 'waveform') {
+                for (let l = 0; l < 2; l++) {
+                    ctx.beginPath();
+                    for (let x = 0; x < w; x++) {
+                        const v = Math.sin(x*.045+f*2+l)*12 + Math.sin(x*.09+f*3+l)*7;
+                        x === 0 ? ctx.moveTo(x, h/2+v) : ctx.lineTo(x, h/2+v);
+                    }
+                    ctx.strokeStyle = `rgba(${c},${0.4 - l*0.15})`;
+                    ctx.lineWidth = 2 - l*0.5; ctx.stroke();
+                }
+            }
+            else if (viz === 'circles') {
+                for (let i = 0; i < 5; i++) {
+                    const x = w*0.2 + i*22 + Math.sin(f+i)*8;
+                    const y = h/2 + Math.cos(f*1.2+i*0.7)*10;
+                    const rr = 12 + Math.sin(f*2+i)*5;
+                    ctx.beginPath(); ctx.arc(x, y, rr, 0, 6.28);
+                    ctx.fillStyle = `rgba(${c},${0.05+i*0.015})`; ctx.fill();
+                    ctx.strokeStyle = `rgba(${c},0.1)`; ctx.lineWidth = 0.5; ctx.stroke();
+                }
+            }
+            else if (viz === 'grid') {
+                const cols=7, rows=3;
+                for (let rr=1; rr<=rows; rr++) for (let cc=1; cc<=cols; cc++) {
+                    const p = Math.sin(f*2+rr*0.5+cc*0.3)*0.4+0.6;
+                    ctx.beginPath(); ctx.arc(cc*w/(cols+1), rr*h/(rows+1), 2+p*2, 0, 6.28);
+                    ctx.fillStyle = `rgba(${c},${0.12*p})`; ctx.fill();
+                }
+            }
+            else if (viz === 'text') {
+                ctx.font = '9px "IBM Plex Mono"';
+                ['> rubric...','> feedback...','> lesson plan...','> quiz...'].forEach((l,i) => {
+                    const s = (f*12+i*18)%(h+25)-8;
+                    const a = Math.max(0, 1-Math.abs(s-h/2)/(h/2));
+                    ctx.fillStyle = `rgba(${c},${0.22*a})`; ctx.fillText(l, 8, s);
+                });
+            }
+            else if (viz === 'particles') {
+                for (let i = 0; i < 15; i++) {
+                    const x = (Math.sin(f*0.4+i*1.5)*0.38+0.5)*w;
+                    const y = (Math.cos(f*0.55+i*1.1)*0.38+0.5)*h;
+                    ctx.beginPath(); ctx.arc(x, y, 2+Math.sin(f*2+i), 0, 6.28);
+                    ctx.fillStyle = `rgba(${c},${0.18+Math.sin(f+i)*0.08})`; ctx.fill();
+                }
+            }
+            else if (viz === 'path') {
+                const steps = 5;
+                for (let i = 0; i < steps; i++) {
+                    const x = 10+i*(w-20)/(steps-1);
+                    const y = h/2+Math.sin(i*0.7)*12;
+                    const a = Math.sin(f*1.5-i*0.5)>0.2;
+                    ctx.beginPath(); ctx.arc(x, y, a?6:3.5, 0, 6.28);
+                    ctx.fillStyle = `rgba(${c},${a?0.3:0.06})`; ctx.fill();
+                    if (i < steps-1) {
+                        const nx = 10+(i+1)*(w-20)/(steps-1);
+                        const ny = h/2+Math.sin((i+1)*0.7)*12;
+                        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(nx,ny);
+                        ctx.strokeStyle = `rgba(${c},0.05)`; ctx.lineWidth=1; ctx.stroke();
+                    }
+                }
+            }
+            else if (viz === 'bars') {
+                const bars = 7; const bw = (w-16)/bars;
+                for (let i = 0; i < bars; i++) {
+                    const bh = 8+Math.sin(f*1.5+i*0.6)*8+(i/bars)*30;
+                    ctx.fillStyle = `rgba(${c},${0.08+i*0.025})`;
+                    ctx.fillRect(8+i*bw+1, h-6-bh, bw-2, bh);
+                }
+            }
+            else if (viz === 'network') {
+                const pts = [];
+                for (let i = 0; i < 10; i++) pts.push({
+                    x: (Math.sin(f*0.25+i*1.9)*0.38+0.5)*w,
+                    y: (Math.cos(f*0.35+i*1.4)*0.38+0.5)*h
+                });
+                pts.forEach((a,i) => pts.forEach((b,j) => {
+                    if (j<=i) return;
+                    const d = Math.hypot(a.x-b.x, a.y-b.y);
+                    if (d < 55) {
+                        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+                        ctx.strokeStyle = `rgba(${c},${0.06*(1-d/55)})`; ctx.lineWidth=0.5; ctx.stroke();
+                    }
+                }));
+                pts.forEach(p => {
+                    ctx.beginPath(); ctx.arc(p.x,p.y,2,0,6.28);
+                    ctx.fillStyle = `rgba(${c},0.2)`; ctx.fill();
+                });
+            }
+            else if (viz === 'rings') {
+                for (let i = 0; i < 4; i++) {
+                    const rr = 8+i*10+Math.sin(f+i)*2;
+                    ctx.beginPath(); ctx.arc(w/2,h/2,rr,0,6.28);
+                    ctx.strokeStyle = `rgba(${c},${0.07-i*0.012})`; ctx.lineWidth=1; ctx.stroke();
+                }
+                ctx.beginPath(); ctx.arc(w/2,h/2,4,0,6.28);
+                ctx.fillStyle = `rgba(${c},0.25)`; ctx.fill();
+            }
+
+            requestAnimationFrame(draw);
+        }
+        draw();
+    });
+}
+
+// === INTERACTION ===
+function selectP(p) {
+    document.querySelectorAll('.page-card').forEach(c => c.classList.remove('active'));
+    document.querySelector(`[data-id="${p.id}"]`).classList.add('active');
+    document.getElementById('rT').textContent = p.resp.t;
+    document.getElementById('rA').innerHTML = p.resp.a.map(a => `<button>${a}</button>`).join('');
+    document.getElementById('resp').classList.add('on');
+}
+
+function proc(t) {
+    if (!t.trim()) return;
+    const l = t.toLowerCase();
+    let best = null, bs = 0;
+    pages.forEach(p => {
+        let s = 0;
+        p.kw.forEach(k => { if (l.includes(k)) s += 2; });
+        if (s > bs) { bs = s; best = p; }
+    });
+    if (!best) best = pages[5]; // default: Getting Started
+    selectP(best);
+}
+
+document.getElementById('go').addEventListener('click', () => {
+    const inp = document.getElementById('inp');
+    proc(inp.value); inp.value = '';
+});
+document.getElementById('inp').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { proc(e.target.value); e.target.value = ''; }
+});
+document.querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => proc(c.dataset.q));
+});
+
+// === INIT ===
+function fullInit() {
+    resizeBeams();
+    layoutCards();
+    setTimeout(initViz, 200);
+}
+
+window.addEventListener('load', fullInit);
+window.addEventListener('resize', () => {
+    resizeBeams();
+    layoutCards();
+});
+drawBeams();
+</script>
+</body>
+</html>

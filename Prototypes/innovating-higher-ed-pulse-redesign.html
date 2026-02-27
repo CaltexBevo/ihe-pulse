@@ -1,0 +1,2813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovating Higher Ed — THE PULSE Redesign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* The living palette */
+            --void: #05050a;
+            --deep: #0a0a12;
+            --surface: #0f0f1a;
+            --elevated: #151520;
+            --card: #1a1a28;
+            
+            /* Bioluminescent energy */
+            --pulse-core: #00ff88;
+            --pulse-glow: rgba(0, 255, 136, 0.4);
+            --synapse-blue: #00d4ff;
+            --synapse-glow: rgba(0, 212, 255, 0.4);
+            --growth-gold: #ffd700;
+            --growth-glow: rgba(255, 215, 0, 0.4);
+            --wisdom-violet: #a855f7;
+            --energy-coral: #ff6b6b;
+            
+            /* Text hierarchy */
+            --text-bright: #ffffff;
+            --text-primary: #e8e8f0;
+            --text-secondary: #a0a0b8;
+            --text-muted: #606080;
+            
+            /* Gradients */
+            --gradient-pulse: linear-gradient(135deg, var(--pulse-core), var(--synapse-blue));
+            --gradient-growth: linear-gradient(135deg, var(--growth-gold), var(--pulse-core));
+            --gradient-wisdom: linear-gradient(135deg, var(--synapse-blue), var(--wisdom-violet));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           LIVING BACKGROUND
+           ======================================== */
+        .cosmos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .energy-field {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: field-drift 20s ease-in-out infinite;
+        }
+
+        .energy-field.primary {
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--pulse-glow) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+
+        .energy-field.secondary {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--synapse-glow) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        .energy-field.tertiary {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--growth-glow) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -5s;
+            opacity: 0.5;
+        }
+
+        @keyframes field-drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, 30px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.95); }
+            75% { transform: translate(30px, -30px) scale(1.05); }
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: particle-float 15s linear infinite;
+            box-shadow: 0 0 8px var(--pulse-core);
+        }
+
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ========================================
+           CONTENT WRAPPER
+           ======================================== */
+        .universe {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .nav-main {
+            padding: 20px 0;
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.15);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-symbol {
+            width: 44px;
+            height: 44px;
+            position: relative;
+        }
+
+        .logo-symbol svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-orbit {
+            fill: none;
+            stroke: var(--pulse-core);
+            stroke-width: 1.5;
+            animation: orbit-spin 8s linear infinite;
+            transform-origin: center;
+        }
+
+        .logo-orbit.reverse {
+            animation-direction: reverse;
+            animation-duration: 12s;
+            stroke: var(--synapse-blue);
+            opacity: 0.6;
+        }
+
+        .logo-core-circle {
+            fill: var(--pulse-core);
+        }
+
+        @keyframes orbit-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-bright);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text .accent {
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 10px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text-bright);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--pulse-core);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .nav-link .live-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 6px;
+            height: 6px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .nav-cta {
+            padding: 10px 20px;
+            background: var(--gradient-pulse);
+            color: var(--void);
+            font-weight: 600;
+            font-size: 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            box-shadow: 0 0 30px var(--pulse-glow);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           PAGE SELECTOR
+           ======================================== */
+        .page-selector {
+            background: var(--deep);
+            padding: 20px 32px;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .page-selector-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .page-selector-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+            margin-right: 8px;
+        }
+
+        .page-tab {
+            padding: 10px 18px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .page-tab:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            color: var(--text-bright);
+        }
+
+        .page-tab.active {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--pulse-core);
+            color: var(--pulse-core);
+        }
+
+        /* ========================================
+           PAGE CONTAINERS
+           ======================================== */
+        .page-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========================================
+           COMMON COMPONENTS
+           ======================================== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--pulse-core);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .section-title .highlight {
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Hero section */
+        .page-hero {
+            padding: 80px 0 60px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 30px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--pulse-core);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+
+        .page-hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .page-hero h1 .highlight {
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-hero .lead {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-glow {
+            position: relative;
+        }
+
+        .card-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-pulse);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-glow:hover::before {
+            opacity: 1;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-pulse);
+            color: var(--void);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px var(--pulse-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .grid-4 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        }
+
+        /* ========================================
+           PAGE 1: PROMPT NAVIGATOR
+           ======================================== */
+        .prompt-nav-intro {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .prompt-nav-visual {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prompt-nav-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-pulse);
+        }
+
+        .visual-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .visual-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--pulse-core);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .visual-status {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .prompt-example {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            border-left: 3px solid var(--pulse-core);
+        }
+
+        .prompt-output {
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .prompt-output .label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--pulse-core);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        /* Technique cards */
+        .technique-card {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 28px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .technique-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--pulse-core);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .technique-card:hover::before {
+            opacity: 1;
+        }
+
+        .technique-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .technique-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .technique-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .technique-icon.blue { background: rgba(0, 212, 255, 0.2); }
+        .technique-icon.green { background: rgba(0, 255, 136, 0.2); }
+        .technique-icon.gold { background: rgba(255, 215, 0, 0.2); }
+        .technique-icon.violet { background: rgba(168, 85, 247, 0.2); }
+
+        .technique-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 4px;
+        }
+
+        .technique-use {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--synapse-blue);
+        }
+
+        .technique-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .technique-example {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Quick navigation */
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 48px;
+        }
+
+        .quick-nav-item {
+            padding: 12px 20px;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 30px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-nav-item:hover {
+            border-color: var(--pulse-core);
+            color: var(--pulse-core);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .quick-nav-item .icon {
+            font-size: 16px;
+        }
+
+        /* ========================================
+           PAGE 2: AI APP DIRECTORY
+           ======================================== */
+        .directory-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .role-toggle {
+            display: flex;
+            background: var(--card);
+            border-radius: 12px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .role-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .role-btn.active {
+            background: var(--gradient-pulse);
+            color: var(--void);
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            border-color: var(--pulse-core);
+            color: var(--pulse-core);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .app-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .app-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .app-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 212, 255, 0.2));
+        }
+
+        .app-name {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 4px;
+        }
+
+        .app-category {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--synapse-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .app-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .app-tag {
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .app-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .app-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--growth-gold);
+            font-size: 13px;
+        }
+
+        .app-link {
+            font-size: 13px;
+            color: var(--pulse-core);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .app-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================================
+           PAGE 3: EDUCATOR TOOLS
+           ======================================== */
+        .tool-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: center;
+            padding: 48px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .tool-showcase:nth-child(even) {
+            direction: rtl;
+        }
+
+        .tool-showcase:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .tool-info h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-bright);
+        }
+
+        .tool-info .desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .tool-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .feature-item .check {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: rgba(0, 255, 136, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pulse-core);
+            font-size: 14px;
+        }
+
+        .tool-visual {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-pulse);
+        }
+
+        .tool-preview {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .tool-preview .icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .tool-preview .name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        /* ========================================
+           PAGE 4: PODCAST
+           ======================================== */
+        .podcast-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .podcast-featured {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .podcast-featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-pulse);
+        }
+
+        .featured-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--surface), var(--elevated));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .featured-content {
+            padding: 28px;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--pulse-core);
+            margin-bottom: 16px;
+        }
+
+        .featured-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .featured-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Audio player */
+        .audio-player {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .play-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-pulse);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--void);
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            box-shadow: 0 0 20px var(--pulse-glow);
+            transform: scale(1.05);
+        }
+
+        .progress-container {
+            flex: 1;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            position: absolute;
+            height: 100%;
+            width: 35%;
+            background: var(--gradient-pulse);
+            border-radius: 2px;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Podcast platforms */
+        .podcast-platforms {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .platform-link {
+            padding: 12px 20px;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .platform-link:hover {
+            border-color: var(--pulse-core);
+            color: var(--pulse-core);
+        }
+
+        /* Episode cards */
+        .episode-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 24px;
+            transition: all 0.4s ease;
+            display: flex;
+            gap: 20px;
+        }
+
+        .episode-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .episode-thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--surface), var(--elevated));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .episode-info {
+            flex: 1;
+        }
+
+        .episode-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--synapse-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .episode-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .episode-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 16px;
+        }
+
+        /* ========================================
+           PAGE 5: SINGLE EPISODE
+           ======================================== */
+        .episode-hero {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .episode-player-card {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            overflow: hidden;
+            position: sticky;
+            top: 100px;
+        }
+
+        .episode-cover {
+            height: 280px;
+            background: linear-gradient(135deg, var(--surface), var(--elevated));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            position: relative;
+        }
+
+        .episode-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-pulse);
+        }
+
+        .episode-player-content {
+            padding: 28px;
+        }
+
+        .episode-details {
+            padding: 20px 0;
+        }
+
+        .guest-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 28px;
+        }
+
+        .guest-header {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .guest-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pulse-core), var(--synapse-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--void);
+        }
+
+        .guest-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 4px;
+        }
+
+        .guest-info .role {
+            font-size: 13px;
+            color: var(--synapse-blue);
+        }
+
+        .guest-bio {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .takeaways-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .takeaway-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .takeaway-item {
+            display: flex;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .takeaway-item .bullet {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(0, 255, 136, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pulse-core);
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ========================================
+           PAGE 6: TINKER LAB
+           ======================================== */
+        .tinker-intro {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 48px;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tinker-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-growth);
+        }
+
+        .tinker-intro h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-bright);
+        }
+
+        .tinker-intro .desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .tinker-icon {
+            position: absolute;
+            right: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 120px;
+            opacity: 0.1;
+        }
+
+        .lab-episode-card {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .lab-episode-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .lab-episode-cover {
+            height: 180px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 255, 136, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        .lab-episode-content {
+            padding: 24px;
+        }
+
+        .lab-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--growth-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .lab-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .lab-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .lab-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           PAGE 7: ABOUT US
+           ======================================== */
+        .about-mission {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 48px;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-pulse);
+        }
+
+        .mission-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .about-mission h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-bright);
+        }
+
+        .about-mission .desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-section h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-bright);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .team-card {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 32px;
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .team-header {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pulse-core), var(--synapse-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--void);
+        }
+
+        .team-info h4 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 4px;
+        }
+
+        .team-info .role {
+            font-size: 14px;
+            color: var(--pulse-core);
+            font-weight: 500;
+        }
+
+        .team-bio {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           PAGE 8: BE OUR GUEST
+           ======================================== */
+        .guest-hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .guest-benefits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .benefit-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(0, 255, 136, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .benefit-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .guest-form-card {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guest-form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-pulse);
+        }
+
+        .guest-form-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-bright);
+        }
+
+        .guest-form-card .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        .qr-display {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .qr-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--deep);
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+            padding: 60px 0 40px;
+            margin-top: 80px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo-text {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--pulse-core);
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-bright);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--pulse-core);
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-legal a:hover {
+            color: var(--pulse-core);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1100px) {
+            .prompt-nav-intro,
+            .podcast-hero,
+            .episode-hero,
+            .guest-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .tool-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-showcase:nth-child(even) {
+                direction: ltr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .guest-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Living Background -->
+    <div class="cosmos">
+        <div class="energy-field primary"></div>
+        <div class="energy-field secondary"></div>
+        <div class="energy-field tertiary"></div>
+    </div>
+
+    <div class="universe">
+        <!-- Navigation -->
+        <nav class="nav-main">
+            <div class="nav-inner">
+                <a href="#" class="logo">
+                    <div class="logo-symbol">
+                        <svg viewBox="0 0 48 48">
+                            <ellipse class="logo-orbit" cx="24" cy="24" rx="22" ry="10" transform="rotate(-30 24 24)"/>
+                            <ellipse class="logo-orbit reverse" cx="24" cy="24" rx="22" ry="10" transform="rotate(30 24 24)"/>
+                            <circle class="logo-core-circle" cx="24" cy="24" r="6"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Innovating<span class="accent">HigherEd</span></span>
+                </a>
+                <div class="nav-links">
+                    <a href="#" class="nav-link" data-page="prompt">Prompt Navigator</a>
+                    <a href="#" class="nav-link" data-page="directory">AI Directory</a>
+                    <a href="#" class="nav-link" data-page="tools">Educator Tools</a>
+                    <a href="#" class="nav-link" data-page="podcast">Podcast<span class="live-dot"></span></a>
+                    <a href="#" class="nav-link" data-page="tinker">Tinker Lab</a>
+                    <a href="#" class="nav-link" data-page="about">About</a>
+                    <a href="#" class="nav-cta" data-page="guest">Be Our Guest</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Selector -->
+        <div class="page-selector">
+            <div class="page-selector-inner">
+                <span class="page-selector-label">Preview Page:</span>
+                <button class="page-tab active" data-page="prompt">Prompt Navigator</button>
+                <button class="page-tab" data-page="directory">AI App Directory</button>
+                <button class="page-tab" data-page="tools">Educator Tools</button>
+                <button class="page-tab" data-page="podcast">Podcast</button>
+                <button class="page-tab" data-page="episode">Episode Detail</button>
+                <button class="page-tab" data-page="tinker">Tinker Lab</button>
+                <button class="page-tab" data-page="about">About Us</button>
+                <button class="page-tab" data-page="guest">Be Our Guest</button>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 1: PROMPT NAVIGATOR
+             ======================================== -->
+        <div id="page-prompt" class="page-content active">
+            <div class="container">
+                <div class="page-hero">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        Human-Centered AI Guide
+                    </div>
+                    <h1>Prompt <span class="highlight">Navigator</span></h1>
+                    <p class="lead">Lead your classroom with confidence in the AI era. A comprehensive, human-centered guide for crafting prompts that save time, foster inclusive learning, and uphold academic integrity.</p>
+                </div>
+
+                <div class="quick-nav">
+                    <a href="#" class="quick-nav-item"><span class="icon">🎯</span> Core Techniques</a>
+                    <a href="#" class="quick-nav-item"><span class="icon">📝</span> Prompt Templates</a>
+                    <a href="#" class="quick-nav-item"><span class="icon">⚠️</span> Common Problems</a>
+                    <a href="#" class="quick-nav-item"><span class="icon">✅</span> Refinement Workflow</a>
+                    <a href="#" class="quick-nav-item"><span class="icon">📚</span> References</a>
+                </div>
+
+                <div class="prompt-nav-intro">
+                    <div class="prompt-nav-text">
+                        <div class="section-label"><span class="dot"></span> Interactive Guide</div>
+                        <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 16px; color: var(--text-bright);">Nine Core Techniques</h2>
+                        <p style="font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">
+                            These techniques give faculty a practical toolkit for consistent, high-quality AI outputs. Each includes a definition, higher-ed use case, guidance on when to use it, and copyable example prompts.
+                        </p>
+                    </div>
+                    <div class="prompt-nav-visual">
+                        <div class="visual-header">
+                            <div class="visual-title">🧠 Live Prompt Demo</div>
+                            <div class="visual-status">Ready</div>
+                        </div>
+                        <div class="prompt-example">
+                            Explain the concept of social stratification in simple terms for an intro sociology class (~120 words) and include one concrete, everyday example.
+                        </div>
+                        <div class="prompt-output">
+                            <div class="label">AI Output</div>
+                            Social stratification is how society is divided into different layers based on factors like wealth, education, and occupation. Think of it like a ladder where some people are at the top with more resources and opportunities...
+                        </div>
+                    </div>
+                </div>
+
+                <section class="section" style="padding-top: 0;">
+                    <div class="section-header">
+                        <div class="section-label"><span class="dot"></span> Techniques</div>
+                        <h2 class="section-title">Core <span class="highlight">Prompting Techniques</span></h2>
+                    </div>
+                    
+                    <div class="grid-3">
+                        <div class="technique-card">
+                            <div class="technique-header">
+                                <div class="technique-icon blue">🎯</div>
+                                <div>
+                                    <div class="technique-name">Zero-Shot Prompting</div>
+                                    <div class="technique-use">Quick baseline answers</div>
+                                </div>
+                            </div>
+                            <p class="technique-desc">Ask the AI to perform a task without any examples. Best for fast definitions and straightforward tasks.</p>
+                            <div class="technique-example">
+                                "Explain operant conditioning in ~120 words for non-majors"
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <div class="technique-header">
+                                <div class="technique-icon green">📋</div>
+                                <div>
+                                    <div class="technique-name">Few-Shot Prompting</div>
+                                    <div class="technique-use">Format & tone matching</div>
+                                </div>
+                            </div>
+                            <p class="technique-desc">Include examples of the task and desired output. The model mirrors the pattern for consistent results.</p>
+                            <div class="technique-example">
+                                "Example feedback: [paste] Now provide feedback on: [new answer]"
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <div class="technique-header">
+                                <div class="technique-icon gold">👤</div>
+                                <div>
+                                    <div class="technique-name">System & Role Prompts</div>
+                                    <div class="technique-use">Consistent persona</div>
+                                </div>
+                            </div>
+                            <p class="technique-desc">Set global rules and persona. Shape how the model responds with specific constraints.</p>
+                            <div class="technique-example">
+                                "You are a supportive TA who avoids giving full solutions..."
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <div class="technique-header">
+                                <div class="technique-icon violet">📎</div>
+                                <div>
+                                    <div class="technique-name">Context Injection</div>
+                                    <div class="technique-use">Local materials</div>
+                                </div>
+                            </div>
+                            <p class="technique-desc">Supply course level, source material, and constraints for outputs aligned to your course.</p>
+                            <div class="technique-example">
+                                "Using the rubric below, score the paragraph..."
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <div class="technique-header">
+                                <div class="technique-icon blue">⏪</div>
+                                <div>
+                                    <div class="technique-name">Step-Back Prompting</div>
+                                    <div class="technique-use">Problem planning</div>
+                                </div>
+                            </div>
+                            <p class="technique-desc">Model identifies problem type and outlines a plan before solving. Promotes meta-cognition.</p>
+                            <div class="technique-example">
+                                "Identify the problem type, outline a 3-step plan, then solve"
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <div class="technique-header">
+                                <div class="technique-icon green">🔗</div>
+                                <div>
+                                    <div class="technique-name">Chain-of-Thought</div>
+                                    <div class="technique-use">Visible reasoning</div>
+                                </div>
+                            </div>
+                            <p class="technique-desc">Show intermediate reasoning steps for transparency and pedagogy.</p>
+                            <div class="technique-example">
+                                "Solve and explain in numbered steps (max 6)"
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 2: AI APP DIRECTORY
+             ======================================== -->
+        <div id="page-directory" class="page-content">
+            <div class="container">
+                <div class="page-hero">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        Curated AI Tools
+                    </div>
+                    <h1>AI App <span class="highlight">Directory</span></h1>
+                    <p class="lead">Find the right AI tools for your needs. Curated and vetted specifically for higher education professionals.</p>
+                </div>
+
+                <div class="directory-controls">
+                    <div class="role-toggle">
+                        <button class="role-btn active">For Teachers</button>
+                        <button class="role-btn">For Administrators</button>
+                    </div>
+                    <div class="category-filters">
+                        <button class="filter-chip active">All</button>
+                        <button class="filter-chip">Content Creation</button>
+                        <button class="filter-chip">Assessment</button>
+                        <button class="filter-chip">Research</button>
+                        <button class="filter-chip">Student Support</button>
+                        <button class="filter-chip">Administration</button>
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="app-card">
+                        <div class="app-header">
+                            <div class="app-icon">🤖</div>
+                            <div>
+                                <div class="app-name">ChatGPT</div>
+                                <div class="app-category">Multi-Purpose AI</div>
+                            </div>
+                        </div>
+                        <p class="app-desc">Versatile AI assistant for lesson planning, content creation, student feedback, and research support.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Lesson Planning</span>
+                            <span class="app-tag">Writing</span>
+                            <span class="app-tag">Research</span>
+                        </div>
+                        <div class="app-footer">
+                            <div class="app-rating">⭐ 4.8</div>
+                            <a href="#" class="app-link">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <div class="app-card">
+                        <div class="app-header">
+                            <div class="app-icon">📊</div>
+                            <div>
+                                <div class="app-name">Gradescope</div>
+                                <div class="app-category">Assessment</div>
+                            </div>
+                        </div>
+                        <p class="app-desc">AI-assisted grading for faster, more consistent evaluations across large classes.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Grading</span>
+                            <span class="app-tag">Analytics</span>
+                            <span class="app-tag">Feedback</span>
+                        </div>
+                        <div class="app-footer">
+                            <div class="app-rating">⭐ 4.7</div>
+                            <a href="#" class="app-link">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <div class="app-card">
+                        <div class="app-header">
+                            <div class="app-icon">📚</div>
+                            <div>
+                                <div class="app-name">Elicit</div>
+                                <div class="app-category">Research</div>
+                            </div>
+                        </div>
+                        <p class="app-desc">Automates literature reviews, generates summaries, and finds supporting data for academic research.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Literature Review</span>
+                            <span class="app-tag">Summarization</span>
+                        </div>
+                        <div class="app-footer">
+                            <div class="app-rating">⭐ 4.6</div>
+                            <a href="#" class="app-link">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <div class="app-card">
+                        <div class="app-header">
+                            <div class="app-icon">🎓</div>
+                            <div>
+                                <div class="app-name">Khanmigo</div>
+                                <div class="app-category">Tutoring</div>
+                            </div>
+                        </div>
+                        <p class="app-desc">AI-powered tutor offering personalized learning pathways and Socratic dialogue.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Personalized Learning</span>
+                            <span class="app-tag">Tutoring</span>
+                        </div>
+                        <div class="app-footer">
+                            <div class="app-rating">⭐ 4.8</div>
+                            <a href="#" class="app-link">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <div class="app-card">
+                        <div class="app-header">
+                            <div class="app-icon">🎬</div>
+                            <div>
+                                <div class="app-name">Synthesia</div>
+                                <div class="app-category">Video Creation</div>
+                            </div>
+                        </div>
+                        <p class="app-desc">Create professional AI-generated videos for lectures and tutorials with virtual presenters.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Video</span>
+                            <span class="app-tag">Multilingual</span>
+                        </div>
+                        <div class="app-footer">
+                            <div class="app-rating">⭐ 4.5</div>
+                            <a href="#" class="app-link">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <div class="app-card">
+                        <div class="app-header">
+                            <div class="app-icon">📝</div>
+                            <div>
+                                <div class="app-name">NotebookLM</div>
+                                <div class="app-category">Research</div>
+                            </div>
+                        </div>
+                        <p class="app-desc">AI-powered research assistant that summarizes documents and generates insights from your notes.</p>
+                        <div class="app-tags">
+                            <span class="app-tag">Notes</span>
+                            <span class="app-tag">Summarization</span>
+                        </div>
+                        <div class="app-footer">
+                            <div class="app-rating">⭐ 4.7</div>
+                            <a href="#" class="app-link">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 3: EDUCATOR TOOLS
+             ======================================== -->
+        <div id="page-tools" class="page-content">
+            <div class="container">
+                <div class="page-hero">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        By Educators, For Educators
+                    </div>
+                    <h1>Educator <span class="highlight">Tools</span></h1>
+                    <p class="lead">Practical tools authored by innovative educators for their peers. Solutions designed to enhance teaching and assessment in the age of AI.</p>
+                </div>
+
+                <div class="tool-showcase">
+                    <div class="tool-info">
+                        <h3>Syllabot</h3>
+                        <p class="desc">Writing a clear and fair AI policy for your syllabus can be stressful. Syllabot is a guided tool that helps you generate course-ready language in minutes.</p>
+                        <div class="tool-features">
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Fast & Easy: Generate a complete draft in 5-10 minutes</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Customizable: Tailored for your subject area and style</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Evidence-Informed: Built on academic integrity standards</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>No Login Required: Launch and start immediately</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Launch Syllabot →</a>
+                    </div>
+                    <div class="tool-visual">
+                        <div class="tool-preview">
+                            <div class="icon">📋</div>
+                            <div class="name">Syllabot</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-showcase">
+                    <div class="tool-info">
+                        <h3>AI Redesign</h3>
+                        <p class="desc">Struggling to create meaningful, AI-resistant assignments? Assessment Design Assistant helps transform your existing assessments into authentic learning experiences.</p>
+                        <div class="tool-features">
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Research-Backed: Grounded in educational best practices</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Collaborative: A guided process tailored to your needs</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Comprehensive: Full redesign with instructions and rationale</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Launch AI Redesign →</a>
+                    </div>
+                    <div class="tool-visual">
+                        <div class="tool-preview">
+                            <div class="icon">🔄</div>
+                            <div class="name">AI Redesign</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-showcase">
+                    <div class="tool-info">
+                        <h3>EquiGrade Mentor</h3>
+                        <p class="desc">Grading first-generation students fairly can feel overwhelming. EquiGrade Mentor is your personalized guide to equitable grading practices.</p>
+                        <div class="tool-features">
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Start Small: Pilot equity-based grading with one assignment</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Clear Guides: Templates and rubrics for implementation</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="check">✓</span>
+                                <span>Research-backed strategies and professional development</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Launch EquiGrade →</a>
+                    </div>
+                    <div class="tool-visual">
+                        <div class="tool-preview">
+                            <div class="icon">⚖️</div>
+                            <div class="name">EquiGrade Mentor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 4: PODCAST
+             ======================================== -->
+        <div id="page-podcast" class="page-content">
+            <div class="container">
+                <div class="page-hero">
+                    <div class="podcast-hero">
+                        <div>
+                            <div class="hero-badge">
+                                <span class="pulse-dot"></span>
+                                New Episodes Weekly
+                            </div>
+                            <h1>The <span class="highlight">Podcast</span></h1>
+                            <p class="lead">Hosted by Dr. Norma Jones, spotlighting innovators who are transforming the way we educate and engage students.</p>
+                            
+                            <div class="podcast-platforms">
+                                <a href="#" class="platform-link">🍎 Apple</a>
+                                <a href="#" class="platform-link">🎧 Spotify</a>
+                                <a href="#" class="platform-link">📱 Audible</a>
+                                <a href="#" class="platform-link">🎵 Amazon</a>
+                            </div>
+                        </div>
+
+                        <div class="podcast-featured">
+                            <div class="featured-image">🎙️</div>
+                            <div class="featured-content">
+                                <div class="featured-badge">
+                                    <span class="pulse-dot"></span>
+                                    Latest Episode
+                                </div>
+                                <h3 class="featured-title">Human-Centered AI Strategy: Empathy, Trust, Access</h3>
+                                <div class="featured-meta">
+                                    <span>Professor Chesa Caparas</span>
+                                    <span>•</span>
+                                    <span>June 22, 2025</span>
+                                    <span>•</span>
+                                    <span>42 min</span>
+                                </div>
+                                <p class="featured-desc">Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. Learn about a people-first path to AI adoption.</p>
+                                <div class="audio-player">
+                                    <div class="player-controls">
+                                        <button class="play-btn">▶</button>
+                                        <div class="progress-container">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill"></div>
+                                            </div>
+                                            <div class="time-display">
+                                                <span>14:32</span>
+                                                <span>42:18</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="section">
+                    <div class="section-header">
+                        <div class="section-label"><span class="dot"></span> All Episodes</div>
+                        <h2 class="section-title">Recent <span class="highlight">Episodes</span></h2>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="episode-card">
+                            <div class="episode-thumb">🎧</div>
+                            <div class="episode-info">
+                                <div class="episode-label">Episode 7</div>
+                                <h4 class="episode-title">Assistive AI Tools: Transform Course Design & Assessment</h4>
+                                <div class="episode-meta">
+                                    <span>Professor Scott James</span>
+                                    <span>May 17, 2025</span>
+                                    <span>38 min</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="episode-card">
+                            <div class="episode-thumb">🎧</div>
+                            <div class="episode-info">
+                                <div class="episode-label">Episode 6</div>
+                                <h4 class="episode-title">OER, ZTC & Lightning-Fast AI Translation</h4>
+                                <div class="episode-meta">
+                                    <span>Dr. Sarah Harmon</span>
+                                    <span>May 11, 2025</span>
+                                    <span>45 min</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="episode-card">
+                            <div class="episode-thumb">🎧</div>
+                            <div class="episode-info">
+                                <div class="episode-label">Episode 5</div>
+                                <h4 class="episode-title">Equity-First AI Curriculum for Every Discipline</h4>
+                                <div class="episode-meta">
+                                    <span>Dr. Suha Al Juboori</span>
+                                    <span>Feb 21, 2025</span>
+                                    <span>41 min</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="episode-card">
+                            <div class="episode-thumb">🎧</div>
+                            <div class="episode-info">
+                                <div class="episode-label">Episode 4</div>
+                                <h4 class="episode-title">VR Rehearsals: Building Confident Nurses Faster</h4>
+                                <div class="episode-meta">
+                                    <span>Dr. Jenna Zeller</span>
+                                    <span>Feb 21, 2025</span>
+                                    <span>36 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 5: SINGLE EPISODE
+             ======================================== -->
+        <div id="page-episode" class="page-content">
+            <div class="container">
+                <div class="page-hero" style="padding-bottom: 40px;">
+                    <div class="episode-hero">
+                        <div class="episode-player-card">
+                            <div class="episode-cover">🎙️</div>
+                            <div class="episode-player-content">
+                                <div class="featured-badge">
+                                    <span class="pulse-dot"></span>
+                                    Episode 8
+                                </div>
+                                <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; color: var(--text-bright);">Human-Centered AI Strategy: Empathy, Trust, Access</h2>
+                                <div class="featured-meta" style="margin-bottom: 20px;">
+                                    <span>June 22, 2025</span>
+                                    <span>•</span>
+                                    <span>42 min</span>
+                                </div>
+                                <div class="audio-player">
+                                    <div class="player-controls">
+                                        <button class="play-btn">▶</button>
+                                        <div class="progress-container">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill"></div>
+                                            </div>
+                                            <div class="time-display">
+                                                <span>0:00</span>
+                                                <span>42:18</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="podcast-platforms" style="margin-top: 20px;">
+                                    <a href="#" class="platform-link">🍎 Apple</a>
+                                    <a href="#" class="platform-link">🎧 Spotify</a>
+                                    <a href="#" class="platform-link">📱 Amazon</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="episode-details">
+                            <div class="guest-card">
+                                <div class="guest-header">
+                                    <div class="guest-avatar">CC</div>
+                                    <div class="guest-info">
+                                        <h4>Professor Chesa Caparas</h4>
+                                        <div class="role">English & Ethnic Studies, De Anza College</div>
+                                    </div>
+                                </div>
+                                <p class="guest-bio">
+                                    Chesa Caparas is professor of English and Ethnic Studies at De Anza College, where she teaches in the IMPACT AAPI Learning Community and leads professional development workshops on AI in education. She is a Fulbright Scholar Alumni Ambassador and is currently pursuing an MS in Information and Knowledge Strategy at Columbia University.
+                                </p>
+                            </div>
+
+                            <div style="margin-bottom: 28px;">
+                                <h3 style="font-size: 20px; font-weight: 600; color: var(--text-bright); margin-bottom: 16px;">About This Episode</h3>
+                                <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7;">
+                                    Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption in higher education. Chesa shares how a two-question survey surfaces hidden anxieties, how faculty can adapt without burnout, and why over-reliance on AI detectors can damage trust instead of protecting integrity.
+                                </p>
+                            </div>
+
+                            <div class="takeaways-section">
+                                <h4>💡 Key Takeaways</h4>
+                                <div class="takeaway-list">
+                                    <div class="takeaway-item">
+                                        <span class="bullet">•</span>
+                                        <span>Ready-to-use survey that maps student comfort with AI</span>
+                                    </div>
+                                    <div class="takeaway-item">
+                                        <span class="bullet">•</span>
+                                        <span>Tactics that keep feedback human while trimming workload</span>
+                                    </div>
+                                    <div class="takeaway-item">
+                                        <span class="bullet">•</span>
+                                        <span>Red-flag signs your AI detector policy harms equity</span>
+                                    </div>
+                                    <div class="takeaway-item">
+                                        <span class="bullet">•</span>
+                                        <span>First steps to close global and local connectivity gaps</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 6: TINKER LAB
+             ======================================== -->
+        <div id="page-tinker" class="page-content">
+            <div class="container">
+                <div class="page-hero">
+                    <div class="hero-badge" style="background: rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.3); color: var(--growth-gold);">
+                        <span class="pulse-dot" style="background: var(--growth-gold);"></span>
+                        Workshop Series
+                    </div>
+                    <h1>Tinker <span class="highlight" style="background: var(--gradient-growth); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lab</span></h1>
+                    <p class="lead">A workshop for the mind. Explore how tinkering with new ideas and AI tools can spark creativity and transform our approach to teaching and learning.</p>
+                </div>
+
+                <div class="tinker-intro">
+                    <h2>Welcome to the Tinker Lab</h2>
+                    <p class="desc">Join Dr. Norma Jones in this experimental series where we play, explore, and discover what's possible with AI in education. No polished scripts—just real-time exploration and honest reactions to new tools and ideas.</p>
+                    <div class="tinker-icon">🔧</div>
+                </div>
+
+                <section class="section" style="padding-top: 0;">
+                    <div class="section-header">
+                        <div class="section-label" style="color: var(--growth-gold);"><span class="dot" style="background: var(--growth-gold);"></span> Episodes</div>
+                        <h2 class="section-title">Lab <span class="highlight" style="background: var(--gradient-growth); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sessions</span></h2>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="lab-episode-card">
+                            <div class="lab-episode-cover">🎨</div>
+                            <div class="lab-episode-content">
+                                <div class="lab-label">Tinker Lab #2</div>
+                                <h4 class="lab-title">The Wonka-Lantern Framework: Creative & Ethical AI in Higher Education</h4>
+                                <p class="lab-desc">Exploring a whimsical yet practical framework for balancing creativity with ethics in AI implementation.</p>
+                                <div class="lab-meta">
+                                    <span>June 17, 2025</span>
+                                    <a href="#" style="color: var(--growth-gold); text-decoration: none;">Listen →</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lab-episode-card">
+                            <div class="lab-episode-cover">🔍</div>
+                            <div class="lab-episode-content">
+                                <div class="lab-label">Tinker Lab #1</div>
+                                <h4 class="lab-title">ChatGPT Pro Deep Research: Worth It?</h4>
+                                <p class="lab-desc">A hands-on exploration of ChatGPT Pro's deep research capabilities—is the premium worth the price for educators?</p>
+                                <div class="lab-meta">
+                                    <span>Feb 28, 2025</span>
+                                    <a href="#" style="color: var(--growth-gold); text-decoration: none;">Listen →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 7: ABOUT US
+             ======================================== -->
+        <div id="page-about" class="page-content">
+            <div class="container">
+                <div class="page-hero">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        Our Story
+                    </div>
+                    <h1>About <span class="highlight">Us</span></h1>
+                    <p class="lead">Empowering higher education leaders, faculty, and edtech innovators with insights, strategies, and real-world examples of AI transformation.</p>
+                </div>
+
+                <div class="about-mission">
+                    <div class="mission-icon">🎯</div>
+                    <h2>Our Mission</h2>
+                    <p class="desc">
+                        At Innovating Higher Ed, we're committed to empowering higher education leaders, faculty, and edtech innovators with insights, strategies, and real-world examples of how artificial intelligence and emerging technologies can transform education.
+                        <br><br>
+                        Through our engaging podcast episodes, expert interviews, and practical resources, we help educators and administrators confidently navigate the rapidly evolving landscape of AI-driven teaching, learning, and institutional innovation.
+                    </p>
+                </div>
+
+                <div class="team-section">
+                    <h3>Meet the Team</h3>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-header">
+                                <div class="team-avatar">NJ</div>
+                                <div class="team-info">
+                                    <h4>Dr. Norma Jones</h4>
+                                    <div class="role">Host / Producer</div>
+                                </div>
+                            </div>
+                            <p class="team-bio">
+                                Dr. Norma Jones is uniquely positioned to guide conversations about the future of higher education and artificial intelligence. With extensive experience as a presenter, author, editor, keynote speaker, and communication expert, Norma effortlessly bridges academia and executive leadership.
+                                <br><br>
+                                A recognized leader in AI initiatives throughout California, Norma has empowered countless educators and students by facilitating meaningful integration of AI into classrooms and institutional strategy.
+                            </p>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="team-header">
+                                <div class="team-avatar">BJ</div>
+                                <div class="team-info">
+                                    <h4>Brent Jones</h4>
+                                    <div class="role">Producer</div>
+                                </div>
+                            </div>
+                            <p class="team-bio">
+                                Brent Jones is an accomplished producer and editor with over two decades of experience, having contributed to more than 100 hours of television for major networks including Warner Bros, ABC, CBS, Discovery Channel, and the History Channel.
+                                <br><br>
+                                In 2023, Brent leveraged his deep technical expertise to explore and integrate artificial intelligence, actively developing innovative AI-driven startup ventures. At Innovating Higher Ed, Brent brings a unique blend of creative direction and technical precision.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================
+             PAGE 8: BE OUR GUEST
+             ======================================== -->
+        <div id="page-guest" class="page-content">
+            <div class="container">
+                <div class="page-hero">
+                    <div class="guest-hero-grid">
+                        <div>
+                            <div class="hero-badge">
+                                <span class="pulse-dot"></span>
+                                Join the Conversation
+                            </div>
+                            <h1>Be Our <span class="highlight">Guest</span></h1>
+                            <p class="lead">Share your story, expertise, and vision with our engaged audience of educators, administrators, and edtech professionals.</p>
+
+                            <div class="guest-benefits">
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">🌐</div>
+                                    <h4>Influential Platform</h4>
+                                    <p>Reach a global audience of higher education leaders actively shaping institutional change.</p>
+                                </div>
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">💡</div>
+                                    <h4>Thought Leadership</h4>
+                                    <p>Join curated guests contributing insights on ethical and strategic AI implications.</p>
+                                </div>
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">🎯</div>
+                                    <h4>Real Impact</h4>
+                                    <p>Inspire action and help educators implement meaningful innovation.</p>
+                                </div>
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">📈</div>
+                                    <h4>Professional Visibility</h4>
+                                    <p>Episodes promoted across podcast platforms, social media, and partner networks.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="guest-form-card">
+                            <h3>Share Your Ideas</h3>
+                            <p class="subtitle">We'd love to consider having you on our show.</p>
+                            
+                            <div class="qr-display">
+                                <div class="qr-placeholder">
+                                    [QR Code]
+                                </div>
+                                <div class="qr-label">Scan to submit your topic ideas</div>
+                            </div>
+
+                            <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                Submit Topic Ideas →
+                            </a>
+
+                            <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);">
+                                <h4 style="font-size: 16px; font-weight: 600; color: var(--text-bright); margin-bottom: 12px;">What to Expect</h4>
+                                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+                                    <p style="margin-bottom: 8px;">✓ High-quality production</p>
+                                    <p style="margin-bottom: 8px;">✓ Collaborative support</p>
+                                    <p style="margin-bottom: 8px;">✓ Strategic promotion</p>
+                                    <p>✓ Engaged community</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <div class="logo-text">Innovating<span class="accent">HigherEd</span></div>
+                        <p class="desc">Your trusted partner in embracing the future of education through AI and emerging technologies.</p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link">🐦</a>
+                            <a href="#" class="social-link">💼</a>
+                            <a href="#" class="social-link">📺</a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">Prompt Navigator</a>
+                            <a href="#" class="footer-link">AI App Directory</a>
+                            <a href="#" class="footer-link">Educator Tools</a>
+                            <a href="#" class="footer-link">AI News</a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Content</h4>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">Podcast</a>
+                            <a href="#" class="footer-link">Tinker Lab</a>
+                            <a href="#" class="footer-link">Daily News</a>
+                            <a href="#" class="footer-link">Archives</a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">About Us</a>
+                            <a href="#" class="footer-link">Be Our Guest</a>
+                            <a href="#" class="footer-link">Contact</a>
+                            <a href="#" class="footer-link">Newsletter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">© 2025 Innovating Higher Ed. All rights reserved.</div>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Page navigation
+        document.querySelectorAll('.page-tab, .nav-link[data-page]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = btn.dataset.page;
+                
+                // Update tabs
+                document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll(`.page-tab[data-page="${page}"]`).forEach(t => t.classList.add('active'));
+                
+                // Update nav links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll(`.nav-link[data-page="${page}"]`).forEach(l => l.classList.add('active'));
+                
+                // Show page
+                document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+                document.getElementById(`page-${page}`).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Generate floating particles
+        const cosmos = document.querySelector('.cosmos');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            
+            const colors = ['var(--pulse-core)', 'var(--synapse-blue)', 'var(--growth-gold)'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.boxShadow = `0 0 8px ${particle.style.background}`;
+            
+            cosmos.appendChild(particle);
+        }
+
+        // Role toggle
+        document.querySelectorAll('.role-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Filter chips
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

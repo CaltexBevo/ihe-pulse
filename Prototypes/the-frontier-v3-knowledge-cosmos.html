@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE FRONTIER — Knowledge Cosmos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #020206;
+            --deep: #050510;
+            --space: #0a0a18;
+            
+            --frontier-cyan: #00e5ff;
+            --frontier-cyan-glow: rgba(0, 229, 255, 0.4);
+            --pulse-green: #00ff88;
+            --pulse-glow: rgba(0, 255, 136, 0.3);
+            --aurora-gold: #ffd700;
+            --aurora-glow: rgba(255, 215, 0, 0.3);
+            --dream-violet: #a855f7;
+            --dream-glow: rgba(168, 85, 247, 0.3);
+            --hope-rose: #ff6b9d;
+            --nova-orange: #ff8c42;
+            
+            --text-bright: #ffffff;
+            --text-primary: #e8e8f8;
+            --text-secondary: #a0a0c8;
+            --text-muted: #606088;
+            
+            --gradient-frontier: linear-gradient(135deg, var(--frontier-cyan), var(--pulse-green));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* ==========================================
+           THE COSMOS - Full Screen Canvas
+           ========================================== */
+        .cosmos-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        #cosmosCanvas {
+            position: absolute;
+            inset: 0;
+        }
+
+        /* ==========================================
+           WELCOME STATE - Chatbot Central
+           ========================================== */
+        .welcome-state {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 40px;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .welcome-state.hidden {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+
+        .welcome-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--gradient-frontier);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin-bottom: 32px;
+            position: relative;
+            animation: avatar-breathe 4s ease-in-out infinite;
+        }
+
+        .welcome-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: var(--gradient-frontier);
+            opacity: 0.3;
+            filter: blur(20px);
+            animation: avatar-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes avatar-breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes avatar-glow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.1); }
+        }
+
+        .welcome-greeting {
+            font-size: 32px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fade-up 1s ease-out 0.3s forwards;
+        }
+
+        .welcome-subtext {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fade-up 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Welcome Input */
+        .welcome-input-container {
+            width: 100%;
+            max-width: 600px;
+            opacity: 0;
+            animation: fade-up 1s ease-out 0.7s forwards;
+        }
+
+        .welcome-input-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px 24px;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-input-box:focus-within {
+            border-color: var(--frontier-cyan);
+            background: rgba(0, 229, 255, 0.05);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.1);
+        }
+
+        .welcome-input-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            font-family: inherit;
+            color: var(--text-bright);
+        }
+
+        .welcome-input-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .welcome-input-box button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-frontier);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .welcome-input-box button:hover {
+            transform: scale(1.1);
+        }
+
+        .welcome-input-box button svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--void);
+        }
+
+        /* Quick Prompts */
+        .quick-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .quick-prompt {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-prompt:hover {
+            background: rgba(0, 229, 255, 0.1);
+            border-color: var(--frontier-cyan);
+            color: var(--text-bright);
+        }
+
+        /* ==========================================
+           JOURNEY STATE - Flying Through Cosmos
+           ========================================== */
+        .journey-state {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .journey-state.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .journey-text {
+            font-size: 24px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .journey-text.visible {
+            animation: journey-text-in 0.8s ease-out forwards;
+        }
+
+        @keyframes journey-text-in {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .journey-path {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            color: var(--frontier-cyan);
+            opacity: 0;
+        }
+
+        .journey-path.visible {
+            animation: journey-text-in 0.8s ease-out 0.3s forwards;
+        }
+
+        .journey-path .node {
+            padding: 8px 16px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 20px;
+        }
+
+        .journey-path .arrow {
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           DESTINATION STATE - Content Area
+           ========================================== */
+        .destination-state {
+            position: fixed;
+            inset: 0;
+            z-index: 80;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            overflow-y: auto;
+        }
+
+        .destination-state.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Destination Header */
+        .destination-header {
+            padding: 100px 60px 40px;
+            background: linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, transparent 100%);
+        }
+
+        .destination-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .destination-breadcrumb .crumb {
+            color: var(--frontier-cyan);
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .destination-breadcrumb .crumb:hover {
+            opacity: 0.7;
+        }
+
+        .destination-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .destination-title .highlight {
+            background: var(--gradient-frontier);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .destination-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        /* Connection Map Mini */
+        .connection-map {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            width: fit-content;
+        }
+
+        .connection-map-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .connection-nodes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .connection-node {
+            padding: 6px 14px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 16px;
+            font-size: 12px;
+            color: var(--frontier-cyan);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .connection-node:hover {
+            background: var(--frontier-cyan);
+            color: var(--void);
+        }
+
+        .connection-node.active {
+            background: var(--frontier-cyan);
+            color: var(--void);
+        }
+
+        /* Destination Content */
+        .destination-content {
+            padding: 40px 60px 80px;
+            max-width: 1200px;
+        }
+
+        .content-section {
+            margin-bottom: 48px;
+        }
+
+        .content-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--aurora-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .content-card {
+            background: rgba(26, 26, 64, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-card .card-type {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--aurora-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .content-card .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .content-card .card-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .content-card .card-meta {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 16px;
+        }
+
+        /* Navigator Mini (persistent in destination) */
+        .navigator-mini {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .navigator-mini-chat {
+            width: 360px;
+            max-height: 400px;
+            background: rgba(10, 10, 30, 0.95);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transform: scale(0.95) translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .navigator-mini-chat.open {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .navigator-mini-header {
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(0, 255, 136, 0.1));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navigator-mini-identity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navigator-mini-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient-frontier);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .navigator-mini-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .navigator-mini-close {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navigator-mini-messages {
+            padding: 16px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .navigator-mini-message {
+            padding: 12px 16px;
+            background: rgba(0, 229, 255, 0.1);
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .navigator-mini-input {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            gap: 10px;
+        }
+
+        .navigator-mini-input input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-bright);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .navigator-mini-input button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--gradient-frontier);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navigator-mini-trigger {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-frontier);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 20px var(--frontier-cyan-glow);
+            transition: all 0.3s ease;
+        }
+
+        .navigator-mini-trigger:hover {
+            transform: scale(1.1);
+        }
+
+        /* Back to Cosmos button */
+        .back-to-cosmos {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 200;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-cosmos.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-cosmos:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-bright);
+        }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 768px) {
+            .welcome-greeting {
+                font-size: 24px;
+            }
+            
+            .welcome-subtext {
+                font-size: 16px;
+            }
+            
+            .destination-header {
+                padding: 80px 24px 32px;
+            }
+            
+            .destination-title {
+                font-size: 32px;
+            }
+            
+            .destination-content {
+                padding: 24px;
+            }
+            
+            .navigator-mini-chat {
+                width: calc(100vw - 48px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- THE COSMOS CANVAS -->
+    <div class="cosmos-container">
+        <canvas id="cosmosCanvas"></canvas>
+    </div>
+
+    <!-- WELCOME STATE - Entry Point -->
+    <div class="welcome-state" id="welcomeState">
+        <div class="welcome-avatar">🧭</div>
+        
+        <h1 class="welcome-greeting">Welcome to the Frontier</h1>
+        <p class="welcome-subtext">The universe of education innovation awaits. Where would you like to explore?</p>
+        
+        <div class="welcome-input-container">
+            <div class="welcome-input-box">
+                <input type="text" id="welcomeInput" placeholder="Tell me what brings you here today..." onkeypress="handleWelcomeInput(event)">
+                <button onclick="startJourney()">
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+            
+            <div class="quick-prompts">
+                <span class="quick-prompt" onclick="setPromptAndGo('I teach Communication and want to explore AI tools')">I teach Communication</span>
+                <span class="quick-prompt" onclick="setPromptAndGo('I\'m new to AI in education')">I'm new to AI</span>
+                <span class="quick-prompt" onclick="setPromptAndGo('Show me VR in higher education')">Explore VR</span>
+                <span class="quick-prompt" onclick="setPromptAndGo('What\'s possible with AI grading?')">AI & Assessment</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JOURNEY STATE - Flying Through Cosmos -->
+    <div class="journey-state" id="journeyState">
+        <div class="journey-text" id="journeyText">Exploring the cosmos...</div>
+        <div class="journey-path" id="journeyPath">
+            <span class="node" id="pathNode1">Education</span>
+            <span class="arrow">→</span>
+            <span class="node" id="pathNode2">Teaching</span>
+            <span class="arrow">→</span>
+            <span class="node" id="pathNode3">AI Tools</span>
+        </div>
+    </div>
+
+    <!-- DESTINATION STATE - Content Area -->
+    <div class="destination-state" id="destinationState">
+        <div class="destination-header">
+            <div class="destination-breadcrumb">
+                <span class="crumb" onclick="goBackToCosmos()">🌌 Cosmos</span>
+                <span>›</span>
+                <span class="crumb">Teaching & Learning</span>
+                <span>›</span>
+                <span>AI Tools</span>
+            </div>
+            
+            <h1 class="destination-title" id="destinationTitle">
+                AI Tools for <span class="highlight">Communication</span> Educators
+            </h1>
+            <p class="destination-subtitle" id="destinationSubtitle">
+                Practical AI applications specifically curated for Communication and Humanities faculty. From writing assistance to speech analysis — discover what's possible.
+            </p>
+            
+            <div class="connection-map">
+                <span class="connection-map-label">Connected to:</span>
+                <div class="connection-nodes">
+                    <span class="connection-node">Ethics</span>
+                    <span class="connection-node">Assessment</span>
+                    <span class="connection-node">Writing</span>
+                    <span class="connection-node">Public Speaking</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="destination-content">
+            <!-- Today's Relevant Content -->
+            <div class="content-section">
+                <h2 class="content-section-title">
+                    <span>🎙️</span> Listen First
+                </h2>
+                <div class="content-grid">
+                    <div class="content-card" style="border-color: rgba(255, 215, 0, 0.3);">
+                        <div class="card-type"><span>📡</span> Today's AI News</div>
+                        <div class="card-title">Segment: AI Writing Tools Update</div>
+                        <div class="card-description">Dr. Norma covers new developments in AI writing assistants relevant to composition courses.</div>
+                        <div class="card-meta">
+                            <span>▶ 3:42</span>
+                            <span>Today</span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card" style="border-color: rgba(0, 229, 255, 0.3);">
+                        <div class="card-type"><span>🎧</span> Podcast Episode</div>
+                        <div class="card-title">AI in the Rhetoric Classroom</div>
+                        <div class="card-description">How one professor transformed argument analysis with AI — and what she learned about student engagement.</div>
+                        <div class="card-meta">
+                            <span>▶ 38 min</span>
+                            <span>Ep. 41</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tools Directory -->
+            <div class="content-section">
+                <h2 class="content-section-title">
+                    <span>🔧</span> Tools for Communication Faculty
+                </h2>
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-type"><span>🤖</span> AI Tool</div>
+                        <div class="card-title">Grammarly for Education</div>
+                        <div class="card-description">Writing feedback that teaches, not just corrects. See how faculty are using it ethically.</div>
+                        <div class="card-meta">
+                            <span>⭐ 4.8</span>
+                            <span>Free tier available</span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-type"><span>🤖</span> AI Tool</div>
+                        <div class="card-title">Otter.ai for Lectures</div>
+                        <div class="card-description">Automatic transcription and summaries. Students focus on discussion, not frantic note-taking.</div>
+                        <div class="card-meta">
+                            <span>⭐ 4.6</span>
+                            <span>EDU discount</span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-type"><span>🤖</span> AI Tool</div>
+                        <div class="card-title">Yoodli Speech Coach</div>
+                        <div class="card-description">AI-powered public speaking practice. Students get feedback without performance anxiety.</div>
+                        <div class="card-meta">
+                            <span>⭐ 4.7</span>
+                            <span>New</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pioneers in This Space -->
+            <div class="content-section">
+                <h2 class="content-section-title">
+                    <span>🏆</span> Pioneers in Communication + AI
+                </h2>
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="card-type"><span>👤</span> Pioneer</div>
+                        <div class="card-title">Dr. Sarah Martinez, Georgetown</div>
+                        <div class="card-description">Pioneered AI-assisted debate prep. Her students now practice against AI opponents before competitions.</div>
+                        <div class="card-meta">
+                            <span>📖 Case Study</span>
+                            <span>See her playbook →</span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-type"><span>🏛️</span> Institution</div>
+                        <div class="card-title">University of Oregon Journalism</div>
+                        <div class="card-description">Integrated AI fact-checking tools into their curriculum. Students learn to work WITH AI, not against it.</div>
+                        <div class="card-meta">
+                            <span>📖 Case Study</span>
+                            <span>See their approach →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO COSMOS BUTTON -->
+    <button class="back-to-cosmos" id="backToCosmos" onclick="goBackToCosmos()">
+        <span>←</span> Explore More
+    </button>
+
+    <!-- NAVIGATOR MINI (persistent companion) -->
+    <div class="navigator-mini" id="navigatorMini" style="display: none;">
+        <div class="navigator-mini-chat" id="navigatorMiniChat">
+            <div class="navigator-mini-header">
+                <div class="navigator-mini-identity">
+                    <div class="navigator-mini-avatar">🧭</div>
+                    <span class="navigator-mini-name">Navigator</span>
+                </div>
+                <button class="navigator-mini-close" onclick="toggleMiniNavigator()">×</button>
+            </div>
+            <div class="navigator-mini-messages">
+                <div class="navigator-mini-message">
+                    You're exploring <strong>AI Tools for Communication</strong>. Want to see related areas, or dive deeper into something specific?
+                </div>
+            </div>
+            <div class="navigator-mini-input">
+                <input type="text" placeholder="Ask anything...">
+                <button>→</button>
+            </div>
+        </div>
+        <button class="navigator-mini-trigger" onclick="toggleMiniNavigator()">🧭</button>
+    </div>
+
+    <script>
+        // ==========================================
+        // COSMOS VISUALIZATION
+        // ==========================================
+        const canvas = document.getElementById('cosmosCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let nodes = [];
+        let connections = [];
+        let particles = [];
+        let animationId;
+        let isJourneying = false;
+        let journeyProgress = 0;
+        let cameraX = 0, cameraY = 0;
+        let targetCameraX = 0, targetCameraY = 0;
+        let zoom = 1;
+        let targetZoom = 1;
+
+        // Knowledge nodes in the cosmos
+        const knowledgeNodes = [
+            { id: 'center', label: 'Higher Ed Innovation', x: 0, y: 0, size: 40, color: '#00e5ff' },
+            
+            // Main branches
+            { id: 'teaching', label: 'Teaching & Learning', x: -300, y: -200, size: 30, color: '#00ff88' },
+            { id: 'admin', label: 'Administration', x: 300, y: -200, size: 30, color: '#ffd700' },
+            { id: 'research', label: 'Research', x: 300, y: 200, size: 30, color: '#a855f7' },
+            { id: 'student', label: 'Student Success', x: -300, y: 200, size: 30, color: '#ff6b9d' },
+            
+            // Teaching sub-nodes
+            { id: 'ai-tools', label: 'AI Tools', x: -500, y: -350, size: 22, color: '#00e5ff' },
+            { id: 'vr-learning', label: 'VR Learning', x: -450, y: -150, size: 22, color: '#a855f7' },
+            { id: 'assessment', label: 'Assessment', x: -200, y: -400, size: 22, color: '#ffd700' },
+            { id: 'pedagogy', label: 'Pedagogy', x: -550, y: -250, size: 18, color: '#00ff88' },
+            
+            // AI Tools sub-nodes
+            { id: 'ai-writing', label: 'AI Writing', x: -650, y: -450, size: 16, color: '#00e5ff' },
+            { id: 'ai-grading', label: 'AI Grading', x: -550, y: -500, size: 16, color: '#00e5ff' },
+            { id: 'ai-tutoring', label: 'AI Tutoring', x: -700, y: -350, size: 16, color: '#00e5ff' },
+            { id: 'ai-comm', label: 'Communication', x: -750, y: -450, size: 16, color: '#ff6b9d' },
+            
+            // Admin sub-nodes
+            { id: 'enrollment', label: 'Enrollment', x: 450, y: -350, size: 20, color: '#ffd700' },
+            { id: 'operations', label: 'Operations', x: 500, y: -150, size: 20, color: '#ffd700' },
+            
+            // Research sub-nodes
+            { id: 'ai-research', label: 'AI Research', x: 500, y: 300, size: 20, color: '#a855f7' },
+            { id: 'collab', label: 'Collaboration', x: 400, y: 350, size: 18, color: '#a855f7' },
+            
+            // Student sub-nodes
+            { id: 'advising', label: 'AI Advising', x: -450, y: 300, size: 20, color: '#ff6b9d' },
+            { id: 'retention', label: 'Retention', x: -350, y: 350, size: 18, color: '#ff6b9d' },
+            { id: 'mental-health', label: 'Wellness', x: -250, y: 300, size: 18, color: '#ff6b9d' },
+        ];
+
+        // Connections between nodes
+        const knowledgeConnections = [
+            ['center', 'teaching'], ['center', 'admin'], ['center', 'research'], ['center', 'student'],
+            ['teaching', 'ai-tools'], ['teaching', 'vr-learning'], ['teaching', 'assessment'], ['teaching', 'pedagogy'],
+            ['ai-tools', 'ai-writing'], ['ai-tools', 'ai-grading'], ['ai-tools', 'ai-tutoring'], ['ai-tools', 'ai-comm'],
+            ['admin', 'enrollment'], ['admin', 'operations'],
+            ['research', 'ai-research'], ['research', 'collab'],
+            ['student', 'advising'], ['student', 'retention'], ['student', 'mental-health'],
+            ['assessment', 'ai-grading'],
+            ['ai-writing', 'ai-comm'],
+            ['advising', 'retention'],
+        ];
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        function initCosmos() {
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Create particles
+            for (let i = 0; i < 200; i++) {
+                particles.push({
+                    x: (Math.random() - 0.5) * 2000,
+                    y: (Math.random() - 0.5) * 2000,
+                    size: Math.random() * 2 + 0.5,
+                    speed: Math.random() * 0.5 + 0.1,
+                    alpha: Math.random() * 0.5 + 0.2
+                });
+            }
+            
+            animate();
+        }
+
+        function animate() {
+            ctx.fillStyle = '#020206';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Smooth camera movement
+            cameraX += (targetCameraX - cameraX) * 0.05;
+            cameraY += (targetCameraY - cameraY) * 0.05;
+            zoom += (targetZoom - zoom) * 0.05;
+            
+            ctx.save();
+            ctx.translate(width / 2, height / 2);
+            ctx.scale(zoom, zoom);
+            ctx.translate(-cameraX, -cameraY);
+            
+            // Draw particles (stars)
+            particles.forEach(p => {
+                const pulseAlpha = p.alpha * (0.5 + 0.5 * Math.sin(Date.now() * 0.001 * p.speed));
+                ctx.fillStyle = `rgba(255, 255, 255, ${pulseAlpha})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            // Draw connections
+            knowledgeConnections.forEach(([from, to]) => {
+                const nodeFrom = knowledgeNodes.find(n => n.id === from);
+                const nodeTo = knowledgeNodes.find(n => n.id === to);
+                if (nodeFrom && nodeTo) {
+                    const gradient = ctx.createLinearGradient(nodeFrom.x, nodeFrom.y, nodeTo.x, nodeTo.y);
+                    gradient.addColorStop(0, nodeFrom.color + '40');
+                    gradient.addColorStop(1, nodeTo.color + '40');
+                    
+                    ctx.strokeStyle = gradient;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(nodeFrom.x, nodeFrom.y);
+                    ctx.lineTo(nodeTo.x, nodeTo.y);
+                    ctx.stroke();
+                }
+            });
+            
+            // Draw nodes
+            knowledgeNodes.forEach(node => {
+                // Glow
+                const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.size * 3);
+                gradient.addColorStop(0, node.color + '40');
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.size * 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Node
+                ctx.fillStyle = node.color;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Label (only show when zoomed appropriately)
+                if (zoom > 0.5) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = `${12 / zoom}px "Space Grotesk"`;
+                    ctx.textAlign = 'center';
+                    ctx.fillText(node.label, node.x, node.y + node.size + 16 / zoom);
+                }
+            });
+            
+            ctx.restore();
+            
+            animationId = requestAnimationFrame(animate);
+        }
+
+        // ==========================================
+        // JOURNEY LOGIC
+        // ==========================================
+        function handleWelcomeInput(e) {
+            if (e.key === 'Enter') {
+                startJourney();
+            }
+        }
+
+        function setPromptAndGo(text) {
+            document.getElementById('welcomeInput').value = text;
+            startJourney();
+        }
+
+        function startJourney() {
+            const input = document.getElementById('welcomeInput').value.trim();
+            if (!input) return;
+            
+            // Hide welcome, show journey
+            document.getElementById('welcomeState').classList.add('hidden');
+            document.getElementById('journeyState').classList.add('active');
+            
+            // Determine destination based on input
+            let destination = 'ai-comm'; // Default for Communication
+            let path = ['Education', 'Teaching', 'AI Tools', 'Communication'];
+            
+            if (input.toLowerCase().includes('vr') || input.toLowerCase().includes('virtual')) {
+                destination = 'vr-learning';
+                path = ['Education', 'Teaching', 'VR Learning'];
+            } else if (input.toLowerCase().includes('new') || input.toLowerCase().includes('start')) {
+                destination = 'teaching';
+                path = ['Education', 'Teaching & Learning'];
+            } else if (input.toLowerCase().includes('grading') || input.toLowerCase().includes('assessment')) {
+                destination = 'ai-grading';
+                path = ['Education', 'Teaching', 'Assessment', 'AI Grading'];
+            }
+            
+            // Update journey path display
+            const pathNodes = document.querySelectorAll('.journey-path .node');
+            path.forEach((p, i) => {
+                if (pathNodes[i]) {
+                    pathNodes[i].textContent = p;
+                }
+            });
+            
+            // Animate the journey
+            animateJourney(destination, path);
+        }
+
+        function animateJourney(destinationId, path) {
+            const journeyText = document.getElementById('journeyText');
+            const journeyPath = document.getElementById('journeyPath');
+            
+            // Journey text sequence
+            setTimeout(() => {
+                journeyText.textContent = 'Mapping the knowledge cosmos...';
+                journeyText.classList.add('visible');
+            }, 300);
+            
+            setTimeout(() => {
+                journeyPath.classList.add('visible');
+            }, 1000);
+            
+            // Animate camera through the cosmos
+            const destNode = knowledgeNodes.find(n => n.id === destinationId) || knowledgeNodes[0];
+            
+            // First zoom out to show the cosmos
+            targetZoom = 0.4;
+            
+            setTimeout(() => {
+                journeyText.textContent = 'Finding your path...';
+                // Then move toward destination
+                targetCameraX = destNode.x;
+                targetCameraY = destNode.y;
+            }, 1500);
+            
+            setTimeout(() => {
+                journeyText.textContent = 'Arriving at your destination...';
+                // Zoom into destination
+                targetZoom = 1.5;
+            }, 3000);
+            
+            // Transition to destination state
+            setTimeout(() => {
+                document.getElementById('journeyState').classList.remove('active');
+                document.getElementById('destinationState').classList.add('active');
+                document.getElementById('backToCosmos').classList.add('visible');
+                document.getElementById('navigatorMini').style.display = 'flex';
+            }, 4500);
+        }
+
+        function goBackToCosmos() {
+            // Reset camera
+            targetCameraX = 0;
+            targetCameraY = 0;
+            targetZoom = 1;
+            
+            // Hide destination, show welcome
+            document.getElementById('destinationState').classList.remove('active');
+            document.getElementById('backToCosmos').classList.remove('visible');
+            document.getElementById('navigatorMini').style.display = 'none';
+            
+            setTimeout(() => {
+                document.getElementById('welcomeState').classList.remove('hidden');
+                document.getElementById('welcomeInput').value = '';
+            }, 500);
+        }
+
+        function toggleMiniNavigator() {
+            document.getElementById('navigatorMiniChat').classList.toggle('open');
+        }
+
+        // Initialize
+        initCosmos();
+        
+        // Console
+        console.log('%c🌌 THE KNOWLEDGE COSMOS', 'font-size: 24px; color: #00e5ff; font-weight: bold;');
+        console.log('%cExplore the universe of education innovation.', 'font-size: 14px; color: #a0a0c8;');
+    </script>
+</body>
+</html>

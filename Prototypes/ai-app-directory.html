@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI App Directory — Innovating Higher Ed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;--surface:#111118;--card:#15151f;--border:#1e1e2e;
+  --text:#e8e8f0;--muted:#8888a0;--dim:#555570;
+  --cyan:#00d4ff;--magenta:#c850c0;--green:#34d399;--amber:#f59e0b;--red:#ef4444;
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.6;min-height:100vh}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;gap:24px}
+.nav-logo{font-size:1.2rem;font-weight:700;letter-spacing:2px;color:var(--cyan)}
+.nav-logo span{color:var(--magenta)}
+.nav-links{display:flex;gap:20px;margin-left:auto}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+
+/* Hero */
+.hero{text-align:center;padding:64px 24px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(0,212,255,.08),transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.05);color:var(--cyan);font-size:.82rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-size:2.8rem;font-weight:700;line-height:1.15;margin-bottom:12px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto}
+
+/* Search */
+.search-bar{max-width:640px;margin:28px auto 0;position:relative}
+.search-bar input{width:100%;padding:14px 20px 14px 48px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit;font-size:1rem;outline:none;transition:border-color .2s}
+.search-bar input:focus{border-color:var(--cyan)}
+.search-bar svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--dim)}
+
+/* Role Tabs */
+.role-tabs{display:flex;justify-content:center;gap:10px;margin:24px auto 0;flex-wrap:wrap;padding:0 24px}
+.role-tab{padding:8px 20px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.88rem;font-weight:500;cursor:pointer;transition:all .2s}
+.role-tab:hover{border-color:var(--cyan);color:var(--text)}
+.role-tab.active{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan)}
+
+/* Main Layout */
+.main{max-width:1280px;margin:0 auto;padding:40px 24px 80px}
+
+/* Category Nav */
+.cat-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.cat-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.84rem;font-weight:500;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:6px}
+.cat-btn:hover{border-color:rgba(0,212,255,.4);color:var(--text)}
+.cat-btn.active{background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(200,80,192,.1));border-color:var(--cyan);color:var(--cyan)}
+.cat-btn .count{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:4px;font-size:.75rem;font-family:'JetBrains Mono',monospace}
+.cat-btn.active .count{background:rgba(0,212,255,.2)}
+
+/* Category Section */
+.cat-section{margin-bottom:48px;display:none}
+.cat-section.visible{display:block}
+.cat-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.cat-header h2{font-size:1.35rem;font-weight:600}
+.cat-header .cat-count{color:var(--muted);font-size:.9rem}
+.cat-header .cat-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+
+/* Tool Cards */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:all .3s;position:relative;overflow:hidden}
+.tool-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.tool-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));opacity:0;transition:opacity .3s}
+.tool-card:hover::after{opacity:1}
+.tool-top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.tool-icon{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--surface);display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
+.tool-icon img{width:100%;height:100%;object-fit:contain}
+.tool-icon.fallback{font-size:1.1rem;font-weight:700;color:var(--cyan)}
+.tool-name{font-size:1.1rem;font-weight:600}
+.tool-cat-badge{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.72rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+.tool-desc{color:var(--muted);font-size:.92rem;margin-bottom:14px;line-height:1.5}
+.tool-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tool-pricing{padding:4px 10px;border-radius:6px;font-size:.78rem;font-weight:600;font-family:'JetBrains Mono',monospace}
+.pricing-free{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.2)}
+.pricing-freemium{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
+.pricing-paid{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+.tool-roles{display:flex;gap:6px}
+.role-dot{padding:3px 8px;border-radius:4px;font-size:.72rem;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.tool-link{margin-left:auto;color:var(--cyan);text-decoration:none;font-size:.88rem;font-weight:500;display:flex;align-items:center;gap:4px;transition:color .2s}
+.tool-link:hover{color:var(--magenta)}
+.tool-verified{display:flex;align-items:center;gap:4px;color:var(--green);font-size:.78rem}
+
+/* All view */
+.all-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+
+/* Use Cases */
+.use-cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:48px}
+.use-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s;cursor:pointer}
+.use-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-2px)}
+.use-icon{font-size:1.6rem;margin-bottom:12px;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15)}
+.use-card h3{font-size:1.05rem;font-weight:600;margin-bottom:6px}
+.use-card p{color:var(--muted);font-size:.88rem}
+.use-tools{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.use-tools span{padding:3px 10px;border-radius:4px;font-size:.76rem;background:rgba(0,212,255,.08);color:var(--cyan);border:1px solid rgba(0,212,255,.12)}
+
+/* Stats */
+.stats{display:flex;justify-content:center;gap:40px;padding:20px 0 0;margin-bottom:0}
+.stat{text-align:center}
+.stat-num{font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:.78rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+
+/* Empty */
+.no-results{text-align:center;padding:60px 20px;color:var(--muted)}
+.no-results h3{font-size:1.3rem;color:var(--text);margin-bottom:8px}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  .tool-grid,.all-grid{grid-template-columns:1fr}
+  .use-cases{grid-template-columns:1fr}
+  .stats{gap:20px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">IHE <span>PULSE</span></div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Innovation Pulse</a>
+    <a href="#">Prompts</a>
+    <a href="#" class="active">AI App Directory</a>
+    <a href="#">Podcast</a>
+    <a href="#">Tinker Lab</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"/></svg>
+    AI App Directory
+  </div>
+  <h1>Find the Right <span class="grad">AI Tool</span></h1>
+  <p>38 vetted AI tools for higher education — filtered by role, task, and category so you find exactly what you need.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">38</div><div class="stat-label">Tools</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Roles</div></div>
+  </div>
+  <div class="search-bar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search tools by name or description...">
+  </div>
+  <div class="role-tabs">
+    <button class="role-tab active" data-role="all">All Roles</button>
+    <button class="role-tab" data-role="faculty">Faculty</button>
+    <button class="role-tab" data-role="admin">Administrator</button>
+    <button class="role-tab" data-role="student">Student</button>
+  </div>
+</section>
+
+<!-- Popular Use Cases -->
+<div class="main">
+  <div class="use-cases">
+    <div class="use-card" onclick="filterByCategory('lesson-planning')">
+      <div class="use-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+      <h3>Build a Lesson Plan</h3>
+      <p>AI-powered curriculum design and lesson structuring for any course level.</p>
+      <div class="use-tools"><span>Eduaide.Ai</span><span>Brisk Teaching</span><span>Curipod</span></div>
+    </div>
+    <div class="use-card" onclick="filterByCategory('image-video')">
+      <div class="use-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg></div>
+      <h3>Create Visual Content</h3>
+      <p>Generate images, videos, and presentations for lectures and materials.</p>
+      <div class="use-tools"><span>Midjourney</span><span>Synthesia</span><span>Canva</span></div>
+    </div>
+    <div class="use-card" onclick="filterByCategory('assessment')">
+      <div class="use-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <h3>Grade & Assess</h3>
+      <p>Streamline grading, feedback, and academic integrity checks.</p>
+      <div class="use-tools"><span>Gradescope</span><span>Turnitin</span><span>Formative</span></div>
+    </div>
+  </div>
+
+  <!-- Category Nav -->
+  <div class="cat-nav" id="catNav">
+    <button class="cat-btn active" data-cat="all">All <span class="count">38</span></button>
+    <button class="cat-btn" data-cat="general-llms">General LLMs <span class="count">5</span></button>
+    <button class="cat-btn" data-cat="lesson-planning">Lesson Planning <span class="count">5</span></button>
+    <button class="cat-btn" data-cat="assessment">Assessment <span class="count">3</span></button>
+    <button class="cat-btn" data-cat="research">Research <span class="count">2</span></button>
+    <button class="cat-btn" data-cat="writing">Writing & Feedback <span class="count">1</span></button>
+    <button class="cat-btn" data-cat="presentations">Presentations <span class="count">4</span></button>
+    <button class="cat-btn" data-cat="image-video">Image & Video <span class="count">10</span></button>
+    <button class="cat-btn" data-cat="productivity">Productivity <span class="count">3</span></button>
+    <button class="cat-btn" data-cat="music">Music <span class="count">1</span></button>
+    <button class="cat-btn" data-cat="student-tools">Student Tools <span class="count">4</span></button>
+  </div>
+
+  <!-- Tool Directory -->
+  <div id="directory"></div>
+  <div class="no-results" id="noResults" style="display:none">
+    <h3>No tools match your search</h3>
+    <p>Try adjusting your filters or search terms.</p>
+  </div>
+</div>
+
+<script>
+const TOOLS = [
+  // General LLMs
+  { name:"ChatGPT", cat:"general-llms", catLabel:"General LLMs", desc:"The versatile AI assistant for dialogue, content creation, coding, and analysis. Industry standard for general-purpose AI interactions.", pricing:"freemium", roles:["faculty","admin","student"], url:"https://chat.openai.com", logo:"https://logo.clearbit.com/openai.com", verified:true },
+  { name:"Claude", cat:"general-llms", catLabel:"General LLMs", desc:"Anthropic's next-generation AI assistant built for thoughtful analysis, long-form writing, and nuanced reasoning with strong safety practices.", pricing:"freemium", roles:["faculty","admin","student"], url:"https://claude.ai", logo:"https://logo.clearbit.com/anthropic.com", verified:true },
+  { name:"Gemini", cat:"general-llms", catLabel:"General LLMs", desc:"Google's most capable AI model, built to be multimodal with deep integration into Google Workspace and search.", pricing:"freemium", roles:["faculty","admin","student"], url:"https://gemini.google.com", logo:"https://logo.clearbit.com/google.com", verified:true },
+  { name:"Perplexity AI", cat:"general-llms", catLabel:"General LLMs", desc:"AI-powered answer engine that provides cited, real-time research answers. Great for academic research and fact-checking.", pricing:"freemium", roles:["faculty","admin","student"], url:"https://perplexity.ai", logo:"https://logo.clearbit.com/perplexity.ai", verified:true },
+  { name:"Grok", cat:"general-llms", catLabel:"General LLMs", desc:"xAI's conversational AI with real-time information access and a direct, unfiltered communication style.", pricing:"freemium", roles:["faculty","admin","student"], url:"https://grok.x.ai", logo:"https://logo.clearbit.com/x.ai", verified:false },
+
+  // Lesson Planning
+  { name:"Eduaide.Ai", cat:"lesson-planning", catLabel:"Lesson Planning", desc:"AI assistant for creating lesson plans, activities, assessments, and differentiated materials. Built specifically for educators.", pricing:"freemium", roles:["faculty"], url:"https://eduaide.ai", logo:"https://logo.clearbit.com/eduaide.ai", verified:true },
+  { name:"Brisk Teaching", cat:"lesson-planning", catLabel:"Lesson Planning", desc:"Chrome extension for curriculum design, instant feedback generation, and reading level differentiation across learning platforms.", pricing:"free", roles:["faculty"], url:"https://briskteaching.com", logo:"https://logo.clearbit.com/briskteaching.com", verified:true },
+  { name:"Disco AI", cat:"lesson-planning", catLabel:"Lesson Planning", desc:"AI syllabus and course curriculum generator that helps structure entire courses from learning objectives to assessments.", pricing:"freemium", roles:["faculty"], url:"https://disco.co", logo:"https://logo.clearbit.com/disco.co", verified:false },
+  { name:"Teachfloor", cat:"lesson-planning", catLabel:"Lesson Planning", desc:"All-in-one collaborative learning platform with AI-powered course creation, cohort management, and engagement tools.", pricing:"paid", roles:["faculty","admin"], url:"https://teachfloor.com", logo:"https://logo.clearbit.com/teachfloor.com", verified:false },
+  { name:"Curipod", cat:"lesson-planning", catLabel:"Lesson Planning", desc:"AI-powered interactive lesson creator with polls, word clouds, drawing, and reflection prompts for student engagement.", pricing:"freemium", roles:["faculty"], url:"https://curipod.com", logo:"https://logo.clearbit.com/curipod.com", verified:true },
+
+  // Assessment
+  { name:"Gradescope", cat:"assessment", catLabel:"Assessment", desc:"AI-assisted grading platform for assignments, exams, and homework. Uses rubric-based grading with machine learning to speed up assessment.", pricing:"paid", roles:["faculty"], url:"https://gradescope.com", logo:"https://logo.clearbit.com/gradescope.com", verified:true },
+  { name:"Turnitin", cat:"assessment", catLabel:"Assessment", desc:"Industry-standard academic integrity platform with AI writing detection, plagiarism checking, and feedback tools.", pricing:"paid", roles:["faculty","admin"], url:"https://turnitin.com", logo:"https://logo.clearbit.com/turnitin.com", verified:true },
+  { name:"Formative", cat:"assessment", catLabel:"Assessment", desc:"Real-time formative assessment platform with AI-powered feedback, live student monitoring, and data-driven insights.", pricing:"freemium", roles:["faculty"], url:"https://goformative.com", logo:"https://logo.clearbit.com/goformative.com", verified:false },
+
+  // Research
+  { name:"Consensus", cat:"research", catLabel:"Research", desc:"AI-powered academic search engine that finds and synthesizes insights from peer-reviewed scientific papers.", pricing:"freemium", roles:["faculty","student"], url:"https://consensus.app", logo:"https://logo.clearbit.com/consensus.app", verified:true },
+  { name:"Elicit", cat:"research", catLabel:"Research", desc:"AI research assistant that automates literature reviews, generates summaries, and finds supporting data across millions of papers.", pricing:"freemium", roles:["faculty","student"], url:"https://elicit.com", logo:"https://logo.clearbit.com/elicit.com", verified:true },
+
+  // Writing
+  { name:"Grammarly", cat:"writing", catLabel:"Writing & Feedback", desc:"AI writing assistant for grammar, tone, clarity, and style. Helps students and faculty produce polished, professional writing.", pricing:"freemium", roles:["faculty","student"], url:"https://grammarly.com", logo:"https://logo.clearbit.com/grammarly.com", verified:true },
+
+  // Presentations
+  { name:"Gamma", cat:"presentations", catLabel:"Presentations", desc:"AI-powered presentation creator that generates polished slide decks from text prompts with smart layout and design.", pricing:"freemium", roles:["faculty","student"], url:"https://gamma.app", logo:"https://logo.clearbit.com/gamma.app", verified:true },
+  { name:"Mentimeter", cat:"presentations", catLabel:"Presentations", desc:"Interactive presentation platform with live polls, quizzes, Q&A, and word clouds for real-time audience engagement.", pricing:"freemium", roles:["faculty"], url:"https://mentimeter.com", logo:"https://logo.clearbit.com/mentimeter.com", verified:true },
+  { name:"Slidesgo", cat:"presentations", catLabel:"Presentations", desc:"AI-enhanced presentation templates for Google Slides and PowerPoint with professional designs and customizable layouts.", pricing:"freemium", roles:["faculty","student"], url:"https://slidesgo.com", logo:"https://logo.clearbit.com/slidesgo.com", verified:false },
+  { name:"Canva", cat:"presentations", catLabel:"Presentations", desc:"AI-enhanced design platform for presentations, infographics, social media, and visual content with thousands of templates.", pricing:"freemium", roles:["faculty","admin","student"], url:"https://canva.com", logo:"https://logo.clearbit.com/canva.com", verified:true },
+
+  // Image & Video
+  { name:"Midjourney", cat:"image-video", catLabel:"Image & Video", desc:"Leading AI image generator known for artistic quality and creative control. Create illustrations, diagrams, and visual concepts.", pricing:"paid", roles:["faculty"], url:"https://midjourney.com", logo:"https://logo.clearbit.com/midjourney.com", verified:true },
+  { name:"RunwayML", cat:"image-video", catLabel:"Image & Video", desc:"Professional AI video generation and editing suite. Text-to-video, image-to-video, and advanced video manipulation tools.", pricing:"freemium", roles:["faculty","student"], url:"https://runwayml.com", logo:"https://logo.clearbit.com/runwayml.com", verified:true },
+  { name:"Synthesia", cat:"image-video", catLabel:"Image & Video", desc:"AI video creation platform with realistic virtual presenters and multilingual support. Create training videos without cameras or studios.", pricing:"paid", roles:["faculty","admin"], url:"https://synthesia.io", logo:"https://logo.clearbit.com/synthesia.io", verified:true },
+  { name:"Pika Labs", cat:"image-video", catLabel:"Image & Video", desc:"AI video generation tool that creates and edits videos from text and images. Known for creative, stylized video output.", pricing:"freemium", roles:["faculty","student"], url:"https://pika.art", logo:"https://logo.clearbit.com/pika.art", verified:false },
+  { name:"Descript", cat:"image-video", catLabel:"Image & Video", desc:"AI-powered audio and video editing platform. Edit media by editing text, with automatic transcription, filler word removal, and screen recording.", pricing:"freemium", roles:["faculty"], url:"https://descript.com", logo:"https://logo.clearbit.com/descript.com", verified:true },
+  { name:"HeyGen", cat:"image-video", catLabel:"Image & Video", desc:"AI avatar video platform for creating professional talking-head videos with custom avatars, voice cloning, and multilingual translation.", pricing:"freemium", roles:["faculty","admin"], url:"https://heygen.com", logo:"https://logo.clearbit.com/heygen.com", verified:false },
+  { name:"Fliki", cat:"image-video", catLabel:"Image & Video", desc:"Turn text into videos with AI voices, stock media, and captions. Fast content creation for educational and marketing videos.", pricing:"freemium", roles:["faculty","admin"], url:"https://fliki.ai", logo:"https://logo.clearbit.com/fliki.ai", verified:false },
+  { name:"Sora", cat:"image-video", catLabel:"Image & Video", desc:"OpenAI's text-to-video model generating realistic, high-quality video from text descriptions. Cutting-edge video generation.", pricing:"paid", roles:["faculty"], url:"https://openai.com/sora", logo:"https://logo.clearbit.com/openai.com", verified:false },
+  { name:"Ideogram", cat:"image-video", catLabel:"Image & Video", desc:"AI image generator with exceptional text rendering capabilities. Create visuals with accurate, readable embedded text.", pricing:"freemium", roles:["faculty","student"], url:"https://ideogram.ai", logo:"https://logo.clearbit.com/ideogram.ai", verified:false },
+  { name:"RemoveBG", cat:"image-video", catLabel:"Image & Video", desc:"AI-powered background removal tool. Instantly remove image backgrounds for presentations, materials, and design projects.", pricing:"freemium", roles:["faculty","student"], url:"https://remove.bg", logo:"https://logo.clearbit.com/remove.bg", verified:false },
+
+  // Productivity
+  { name:"Notion AI", cat:"productivity", catLabel:"Productivity", desc:"AI writing and organization assistant built into Notion. Draft, edit, summarize, and brainstorm within your workspace.", pricing:"paid", roles:["faculty","admin"], url:"https://notion.so", logo:"https://logo.clearbit.com/notion.so", verified:true },
+  { name:"Otter.ai", cat:"productivity", catLabel:"Productivity", desc:"AI-powered meeting notes with automated transcription, action item tracking, and real-time collaboration for meetings.", pricing:"freemium", roles:["faculty","admin"], url:"https://otter.ai", logo:"https://logo.clearbit.com/otter.ai", verified:true },
+  { name:"Copilot for Microsoft 365", cat:"productivity", catLabel:"Productivity", desc:"Microsoft's AI assistant integrated across Word, Excel, PowerPoint, Teams, and Outlook for drafting, summarizing, and organizing.", pricing:"paid", roles:["faculty","admin"], url:"https://microsoft.com/microsoft-365/copilot", logo:"https://logo.clearbit.com/microsoft.com", verified:true },
+
+  // Music
+  { name:"Suno", cat:"music", catLabel:"Music", desc:"AI music generation platform that creates full songs with vocals, instruments, and lyrics from text prompts. Great for creative projects.", pricing:"freemium", roles:["faculty","student"], url:"https://suno.com", logo:"https://logo.clearbit.com/suno.com", verified:false },
+
+  // Student Tools
+  { name:"Quizlet", cat:"student-tools", catLabel:"Student Tools", desc:"AI-enhanced study platform with flashcards, practice tests, and personalized learning paths for effective exam preparation.", pricing:"freemium", roles:["student"], url:"https://quizlet.com", logo:"https://logo.clearbit.com/quizlet.com", verified:true },
+  { name:"QuillBot", cat:"student-tools", catLabel:"Student Tools", desc:"AI paraphrasing, grammar checking, and summarizing tool. Helps students refine writing while maintaining original meaning.", pricing:"freemium", roles:["student"], url:"https://quillbot.com", logo:"https://logo.clearbit.com/quillbot.com", verified:false },
+  { name:"Kahoot!", cat:"student-tools", catLabel:"Student Tools", desc:"Game-based learning platform with AI-powered quiz generation. Creates engaging, competitive learning experiences for any subject.", pricing:"freemium", roles:["faculty","student"], url:"https://kahoot.com", logo:"https://logo.clearbit.com/kahoot.com", verified:true },
+  { name:"Knowt", cat:"student-tools", catLabel:"Student Tools", desc:"AI study tool that converts notes and lectures into flashcards and practice quizzes automatically.", pricing:"freemium", roles:["student"], url:"https://knowt.com", logo:"https://logo.clearbit.com/knowt.com", verified:false },
+];
+
+const CAT_ORDER = ['general-llms','lesson-planning','assessment','research','writing','presentations','image-video','productivity','music','student-tools'];
+const CAT_LABELS = { 'general-llms':'General LLMs','lesson-planning':'Lesson Planning','assessment':'Assessment','research':'Research','writing':'Writing & Feedback','presentations':'Presentations','image-video':'Image & Video','productivity':'Productivity','music':'Music','student-tools':'Student Tools' };
+
+let activeCategory = 'all';
+let activeRole = 'all';
+let searchQuery = '';
+
+function createToolCard(tool) {
+  const pClass = tool.pricing === 'free' ? 'pricing-free' : tool.pricing === 'freemium' ? 'pricing-freemium' : 'pricing-paid';
+  const pLabel = tool.pricing.charAt(0).toUpperCase() + tool.pricing.slice(1);
+  const roleHTML = tool.roles.map(r => `<span class="role-dot">${r.charAt(0).toUpperCase()+r.slice(1)}</span>`).join('');
+  
+  return `<div class="tool-card" data-cat="${tool.cat}" data-roles="${tool.roles.join(',')}" data-name="${tool.name.toLowerCase()}" data-desc="${tool.desc.toLowerCase()}">
+    <div class="tool-top">
+      <div class="tool-icon"><img src="${tool.logo}" alt="${tool.name}" onerror="this.parentElement.classList.add('fallback');this.parentElement.innerHTML='${tool.name.charAt(0)}'"></div>
+      <div>
+        <div class="tool-name">${tool.name}</div>
+        <span class="tool-cat-badge" style="color:var(--muted);background:rgba(255,255,255,.04)">${tool.catLabel}</span>
+      </div>
+    </div>
+    <div class="tool-desc">${tool.desc}</div>
+    <div class="tool-meta">
+      <span class="tool-pricing ${pClass}">${pLabel}</span>
+      ${tool.verified ? '<span class="tool-verified"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Verified</span>' : ''}
+      <a class="tool-link" href="${tool.url}" target="_blank">Visit <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+    </div>
+  </div>`;
+}
+
+function render() {
+  const dir = document.getElementById('directory');
+  let filtered = TOOLS.filter(t => {
+    if (activeRole !== 'all' && !t.roles.includes(activeRole)) return false;
+    if (searchQuery && !t.name.toLowerCase().includes(searchQuery) && !t.desc.toLowerCase().includes(searchQuery)) return false;
+    return true;
+  });
+
+  if (activeCategory === 'all') {
+    // Show by category sections
+    let html = '';
+    CAT_ORDER.forEach(cat => {
+      const catTools = filtered.filter(t => t.cat === cat);
+      if (catTools.length === 0) return;
+      html += `<div class="cat-section visible">
+        <div class="cat-header">
+          <h2>${CAT_LABELS[cat]}</h2>
+          <span class="cat-count">${catTools.length} tool${catTools.length!==1?'s':''}</span>
+          <div class="cat-line"></div>
+        </div>
+        <div class="tool-grid">${catTools.map(createToolCard).join('')}</div>
+      </div>`;
+    });
+    dir.innerHTML = html;
+  } else {
+    // Show specific category
+    const catTools = filtered.filter(t => t.cat === activeCategory);
+    if (catTools.length === 0) {
+      dir.innerHTML = '';
+      document.getElementById('noResults').style.display = 'block';
+      return;
+    }
+    dir.innerHTML = `<div class="cat-section visible">
+      <div class="cat-header">
+        <h2>${CAT_LABELS[activeCategory]}</h2>
+        <span class="cat-count">${catTools.length} tool${catTools.length!==1?'s':''}</span>
+        <div class="cat-line"></div>
+      </div>
+      <div class="tool-grid">${catTools.map(createToolCard).join('')}</div>
+    </div>`;
+  }
+  document.getElementById('noResults').style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+// Category buttons
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory = btn.dataset.cat;
+    render();
+    // Scroll to directory
+    document.getElementById('directory').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+
+// Role tabs
+document.querySelectorAll('.role-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.role-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeRole = btn.dataset.role;
+    render();
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  if (searchQuery) {
+    activeCategory = 'all';
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.cat-btn[data-cat="all"]').classList.add('active');
+  }
+  render();
+});
+
+// Use case click helper
+function filterByCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.cat-btn[data-cat="${cat}"]`)?.classList.add('active');
+  render();
+  document.getElementById('catNav').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// Initial render
+render();
+</script>
+</body>
+</html>

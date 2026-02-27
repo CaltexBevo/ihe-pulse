@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IHE Pulse - Podcast & Tinker Lab | Electric Dusk Design</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0a0a0f; font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #00d4ff 0%, #ffffff 50%, #c850c0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gradient-text-alt { background: linear-gradient(135deg, #c850c0 0%, #ffffff 50%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glow-cyan { box-shadow: 0 0 40px rgba(0, 212, 255, 0.4); }
+    .glow-magenta { box-shadow: 0 0 40px rgba(200, 80, 192, 0.4); }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+    .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+    .animate-float { animation: float 5s ease-in-out infinite; }
+    @keyframes glow-pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.6; } }
+    .animate-glow { animation: glow-pulse 4s ease-in-out infinite; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #12121a; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #00d4ff, #c850c0); border-radius: 4px; }
+    .page { display: none; }
+    .page.active { display: block; }
+  </style>
+</head>
+<body class="min-h-screen text-white antialiased">
+  <!-- Background Effects -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[150px] animate-glow"></div>
+    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-fuchsia-500/5 rounded-full blur-[150px] animate-glow" style="animation-delay: 2s;"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-gray-800/50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-fuchsia-500 rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity"></div>
+          <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-fuchsia-500 flex items-center justify-center">
+            <span class="text-white font-bold text-sm">IHE</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-bold text-white leading-tight">Innovating Higher Ed</span>
+          <span class="text-xs text-cyan-400 font-medium">PULSE</span>
+        </div>
+      </a>
+      <div class="flex gap-1 p-1 bg-gray-800/50 rounded-xl border border-gray-700/50">
+        <button onclick="showPage('podcast')" id="btn-podcast" class="nav-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-500 to-cyan-400 text-gray-900">🎙️ Podcast</button>
+        <button onclick="showPage('tinkerlab')" id="btn-tinkerlab" class="nav-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 text-gray-400 hover:text-white">🧪 Tinker Lab</button>
+        <button onclick="showPage('episode')" id="btn-episode" class="nav-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 text-gray-400 hover:text-white">📄 Episode</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PODCAST PAGE -->
+  <div id="page-podcast" class="page active">
+    <div class="relative max-w-6xl mx-auto px-6 pt-28 pb-20">
+      <header class="text-center mb-16">
+        <nav class="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
+          <a href="#" class="hover:text-cyan-400 transition-colors">Home</a>
+          <span class="text-gray-600">/</span>
+          <span class="text-cyan-400">Podcast</span>
+        </nav>
+        <div class="relative w-24 h-24 mx-auto mb-8 animate-float">
+          <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-cyan-400 rounded-2xl rotate-6 opacity-30 blur-lg"></div>
+          <div class="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl flex items-center justify-center border border-cyan-500/30 shadow-lg">
+            <span class="text-5xl">🎙️</span>
+          </div>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6"><span class="gradient-text">The Podcast</span></h1>
+        <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-3">Innovating Higher Ed with <span class="text-cyan-400 font-semibold">Dr. Norma Jones</span></p>
+        <p class="text-gray-500 max-w-xl mx-auto mb-10">Spotlighting innovators who are transforming the way we educate and engage students through AI and emerging technologies.</p>
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-cyan-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🍎</span><span class="text-xs text-gray-400 group-hover:text-cyan-400">Apple</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-green-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🎵</span><span class="text-xs text-gray-400 group-hover:text-green-400">Spotify</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-orange-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">📚</span><span class="text-xs text-gray-400 group-hover:text-orange-400">Audible</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-blue-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🎶</span><span class="text-xs text-gray-400 group-hover:text-blue-400">Amazon</span></a>
+        </div>
+        <div class="w-32 h-1 mx-auto bg-gradient-to-r from-cyan-500 to-fuchsia-500 rounded-full"></div>
+      </header>
+      
+      <section>
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold flex items-center gap-3">
+            <span class="w-2 h-8 bg-gradient-to-b from-cyan-500 to-fuchsia-500 rounded-full"></span>Latest Episodes<span class="text-sm font-normal text-gray-500">(6 episodes)</span>
+          </h2>
+        </div>
+        
+        <div class="space-y-6">
+          <!-- Episode 1 -->
+          <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl overflow-hidden border border-gray-700/50 hover:border-cyan-500/30 transition-all duration-500 card-hover">
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-fuchsia-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative flex flex-col md:flex-row gap-6 p-6">
+              <div class="relative w-full md:w-56 h-48 flex-shrink-0">
+                <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center">
+                  <div class="text-center"><div class="text-4xl mb-2">⚖️</div><div class="text-xs text-cyan-400 font-bold">HUMAN-CENTERED</div><div class="text-xs text-fuchsia-400">AI STRATEGY</div></div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full flex items-center justify-center glow-cyan cursor-pointer hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <div class="absolute bottom-3 right-3 px-3 py-1.5 bg-gray-900/95 rounded-lg text-xs text-cyan-400 font-mono border border-cyan-500/30">42 min</div>
+              </div>
+              <div class="flex-1 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">PODCAST</span>
+                  <span class="text-gray-500 text-sm">June 22, 2025</span>
+                  <span class="px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 border border-green-500/30">NEW</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-fuchsia-400 transition-all">Human-Centered AI Strategy: Empathy, Trust, Access</h3>
+                <p class="text-cyan-400 text-sm mb-4 font-semibold">with Professor Chesa Caparas</p>
+                <p class="text-gray-400 leading-relaxed mb-5 line-clamp-2">Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. Dr. Norma Jones talks with Professor Chesa Caparas about a people-first path to AI adoption.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">AI Strategy</span>
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Faculty Development</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Episode 2 -->
+          <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl overflow-hidden border border-gray-700/50 hover:border-cyan-500/30 transition-all duration-500 card-hover">
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-fuchsia-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative flex flex-col md:flex-row gap-6 p-6">
+              <div class="relative w-full md:w-56 h-48 flex-shrink-0">
+                <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center">
+                  <div class="text-center"><div class="text-4xl mb-2">🛠️</div><div class="text-xs text-cyan-400 font-bold">ASSISTIVE AI</div><div class="text-xs text-fuchsia-400">TOOLS</div></div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full flex items-center justify-center glow-cyan cursor-pointer hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <div class="absolute bottom-3 right-3 px-3 py-1.5 bg-gray-900/95 rounded-lg text-xs text-cyan-400 font-mono border border-cyan-500/30">38 min</div>
+              </div>
+              <div class="flex-1 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">PODCAST</span>
+                  <span class="text-gray-500 text-sm">May 17, 2025</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-fuchsia-400 transition-all">Assistive AI Tools: Transform Course Design & Assessment</h3>
+                <p class="text-cyan-400 text-sm mb-4 font-semibold">with Professor Scott James</p>
+                <p class="text-gray-400 leading-relaxed mb-5 line-clamp-2">Can a chatbot rewrite your toughest assignments in under five minutes? Dr. Norma Jones talks with Scott James about AI tools that transform course design.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Course Design</span>
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Assessment</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- More Episodes (Compact) -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl border border-gray-700/50 hover:border-cyan-500/30 transition-all card-hover p-6">
+              <div class="flex gap-4">
+                <div class="relative w-20 h-20 flex-shrink-0">
+                  <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center"><span class="text-3xl">📖</span></div>
+                  <div class="absolute -bottom-1 -right-1 px-2 py-0.5 bg-gray-900 rounded text-xs text-cyan-400 font-mono">35m</div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-xs text-cyan-400 font-semibold">PODCAST</span><span class="text-gray-600">•</span><span class="text-xs text-gray-500">May 11, 2025</span></div>
+                  <h3 class="font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">OER, ZTC & Lightning-Fast AI Translation</h3>
+                  <p class="text-sm text-gray-500">with Dr. Sarah Harmon</p>
+                </div>
+              </div>
+            </article>
+            <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl border border-gray-700/50 hover:border-cyan-500/30 transition-all card-hover p-6">
+              <div class="flex gap-4">
+                <div class="relative w-20 h-20 flex-shrink-0">
+                  <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center"><span class="text-3xl">🤖</span></div>
+                  <div class="absolute -bottom-1 -right-1 px-2 py-0.5 bg-gray-900 rounded text-xs text-cyan-400 font-mono">45m</div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-xs text-cyan-400 font-semibold">PODCAST</span><span class="text-gray-600">•</span><span class="text-xs text-gray-500">Feb 21, 2025</span></div>
+                  <h3 class="font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">Equity-First AI Curriculum for Every Discipline</h3>
+                  <p class="text-sm text-gray-500">with Dr. Suha Al Juboori</p>
+                </div>
+              </div>
+            </article>
+            <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl border border-gray-700/50 hover:border-cyan-500/30 transition-all card-hover p-6">
+              <div class="flex gap-4">
+                <div class="relative w-20 h-20 flex-shrink-0">
+                  <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center"><span class="text-3xl">🥽</span></div>
+                  <div class="absolute -bottom-1 -right-1 px-2 py-0.5 bg-gray-900 rounded text-xs text-cyan-400 font-mono">40m</div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-xs text-cyan-400 font-semibold">PODCAST</span><span class="text-gray-600">•</span><span class="text-xs text-gray-500">Feb 21, 2025</span></div>
+                  <h3 class="font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">VR Rehearsals: Building Confident Nurses Faster</h3>
+                  <p class="text-sm text-gray-500">with Dr. Jenna Zeller</p>
+                </div>
+              </div>
+            </article>
+            <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl border border-gray-700/50 hover:border-cyan-500/30 transition-all card-hover p-6">
+              <div class="flex gap-4">
+                <div class="relative w-20 h-20 flex-shrink-0">
+                  <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center"><span class="text-3xl">🎮</span></div>
+                  <div class="absolute -bottom-1 -right-1 px-2 py-0.5 bg-gray-900 rounded text-xs text-cyan-400 font-mono">37m</div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2"><span class="text-xs text-cyan-400 font-semibold">PODCAST</span><span class="text-gray-600">•</span><span class="text-xs text-gray-500">Feb 21, 2025</span></div>
+                  <h3 class="font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">XR Learning & AI Engagement Hacks</h3>
+                  <p class="text-sm text-gray-500">with Dr. Garrick Grace</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <button class="px-8 py-3 bg-gray-800/50 text-gray-300 border border-gray-700 rounded-xl hover:border-cyan-500/50 hover:text-cyan-400 transition-all font-semibold">Load More Episodes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- TINKER LAB PAGE -->
+  <div id="page-tinkerlab" class="page">
+    <div class="relative max-w-6xl mx-auto px-6 pt-28 pb-20">
+      <header class="text-center mb-16">
+        <nav class="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
+          <a href="#" class="hover:text-cyan-400 transition-colors">Home</a>
+          <span class="text-gray-600">/</span>
+          <span class="text-fuchsia-400">Tinker Lab</span>
+        </nav>
+        <div class="relative w-28 h-28 mx-auto mb-8 animate-float" style="animation-delay: 0.5s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-500 to-cyan-500 rounded-2xl rotate-12 opacity-30 blur-lg"></div>
+          <div class="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl flex items-center justify-center border border-fuchsia-500/30 shadow-lg">
+            <span class="text-5xl">🧪</span>
+          </div>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6"><span class="gradient-text-alt">Tinker Lab</span></h1>
+        <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-3">A workshop for the mind with <span class="text-fuchsia-400 font-semibold">Dr. Norma Jones</span></p>
+        <p class="text-gray-500 max-w-xl mx-auto mb-10">Exploring how tinkering with new ideas and AI tools can spark creativity and transform our approach to teaching and learning.</p>
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-fuchsia-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🍎</span><span class="text-xs text-gray-400 group-hover:text-fuchsia-400">Apple</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-green-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🎵</span><span class="text-xs text-gray-400 group-hover:text-green-400">Spotify</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-orange-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">📚</span><span class="text-xs text-gray-400 group-hover:text-orange-400">Audible</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-blue-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🎶</span><span class="text-xs text-gray-400 group-hover:text-blue-400">Amazon</span></a>
+        </div>
+        <div class="w-32 h-1 mx-auto bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-full"></div>
+      </header>
+      
+      <section>
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold flex items-center gap-3">
+            <span class="w-2 h-8 bg-gradient-to-b from-fuchsia-500 to-cyan-500 rounded-full"></span>Lab Sessions<span class="text-sm font-normal text-gray-500">(2 sessions)</span>
+          </h2>
+        </div>
+        
+        <div class="space-y-6">
+          <!-- Session 1 -->
+          <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl overflow-hidden border border-gray-700/50 hover:border-fuchsia-500/30 transition-all duration-500 card-hover">
+            <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative flex flex-col md:flex-row gap-6 p-6">
+              <div class="relative w-full md:w-56 h-48 flex-shrink-0">
+                <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center">
+                  <div class="text-center"><div class="text-4xl mb-2">🎩</div><div class="text-xs text-fuchsia-400 font-bold">WONKA-LANTERN</div><div class="text-xs text-cyan-400">FRAMEWORK</div></div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div class="w-16 h-16 bg-gradient-to-r from-fuchsia-500 to-fuchsia-400 rounded-full flex items-center justify-center glow-magenta cursor-pointer hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <div class="absolute bottom-3 right-3 px-3 py-1.5 bg-gray-900/95 rounded-lg text-xs text-fuchsia-400 font-mono border border-fuchsia-500/30">12 min</div>
+              </div>
+              <div class="flex-1 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30">TINKER LAB</span>
+                  <span class="text-gray-500 text-sm">June 17, 2025</span>
+                  <span class="px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 border border-green-500/30">NEW</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-400 transition-all">The Wonka-Lantern Framework: Creative & Ethical AI in Higher Education</h3>
+                <p class="text-gray-400 leading-relaxed mb-5 line-clamp-2">Hey everyone! Dr. Norma Jones here. Today, I have something whimsical, thought-provoking... We're talking about AI in higher education by channeling the energy of Willy Wonka and the Green Lantern.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Framework</span>
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Ethics</span>
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Creativity</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Session 2 -->
+          <article class="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 rounded-2xl overflow-hidden border border-gray-700/50 hover:border-fuchsia-500/30 transition-all duration-500 card-hover">
+            <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="relative flex flex-col md:flex-row gap-6 p-6">
+              <div class="relative w-full md:w-56 h-48 flex-shrink-0">
+                <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center">
+                  <div class="text-center"><div class="text-4xl mb-2">🔬</div><div class="text-xs text-fuchsia-400 font-bold">CHATGPT PRO</div><div class="text-xs text-cyan-400">DEEP RESEARCH</div></div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div class="w-16 h-16 bg-gradient-to-r from-fuchsia-500 to-fuchsia-400 rounded-full flex items-center justify-center glow-magenta cursor-pointer hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <div class="absolute bottom-3 right-3 px-3 py-1.5 bg-gray-900/95 rounded-lg text-xs text-fuchsia-400 font-mono border border-fuchsia-500/30">15 min</div>
+              </div>
+              <div class="flex-1 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30">TINKER LAB</span>
+                  <span class="text-gray-500 text-sm">February 28, 2025</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-cyan-400 transition-all">ChatGPT Pro Deep Research: Worth It?</h3>
+                <p class="text-gray-400 leading-relaxed mb-5 line-clamp-2">Welcome to Tinker Lab! In this episode, Dr. Norma Jones explores whether ChatGPT Pro's Deep Research feature is worth the investment for educators and researchers.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">ChatGPT</span>
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Research</span>
+                  <span class="px-3 py-1.5 text-xs text-gray-400 bg-gray-800/70 rounded-lg border border-gray-700/50">Tools</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <!-- CTA -->
+        <div class="mt-16 p-10 rounded-3xl bg-gradient-to-br from-fuchsia-500/10 via-gray-900/50 to-cyan-500/10 border border-fuchsia-500/20 text-center relative overflow-hidden">
+          <div class="relative">
+            <div class="text-5xl mb-4">💡</div>
+            <h3 class="text-3xl font-bold mb-4">Have an idea to tinker with?</h3>
+            <p class="text-gray-400 mb-8 max-w-md mx-auto">Join the conversation! Share your topic ideas and help shape the future of AI in higher education.</p>
+            <button class="px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-fuchsia-500 text-white rounded-xl font-bold hover:shadow-[0_0_30px_rgba(200,80,192,0.5)] transition-all">Submit an Idea ✨</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- EPISODE DETAIL PAGE -->
+  <div id="page-episode" class="page">
+    <div class="relative max-w-4xl mx-auto px-6 pt-28 pb-20">
+      <nav class="flex items-center gap-2 text-sm text-gray-500 mb-8 flex-wrap">
+        <a href="#" class="hover:text-cyan-400 transition-colors">Home</a>
+        <span class="text-gray-600">/</span>
+        <a href="#" onclick="showPage('podcast')" class="text-cyan-400 hover:text-cyan-300 transition-colors">Podcast</a>
+        <span class="text-gray-600">/</span>
+        <span class="text-gray-400 truncate">Human-Centered AI Strategy...</span>
+      </nav>
+      
+      <div class="relative mb-10 rounded-3xl overflow-hidden group">
+        <div class="w-full aspect-video bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 flex items-center justify-center">
+          <div class="text-center"><div class="text-8xl mb-4">⚖️</div><div class="text-2xl font-bold text-cyan-400">HUMAN-CENTERED</div><div class="text-xl text-fuchsia-400">AI STRATEGY</div></div>
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-24 h-24 bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full flex items-center justify-center shadow-2xl glow-cyan cursor-pointer hover:scale-110 transition-transform opacity-90 hover:opacity-100">
+            <svg class="w-10 h-10 text-gray-900 ml-2" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mb-10">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          <span class="px-4 py-2 rounded-full text-sm font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">Innovating Higher Ed Podcast</span>
+          <span class="text-gray-500">June 22, 2025</span>
+          <span class="text-gray-600">•</span>
+          <span class="text-gray-500 font-mono">42 min</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black mb-5 leading-tight">Human-Centered AI Strategy: Empathy, Trust, Access</h1>
+        <p class="text-xl text-cyan-400 font-semibold mb-6">with Professor Chesa Caparas</p>
+      </div>
+      
+      <!-- Audio Player -->
+      <div class="mb-10 p-6 rounded-2xl bg-gradient-to-r from-gray-800/70 to-gray-900/70 border border-gray-700/50">
+        <div class="flex items-center gap-5">
+          <button class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full flex items-center justify-center shadow-lg glow-cyan hover:scale-105 transition-transform flex-shrink-0">
+            <svg class="w-7 h-7 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="flex-1">
+            <div class="h-3 bg-gray-700/50 rounded-full overflow-hidden mb-3">
+              <div class="h-full w-[35%] bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-cyan-500 rounded-full relative">
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg"></div>
+              </div>
+            </div>
+            <div class="flex justify-between text-sm text-gray-500 font-mono"><span>14:43</span><span>42:18</span></div>
+          </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-4 text-center">🎧 Powered by Buzzsprout — <a href="#" class="text-cyan-400 hover:underline">Subscribe to RSS</a></p>
+      </div>
+      
+      <!-- Platforms -->
+      <div class="mb-12">
+        <h3 class="text-sm font-semibold text-gray-400 mb-5 text-center uppercase tracking-wider">Listen on Your Favorite Platform</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-cyan-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🍎</span><span class="text-xs text-gray-400 group-hover:text-cyan-400">Apple</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-green-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🎵</span><span class="text-xs text-gray-400 group-hover:text-green-400">Spotify</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-orange-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">📚</span><span class="text-xs text-gray-400 group-hover:text-orange-400">Audible</span></a>
+          <a href="#" class="group flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-800/30 border border-gray-700/50 hover:border-blue-500/30 transition-all w-24"><span class="text-3xl group-hover:scale-110 transition-transform">🎶</span><span class="text-xs text-gray-400 group-hover:text-blue-400">Amazon</span></a>
+        </div>
+      </div>
+      
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-12"></div>
+      
+      <!-- Content -->
+      <article>
+        <p class="text-gray-300 leading-relaxed text-lg mb-8">Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. In this episode, Dr. Norma Jones talks with Professor Chesa Caparas, media-literacy scholar and Fulbright researcher, about a people-first path to AI adoption in higher education. Chesa shares how a two-question survey surfaces hidden anxieties, how faculty can adapt without burnout, and why over-reliance on AI detectors can damage trust instead of protecting integrity.</p>
+        
+        <div class="bg-gradient-to-r from-cyan-500/10 to-fuchsia-500/10 rounded-2xl p-8 border border-cyan-500/20 mb-10">
+          <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><span class="text-cyan-400">✦</span> Key Takeaways</h2>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-4"><span class="text-cyan-400 mt-1">→</span><span class="text-gray-300">A simple two-question survey can surface hidden faculty anxieties about AI adoption</span></li>
+            <li class="flex items-start gap-4"><span class="text-fuchsia-400 mt-1">→</span><span class="text-gray-300">Over-reliance on AI detectors can damage trust between faculty and students</span></li>
+            <li class="flex items-start gap-4"><span class="text-cyan-400 mt-1">→</span><span class="text-gray-300">Human-centered AI strategy prioritizes empathy and accessibility over speed of adoption</span></li>
+            <li class="flex items-start gap-4"><span class="text-fuchsia-400 mt-1">→</span><span class="text-gray-300">Faculty can adapt to AI tools gradually without experiencing burnout</span></li>
+          </ul>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-white mb-4">About the Guest</h2>
+        <div class="flex items-start gap-6 p-6 bg-gray-800/30 rounded-xl border border-gray-700/50 mb-10">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500 to-fuchsia-500 flex items-center justify-center flex-shrink-0"><span class="text-3xl">👩‍🏫</span></div>
+          <div>
+            <h3 class="font-bold text-white text-lg mb-1">Professor Chesa Caparas</h3>
+            <p class="text-cyan-400 text-sm mb-3">Media-Literacy Scholar & Fulbright Researcher</p>
+            <p class="text-gray-400 text-sm leading-relaxed">Professor Caparas specializes in media literacy and has conducted extensive research on how educators navigate the integration of AI tools in academic settings.</p>
+          </div>
+        </div>
+      </article>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800">
+        <h3 class="text-sm font-semibold text-gray-400 mb-5 uppercase tracking-wider">Topics Covered</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">AI Strategy</span>
+          <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">Faculty Development</span>
+          <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">Student Success</span>
+          <span class="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 transition-colors cursor-pointer">Academic Integrity</span>
+        </div>
+      </div>
+      
+      <div class="mt-16 text-center">
+        <button onclick="showPage('podcast')" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-400 text-gray-900 rounded-xl font-bold hover:shadow-[0_0_30px_rgba(0,212,255,0.5)] transition-all">← Browse All Episodes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative border-t border-gray-800 bg-gray-900/50">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-fuchsia-500 flex items-center justify-center"><span class="text-white font-bold text-sm">IHE</span></div>
+          <div><span class="font-bold text-white">Innovating Higher Ed</span><span class="text-cyan-400 font-medium ml-1">PULSE</span></div>
+        </div>
+        <p class="text-gray-500 text-sm">© 2025 Innovating Higher Ed. Exploring AI in Higher Education.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.className = 'nav-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 text-gray-400 hover:text-white';
+      });
+      const activeBtn = document.getElementById('btn-' + page);
+      if (page === 'podcast') activeBtn.className = 'nav-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-500 to-cyan-400 text-gray-900';
+      else if (page === 'tinkerlab') activeBtn.className = 'nav-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-fuchsia-500 to-fuchsia-400 text-white';
+      else if (page === 'episode') activeBtn.className = 'nav-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

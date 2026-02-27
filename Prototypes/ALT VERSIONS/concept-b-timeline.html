@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept B: The Timeline — Innovation Pulse</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0C0F;
+  --surface: #151518;
+  --surface-2: #1C1C20;
+  --surface-3: #242429;
+  --border: rgba(255,255,255,0.06);
+  --border-2: rgba(255,255,255,0.1);
+  --text: #E8E6E3;
+  --text-2: #A8A5A0;
+  --text-3: #6B6966;
+  --flame: #FF6B35;
+  --flame-soft: rgba(255,107,53,0.1);
+  --flame-glow: rgba(255,107,53,0.2);
+  --emerald: #34D399;
+  --sky: #60A5FA;
+  --violet: #A78BFA;
+  --rose: #FB7185;
+  --gold: #FBBF24;
+  --display: 'Fraunces', Georgia, serif;
+  --body: 'Outfit', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+.concept-banner{background:var(--flame);text-align:center;padding:0.6rem;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:white;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(12,12,15,0.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-brand{display:flex;align-items:baseline;gap:0.25rem;text-decoration:none;color:var(--text);}
+.nav-ihe{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);}
+.nav-pulse{font-family:var(--display);font-size:1.2rem;color:var(--flame);}
+.nav-right{display:flex;align-items:center;gap:1.25rem;}
+.nav-link{font-size:0.78rem;color:var(--text-3);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-link:hover{color:var(--text);}
+.nav-sub{background:var(--flame);color:white;padding:0.4rem 1rem;border-radius:100px;font-size:0.72rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all 0.25s;}
+.nav-sub:hover{background:#E85E2B;transform:translateY(-1px);}
+
+/* HERO — Today's Edition */
+.hero{max-width:900px;margin:0 auto;padding:3rem 2rem 2rem;text-align:center;}
+.hero-date{font-family:var(--mono);font-size:0.68rem;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;}
+.hero-title{font-family:var(--display);font-size:3rem;font-weight:400;line-height:1.1;margin:0.75rem 0;color:var(--text);}
+.hero-title em{font-style:italic;color:var(--flame);}
+.hero-sub{font-size:0.9rem;color:var(--text-2);max-width:480px;margin:0 auto 1.5rem;line-height:1.6;}
+.hero-player{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:100px;
+  padding:0.5rem 1.25rem 0.5rem 0.5rem;cursor:pointer;transition:all 0.3s;
+}
+.hero-player:hover{border-color:var(--flame);background:var(--flame-soft);}
+.hero-play-btn{width:36px;height:36px;border-radius:50%;background:var(--flame);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hero-play-label{font-size:0.82rem;font-weight:500;color:var(--text);}
+.hero-play-dur{font-family:var(--mono);font-size:0.68rem;color:var(--text-3);}
+
+/* TIMELINE */
+.timeline{max-width:900px;margin:0 auto;padding:1rem 2rem 4rem;position:relative;}
+.timeline::before{
+  content:'';position:absolute;left:50%;width:1px;top:0;bottom:0;
+  background:linear-gradient(to bottom,var(--border) 0%,var(--flame) 15%,var(--border) 85%,transparent 100%);
+  transform:translateX(-50%);
+}
+
+/* Time Anchor */
+.time-anchor{
+  text-align:center;position:relative;margin:2rem 0 1.5rem;
+}
+.time-anchor-pill{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:100px;
+  padding:0.35rem 0.85rem;font-family:var(--mono);font-size:0.65rem;
+  letter-spacing:0.05em;color:var(--text-3);position:relative;z-index:1;
+}
+.time-anchor-pill .ta-dot{width:5px;height:5px;border-radius:50%;background:var(--flame);}
+
+/* Timeline Cards — Alternating */
+.tl-item{
+  display:grid;grid-template-columns:1fr 40px 1fr;align-items:start;gap:0;
+  margin-bottom:1.5rem;position:relative;
+}
+.tl-item.left .tl-card{grid-column:1;}
+.tl-item.left .tl-spacer{grid-column:3;}
+.tl-item.right .tl-spacer{grid-column:1;}
+.tl-item.right .tl-card{grid-column:3;}
+
+.tl-node{
+  grid-column:2;display:flex;justify-content:center;padding-top:1.25rem;
+}
+.tl-node-dot{
+  width:10px;height:10px;border-radius:50%;border:2px solid var(--surface);
+  position:relative;z-index:2;
+}
+
+.tl-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:1.25rem 1.5rem;transition:all 0.35s;cursor:pointer;position:relative;
+  overflow:hidden;
+}
+.tl-card:hover{border-color:var(--border-2);box-shadow:0 8px 30px rgba(0,0,0,0.3);transform:translateY(-2px);}
+.tl-card.featured{border-color:var(--flame);box-shadow:0 0 20px var(--flame-soft);}
+.tl-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--flame);}
+.tl-card.stat-type{background:linear-gradient(135deg,var(--surface) 0%,var(--surface-2) 100%);text-align:center;padding:2rem;}
+
+.tc-top{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.4rem;}
+.tc-cat{font-size:0.58rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:0.12rem 0.5rem;border-radius:100px;}
+.tc-cat.deep-dive{background:rgba(96,165,250,0.12);color:var(--sky);}
+.tc-cat.tools{background:rgba(52,211,153,0.12);color:var(--emerald);}
+.tc-cat.policy{background:rgba(251,113,133,0.12);color:var(--rose);}
+.tc-cat.student{background:rgba(167,139,250,0.12);color:var(--violet);}
+.tc-cat.strategy{background:var(--flame-soft);color:var(--flame);}
+.tc-cat.research{background:rgba(251,191,36,0.12);color:var(--gold);}
+.tc-source{font-family:var(--mono);font-size:0.6rem;color:var(--text-3);}
+.tc-time{font-family:var(--mono);font-size:0.58rem;color:var(--text-3);margin-left:auto;}
+
+.tc-title{font-family:var(--display);font-size:1.15rem;line-height:1.25;font-weight:400;margin-bottom:0.35rem;color:var(--text);}
+.tc-title.big{font-size:1.4rem;}
+.tc-excerpt{font-size:0.8rem;color:var(--text-2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.tc-tags{display:flex;gap:0.3rem;margin-top:0.6rem;flex-wrap:wrap;}
+.tc-tag{font-size:0.6rem;color:var(--text-3);background:var(--surface-2);padding:0.15rem 0.45rem;border-radius:100px;}
+
+.stat-num{font-family:var(--display);font-size:3.5rem;font-weight:400;color:var(--flame);line-height:1;}
+.stat-label{font-size:0.82rem;color:var(--text-2);margin-top:0.4rem;line-height:1.4;}
+.stat-source{font-family:var(--mono);font-size:0.6rem;color:var(--text-3);margin-top:0.4rem;}
+
+/* FLOATING AI ORB */
+.ai-orb{
+  position:fixed;bottom:2rem;right:2rem;z-index:200;
+}
+.ai-orb-btn{
+  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--flame),#FF9F1C);
+  box-shadow:0 4px 20px rgba(255,107,53,0.4),0 0 40px rgba(255,107,53,0.1);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;position:relative;
+}
+.ai-orb-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(255,107,53,0.5);}
+.ai-orb-btn::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(255,107,53,0.2);
+  animation:orb-pulse 3s infinite;
+}
+@keyframes orb-pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.2);opacity:0;}}
+.ai-orb-label{
+  position:absolute;right:68px;top:50%;transform:translateY(-50%);
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  padding:0.45rem 0.75rem;font-size:0.75rem;color:var(--text-2);
+  white-space:nowrap;pointer-events:none;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* AI Panel (overlay) */
+.ai-panel{
+  position:fixed;bottom:5.5rem;right:2rem;width:360px;z-index:199;
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  box-shadow:0 12px 48px rgba(0,0,0,0.5);overflow:hidden;
+  display:flex;flex-direction:column;max-height:480px;
+  animation:slideUp 0.3s ease;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+.aip-header{
+  padding:1rem 1.25rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:0.6rem;
+}
+.aip-avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--flame),#FF9F1C);
+  display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:white;
+}
+.aip-title{font-size:0.85rem;font-weight:600;color:var(--text);}
+.aip-status{font-size:0.6rem;color:var(--emerald);display:flex;align-items:center;gap:0.25rem;}
+.aip-close{margin-left:auto;background:none;border:none;color:var(--text-3);cursor:pointer;font-size:1.1rem;transition:color 0.2s;}
+.aip-close:hover{color:var(--text);}
+
+.aip-chat{flex:1;overflow-y:auto;padding:1rem 1.25rem;display:flex;flex-direction:column;gap:0.6rem;}
+.aip-msg{max-width:88%;padding:0.6rem 0.85rem;border-radius:12px;font-size:0.78rem;line-height:1.5;}
+.aip-msg.bot{background:var(--surface-2);color:var(--text-2);align-self:flex-start;border-bottom-left-radius:4px;}
+.aip-msg.user{background:var(--flame);color:white;align-self:flex-end;border-bottom-right-radius:4px;}
+
+.aip-suggestions{padding:0 1.25rem 0.6rem;display:flex;flex-wrap:wrap;gap:0.3rem;}
+.aip-sug{
+  font-size:0.66rem;padding:0.3rem 0.6rem;border-radius:100px;
+  border:1px solid var(--border);background:transparent;color:var(--text-3);
+  cursor:pointer;transition:all 0.2s;font-family:var(--body);
+}
+.aip-sug:hover{border-color:var(--flame);color:var(--flame);background:var(--flame-soft);}
+
+.aip-input{
+  padding:0.65rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:0.5rem;
+}
+.aip-inp{
+  flex:1;padding:0.5rem 0.75rem;border:1px solid var(--border);border-radius:8px;
+  font-size:0.78rem;font-family:var(--body);background:var(--surface-2);color:var(--text);outline:none;
+  transition:border-color 0.2s;
+}
+.aip-inp:focus{border-color:var(--flame);}
+.aip-inp::placeholder{color:var(--text-3);}
+.aip-send{width:34px;height:34px;border-radius:8px;background:var(--flame);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+/* HIDDEN BY DEFAULT */
+.ai-panel{display:none;}
+.ai-panel.open{display:flex;}
+
+@media(max-width:800px){
+  .tl-item{grid-template-columns:20px 1fr;} 
+  .tl-item.left .tl-card,.tl-item.right .tl-card{grid-column:2;}
+  .tl-spacer{display:none;}
+  .tl-node{grid-column:1;}
+  .hero-title{font-size:2rem;}
+  .timeline::before{left:10px;}
+}
+</style>
+</head>
+<body>
+
+<div class="concept-banner">Concept B: The Timeline — Chronological Story River with Floating AI Navigator</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#"><span class="nav-ihe">IHE</span><span class="nav-pulse">Pulse</span></a>
+    <div class="nav-right">
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="#">Prompts</a>
+      <a class="nav-link" href="#">AI Directory</a>
+      <a class="nav-link" href="#">Podcast</a>
+      <button class="nav-sub">Subscribe</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-date">Friday, February 6, 2026 · The Innovation Pulse</div>
+  <h1 class="hero-title">Today's <em>Innovator's Edge</em></h1>
+  <p class="hero-sub">Your daily intelligence briefing on AI in higher education. 5 stories, curated and contextualized by Dr. Norma Jones.</p>
+  <div class="hero-player" onclick="">
+    <div class="hero-play-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg></div>
+    <div>
+      <div class="hero-play-label">Listen to Today's Episode</div>
+      <div class="hero-play-dur">4:35</div>
+    </div>
+  </div>
+</section>
+
+<div class="timeline">
+  <div class="time-anchor"><span class="time-anchor-pill"><span class="ta-dot"></span>Today · 5 Stories</span></div>
+
+  <!-- Story 1: Featured (left) -->
+  <div class="tl-item left">
+    <div class="tl-card featured">
+      <div class="tc-top">
+        <span class="tc-cat deep-dive">Deep Dive</span>
+        <span class="tc-source">OECD</span>
+        <span class="tc-time">2h ago</span>
+      </div>
+      <div class="tc-title big">The OECD's AI Education Report Changes the Conversation</div>
+      <div class="tc-excerpt">Students using AI scored 127% higher — but when you take the AI away, they actually perform worse. The most comprehensive analysis of AI in education to date rewrites the playbook for curriculum designers.</div>
+      <div class="tc-tags"><span class="tc-tag">OECD Report</span><span class="tc-tag">Curriculum</span><span class="tc-tag">Assessment</span></div>
+    </div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--sky);"></div></div>
+    <div class="tl-spacer"></div>
+  </div>
+
+  <!-- Stat (right) -->
+  <div class="tl-item right">
+    <div class="tl-spacer"></div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--flame);"></div></div>
+    <div class="tl-card stat-type">
+      <div class="stat-num">73%</div>
+      <div class="stat-label">of faculty now use AI tools weekly — up from 31% a year ago</div>
+      <div class="stat-source">Educause 2026 Survey</div>
+    </div>
+  </div>
+
+  <!-- Story 2 (left) -->
+  <div class="tl-item left">
+    <div class="tl-card">
+      <div class="tc-top">
+        <span class="tc-cat tools">Tools</span>
+        <span class="tc-source">Microsoft</span>
+        <span class="tc-time">3h ago</span>
+      </div>
+      <div class="tc-title">Microsoft Copilot Gets Higher Ed–Specific Features</div>
+      <div class="tc-excerpt">AI-powered course scheduling, student dashboards, and paper summarization — all built directly into Teams Education.</div>
+      <div class="tc-tags"><span class="tc-tag">Microsoft</span><span class="tc-tag">Copilot</span></div>
+    </div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--emerald);"></div></div>
+    <div class="tl-spacer"></div>
+  </div>
+
+  <!-- Story 3 (right) -->
+  <div class="tl-item right">
+    <div class="tl-spacer"></div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--violet);"></div></div>
+    <div class="tl-card">
+      <div class="tc-top">
+        <span class="tc-cat student">Student Experience</span>
+        <span class="tc-source">OpenAI</span>
+        <span class="tc-time">4h ago</span>
+      </div>
+      <div class="tc-title">OpenAI Partners with 10 HBCUs on AI Access</div>
+      <div class="tc-excerpt">$50M initiative providing free enterprise ChatGPT access, custom tutoring GPTs, and faculty training across historically Black colleges.</div>
+      <div class="tc-tags"><span class="tc-tag">HBCUs</span><span class="tc-tag">Equity</span></div>
+    </div>
+  </div>
+
+  <!-- Story 4 (left) -->
+  <div class="tl-item left">
+    <div class="tl-card">
+      <div class="tc-top">
+        <span class="tc-cat policy">Policy</span>
+        <span class="tc-source">EdSurge</span>
+        <span class="tc-time">5h ago</span>
+      </div>
+      <div class="tc-title">First AI Textbook Approved for State Adoption in Texas</div>
+      <div class="tc-excerpt">Sets precedent for evaluating AI-created learning materials. Raises new questions about authorship and editorial oversight.</div>
+      <div class="tc-tags"><span class="tc-tag">Textbooks</span><span class="tc-tag">Policy</span></div>
+    </div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--rose);"></div></div>
+    <div class="tl-spacer"></div>
+  </div>
+
+  <!-- Story 5 (right) -->
+  <div class="tl-item right">
+    <div class="tl-spacer"></div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--flame);"></div></div>
+    <div class="tl-card">
+      <div class="tc-top">
+        <span class="tc-cat strategy">Leadership</span>
+        <span class="tc-source">Educause</span>
+        <span class="tc-time">6h ago</span>
+      </div>
+      <div class="tc-title">The Faculty AI Training Gap</div>
+      <div class="tc-excerpt">80% of PD programs focus on tool demos rather than pedagogical integration — leaving faculty technically trained but strategically unprepared.</div>
+      <div class="tc-tags"><span class="tc-tag">Faculty Dev</span><span class="tc-tag">PD</span></div>
+    </div>
+  </div>
+
+  <div class="time-anchor"><span class="time-anchor-pill">Yesterday · Feb 5 · 5 Stories</span></div>
+
+  <!-- Yesterday Stories -->
+  <div class="tl-item left">
+    <div class="tl-card">
+      <div class="tc-top">
+        <span class="tc-cat tools">Tools</span>
+        <span class="tc-source">Brisk Teaching</span>
+        <span class="tc-time">Yesterday</span>
+      </div>
+      <div class="tc-title">Brisk Teaching Launches "Feedback Studio" for Higher Ed</div>
+      <div class="tc-excerpt">Personalized, rubric-aligned feedback in under 30 seconds with full instructor control.</div>
+      <div class="tc-tags"><span class="tc-tag">Feedback</span><span class="tc-tag">Grading</span></div>
+    </div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--emerald);"></div></div>
+    <div class="tl-spacer"></div>
+  </div>
+
+  <div class="tl-item right">
+    <div class="tl-spacer"></div>
+    <div class="tl-node"><div class="tl-node-dot" style="background:var(--gold);"></div></div>
+    <div class="tl-card">
+      <div class="tc-top">
+        <span class="tc-cat research">Research</span>
+        <span class="tc-source">Nature Education</span>
+        <span class="tc-time">Yesterday</span>
+      </div>
+      <div class="tc-title">AI Tutoring Improves Outcomes by 0.5 Standard Deviations</div>
+      <div class="tc-excerpt">Meta-analysis of 142 studies finds AI tutoring produces effects comparable to human tutoring.</div>
+      <div class="tc-tags"><span class="tc-tag">Research</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- AI NAVIGATOR ORB -->
+<div class="ai-orb">
+  <div class="ai-orb-label">Ask the Pulse Navigator</div>
+  <button class="ai-orb-btn" onclick="document.querySelector('.ai-panel').classList.toggle('open')">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a2 2 0 110 4 2 2 0 010-4zm3 11.5a0.5 0.5 0 01-.5.5h-5a0.5 0.5 0 01-.5-.5V15a0.5 0.5 0 01.5-.5h.5v-3h-.5a0.5 0.5 0 010-1h2a0.5 0.5 0 01.5.5v3.5h.5a0.5 0.5 0 01.5.5v1.5z"/></svg>
+  </button>
+</div>
+
+<!-- AI Panel -->
+<div class="ai-panel">
+  <div class="aip-header">
+    <div class="aip-avatar">AI</div>
+    <div>
+      <div class="aip-title">Pulse Navigator</div>
+      <div class="aip-status"><span style="width:5px;height:5px;border-radius:50%;background:var(--emerald);display:inline-block;"></span>Ready</div>
+    </div>
+    <button class="aip-close" onclick="document.querySelector('.ai-panel').classList.remove('open')">✕</button>
+  </div>
+  <div class="aip-chat">
+    <div class="aip-msg bot">👋 I'm your Pulse Navigator. Ask me about today's stories, find tools, or get personalized content recommendations based on your role.</div>
+  </div>
+  <div class="aip-suggestions">
+    <button class="aip-sug">What should faculty read today?</button>
+    <button class="aip-sug">AI grading tools</button>
+    <button class="aip-sug">Policy updates</button>
+    <button class="aip-sug">I'm an admin / CIO</button>
+  </div>
+  <div class="aip-input">
+    <input class="aip-inp" placeholder="Ask anything..." type="text">
+    <button class="aip-send"><svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+  </div>
+</div>
+
+</body>
+</html>

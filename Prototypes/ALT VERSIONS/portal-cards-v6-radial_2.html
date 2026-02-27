@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IHE — Radial</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06070c;--card:rgba(11,12,20,0.92);--brd:rgba(255,255,255,0.04);--cy:#00e5ff;--mg:#c850c0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;color:#fff;height:100vh;overflow:hidden}
+@media(max-width:860px){body{overflow:auto}}
+
+canvas#fx{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+.topbar{position:fixed;top:0;left:0;right:0;height:44px;background:rgba(6,7,12,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:100}
+.brand{font-weight:800;font-size:14px}
+.brand em{font-style:normal;background:linear-gradient(90deg,var(--cy),var(--mg));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar .r{display:flex;gap:5px}
+.topbar .r button{padding:5px 12px;border-radius:6px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.topbar .r .a{background:rgba(255,255,255,0.03);border:1px solid var(--brd);color:rgba(255,255,255,0.35)}
+.topbar .r .a:hover{border-color:rgba(0,229,255,0.12);color:var(--cy)}
+.topbar .r .cta{background:linear-gradient(135deg,var(--cy),var(--mg));border:none;color:#fff}
+
+.universe{position:fixed;inset:44px 0 0;display:flex;align-items:center;justify-content:center;z-index:2}
+@media(max-width:860px){.universe{position:relative;inset:auto;min-height:calc(100vh - 44px);padding:60px 16px 40px;flex-direction:column}}
+
+/* HUB */
+.hub{position:relative;z-index:20;width:380px;max-width:90vw;text-align:center}
+.hub h1{font-size:22px;font-weight:800;letter-spacing:-0.8px;margin-bottom:3px}
+.hub h1 em{font-style:normal;background:linear-gradient(90deg,var(--cy),#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hub .sub{font-size:10px;color:rgba(255,255,255,0.18);font-family:'JetBrains Mono',monospace;margin-bottom:12px;letter-spacing:0.5px}
+
+.bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--card);border:1px solid rgba(0,229,255,0.06);border-radius:14px;backdrop-filter:blur(20px);box-shadow:0 0 50px rgba(0,229,255,0.03),0 6px 24px rgba(0,0,0,0.3);transition:all 0.3s}
+.bar:focus-within{border-color:rgba(0,229,255,0.18);box-shadow:0 0 70px rgba(0,229,255,0.05),0 6px 24px rgba(0,0,0,0.3)}
+
+.orb{width:36px;height:36px;border-radius:50%;background:conic-gradient(from 0deg,var(--cy),var(--mg),var(--cy));animation:sp 5s linear infinite;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 16px rgba(0,229,255,0.18)}
+.orb i{width:30px;height:30px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:13px;font-style:normal}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.bar input{flex:1;background:none;border:none;outline:none;color:#fff;font-family:'Plus Jakarta Sans';font-size:14px;padding:6px}
+.bar input::placeholder{color:rgba(255,255,255,0.12)}
+.bar .btn{width:32px;height:32px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:transform 0.2s}
+.btn-s{background:linear-gradient(135deg,var(--cy),var(--mg));color:#fff;font-weight:700}
+.btn-s:hover{transform:scale(1.08)}
+.btn-m{background:rgba(255,255,255,0.02);color:rgba(255,255,255,0.18);border:1px solid var(--brd)}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px}
+.chip{padding:4px 11px;background:rgba(255,255,255,0.015);border:1px solid var(--brd);border-radius:14px;color:rgba(255,255,255,0.22);font-size:10px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.chip:hover{background:rgba(0,229,255,0.04);border-color:rgba(0,229,255,0.1);color:var(--cy)}
+
+.resp{margin-top:8px;opacity:0;max-height:0;overflow:hidden;transition:all 0.4s}
+.resp.on{opacity:1;max-height:150px}
+.rbox{background:var(--card);border:1px solid var(--brd);border-radius:11px;padding:12px 16px;text-align:left;backdrop-filter:blur(16px)}
+.rbox p{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.5;margin-bottom:8px}
+.rbox .acts{display:flex;gap:5px}
+.rbox .acts button{padding:4px 12px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.08);border-radius:6px;color:var(--cy);font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.rbox .acts button:hover{background:rgba(0,229,255,0.08)}
+
+/* CARDS */
+.ring{position:absolute;inset:0;z-index:10;pointer-events:none}
+@media(max-width:860px){.ring{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-top:20px;pointer-events:all}}
+
+.card{
+    position:absolute;width:160px;min-height:120px;
+    border-radius:12px;overflow:hidden;cursor:pointer;pointer-events:all;
+    border:1px solid var(--brd);transition:all 0.3s ease;
+}
+@media(max-width:860px){.card{position:relative!important;width:100%!important;left:auto!important;top:auto!important}}
+.card:hover{transform:scale(1.07);border-color:rgba(255,255,255,0.1);box-shadow:0 10px 36px rgba(0,0,0,0.5);z-index:30}
+.card.active{border-color:var(--ac);box-shadow:0 0 24px var(--gw);z-index:30}
+
+/* Viz is full background */
+.card canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.card-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,7,12,0.93) 35%,rgba(6,7,12,0.35) 100%);z-index:1}
+.card-c{position:relative;z-index:2;padding:10px 12px;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+
+.card-h{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.card-i{font-size:15px}
+.card-n{font-size:12px;font-weight:700;letter-spacing:-0.2px}
+.card-t{margin-left:auto;padding:1px 6px;border-radius:3px;font-size:7px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.card-d{font-size:10px;color:rgba(255,255,255,0.28);line-height:1.4}
+.card-m{display:flex;align-items:center;gap:3px;margin-top:4px;font-size:8px;color:rgba(255,255,255,0.15);font-family:'JetBrains Mono',monospace}
+.card-m .dot{width:4px;height:4px;border-radius:50%;animation:p 2s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* Accent line */
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac);opacity:0;transition:opacity 0.3s;z-index:5}
+.card:hover::after,.card.active::after{opacity:1}
+
+.status{position:fixed;bottom:0;left:0;right:0;height:20px;background:rgba(6,7,12,0.92);border-top:1px solid var(--brd);display:flex;align-items:center;justify-content:center;gap:14px;z-index:60;font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(255,255,255,0.13)}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<nav class="topbar"><div class="brand"><em>Innovating Higher Ed</em></div><div class="r"><button class="a">About</button><button class="cta">Subscribe ✦</button></div></nav>
+
+<div class="universe">
+    <div class="hub" id="hub">
+        <h1>Where to <em>next</em>?</h1>
+        <div class="sub">ask anything · click a destination</div>
+        <div class="bar">
+            <div class="orb"><i>🧭</i></div>
+            <input type="text" id="inp" placeholder="Show me AI tools for grading essays..." autocomplete="off">
+            <button class="btn btn-m">🎙</button>
+            <button class="btn btn-s" id="go">→</button>
+        </div>
+        <div class="chips">
+            <button class="chip" data-q="new to AI">🌱 New to AI</button>
+            <button class="chip" data-q="play news">▶ Pulse</button>
+            <button class="chip" data-q="tools for teaching">🛠 Tools</button>
+            <button class="chip" data-q="podcast episodes">🎙 Podcast</button>
+            <button class="chip" data-q="prompt library">💡 Prompts</button>
+        </div>
+        <div class="resp" id="resp"><div class="rbox"><p id="rT"></p><div class="acts" id="rA"></div></div></div>
+    </div>
+    <div class="ring" id="ring"></div>
+</div>
+
+<div class="status"><span>◈ Radial Active</span><span>9 destinations · 51 resources</span><span>IHE Pulse · Feb 7 2026</span></div>
+
+<script>
+const pages=[
+{id:'pulse',icon:'📡',title:'Innovation Pulse',tag:'DAILY',tc:'#00e5ff',desc:'AI news by Dr. Jones',stat:'Updated today',viz:'waveform',kw:['news','pulse','daily','play','today','briefing'],resp:{t:"Your morning briefing is ready — 4 AI stories narrated by Dr. Jones.",a:['▶ Play Briefing','Read Stories']}},
+{id:'podcast',icon:'🎙',title:'Podcast',tag:'WEEKLY',tc:'#c850c0',desc:'Deep faculty interviews',stat:'24 episodes',viz:'circles',kw:['podcast','episode','listen','interview'],resp:{t:"Latest: A dean who built an AI-first campus. 38 min.",a:['▶ Play Episode','All Episodes']}},
+{id:'tools',icon:'🛠',title:'AI Tools',tag:'50+',tc:'#00ff88',desc:'Vetted tools by role',stat:'52 tools vetted',viz:'grid',kw:['tool','app','software','directory','chatgpt','grading','teaching'],resp:{t:"50+ AI tools vetted for higher ed. Filter by role or task.",a:['Browse All','For Teaching']}},
+{id:'prompts',icon:'💡',title:'Prompt Library',tag:'COPY',tc:'#ffd700',desc:'Ready-to-use templates',stat:'120+ prompts',viz:'text',kw:['prompt','template','write','library'],resp:{t:"Copy-paste prompts built for higher ed. Lesson plans to feedback.",a:['Browse','For Beginners']}},
+{id:'tinkerlab',icon:'🔬',title:'Tinker Lab',tag:'5 MIN',tc:'#ff8c42',desc:'Quick AI experiments',stat:'18 experiments',viz:'particles',kw:['tinker','lab','experiment','try'],resp:{t:"Dr. Jones' quick experiments — try something new in 5 minutes.",a:['Latest','All Labs']}},
+{id:'guides',icon:'🌱',title:'Getting Started',tag:'START',tc:'#14b8a6',desc:'AI basics for faculty',stat:'Beginner friendly',viz:'path',kw:['new','start','begin','learn','teach','faculty','professor','help','biology','english'],resp:{t:"Welcome. No jargon, no panic. I'll walk you through AI step by step.",a:['Start Learning','Quick Guide']}},
+{id:'cases',icon:'📊',title:'Case Studies',tag:'DATA',tc:'#a855f7',desc:'Real campus outcomes',stat:'12 case studies',viz:'bars',kw:['case','study','success','outcome','evidence'],resp:{t:"Real outcomes from real campuses. Measurable results you can share.",a:['Browse All','By Size']}},
+{id:'community',icon:'🤝',title:'Community',tag:'JOIN',tc:'#ff6b9d',desc:'200+ educators together',stat:'214 members',viz:'network',kw:['community','connect','forum','join','discuss'],resp:{t:"200+ educators navigating AI together. Real questions, real answers.",a:['Join Now','Events']}},
+{id:'about',icon:'👩‍🏫',title:'About Dr. Jones',tag:'FOUNDER',tc:'#f59e0b',desc:'Mission & vision',stat:'Est. 2024',viz:'rings',kw:['about','norma','jones','mission','guest','who'],resp:{t:"Dr. Norma Jones — AI integration leader and your innovation guide.",a:['Read Bio','Our Mission']}},
+];
+
+const ring=document.getElementById('ring');const cardEls=[];
+pages.forEach((p,i)=>{
+    const c=document.createElement('div');c.className='card';c.dataset.id=p.id;c.dataset.idx=i;
+    c.style.setProperty('--ac',p.tc);c.style.setProperty('--gw',p.tc+'20');
+    c.innerHTML=`<canvas data-viz="${p.viz}" data-color="${p.tc}"></canvas><div class="card-ov"></div><div class="card-c"><div class="card-h"><span class="card-i">${p.icon}</span><span class="card-n">${p.title}</span><span class="card-t" style="background:${p.tc}15;color:${p.tc}">${p.tag}</span></div><div class="card-d">${p.desc}</div><div class="card-m"><span class="dot" style="background:${p.tc}"></span>${p.stat}</div></div>`;
+    c.addEventListener('click',()=>selectP(p));
+    ring.appendChild(c);cardEls.push(c);
+});
+
+// Layout: single ring
+function layout(){
+    if(innerWidth<=860)return;
+    const u=document.querySelector('.universe').getBoundingClientRect();
+    const h=document.getElementById('hub').getBoundingClientRect();
+    const cx=h.left-u.left+h.width/2;
+    const cy=h.top-u.top+h.height/2;
+    const n=cardEls.length;
+    const rx=Math.min(u.width*0.38,360);
+    const ry=Math.min(u.height*0.38,280);
+    cardEls.forEach((card,i)=>{
+        const a=-Math.PI/2+(i/n)*Math.PI*2;
+        card.style.left=(cx+Math.cos(a)*rx-80)+'px';
+        card.style.top=(cy+Math.sin(a)*ry-60)+'px';
+    });
+}
+
+// FX canvas: beams + glow rings
+const fc=document.getElementById('fx');const fx=fc.getContext('2d');let af=0;
+function resF(){const d=devicePixelRatio||1;fc.width=innerWidth*d;fc.height=innerHeight*d;fx.setTransform(d,0,0,d,0,0)}
+function drawFx(){
+    af+=0.008;fx.clearRect(0,0,innerWidth,innerHeight);
+    if(innerWidth<=860){requestAnimationFrame(drawFx);return}
+    const h=document.getElementById('hub').getBoundingClientRect();
+    const hx=h.left+h.width/2,hy=h.top+h.height/2;
+
+    // Glow rings pulsing from hub
+    for(let i=0;i<3;i++){
+        const r=40+i*60+(Math.sin(af*2+i)*8);
+        const a=0.03-i*0.008;
+        fx.beginPath();fx.arc(hx,hy,r,0,6.28);
+        fx.strokeStyle=`rgba(0,229,255,${a})`;fx.lineWidth=0.5;fx.stroke();
+    }
+
+    // Beams
+    cardEls.forEach((card,i)=>{
+        const cr=card.getBoundingClientRect();
+        const cx=cr.left+cr.width/2,cy=cr.top+cr.height/2;
+        const active=card.classList.contains('active');
+        const hover=card.matches(':hover');
+        const al=active?0.14:hover?0.07:0.02;
+        const tc=pages[i].tc;
+        const r=parseInt(tc.slice(1,3),16),g=parseInt(tc.slice(3,5),16),b=parseInt(tc.slice(5,7),16);
+
+        // Gradient beam
+        const grad=fx.createLinearGradient(cx,cy,hx,hy);
+        grad.addColorStop(0,`rgba(${r},${g},${b},${al})`);
+        grad.addColorStop(1,`rgba(${r},${g},${b},${al*0.3})`);
+        fx.beginPath();fx.moveTo(cx,cy);
+        const mx=(cx+hx)/2+Math.sin(af*1.5+i)*12;
+        const my=(cy+hy)/2+Math.cos(af*1.5+i)*12;
+        fx.quadraticCurveTo(mx,my,hx,hy);
+        fx.strokeStyle=grad;fx.lineWidth=active?2:hover?1:0.5;fx.stroke();
+
+        // Traveling photon
+        if(active||hover){
+            const t=(af*3+i*0.3)%1;
+            const dx=(1-t)*(1-t)*cx+2*(1-t)*t*mx+t*t*hx;
+            const dy=(1-t)*(1-t)*cy+2*(1-t)*t*my+t*t*hy;
+            fx.beginPath();fx.arc(dx,dy,active?3:2,0,6.28);
+            fx.fillStyle=`rgba(${r},${g},${b},${active?0.6:0.3})`;fx.fill();
+            // glow
+            fx.beginPath();fx.arc(dx,dy,active?8:5,0,6.28);
+            fx.fillStyle=`rgba(${r},${g},${b},${active?0.08:0.04})`;fx.fill();
+        }
+    });
+    requestAnimationFrame(drawFx);
+}
+
+// Viz
+function initViz(){
+document.querySelectorAll('.card canvas').forEach(cv=>{
+    const dpr=devicePixelRatio||1;const pr=cv.parentElement.getBoundingClientRect();if(!pr.width)return;
+    cv.width=pr.width*dpr;cv.height=pr.height*dpr;
+    const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);
+    const viz=cv.dataset.viz,color=cv.dataset.color;
+    const w=pr.width,h=pr.height;
+    const rgb={r:parseInt(color.slice(1,3),16),g:parseInt(color.slice(3,5),16),b:parseInt(color.slice(5,7),16)};
+    let f=Math.random()*100;
+    function draw(){
+        f+=0.016;ctx.clearRect(0,0,w,h);const c=`${rgb.r},${rgb.g},${rgb.b}`;
+        if(viz==='waveform'){for(let l=0;l<3;l++){ctx.beginPath();for(let x=0;x<w;x++){const v=Math.sin(x*.04+f*2+l*0.5)*14+Math.sin(x*.08+f*2.5+l)*8;x===0?ctx.moveTo(x,h*0.42+v):ctx.lineTo(x,h*0.42+v)}ctx.strokeStyle=`rgba(${c},${0.22-l*0.06})`;ctx.lineWidth=1.5-l*0.4;ctx.stroke()}}
+        else if(viz==='circles'){for(let i=0;i<6;i++){const x=w*0.15+i*w*0.12+Math.sin(f+i)*10;const y=h*0.4+Math.cos(f*1.2+i*0.6)*14;const rr=14+Math.sin(f*2+i)*6;ctx.beginPath();ctx.arc(x,y,rr,0,6.28);ctx.fillStyle=`rgba(${c},${0.035+i*0.01})`;ctx.fill();ctx.strokeStyle=`rgba(${c},0.06)`;ctx.lineWidth=0.5;ctx.stroke()}}
+        else if(viz==='grid'){const cols=8,rows=4;for(let r=1;r<=rows;r++)for(let cc=1;cc<=cols;cc++){const p=Math.sin(f*2+r*0.5+cc*0.3)*0.4+0.6;ctx.beginPath();ctx.arc(cc*w/(cols+1),r*h/(rows+1),2+p*1.8,0,6.28);ctx.fillStyle=`rgba(${c},${0.08*p})`;ctx.fill()}}
+        else if(viz==='text'){ctx.font='9px "JetBrains Mono"';['> create rubric...','> write feedback...','> design lesson...','> generate quiz...','> draft email...'].forEach((l,i)=>{const s=(f*11+i*22)%(h+30)-10;const a=Math.max(0,1-Math.abs(s-h*0.4)/(h*0.5));ctx.fillStyle=`rgba(${c},${0.16*a})`;ctx.fillText(l,10,s)})}
+        else if(viz==='particles'){for(let i=0;i<18;i++){const x=(Math.sin(f*0.35+i*1.4)*0.4+0.5)*w;const y=(Math.cos(f*0.5+i*1.1)*0.38+0.48)*h;const s=1.5+Math.sin(f*2+i);ctx.beginPath();ctx.arc(x,y,s,0,6.28);ctx.fillStyle=`rgba(${c},${0.14+Math.sin(f+i)*0.06})`;ctx.fill()}}
+        else if(viz==='path'){const steps=6;for(let i=0;i<steps;i++){const x=12+i*(w-24)/(steps-1);const y=h*0.4+Math.sin(i*0.7)*16;const a=Math.sin(f*1.5-i*0.5)>0.2;ctx.beginPath();ctx.arc(x,y,a?6:3,0,6.28);ctx.fillStyle=`rgba(${c},${a?0.22:0.04})`;ctx.fill();if(i<steps-1){const nx=12+(i+1)*(w-24)/(steps-1);const ny=h*0.4+Math.sin((i+1)*0.7)*16;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(nx,ny);ctx.strokeStyle=`rgba(${c},0.03)`;ctx.lineWidth=0.5;ctx.stroke()}}}
+        else if(viz==='bars'){const bars=8;const bw=(w-16)/bars;for(let i=0;i<bars;i++){const bh=8+Math.sin(f*1.4+i*0.55)*10+(i/bars)*35;ctx.fillStyle=`rgba(${c},${0.05+i*0.02})`;ctx.fillRect(8+i*bw+1,h*0.75-bh,bw-2,bh)}}
+        else if(viz==='network'){const pts=[];for(let i=0;i<12;i++)pts.push({x:(Math.sin(f*0.22+i*1.8)*0.4+0.5)*w,y:(Math.cos(f*0.32+i*1.3)*0.38+0.48)*h});pts.forEach((a,i)=>pts.forEach((b,j)=>{if(j<=i)return;const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<60){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(${c},${0.04*(1-d/60)})`;ctx.lineWidth=0.5;ctx.stroke()}}));pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,2,0,6.28);ctx.fillStyle=`rgba(${c},0.15)`;ctx.fill()})}
+        else if(viz==='rings'){for(let i=0;i<4;i++){const rr=10+i*12+Math.sin(f+i)*3;ctx.beginPath();ctx.arc(w/2,h*0.4,rr,0,6.28);ctx.strokeStyle=`rgba(${c},${0.05-i*0.01})`;ctx.lineWidth=0.8;ctx.stroke()}ctx.beginPath();ctx.arc(w/2,h*0.4,4,0,6.28);ctx.fillStyle=`rgba(${c},0.2)`;ctx.fill()}
+        requestAnimationFrame(draw);
+    }draw();
+});
+}
+
+function selectP(p){document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));document.querySelector(`[data-id="${p.id}"]`).classList.add('active');document.getElementById('rT').textContent=p.resp.t;document.getElementById('rA').innerHTML=p.resp.a.map(a=>`<button>${a}</button>`).join('');document.getElementById('resp').classList.add('on')}
+function proc(t){if(!t.trim())return;const l=t.toLowerCase();let b=null,bs=0;pages.forEach(p=>{let s=0;p.kw.forEach(k=>{if(l.includes(k))s+=2});if(s>bs){bs=s;b=p}});if(!b)b=pages[5];selectP(b)}
+document.getElementById('go').addEventListener('click',()=>{const i=document.getElementById('inp');proc(i.value);i.value=''});
+document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter'){proc(e.target.value);e.target.value=''}});
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>proc(c.dataset.q)));
+
+function init(){resF();layout();setTimeout(initViz,200)}
+window.addEventListener('load',init);
+window.addEventListener('resize',()=>{resF();layout()});
+drawFx();
+</script>
+</body>
+</html>

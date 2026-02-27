@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Navigator — Innovating Higher Ed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08080f;--bg-elevated:#0e0e1a;--bg-card:#111120;--surface:#1a1a30;--surface-2:#222240;
+  --border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);
+  --text:#f0ede8;--text-secondary:#a8a4b8;--text-muted:#6b6880;
+  --cyan:#00d4ff;--cyan-dim:rgba(0,212,255,0.15);--magenta:#c850c0;--magenta-dim:rgba(200,80,192,0.15);
+  --amber:#f5a623;--amber-dim:rgba(245,166,35,0.12);--green:#4ade80;--green-dim:rgba(74,222,128,0.12);
+  --orange:#fb923c;--orange-dim:rgba(251,146,60,0.12);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.12);
+  --teal:#0ea5a0;--teal-dim:rgba(14,165,160,0.12);--blue:#3b82f6;--blue-dim:rgba(59,130,246,0.12);
+  --pink:#f472b6;--pink-dim:rgba(244,114,182,0.12);--red:#ef4444;--red-dim:rgba(239,68,68,0.12);
+  --sans:'DM Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;
+  --max-w:1200px;--px:clamp(1rem,4vw,2rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}h1,h2,h3,h4{font-family:var(--sans)}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.7s cubic-bezier(0.16,1,0.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 var(--px);display:flex;align-items:center;height:56px}
+.tb-brand{font-family:var(--mono);font-weight:600;font-size:0.85rem;letter-spacing:0.05em;display:flex;gap:0.35rem}
+.tb-dot{width:6px;height:6px;background:var(--green);border-radius:50%;margin-left:4px;align-self:center;animation:pulseDot 2s infinite}
+.tb-nav{margin-left:auto;display:flex;gap:0.15rem}
+.tb-nav a{font-size:0.78rem;padding:0.4rem 0.75rem;border-radius:6px;color:var(--text-secondary);transition:all 0.2s;font-weight:500}
+.tb-nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.tb-nav a.active{color:var(--cyan);background:var(--cyan-dim)}
+
+.page-header{max-width:var(--max-w);margin:0 auto;padding:2.5rem var(--px) 1.5rem;animation:fadeUp 0.7s ease-out both}
+.page-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem}
+.page-title{font-size:2rem;font-weight:800;margin-bottom:0.4rem}
+.page-desc{font-size:0.92rem;color:var(--text-secondary);max-width:620px;line-height:1.6}
+.page-stats{display:flex;gap:1.5rem;margin-top:0.8rem;font-family:var(--mono);font-size:0.68rem;color:var(--text-muted)}
+.page-stats strong{color:var(--cyan)}
+
+/* FEATURED PROMPT */
+.featured{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 2.5rem}
+.fp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.fp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--magenta))}
+.fp-left{}
+.fp-badges{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.7rem}
+.fp-badge{font-family:var(--mono);font-size:0.55rem;font-weight:600;padding:3px 8px;border-radius:4px}
+.fp-badge.diff{background:var(--green-dim);color:var(--green)}
+.fp-badge.cat{background:var(--purple-dim);color:var(--purple)}
+.fp-badge.hot{background:var(--amber-dim);color:var(--amber)}
+.fp-left h2{font-size:1.4rem;font-weight:700;line-height:1.22;margin-bottom:0.6rem}
+.fp-left p{font-size:0.88rem;color:var(--text-secondary);line-height:1.65;margin-bottom:0.8rem}
+.fp-meta{font-family:var(--mono);font-size:0.62rem;color:var(--text-muted);display:flex;gap:1rem}
+.fp-meta .uses{color:var(--green)}
+.fp-right{}
+.fp-prompt-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem}
+.fp-prompt{font-family:var(--mono);font-size:0.75rem;color:var(--cyan);background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.1);border-radius:10px;padding:1rem;line-height:1.6;margin-bottom:0.8rem;position:relative}
+.fp-prompt .var{color:var(--amber);font-weight:600}
+.fp-copy{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--mono);font-size:0.68rem;color:var(--cyan);padding:0.45rem 1rem;border-radius:8px;background:var(--cyan-dim);border:none;cursor:pointer;transition:background 0.2s;font-weight:500}
+.fp-copy:hover{background:rgba(0,212,255,0.2)}
+.fp-copy svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.fp-tip{margin-top:0.8rem;font-size:0.78rem;color:var(--text-secondary);line-height:1.55;padding:0.7rem 0.85rem;background:rgba(200,80,192,0.04);border-left:2px solid var(--magenta);border-radius:0 6px 6px 0}
+.fp-tip strong{color:var(--magenta);font-weight:600;font-size:0.6rem;font-family:var(--mono);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:0.15rem}
+
+/* FILTERS */
+.filters{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 1.5rem}
+.filter-row{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.6rem}
+.filter-label{font-family:var(--mono);font-size:0.58rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;min-width:60px}
+.fpill{font-family:var(--mono);font-size:0.62rem;font-weight:500;padding:0.28rem 0.7rem;border-radius:100px;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;background:transparent}
+.fpill:hover{border-color:var(--border-hover);color:var(--text)}
+.fpill.active{background:rgba(255,255,255,0.08);color:var(--text);border-color:rgba(255,255,255,0.15)}
+.fpill.green{color:var(--green);border-color:rgba(74,222,128,0.2)}.fpill.green.active{background:var(--green-dim)}
+.fpill.amber{color:var(--amber);border-color:rgba(245,166,35,0.2)}.fpill.amber.active{background:var(--amber-dim)}
+.fpill.red{color:var(--red);border-color:rgba(239,68,68,0.2)}.fpill.red.active{background:var(--red-dim)}
+.search-bar{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 2rem}
+.search-box{display:flex;align-items:center;gap:0.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:0.55rem 1rem;max-width:400px}
+.search-box input{background:none;border:none;color:var(--text);font-size:0.82rem;font-family:var(--sans);flex:1;outline:none}
+.search-box input::placeholder{color:var(--text-muted)}
+.si{width:16px;height:16px;stroke:var(--text-muted);fill:none;stroke-width:2}
+
+/* PROMPT GRID */
+.prompt-section{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 3rem}
+.prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.prompt{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.15rem;transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden}
+.prompt:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.3)}
+.prompt::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.prompt-tags{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.5rem}
+.pt{font-family:var(--mono);font-size:0.5rem;font-weight:600;padding:2px 6px;border-radius:3px}
+.pt-b{background:var(--green-dim);color:var(--green)}
+.pt-i{background:var(--amber-dim);color:var(--amber)}
+.pt-a{background:var(--red-dim);color:var(--red)}
+.pt-cat{background:var(--purple-dim);color:var(--purple)}
+.pt-trend{background:var(--amber-dim);color:var(--amber)}
+.pt-new{background:var(--cyan-dim);color:var(--cyan)}
+.prompt-h{font-family:var(--sans);font-size:1rem;font-weight:700;line-height:1.22;margin-bottom:0.35rem}
+.prompt-desc{font-size:0.78rem;color:var(--text-secondary);line-height:1.55;margin-bottom:0.55rem}
+.prompt-pre{font-family:var(--mono);font-size:0.68rem;color:var(--cyan);background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.08);border-radius:7px;padding:0.55rem 0.7rem;line-height:1.5;margin-bottom:0.5rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.prompt-foot{display:flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.55rem;color:var(--text-muted);padding-top:0.45rem;border-top:1px solid var(--border)}
+.prompt-uses{color:var(--green)}
+.prompt-copy{margin-left:auto;font-family:var(--mono);font-size:0.55rem;color:var(--cyan);padding:3px 8px;border-radius:4px;border:1px solid rgba(0,212,255,0.2);background:rgba(0,212,255,0.06);cursor:pointer;transition:background 0.2s}
+.prompt-copy:hover{background:rgba(0,212,255,0.12)}
+
+.load-more{text-align:center;padding:1.5rem 0 0}
+.load-btn{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);padding:0.55rem 1.5rem;border-radius:8px;border:1px solid rgba(0,212,255,0.2);background:rgba(0,212,255,0.06);cursor:pointer;transition:all 0.2s}
+.load-btn:hover{background:rgba(0,212,255,0.12);border-color:rgba(0,212,255,0.3)}
+
+/* SUBMIT CTA */
+.submit-cta{max-width:var(--max-w);margin:0 auto;padding:2rem var(--px) 3rem}
+.sc-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;text-align:center;position:relative;overflow:hidden}
+.sc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.sc-card h2{font-size:1.5rem;font-weight:700;margin-bottom:0.4rem}
+.sc-card p{font-size:0.88rem;color:var(--text-secondary);margin-bottom:1.2rem;max-width:480px;margin-left:auto;margin-right:auto}
+.sc-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.4rem;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--cyan));color:white;font-weight:600;font-size:0.85rem;border:none;cursor:pointer;transition:transform 0.2s}
+.sc-btn:hover{transform:translateY(-1px)}
+
+.footer{background:var(--bg-elevated);border-top:1px solid var(--border);padding:2.5rem var(--px) 1.5rem}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem}
+.footer-brand{font-family:var(--mono);font-size:0.9rem;font-weight:600;margin-bottom:0.5rem}.footer-brand .fc{color:var(--cyan)}
+.footer-desc{font-size:0.78rem;color:var(--text-secondary);line-height:1.55;max-width:280px}
+.footer-col h4{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.7rem}
+.footer-col a{display:block;font-size:0.78rem;color:var(--text-secondary);padding:0.2rem 0;transition:color 0.2s}.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{max-width:var(--max-w);margin:1.25rem auto 0;padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-muted)}
+.footer-bottom a{color:var(--text-muted);margin-left:1.2rem}.footer-bottom a:hover{color:var(--cyan)}
+
+@media(max-width:1024px){.fp-card{grid-template-columns:1fr}}
+@media(max-width:768px){.tb-nav{display:none}.prompt-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="tb-brand" href="#"><span>INNOVATING HIGHER ED</span><span class="tb-dot"></span></a>
+  <div class="tb-nav"><a href="#">Home</a><a href="#">Innovation Pulse</a><a href="#" class="active">Prompts</a><a href="#">AI Tools</a><a href="#">Podcast</a><a href="#">Tinker Lab</a><a href="#">About</a></div>
+</nav>
+
+<div class="page-header">
+  <div class="page-label">⚡ PROMPT NAVIGATOR</div>
+  <div class="page-title">AI Prompts Built for Higher Education</div>
+  <div class="page-desc">Tested, refined, and rated by real faculty. Every prompt is designed for a specific teaching or administrative task — not generic templates.</div>
+  <div class="page-stats"><span><strong>2,400+</strong> prompts curated</span><span><strong>48k</strong> total uses</span><span><strong>340</strong> contributors</span></div>
+</div>
+
+<!-- FEATURED PROMPT -->
+<div class="featured reveal">
+  <div class="fp-card">
+    <div class="fp-left">
+      <div class="fp-badges"><span class="fp-badge diff">Beginner</span><span class="fp-badge cat">Discussion Design</span><span class="fp-badge hot">🔥 Most Used This Week</span></div>
+      <h2>Generate Discussion Questions That Actually Spark Debate</h2>
+      <p>Creates tension-based discussion questions from any reading that students actually want to argue about — not just answer. Tested across 30 courses with consistently higher engagement than generic questions.</p>
+      <div class="fp-meta"><span class="uses">3.1k uses</span><span>Updated Feb 14</span><span>★ 4.9 avg rating</span></div>
+    </div>
+    <div class="fp-right">
+      <div class="fp-prompt-label">The Prompt</div>
+      <div class="fp-prompt">Read this <span class="var">[text/chapter/article]</span>. Identify the central tension or most debatable claim the author makes. Then generate 5 discussion questions that force students to take a side on that tension. Each question should: (1) be arguable from at least two perspectives, (2) connect to students' lived experience, and (3) resist a simple "right answer." Format as numbered questions with a one-line note explaining what makes each one productive.</div>
+      <button class="fp-copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy prompt</button>
+      <div class="fp-tip"><strong>Pro tip</strong>Replace "lived experience" with a specific context for your discipline. For a nursing class: "connect to clinical scenarios." For business: "connect to workplace decisions they've faced."</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filter-row">
+    <span class="filter-label">Difficulty</span>
+    <button class="fpill green active">Beginner</button>
+    <button class="fpill amber">Intermediate</button>
+    <button class="fpill red">Advanced</button>
+    <button class="fpill active">All Levels</button>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Category</span>
+    <button class="fpill active">All</button>
+    <button class="fpill">Discussion</button>
+    <button class="fpill">Assessment</button>
+    <button class="fpill">Feedback</button>
+    <button class="fpill">Course Design</button>
+    <button class="fpill">Research</button>
+    <button class="fpill">Writing</button>
+    <button class="fpill">Admin</button>
+  </div>
+</div>
+<div class="search-bar">
+  <div class="search-box"><svg class="si" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="Search prompts by keyword or task..."></div>
+</div>
+
+<!-- PROMPT GRID -->
+<div class="prompt-section reveal">
+  <div class="prompt-grid">
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-i">Intermediate</span><span class="pt pt-cat">Assessment</span></div>
+      <div class="prompt-h">AI-Resistant Assignment Redesigner</div>
+      <div class="prompt-desc">Analyzes your existing assignment and suggests modifications that maintain learning outcomes while reducing AI shortcutting.</div>
+      <div class="prompt-pre">"Here is my assignment: [paste]. Analyze which parts a student could complete using AI without learning. Suggest 3 specific modifications that preserve the learning outcome but require original thinking..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">1.8k uses</span><span>★ 4.7</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-b">Beginner</span><span class="pt pt-cat">Feedback</span><span class="pt pt-trend">🔥 Trending</span></div>
+      <div class="prompt-h">Rubric-Based Feedback Draft Generator</div>
+      <div class="prompt-desc">Generates detailed, constructive student feedback aligned to your specific rubric. You review and personalize before sending.</div>
+      <div class="prompt-pre">"Using this rubric [paste], generate detailed feedback for this student submission [paste]. Score each criterion and provide specific, constructive comments that explain what was done well and how to improve..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">3.1k uses</span><span>★ 4.9</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-b">Beginner</span><span class="pt pt-cat">Course Design</span><span class="pt pt-new">New</span></div>
+      <div class="prompt-h">Syllabus FAQ Bot Builder</div>
+      <div class="prompt-desc">Turns your syllabus into a Q&A knowledge base students can query. Reduces repetitive "Is this on the exam?" emails by 80%.</div>
+      <div class="prompt-pre">"Here is my course syllabus [paste]. Extract every fact, deadline, policy, and expectation. Create a comprehensive Q&A format with 30+ questions a student might ask, and answers drawn only from the syllabus..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">940 uses</span><span>★ 4.6</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-a">Advanced</span><span class="pt pt-cat">Research</span></div>
+      <div class="prompt-h">Literature Review Gap Finder</div>
+      <div class="prompt-desc">Analyzes a set of papers and identifies where the literature has gaps, contradictions, or underexplored angles for your research.</div>
+      <div class="prompt-pre">"Here are summaries of [N] papers in my research area [paste]. Identify: (1) the 3 most significant gaps in the current literature, (2) contradictions between findings, (3) methodological weaknesses that appear across multiple studies..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">720 uses</span><span>★ 4.8</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-b">Beginner</span><span class="pt pt-cat">Writing</span><span class="pt pt-trend">🔥 Trending</span></div>
+      <div class="prompt-h">Student Peer Review Guide Generator</div>
+      <div class="prompt-desc">Creates structured peer review worksheets tailored to your specific assignment type and learning goals.</div>
+      <div class="prompt-pre">"For this assignment [paste description], create a peer review guide with 8-10 specific questions students should answer about their partner's work. Questions should focus on [argument quality / evidence / structure]..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">1.2k uses</span><span>★ 4.5</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-i">Intermediate</span><span class="pt pt-cat">Admin</span></div>
+      <div class="prompt-h">Meeting Minutes to Action Items Converter</div>
+      <div class="prompt-desc">Turns messy meeting notes into clean action items with owners, deadlines, and dependencies. Built for department and committee meetings.</div>
+      <div class="prompt-pre">"Here are notes from our [department/committee] meeting [paste]. Extract every action item, decision, and open question. Format as: Action Item | Owner | Deadline | Dependencies. Flag items that need follow-up..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">2.1k uses</span><span>★ 4.8</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-a">Advanced</span><span class="pt pt-cat">Course Design</span></div>
+      <div class="prompt-h">Backward Design Course Builder</div>
+      <div class="prompt-desc">Takes your learning outcomes and generates a complete course arc: weekly topics, assessment sequence, and alignment matrix.</div>
+      <div class="prompt-pre">"My course has these learning outcomes: [paste]. Design a 15-week course arc where each week builds toward one or more outcomes. Include: weekly topic, key readings/activities, formative assessment, and which outcomes are addressed..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">560 uses</span><span>★ 4.7</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-b">Beginner</span><span class="pt pt-cat">Feedback</span><span class="pt pt-new">New</span></div>
+      <div class="prompt-h">Encouraging Feedback Rewriter</div>
+      <div class="prompt-desc">Takes your honest but blunt feedback and rewrites it to be constructive, specific, and growth-oriented while preserving the substance.</div>
+      <div class="prompt-pre">"Here is my feedback for a student [paste]. Rewrite it to: (1) lead with something specific the student did well, (2) frame critiques as opportunities for growth, (3) end with one concrete next step. Keep the substance identical..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">1.4k uses</span><span>★ 4.9</span><button class="prompt-copy">Copy</button></div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-i">Intermediate</span><span class="pt pt-cat">Discussion</span></div>
+      <div class="prompt-h">Case Study Scenario Generator</div>
+      <div class="prompt-desc">Creates realistic, discipline-specific case studies with built-in ethical dilemmas and decision points for classroom discussion.</div>
+      <div class="prompt-pre">"Create a realistic case study for a [discipline] course on [topic]. Include: a named protagonist with a specific role, a realistic organizational context, a decision point with at least 3 viable options, and consequences..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">890 uses</span><span>★ 4.6</span><button class="prompt-copy">Copy</button></div>
+    </div>
+  </div>
+  <div class="load-more"><button class="load-btn">Load more prompts ↓</button></div>
+</div>
+
+<!-- SUBMIT CTA -->
+<div class="submit-cta reveal">
+  <div class="sc-card">
+    <h2>Share Your Best Prompts</h2>
+    <p>Built a prompt that works great in your classroom? Submit it to the Navigator and help other educators skip the trial and error.</p>
+    <button class="sc-btn">⚡ Submit a Prompt</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner"><div><div class="footer-brand">Innovating Higher <span class="fc">Ed</span></div><p class="footer-desc">Empowering educators to navigate the future of teaching, learning, and innovation.</p></div><div class="footer-col"><h4>Platform</h4><a href="#">Innovation Pulse</a><a href="#">Prompt Navigator</a><a href="#">AI Directory</a><a href="#">Educator Tools</a></div><div class="footer-col"><h4>Community</h4><a href="#">Podcast</a><a href="#">Tinker Lab</a><a href="#">Be Our Guest</a><a href="#">About</a></div></div>
+  <div class="footer-bottom"><span>© 2026 Innovating Higher Ed.</span><span><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">AI Disclosure</a></span></div>
+</footer>
+
+<script>const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.06});document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));</script>
+</body>
+</html>

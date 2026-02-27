@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinker Lab — Innovating Higher Ed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08080f;--bg-elevated:#0e0e1a;--bg-card:#111120;--surface:#1a1a30;--surface-2:#222240;
+  --border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);
+  --text:#f0ede8;--text-secondary:#a8a4b8;--text-muted:#6b6880;
+  --cyan:#00d4ff;--cyan-dim:rgba(0,212,255,0.15);--magenta:#c850c0;--magenta-dim:rgba(200,80,192,0.15);
+  --amber:#f5a623;--amber-dim:rgba(245,166,35,0.12);--green:#4ade80;--green-dim:rgba(74,222,128,0.12);
+  --orange:#fb923c;--orange-dim:rgba(251,146,60,0.12);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.12);
+  --teal:#0ea5a0;--teal-dim:rgba(14,165,160,0.12);--blue:#3b82f6;--blue-dim:rgba(59,130,246,0.12);
+  --pink:#f472b6;--red:#ef4444;--red-dim:rgba(239,68,68,0.12);
+  --sans:'DM Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;
+  --max-w:1200px;--px:clamp(1rem,4vw,2rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}h1,h2,h3,h4{font-family:var(--sans)}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bubbles{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.05)}}
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.7s cubic-bezier(0.16,1,0.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 var(--px);display:flex;align-items:center;height:56px}
+.tb-brand{font-family:var(--mono);font-weight:600;font-size:0.85rem;letter-spacing:0.05em;display:flex;gap:0.35rem}
+.tb-dot{width:6px;height:6px;background:var(--green);border-radius:50%;margin-left:4px;align-self:center;animation:pulseDot 2s infinite}
+.tb-nav{margin-left:auto;display:flex;gap:0.15rem}
+.tb-nav a{font-size:0.78rem;padding:0.4rem 0.75rem;border-radius:6px;color:var(--text-secondary);transition:all 0.2s;font-weight:500}
+.tb-nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.tb-nav a.active{color:var(--cyan);background:var(--cyan-dim)}
+
+.page-header{max-width:var(--max-w);margin:0 auto;padding:2.5rem var(--px) 1.5rem;animation:fadeUp 0.7s ease-out both}
+.page-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem}
+.page-title{font-size:2rem;font-weight:800;margin-bottom:0.4rem}
+.page-desc{font-size:0.92rem;color:var(--text-secondary);max-width:620px;line-height:1.6}
+
+/* FEATURED EXPERIMENT */
+.featured{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 2.5rem}
+.feat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transition:border-color 0.3s}
+.feat-card:hover{border-color:var(--border-hover)}
+.feat-img{position:relative;min-height:380px;overflow:hidden}
+.feat-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+.feat-card:hover .feat-img img{transform:scale(1.03)}
+.feat-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,8,15,0.4),rgba(8,8,15,0.1))}
+.feat-badges{position:absolute;top:1.25rem;left:1.25rem;display:flex;gap:0.4rem}
+.feat-badge{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.05em;padding:0.25rem 0.6rem;border-radius:6px}
+.feat-badge.lab{background:rgba(0,212,255,0.85);color:#08080f}
+.feat-badge.diff{background:rgba(255,255,255,0.12);color:var(--text);backdrop-filter:blur(8px)}
+.feat-play-overlay{position:absolute;bottom:1.5rem;right:1.5rem;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--magenta));display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(0,212,255,0.3);transition:transform 0.2s}
+.feat-play-overlay:hover{transform:scale(1.08)}
+.feat-play-overlay svg{width:22px;height:22px;fill:white;margin-left:2px}
+.feat-content{padding:2rem;display:flex;flex-direction:column;justify-content:center}
+.feat-label{font-family:var(--mono);font-size:0.62rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem}
+.feat-content h2{font-size:1.4rem;font-weight:700;line-height:1.22;margin-bottom:0.7rem}
+.feat-content p{font-size:0.88rem;color:var(--text-secondary);line-height:1.65;margin-bottom:0.8rem}
+.feat-meta{display:flex;align-items:center;gap:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--text-muted);margin-bottom:1rem;flex-wrap:wrap}
+.feat-meta .dur{color:var(--cyan)}
+.feat-tools{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.feat-tool{font-family:var(--mono);font-size:0.52rem;font-weight:600;padding:3px 7px;border-radius:4px;background:var(--surface);color:var(--text-secondary)}
+.feat-what{margin-top:auto}
+.feat-what h4{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.4rem}
+.feat-what-list{list-style:none;display:flex;flex-direction:column;gap:0.3rem}
+.feat-what-list li{font-size:0.8rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.4rem}
+.feat-what-list li::before{content:'→';color:var(--cyan);font-family:var(--mono);font-size:0.7rem}
+
+/* FILTERS */
+.filters{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 2rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
+.fpill{font-family:var(--mono);font-size:0.65rem;font-weight:500;padding:0.3rem 0.75rem;border-radius:100px;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;background:transparent}
+.fpill:hover{border-color:var(--border-hover);color:var(--text)}
+.fpill.active{background:rgba(255,255,255,0.08);color:var(--text);border-color:rgba(255,255,255,0.15)}
+
+/* EXPERIMENT GRID */
+.lab-section{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 3rem}
+.lab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.exp{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.3s;cursor:pointer}
+.exp:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.3)}
+.exp-img{position:relative;overflow:hidden}
+.exp-img img{width:100%;height:180px;object-fit:cover}
+.exp-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,15,0.5) 0%,transparent 60%)}
+.exp-dur{position:absolute;bottom:10px;right:10px;font-family:var(--mono);font-size:0.58rem;color:white;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);padding:2px 8px;border-radius:4px}
+.exp-type-badge{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:0.53rem;font-weight:600;letter-spacing:0.05em;padding:3px 8px;border-radius:5px;color:#fff}
+.exp-type-badge.experiment{background:rgba(0,212,255,0.85)}
+.exp-type-badge.walkthrough{background:rgba(74,222,128,0.85)}
+.exp-type-badge.comparison{background:rgba(200,80,192,0.85)}
+.exp-type-badge.challenge{background:rgba(251,146,60,0.85)}
+.exp-body{padding:0.9rem 1rem}
+.exp-tags{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.4rem}
+.et{font-family:var(--mono);font-size:0.5rem;font-weight:600;padding:2px 6px;border-radius:3px}
+.et-diff{background:var(--green-dim);color:var(--green)}
+.et-diff.int{background:var(--amber-dim);color:var(--amber)}
+.et-diff.adv{background:var(--red-dim);color:var(--red)}
+.et-cat{background:var(--teal-dim);color:var(--teal)}
+.exp-h{font-family:var(--sans);font-size:1.02rem;font-weight:700;line-height:1.22;margin-bottom:0.35rem}
+.exp-desc{font-size:0.78rem;color:var(--text-secondary);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.5rem}
+.exp-foot{display:flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.58rem;color:var(--text-muted);padding-top:0.5rem;border-top:1px solid var(--border)}
+.exp-format{color:var(--cyan)}
+
+.load-more{text-align:center;padding:1.5rem 0 0}
+.load-btn{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);padding:0.55rem 1.5rem;border-radius:8px;border:1px solid rgba(0,212,255,0.2);background:rgba(0,212,255,0.06);cursor:pointer;transition:all 0.2s}
+.load-btn:hover{background:rgba(0,212,255,0.12);border-color:rgba(0,212,255,0.3)}
+
+/* SUGGEST CTA */
+.suggest-cta{max-width:var(--max-w);margin:0 auto;padding:2rem var(--px) 3rem}
+.sug-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;text-align:center;position:relative;overflow:hidden}
+.sug-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--magenta))}
+.sug-card h2{font-size:1.5rem;font-weight:700;margin-bottom:0.4rem}
+.sug-card p{font-size:0.88rem;color:var(--text-secondary);margin-bottom:1.2rem;max-width:500px;margin-left:auto;margin-right:auto}
+.sug-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.65rem 1.4rem;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--magenta));color:white;font-weight:600;font-size:0.85rem;border:none;cursor:pointer;transition:transform 0.2s}
+.sug-btn:hover{transform:translateY(-1px)}
+
+.footer{background:var(--bg-elevated);border-top:1px solid var(--border);padding:2.5rem var(--px) 1.5rem}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem}
+.footer-brand{font-family:var(--mono);font-size:0.9rem;font-weight:600;margin-bottom:0.5rem}.footer-brand .fc{color:var(--cyan)}
+.footer-desc{font-size:0.78rem;color:var(--text-secondary);line-height:1.55;max-width:280px}
+.footer-col h4{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.7rem}
+.footer-col a{display:block;font-size:0.78rem;color:var(--text-secondary);padding:0.2rem 0;transition:color 0.2s}.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{max-width:var(--max-w);margin:1.25rem auto 0;padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-muted)}
+.footer-bottom a{color:var(--text-muted);margin-left:1.2rem}.footer-bottom a:hover{color:var(--cyan)}
+
+@media(max-width:1024px){.feat-card{grid-template-columns:1fr}.feat-img{min-height:260px}}
+@media(max-width:768px){.tb-nav{display:none}.lab-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="tb-brand" href="#"><span>INNOVATING HIGHER ED</span><span class="tb-dot"></span></a>
+  <div class="tb-nav"><a href="#">Home</a><a href="#">Innovation Pulse</a><a href="#">Prompts</a><a href="#">AI Tools</a><a href="#">Podcast</a><a href="#" class="active">Tinker Lab</a><a href="#">About</a></div>
+</nav>
+
+<div class="page-header">
+  <div class="page-label">🧪 TINKER LAB</div>
+  <div class="page-title">Experiments, Walkthroughs & AI Explorations</div>
+  <div class="page-desc">We test the tools so you don't have to. Every experiment shows real results — what worked, what didn't, and whether it's worth your time.</div>
+</div>
+
+<!-- FEATURED EXPERIMENT -->
+<div class="featured reveal">
+  <div class="feat-card">
+    <div class="feat-img">
+      <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=700&h=500&fit=crop">
+      <div class="feat-img-overlay"></div>
+      <div class="feat-badges"><span class="feat-badge lab">Latest Experiment</span><span class="feat-badge diff">Beginner Friendly</span></div>
+      <div class="feat-play-overlay"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
+    </div>
+    <div class="feat-content">
+      <div class="feat-label">Experiment · February 14, 2026</div>
+      <h2>I Graded 100 Papers with 5 Different AI Tools — Here's What Happened</h2>
+      <p>Dr. Norma ran the same set of 100 student essays through five popular AI grading platforms and compared every score to human graders. The results were surprising — and the differences between tools were massive.</p>
+      <div class="feat-meta"><span class="dur">8 min listen</span><span>·</span><span>Beginner</span><span>·</span><span>Grading & Assessment</span></div>
+      <div class="feat-tools"><span class="feat-tool">GradeAssist</span><span class="feat-tool">Turnitin AI</span><span class="feat-tool">Canvas AI</span><span class="feat-tool">Grammarly Edu</span><span class="feat-tool">CoGrader</span></div>
+      <div class="feat-what">
+        <h4>What you'll learn</h4>
+        <ul class="feat-what-list">
+          <li>Which tool was most accurate vs. human graders</li>
+          <li>Where AI grading consistently fails</li>
+          <li>The bias patterns we found across all 5 tools</li>
+          <li>Our recommendation for the best free option</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button class="fpill active">All</button>
+  <button class="fpill">Experiments</button>
+  <button class="fpill">Walkthroughs</button>
+  <button class="fpill">Comparisons</button>
+  <button class="fpill">Challenges</button>
+  <button class="fpill">Beginner</button>
+  <button class="fpill">Intermediate</button>
+  <button class="fpill">Advanced</button>
+</div>
+
+<!-- EXPERIMENT GRID -->
+<div class="lab-section reveal">
+  <div class="lab-grid">
+    <div class="exp">
+      <div class="exp-img"><img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=360&fit=crop"><div class="exp-img-overlay"></div><span class="exp-dur">12 min</span><span class="exp-type-badge walkthrough">Walkthrough</span></div>
+      <div class="exp-body">
+        <div class="exp-tags"><span class="et et-diff">Beginner</span><span class="et et-cat">Course Design</span></div>
+        <div class="exp-h">Building a Custom AI Tutor for Intro Biology — From Scratch</div>
+        <div class="exp-desc">A step-by-step walkthrough of creating a subject-specific AI tutor using free tools. No coding required. Total setup: 2 hours.</div>
+        <div class="exp-foot"><span class="exp-format">🎧 Audio</span><span>Feb 7</span></div>
+      </div>
+    </div>
+
+    <div class="exp">
+      <div class="exp-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=360&fit=crop"><div class="exp-img-overlay"></div><span class="exp-dur">10 min</span><span class="exp-type-badge comparison">Comparison</span></div>
+      <div class="exp-body">
+        <div class="exp-tags"><span class="et et-diff int">Intermediate</span><span class="et et-cat">Writing</span></div>
+        <div class="exp-h">Can AI Write a Syllabus? We Put It to the Test</div>
+        <div class="exp-desc">Three faculty members review an AI-generated syllabus for their own courses — blind. Their reactions are telling.</div>
+        <div class="exp-foot"><span class="exp-format">🎧 Audio</span><span>Jan 31</span></div>
+      </div>
+    </div>
+
+    <div class="exp">
+      <div class="exp-img"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=360&fit=crop"><div class="exp-img-overlay"></div><span class="exp-dur">15 min</span><span class="exp-type-badge experiment">Experiment</span></div>
+      <div class="exp-body">
+        <div class="exp-tags"><span class="et et-diff int">Intermediate</span><span class="et et-cat">Assessment</span></div>
+        <div class="exp-h">AI Detection Tools: We Submitted 50 Essays to Find Out the Truth</div>
+        <div class="exp-desc">We submitted human-written, AI-written, and hybrid essays to 4 popular detectors. The false positive rate will shock you.</div>
+        <div class="exp-foot"><span class="exp-format">🎧 Audio + 📊 Data</span><span>Jan 24</span></div>
+      </div>
+    </div>
+
+    <div class="exp">
+      <div class="exp-img"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=360&fit=crop"><div class="exp-img-overlay"></div><span class="exp-dur">18 min</span><span class="exp-type-badge walkthrough">Walkthrough</span></div>
+      <div class="exp-body">
+        <div class="exp-tags"><span class="et et-diff">Beginner</span><span class="et et-cat">Office Hours</span></div>
+        <div class="exp-h">Setting Up AI Office Hours in 90 Minutes — Complete Guide</div>
+        <div class="exp-desc">From choosing a platform to training it on your syllabus to sharing with students. Every step, with screenshots.</div>
+        <div class="exp-foot"><span class="exp-format">📝 Article + 🎧 Audio</span><span>Jan 17</span></div>
+      </div>
+    </div>
+
+    <div class="exp">
+      <div class="exp-img"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=360&fit=crop"><div class="exp-img-overlay"></div><span class="exp-dur">8 min</span><span class="exp-type-badge challenge">Challenge</span></div>
+      <div class="exp-body">
+        <div class="exp-tags"><span class="et et-diff">Beginner</span><span class="et et-cat">Prompting</span></div>
+        <div class="exp-h">The 5-Day AI Prompt Challenge for Faculty</div>
+        <div class="exp-desc">One prompt per day, five days, five teaching tasks. By Friday you'll have a working AI toolkit for your specific courses.</div>
+        <div class="exp-foot"><span class="exp-format">📝 Interactive</span><span>Jan 10</span></div>
+      </div>
+    </div>
+
+    <div class="exp">
+      <div class="exp-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop"><div class="exp-img-overlay"></div><span class="exp-dur">14 min</span><span class="exp-type-badge comparison">Comparison</span></div>
+      <div class="exp-body">
+        <div class="exp-tags"><span class="et et-diff adv">Advanced</span><span class="et et-cat">LLMs</span></div>
+        <div class="exp-h">GPT-4 vs Claude vs Gemini: Which Writes Better Student Feedback?</div>
+        <div class="exp-desc">We gave all three the same rubric and the same student paper. The quality gap is real — and it's not who you'd expect.</div>
+        <div class="exp-foot"><span class="exp-format">🎧 Audio + 📊 Data</span><span>Jan 3</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="load-more"><button class="load-btn">Load more experiments ↓</button></div>
+</div>
+
+<!-- SUGGEST CTA -->
+<div class="suggest-cta reveal">
+  <div class="sug-card">
+    <h2>Got an Experiment Idea?</h2>
+    <p>Want us to test a specific AI tool, compare platforms, or try something wild? Tell us what you want to see in the lab.</p>
+    <button class="sug-btn">🧪 Suggest an Experiment</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner"><div><div class="footer-brand">Innovating Higher <span class="fc">Ed</span></div><p class="footer-desc">Empowering educators to navigate the future of teaching, learning, and innovation.</p></div><div class="footer-col"><h4>Platform</h4><a href="#">Innovation Pulse</a><a href="#">Prompt Navigator</a><a href="#">AI Directory</a><a href="#">Educator Tools</a></div><div class="footer-col"><h4>Community</h4><a href="#">Podcast</a><a href="#">Tinker Lab</a><a href="#">Be Our Guest</a><a href="#">About</a></div></div>
+  <div class="footer-bottom"><span>© 2026 Innovating Higher Ed.</span><span><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">AI Disclosure</a></span></div>
+</footer>
+
+<script>const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.06});document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));</script>
+</body>
+</html>

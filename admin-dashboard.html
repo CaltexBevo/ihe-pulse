@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Innovating Higher Ed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08080f;--bg-el:#0e0e1a;--bg-card:#111120;--surface:#1a1a30;--surface-2:#222240;
+  --border:rgba(255,255,255,0.06);--border-h:rgba(255,255,255,0.12);
+  --text:#f0ede8;--text-s:#a8a4b8;--text-m:#6b6880;
+  --cyan:#00d4ff;--cyan-d:rgba(0,212,255,0.15);--magenta:#c850c0;--magenta-d:rgba(200,80,192,0.15);
+  --amber:#f5a623;--amber-d:rgba(245,166,35,0.12);--green:#4ade80;--green-d:rgba(74,222,128,0.12);
+  --orange:#fb923c;--orange-d:rgba(251,146,60,0.12);--purple:#a78bfa;--purple-d:rgba(167,139,250,0.12);
+  --teal:#0ea5a0;--teal-d:rgba(14,165,160,0.12);--red:#ef4444;--red-d:rgba(239,68,68,0.12);
+  --sans:'DM Sans',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* LAYOUT */
+.dash{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{background:var(--bg-el);border-right:1px solid var(--border);padding:1.25rem 0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sb-brand{padding:0 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+.sb-brand-text{font-family:var(--mono);font-size:0.72rem;font-weight:600;letter-spacing:0.04em}
+.sb-brand .dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulseDot 2s infinite}
+.sb-label{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-m);padding:0 1.25rem;margin:1rem 0 0.4rem}
+.sb-link{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 1.25rem;font-size:0.8rem;color:var(--text-s);transition:all 0.15s;cursor:pointer;border-left:2px solid transparent}
+.sb-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.sb-link.active{color:var(--cyan);background:var(--cyan-d);border-left-color:var(--cyan)}
+.sb-link .icon{width:16px;text-align:center;font-size:0.85rem}
+.sb-link .badge{margin-left:auto;font-family:var(--mono);font-size:0.55rem;font-weight:600;padding:2px 6px;border-radius:4px;background:var(--red-d);color:var(--red)}
+.sb-link .badge.green{background:var(--green-d);color:var(--green)}
+.sb-spacer{flex:1}
+.sb-user{padding:0.75rem 1.25rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:0.5rem}
+.sb-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--magenta));display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700}
+.sb-uname{font-size:0.75rem;color:var(--text-s)}
+.sb-urole{font-family:var(--mono);font-size:0.55rem;color:var(--text-m)}
+
+/* MAIN */
+.main{padding:1.5rem 2rem;overflow-y:auto}
+.page-head{margin-bottom:1.5rem;animation:fadeUp 0.5s ease-out both}
+.page-head h1{font-size:1.5rem;font-weight:700;margin-bottom:0.2rem}
+.page-head p{font-size:0.82rem;color:var(--text-s)}
+.page-head-row{display:flex;align-items:center;justify-content:space-between}
+.head-date{font-family:var(--mono);font-size:0.68rem;color:var(--text-m)}
+
+/* STAT ROW */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;animation:fadeUp 0.5s ease-out 0.1s both}
+.stat{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1rem;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.stat.cyan::before{background:var(--cyan)}.stat.green::before{background:var(--green)}
+.stat.orange::before{background:var(--orange)}.stat.purple::before{background:var(--purple)}
+.stat-label{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);margin-bottom:0.35rem}
+.stat-val{font-size:1.6rem;font-weight:800}
+.stat.cyan .stat-val{color:var(--cyan)}.stat.green .stat-val{color:var(--green)}
+.stat.orange .stat-val{color:var(--orange)}.stat.purple .stat-val{color:var(--purple)}
+.stat-sub{font-family:var(--mono);font-size:0.58rem;color:var(--text-m);margin-top:0.15rem}
+.stat-change{font-family:var(--mono);font-size:0.58rem;margin-top:0.1rem}
+.stat-change.up{color:var(--green)}.stat-change.down{color:var(--red)}
+
+/* PENDING APPROVALS */
+.section{margin-bottom:2rem;animation:fadeUp 0.5s ease-out 0.15s both}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem}
+.section-title{font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:0.5rem}
+.section-title .count{font-family:var(--mono);font-size:0.6rem;font-weight:600;padding:2px 7px;border-radius:4px;background:var(--amber-d);color:var(--amber)}
+
+/* APPROVAL CARD */
+.approval{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:0.75rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+.approval:hover{border-color:var(--border-h)}
+.approval::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--orange))}
+.approval.pulse::before{background:linear-gradient(90deg,var(--cyan),var(--magenta))}
+.appr-top{display:flex;align-items:flex-start;gap:1rem;margin-bottom:0.8rem}
+.appr-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.appr-icon.pulse{background:var(--cyan-d)}
+.appr-icon.podcast{background:var(--orange-d)}
+.appr-type{font-family:var(--mono);font-size:0.55rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--amber);margin-bottom:0.15rem}
+.appr-title{font-size:1rem;font-weight:700;line-height:1.25;margin-bottom:0.2rem}
+.appr-meta{font-family:var(--mono);font-size:0.6rem;color:var(--text-m);display:flex;gap:0.8rem;flex-wrap:wrap}
+.appr-meta .stories{color:var(--cyan)}
+.appr-meta .audio{color:var(--green)}
+
+/* AUDIO PREVIEW INLINE */
+.appr-audio{display:flex;align-items:center;gap:0.6rem;background:var(--surface);border-radius:8px;padding:0.5rem 0.8rem;margin:0.7rem 0}
+.appr-play{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--magenta));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.2s;flex-shrink:0}
+.appr-play:hover{transform:scale(1.08)}
+.appr-play svg{width:12px;height:12px;fill:white;margin-left:1px}
+.appr-wave{flex:1;height:28px;display:flex;align-items:center;gap:1.5px}
+.appr-wave span{width:2.5px;border-radius:2px;background:var(--cyan);opacity:0.4}
+.appr-dur{font-family:var(--mono);font-size:0.6rem;color:var(--text-m)}
+
+/* STORY PREVIEW LIST */
+.appr-stories{margin:0.5rem 0 0.8rem;display:flex;flex-direction:column;gap:0.35rem}
+.appr-story{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--text-s);padding:0.3rem 0.5rem;border-radius:6px;background:rgba(255,255,255,0.02)}
+.appr-story-badge{font-family:var(--mono);font-size:0.48rem;font-weight:600;padding:2px 5px;border-radius:3px;flex-shrink:0}
+.appr-story-badge.lead{background:var(--magenta-d);color:var(--magenta)}
+.appr-story-badge.story{background:var(--cyan-d);color:var(--cyan)}
+.appr-story-badge.update{background:var(--green-d);color:var(--green)}
+.appr-story-badge.quick{background:rgba(255,255,255,0.06);color:var(--text-m)}
+
+/* ACTION BUTTONS */
+.appr-actions{display:flex;gap:0.5rem;align-items:center}
+.btn{font-family:var(--mono);font-size:0.68rem;font-weight:600;padding:0.45rem 1rem;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.35rem}
+.btn-approve{background:linear-gradient(135deg,var(--green),#22c55e);color:#08080f}
+.btn-approve:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(74,222,128,0.3)}
+.btn-reject{background:var(--red-d);color:var(--red);border:1px solid rgba(239,68,68,0.2)}
+.btn-reject:hover{background:rgba(239,68,68,0.2)}
+.btn-edit{background:rgba(255,255,255,0.06);color:var(--text-s);border:1px solid var(--border)}
+.btn-edit:hover{color:var(--text);border-color:var(--border-h)}
+.btn-preview{background:var(--cyan-d);color:var(--cyan);border:1px solid rgba(0,212,255,0.15)}
+.btn-preview:hover{background:rgba(0,212,255,0.2)}
+
+/* ENGAGEMENT TABLE */
+.eng-table{width:100%;border-collapse:collapse}
+.eng-table th{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);text-align:left;padding:0.5rem 0.75rem;border-bottom:1px solid var(--border)}
+.eng-table td{font-size:0.8rem;padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--text-s)}
+.eng-table tr:hover td{background:rgba(255,255,255,0.02)}
+.eng-table .page-name{color:var(--text);font-weight:600}
+.eng-table .num{font-family:var(--mono);font-size:0.72rem}
+.eng-table .trend{font-family:var(--mono);font-size:0.6rem}
+.eng-table .trend.up{color:var(--green)}.eng-table .trend.down{color:var(--red)}
+.spark{display:inline-flex;align-items:flex-end;gap:1px;height:18px;vertical-align:middle}
+.spark span{width:3px;border-radius:1px;background:var(--cyan)}
+
+/* RECENT ACTIVITY */
+.activity{display:flex;flex-direction:column;gap:0.4rem}
+.act-item{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.7rem;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid var(--border)}
+.act-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.act-dot.published{background:var(--green)}.act-dot.pending{background:var(--amber)}
+.act-dot.rejected{background:var(--red)}.act-dot.scheduled{background:var(--purple)}
+.act-text{font-size:0.78rem;color:var(--text-s);flex:1}
+.act-text strong{color:var(--text);font-weight:600}
+.act-time{font-family:var(--mono);font-size:0.55rem;color:var(--text-m);white-space:nowrap}
+
+/* PIPELINE STATUS */
+.pipe{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:0.75rem}
+.pipe-header{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.8rem}
+.pipe-title{font-size:0.9rem;font-weight:700}
+.pipe-status{font-family:var(--mono);font-size:0.55rem;font-weight:600;padding:2px 7px;border-radius:4px}
+.pipe-status.healthy{background:var(--green-d);color:var(--green)}
+.pipe-status.warning{background:var(--amber-d);color:var(--amber)}
+.pipe-status.error{background:var(--red-d);color:var(--red)}
+.pipe-steps{display:flex;gap:0.4rem;flex-wrap:wrap}
+.pipe-step{display:flex;align-items:center;gap:0.3rem;font-family:var(--mono);font-size:0.6rem;padding:0.3rem 0.6rem;border-radius:6px;background:var(--surface)}
+.pipe-step .check{color:var(--green)}.pipe-step .pending{color:var(--amber)}
+.pipe-step .arrow{color:var(--text-m);margin:0 0.1rem}
+
+/* TWO COLUMN */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+
+/* QUICK ACTIONS */
+.quick-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.5rem}
+.qa{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s}
+.qa:hover{border-color:var(--border-h);transform:translateY(-1px)}
+.qa-icon{font-size:1.5rem;margin-bottom:0.3rem}
+.qa-text{font-size:0.78rem;font-weight:600}
+.qa-sub{font-family:var(--mono);font-size:0.55rem;color:var(--text-m);margin-top:0.15rem}
+
+/* EMAIL SUBSCRIBERS */
+.sub-chart{display:flex;align-items:flex-end;gap:3px;height:60px;margin-top:0.5rem}
+.sub-bar{width:100%;border-radius:2px 2px 0 0;background:var(--cyan);opacity:0.6;transition:opacity 0.2s}
+.sub-bar:hover{opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.quick-actions{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.dash{grid-template-columns:1fr}.sidebar{display:none}.main{padding:1rem}}
+</style>
+</head>
+<body>
+
+<div class="dash">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-brand">
+      <span class="sb-brand-text">ADMIN DASHBOARD</span>
+      <span class="dot"></span>
+    </div>
+    
+    <div class="sb-label">Overview</div>
+    <div class="sb-link active"><span class="icon">📊</span> Dashboard</div>
+    <div class="sb-link"><span class="icon">✅</span> Pending Approvals <span class="badge">2</span></div>
+    
+    <div class="sb-label">Content</div>
+    <div class="sb-link"><span class="icon">📡</span> Innovation Pulse</div>
+    <div class="sb-link"><span class="icon">🎙️</span> Podcast Episodes</div>
+    <div class="sb-link"><span class="icon">🧪</span> Tinker Lab</div>
+    <div class="sb-link"><span class="icon">⚡</span> Prompts</div>
+    <div class="sb-link"><span class="icon">📱</span> AI App Directory</div>
+    
+    <div class="sb-label">Distribution</div>
+    <div class="sb-link"><span class="icon">📧</span> Email Subscribers <span class="badge green">1,247</span></div>
+    <div class="sb-link"><span class="icon">🔗</span> Social Sharing</div>
+    
+    <div class="sb-label">System</div>
+    <div class="sb-link"><span class="icon">⚙️</span> Pipeline Status</div>
+    <div class="sb-link"><span class="icon">📈</span> Analytics</div>
+    <div class="sb-link"><span class="icon">🔑</span> Settings</div>
+    
+    <div class="sb-spacer"></div>
+    <div class="sb-link"><span class="icon">↗</span> View Live Site</div>
+    <div class="sb-user">
+      <div class="sb-avatar">CJ</div>
+      <div><div class="sb-uname">CalTex</div><div class="sb-urole">Admin</div></div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="page-head">
+      <div class="page-head-row">
+        <div>
+          <h1>Good morning, CalTex</h1>
+          <p>Here's what needs your attention today.</p>
+        </div>
+        <div class="head-date">Thursday, February 20, 2026</div>
+      </div>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="stats">
+      <div class="stat cyan">
+        <div class="stat-label">Page Views (Today)</div>
+        <div class="stat-val">1,847</div>
+        <div class="stat-change up">↑ 23% vs yesterday</div>
+      </div>
+      <div class="stat green">
+        <div class="stat-label">Audio Plays (Today)</div>
+        <div class="stat-val">342</div>
+        <div class="stat-change up">↑ 18% vs yesterday</div>
+      </div>
+      <div class="stat orange">
+        <div class="stat-label">Email Subscribers</div>
+        <div class="stat-val">1,247</div>
+        <div class="stat-sub">+12 this week</div>
+      </div>
+      <div class="stat purple">
+        <div class="stat-label">Pending Approvals</div>
+        <div class="stat-val">2</div>
+        <div class="stat-sub">1 pulse · 1 podcast</div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions">
+      <div class="qa"><div class="qa-icon">▶️</div><div class="qa-text">Run Daily Pulse</div><div class="qa-sub">Trigger pipeline manually</div></div>
+      <div class="qa"><div class="qa-icon">📝</div><div class="qa-text">New Podcast Episode</div><div class="qa-sub">Upload & publish</div></div>
+      <div class="qa"><div class="qa-icon">📧</div><div class="qa-text">Send Newsletter</div><div class="qa-sub">1,247 subscribers</div></div>
+    </div>
+
+    <!-- PENDING APPROVALS -->
+    <div class="section">
+      <div class="section-head">
+        <div class="section-title">Pending Approvals <span class="count">2 waiting</span></div>
+      </div>
+
+      <!-- Approval 1: Today's Innovation Pulse -->
+      <div class="approval pulse">
+        <div class="appr-top">
+          <div class="appr-icon pulse">📡</div>
+          <div style="flex:1">
+            <div class="appr-type">Innovation Pulse · February 20, 2026</div>
+            <div class="appr-title">Thursday's Pulse: Connecting the Dots</div>
+            <div class="appr-meta">
+              <span class="stories">5 stories curated</span>
+              <span class="audio">✓ Audio generated (3:47)</span>
+              <span>Pipeline completed 6:02 AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audio Preview -->
+        <div class="appr-audio">
+          <button class="appr-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+          <div class="appr-wave">
+            <span style="height:8px"></span><span style="height:14px"></span><span style="height:6px"></span><span style="height:18px"></span><span style="height:10px"></span><span style="height:22px"></span><span style="height:16px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:12px"></span><span style="height:6px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:6px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:16px"></span><span style="height:10px"></span><span style="height:20px"></span><span style="height:14px"></span><span style="height:6px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:22px"></span><span style="height:10px"></span><span style="height:16px"></span><span style="height:6px"></span><span style="height:14px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:6px"></span>
+          </div>
+          <div class="appr-dur">3:47</div>
+        </div>
+
+        <!-- Story Preview -->
+        <div class="appr-stories">
+          <div class="appr-story"><span class="appr-story-badge lead">LEAD</span> Stanford's New AI Governance Framework Could Set the National Standard</div>
+          <div class="appr-story"><span class="appr-story-badge story">STORY</span> Community Colleges Outpace R1s in AI Classroom Integration — New Data</div>
+          <div class="appr-story"><span class="appr-story-badge story">STORY</span> OpenAI Launches Education-Specific API Tier with 60% Discount</div>
+          <div class="appr-story"><span class="appr-story-badge update">UPDATE</span> Boise State's AI Tutoring System Hits 14,000 Student Sessions (Callback)</div>
+          <div class="appr-story"><span class="appr-story-badge quick">QUICK</span> EDUCAUSE Publishes New AI Governance Toolkit for CIOs</div>
+        </div>
+
+        <div class="appr-actions">
+          <button class="btn btn-approve">✓ Approve & Publish</button>
+          <button class="btn btn-edit">✏️ Edit Script</button>
+          <button class="btn btn-preview">👁 Preview Page</button>
+          <button class="btn btn-reject">✗ Reject</button>
+        </div>
+      </div>
+
+      <!-- Approval 2: Podcast Episode -->
+      <div class="approval">
+        <div class="appr-top">
+          <div class="appr-icon podcast">🎙️</div>
+          <div style="flex:1">
+            <div class="appr-type">Podcast Episode 48 · Scheduled Feb 24</div>
+            <div class="appr-title">The Registrar Who Automated 80% of Degree Audits</div>
+            <div class="appr-meta">
+              <span>Guest: Dr. Angela Torres</span>
+              <span class="audio">✓ Audio uploaded (38:14)</span>
+              <span>Awaiting show notes review</span>
+            </div>
+          </div>
+        </div>
+        <div class="appr-actions">
+          <button class="btn btn-approve">✓ Approve & Schedule</button>
+          <button class="btn btn-edit">✏️ Edit Show Notes</button>
+          <button class="btn btn-preview">👁 Preview</button>
+          <button class="btn btn-reject">✗ Hold</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO COLUMN: ENGAGEMENT + ACTIVITY -->
+    <div class="two-col">
+      <!-- TOP PAGES -->
+      <div class="section">
+        <div class="section-head">
+          <div class="section-title">Top Pages (Last 7 Days)</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden">
+          <table class="eng-table">
+            <thead><tr><th>Page</th><th>Views</th><th>Avg Time</th><th>Trend</th></tr></thead>
+            <tbody>
+              <tr><td class="page-name">Innovation Pulse</td><td class="num">4,218</td><td class="num">2:34</td><td><span class="trend up">↑ 31%</span></td></tr>
+              <tr><td class="page-name">Podcast: Zero Budget AI Lab</td><td class="num">1,847</td><td class="num">4:12</td><td><span class="trend up">↑ 18%</span></td></tr>
+              <tr><td class="page-name">Prompt: AI-Resistant Assignments</td><td class="num">1,234</td><td class="num">1:48</td><td><span class="trend up">↑ 45%</span></td></tr>
+              <tr><td class="page-name">AI App Directory</td><td class="num">982</td><td class="num">3:21</td><td><span class="trend down">↓ 5%</span></td></tr>
+              <tr><td class="page-name">Tinker Lab: AI Grading Test</td><td class="num">876</td><td class="num">5:07</td><td><span class="trend up">↑ 62%</span></td></tr>
+              <tr><td class="page-name">Home</td><td class="num">721</td><td class="num">0:52</td><td><span class="trend up">↑ 8%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="section">
+        <div class="section-head"><div class="section-title">Recent Activity</div></div>
+        <div class="activity">
+          <div class="act-item"><span class="act-dot pending"></span><span class="act-text"><strong>Innovation Pulse Feb 20</strong> ready for approval</span><span class="act-time">6:02 AM</span></div>
+          <div class="act-item"><span class="act-dot published"></span><span class="act-text"><strong>Innovation Pulse Feb 19</strong> published</span><span class="act-time">Yesterday 7:14 AM</span></div>
+          <div class="act-item"><span class="act-dot published"></span><span class="act-text"><strong>Newsletter #47</strong> sent to 1,235 subscribers</span><span class="act-time">Yesterday 7:30 AM</span></div>
+          <div class="act-item"><span class="act-dot scheduled"></span><span class="act-text"><strong>Podcast Ep 48</strong> scheduled for Feb 24</span><span class="act-time">Feb 18</span></div>
+          <div class="act-item"><span class="act-dot published"></span><span class="act-text"><strong>Tinker Lab: AI Grading</strong> published</span><span class="act-time">Feb 17</span></div>
+          <div class="act-item"><span class="act-dot published"></span><span class="act-text"><strong>3 new prompts</strong> added to Navigator</span><span class="act-time">Feb 16</span></div>
+          <div class="act-item"><span class="act-dot rejected"></span><span class="act-text"><strong>Innovation Pulse Feb 15</strong> rejected — regenerated</span><span class="act-time">Feb 15</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIPELINE STATUS -->
+    <div class="section">
+      <div class="section-head"><div class="section-title">Pipeline Status</div></div>
+      <div class="pipe">
+        <div class="pipe-header">
+          <div class="pipe-title">Daily Innovation Pulse Pipeline</div>
+          <span class="pipe-status healthy">Healthy</span>
+        </div>
+        <div class="pipe-steps">
+          <div class="pipe-step"><span class="check">✓</span> Serper Search</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step"><span class="check">✓</span> Firecrawl Scrape</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step"><span class="check">✓</span> OpenAI Process</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step"><span class="check">✓</span> Broadcast Script</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step"><span class="check">✓</span> ElevenLabs Audio</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step"><span class="pending">⏳</span> Awaiting Approval</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step" style="opacity:0.4">Publish to Site</div>
+        </div>
+      </div>
+      <div class="pipe">
+        <div class="pipe-header">
+          <div class="pipe-title">Email Distribution</div>
+          <span class="pipe-status healthy">Ready</span>
+        </div>
+        <div class="pipe-steps">
+          <div class="pipe-step" style="opacity:0.4">Triggered after Pulse approval</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step" style="opacity:0.4">Format newsletter</div>
+          <span class="pipe-step arrow">→</span>
+          <div class="pipe-step" style="opacity:0.4">Send to 1,247 subscribers</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBSCRIBER GROWTH -->
+    <div class="two-col">
+      <div class="section">
+        <div class="section-head"><div class="section-title">Subscriber Growth (Last 30 Days)</div></div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1rem">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem">
+            <span style="font-family:var(--mono);font-size:0.6rem;color:var(--text-m)">1,193 → 1,247 (+54)</span>
+            <span style="font-family:var(--mono);font-size:0.6rem;color:var(--green)">↑ 4.5%</span>
+          </div>
+          <div class="sub-chart">
+            <span class="sub-bar" style="height:22%"></span><span class="sub-bar" style="height:18%"></span><span class="sub-bar" style="height:30%"></span><span class="sub-bar" style="height:25%"></span><span class="sub-bar" style="height:15%"></span><span class="sub-bar" style="height:35%"></span><span class="sub-bar" style="height:42%"></span><span class="sub-bar" style="height:28%"></span><span class="sub-bar" style="height:20%"></span><span class="sub-bar" style="height:38%"></span><span class="sub-bar" style="height:45%"></span><span class="sub-bar" style="height:30%"></span><span class="sub-bar" style="height:25%"></span><span class="sub-bar" style="height:50%"></span><span class="sub-bar" style="height:35%"></span><span class="sub-bar" style="height:22%"></span><span class="sub-bar" style="height:40%"></span><span class="sub-bar" style="height:55%"></span><span class="sub-bar" style="height:42%"></span><span class="sub-bar" style="height:30%"></span><span class="sub-bar" style="height:48%"></span><span class="sub-bar" style="height:60%"></span><span class="sub-bar" style="height:52%"></span><span class="sub-bar" style="height:38%"></span><span class="sub-bar" style="height:65%"></span><span class="sub-bar" style="height:55%"></span><span class="sub-bar" style="height:70%"></span><span class="sub-bar" style="height:62%"></span><span class="sub-bar" style="height:75%"></span><span class="sub-bar" style="height:80%"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><div class="section-title">Audio Play Distribution</div></div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1rem">
+          <div style="display:flex;flex-direction:column;gap:0.6rem">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.25rem"><span>Innovation Pulse</span><span style="font-family:var(--mono);font-size:0.7rem;color:var(--cyan)">68%</span></div>
+              <div style="height:6px;background:var(--surface);border-radius:3px;overflow:hidden"><div style="width:68%;height:100%;background:var(--cyan);border-radius:3px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.25rem"><span>Podcast Episodes</span><span style="font-family:var(--mono);font-size:0.7rem;color:var(--orange)">22%</span></div>
+              <div style="height:6px;background:var(--surface);border-radius:3px;overflow:hidden"><div style="width:22%;height:100%;background:var(--orange);border-radius:3px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.25rem"><span>Tinker Lab</span><span style="font-family:var(--mono);font-size:0.7rem;color:var(--teal)">10%</span></div>
+              <div style="height:6px;background:var(--surface);border-radius:3px;overflow:hidden"><div style="width:10%;height:100%;background:var(--teal);border-radius:3px"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

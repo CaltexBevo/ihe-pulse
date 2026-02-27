@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE VISION — The Future of Education</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* The cosmos palette */
+            --void: #020208;
+            --deep-space: #050510;
+            --nebula: #0a0a1a;
+            --surface: #0f0f20;
+            --elevated: #151530;
+            --card: #1a1a35;
+            
+            /* Bioluminescent spectrum */
+            --pulse-green: #00ff88;
+            --pulse-green-glow: rgba(0, 255, 136, 0.3);
+            --synapse-cyan: #00d4ff;
+            --synapse-glow: rgba(0, 212, 255, 0.3);
+            --aurora-gold: #ffd700;
+            --aurora-glow: rgba(255, 215, 0, 0.3);
+            --dream-violet: #a855f7;
+            --dream-glow: rgba(168, 85, 247, 0.3);
+            --hope-rose: #ff6b9d;
+            --hope-glow: rgba(255, 107, 157, 0.3);
+            --dawn-orange: #ff8c42;
+            
+            /* Text */
+            --text-bright: #ffffff;
+            --text-primary: #e8e8f0;
+            --text-secondary: #a0a0c0;
+            --text-muted: #606080;
+            
+            /* Gradients */
+            --gradient-aurora: linear-gradient(135deg, var(--pulse-green), var(--synapse-cyan), var(--dream-violet));
+            --gradient-dawn: linear-gradient(135deg, var(--aurora-gold), var(--dawn-orange), var(--hope-rose));
+            --gradient-cosmos: linear-gradient(135deg, var(--synapse-cyan), var(--dream-violet), var(--hope-rose));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* ==========================================
+           THE COSMOS - Immersive Background
+           ========================================== */
+        .cosmos-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 3s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: var(--min-opacity, 0.3); transform: scale(1); }
+            50% { opacity: var(--max-opacity, 1); transform: scale(1.2); }
+        }
+
+        /* Nebula clouds */
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: nebula-drift 30s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse, var(--pulse-green-glow) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+
+        .nebula-2 {
+            width: 600px;
+            height: 800px;
+            background: radial-gradient(ellipse, var(--synapse-glow) 0%, transparent 70%);
+            bottom: -300px;
+            right: -200px;
+            animation-delay: -15s;
+        }
+
+        .nebula-3 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(ellipse, var(--dream-glow) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -7s;
+        }
+
+        .nebula-4 {
+            width: 400px;
+            height: 600px;
+            background: radial-gradient(ellipse, var(--aurora-glow) 0%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation-delay: -20s;
+        }
+
+        @keyframes nebula-drift {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+            33% { transform: translate(30px, -20px) scale(1.1); opacity: 0.8; }
+            66% { transform: translate(-20px, 30px) scale(0.95); opacity: 0.5; }
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--pulse-green), transparent);
+            animation: shoot 4s ease-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0); opacity: 0; }
+            5% { opacity: 1; }
+            30% { transform: translateX(300px) translateY(150px); opacity: 0; }
+            100% { transform: translateX(300px) translateY(150px); opacity: 0; }
+        }
+
+        /* ==========================================
+           CONTENT CONTAINER
+           ========================================== */
+        .experience {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           NAVIGATION - Floating
+           ========================================== */
+        .nav-float {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-bright);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--void);
+            background: var(--pulse-green);
+        }
+
+        /* ==========================================
+           OPENING - The Awakening
+           ========================================== */
+        .opening {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px;
+            position: relative;
+        }
+
+        .opening-content {
+            max-width: 1000px;
+        }
+
+        .opening-prelude {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--pulse-green);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fade-in 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fade-in {
+            to { opacity: 1; }
+        }
+
+        .opening-title {
+            font-size: 80px;
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: rise-in 1.2s ease-out 0.8s forwards;
+        }
+
+        @keyframes rise-in {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .opening-title .line {
+            display: block;
+        }
+
+        .opening-title .glow {
+            background: var(--gradient-aurora);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift 5s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .opening-subtitle {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fade-in 1s ease-out 1.2s forwards;
+        }
+
+        .scroll-indicator {
+            opacity: 0;
+            animation: fade-in 1s ease-out 2s forwards;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--text-muted);
+            border-radius: 12px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .scroll-arrow::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--pulse-green);
+            border-radius: 2px;
+            animation: scroll-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-bounce {
+            0%, 100% { top: 8px; opacity: 1; }
+            50% { top: 20px; opacity: 0.3; }
+        }
+
+        /* ==========================================
+           MANIFESTO SECTION
+           ========================================== */
+        .manifesto {
+            padding: 120px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .manifesto-block {
+            margin-bottom: 80px;
+        }
+
+        .manifesto-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--pulse-green);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .manifesto-text {
+            font-size: 32px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .manifesto-text strong {
+            color: var(--text-bright);
+            font-weight: 600;
+        }
+
+        .manifesto-text .highlight {
+            color: var(--pulse-green);
+        }
+
+        .manifesto-text .highlight-gold {
+            color: var(--aurora-gold);
+        }
+
+        .manifesto-text .highlight-cyan {
+            color: var(--synapse-cyan);
+        }
+
+        .manifesto-text .highlight-violet {
+            color: var(--dream-violet);
+        }
+
+        /* Big quote */
+        .big-quote {
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .big-quote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-aurora);
+        }
+
+        .big-quote-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            font-style: italic;
+            line-height: 1.4;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--gradient-dawn);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ==========================================
+           VISION SECTIONS - Full Width Experiences
+           ========================================== */
+        .vision-section {
+            padding: 160px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, var(--nebula) 50%, transparent 100%);
+            opacity: 0.5;
+        }
+
+        .vision-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .vision-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .vision-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            color: var(--pulse-green);
+            letter-spacing: 0.3em;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .vision-number::before,
+        .vision-number::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--pulse-green);
+            opacity: 0.5;
+        }
+
+        .vision-title {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .vision-title .glow {
+            background: var(--gradient-aurora);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vision-subtitle {
+            font-size: 22px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           EXPERIENCE CARDS - VR/AR/AI Features
+           ========================================== */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .experience-card {
+            background: rgba(26, 26, 53, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-aurora);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 136, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .experience-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .card-icon.vr {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(168, 85, 247, 0.2));
+        }
+
+        .card-icon.ar {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(255, 215, 0, 0.2));
+        }
+
+        .card-icon.ai {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(255, 140, 66, 0.2));
+        }
+
+        .card-icon.community {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(0, 255, 136, 0.2));
+        }
+
+        .card-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .card-tag.vr { color: var(--synapse-cyan); }
+        .card-tag.ar { color: var(--pulse-green); }
+        .card-tag.ai { color: var(--hope-rose); }
+        .card-tag.community { color: var(--dream-violet); }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .card-possibilities {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-possibilities-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .possibility {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .possibility::before {
+            content: '→';
+            color: var(--pulse-green);
+        }
+
+        /* ==========================================
+           THE GLOBAL FACULTY ROOM
+           ========================================== */
+        .faculty-room {
+            background: linear-gradient(180deg, var(--void) 0%, var(--nebula) 50%, var(--void) 100%);
+        }
+
+        .room-visualization {
+            position: relative;
+            height: 500px;
+            border-radius: 32px;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, var(--surface) 0%, var(--void) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 60px;
+        }
+
+        /* Floating avatars representing global educators */
+        .avatar-float {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: float-educator 6s ease-in-out infinite;
+        }
+
+        @keyframes float-educator {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .avatar-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .avatar-info {
+            text-align: center;
+        }
+
+        .avatar-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .avatar-location {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .avatar-float:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .avatar-float:nth-child(1) .avatar-circle { background: linear-gradient(135deg, #ff6b6b, #ffa500); }
+
+        .avatar-float:nth-child(2) { top: 25%; left: 30%; animation-delay: 1s; }
+        .avatar-float:nth-child(2) .avatar-circle { background: linear-gradient(135deg, #00d4ff, #a855f7); }
+
+        .avatar-float:nth-child(3) { top: 10%; left: 50%; animation-delay: 2s; }
+        .avatar-float:nth-child(3) .avatar-circle { background: linear-gradient(135deg, #00ff88, #00d4ff); }
+
+        .avatar-float:nth-child(4) { top: 30%; left: 70%; animation-delay: 0.5s; }
+        .avatar-float:nth-child(4) .avatar-circle { background: linear-gradient(135deg, #ffd700, #ff6b9d); }
+
+        .avatar-float:nth-child(5) { top: 20%; right: 10%; animation-delay: 1.5s; }
+        .avatar-float:nth-child(5) .avatar-circle { background: linear-gradient(135deg, #a855f7, #ff6b6b); }
+
+        .avatar-float:nth-child(6) { top: 55%; left: 15%; animation-delay: 2.5s; }
+        .avatar-float:nth-child(6) .avatar-circle { background: linear-gradient(135deg, #00ff88, #ffd700); }
+
+        .avatar-float:nth-child(7) { top: 60%; left: 40%; animation-delay: 0.8s; }
+        .avatar-float:nth-child(7) .avatar-circle { background: linear-gradient(135deg, #00d4ff, #00ff88); }
+
+        .avatar-float:nth-child(8) { top: 50%; left: 60%; animation-delay: 1.8s; }
+        .avatar-float:nth-child(8) .avatar-circle { background: linear-gradient(135deg, #ff6b9d, #a855f7); }
+
+        .avatar-float:nth-child(9) { top: 65%; right: 20%; animation-delay: 3s; }
+        .avatar-float:nth-child(9) .avatar-circle { background: linear-gradient(135deg, #ffd700, #00ff88); }
+
+        /* Connection lines between avatars */
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--pulse-green), transparent);
+            opacity: 0.3;
+            animation: pulse-line 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-line {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Center gathering point */
+        .gathering-point {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--pulse-green-glow) 0%, transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: gather-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes gather-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        .gathering-point .icon {
+            font-size: 40px;
+        }
+
+        .room-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .room-feature {
+            text-align: center;
+            padding: 32px;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           THE SIMULATION LIBRARY
+           ========================================== */
+        .sim-library {
+            background: linear-gradient(180deg, var(--void) 0%, var(--deep-space) 100%);
+        }
+
+        .sim-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .sim-card {
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .sim-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .sim-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .sim-visual {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            transition: transform 0.5s ease;
+        }
+
+        .sim-card:hover .sim-visual {
+            transform: scale(1.1);
+        }
+
+        .sim-card.biology .sim-visual {
+            background: linear-gradient(135deg, #ff6b6b, #ff8c42);
+        }
+
+        .sim-card.space .sim-visual {
+            background: linear-gradient(135deg, #1a1a4e, #4a0080);
+        }
+
+        .sim-card.history .sim-visual {
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+        }
+
+        .sim-card.chemistry .sim-visual {
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+        }
+
+        .sim-card.empathy .sim-visual {
+            background: linear-gradient(135deg, #ff6b9d, #a855f7);
+        }
+
+        .sim-card.physics .sim-visual {
+            background: linear-gradient(135deg, #ffd700, #ff8c42);
+        }
+
+        .sim-card.medicine .sim-visual {
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+        }
+
+        .sim-card.architecture .sim-visual {
+            background: linear-gradient(135deg, #a855f7, #00d4ff);
+        }
+
+        .sim-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        .sim-category {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--pulse-green);
+            margin-bottom: 6px;
+        }
+
+        .sim-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .sim-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .sim-card:hover .sim-desc {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+           THE RIPPLE EFFECT - Impact Visualization
+           ========================================== */
+        .ripple-section {
+            padding: 160px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .ripple-viz {
+            position: relative;
+            height: 400px;
+            margin: 60px auto;
+            max-width: 600px;
+        }
+
+        .ripple-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--pulse-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            z-index: 10;
+            box-shadow: 0 0 60px var(--pulse-green-glow);
+        }
+
+        .ripple-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid var(--pulse-green);
+            animation: ripple-expand 4s ease-out infinite;
+        }
+
+        .ripple-ring:nth-child(1) { animation-delay: 0s; }
+        .ripple-ring:nth-child(2) { animation-delay: 1s; }
+        .ripple-ring:nth-child(3) { animation-delay: 2s; }
+        .ripple-ring:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes ripple-expand {
+            0% { width: 100px; height: 100px; opacity: 0.8; }
+            100% { width: 500px; height: 500px; opacity: 0; }
+        }
+
+        .ripple-labels {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .ripple-label {
+            position: absolute;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .ripple-label.educator { top: 50%; left: calc(50% + 70px); transform: translateY(-50%); }
+        .ripple-label.students { top: 50%; left: calc(50% + 160px); transform: translateY(-50%); color: var(--synapse-cyan); }
+        .ripple-label.families { top: 50%; left: calc(50% + 270px); transform: translateY(-50%); color: var(--aurora-gold); }
+        .ripple-label.world { top: 50%; left: calc(50% + 380px); transform: translateY(-50%); color: var(--pulse-green); }
+
+        .ripple-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .ripple-stat {
+            text-align: center;
+        }
+
+        .ripple-stat-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 48px;
+            font-weight: 600;
+            background: var(--gradient-aurora);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .ripple-stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           THE PLEDGE - Call to Action
+           ========================================== */
+        .pledge-section {
+            padding: 160px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .pledge-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, var(--pulse-green-glow), transparent);
+            opacity: 0.1;
+        }
+
+        .pledge-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pledge-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 64px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+
+        .pledge-title .glow {
+            background: var(--gradient-dawn);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pledge-text {
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 48px;
+        }
+
+        .pledge-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: var(--pulse-green);
+            color: var(--void);
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 60px;
+            transition: all 0.4s ease;
+        }
+
+        .pledge-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px var(--pulse-green-glow);
+        }
+
+        .pledge-cta .arrow {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .pledge-cta:hover .arrow {
+            transform: translateX(8px);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            padding: 60px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer-brand .accent {
+            color: var(--pulse-green);
+        }
+
+        .footer-tagline {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 1200px) {
+            .experience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sim-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .opening-title {
+                font-size: 48px;
+            }
+            
+            .vision-title {
+                font-size: 36px;
+            }
+            
+            .manifesto-text {
+                font-size: 24px;
+            }
+            
+            .big-quote-text {
+                font-size: 28px;
+            }
+            
+            .experience-grid,
+            .room-features,
+            .ripple-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .sim-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-float {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- THE COSMOS -->
+    <div class="cosmos-container">
+        <!-- Nebulae -->
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+        <div class="nebula nebula-4"></div>
+        
+        <!-- Stars - Generated by JS -->
+        <div class="stars" id="stars"></div>
+        
+        <!-- Shooting stars -->
+        <div class="shooting-star" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="shooting-star" style="top: 40%; left: 50%; animation-delay: 4s;"></div>
+        <div class="shooting-star" style="top: 70%; left: 30%; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- FLOATING NAV -->
+    <nav class="nav-float">
+        <a href="#opening" class="nav-link active">The Vision</a>
+        <a href="#vr-ar" class="nav-link">VR/AR</a>
+        <a href="#faculty-room" class="nav-link">Global Room</a>
+        <a href="#simulations" class="nav-link">Simulations</a>
+        <a href="#ripple" class="nav-link">Impact</a>
+    </nav>
+
+    <!-- THE EXPERIENCE -->
+    <div class="experience">
+        
+        <!-- OPENING -->
+        <section class="opening" id="opening">
+            <div class="opening-content">
+                <div class="opening-prelude">A Manifesto for the Future</div>
+                <h1 class="opening-title">
+                    <span class="line">What If Education</span>
+                    <span class="line">Could <span class="glow">Truly</span></span>
+                    <span class="line"><span class="glow">Transform?</span></span>
+                </h1>
+                <p class="opening-subtitle">
+                    Not incrementally. Not eventually. But fundamentally—in ways that honor every learner, empower every teacher, and unlock human potential we haven't yet imagined.
+                </p>
+                <div class="scroll-indicator">
+                    <span>Begin the Journey</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MANIFESTO -->
+        <section class="manifesto">
+            <div class="manifesto-block">
+                <div class="manifesto-label">The Problem</div>
+                <p class="manifesto-text">
+                    Education was designed for a different world. <strong>One teacher, thirty students, fifty minutes.</strong> The same pace for everyone. The same style for everyone. The same chance for everyone—<span class="highlight">which means no real chance at all</span> for most.
+                </p>
+            </div>
+            
+            <div class="manifesto-block">
+                <div class="manifesto-label">The Tragedy</div>
+                <p class="manifesto-text">
+                    The brilliant student in the back who needs more? <span class="highlight-cyan">Bored.</span> The struggling student who needs it explained differently? <span class="highlight-cyan">Lost.</span> The anxious student who can't think when everyone's watching? <span class="highlight-cyan">Paralyzed.</span> The teacher who knows all this and can't fix it? <span class="highlight-gold">Exhausted.</span>
+                </p>
+            </div>
+            
+            <div class="manifesto-block">
+                <div class="manifesto-label">The Isolation</div>
+                <p class="manifesto-text">
+                    And they're all <strong>isolated</strong>. The teacher reinvents every wheel alone. The struggling student suffers in silence. The innovation that works brilliantly in one classroom <span class="highlight-violet">dies there, unknown</span>—while a thousand other teachers struggle with the exact same problem.
+                </p>
+            </div>
+        </section>
+
+        <!-- BIG QUOTE -->
+        <div class="big-quote">
+            <p class="big-quote-text">
+                "What if every educator's breakthrough could become everyone's breakthrough? What if the best teaching could scale without losing its soul?"
+            </p>
+        </div>
+
+        <!-- MANIFESTO CONTINUED -->
+        <section class="manifesto">
+            <div class="manifesto-block">
+                <div class="manifesto-label">The Possibility</div>
+                <p class="manifesto-text">
+                    For the first time in human history, we have tools that can make this real. <span class="highlight">AI</span> that can personalize learning for every mind. <span class="highlight-cyan">VR</span> that can create impossible experiences. <span class="highlight-gold">AR</span> that can overlay knowledge onto the world. <span class="highlight-violet">Connection</span> that can link every educator on Earth.
+                </p>
+            </div>
+            
+            <div class="manifesto-block">
+                <div class="manifesto-label">The Philosophy</div>
+                <p class="manifesto-text">
+                    A <span class="highlight-gold">rising tide lifts all ships</span>. When one educator grows, their students grow. When students grow, they lift their families. When families grow, communities transform. When communities transform, <strong>the world changes</strong>. This is the ripple we're creating.
+                </p>
+            </div>
+        </section>
+
+        <!-- VISION: VR/AR/AI -->
+        <section class="vision-section" id="vr-ar">
+            <div class="vision-content">
+                <div class="vision-header">
+                    <div class="vision-number">VISION ONE</div>
+                    <h2 class="vision-title">
+                        The <span class="glow">Experience</span> Revolution
+                    </h2>
+                    <p class="vision-subtitle">
+                        When VR, AR, and AI converge, education stops being about information transfer. It becomes about transformation through experience.
+                    </p>
+                </div>
+                
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <div class="card-icon vr">🥽</div>
+                        <div class="card-tag vr">Virtual Reality</div>
+                        <h3 class="card-title">Impossible Experiences Made Real</h3>
+                        <p class="card-description">
+                            Walk through a human cell. Stand on Mars during a dust storm. Witness the signing of the Declaration of Independence. Experience what you could never experience—until now.
+                        </p>
+                        <div class="card-possibilities">
+                            <div class="card-possibilities-label">What becomes possible</div>
+                            <div class="possibility">Practice surgery without risk</div>
+                            <div class="possibility">Give speeches without embarrassment</div>
+                            <div class="possibility">Fail safely, infinitely, until you succeed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="card-icon ar">👓</div>
+                        <div class="card-tag ar">Augmented Reality</div>
+                        <h3 class="card-title">The World as Classroom</h3>
+                        <p class="card-description">
+                            Information appears when and where you need it. The invisible becomes visible. Magnetic fields you can see. Molecular structures floating in air. History overlaid on the present.
+                        </p>
+                        <div class="card-possibilities">
+                            <div class="card-possibilities-label">What becomes possible</div>
+                            <div class="possibility">Step-by-step guidance on any task</div>
+                            <div class="possibility">Real-time translation in your vision</div>
+                            <div class="possibility">Collaborative work in shared space</div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="card-icon ai">🧠</div>
+                        <div class="card-tag ai">Artificial Intelligence</div>
+                        <h3 class="card-title">Infinite Personalization</h3>
+                        <p class="card-description">
+                            Every learner gets their own path, pace, and style. AI that knows when you're confused before you do. That finds exactly the right explanation for exactly this mind.
+                        </p>
+                        <div class="card-possibilities">
+                            <div class="card-possibilities-label">What becomes possible</div>
+                            <div class="possibility">24/7 tutoring with infinite patience</div>
+                            <div class="possibility">Instant feedback that actually helps</div>
+                            <div class="possibility">Prediction before failure happens</div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="card-icon vr">💫</div>
+                        <div class="card-tag vr">Empathy Machines</div>
+                        <h3 class="card-title">Walk in Another's Shoes</h3>
+                        <p class="card-description">
+                            VR doesn't just show you what something looks like—it lets you experience what it FEELS like. Experience dyslexia. Feel anxiety. Understand what your students are going through.
+                        </p>
+                        <div class="card-possibilities">
+                            <div class="card-possibilities-label">What becomes possible</div>
+                            <div class="possibility">Educators feel student struggles</div>
+                            <div class="possibility">Students understand different lives</div>
+                            <div class="possibility">Compassion through experience</div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="card-icon ar">🔬</div>
+                        <div class="card-tag ar">Skills Overlay</div>
+                        <h3 class="card-title">Learn While Doing</h3>
+                        <p class="card-description">
+                            See instructions overlaid on the real task. Learn a procedure while performing it. The gap between knowing and doing... closes.
+                        </p>
+                        <div class="card-possibilities">
+                            <div class="card-possibilities-label">What becomes possible</div>
+                            <div class="possibility">Assembly guidance in your vision</div>
+                            <div class="possibility">Real-time technique correction</div>
+                            <div class="possibility">Expert knowledge at your fingertips</div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="card-icon community">🌐</div>
+                        <div class="card-tag community">Collective Intelligence</div>
+                        <h3 class="card-title">Wisdom That Grows</h3>
+                        <p class="card-description">
+                            Every educator's insight makes the system smarter. Every breakthrough spreads. No one reinvents the wheel. We all rise together.
+                        </p>
+                        <div class="card-possibilities">
+                            <div class="card-possibilities-label">What becomes possible</div>
+                            <div class="possibility">Best practices that spread instantly</div>
+                            <div class="possibility">Problems solved collectively</div>
+                            <div class="possibility">No educator ever alone again</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISION: GLOBAL FACULTY ROOM -->
+        <section class="vision-section faculty-room" id="faculty-room">
+            <div class="vision-content">
+                <div class="vision-header">
+                    <div class="vision-number">VISION TWO</div>
+                    <h2 class="vision-title">
+                        The <span class="glow">Global Faculty Room</span>
+                    </h2>
+                    <p class="vision-subtitle">
+                        A persistent virtual space where educators from anywhere can gather, collaborate, and never feel alone in their challenges again.
+                    </p>
+                </div>
+                
+                <div class="room-visualization">
+                    <!-- Floating educator avatars -->
+                    <div class="avatar-float">
+                        <div class="avatar-circle">JK</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Dr. Jennifer Kim</div>
+                            <div class="avatar-location">UC Berkeley</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">MT</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Prof. Marcus T.</div>
+                            <div class="avatar-location">Howard University</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">AY</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Akiko Yamamoto</div>
+                            <div class="avatar-location">Tokyo University</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">RS</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Dr. Raj Singh</div>
+                            <div class="avatar-location">IIT Delhi</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">EO</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Elena Okonkwo</div>
+                            <div class="avatar-location">Lagos, Nigeria</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">CM</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Carlos Martinez</div>
+                            <div class="avatar-location">Mexico City</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">SW</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Sarah Williams</div>
+                            <div class="avatar-location">Rural Alabama</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">LP</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Dr. Lars Petersen</div>
+                            <div class="avatar-location">Copenhagen</div>
+                        </div>
+                    </div>
+                    <div class="avatar-float">
+                        <div class="avatar-circle">MC</div>
+                        <div class="avatar-info">
+                            <div class="avatar-name">Dr. Ming Chen</div>
+                            <div class="avatar-location">Shanghai</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Center gathering point -->
+                    <div class="gathering-point">
+                        <span class="icon">✨</span>
+                    </div>
+                    
+                    <!-- Connection lines -->
+                    <div class="connection-line" style="top: 25%; left: 20%; width: 200px; transform: rotate(15deg);"></div>
+                    <div class="connection-line" style="top: 35%; left: 40%; width: 150px; transform: rotate(-20deg);"></div>
+                    <div class="connection-line" style="top: 50%; left: 55%; width: 180px; transform: rotate(5deg);"></div>
+                </div>
+                
+                <div class="room-features">
+                    <div class="room-feature">
+                        <div class="feature-icon">🤝</div>
+                        <h3 class="feature-title">Always Open</h3>
+                        <p class="feature-desc">No matter your timezone, there's always someone here. Questions get answered. Problems get solved. No one waits alone.</p>
+                    </div>
+                    <div class="room-feature">
+                        <div class="feature-icon">🎓</div>
+                        <h3 class="feature-title">Cross-Border Mentorship</h3>
+                        <p class="feature-desc">A professor in Cambridge mentors a first-year teacher in Kenya. Expertise flows without boundaries.</p>
+                    </div>
+                    <div class="room-feature">
+                        <div class="feature-icon">💡</div>
+                        <h3 class="feature-title">Serendipitous Discovery</h3>
+                        <p class="feature-desc">Overhear a conversation. Join a spontaneous workshop. Find collaborators you didn't know you needed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISION: SIMULATION LIBRARY -->
+        <section class="vision-section sim-library" id="simulations">
+            <div class="vision-content">
+                <div class="vision-header">
+                    <div class="vision-number">VISION THREE</div>
+                    <h2 class="vision-title">
+                        The <span class="glow">Simulation Library</span>
+                    </h2>
+                    <p class="vision-subtitle">
+                        A growing collection of VR experiences that any educator can use. Impossible experiences, available to everyone.
+                    </p>
+                </div>
+                
+                <div class="sim-grid">
+                    <div class="sim-card biology">
+                        <div class="sim-visual">🧬</div>
+                        <div class="sim-info">
+                            <div class="sim-category">Biology</div>
+                            <div class="sim-name">Inside the Human Cell</div>
+                            <div class="sim-desc">Walk through a living cell. Watch protein synthesis happen around you.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-card space">
+                        <div class="sim-visual">🚀</div>
+                        <div class="sim-info">
+                            <div class="sim-category">Astronomy</div>
+                            <div class="sim-name">Standing on Mars</div>
+                            <div class="sim-desc">Feel the scale of Olympus Mons. Watch a dust storm approach.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-card history">
+                        <div class="sim-visual">📜</div>
+                        <div class="sim-info">
+                            <div class="sim-category">History</div>
+                            <div class="sim-name">Witness History</div>
+                            <div class="sim-desc">Be present at pivotal moments. Feel the weight of decisions.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-card chemistry">
+                        <div class="sim-visual">⚗️</div>
+                        <div class="sim-info">
+                            <div class="sim-category">Chemistry</div>
+                            <div class="sim-name">Molecular Dance</div>
+                            <div class="sim-desc">Watch chemical reactions at atomic scale. Touch the bonds.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-card empathy">
+                        <div class="sim-visual">💜</div>
+                        <div class="sim-info">
+                            <div class="sim-category">Empathy</div>
+                            <div class="sim-name">Experience Dyslexia</div>
+                            <div class="sim-desc">Understand what your students experience. Feel the frustration.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-card physics">
+                        <div class="sim-visual">⚡</div>
+                        <div class="sim-info">
+                            <div class="sim-category">Physics</div>
+                            <div class="sim-name">Ride a Photon</div>
+                            <div class="sim-desc">Experience relativity. See time dilation. Feel space compress.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-card medicine">
+                        <div class="sim-visual">🏥</div>
+                        <div class="sim-info">
+                            <div class="sim-category">Medicine</div>
+                            <div class="sim-name">Emergency Practice</div>
+                            <div class="sim-desc">Practice rare procedures a hundred times. No risk. Perfect readiness.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sim-card architecture">
+                        <div class="sim-visual">🏛️</div>
+                        <div class="sim-info">
+                            <div class="sim-category">Architecture</div>
+                            <div class="sim-name">Ancient Wonders</div>
+                            <div class="sim-desc">Walk through the Library of Alexandria. Climb the Hanging Gardens.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE RIPPLE EFFECT -->
+        <section class="ripple-section" id="ripple">
+            <div class="vision-header">
+                <div class="vision-number">THE IMPACT</div>
+                <h2 class="vision-title">
+                    The <span class="glow">Ripple Effect</span>
+                </h2>
+                <p class="vision-subtitle">
+                    When one educator grows, the effect multiplies outward—touching students, families, communities, and ultimately, the world.
+                </p>
+            </div>
+            
+            <div class="ripple-viz">
+                <div class="ripple-center">👩‍🏫</div>
+                <div class="ripple-ring"></div>
+                <div class="ripple-ring"></div>
+                <div class="ripple-ring"></div>
+                <div class="ripple-ring"></div>
+                <div class="ripple-labels">
+                    <span class="ripple-label educator">1 Educator</span>
+                    <span class="ripple-label students">127 Students/year</span>
+                    <span class="ripple-label families">~400 Family Members</span>
+                    <span class="ripple-label world">Infinite Ripples</span>
+                </div>
+            </div>
+            
+            <div class="ripple-stats">
+                <div class="ripple-stat">
+                    <div class="ripple-stat-value">52,847</div>
+                    <div class="ripple-stat-label">Educators Growing</div>
+                </div>
+                <div class="ripple-stat">
+                    <div class="ripple-stat-value">6.7M</div>
+                    <div class="ripple-stat-label">Students Reached Annually</div>
+                </div>
+                <div class="ripple-stat">
+                    <div class="ripple-stat-value">21M+</div>
+                    <div class="ripple-stat-label">Lives Touched</div>
+                </div>
+                <div class="ripple-stat">
+                    <div class="ripple-stat-value">∞</div>
+                    <div class="ripple-stat-label">Generations Affected</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE PLEDGE -->
+        <section class="pledge-section">
+            <div class="pledge-content">
+                <h2 class="pledge-title">
+                    This Is <span class="glow">Our Moment</span>
+                </h2>
+                <p class="pledge-text">
+                    For the first time in human history, we have the tools to make education what it should have always been—personal, powerful, and available to everyone. Not someday. Not eventually. Now.
+                    <br><br>
+                    The question isn't whether this future is possible.<br>
+                    <strong>The question is whether we'll build it together.</strong>
+                </p>
+                <a href="#" class="pledge-cta">
+                    Join the Movement
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    Innovating<span class="accent">HigherEd</span>
+                </div>
+                <div class="footer-tagline">
+                    "A rising tide lifts all ships."
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        const starCount = 150;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            const size = Math.random() * 2 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.setProperty('--delay', Math.random() * 3 + 's');
+            star.style.setProperty('--min-opacity', Math.random() * 0.3 + 0.1);
+            star.style.setProperty('--max-opacity', Math.random() * 0.5 + 0.5);
+            
+            starsContainer.appendChild(star);
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Update active nav on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Console message
+        console.log('%c✨ THE VISION', 'font-size: 24px; color: #00ff88; font-weight: bold;');
+        console.log('%c"A rising tide lifts all ships."', 'font-size: 14px; color: #ffd700; font-style: italic;');
+        console.log('');
+        console.log('This is not just a website.');
+        console.log('This is a movement.');
+        console.log('This is the future we choose to build.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE FRONTIER — Version E: The Command Bar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #020206;
+            --deep: #050510;
+            --space: #0a0a18;
+            --surface: #101025;
+            --card: #1a1a40;
+            
+            --frontier-cyan: #00e5ff;
+            --frontier-cyan-glow: rgba(0, 229, 255, 0.4);
+            --pulse-green: #00ff88;
+            --aurora-gold: #ffd700;
+            --dream-violet: #a855f7;
+            --hope-rose: #ff6b9d;
+            --nova-orange: #ff8c42;
+            
+            --text-bright: #ffffff;
+            --text-primary: #e8e8f8;
+            --text-secondary: #a0a0c8;
+            --text-muted: #606088;
+            
+            --gradient-frontier: linear-gradient(135deg, var(--frontier-cyan), var(--pulse-green));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           MAIN CONTENT AREA (Above the chat bar)
+           ========================================== */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 200px; /* Space for expanded chat */
+        }
+
+        /* Top Bar */
+        .top-bar {
+            padding: 16px 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(2, 2, 6, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--gradient-frontier);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--void);
+        }
+
+        .brand-text {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .brand-text .accent {
+            color: var(--frontier-cyan);
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .top-nav a {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--text-bright);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Content Area */
+        .content-area {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .live-badge {
+            padding: 4px 10px;
+            background: rgba(0, 255, 136, 0.15);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 16px;
+            font-size: 10px;
+            color: var(--pulse-green);
+            font-weight: 600;
+        }
+
+        /* Featured Card */
+        .featured-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 140, 66, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--aurora-gold);
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 16px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--aurora-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            width: fit-content;
+            margin-bottom: 10px;
+        }
+
+        .featured-title {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .featured-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .featured-host {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .host-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--aurora-gold), var(--nova-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--void);
+        }
+
+        .play-btn-big {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--aurora-gold);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+            justify-self: center;
+        }
+
+        .play-btn-big:hover {
+            transform: scale(1.1);
+        }
+
+        .play-btn-big svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--void);
+            margin-left: 3px;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .content-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .featured-card { grid-template-columns: 1fr; }
+        }
+
+        .content-card {
+            background: rgba(26, 26, 64, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .content-card.podcast { border-color: rgba(0, 229, 255, 0.2); }
+        .content-card.tinkerlab { border-color: rgba(168, 85, 247, 0.2); }
+        .content-card.stories { border-color: rgba(0, 255, 136, 0.2); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .content-card.podcast .card-icon { background: rgba(0, 229, 255, 0.15); }
+        .content-card.tinkerlab .card-icon { background: rgba(168, 85, 247, 0.15); }
+        .content-card.stories .card-icon { background: rgba(0, 255, 136, 0.15); }
+
+        .card-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 4px 10px;
+            border-radius: 10px;
+            height: fit-content;
+        }
+
+        .content-card.podcast .card-badge { background: rgba(0, 229, 255, 0.1); color: var(--frontier-cyan); }
+        .content-card.tinkerlab .card-badge { background: rgba(168, 85, 247, 0.1); color: var(--dream-violet); }
+        .content-card.stories .card-badge { background: rgba(0, 255, 136, 0.1); color: var(--pulse-green); }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .card-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .card-meta {
+            margin-top: 12px;
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 12px;
+        }
+
+        /* ==========================================
+           COMMAND BAR (Fixed at Bottom - Always Visible!)
+           ========================================== */
+        .command-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--deep);
+            border-top: 1px solid rgba(0, 229, 255, 0.2);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .command-bar.expanded {
+            /* Keep same style, expansion happens in cosmos area */
+        }
+
+        /* Cosmos Expansion Area */
+        .cosmos-expansion {
+            height: 0;
+            overflow: hidden;
+            background: var(--void);
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+        }
+
+        .command-bar.expanded .cosmos-expansion {
+            height: 200px;
+        }
+
+        .cosmos-canvas-area {
+            flex: 1;
+            position: relative;
+        }
+
+        #cosmosCanvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cosmos-journey-status {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 12px 24px;
+            background: rgba(0, 229, 255, 0.15);
+            border: 1px solid rgba(0, 229, 255, 0.4);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cosmos-journey-status.active {
+            opacity: 1;
+        }
+
+        .cosmos-journey-status span {
+            color: var(--frontier-cyan);
+            font-size: 14px;
+        }
+
+        /* Chat Response Area */
+        .chat-response-area {
+            width: 400px;
+            background: rgba(10, 10, 30, 0.9);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-response {
+            padding: 12px 16px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .chat-response .cosmos-hint {
+            margin-top: 8px;
+            font-size: 11px;
+            color: var(--aurora-gold);
+        }
+
+        /* Main Input Bar */
+        .input-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.05), rgba(0, 255, 136, 0.03));
+        }
+
+        .navigator-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 24px;
+            flex-shrink: 0;
+        }
+
+        .navigator-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gradient-frontier);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 2px 12px var(--frontier-cyan-glow);
+        }
+
+        .navigator-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--frontier-cyan);
+        }
+
+        .navigator-status {
+            font-size: 10px;
+            color: var(--pulse-green);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--pulse-green);
+            border-radius: 50%;
+        }
+
+        .main-input {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 4px 6px 4px 20px;
+            transition: border-color 0.2s ease;
+        }
+
+        .main-input:focus-within {
+            border-color: var(--frontier-cyan);
+        }
+
+        .main-input input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-bright);
+            font-size: 15px;
+            outline: none;
+            padding: 12px 0;
+        }
+
+        .main-input input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .voice-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: var(--dream-violet);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .voice-btn:hover {
+            background: rgba(168, 85, 247, 0.3);
+            transform: scale(1.05);
+        }
+
+        .send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--gradient-frontier);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Quick Suggestions */
+        .quick-suggestions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .quick-suggestion {
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .quick-suggestion:hover {
+            background: var(--frontier-cyan);
+            color: var(--void);
+            border-color: var(--frontier-cyan);
+        }
+
+        /* Location Badge */
+        .location-badge {
+            position: fixed;
+            bottom: 90px;
+            left: 24px;
+            padding: 8px 14px;
+            background: rgba(10, 10, 30, 0.9);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            z-index: 99;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .location-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--pulse-green);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .location-badge .label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .location-badge .current {
+            font-weight: 600;
+            color: var(--frontier-cyan);
+        }
+
+        .command-bar.expanded .location-badge {
+            bottom: 290px;
+        }
+
+        @media (max-width: 800px) {
+            .quick-suggestions {
+                display: none;
+            }
+            .navigator-label {
+                display: none;
+            }
+            .chat-response-area {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="brand">
+                <div class="brand-logo">IHE</div>
+                <span class="brand-text">Innovating<span class="accent">HigherEd</span></span>
+            </div>
+            <nav class="top-nav">
+                <a href="#">Today</a>
+                <a href="#">Podcast</a>
+                <a href="#">Tools</a>
+                <a href="#">Pioneers</a>
+            </nav>
+        </header>
+
+        <div class="content-area">
+            <div class="section-header">
+                <h2>Today's Intelligence</h2>
+                <span class="live-badge">● LIVE</span>
+            </div>
+
+            <!-- Featured Card -->
+            <div class="featured-card">
+                <div class="featured-content">
+                    <div class="featured-badge">🎙️ IHE Daily AI News</div>
+                    <h3 class="featured-title">OpenAI's New Education Partnership, VR Lab Costs Drop 60%, and the AI Grading Debate</h3>
+                    <div class="featured-meta">
+                        <span>📅 Today</span>
+                        <span>⏱️ 8:24</span>
+                        <span>📰 3 stories</span>
+                    </div>
+                    <div class="featured-host">
+                        <div class="host-avatar">NJ</div>
+                        <span style="font-size: 13px;">Dr. Norma Jones</span>
+                    </div>
+                </div>
+                <button class="play-btn-big">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <div class="content-card podcast">
+                    <div class="card-header">
+                        <div class="card-icon">🎧</div>
+                        <span class="card-badge">Podcast</span>
+                    </div>
+                    <h3 class="card-title">Ep. 47: The Human Side of AI Integration</h3>
+                    <p class="card-description">Dr. Sarah Chen on overcoming AI resistance—with empathy.</p>
+                    <div class="card-meta">
+                        <span>🕐 42 min</span>
+                        <span>👤 Dr. Sarah Chen</span>
+                    </div>
+                </div>
+
+                <div class="content-card tinkerlab">
+                    <div class="card-header">
+                        <div class="card-icon">🔧</div>
+                        <span class="card-badge">Tinker Lab</span>
+                    </div>
+                    <h3 class="card-title">Quick Tip: AI Syllabus Assistant in 5 Minutes</h3>
+                    <p class="card-description">Set up a custom GPT to help you draft syllabi.</p>
+                    <div class="card-meta">
+                        <span>🕐 5 min</span>
+                        <span>💡 Quick tip</span>
+                    </div>
+                </div>
+
+                <div class="content-card stories">
+                    <div class="card-header">
+                        <div class="card-icon">📰</div>
+                        <span class="card-badge">Top Stories</span>
+                    </div>
+                    <h3 class="card-title">This Week's Must-Read Links</h3>
+                    <p class="card-description">5 curated articles from EdSurge, Inside Higher Ed.</p>
+                    <div class="card-meta">
+                        <span>📚 5 articles</span>
+                        <span>⭐ Curated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Location Badge -->
+    <div class="location-badge" id="locationBadge">
+        <span class="dot"></span>
+        <span class="label">You're at:</span>
+        <span class="current" id="currentLocation">Today's Intelligence</span>
+    </div>
+
+    <!-- COMMAND BAR (Fixed at Bottom - Always Visible!) -->
+    <div class="command-bar" id="commandBar">
+        <!-- Cosmos Expansion (shows when active) -->
+        <div class="cosmos-expansion">
+            <div class="cosmos-canvas-area">
+                <canvas id="cosmosCanvas"></canvas>
+                <div class="cosmos-journey-status" id="journeyStatus">
+                    <span id="journeyText">Traveling...</span>
+                </div>
+            </div>
+            <div class="chat-response-area" id="responseArea">
+                <div class="chat-response">
+                    👋 I'm your Navigator! Ask me anything about AI in higher ed, or explore the cosmos on the left.
+                    <div class="cosmos-hint">✨ Click a quick action or type to begin</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Input Bar -->
+        <div class="input-bar">
+            <div class="navigator-badge">
+                <div class="navigator-avatar">🧭</div>
+                <div>
+                    <div class="navigator-label">Navigator</div>
+                    <div class="navigator-status">
+                        <span class="status-dot"></span>
+                        Online
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-input">
+                <input type="text" id="chatInput" placeholder="Ask anything about AI in higher ed..." onkeypress="handleKeypress(event)" onfocus="expandBar()" />
+                <button class="voice-btn">🎤</button>
+                <button class="send-btn" onclick="sendChat()">→</button>
+            </div>
+
+            <div class="quick-suggestions">
+                <span class="quick-suggestion" onclick="handleSuggestion('play')">▶ Play AI News</span>
+                <span class="quick-suggestion" onclick="handleSuggestion('communication')">Comm + AI</span>
+                <span class="quick-suggestion" onclick="handleSuggestion('new')">I'm new</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // COMMAND BAR EXPANSION
+        // ==========================================
+        let isExpanded = false;
+
+        function expandBar() {
+            if (!isExpanded) {
+                document.getElementById('commandBar').classList.add('expanded');
+                isExpanded = true;
+                initCosmos();
+            }
+        }
+
+        function collapseBar() {
+            document.getElementById('commandBar').classList.remove('expanded');
+            isExpanded = false;
+        }
+
+        // ==========================================
+        // COSMOS
+        // ==========================================
+        let canvas, ctx;
+        let cosmosInitialized = false;
+        let cameraX = 0, cameraY = 0;
+        let targetCameraX = 0, targetCameraY = 0;
+        let targetNode = 'home';
+
+        const knowledgeNodes = [
+            { id: 'home', label: 'Home', x: 0, y: 0, color: '#00e5ff' },
+            { id: 'teaching', label: 'Teaching', x: -100, y: -30, color: '#00ff88' },
+            { id: 'ai', label: 'AI Tools', x: -160, y: -60, color: '#00e5ff' },
+            { id: 'vr', label: 'VR', x: -80, y: -70, color: '#a855f7' },
+            { id: 'admin', label: 'Admin', x: 100, y: -20, color: '#ffd700' },
+            { id: 'student', label: 'Students', x: 80, y: 50, color: '#ff6b9d' },
+            { id: 'communication', label: 'Communication', x: -180, y: -20, color: '#ff6b9d' },
+            { id: 'community', label: 'Community', x: -60, y: 60, color: '#00ff88' },
+        ];
+
+        const connections = [
+            ['home', 'teaching'], ['home', 'admin'], ['home', 'student'], ['home', 'community'],
+            ['teaching', 'ai'], ['teaching', 'vr'], ['ai', 'communication'],
+        ];
+
+        function initCosmos() {
+            if (cosmosInitialized) return;
+            cosmosInitialized = true;
+
+            canvas = document.getElementById('cosmosCanvas');
+            ctx = canvas.getContext('2d');
+            animateCosmos();
+        }
+
+        function animateCosmos() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+
+            cameraX += (targetCameraX - cameraX) * 0.05;
+            cameraY += (targetCameraY - cameraY) * 0.05;
+
+            ctx.fillStyle = '#020206';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.translate(-cameraX, -cameraY);
+
+            // Particles
+            for (let i = 0; i < 60; i++) {
+                const x = ((i * 73) % 400) - 200;
+                const y = ((i * 97) % 200) - 100;
+                const pulse = 0.2 + 0.3 * Math.sin(Date.now() * 0.002 + i);
+                ctx.fillStyle = `rgba(255, 255, 255, ${pulse})`;
+                ctx.beginPath();
+                ctx.arc(x, y, 1, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Connections
+            connections.forEach(([from, to]) => {
+                const a = knowledgeNodes.find(n => n.id === from);
+                const b = knowledgeNodes.find(n => n.id === to);
+                if (a && b) {
+                    const isHighlighted = from === targetNode || to === targetNode;
+                    ctx.strokeStyle = isHighlighted ? 'rgba(0, 229, 255, 0.5)' : 'rgba(0, 229, 255, 0.15)';
+                    ctx.lineWidth = isHighlighted ? 2 : 1;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.stroke();
+                }
+            });
+
+            // Nodes
+            knowledgeNodes.forEach(node => {
+                const isTarget = node.id === targetNode;
+                const size = isTarget ? 8 : 5;
+
+                const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, size * 3);
+                gradient.addColorStop(0, node.color + (isTarget ? '60' : '30'));
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, size * 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = node.color;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = isTarget ? 'bold 11px "Space Grotesk"' : '10px "Space Grotesk"';
+                ctx.textAlign = 'center';
+                ctx.fillText(node.label, node.x, node.y + size + 14);
+            });
+
+            ctx.restore();
+            requestAnimationFrame(animateCosmos);
+        }
+
+        function navigateTo(nodeId, label) {
+            const node = knowledgeNodes.find(n => n.id === nodeId);
+            if (!node) return;
+
+            targetNode = nodeId;
+            targetCameraX = node.x;
+            targetCameraY = node.y;
+
+            // Show journey status
+            const status = document.getElementById('journeyStatus');
+            const statusText = document.getElementById('journeyText');
+            status.classList.add('active');
+            statusText.textContent = `Traveling to ${label}...`;
+
+            // Update location badge
+            setTimeout(() => {
+                status.classList.remove('active');
+                document.getElementById('currentLocation').textContent = label;
+            }, 1500);
+        }
+
+        // ==========================================
+        // CHAT
+        // ==========================================
+        function handleKeypress(e) {
+            if (e.key === 'Enter') {
+                sendChat();
+            }
+        }
+
+        function sendChat() {
+            expandBar();
+            
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = '';
+            processChat(text);
+        }
+
+        function addResponse(text, cosmosHint = null) {
+            const container = document.getElementById('responseArea');
+            const response = document.createElement('div');
+            response.className = 'chat-response';
+            
+            let html = text;
+            if (cosmosHint) {
+                html += `<div class="cosmos-hint">✨ ${cosmosHint}</div>`;
+            }
+            response.innerHTML = html;
+            
+            container.appendChild(response);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function processChat(text) {
+            const lower = text.toLowerCase();
+
+            if (lower.includes('communication') || lower.includes('comm')) {
+                navigateTo('communication', 'Communication + AI');
+                addResponse('Taking you to AI tools for Communication educators! Watch the cosmos journey there.', 'Cosmos navigating...');
+            } else if (lower.includes('vr') || lower.includes('virtual')) {
+                navigateTo('vr', 'VR Learning');
+                addResponse('Exploring VR in education! The cosmos shows connected topics.', 'Cosmos navigating...');
+            } else if (lower.includes('play') || lower.includes('news')) {
+                addResponse('Playing today\'s AI News! 🎙️ Just 8 minutes to catch up.');
+            } else if (lower.includes('new') || lower.includes('start')) {
+                addResponse('Welcome! Start with the Daily AI News above — it\'s quick and curated. Then explore the cosmos to discover connected topics!');
+            } else {
+                addResponse(`I can help you explore "${text}". Try asking about VR, AI tools, Communication, or browse the cosmos!`);
+            }
+        }
+
+        function handleSuggestion(action) {
+            expandBar();
+            
+            if (action === 'play') {
+                addResponse('Playing today\'s AI News! 🎙️');
+            } else if (action === 'communication') {
+                navigateTo('communication', 'Communication + AI');
+                addResponse('Here\'s what\'s relevant for Communication educators...', 'Cosmos updated');
+            } else if (action === 'new') {
+                addResponse('Welcome! 🎉 Start with the Daily AI News at the top — 8 min to get up to speed. The cosmos on the left shows how topics connect.');
+            }
+        }
+    </script>
+</body>
+</html>

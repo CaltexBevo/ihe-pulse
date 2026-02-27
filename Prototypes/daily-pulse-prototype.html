@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IHE Daily Pulse — Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deepest: #0a0a0f;
+    --bg-dark: #0f1019;
+    --bg-surface: #161623;
+    --bg-card: #1a1a2e;
+    --bg-card-hover: #22223a;
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-glow: rgba(0,212,255,0.15);
+    --text-primary: #f0f0f5;
+    --text-secondary: #8888a0;
+    --text-muted: #55556a;
+    --cyan: #00d4ff;
+    --cyan-dim: rgba(0,212,255,0.15);
+    --fuchsia: #c850c0;
+    --fuchsia-dim: rgba(200,80,192,0.15);
+    --amber: #f59e0b;
+    --amber-dim: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-dim: rgba(16,185,129,0.12);
+    --violet: #8b5cf6;
+    --violet-dim: rgba(139,92,246,0.12);
+    --rose: #f43f5e;
+    --rose-dim: rgba(244,63,94,0.12);
+    
+    /* Category colors */
+    --cat-insights: #00d4ff;
+    --cat-insights-dim: rgba(0,212,255,0.1);
+    --cat-products: #f59e0b;
+    --cat-products-dim: rgba(245,158,11,0.1);
+    --cat-tools: #8b5cf6;
+    --cat-tools-dim: rgba(139,92,246,0.1);
+    --cat-cases: #10b981;
+    --cat-cases-dim: rgba(16,185,129,0.1);
+    --cat-policy: #f43f5e;
+    --cat-policy-dim: rgba(244,63,94,0.1);
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-deepest);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  /* ===== VIEW SWITCHER ===== */
+  .view-switcher {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 12px 0;
+  }
+  .view-switcher-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .view-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .view-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .view-btn.active {
+    background: var(--cyan-dim);
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+  .view-btn:hover:not(.active) {
+    border-color: rgba(255,255,255,0.15);
+    color: var(--text-primary);
+  }
+  .view-note {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  
+  /* ===== SECTIONS ===== */
+  .section { display: none; padding-top: 70px; }
+  .section.active { display: block; }
+  
+  /* ================================================
+     SECTION 1: HOMEPAGE DAILY PULSE MODULE
+     ================================================ */
+  
+  .homepage-context {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 20px;
+  }
+  .homepage-context p {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 12px 16px;
+    background: rgba(200,80,192,0.08);
+    border: 1px dashed rgba(200,80,192,0.2);
+    border-radius: 8px;
+    display: inline-block;
+  }
+  
+  /* Daily Pulse Homepage Module */
+  .daily-pulse-home {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+  
+  .pulse-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .pulse-live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    animation: livePulse 2s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--cyan);
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .pulse-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+  .pulse-title span {
+    color: var(--cyan);
+  }
+  .pulse-date {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  
+  /* Audio Briefing Card */
+  .briefing-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(200,80,192,0.06) 100%);
+    border: 1px solid var(--border-glow);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .briefing-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .briefing-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .norma-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--fuchsia));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 0 30px rgba(0,212,255,0.2);
+  }
+  
+  .briefing-info {
+    flex: 1;
+  }
+  .briefing-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--cyan);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .briefing-label svg {
+    width: 14px;
+    height: 14px;
+  }
+  .briefing-headline {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .briefing-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .briefing-meta strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  
+  /* Waveform Player */
+  .player-container {
+    margin-top: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .player-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 16px;
+    padding: 12px 20px;
+    border: 1px solid var(--border-subtle);
+  }
+  .play-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), #00a8cc);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(0,212,255,0.3);
+  }
+  .play-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(0,212,255,0.5);
+  }
+  .play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    margin-left: 2px;
+  }
+  
+  .waveform {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 40px;
+    cursor: pointer;
+  }
+  .wave-bar {
+    flex: 1;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .wave-bar.played {
+    background: var(--cyan);
+  }
+  .wave-bar.unplayed {
+    background: rgba(255,255,255,0.12);
+  }
+  .wave-bar:hover {
+    background: rgba(0,212,255,0.6) !important;
+  }
+  
+  .player-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    min-width: 80px;
+    text-align: right;
+  }
+  
+  .player-speed {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .player-speed:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+  
+  /* Today's Headlines Grid */
+  .headlines-section {
+    margin-top: 8px;
+  }
+  .headlines-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .headlines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  
+  /* Story Card */
+  .story-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .story-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+  }
+  .story-card:hover {
+    border-color: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  
+  /* Category color bars */
+  .story-card[data-cat="insights"]::before { background: var(--cat-insights); }
+  .story-card[data-cat="products"]::before { background: var(--cat-products); }
+  .story-card[data-cat="tools"]::before { background: var(--cat-tools); }
+  .story-card[data-cat="cases"]::before { background: var(--cat-cases); }
+  .story-card[data-cat="policy"]::before { background: var(--cat-policy); }
+  
+  .story-cat {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .story-cat.insights { color: var(--cat-insights); background: var(--cat-insights-dim); }
+  .story-cat.products { color: var(--cat-products); background: var(--cat-products-dim); }
+  .story-cat.tools { color: var(--cat-tools); background: var(--cat-tools-dim); }
+  .story-cat.cases { color: var(--cat-cases); background: var(--cat-cases-dim); }
+  .story-cat.policy { color: var(--cat-policy); background: var(--cat-policy-dim); }
+  
+  .story-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 17px;
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .story-excerpt {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .story-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .story-source {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .story-read {
+    font-size: 12px;
+    color: var(--cyan);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+  }
+  .story-read svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s;
+  }
+  .story-card:hover .story-read svg {
+    transform: translateX(3px);
+  }
+  
+  /* IHE Perspective pull-quote */
+  .story-perspective {
+    font-size: 12px;
+    color: var(--cyan);
+    font-style: italic;
+    margin-top: 10px;
+    padding-left: 12px;
+    border-left: 2px solid rgba(0,212,255,0.3);
+    line-height: 1.5;
+  }
+  
+  .see-all-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding: 14px 28px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .see-all-link:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+  
+  
+  /* ================================================
+     SECTION 2: FULL DAILY PULSE PAGE
+     ================================================ */
+  
+  .pulse-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+  
+  /* Page Hero */
+  .pulse-hero {
+    text-align: center;
+    padding: 40px 0 48px;
+    position: relative;
+  }
+  .pulse-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pulse-hero-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .pulse-hero-title .gradient-text {
+    background: linear-gradient(135deg, var(--cyan), var(--fuchsia));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .pulse-hero-sub {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  /* Today's Briefing - Full Version */
+  .briefing-full {
+    position: relative;
+    background: linear-gradient(135deg, rgba(0,212,255,0.05) 0%, rgba(200,80,192,0.05) 50%, rgba(0,212,255,0.03) 100%);
+    border: 1px solid var(--border-glow);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+  .briefing-full::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .briefing-full::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(200,80,192,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  .bf-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .bf-avatar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .bf-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--fuchsia));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    color: white;
+    box-shadow: 0 0 40px rgba(0,212,255,0.25);
+    position: relative;
+  }
+  .bf-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,212,255,0.2);
+    animation: avatarRing 3s ease-in-out infinite;
+  }
+  @keyframes avatarRing {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+  .bf-host-name {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-align: center;
+  }
+  .bf-host-role {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  
+  .bf-content { flex: 1; }
+  .bf-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .bf-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.2);
+  }
+  .bf-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .bf-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .bf-summary {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  
+  /* Enhanced Player */
+  .enhanced-player {
+    background: rgba(0,0,0,0.35);
+    border-radius: 16px;
+    padding: 16px 24px;
+    border: 1px solid var(--border-subtle);
+  }
+  .ep-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .ep-play {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), #00a8cc);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+    box-shadow: 0 0 25px rgba(0,212,255,0.35);
+  }
+  .ep-play:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px rgba(0,212,255,0.5);
+  }
+  .ep-play svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+    margin-left: 2px;
+  }
+  .ep-waveform {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 44px;
+    cursor: pointer;
+  }
+  .ep-bar {
+    flex: 1;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .ep-bar.played { background: linear-gradient(to top, var(--cyan), rgba(0,212,255,0.6)); }
+  .ep-bar.unplayed { background: rgba(255,255,255,0.1); }
+  .ep-bar:hover { background: rgba(0,212,255,0.5) !important; }
+  
+  .ep-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    min-width: 85px;
+    text-align: right;
+  }
+  .ep-speed {
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .ep-speed:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+  
+  .ep-chapters {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .ep-chapter {
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .ep-chapter:hover {
+    opacity: 1 !important;
+  }
+  .ep-chapter.insights { color: var(--cat-insights); background: var(--cat-insights-dim); border-color: rgba(0,212,255,0.15); }
+  .ep-chapter.products { color: var(--cat-products); background: var(--cat-products-dim); border-color: rgba(245,158,11,0.15); }
+  .ep-chapter.tools { color: var(--cat-tools); background: var(--cat-tools-dim); border-color: rgba(139,92,246,0.15); }
+  .ep-chapter.cases { color: var(--cat-cases); background: var(--cat-cases-dim); border-color: rgba(16,185,129,0.15); }
+  
+  /* Category Filter Tabs */
+  .filter-section {
+    margin-bottom: 32px;
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .filter-chip {
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .filter-chip .count {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.6;
+  }
+  .filter-chip.active,
+  .filter-chip:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+  .filter-chip.active[data-filter="insights"],
+  .filter-chip:hover[data-filter="insights"] {
+    border-color: var(--cat-insights); color: var(--cat-insights); background: var(--cat-insights-dim);
+  }
+  .filter-chip.active[data-filter="products"],
+  .filter-chip:hover[data-filter="products"] {
+    border-color: var(--cat-products); color: var(--cat-products); background: var(--cat-products-dim);
+  }
+  .filter-chip.active[data-filter="tools"],
+  .filter-chip:hover[data-filter="tools"] {
+    border-color: var(--cat-tools); color: var(--cat-tools); background: var(--cat-tools-dim);
+  }
+  .filter-chip.active[data-filter="cases"],
+  .filter-chip:hover[data-filter="cases"] {
+    border-color: var(--cat-cases); color: var(--cat-cases); background: var(--cat-cases-dim);
+  }
+  .filter-chip.active[data-filter="policy"],
+  .filter-chip:hover[data-filter="policy"] {
+    border-color: var(--cat-policy); color: var(--cat-policy); background: var(--cat-policy-dim);
+  }
+  
+  /* Stories Grid - Full Page */
+  .stories-day {
+    margin-bottom: 48px;
+  }
+  .stories-day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .sdh-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .sdh-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+  .sdh-listen {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--cyan);
+    cursor: pointer;
+    padding: 4px 12px;
+    border-radius: 8px;
+    background: var(--cyan-dim);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .sdh-listen:hover {
+    background: rgba(0,212,255,0.2);
+  }
+  .sdh-listen svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .stories-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Full story card (page version) */
+  .story-card-full {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .story-card-full::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+  }
+  .story-card-full[data-cat="insights"]::before { background: var(--cat-insights); }
+  .story-card-full[data-cat="products"]::before { background: var(--cat-products); }
+  .story-card-full[data-cat="tools"]::before { background: var(--cat-tools); }
+  .story-card-full[data-cat="cases"]::before { background: var(--cat-cases); }
+  .story-card-full[data-cat="policy"]::before { background: var(--cat-policy); }
+  
+  .story-card-full:hover {
+    border-color: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  
+  .scf-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .scf-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 19px;
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .scf-excerpt {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    flex: 1;
+  }
+  .scf-perspective {
+    font-size: 12px;
+    color: var(--cyan);
+    font-style: italic;
+    padding: 10px 14px;
+    background: rgba(0,212,255,0.05);
+    border-left: 2px solid rgba(0,212,255,0.3);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .scf-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: auto;
+  }
+  .scf-source {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .scf-link {
+    font-size: 12px;
+    color: var(--cyan);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .story-card-full:hover .scf-link {
+    gap: 8px;
+  }
+  
+  /* Older Dates - Compact */
+  .older-days-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 32px;
+  }
+  .older-days-divider span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .older-days-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+  }
+  
+  /* Load More */
+  .load-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+    padding: 16px 32px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.3s;
+  }
+  .load-more:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+  
+  /* ================================================
+     SECTION 3: MOBILE VIEW
+     ================================================ */
+  .mobile-frame {
+    max-width: 390px;
+    margin: 20px auto;
+    background: var(--bg-deepest);
+    border-radius: 40px;
+    padding: 20px;
+    border: 3px solid #333;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .mobile-frame::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 24px;
+    background: #1a1a1a;
+    border-radius: 0 0 14px 14px;
+    z-index: 10;
+  }
+  .mobile-content {
+    padding-top: 20px;
+    max-height: 720px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .mobile-content::-webkit-scrollbar { display: none; }
+  
+  .m-header {
+    text-align: center;
+    padding: 8px 0 16px;
+  }
+  .m-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px;
+    color: var(--text-primary);
+  }
+  .m-logo span { color: var(--cyan); }
+  
+  .m-briefing {
+    background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(200,80,192,0.06) 100%);
+    border: 1px solid var(--border-glow);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .m-bf-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .m-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--fuchsia));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .m-bf-info { flex: 1; }
+  .m-bf-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--cyan);
+    font-weight: 600;
+  }
+  .m-bf-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  .m-player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+  .m-play {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), #00a8cc);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(0,212,255,0.3);
+  }
+  .m-play svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+    margin-left: 2px;
+  }
+  .m-wave {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 30px;
+  }
+  .m-wave-bar {
+    flex: 1;
+    border-radius: 2px;
+  }
+  .m-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  
+  .m-stories-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  
+  .m-story {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .m-story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+  }
+  .m-story[data-cat="insights"]::before { background: var(--cat-insights); }
+  .m-story[data-cat="products"]::before { background: var(--cat-products); }
+  .m-story[data-cat="tools"]::before { background: var(--cat-tools); }
+  .m-story[data-cat="cases"]::before { background: var(--cat-cases); }
+  
+  .m-story-cat {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .m-story-cat.insights { color: var(--cat-insights); background: var(--cat-insights-dim); }
+  .m-story-cat.products { color: var(--cat-products); background: var(--cat-products-dim); }
+  .m-story-cat.tools { color: var(--cat-tools); background: var(--cat-tools-dim); }
+  .m-story-cat.cases { color: var(--cat-cases); background: var(--cat-cases-dim); }
+  
+  .m-story-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .m-story-excerpt {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .briefing-top { flex-direction: column; align-items: center; text-align: center; }
+    .bf-layout { grid-template-columns: 1fr; text-align: center; }
+    .bf-avatar-col { flex-direction: row; justify-content: center; }
+    .ep-chapters { justify-content: center; }
+    .stories-grid-full { grid-template-columns: 1fr; }
+    .headlines-grid { grid-template-columns: 1fr; }
+    .pulse-hero-title { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- View Switcher -->
+<nav class="view-switcher">
+  <div class="view-switcher-inner">
+    <span class="view-label">Prototype View:</span>
+    <button class="view-btn active" data-view="homepage">Homepage Module</button>
+    <button class="view-btn" data-view="fullpage">Full Daily Pulse Page</button>
+    <button class="view-btn" data-view="mobile">Mobile (Commute View)</button>
+    <span class="view-note">Click to toggle between views</span>
+  </div>
+</nav>
+
+<!-- ============================================
+     SECTION 1: HOMEPAGE MODULE
+     ============================================ -->
+<section class="section active" id="homepage">
+  <div class="homepage-context">
+    <p>↓ This module sits on the homepage, below the hero and above other content sections</p>
+  </div>
+  
+  <div class="daily-pulse-home">
+    <!-- Header -->
+    <div class="pulse-header">
+      <div class="pulse-live-dot"></div>
+      <h2 class="pulse-title">Daily <span>Pulse</span></h2>
+      <span class="pulse-date">THU FEB 05, 2026</span>
+    </div>
+    
+    <!-- Audio Briefing -->
+    <div class="briefing-card">
+      <div class="briefing-top">
+        <div class="norma-avatar">NJ</div>
+        <div class="briefing-info">
+          <div class="briefing-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+            Today's Audio Briefing
+          </div>
+          <h3 class="briefing-headline">Faculty anxiety meets bold campus experiments as higher ed races to define AI's role</h3>
+          <p class="briefing-meta">with <strong>Dr. Norma Jones</strong> · 3 min listen · 7 stories covered</p>
+        </div>
+      </div>
+      
+      <div class="player-container">
+        <div class="player-bar">
+          <button class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </button>
+          <div class="waveform" id="waveform1"></div>
+          <span class="player-time">0:00 / 3:08</span>
+          <button class="player-speed">1×</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Today's Headlines -->
+    <div class="headlines-section">
+      <p class="headlines-label">Today's Headlines</p>
+      <div class="headlines-grid">
+        
+        <div class="story-card" data-cat="insights">
+          <span class="story-cat insights">Insights & Trends</span>
+          <h3 class="story-title">Higher Education Needs to Embrace AI — But Many Are Still Hesitant</h3>
+          <p class="story-excerpt">A recent study highlights that while some colleges make strides in AI adoption, a large number remain cautious, focusing on experimentation rather than implementation.</p>
+          <p class="story-perspective">IHE: Proactive training and focusing on how AI can enhance student learning is crucial.</p>
+          <div class="story-footer">
+            <span class="story-source">via Chronicle</span>
+            <a class="story-read" href="#">Read Story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        
+        <div class="story-card" data-cat="products">
+          <span class="story-cat products">Product Release</span>
+          <h3 class="story-title">Boodlebox Partners with NVIDIA to Accelerate AI Innovation in Education</h3>
+          <p class="story-excerpt">A new initiative collaborating with NVIDIA aims to integrate cutting-edge AI via the Nemotron platform into interactive classroom learning experiences.</p>
+          <div class="story-footer">
+            <span class="story-source">via EdScoop</span>
+            <a class="story-read" href="#">Read Story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        
+        <div class="story-card" data-cat="tools">
+          <span class="story-cat tools">Tool Spotlight</span>
+          <h3 class="story-title">Microsoft's 'Elevate' Community Aims to Unite AI-Curious Educators</h3>
+          <p class="story-excerpt">A new dedicated community through Microsoft's Elevate program fosters collaboration among educators exploring AI applications in teaching and learning.</p>
+          <p class="story-perspective">IHE: Communities like this can empower educators to adopt AI more confidently.</p>
+          <div class="story-footer">
+            <span class="story-source">via EdSurge</span>
+            <a class="story-read" href="#">Read Story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        
+        <div class="story-card" data-cat="cases">
+          <span class="story-cat cases">Case Study</span>
+          <h3 class="story-title">Honorlock Study: Most Students Required to Use AI, But Colleges Lag Behind</h3>
+          <p class="story-excerpt">A majority of students now utilize AI in classwork, yet institutions have been slow to offer AI-related courses, creating urgent educational gaps.</p>
+          <div class="story-footer">
+            <span class="story-source">via Honorlock</span>
+            <a class="story-read" href="#">Read Story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        
+      </div>
+      
+      <button class="see-all-link">
+        View All 7 Stories & Past Briefings
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECTION 2: FULL DAILY PULSE PAGE
+     ============================================ -->
+<section class="section" id="fullpage">
+  <div class="pulse-page">
+    
+    <!-- Hero -->
+    <div class="pulse-hero">
+      <h1 class="pulse-hero-title">Daily <span class="gradient-text">Pulse</span></h1>
+      <p class="pulse-hero-sub">Your morning briefing on AI in higher education. Curated stories, expert perspective, and Dr. Norma's daily audio read.</p>
+    </div>
+    
+    <!-- Today's Full Briefing -->
+    <div class="briefing-full">
+      <div class="bf-layout">
+        <div class="bf-avatar-col">
+          <div class="bf-avatar">NJ</div>
+          <span class="bf-host-name">Dr. Norma Jones</span>
+          <span class="bf-host-role">Host & Editor</span>
+        </div>
+        <div class="bf-content">
+          <div class="bf-eyebrow">
+            <span class="bf-badge">🎙 Today's Briefing</span>
+            <span class="bf-date">Thursday, February 5, 2026</span>
+          </div>
+          <h2 class="bf-title">Faculty anxiety meets bold campus experiments as higher ed races to decide how AI reshapes teaching and integrity.</h2>
+          <p class="bf-summary">"Good morning, educators. Today we're covering the growing tension between AI enthusiasm and institutional hesitancy, plus a major NVIDIA partnership, new Microsoft educator tools, and a revealing study on student AI use..."</p>
+          
+          <div class="enhanced-player">
+            <div class="ep-controls">
+              <button class="ep-play">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </button>
+              <div class="ep-waveform" id="waveform2"></div>
+              <span class="ep-time">0:00 / 3:08</span>
+              <button class="ep-speed">1×</button>
+            </div>
+            <div class="ep-chapters">
+              <button class="ep-chapter insights">⏱ 0:00 Insights & Trends</button>
+              <button class="ep-chapter products">⏱ 1:15 Product Releases</button>
+              <button class="ep-chapter tools">⏱ 2:05 Tool Spotlight</button>
+              <button class="ep-chapter cases">⏱ 2:40 Case Study</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Category Filters -->
+    <div class="filter-section">
+      <div class="filter-row">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-chip active" data-filter="all">All Stories <span class="count">7</span></button>
+        <button class="filter-chip" data-filter="insights">Insights & Trends <span class="count">3</span></button>
+        <button class="filter-chip" data-filter="products">Product Releases <span class="count">2</span></button>
+        <button class="filter-chip" data-filter="tools">Tool Spotlight <span class="count">1</span></button>
+        <button class="filter-chip" data-filter="cases">Case Studies <span class="count">1</span></button>
+      </div>
+    </div>
+    
+    <!-- Today's Stories -->
+    <div class="stories-day">
+      <div class="stories-day-header">
+        <span class="sdh-date">Thursday, February 5, 2026</span>
+        <span class="sdh-count">7 stories</span>
+        <button class="sdh-listen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+          Listen
+        </button>
+      </div>
+      
+      <div class="stories-grid-full">
+        
+        <div class="story-card-full" data-cat="insights">
+          <div class="scf-header">
+            <span class="story-cat insights">Insights & Trends</span>
+          </div>
+          <h3 class="scf-title">Higher Education Needs to Embrace AI — But Many Are Still Hesitant</h3>
+          <p class="scf-excerpt">As artificial intelligence gains traction, many educators are still hesitant to fully integrate it into their teaching methods. A recent study highlights that while some colleges are making significant strides in AI adoption, a large number remain cautious, focusing on experimentation rather than implementation.</p>
+          <div class="scf-perspective">
+            <strong>IHE Perspective:</strong> It is crucial for educators to address these concerns through proactive training and a focus on how AI can enhance, rather than hinder, student learning.
+          </div>
+          <div class="scf-footer">
+            <span class="scf-source">via Chronicle of Higher Ed</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+        <div class="story-card-full" data-cat="insights">
+          <div class="scf-header">
+            <span class="story-cat insights">Insights & Trends</span>
+          </div>
+          <h3 class="scf-title">National Study Reveals Deep AI Adoption Challenges Across Campuses</h3>
+          <p class="scf-excerpt">A new national study reveals that colleges are struggling with AI adoption, with many still stuck in early stages of exploration. Institutions face obstacles such as lack of resources, training, and clear policies on implementation.</p>
+          <div class="scf-perspective">
+            <strong>IHE Perspective:</strong> Institutions should prioritize creating frameworks that support both faculty and students as they navigate the complexities of AI in education.
+          </div>
+          <div class="scf-footer">
+            <span class="scf-source">via Inside Higher Ed</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+        <div class="story-card-full" data-cat="insights">
+          <div class="scf-header">
+            <span class="story-cat insights">Insights & Trends</span>
+          </div>
+          <h3 class="scf-title">The Five Stages of AI Grief: How Academic Staff Process the Transition</h3>
+          <p class="scf-excerpt">Facing significant emotional challenges in the transition to AI, academic staff can benefit from strategies designed in a five-stage grief model. As faculty move from skepticism to acceptance, support systems are essential.</p>
+          <div class="scf-perspective">
+            <strong>IHE Perspective:</strong> Emphasizing emotional intelligence in this transition could lead to more effective strategies for AI integration.
+          </div>
+          <div class="scf-footer">
+            <span class="scf-source">via Times Higher Ed</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+        <div class="story-card-full" data-cat="products">
+          <div class="scf-header">
+            <span class="story-cat products">Product Release</span>
+          </div>
+          <h3 class="scf-title">Boodlebox Partners with NVIDIA to Power AI Innovation in Education</h3>
+          <p class="scf-excerpt">Boodlebox has launched a new initiative to accelerate AI innovation in education, collaborating with NVIDIA via the Nemotron platform. Available to institutions starting February 2026.</p>
+          <div class="scf-footer">
+            <span class="scf-source">via EdScoop</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+        <div class="story-card-full" data-cat="products">
+          <div class="scf-header">
+            <span class="story-cat products">Product Release</span>
+          </div>
+          <h3 class="scf-title">General Assembly Launches 15 New AI Courses for Its 15th Anniversary</h3>
+          <p class="scf-excerpt">General Assembly has introduced 15 new AI courses covering data analysis and machine learning. Courses will be available next month — a significant opportunity for institutions to equip students with vital AI skills.</p>
+          <div class="scf-footer">
+            <span class="scf-source">via General Assembly</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+        <div class="story-card-full" data-cat="tools">
+          <div class="scf-header">
+            <span class="story-cat tools">Tool Spotlight</span>
+          </div>
+          <h3 class="scf-title">Microsoft 'Elevate' Community Launches for AI-Curious Educators</h3>
+          <p class="scf-excerpt">Microsoft has launched a dedicated AI community aimed at educators through the 'Elevate' program, fostering collaboration and providing resources, best practices, and networking opportunities.</p>
+          <div class="scf-perspective">
+            <strong>IHE Perspective:</strong> Collaborating in such communities can empower educators to adopt AI more confidently and effectively in their teaching.
+          </div>
+          <div class="scf-footer">
+            <span class="scf-source">via Microsoft Education</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+        <div class="story-card-full" data-cat="cases">
+          <div class="scf-header">
+            <span class="story-cat cases">Case Study</span>
+          </div>
+          <h3 class="scf-title">Honorlock Study: Most Students Use AI in Classwork, But Colleges Lag Behind</h3>
+          <p class="scf-excerpt">A majority of college students are now required to utilize AI in their classwork. However, many institutions have been slow to offer AI-related courses, highlighting urgent educational gaps regarding AI proficiency.</p>
+          <div class="scf-perspective">
+            <strong>IHE Perspective:</strong> Addressing these gaps is vital for developing a workforce that is prepared for an AI-centric future.
+          </div>
+          <div class="scf-footer">
+            <span class="scf-source">via Honorlock Research</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Older Days Divider -->
+    <div class="older-days-divider">
+      <span>Previous Briefings</span>
+    </div>
+    
+    <!-- Wednesday -->
+    <div class="stories-day">
+      <div class="stories-day-header">
+        <span class="sdh-date">Wednesday, February 4, 2026</span>
+        <span class="sdh-count">5 stories</span>
+        <button class="sdh-listen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+          Listen
+        </button>
+      </div>
+      
+      <div class="stories-grid-full">
+        <div class="story-card-full" data-cat="insights">
+          <div class="scf-header">
+            <span class="story-cat insights">Insights & Trends</span>
+          </div>
+          <h3 class="scf-title">New Research Shows AI Tutoring Matches Human Tutors in Student Outcomes</h3>
+          <p class="scf-excerpt">A Stanford-led study found that AI-powered tutoring systems achieved comparable learning outcomes to human tutors in introductory STEM courses across three universities.</p>
+          <div class="scf-footer">
+            <span class="scf-source">via Stanford HAI</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+        
+        <div class="story-card-full" data-cat="policy">
+          <div class="scf-header">
+            <span class="story-cat policy" style="color:var(--cat-policy);background:var(--cat-policy-dim);">Policy & Ethics</span>
+          </div>
+          <h3 class="scf-title">ACE Releases Updated Framework for Responsible AI Use in Higher Ed</h3>
+          <p class="scf-excerpt">The American Council on Education has published comprehensive guidelines for ethical AI adoption, addressing data privacy, academic integrity, and institutional governance.</p>
+          <div class="scf-footer">
+            <span class="scf-source">via ACE</span>
+            <a class="scf-link" href="#">Read Full Story →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="load-more">
+      Load Earlier Briefings
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </button>
+    
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECTION 3: MOBILE VIEW
+     ============================================ -->
+<section class="section" id="mobile">
+  <div style="text-align:center;padding:20px 24px 0;">
+    <p style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;padding:12px 16px;background:rgba(200,80,192,0.08);border:1px dashed rgba(200,80,192,0.2);border-radius:8px;display:inline-block;">📱 Mobile "Commute View" — what educators see on their phone driving in</p>
+  </div>
+  
+  <div class="mobile-frame">
+    <div class="mobile-content">
+      <div class="m-header">
+        <span class="m-logo">Innovating <span>Higher Ed</span></span>
+      </div>
+      
+      <div class="m-briefing">
+        <div class="m-bf-top">
+          <div class="m-avatar">NJ</div>
+          <div class="m-bf-info">
+            <div class="m-bf-label">🎙 Today's Audio Briefing</div>
+            <div class="m-bf-title">Faculty anxiety meets bold campus AI experiments</div>
+          </div>
+        </div>
+        <div class="m-player">
+          <button class="m-play">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </button>
+          <div class="m-wave" id="mobileWave"></div>
+          <span class="m-time">3:08</span>
+        </div>
+      </div>
+      
+      <p class="m-stories-label">Today's Stories</p>
+      
+      <div class="m-story" data-cat="insights">
+        <span class="m-story-cat insights">Insights</span>
+        <h3 class="m-story-title">Higher Ed Needs to Embrace AI — Many Still Hesitant</h3>
+        <p class="m-story-excerpt">While some colleges make strides, a large number remain cautious about full AI integration...</p>
+      </div>
+      
+      <div class="m-story" data-cat="products">
+        <span class="m-story-cat products">Product</span>
+        <h3 class="m-story-title">Boodlebox Partners with NVIDIA for AI in Education</h3>
+        <p class="m-story-excerpt">New initiative aims to integrate cutting-edge AI via Nemotron platform into classrooms...</p>
+      </div>
+      
+      <div class="m-story" data-cat="tools">
+        <span class="m-story-cat tools">Tool</span>
+        <h3 class="m-story-title">Microsoft 'Elevate' Community for AI Educators</h3>
+        <p class="m-story-excerpt">A dedicated community fostering collaboration among educators exploring AI applications...</p>
+      </div>
+      
+      <div class="m-story" data-cat="cases">
+        <span class="m-story-cat cases">Case Study</span>
+        <h3 class="m-story-title">Honorlock: Most Students Use AI, Colleges Lag</h3>
+        <p class="m-story-excerpt">A majority are required to use AI in classwork, but institutions haven't kept pace...</p>
+      </div>
+      
+      <div class="m-story" data-cat="insights">
+        <span class="m-story-cat insights">Insights</span>
+        <h3 class="m-story-title">The Five Stages of AI Grief for Academic Staff</h3>
+        <p class="m-story-excerpt">Strategies based on a five-stage grief model can help educators process AI transition...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  // View Switcher
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.view).classList.add('active');
+    });
+  });
+  
+  // Generate Waveform Bars
+  function generateWaveform(container, barCount, playedPercent) {
+    if (!container) return;
+    for (let i = 0; i < barCount; i++) {
+      const bar = document.createElement('div');
+      const isPlayed = (i / barCount) < playedPercent;
+      bar.className = container.classList.contains('ep-waveform') 
+        ? `ep-bar ${isPlayed ? 'played' : 'unplayed'}`
+        : container.classList.contains('m-wave')
+        ? `m-wave-bar`
+        : `wave-bar ${isPlayed ? 'played' : 'unplayed'}`;
+      
+      // Random heights for organic look
+      const minH = 15;
+      const maxH = container.classList.contains('m-wave') ? 28 : 38;
+      const height = Math.random() * (maxH - minH) + minH;
+      // Create gentle wave pattern
+      const waveHeight = Math.sin((i / barCount) * Math.PI * 3) * 10 + height;
+      bar.style.height = Math.max(minH, Math.min(maxH, waveHeight)) + '%';
+      
+      if (container.classList.contains('m-wave')) {
+        bar.style.background = (i / barCount) < 0.0 
+          ? 'var(--cyan)' 
+          : 'rgba(255,255,255,0.12)';
+      }
+      
+      container.appendChild(bar);
+    }
+  }
+  
+  generateWaveform(document.getElementById('waveform1'), 80, 0.0);
+  generateWaveform(document.getElementById('waveform2'), 100, 0.0);
+  generateWaveform(document.getElementById('mobileWave'), 40, 0.0);
+  
+  // Filter chips
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      
+      const filter = chip.dataset.filter;
+      document.querySelectorAll('.story-card-full').forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

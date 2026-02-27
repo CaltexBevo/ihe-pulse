@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podcast — Innovating Higher Ed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#08080f; --bg-elevated:#0e0e1a; --bg-card:#111120; --surface:#1a1a30; --surface-2:#222240;
+  --border:rgba(255,255,255,0.06); --border-hover:rgba(255,255,255,0.12);
+  --text:#f0ede8; --text-secondary:#a8a4b8; --text-muted:#6b6880;
+  --cyan:#00d4ff; --cyan-dim:rgba(0,212,255,0.15); --magenta:#c850c0; --magenta-dim:rgba(200,80,192,0.15);
+  --amber:#f5a623; --amber-dim:rgba(245,166,35,0.12); --green:#4ade80; --green-dim:rgba(74,222,128,0.12);
+  --orange:#fb923c; --orange-dim:rgba(251,146,60,0.12); --purple:#a78bfa; --purple-dim:rgba(167,139,250,0.12);
+  --teal:#0ea5a0; --blue:#3b82f6; --pink:#f472b6;
+  --sans:'DM Sans',-apple-system,sans-serif; --mono:'JetBrains Mono',monospace;
+  --max-w:1200px; --px:clamp(1rem,4vw,2rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none} img{display:block;max-width:100%}
+h1,h2,h3,h4{font-family:var(--sans)}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.7s cubic-bezier(0.16,1,0.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NAV */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 var(--px);display:flex;align-items:center;height:56px}
+.tb-brand{font-family:var(--mono);font-weight:600;font-size:0.85rem;letter-spacing:0.05em;display:flex;gap:0.35rem}
+.tb-dot{width:6px;height:6px;background:var(--green);border-radius:50%;margin-left:4px;align-self:center;animation:pulseDot 2s infinite}
+.tb-nav{margin-left:auto;display:flex;gap:0.15rem}
+.tb-nav a{font-size:0.78rem;padding:0.4rem 0.75rem;border-radius:6px;color:var(--text-secondary);transition:all 0.2s;font-weight:500}
+.tb-nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.tb-nav a.active{color:var(--cyan);background:var(--cyan-dim)}
+
+/* PAGE HEADER */
+.page-header{max-width:var(--max-w);margin:0 auto;padding:2.5rem var(--px) 1.5rem;animation:fadeUp 0.7s ease-out both}
+.page-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem}
+.page-title{font-size:2rem;font-weight:800;margin-bottom:0.4rem}
+.page-desc{font-size:0.92rem;color:var(--text-secondary);max-width:600px;line-height:1.6}
+
+/* FEATURED EPISODE */
+.featured{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 2.5rem}
+.feat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transition:border-color 0.3s}
+.feat-card:hover{border-color:var(--border-hover)}
+.feat-img{position:relative;min-height:340px;overflow:hidden}
+.feat-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+.feat-card:hover .feat-img img{transform:scale(1.03)}
+.feat-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,8,15,0.4),rgba(8,8,15,0.1))}
+.feat-badges{position:absolute;top:1.25rem;left:1.25rem;display:flex;gap:0.4rem}
+.feat-badge{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.05em;padding:0.25rem 0.6rem;border-radius:6px}
+.feat-badge.latest{background:rgba(251,146,60,0.85);color:#fff}
+.feat-badge.topic{background:rgba(255,255,255,0.12);color:var(--text);backdrop-filter:blur(8px)}
+.feat-content{padding:2rem;display:flex;flex-direction:column;justify-content:center}
+.feat-ep{font-family:var(--mono);font-size:0.62rem;color:var(--orange);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem}
+.feat-content h2{font-size:1.45rem;font-weight:700;line-height:1.22;margin-bottom:0.7rem}
+.feat-content p{font-size:0.88rem;color:var(--text-secondary);line-height:1.65;margin-bottom:1rem}
+.feat-meta{display:flex;align-items:center;gap:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--text-muted);margin-bottom:1.25rem}
+.feat-play{display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--magenta));color:white;font-weight:600;font-size:0.85rem;border:none;cursor:pointer;transition:transform 0.2s;box-shadow:0 4px 16px rgba(0,212,255,0.2)}
+.feat-play:hover{transform:translateY(-1px)}
+.feat-play svg{width:14px;height:14px;fill:white}
+
+/* FILTERS */
+.filters{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 2rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
+.fpill{font-family:var(--mono);font-size:0.65rem;font-weight:500;padding:0.3rem 0.75rem;border-radius:100px;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;background:transparent}
+.fpill:hover{border-color:var(--border-hover);color:var(--text)}
+.fpill.active{background:rgba(255,255,255,0.08);color:var(--text);border-color:rgba(255,255,255,0.15)}
+.search-box{margin-left:auto;display:flex;align-items:center;gap:0.4rem;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.7rem}
+.search-box input{background:none;border:none;color:var(--text);font-size:0.78rem;font-family:var(--sans);width:160px;outline:none}
+.search-box input::placeholder{color:var(--text-muted)}
+.search-icon{width:14px;height:14px;stroke:var(--text-muted);fill:none;stroke-width:2}
+
+/* EPISODE GRID */
+.ep-section{max-width:var(--max-w);margin:0 auto;padding:0 var(--px) 3rem}
+.ep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.ep{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.3s;cursor:pointer}
+.ep:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.3)}
+.ep img{width:100%;height:170px;object-fit:cover}
+.ep-body{padding:0.9rem 1rem}
+.ep-tag{font-family:var(--mono);font-size:0.53rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:3px 7px;border-radius:4px;background:var(--orange-dim);color:var(--orange);display:inline-block;margin-bottom:0.4rem}
+.ep-tag.guest{background:var(--cyan-dim);color:var(--cyan)}
+.ep-tag.panel{background:var(--purple-dim);color:var(--purple)}
+.ep-tag.tinker{background:var(--teal-dim);color:var(--teal)}
+.ep-h{font-family:var(--sans);font-size:1.02rem;font-weight:700;line-height:1.22;margin-bottom:0.35rem}
+.ep-desc{font-size:0.78rem;color:var(--text-secondary);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:0.5rem}
+.ep-foot{display:flex;align-items:center;gap:0.6rem;font-family:var(--mono);font-size:0.58rem;color:var(--text-muted);padding-top:0.5rem;border-top:1px solid var(--border)}
+.ep-play{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--magenta));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:auto;transition:transform 0.2s}
+.ep-play:hover{transform:scale(1.1)}
+.ep-play svg{width:10px;height:10px;fill:white;margin-left:1px}
+
+/* LOAD MORE */
+.load-more{text-align:center;padding:1rem 0 0}
+.load-btn{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);padding:0.55rem 1.5rem;border-radius:8px;border:1px solid rgba(0,212,255,0.2);background:rgba(0,212,255,0.06);cursor:pointer;transition:all 0.2s;letter-spacing:0.04em}
+.load-btn:hover{background:rgba(0,212,255,0.12);border-color:rgba(0,212,255,0.3)}
+
+/* SUBSCRIBE CTA */
+.pod-cta{max-width:var(--max-w);margin:0 auto;padding:2rem var(--px) 3rem}
+.cta-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;position:relative;overflow:hidden}
+.cta-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--magenta))}
+.cta-text h2{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
+.cta-text p{font-size:0.88rem;color:var(--text-secondary);line-height:1.6}
+.cta-platforms{display:flex;gap:0.6rem;flex-wrap:wrap}
+.cta-btn{font-family:var(--mono);font-size:0.7rem;font-weight:500;padding:0.5rem 1rem;border-radius:8px;border:1px solid var(--border);color:var(--text-secondary);transition:all 0.2s;cursor:pointer;background:transparent;display:flex;align-items:center;gap:0.4rem}
+.cta-btn:hover{border-color:var(--border-hover);color:var(--text);background:rgba(255,255,255,0.03)}
+.cta-btn.primary{background:linear-gradient(135deg,var(--cyan),var(--magenta));color:white;border:none}
+
+/* FOOTER */
+.footer{background:var(--bg-elevated);border-top:1px solid var(--border);padding:2.5rem var(--px) 1.5rem}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem}
+.footer-brand{font-family:var(--mono);font-size:0.9rem;font-weight:600;margin-bottom:0.5rem}
+.footer-brand .fc{color:var(--cyan)}
+.footer-desc{font-size:0.78rem;color:var(--text-secondary);line-height:1.55;max-width:280px}
+.footer-col h4{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.7rem}
+.footer-col a{display:block;font-size:0.78rem;color:var(--text-secondary);padding:0.2rem 0;transition:color 0.2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{max-width:var(--max-w);margin:1.25rem auto 0;padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-muted)}
+.footer-bottom a{color:var(--text-muted);margin-left:1.2rem}.footer-bottom a:hover{color:var(--cyan)}
+
+@media(max-width:1024px){.feat-card{grid-template-columns:1fr}.feat-img{min-height:240px}.cta-card{grid-template-columns:1fr}}
+@media(max-width:768px){.tb-nav{display:none}.ep-grid{grid-template-columns:1fr}.search-box{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="tb-brand" href="#"><span>INNOVATING HIGHER ED</span><span class="tb-dot"></span></a>
+  <div class="tb-nav"><a href="#">Home</a><a href="#">Innovation Pulse</a><a href="#">Prompts</a><a href="#">AI Tools</a><a href="#" class="active">Podcast</a><a href="#">Tinker Lab</a><a href="#">About</a></div>
+</nav>
+
+<div class="page-header">
+  <div class="page-label">🎙️ PODCAST</div>
+  <div class="page-title">Conversations with Higher Ed Innovators</div>
+  <div class="page-desc">Real talk with the educators, administrators, and builders who are figuring out how AI actually works in higher education — not how it's supposed to.</div>
+</div>
+
+<!-- FEATURED EPISODE -->
+<div class="featured reveal">
+  <div class="feat-card">
+    <div class="feat-img">
+      <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=700&h=500&fit=crop">
+      <div class="feat-img-overlay"></div>
+      <div class="feat-badges"><span class="feat-badge latest">Latest Episode</span><span class="feat-badge topic">Leadership & Strategy</span></div>
+    </div>
+    <div class="feat-content">
+      <div class="feat-ep">Episode 47 · February 17, 2026</div>
+      <h2>The Dean Who Built an AI Lab With Zero Budget</h2>
+      <p>Dr. Maria Chen shares how she launched a functional AI research lab at a mid-size regional university using only open-source tools, student research assistants, and creative partnerships with local industry. No grants, no special funding — just resourcefulness.</p>
+      <div class="feat-meta"><span>38 min</span><span>·</span><span>Guest: Dr. Maria Chen, Dean of Sciences, Pacific Northwest University</span></div>
+      <button class="feat-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg> Listen Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button class="fpill active">All Episodes</button>
+  <button class="fpill">Interviews</button>
+  <button class="fpill">Panels</button>
+  <button class="fpill">Teaching & Pedagogy</button>
+  <button class="fpill">Leadership</button>
+  <button class="fpill">AI Tools</button>
+  <button class="fpill">Student Voices</button>
+  <div class="search-box">
+    <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search episodes...">
+  </div>
+</div>
+
+<!-- EPISODE GRID -->
+<div class="ep-section reveal">
+  <div class="ep-grid">
+    <div class="ep"><img src="https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=600&h=340&fit=crop"><div class="ep-body"><span class="ep-tag panel">Panel</span><div class="ep-h">Why Community Colleges Are Leading the AI Revolution</div><div class="ep-desc">Three community college presidents discuss why their institutions are actually ahead of R1 universities on practical AI adoption.</div><div class="ep-foot"><span>Feb 10</span><span>42 min</span><button class="ep-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div></div></div>
+
+    <div class="ep"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=340&fit=crop"><div class="ep-body"><span class="ep-tag">Episode 45</span><div class="ep-h">Student Panel: What Faculty Get Wrong About AI</div><div class="ep-desc">Five graduate students share honest perspectives on how professors are handling — and mishandling — AI policies in their courses.</div><div class="ep-foot"><span>Feb 3</span><span>35 min</span><button class="ep-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div></div></div>
+
+    <div class="ep"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=340&fit=crop"><div class="ep-body"><span class="ep-tag guest">Guest Interview</span><div class="ep-h">The Accreditor's Dilemma: AI and Academic Standards</div><div class="ep-desc">The VP of a major regional accreditor explains how they're adapting standards for an AI-integrated curriculum.</div><div class="ep-foot"><span>Jan 27</span><span>41 min</span><button class="ep-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div></div></div>
+
+    <div class="ep"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=340&fit=crop"><div class="ep-body"><span class="ep-tag">Episode 43</span><div class="ep-h">From Skeptic to Advocate: A Professor's AI Journey</div><div class="ep-desc">Dr. James Park was one of the loudest AI critics in his department. Eighteen months later, he's teaching a course on AI literacy. What changed?</div><div class="ep-foot"><span>Jan 20</span><span>36 min</span><button class="ep-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div></div></div>
+
+    <div class="ep"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=340&fit=crop"><div class="ep-body"><span class="ep-tag guest">Guest Interview</span><div class="ep-h">Building AI Ethics Into the Curriculum, Not Just the Policy</div><div class="ep-desc">A philosophy professor and a computer scientist team-teach an AI ethics course. They share their syllabus and what surprised them.</div><div class="ep-foot"><span>Jan 13</span><span>44 min</span><button class="ep-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div></div></div>
+
+    <div class="ep"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=600&h=340&fit=crop"><div class="ep-body"><span class="ep-tag panel">Panel</span><div class="ep-h">The Adjunct Question: Who Gets AI Training?</div><div class="ep-desc">Adjunct faculty are often left out of institutional AI training. Three adjuncts and a provost discuss the gap — and how to close it.</div><div class="ep-foot"><span>Jan 6</span><span>39 min</span><button class="ep-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div></div></div>
+  </div>
+  <div class="load-more"><button class="load-btn">Load more episodes ↓</button></div>
+</div>
+
+<!-- SUBSCRIBE CTA -->
+<div class="pod-cta reveal">
+  <div class="cta-card">
+    <div class="cta-text">
+      <h2>Subscribe to the Podcast</h2>
+      <p>New episodes every Monday. Available wherever you listen to podcasts, or right here on the site.</p>
+    </div>
+    <div class="cta-platforms">
+      <button class="cta-btn primary">🎧 Apple Podcasts</button>
+      <button class="cta-btn">Spotify</button>
+      <button class="cta-btn">YouTube</button>
+      <button class="cta-btn">RSS Feed</button>
+      <button class="cta-btn">Google Podcasts</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner"><div><div class="footer-brand">Innovating Higher <span class="fc">Ed</span></div><p class="footer-desc">Empowering educators to navigate the future of teaching, learning, and innovation.</p></div><div class="footer-col"><h4>Platform</h4><a href="#">Innovation Pulse</a><a href="#">Prompt Navigator</a><a href="#">AI Directory</a><a href="#">Educator Tools</a></div><div class="footer-col"><h4>Community</h4><a href="#">Podcast</a><a href="#">Tinker Lab</a><a href="#">Be Our Guest</a><a href="#">About</a></div></div>
+  <div class="footer-bottom"><span>© 2026 Innovating Higher Ed.</span><span><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">AI Disclosure</a></span></div>
+</footer>
+
+<script>const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.06});document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));</script>
+</body>
+</html>

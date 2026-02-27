@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IHE Portal — The Orbit</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020208;font-family:'Space Grotesk',sans-serif;color:#fff;height:100vh;overflow:hidden}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1}
+.topbar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(2,2,8,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,229,255,0.05);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100}
+.topbar .brand{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.topbar .brand .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#00e5ff,#c850c0)}
+.topbar .brand span{background:linear-gradient(135deg,#00e5ff,#c850c0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hub{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);width:90%;max-width:540px;z-index:50}
+.bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(6,6,15,0.92);border:1px solid rgba(0,229,255,0.1);border-radius:14px;backdrop-filter:blur(20px);box-shadow:0 0 50px rgba(0,229,255,0.05)}
+.bar:focus-within{border-color:rgba(0,229,255,0.25)}
+.orb{width:38px;height:38px;border-radius:50%;background:conic-gradient(from 0deg,#ffd700,#ff8c42,#ef4444,#c850c0,#a855f7,#3b82f6,#00e5ff,#00ff88,#ffd700);animation:sp 8s linear infinite;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.orb i{width:32px;height:32px;border-radius:50%;background:#06060f;display:flex;align-items:center;justify-content:center;font-size:14px;font-style:normal}
+@keyframes sp{to{transform:rotate(360deg)}}
+.bar input{flex:1;background:none;border:none;outline:none;color:#fff;font-family:inherit;font-size:14px;padding:6px}
+.bar input::placeholder{color:rgba(255,255,255,0.2)}
+.bar button{width:34px;height:34px;border-radius:9px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.bs{background:linear-gradient(135deg,#00e5ff,#c850c0);color:#fff}
+.bm{background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.06)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:8px}
+.chip{padding:5px 12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:16px;color:rgba(255,255,255,0.35);font-size:11px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.chip:hover{background:rgba(0,229,255,0.06);border-color:rgba(0,229,255,0.2);color:#00e5ff}
+.resp{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);max-width:500px;width:90%;z-index:50;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.resp.on{opacity:1;pointer-events:auto}
+.rbox{background:rgba(6,6,15,0.95);border:1px solid rgba(0,229,255,0.08);border-radius:12px;padding:14px 18px;backdrop-filter:blur(20px)}
+.rbox p{font-size:13px;line-height:1.6;color:rgba(255,255,255,0.75);margin-bottom:10px}
+.rbox .btns{display:flex;gap:6px;flex-wrap:wrap}
+.rbox .btns button{padding:5px 12px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.12);border-radius:7px;color:#00e5ff;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
+.status{position:fixed;bottom:0;left:0;right:0;height:22px;background:rgba(2,2,8,0.85);border-top:1px solid rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;gap:16px;z-index:60;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2)}
+</style>
+</head>
+<body>
+<nav class="topbar"><div class="brand"><div class="dot"></div><span>Innovating Higher Ed</span></div></nav>
+<canvas id="c"></canvas>
+<div class="hub">
+<div class="bar"><div class="orb"><i>☀️</i></div><input type="text" id="inp" placeholder="Where in the universe shall we go?" autocomplete="off"><button class="bm">🎙</button><button class="bs" id="go">→</button></div>
+<div class="chips"><button class="chip" data-q="new to AI">🌱 New to AI</button><button class="chip" data-q="play news">▶ Pulse</button><button class="chip" data-q="tools">🛠 Tools</button><button class="chip" data-q="podcast">🎙 Podcast</button><button class="chip" data-q="prompts">💡 Prompts</button><button class="chip" data-q="case studies">📊 Cases</button></div>
+</div>
+<div class="resp" id="resp"><div class="rbox"><p id="rT"></p><div class="btns" id="rB"></div></div></div>
+<div class="status"><span>⬤ Orbit Online</span><span>11 worlds • 51 resources</span></div>
+
+<script>
+const C=document.getElementById('c'),X=C.getContext('2d');
+let W,H,cx,cy,t=0,sel=null,hover=null;
+const nodes=[
+{id:'pulse',label:'Innovation Pulse',sub:'Daily AI Briefing',icon:'📡',color:'#00e5ff',kw:['news','pulse','daily','play','today'],orbit:0.85,speed:0.15,size:28},
+{id:'podcast',label:'Podcast',sub:'Dr. Jones Interviews',icon:'🎙',color:'#c850c0',kw:['podcast','episode','listen'],orbit:0.7,speed:0.12,size:26},
+{id:'tools',label:'AI Tools',sub:'50+ Vetted Tools',icon:'🛠',color:'#00ff88',kw:['tool','app','software','directory'],orbit:0.95,speed:0.08,size:30},
+{id:'prompts',label:'Prompts',sub:'Copy → Paste → Teach',icon:'💡',color:'#ffd700',kw:['prompt','template'],orbit:0.6,speed:0.18,size:24},
+{id:'tinkerlab',label:'Tinker Lab',sub:'Experiments',icon:'🔬',color:'#ff8c42',kw:['tinker','lab','experiment'],orbit:0.5,speed:0.22,size:22},
+{id:'guides',label:'Getting Started',sub:'AI for Faculty',icon:'🌱',color:'#14b8a6',kw:['new','start','begin','learn','teach','faculty','professor','help'],orbit:1.0,speed:0.06,size:32},
+{id:'cases',label:'Case Studies',sub:'Real Outcomes',icon:'📊',color:'#a855f7',kw:['case','study','example','success'],orbit:0.75,speed:0.1,size:25},
+{id:'edtools',label:'Resources',sub:'Templates',icon:'📚',color:'#3b82f6',kw:['resource','download','template'],orbit:0.55,speed:0.2,size:22},
+{id:'community',label:'Community',sub:'Connect',icon:'🤝',color:'#ff6b9d',kw:['community','connect','forum'],orbit:0.9,speed:0.09,size:27},
+{id:'guests',label:'Be Our Guest',sub:'Share Your Story',icon:'✨',color:'#ef4444',kw:['guest','contribute'],orbit:0.45,speed:0.25,size:20},
+{id:'about',label:'About',sub:'Dr. Norma Jones',icon:'👩‍🏫',color:'#f59e0b',kw:['about','norma','jones'],orbit:0.4,speed:0.28,size:20},
+];
+
+let particles=[];
+const stars=Array.from({length:300},()=>({x:Math.random()*4000-500,y:Math.random()*2500-300,r:Math.random()*1+0.2,a:Math.random()*0.3+0.05,p:Math.random()*6.28}));
+function resize(){W=C.width=innerWidth;H=C.height=innerHeight;cx=W/2;cy=H/2}
+resize();addEventListener('resize',resize);
+function hex(h,a){return`rgba(${parseInt(h.slice(1,3),16)},${parseInt(h.slice(3,5),16)},${parseInt(h.slice(5,7),16)},${a})`}
+
+function spawnP(n){particles.push({nid:n.id,t:0,sp:0.004+Math.random()*0.004,sz:1.5+Math.random()*1.5,col:n.color,dir:Math.random()>0.5})}
+setInterval(()=>{nodes.forEach(n=>{if(Math.random()<0.2)spawnP(n);if(n.id===sel&&Math.random()<0.5)spawnP(n)})},200);
+
+function render(){
+    t+=0.005;
+    X.clearRect(0,0,W,H);
+    const bg=X.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*0.6);
+    bg.addColorStop(0,'rgba(12,6,24,1)');bg.addColorStop(0.4,'rgba(4,2,12,1)');bg.addColorStop(1,'rgba(2,2,8,1)');
+    X.fillStyle=bg;X.fillRect(0,0,W,H);
+    stars.forEach(s=>{X.beginPath();X.arc(s.x,s.y,s.r,0,6.28);X.fillStyle=`rgba(180,200,255,${s.a*(Math.sin(t*2+s.p)*0.3+0.7)})`;X.fill()});
+
+    // Sun (center)
+    const sp=Math.sin(t*1.5)*0.15+0.85;
+    for(let r=4;r>=0;r--){
+        const grad=X.createRadialGradient(cx,cy,0,cx,cy,60+r*20);
+        grad.addColorStop(0,`rgba(255,200,50,${0.03-r*0.005})`);grad.addColorStop(1,'rgba(0,0,0,0)');
+        X.beginPath();X.arc(cx,cy,60+r*20,0,6.28);X.fillStyle=grad;X.fill();
+    }
+    const sg=X.createRadialGradient(cx,cy,0,cx,cy,30);
+    sg.addColorStop(0,`rgba(255,220,100,${0.5*sp})`);sg.addColorStop(0.4,`rgba(255,150,50,${0.3*sp})`);sg.addColorStop(1,'rgba(200,80,192,0)');
+    X.beginPath();X.arc(cx,cy,30,0,6.28);X.fillStyle=sg;X.fill();
+    // Corona
+    X.save();X.translate(cx,cy);X.rotate(t*0.2);
+    for(let i=0;i<6;i++){
+        const a=(i/6)*6.28;
+        X.beginPath();X.moveTo(0,0);
+        X.lineTo(Math.cos(a)*45,Math.sin(a)*45);
+        X.strokeStyle='rgba(255,200,100,0.06)';X.lineWidth=8;X.stroke();
+    }
+    X.restore();
+    X.font='600 10px "Space Grotesk"';X.fillStyle='rgba(255,255,255,0.35)';X.textAlign='center';X.fillText('CHAT-NAV',cx,cy+50);
+
+    // Orbital rings & nodes
+    const maxR=Math.min(W*0.42,H*0.38,380);
+    nodes.forEach((n,i)=>{
+        const orbitR=n.orbit*maxR;
+        const angle=t*n.speed+i*(6.28/nodes.length)*1.5;
+        const eccentricity=0.3;
+        const tx=cx+Math.cos(angle)*orbitR;
+        const ty=cy+Math.sin(angle)*orbitR*eccentricity+(cy-cy*0.1);
+        n.x=n.x===undefined?cx:n.x;n.y=n.y===undefined?cy:n.y;
+        n.x+=(tx-n.x)*0.08;n.y+=(ty-n.y)*0.08;
+
+        const isSel=n.id===sel,isHov=n.id===hover;
+        const intensity=isSel?1:isHov?0.75:0.4;
+
+        // Orbital ring
+        X.beginPath();X.ellipse(cx,cy+cy*0.0,orbitR,orbitR*eccentricity,0,0,6.28);
+        X.strokeStyle=isSel?hex(n.color,0.12):`rgba(255,255,255,0.02)`;X.lineWidth=1;X.setLineDash([2,6]);X.stroke();X.setLineDash([]);
+
+        // Beam to center
+        const bA=isSel?0.2:isHov?0.12:0.03;
+        X.beginPath();X.moveTo(cx,cy);X.lineTo(n.x,n.y);X.strokeStyle=hex(n.color,bA);X.lineWidth=isSel?2:1;X.stroke();
+
+        // Node glow
+        const gg=X.createRadialGradient(n.x,n.y,0,n.x,n.y,n.size+16);
+        gg.addColorStop(0,hex(n.color,0.15*intensity));gg.addColorStop(1,hex(n.color,0));
+        X.beginPath();X.arc(n.x,n.y,n.size+16,0,6.28);X.fillStyle=gg;X.fill();
+        // Pulse
+        const pp=Math.sin(t*3+i)*0.3+0.7;
+        X.beginPath();X.arc(n.x,n.y,n.size+pp*(isSel?12:5),0,6.28);X.strokeStyle=hex(n.color,0.08*pp*intensity);X.lineWidth=1;X.stroke();
+        // Core
+        const cg=X.createRadialGradient(n.x,n.y,0,n.x,n.y,n.size);
+        cg.addColorStop(0,hex(n.color,0.22*intensity));cg.addColorStop(1,hex(n.color,0.02));
+        X.beginPath();X.arc(n.x,n.y,n.size,0,6.28);X.fillStyle=cg;X.fill();
+        X.beginPath();X.arc(n.x,n.y,n.size,0,6.28);X.strokeStyle=hex(n.color,0.25*intensity);X.lineWidth=isSel?2:1;X.stroke();
+        // Icon
+        X.font=`${isSel?20:15}px sans-serif`;X.textAlign='center';X.textBaseline='middle';X.fillText(n.icon,n.x,n.y);
+        // Label
+        X.font=`${isSel?'700':'600'} ${isSel?12:11}px "Space Grotesk"`;X.fillStyle=isSel?'#fff':isHov?'rgba(255,255,255,0.75)':'rgba(255,255,255,0.4)';
+        X.textBaseline='top';X.fillText(n.label,n.x,n.y+n.size+10);
+        X.font='400 9px "JetBrains Mono"';X.fillStyle=isSel?hex(n.color,0.7):'rgba(255,255,255,0.15)';
+        X.fillText(n.sub,n.x,n.y+n.size+24);
+    });
+
+    // Particles
+    particles=particles.filter(p=>{
+        p.t+=p.sp;if(p.t>1)return false;
+        const n=nodes.find(x=>x.id===p.nid);if(!n)return false;
+        const tt=p.dir?p.t:1-p.t;
+        const px=cx+(n.x-cx)*tt,py=cy+(n.y-cy)*tt;
+        X.beginPath();X.arc(px,py,p.sz,0,6.28);X.fillStyle=hex(p.col,0.4);X.fill();
+        return true;
+    });
+    requestAnimationFrame(render);
+}
+render();
+
+C.addEventListener('mousemove',e=>{hover=null;C.style.cursor='default';nodes.forEach(n=>{if(Math.hypot(e.clientX-n.x,e.clientY-n.y)<n.size+10){hover=n.id;C.style.cursor='pointer'}})});
+C.addEventListener('click',e=>{nodes.forEach(n=>{if(Math.hypot(e.clientX-n.x,e.clientY-n.y)<n.size+10)selectN(n)})});
+
+function selectN(n){sel=n.id;for(let i=0;i<8;i++)setTimeout(()=>spawnP(n),i*50);showR(n)}
+const msgs={pulse:{t:"Morning briefing ready. 4 stories by Dr. Jones.",a:['▶ Play','Read']},podcast:{t:"Latest episode: AI ethics in small colleges.",a:['▶ Play','All']},tools:{t:"50+ AI tools for higher ed.",a:['Browse','Teaching']},prompts:{t:"Copy-paste prompts for educators.",a:['Browse','Beginners']},tinkerlab:{t:"5-minute experiments from the lab.",a:['Latest','All']},guides:{t:"AI fundamentals. No jargon.",a:['Start','Quick-Start']},cases:{t:"Real campus outcomes, real data.",a:['Browse','By Size']},edtools:{t:"Templates and downloads.",a:['Browse','Plans']},community:{t:"200+ educators, together.",a:['Join','Events']},guests:{t:"Share your AI story.",a:['Apply','Info']},about:{t:"Dr. Norma Jones. Innovation guide.",a:['Bio','Mission']}};
+function showR(n){const m=msgs[n.id]||{t:'...',a:['Go']};document.getElementById('rT').textContent=m.t;document.getElementById('rB').innerHTML=m.a.map(a=>`<button>${a}</button>`).join('');document.getElementById('resp').classList.add('on')}
+function proc(text){if(!text.trim())return;const l=text.toLowerCase();let b=null,bs=0;nodes.forEach(n=>{let s=0;n.kw.forEach(k=>{if(l.includes(k))s+=2});if(l.includes('new')||l.includes('help'))if(n.id==='guides')s+=4;if(s>bs){bs=s;b=n}});if(!b)b=nodes[5];selectN(b)}
+document.getElementById('go').addEventListener('click',()=>{const i=document.getElementById('inp');proc(i.value);i.value=''});
+document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter'){proc(e.target.value);e.target.value=''}});
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>proc(c.dataset.q)));
+</script>
+</body>
+</html>

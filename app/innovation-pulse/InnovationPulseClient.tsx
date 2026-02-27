@@ -133,18 +133,80 @@ interface AggregatedStoryWithV4 extends AggregatedStory {
   v4Category: V4Category;
 }
 
-// Placeholder images for story cards
-const storyImages = [
-  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=340&fit=crop",
-  "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop",
+// Extended image pool for story cards - prevents duplicates
+const storyImagePool = [
+  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1485988412941-77a35537dae4?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1560472355-536de3962603?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=450&fit=crop",
+  "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?w=800&h=450&fit=crop",
 ];
+
+// Hash function for consistent image assignment
+function hashString(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash);
+}
+
+// Get image for a story based on headline hash (consistent assignment)
+function getStoryImage(headline: string): string {
+  const hash = hashString(headline);
+  const index = hash % storyImagePool.length;
+  return storyImagePool[index];
+}
+
+// Get unique images for multiple stories (prevents duplicates on same page)
+function getUniqueStoryImages(headlines: string[]): Map<string, string> {
+  const usedIndices = new Set<number>();
+  const result = new Map<string, string>();
+
+  for (const headline of headlines) {
+    let hash = hashString(headline);
+    let index = hash % storyImagePool.length;
+
+    // If collision, find next available
+    let attempts = 0;
+    while (usedIndices.has(index) && attempts < storyImagePool.length) {
+      index = (index + 1) % storyImagePool.length;
+      attempts++;
+    }
+
+    usedIndices.add(index);
+    result.set(headline, storyImagePool[index]);
+  }
+
+  return result;
+}
 
 // Main Client Component
 interface InnovationPulseClientProps {
@@ -665,12 +727,12 @@ export default function InnovationPulseClient({
         </div>
 
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden grid md:grid-cols-2 hover:border-[var(--border-hover)] transition-colors">
-          {/* Image Side */}
-          <div className="relative min-h-[280px] md:min-h-[360px] overflow-hidden">
+          {/* Image Side - 16:9 aspect ratio container */}
+          <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[360px] overflow-hidden">
             <img
-              src={storyImages[0]}
+              src={getStoryImage(leadStory.title)}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-600 hover:scale-[1.04]"
+              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-600 hover:scale-[1.04]"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-[rgba(8,8,15,0.4)] to-[rgba(8,8,15,0.1)]" />
             {/* Badges */}
@@ -840,7 +902,7 @@ export default function InnovationPulseClient({
                     source={story.source}
                     sourceUrl={story.sourceUrl}
                     date={formatShortDate(story.date)}
-                    imageUrl={storyImages[(sectionIdx * 3 + i) % storyImages.length]}
+                    imageUrl={getStoryImage(story.title)}
                     badgeText={
                       story.isCallback
                         ? "CALLBACK"

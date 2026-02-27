@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IHE Portal — The Grid</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020208;font-family:'Space Grotesk',sans-serif;color:#fff;height:100vh;overflow:hidden}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1}
+.topbar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(2,2,8,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,229,255,0.05);display:flex;align-items:center;padding:0 24px;z-index:100}
+.topbar .brand{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.topbar .brand .line{width:20px;height:2px;background:linear-gradient(90deg,#00e5ff,#c850c0)}
+.topbar .brand span{background:linear-gradient(90deg,#00e5ff,#c850c0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hub{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);width:90%;max-width:540px;z-index:50}
+.bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(6,6,15,0.92);border:1px solid rgba(0,229,255,0.1);border-radius:14px;backdrop-filter:blur(20px);box-shadow:0 0 50px rgba(0,229,255,0.05)}
+.bar:focus-within{border-color:rgba(0,229,255,0.3)}
+.orb{width:38px;height:38px;border-radius:4px;background:linear-gradient(135deg,#00e5ff,#c850c0);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.bar input{flex:1;background:none;border:none;outline:none;color:#fff;font-family:inherit;font-size:14px;padding:6px}
+.bar input::placeholder{color:rgba(255,255,255,0.2)}
+.bar button{width:34px;height:34px;border-radius:6px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.bs{background:linear-gradient(135deg,#00e5ff,#c850c0);color:#fff}
+.bm{background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.06)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:8px}
+.chip{padding:5px 12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:3px;color:rgba(255,255,255,0.35);font-size:11px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all 0.2s;text-transform:uppercase;letter-spacing:1px}
+.chip:hover{background:rgba(0,229,255,0.06);border-color:rgba(0,229,255,0.2);color:#00e5ff}
+.resp{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);max-width:500px;width:90%;z-index:50;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.resp.on{opacity:1;pointer-events:auto}
+.rbox{background:rgba(6,6,15,0.95);border:1px solid rgba(0,229,255,0.08);border-radius:4px;padding:14px 18px;backdrop-filter:blur(20px)}
+.rbox p{font-size:13px;line-height:1.6;color:rgba(255,255,255,0.75);margin-bottom:10px;font-family:'JetBrains Mono',monospace;font-size:12px}
+.rbox .btns{display:flex;gap:6px;flex-wrap:wrap}
+.rbox .btns button{padding:5px 12px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.12);border-radius:3px;color:#00e5ff;font-size:10px;font-weight:600;cursor:pointer;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.5px}
+.status{position:fixed;bottom:0;left:0;right:0;height:22px;background:rgba(2,2,8,0.9);border-top:1px solid rgba(0,229,255,0.06);display:flex;align-items:center;justify-content:center;gap:16px;z-index:60;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(0,229,255,0.3)}
+</style>
+</head>
+<body>
+<nav class="topbar"><div class="brand"><div class="line"></div><span>INNOVATING HIGHER ED</span></div></nav>
+<canvas id="c"></canvas>
+<div class="hub">
+<div class="bar"><div class="orb">⚡</div><input type="text" id="inp" placeholder="> ACCESS POINT: ENTER QUERY_" autocomplete="off"><button class="bm">🎙</button><button class="bs" id="go">→</button></div>
+<div class="chips"><button class="chip" data-q="new to AI">INIT_AI</button><button class="chip" data-q="play news">PULSE</button><button class="chip" data-q="tools">TOOLS</button><button class="chip" data-q="podcast">PODCAST</button><button class="chip" data-q="prompts">PROMPTS</button><button class="chip" data-q="case studies">CASES</button></div>
+</div>
+<div class="resp" id="resp"><div class="rbox"><p id="rT"></p><div class="btns" id="rB"></div></div></div>
+<div class="status"><span>■ GRID_ONLINE</span><span>NODES: 11</span><span>RESOURCES: 51</span><span>CYCLE: 2026.02.07</span></div>
+
+<script>
+const C=document.getElementById('c'),X=C.getContext('2d');
+let W,H,cx,cy,t=0,sel=null,hover=null;
+const nodes=[
+{id:'pulse',label:'INNOVATION PULSE',sub:'DAILY.BRIEFING',icon:'📡',color:'#00e5ff',kw:['news','pulse','daily','play','today']},
+{id:'podcast',label:'PODCAST',sub:'DR.JONES.INTERVIEWS',icon:'🎙',color:'#c850c0',kw:['podcast','episode','listen']},
+{id:'tools',label:'AI TOOLS',sub:'DIRECTORY.50+',icon:'🛠',color:'#00ff88',kw:['tool','app','software','directory']},
+{id:'prompts',label:'PROMPT LIBRARY',sub:'COPY.PASTE.TEACH',icon:'💡',color:'#ffd700',kw:['prompt','template']},
+{id:'tinkerlab',label:'TINKER LAB',sub:'EXPERIMENTS',icon:'🔬',color:'#ff8c42',kw:['tinker','lab','experiment']},
+{id:'guides',label:'GETTING STARTED',sub:'AI.FACULTY.101',icon:'🌱',color:'#14b8a6',kw:['new','start','begin','learn','teach','faculty','professor','help']},
+{id:'cases',label:'CASE STUDIES',sub:'CAMPUS.OUTCOMES',icon:'📊',color:'#a855f7',kw:['case','study','example','success']},
+{id:'edtools',label:'RESOURCES',sub:'TEMPLATES.DL',icon:'📚',color:'#3b82f6',kw:['resource','download','template']},
+{id:'community',label:'COMMUNITY',sub:'NETWORK.CONNECT',icon:'🤝',color:'#ff6b9d',kw:['community','connect','forum']},
+{id:'guests',label:'BE OUR GUEST',sub:'SUBMIT.STORY',icon:'✨',color:'#ef4444',kw:['guest','contribute']},
+{id:'about',label:'ABOUT',sub:'DR.NORMA.JONES',icon:'👩‍🏫',color:'#f59e0b',kw:['about','norma','jones']},
+];
+
+let particles=[];
+function resize(){W=C.width=innerWidth;H=C.height=innerHeight;cx=W/2;cy=H/2;posN()}
+function posN(){
+    const cols=Math.ceil(nodes.length/2);
+    const spacing=Math.min(W/(cols+1),160);
+    const startX=cx-(cols-1)*spacing/2;
+    nodes.forEach((n,i)=>{
+        const row=i<Math.ceil(nodes.length/2)?0:1;
+        const col=row===0?i:i-Math.ceil(nodes.length/2);
+        const totalInRow=row===0?Math.ceil(nodes.length/2):Math.floor(nodes.length/2);
+        const rowStartX=cx-(totalInRow-1)*spacing/2;
+        n.tx=rowStartX+col*spacing;
+        n.ty=row===0?cy-110:cy+110;
+        if(n.x===undefined){n.x=cx;n.y=cy}
+    });
+}
+resize();addEventListener('resize',resize);
+function hex(h,a){return`rgba(${parseInt(h.slice(1,3),16)},${parseInt(h.slice(3,5),16)},${parseInt(h.slice(5,7),16)},${a})`}
+
+function spawnP(n){particles.push({nid:n.id,t:0,sp:0.006+Math.random()*0.006,sz:1+Math.random()*2,col:n.color,dir:Math.random()>0.5})}
+setInterval(()=>{nodes.forEach(n=>{if(Math.random()<0.2)spawnP(n);if(n.id===sel&&Math.random()<0.6)spawnP(n)})},150);
+
+function render(){
+    t+=0.008;X.clearRect(0,0,W,H);
+    // BG
+    X.fillStyle='#020208';X.fillRect(0,0,W,H);
+
+    // Grid floor
+    const horizon=cy+40;
+    const gridAlpha=0.04;
+    // Horizontal lines (perspective)
+    for(let i=0;i<30;i++){
+        const y=horizon+i*i*1.5;
+        if(y>H)break;
+        const a=gridAlpha*(1-i/30);
+        X.beginPath();X.moveTo(0,y);X.lineTo(W,y);
+        X.strokeStyle=`rgba(0,229,255,${a})`;X.lineWidth=1;X.stroke();
+    }
+    // Vertical lines (converging to vanishing point)
+    for(let i=-20;i<=20;i++){
+        const baseX=cx+i*80;
+        const topX=cx+i*8;
+        X.beginPath();X.moveTo(topX,horizon);X.lineTo(baseX,H);
+        X.strokeStyle=`rgba(0,229,255,${gridAlpha*0.5})`;X.lineWidth=1;X.stroke();
+    }
+    // Grid ceiling (mirror)
+    for(let i=0;i<20;i++){
+        const y=horizon-40-i*i*1.2;
+        if(y<0)break;
+        X.beginPath();X.moveTo(0,y);X.lineTo(W,y);
+        X.strokeStyle=`rgba(200,80,192,${0.015*(1-i/20)})`;X.lineWidth=1;X.stroke();
+    }
+
+    // Central beam
+    const beamW=4+Math.sin(t*3)*1;
+    const bg1=X.createLinearGradient(cx,0,cx,H);
+    bg1.addColorStop(0,'rgba(0,229,255,0)');bg1.addColorStop(0.3,'rgba(0,229,255,0.15)');
+    bg1.addColorStop(0.5,'rgba(200,80,192,0.2)');bg1.addColorStop(0.7,'rgba(0,229,255,0.15)');bg1.addColorStop(1,'rgba(0,229,255,0)');
+    X.fillStyle=bg1;X.fillRect(cx-beamW,0,beamW*2,H);
+    // Beam glow
+    const bg2=X.createLinearGradient(cx-40,0,cx+40,0);
+    bg2.addColorStop(0,'rgba(0,229,255,0)');bg2.addColorStop(0.5,'rgba(0,229,255,0.03)');bg2.addColorStop(1,'rgba(0,229,255,0)');
+    X.fillStyle=bg2;X.fillRect(cx-40,0,80,H);
+
+    X.font='600 10px "JetBrains Mono"';X.fillStyle='rgba(0,229,255,0.35)';X.textAlign='center';X.fillText('[ CHAT-NAV ]',cx,cy+4);
+
+    // Nodes as monoliths
+    nodes.forEach((n,i)=>{
+        n.x+=(n.tx-n.x)*0.06;n.y+=(n.ty-n.y)*0.06;
+        const isSel=n.id===sel,isHov=n.id===hover;
+        const intensity=isSel?1:isHov?0.75:0.35;
+        const pulse=Math.sin(t*3+i*0.5)*0.3+0.7;
+
+        // Laser line to center beam
+        const laserAlpha=isSel?0.4:isHov?0.25:0.06;
+        X.beginPath();X.moveTo(cx,n.y);X.lineTo(n.x,n.y);
+        X.strokeStyle=hex(n.color,laserAlpha);X.lineWidth=isSel?2:1;X.stroke();
+        // Laser glow
+        if(isSel||isHov){
+            X.beginPath();X.moveTo(cx,n.y);X.lineTo(n.x,n.y);
+            X.strokeStyle=hex(n.color,0.04);X.lineWidth=8;X.stroke();
+        }
+
+        // Monolith (tall rect)
+        const mw=isSel?60:isHov?54:48;
+        const mh=isSel?80:isHov?72:64;
+        const mx=n.x-mw/2,my=n.y-mh/2;
+
+        // Monolith glow
+        const mg=X.createRadialGradient(n.x,n.y,0,n.x,n.y,mw);
+        mg.addColorStop(0,hex(n.color,0.1*intensity));mg.addColorStop(1,hex(n.color,0));
+        X.fillStyle=mg;X.fillRect(n.x-mw,n.y-mh,mw*2,mh*2);
+
+        // Monolith body
+        X.fillStyle=`rgba(6,6,15,${0.85*intensity+0.1})`;
+        X.fillRect(mx,my,mw,mh);
+        // Border
+        X.strokeStyle=hex(n.color,0.3*intensity);X.lineWidth=isSel?1.5:0.5;
+        X.strokeRect(mx,my,mw,mh);
+        // Top accent line
+        X.fillStyle=hex(n.color,0.5*intensity);
+        X.fillRect(mx,my,mw,2);
+        // Pulsing bottom line
+        X.fillStyle=hex(n.color,0.2*pulse*intensity);
+        X.fillRect(mx,my+mh-2,mw,2);
+
+        // Icon
+        X.font=`${isSel?22:17}px sans-serif`;X.textAlign='center';X.textBaseline='middle';
+        X.fillText(n.icon,n.x,n.y-8);
+        // Label
+        X.font=`${isSel?'700':'600'} ${isSel?10:9}px "JetBrains Mono"`;
+        X.fillStyle=isSel?'#fff':isHov?'rgba(255,255,255,0.7)':'rgba(255,255,255,0.35)';
+        X.textBaseline='top';X.fillText(n.label,n.x,n.y+12);
+        X.font='400 8px "JetBrains Mono"';X.fillStyle=isSel?hex(n.color,0.7):'rgba(255,255,255,0.15)';
+        X.fillText(n.sub,n.x,n.y+24);
+    });
+
+    // Particles along lasers (horizontal)
+    particles=particles.filter(p=>{
+        p.t+=p.sp;if(p.t>1)return false;
+        const n=nodes.find(x=>x.id===p.nid);if(!n)return false;
+        const tt=p.dir?p.t:1-p.t;
+        const px=cx+(n.x-cx)*tt,py=n.y;
+        X.beginPath();X.arc(px,py,p.sz,0,6.28);X.fillStyle=hex(p.col,0.5);X.fill();
+        X.beginPath();X.arc(px,py,p.sz+3,0,6.28);X.fillStyle=hex(p.col,0.1);X.fill();
+        return true;
+    });
+
+    // Scanline effect
+    for(let y=0;y<H;y+=3){
+        X.fillStyle='rgba(0,0,0,0.03)';X.fillRect(0,y,W,1);
+    }
+
+    requestAnimationFrame(render);
+}
+render();
+
+C.addEventListener('mousemove',e=>{hover=null;C.style.cursor='default';nodes.forEach(n=>{const mw=60,mh=80;if(e.clientX>n.x-mw/2&&e.clientX<n.x+mw/2&&e.clientY>n.y-mh/2&&e.clientY<n.y+mh/2){hover=n.id;C.style.cursor='pointer'}})});
+C.addEventListener('click',e=>{nodes.forEach(n=>{const mw=60,mh=80;if(e.clientX>n.x-mw/2&&e.clientX<n.x+mw/2&&e.clientY>n.y-mh/2&&e.clientY<n.y+mh/2)selectN(n)})});
+
+function selectN(n){sel=n.id;for(let i=0;i<10;i++)setTimeout(()=>spawnP(n),i*40);showR(n)}
+const msgs={pulse:{t:"> BRIEFING_READY: 4 stories. Dr. Jones narrates.",a:['▶ PLAY','READ']},podcast:{t:"> LATEST_EP: AI ethics in small colleges. 38m.",a:['▶ PLAY','ARCHIVE']},tools:{t:"> DIRECTORY: 50+ tools. Filter by role.",a:['BROWSE','TEACHING']},prompts:{t:"> LIBRARY: Copy-paste prompts for educators.",a:['BROWSE','INIT']},tinkerlab:{t:"> LAB: 5-minute experiments. Try now.",a:['LATEST','ALL']},guides:{t:"> INIT_PATH: AI fundamentals. No jargon.",a:['START','QUICKSTART']},cases:{t:"> DATA: Real outcomes. Real campuses.",a:['BROWSE','FILTER']},edtools:{t:"> ASSETS: Templates and downloads.",a:['BROWSE','PLANS']},community:{t:"> NETWORK: 200+ educators connected.",a:['JOIN','EVENTS']},guests:{t:"> SUBMIT: Share your AI story.",a:['APPLY','INFO']},about:{t:"> PROFILE: Dr. Norma Jones.",a:['BIO','MISSION']}};
+function showR(n){const m=msgs[n.id]||{t:'>...',a:['GO']};document.getElementById('rT').textContent=m.t;document.getElementById('rB').innerHTML=m.a.map(a=>`<button>${a}</button>`).join('');document.getElementById('resp').classList.add('on')}
+function proc(text){if(!text.trim())return;const l=text.toLowerCase();let b=null,bs=0;nodes.forEach(n=>{let s=0;n.kw.forEach(k=>{if(l.includes(k))s+=2});if(l.includes('new')||l.includes('help'))if(n.id==='guides')s+=4;if(s>bs){bs=s;b=n}});if(!b)b=nodes[5];selectN(b)}
+document.getElementById('go').addEventListener('click',()=>{const i=document.getElementById('inp');proc(i.value);i.value=''});
+document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter'){proc(e.target.value);e.target.value=''}});
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>proc(c.dataset.q)));
+</script>
+</body>
+</html>

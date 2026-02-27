@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE FRONTIER — Where Education Discovers Tomorrow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* The Void */
+            --void: #020206;
+            --deep: #050510;
+            --space: #0a0a18;
+            --surface: #101025;
+            --elevated: #151535;
+            --card: #1a1a40;
+            
+            /* Bioluminescent Spectrum */
+            --frontier-cyan: #00e5ff;
+            --frontier-cyan-glow: rgba(0, 229, 255, 0.4);
+            --pulse-green: #00ff88;
+            --pulse-glow: rgba(0, 255, 136, 0.3);
+            --aurora-gold: #ffd700;
+            --aurora-glow: rgba(255, 215, 0, 0.3);
+            --dream-violet: #a855f7;
+            --dream-glow: rgba(168, 85, 247, 0.3);
+            --hope-rose: #ff6b9d;
+            --nova-orange: #ff8c42;
+            
+            /* Text */
+            --text-bright: #ffffff;
+            --text-primary: #e8e8f8;
+            --text-secondary: #a0a0c8;
+            --text-muted: #606088;
+            --text-dim: #404060;
+            
+            /* Gradients */
+            --gradient-frontier: linear-gradient(135deg, var(--frontier-cyan), var(--pulse-green));
+            --gradient-aurora: linear-gradient(135deg, var(--aurora-gold), var(--nova-orange), var(--hope-rose));
+            --gradient-dream: linear-gradient(135deg, var(--dream-violet), var(--hope-rose));
+            --gradient-cosmos: linear-gradient(135deg, var(--frontier-cyan), var(--dream-violet), var(--hope-rose));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           THE LIVING COSMOS BACKGROUND
+           ========================================== */
+        .cosmos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: nebula-breathe 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            width: 900px;
+            height: 700px;
+            background: radial-gradient(ellipse, var(--frontier-cyan-glow) 0%, transparent 70%);
+            top: -300px;
+            left: -200px;
+            opacity: 0.4;
+        }
+
+        .nebula-2 {
+            width: 700px;
+            height: 900px;
+            background: radial-gradient(ellipse, var(--dream-glow) 0%, transparent 70%);
+            bottom: -400px;
+            right: -200px;
+            opacity: 0.3;
+            animation-delay: -10s;
+        }
+
+        .nebula-3 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(ellipse, var(--aurora-glow) 0%, transparent 70%);
+            top: 40%;
+            left: 30%;
+            opacity: 0.2;
+            animation-delay: -5s;
+        }
+
+        .nebula-4 {
+            width: 500px;
+            height: 400px;
+            background: radial-gradient(ellipse, var(--pulse-glow) 0%, transparent 70%);
+            top: 60%;
+            right: 20%;
+            opacity: 0.25;
+            animation-delay: -15s;
+        }
+
+        @keyframes nebula-breathe {
+            0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+            33% { transform: scale(1.1) translate(20px, -10px); opacity: 0.4; }
+            66% { transform: scale(0.95) translate(-15px, 15px); opacity: 0.25; }
+        }
+
+        /* Stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: star-pulse var(--duration) ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        @keyframes star-pulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.3); }
+        }
+
+        /* Grid lines */
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: grid-drift 30s linear infinite;
+        }
+
+        @keyframes grid-drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, 80px); }
+        }
+
+        /* Content wrapper */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           NAVIGATION - The Intelligence Bar
+           ========================================== */
+        .nav-intelligence {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 16, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+        }
+
+        .nav-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--gradient-frontier);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--void);
+            position: relative;
+        }
+
+        .brand-logo::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 14px;
+            background: var(--gradient-frontier);
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+            animation: logo-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes logo-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .brand-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        .brand-text .accent {
+            color: var(--frontier-cyan);
+        }
+
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pulse-green);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--pulse-glow); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px transparent; }
+        }
+
+        .status-value {
+            color: var(--frontier-cyan);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 10px 18px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-bright);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link.cta {
+            background: var(--frontier-cyan);
+            color: var(--void);
+            font-weight: 600;
+        }
+
+        .nav-link.cta:hover {
+            box-shadow: 0 0 30px var(--frontier-cyan-glow);
+        }
+
+        /* ==========================================
+           SECTION 1: THE GATEWAY - First Contact
+           ========================================== */
+        .gateway {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+        }
+
+        .gateway-philosophy {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--frontier-cyan);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fade-rise 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes fade-rise {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gateway-title {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fade-rise 1s ease-out 0.5s forwards;
+        }
+
+        .gateway-title .line {
+            display: block;
+        }
+
+        .gateway-title .gradient {
+            background: var(--gradient-frontier);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gateway-subtitle {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(20px, 3vw, 28px);
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.6;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fade-rise 1s ease-out 0.7s forwards;
+        }
+
+        .gateway-inversion {
+            display: inline-block;
+            padding: 20px 32px;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 16px;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fade-rise 1s ease-out 0.9s forwards;
+        }
+
+        .inversion-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--aurora-gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .inversion-text {
+            font-size: 18px;
+            color: var(--text-bright);
+            font-weight: 500;
+        }
+
+        .inversion-text .strike {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .inversion-text .emphasis {
+            color: var(--frontier-cyan);
+        }
+
+        /* Scroll prompt */
+        .scroll-prompt {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            animation: fade-rise 1s ease-out 1.2s forwards;
+        }
+
+        .scroll-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--frontier-cyan), transparent);
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-pulse {
+            0%, 100% { opacity: 1; height: 60px; }
+            50% { opacity: 0.5; height: 40px; }
+        }
+
+        /* ==========================================
+           SECTION 2: THE FRONTIER MAP
+           ========================================== */
+        .frontier-map {
+            padding: 120px 40px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--frontier-cyan);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--frontier-cyan);
+            opacity: 0.4;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .section-title .gradient {
+            background: var(--gradient-frontier);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Technology Cards Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: rgba(26, 26, 64, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .tech-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tech-card.ai { --card-gradient: linear-gradient(90deg, var(--frontier-cyan), var(--pulse-green)); }
+        .tech-card.vr { --card-gradient: linear-gradient(90deg, var(--dream-violet), var(--hope-rose)); }
+        .tech-card.ar { --card-gradient: linear-gradient(90deg, var(--aurora-gold), var(--nova-orange)); }
+        .tech-card.collective { --card-gradient: linear-gradient(90deg, var(--pulse-green), var(--frontier-cyan)); }
+
+        .tech-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .tech-card.ai .tech-icon { background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 255, 136, 0.15)); }
+        .tech-card.vr .tech-icon { background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(255, 107, 157, 0.15)); }
+        .tech-card.ar .tech-icon { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 66, 0.15)); }
+        .tech-card.collective .tech-icon { background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 229, 255, 0.15)); }
+
+        .tech-status {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--pulse-green);
+            animation: status-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes status-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .tech-category {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .tech-card.ai .tech-category { color: var(--frontier-cyan); }
+        .tech-card.vr .tech-category { color: var(--dream-violet); }
+        .tech-card.ar .tech-category { color: var(--aurora-gold); }
+        .tech-card.collective .tech-category { color: var(--pulse-green); }
+
+        .tech-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .tech-transform {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .tech-stats {
+            display: flex;
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tech-stat {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tech-pioneers {
+            margin-top: 20px;
+        }
+
+        .pioneers-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .pioneer-logos {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pioneer-logo {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* ==========================================
+           SECTION 3: THE PIONEERS GALLERY
+           ========================================== */
+        .pioneers {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, transparent, rgba(0, 229, 255, 0.02), transparent);
+        }
+
+        .pioneers-intro {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+
+        .pioneers-philosophy {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .pioneers-note {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .pioneers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pioneer-card {
+            background: rgba(20, 20, 50, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .pioneer-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .pioneer-visual {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pioneer-visual-bg {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            opacity: 0.8;
+        }
+
+        .pioneer-card:nth-child(1) .pioneer-visual-bg { background: linear-gradient(135deg, #1a1a4e, #2d1b4e); }
+        .pioneer-card:nth-child(2) .pioneer-visual-bg { background: linear-gradient(135deg, #1a3a2e, #0d2a3d); }
+        .pioneer-card:nth-child(3) .pioneer-visual-bg { background: linear-gradient(135deg, #3d2a1d, #2d1a2a); }
+        .pioneer-card:nth-child(4) .pioneer-visual-bg { background: linear-gradient(135deg, #2a2a4e, #1a2a3e); }
+        .pioneer-card:nth-child(5) .pioneer-visual-bg { background: linear-gradient(135deg, #1a2a1a, #2a3a2a); }
+        .pioneer-card:nth-child(6) .pioneer-visual-bg { background: linear-gradient(135deg, #3a2a3a, #2a1a3a); }
+
+        .pioneer-type {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .pioneer-type.research { color: var(--frontier-cyan); }
+        .pioneer-type.community { color: var(--pulse-green); }
+        .pioneer-type.hbcu { color: var(--aurora-gold); }
+        .pioneer-type.individual { color: var(--hope-rose); }
+
+        .pioneer-content {
+            padding: 28px;
+        }
+
+        .pioneer-institution {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pioneer-location {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .pioneer-innovation {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .pioneer-impact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .impact-icon {
+            font-size: 24px;
+        }
+
+        .impact-text {
+            font-size: 13px;
+            color: var(--pulse-green);
+            font-weight: 500;
+        }
+
+        .pioneer-cta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--frontier-cyan);
+            cursor: pointer;
+            transition: gap 0.3s ease;
+        }
+
+        .pioneer-cta:hover {
+            gap: 12px;
+        }
+
+        /* ==========================================
+           SECTION 4: WHAT IF - Thought Experiments
+           ========================================== */
+        .what-if {
+            padding: 120px 40px;
+            position: relative;
+        }
+
+        .what-if::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--aurora-glow) 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.2;
+        }
+
+        .what-if-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .scenario-carousel {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .scenario-card {
+            background: rgba(26, 26, 64, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .scenario-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.1);
+        }
+
+        .scenario-icon {
+            font-size: 56px;
+            margin-bottom: 24px;
+        }
+
+        .scenario-question {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--aurora-gold);
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .scenario-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           SECTION 5: THE JOURNEY
+           ========================================== */
+        .journey {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, transparent, rgba(0, 255, 136, 0.02), transparent);
+        }
+
+        .journey-path {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Vertical line connecting steps */
+        .journey-line {
+            position: absolute;
+            left: 32px;
+            top: 60px;
+            bottom: 60px;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                var(--frontier-cyan),
+                var(--pulse-green),
+                var(--aurora-gold),
+                var(--dream-violet),
+                var(--hope-rose),
+                var(--frontier-cyan)
+            );
+            opacity: 0.3;
+        }
+
+        .journey-step {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .journey-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-marker {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-step:nth-child(1) .step-marker { background: linear-gradient(135deg, var(--frontier-cyan), var(--pulse-green)); }
+        .journey-step:nth-child(2) .step-marker { background: linear-gradient(135deg, var(--pulse-green), var(--aurora-gold)); }
+        .journey-step:nth-child(3) .step-marker { background: linear-gradient(135deg, var(--aurora-gold), var(--dream-violet)); }
+        .journey-step:nth-child(4) .step-marker { background: linear-gradient(135deg, var(--dream-violet), var(--hope-rose)); }
+        .journey-step:nth-child(5) .step-marker { background: linear-gradient(135deg, var(--hope-rose), var(--nova-orange)); }
+        .journey-step:nth-child(6) .step-marker { background: linear-gradient(135deg, var(--nova-orange), var(--frontier-cyan)); }
+
+        .step-content {
+            flex: 1;
+            padding-top: 8px;
+        }
+
+        .step-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           SECTION 6: THE RISING TIDE
+           ========================================== */
+        .rising-tide {
+            padding: 160px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tide-visualization {
+            position: relative;
+            height: 300px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .tide-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--pulse-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 0 60px var(--pulse-glow);
+            z-index: 10;
+        }
+
+        .tide-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid var(--pulse-green);
+            animation: wave-expand 4s ease-out infinite;
+        }
+
+        .tide-wave:nth-child(1) { animation-delay: 0s; }
+        .tide-wave:nth-child(2) { animation-delay: 1s; }
+        .tide-wave:nth-child(3) { animation-delay: 2s; }
+        .tide-wave:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes wave-expand {
+            0% { width: 100px; height: 100px; opacity: 0.8; border-color: var(--pulse-green); }
+            100% { width: 600px; height: 600px; opacity: 0; border-color: var(--aurora-gold); }
+        }
+
+        .tide-quote {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto 32px;
+            background: var(--gradient-aurora);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tide-explain {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .tide-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .tide-stat {
+            text-align: center;
+        }
+
+        .tide-stat-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 48px;
+            font-weight: 600;
+            background: var(--gradient-frontier);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tide-stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* ==========================================
+           SECTION 7: THE FIRST STEP
+           ========================================== */
+        .first-step {
+            padding: 160px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .first-step::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, var(--frontier-cyan-glow), transparent);
+            opacity: 0.1;
+        }
+
+        .first-step-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .first-step-title {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .first-step-title .gradient {
+            background: var(--gradient-frontier);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .first-step-text {
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        .personalize-prompt {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 40px 60px;
+            background: rgba(26, 26, 64, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 24px;
+        }
+
+        .prompt-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .prompt-question {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            font-style: italic;
+            color: var(--text-bright);
+        }
+
+        .prompt-options {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .prompt-option {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .prompt-option:hover {
+            background: var(--frontier-cyan);
+            color: var(--void);
+            border-color: var(--frontier-cyan);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            padding: 60px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-brand {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .footer-brand .accent {
+            color: var(--frontier-cyan);
+        }
+
+        .footer-tagline {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--frontier-cyan);
+        }
+
+        /* ==========================================
+           RESPONSIVE
+           ========================================== */
+        @media (max-width: 1200px) {
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pioneers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .scenario-carousel {
+                grid-template-columns: 1fr;
+            }
+            
+            .tide-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-status,
+            .nav-links {
+                display: none;
+            }
+            
+            .tech-grid,
+            .pioneers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .journey-step {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .journey-line {
+                display: none;
+            }
+            
+            .prompt-options {
+                flex-direction: column;
+            }
+            
+            .footer-inner {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- THE LIVING COSMOS -->
+    <div class="cosmos">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+        <div class="nebula nebula-4"></div>
+        <div class="grid-overlay"></div>
+        <div class="stars" id="stars"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav-intelligence">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <div class="brand-logo">F</div>
+                <span class="brand-text">THE <span class="accent">FRONTIER</span></span>
+            </div>
+            
+            <div class="nav-status">
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>Scanning</span>
+                    <span class="status-value">342 sources</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>Pioneers tracked</span>
+                    <span class="status-value">1,247 institutions</span>
+                </div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#map" class="nav-link">Technologies</a>
+                <a href="#pioneers" class="nav-link">Pioneers</a>
+                <a href="#journey" class="nav-link">Your Path</a>
+                <a href="#start" class="nav-link cta">Begin Discovery</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <!-- SECTION 1: THE GATEWAY -->
+        <section class="gateway">
+            <div class="gateway-philosophy">The Inversion</div>
+            
+            <h1 class="gateway-title">
+                <span class="line">Don't Ask How</span>
+                <span class="line">Technology <span class="gradient">Fits</span></span>
+                <span class="line"><span class="gradient">Your Teaching.</span></span>
+            </h1>
+            
+            <p class="gateway-subtitle">
+                Ask what teaching could become when the constraints disappear.
+            </p>
+            
+            <div class="gateway-inversion">
+                <div class="inversion-label">The Question Has Changed</div>
+                <div class="inversion-text">
+                    <span class="strike">"How do I add AI to my class?"</span>
+                    → <span class="emphasis">"What is education in an AI-native world?"</span>
+                </div>
+            </div>
+            
+            <div class="scroll-prompt">
+                <span class="scroll-text">Discover the Frontier</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE FRONTIER MAP -->
+        <section class="frontier-map" id="map">
+            <div class="section-header">
+                <div class="section-tag">The Frontier Map</div>
+                <h2 class="section-title">
+                    Where Technology Meets <span class="gradient">Tomorrow</span>
+                </h2>
+                <p class="section-subtitle">
+                    The convergence is happening now. These aren't future possibilities—they're current realities reshaping education.
+                </p>
+            </div>
+            
+            <div class="tech-grid">
+                <!-- AI Card -->
+                <div class="tech-card ai">
+                    <div class="tech-icon">
+                        🧠
+                        <div class="tech-status"></div>
+                    </div>
+                    <div class="tech-category">Artificial Intelligence</div>
+                    <h3 class="tech-name">Infinite Personalization</h3>
+                    <p class="tech-transform">
+                        Every learner gets their own path. AI that knows when confusion hits—before the student does. Personal tutoring at scale.
+                    </p>
+                    <div class="tech-stats">
+                        <div class="tech-stat">
+                            <div class="stat-value">847</div>
+                            <div class="stat-label">Tools tracked</div>
+                        </div>
+                        <div class="tech-stat">
+                            <div class="stat-value">93%</div>
+                            <div class="stat-label">Planning adoption</div>
+                        </div>
+                    </div>
+                    <div class="tech-pioneers">
+                        <div class="pioneers-label">Leading Pioneers</div>
+                        <div class="pioneer-logos">
+                            <span class="pioneer-logo">Georgia Tech</span>
+                            <span class="pioneer-logo">ASU</span>
+                            <span class="pioneer-logo">MIT</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- VR Card -->
+                <div class="tech-card vr">
+                    <div class="tech-icon">
+                        🥽
+                        <div class="tech-status"></div>
+                    </div>
+                    <div class="tech-category">Virtual Reality</div>
+                    <h3 class="tech-name">Impossible Experiences</h3>
+                    <p class="tech-transform">
+                        Walk inside a cell. Stand on Mars. Witness history. Practice surgery without risk. Experience what was never possible—until now.
+                    </p>
+                    <div class="tech-stats">
+                        <div class="tech-stat">
+                            <div class="stat-value">156</div>
+                            <div class="stat-label">EdVR programs</div>
+                        </div>
+                        <div class="tech-stat">
+                            <div class="stat-value">340%</div>
+                            <div class="stat-label">Growth rate</div>
+                        </div>
+                    </div>
+                    <div class="tech-pioneers">
+                        <div class="pioneers-label">Leading Pioneers</div>
+                        <div class="pioneer-logos">
+                            <span class="pioneer-logo">Stanford</span>
+                            <span class="pioneer-logo">Case Western</span>
+                            <span class="pioneer-logo">Howard</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AR Card -->
+                <div class="tech-card ar">
+                    <div class="tech-icon">
+                        👓
+                        <div class="tech-status"></div>
+                    </div>
+                    <div class="tech-category">Augmented Reality</div>
+                    <h3 class="tech-name">The World as Textbook</h3>
+                    <p class="tech-transform">
+                        Information appears in context. The invisible becomes visible. Magnetic fields you can see. History overlaid on the present.
+                    </p>
+                    <div class="tech-stats">
+                        <div class="tech-stat">
+                            <div class="stat-value">89</div>
+                            <div class="stat-label">AR programs</div>
+                        </div>
+                        <div class="tech-stat">
+                            <div class="stat-value">78%</div>
+                            <div class="stat-label">Retention boost</div>
+                        </div>
+                    </div>
+                    <div class="tech-pioneers">
+                        <div class="pioneers-label">Leading Pioneers</div>
+                        <div class="pioneer-logos">
+                            <span class="pioneer-logo">CWRU</span>
+                            <span class="pioneer-logo">U of Illinois</span>
+                            <span class="pioneer-logo">NYU</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collective Card -->
+                <div class="tech-card collective">
+                    <div class="tech-icon">
+                        🌐
+                        <div class="tech-status"></div>
+                    </div>
+                    <div class="tech-category">Collective Intelligence</div>
+                    <h3 class="tech-name">Wisdom That Grows</h3>
+                    <p class="tech-transform">
+                        Every educator's insight makes the system smarter. Every breakthrough spreads. No one reinvents the wheel alone.
+                    </p>
+                    <div class="tech-stats">
+                        <div class="tech-stat">
+                            <div class="stat-value">52K+</div>
+                            <div class="stat-label">Educators connected</div>
+                        </div>
+                        <div class="tech-stat">
+                            <div class="stat-value">∞</div>
+                            <div class="stat-label">Potential</div>
+                        </div>
+                    </div>
+                    <div class="tech-pioneers">
+                        <div class="pioneers-label">Leading Pioneers</div>
+                        <div class="pioneer-logos">
+                            <span class="pioneer-logo">EDUCAUSE</span>
+                            <span class="pioneer-logo">AAC&U</span>
+                            <span class="pioneer-logo">WCET</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE PIONEERS -->
+        <section class="pioneers" id="pioneers">
+            <div class="section-header">
+                <div class="section-tag">The Pioneers Gallery</div>
+                <h2 class="section-title">
+                    They're Already <span class="gradient">There</span>
+                </h2>
+                <p class="section-subtitle">
+                    Real institutions. Real innovations. Real results. From elite research universities to community colleges—the future is being built everywhere.
+                </p>
+            </div>
+            
+            <div class="pioneers-intro">
+                <p class="pioneers-philosophy">
+                    "Not just 'look how far ahead they are'—but 'here's how they did it, so you can too.'"
+                </p>
+                <p class="pioneers-note">
+                    Every pioneer profile includes their journey, their challenges, and how to connect with them.
+                </p>
+            </div>
+            
+            <div class="pioneers-grid">
+                <!-- Pioneer 1: Research University -->
+                <div class="pioneer-card">
+                    <div class="pioneer-visual">
+                        <div class="pioneer-visual-bg">🏛️</div>
+                        <span class="pioneer-type research">Research University</span>
+                    </div>
+                    <div class="pioneer-content">
+                        <h3 class="pioneer-institution">Stanford HAI</h3>
+                        <p class="pioneer-location">Stanford, California</p>
+                        <p class="pioneer-innovation">
+                            Human-centered AI institute training faculty across disciplines to integrate AI ethically and effectively into every field.
+                        </p>
+                        <div class="pioneer-impact">
+                            <span class="impact-icon">📈</span>
+                            <span class="impact-text">200+ faculty trained, 40+ courses transformed</span>
+                        </div>
+                        <div class="pioneer-cta">
+                            See their playbook <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pioneer 2: Community College -->
+                <div class="pioneer-card">
+                    <div class="pioneer-visual">
+                        <div class="pioneer-visual-bg">🌱</div>
+                        <span class="pioneer-type community">Community College</span>
+                    </div>
+                    <div class="pioneer-content">
+                        <h3 class="pioneer-institution">Santa Fe Community College</h3>
+                        <p class="pioneer-location">Santa Fe, New Mexico</p>
+                        <p class="pioneer-innovation">
+                            AR nursing simulations with zero budget—built using free tools and student collaboration. Now a national model.
+                        </p>
+                        <div class="pioneer-impact">
+                            <span class="impact-icon">💡</span>
+                            <span class="impact-text">$0 budget, 45% skills improvement</span>
+                        </div>
+                        <div class="pioneer-cta">
+                            See their playbook <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pioneer 3: HBCU -->
+                <div class="pioneer-card">
+                    <div class="pioneer-visual">
+                        <div class="pioneer-visual-bg">✊</div>
+                        <span class="pioneer-type hbcu">HBCU</span>
+                    </div>
+                    <div class="pioneer-content">
+                        <h3 class="pioneer-institution">Howard University</h3>
+                        <p class="pioneer-location">Washington, D.C.</p>
+                        <p class="pioneer-innovation">
+                            VR history experiences that let students "walk through" the Civil Rights movement. Developed with student oral history projects.
+                        </p>
+                        <div class="pioneer-impact">
+                            <span class="impact-icon">🎯</span>
+                            <span class="impact-text">Student-created content now in 12 schools</span>
+                        </div>
+                        <div class="pioneer-cta">
+                            See their playbook <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pioneer 4: State University -->
+                <div class="pioneer-card">
+                    <div class="pioneer-visual">
+                        <div class="pioneer-visual-bg">🔬</div>
+                        <span class="pioneer-type research">State University</span>
+                    </div>
+                    <div class="pioneer-content">
+                        <h3 class="pioneer-institution">Georgia State University</h3>
+                        <p class="pioneer-location">Atlanta, Georgia</p>
+                        <p class="pioneer-innovation">
+                            AI-powered advising system that predicts which students need help—before they know they need it. Closed equity gaps.
+                        </p>
+                        <div class="pioneer-impact">
+                            <span class="impact-icon">🎓</span>
+                            <span class="impact-text">Graduation rates up 22%, gap eliminated</span>
+                        </div>
+                        <div class="pioneer-cta">
+                            See their playbook <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pioneer 5: Individual Educator -->
+                <div class="pioneer-card">
+                    <div class="pioneer-visual">
+                        <div class="pioneer-visual-bg">👩‍🏫</div>
+                        <span class="pioneer-type individual">Individual Educator</span>
+                    </div>
+                    <div class="pioneer-content">
+                        <h3 class="pioneer-institution">Prof. Maria Santos</h3>
+                        <p class="pioneer-location">Rural Alabama Community College</p>
+                        <p class="pioneer-innovation">
+                            Transformed a 200-student intro course with AI tutoring assistants built on ChatGPT. Total cost: her time.
+                        </p>
+                        <div class="pioneer-impact">
+                            <span class="impact-icon">⭐</span>
+                            <span class="impact-text">Pass rates 89% → 94%, students love it</span>
+                        </div>
+                        <div class="pioneer-cta">
+                            See her playbook <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pioneer 6: International -->
+                <div class="pioneer-card">
+                    <div class="pioneer-visual">
+                        <div class="pioneer-visual-bg">🌍</div>
+                        <span class="pioneer-type research">International</span>
+                    </div>
+                    <div class="pioneer-content">
+                        <h3 class="pioneer-institution">University of Edinburgh</h3>
+                        <p class="pioneer-location">Edinburgh, Scotland</p>
+                        <p class="pioneer-innovation">
+                            AI ethics curriculum co-designed by philosophy, CS, and social work departments. Now adopted by 30+ universities.
+                        </p>
+                        <div class="pioneer-impact">
+                            <span class="impact-icon">🌐</span>
+                            <span class="impact-text">Open-source curriculum, 30+ adopters</span>
+                        </div>
+                        <div class="pioneer-cta">
+                            See their playbook <span>→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: WHAT IF -->
+        <section class="what-if">
+            <div class="section-header">
+                <div class="section-tag">Thought Experiments</div>
+                <h2 class="section-title">
+                    <span class="gradient">What If...</span>
+                </h2>
+                <p class="section-subtitle">
+                    Not selling. Just... opening minds.
+                </p>
+            </div>
+            
+            <div class="what-if-content">
+                <div class="scenario-carousel">
+                    <div class="scenario-card">
+                        <div class="scenario-icon">🎯</div>
+                        <p class="scenario-question">
+                            What if every student had a personal AI tutor—infinitely patient, always available?
+                        </p>
+                        <p class="scenario-description">
+                            Not replacing you. Extending you. Handling the repetition so you can handle the inspiration.
+                        </p>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-icon">🔬</div>
+                        <p class="scenario-question">
+                            What if your biology students could walk inside a living cell?
+                        </p>
+                        <p class="scenario-description">
+                            Not a video. Not a diagram. Actually being there—watching protein synthesis happen around them.
+                        </p>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-icon">💜</div>
+                        <p class="scenario-question">
+                            What if assessment wasn't about catching cheaters—but understanding each learner?
+                        </p>
+                        <p class="scenario-description">
+                            Continuous, personalized, supportive. Knowing where every student is, every moment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: THE JOURNEY -->
+        <section class="journey" id="journey">
+            <div class="section-header">
+                <div class="section-tag">Your Path Forward</div>
+                <h2 class="section-title">
+                    The <span class="gradient">Journey</span>
+                </h2>
+                <p class="section-subtitle">
+                    From first discovery to transformed practice—every step supported.
+                </p>
+            </div>
+            
+            <div class="journey-path">
+                <div class="journey-line"></div>
+                
+                <div class="journey-step">
+                    <div class="step-marker">✨</div>
+                    <div class="step-content">
+                        <div class="step-number">Step 01</div>
+                        <h3 class="step-title">Discover</h3>
+                        <p class="step-description">
+                            Experience the frontier. See what's possible. Not everything—just what matters to YOU, based on who you are and what you teach.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-marker">📚</div>
+                    <div class="step-content">
+                        <div class="step-number">Step 02</div>
+                        <h3 class="step-title">Learn</h3>
+                        <p class="step-description">
+                            Understand deeply. Not hype—real knowledge. Curated tutorials, case studies, and insights synthesized from thousands of educators.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-marker">🤝</div>
+                    <div class="step-content">
+                        <div class="step-number">Step 03</div>
+                        <h3 class="step-title">Connect</h3>
+                        <p class="step-description">
+                            Find your people. Others on the same journey. Mentors who've been there. A global faculty room that never closes.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-marker">🧪</div>
+                    <div class="step-content">
+                        <div class="step-number">Step 04</div>
+                        <h3 class="step-title">Experiment</h3>
+                        <p class="step-description">
+                            Try before you teach. The Experience Lab lets you live new approaches yourself before bringing them to students.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-marker">🚀</div>
+                    <div class="step-content">
+                        <div class="step-number">Step 05</div>
+                        <h3 class="step-title">Transform</h3>
+                        <p class="step-description">
+                            Bring it to your students. With support, with community, with confidence. Watch the impact unfold.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="journey-step">
+                    <div class="step-marker">🌊</div>
+                    <div class="step-content">
+                        <div class="step-number">Step 06</div>
+                        <h3 class="step-title">Share</h3>
+                        <p class="step-description">
+                            Your insights flow back to the collective. What you learned helps the next educator. The rising tide rises higher.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: THE RISING TIDE -->
+        <section class="rising-tide">
+            <div class="tide-visualization">
+                <div class="tide-wave"></div>
+                <div class="tide-wave"></div>
+                <div class="tide-wave"></div>
+                <div class="tide-wave"></div>
+                <div class="tide-center">🌊</div>
+            </div>
+            
+            <p class="tide-quote">
+                "A rising tide lifts all ships."
+            </p>
+            
+            <p class="tide-explain">
+                When one educator grows, their students grow. When students grow, they lift their families. When families grow, communities transform. This is the multiplication effect of shared intelligence.
+            </p>
+            
+            <div class="tide-stats">
+                <div class="tide-stat">
+                    <div class="tide-stat-value">1</div>
+                    <div class="tide-stat-label">Educator</div>
+                </div>
+                <div class="tide-stat">
+                    <div class="tide-stat-value">127</div>
+                    <div class="tide-stat-label">Students/year</div>
+                </div>
+                <div class="tide-stat">
+                    <div class="tide-stat-value">~400</div>
+                    <div class="tide-stat-label">Family members touched</div>
+                </div>
+                <div class="tide-stat">
+                    <div class="tide-stat-value">∞</div>
+                    <div class="tide-stat-label">Ripple potential</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: FIRST STEP -->
+        <section class="first-step" id="start">
+            <div class="first-step-content">
+                <h2 class="first-step-title">
+                    Your <span class="gradient">First Step</span>
+                </h2>
+                
+                <p class="first-step-text">
+                    The frontier is vast. We won't overwhelm you. Tell us who you are, and we'll show you the ONE thing you should see first.
+                </p>
+                
+                <div class="personalize-prompt">
+                    <span class="prompt-label">Start your discovery</span>
+                    <span class="prompt-question">I am a...</span>
+                    <div class="prompt-options">
+                        <span class="prompt-option">Faculty Member</span>
+                        <span class="prompt-option">Administrator</span>
+                        <span class="prompt-option">Instructional Designer</span>
+                        <span class="prompt-option">Just Curious</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    Innovating<span class="accent">HigherEd</span>
+                </div>
+                <div class="footer-tagline">
+                    "A rising tide lifts all ships."
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">About Dr. J</a>
+                    <a href="#" class="footer-link">The Podcast</a>
+                    <a href="#" class="footer-link">Community</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        const starCount = 120;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            const size = Math.random() * 2 + 0.5;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 4 + 2) + 's');
+            star.style.setProperty('--delay', Math.random() * 4 + 's');
+            
+            starsContainer.appendChild(star);
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Prompt option interaction
+        document.querySelectorAll('.prompt-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.prompt-option').forEach(o => o.style.background = '');
+                this.style.background = 'var(--frontier-cyan)';
+                this.style.color = 'var(--void)';
+                this.style.borderColor = 'var(--frontier-cyan)';
+                
+                // In a real implementation, this would trigger personalized content
+                setTimeout(() => {
+                    alert('In the full experience, this would show you personalized content based on your role. For now, explore the frontier!');
+                }, 300);
+            });
+        });
+
+        // Intersection Observer for fade-in effects
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards and sections
+        document.querySelectorAll('.tech-card, .pioneer-card, .scenario-card, .journey-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Console message
+        console.log('%c🌌 THE FRONTIER', 'font-size: 24px; color: #00e5ff; font-weight: bold;');
+        console.log('%c"Don\'t ask how technology fits your teaching. Ask what teaching could become."', 'font-size: 14px; color: #ffd700; font-style: italic;');
+        console.log('');
+        console.log('%cBuild the world. Then create the lens for the human.', 'font-size: 12px; color: #a0a0c8;');
+    </script>
+</body>
+</html>

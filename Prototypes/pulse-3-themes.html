@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE PULSE — 3 Theme Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Default: Neon Noir */
+            --void: #05050a;
+            --deep: #0a0a12;
+            --surface: #0f0f1a;
+            --elevated: #151520;
+            --card: #1a1a28;
+            
+            --pulse-core: #ff3366;
+            --pulse-glow: rgba(255, 51, 102, 0.4);
+            --synapse-blue: #00d4ff;
+            --synapse-glow: rgba(0, 212, 255, 0.4);
+            --growth-gold: #ff3366;
+            --growth-glow: rgba(255, 51, 102, 0.3);
+            --wisdom-violet: #00d4ff;
+            --energy-coral: #ff3366;
+            
+            --text-bright: #ffffff;
+            --text-primary: #e8e8f0;
+            --text-secondary: #a0a0b8;
+            --text-muted: #606080;
+            
+            --gradient-pulse: linear-gradient(135deg, var(--pulse-core), var(--synapse-blue));
+            --gradient-growth: linear-gradient(135deg, var(--pulse-core), var(--synapse-blue));
+            --gradient-wisdom: linear-gradient(135deg, var(--synapse-blue), var(--pulse-core));
+        }
+
+        /* THEME: Neon Noir - Hot Pink + Cyan on True Black */
+        [data-theme="neon-noir"] {
+            --void: #05050a;
+            --deep: #0a0a12;
+            --surface: #0f0f1a;
+            --elevated: #151520;
+            --card: #1a1a28;
+            --pulse-core: #ff3366;
+            --pulse-glow: rgba(255, 51, 102, 0.4);
+            --synapse-blue: #00d4ff;
+            --synapse-glow: rgba(0, 212, 255, 0.4);
+            --growth-gold: #ff3366;
+            --growth-glow: rgba(255, 51, 102, 0.3);
+            --wisdom-violet: #00d4ff;
+            --gradient-pulse: linear-gradient(135deg, #ff3366, #00d4ff);
+            --gradient-growth: linear-gradient(135deg, #ff3366, #00d4ff);
+        }
+
+        /* THEME: Electric Dusk - Cyan + Magenta on Deep Purple */
+        [data-theme="electric-dusk"] {
+            --void: #0f0a14;
+            --deep: #150f1c;
+            --surface: #1a1220;
+            --elevated: #251a30;
+            --card: #2a1e38;
+            --pulse-core: #00d4ff;
+            --pulse-glow: rgba(0, 212, 255, 0.4);
+            --synapse-blue: #c850c0;
+            --synapse-glow: rgba(200, 80, 192, 0.4);
+            --growth-gold: #c850c0;
+            --growth-glow: rgba(200, 80, 192, 0.3);
+            --wisdom-violet: #c850c0;
+            --gradient-pulse: linear-gradient(135deg, #00d4ff, #c850c0);
+            --gradient-growth: linear-gradient(135deg, #c850c0, #00d4ff);
+        }
+
+        /* THEME: Plum - Orange + Blue + Plum Accent */
+        [data-theme="plum"] {
+            --void: #0a0812;
+            --deep: #0f0c18;
+            --surface: #151220;
+            --elevated: #1a1628;
+            --card: #201a30;
+            --pulse-core: #D77412;
+            --pulse-glow: rgba(215, 116, 18, 0.4);
+            --synapse-blue: #319ab2;
+            --synapse-glow: rgba(49, 154, 178, 0.4);
+            --growth-gold: #7C3A6B;
+            --growth-glow: rgba(124, 58, 107, 0.4);
+            --wisdom-violet: #7C3A6B;
+            --gradient-pulse: linear-gradient(135deg, #D77412, #319ab2);
+            --gradient-growth: linear-gradient(135deg, #7C3A6B, #D77412);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.5s ease;
+        }
+
+        /* ========================================
+           THEME SWITCHER
+           ======================================== */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transition: background 0.3s;
+        }
+
+        .theme-switcher h3 {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .theme-btn {
+            padding: 14px 24px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-btn.neon-noir {
+            background: linear-gradient(135deg, #ff3366, #00d4ff);
+            color: white;
+        }
+
+        .theme-btn.electric-dusk {
+            background: linear-gradient(135deg, #00d4ff, #c850c0);
+            color: white;
+        }
+
+        .theme-btn.plum {
+            background: linear-gradient(135deg, #D77412, #319ab2);
+            color: white;
+        }
+
+        .theme-btn.active {
+            border-color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.02);
+        }
+
+        /* ========================================
+           THE LIVING BACKGROUND - Neural Network
+           ======================================== */
+        .cosmos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .energy-field {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: field-drift 20s ease-in-out infinite;
+            transition: background 0.5s ease;
+        }
+
+        .energy-field.primary {
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--pulse-glow) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+
+        .energy-field.secondary {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--synapse-glow) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        .energy-field.tertiary {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--growth-glow) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -5s;
+            opacity: 0.5;
+        }
+
+        @keyframes field-drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, 30px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.95); }
+            75% { transform: translate(30px, -30px) scale(1.05); }
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: particle-float 15s linear infinite;
+            box-shadow: 0 0 10px var(--pulse-core);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ========================================
+           CONTENT WRAPPER
+           ======================================== */
+        .universe {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========================================
+           INTELLIGENCE STATUS BAR
+           ======================================== */
+        .intelligence-bar {
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: border-color 0.3s;
+        }
+
+        .intelligence-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .intelligence-pulse {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pulse-indicator {
+            width: 12px;
+            height: 12px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            position: relative;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            box-shadow: 0 0 20px var(--pulse-core);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .pulse-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+        }
+
+        .pulse-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--pulse-core);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+
+        .intelligence-stats {
+            display: flex;
+            gap: 32px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+        }
+
+        .intel-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+
+        .intel-stat .value {
+            color: var(--text-primary);
+        }
+
+        .intel-stat .live {
+            color: var(--pulse-core);
+            transition: color 0.3s;
+        }
+
+        /* Discovery Ticker */
+        .discovery-ticker {
+            background: rgba(255, 51, 102, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 0;
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+            animation: ticker-scroll 60s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 32px;
+            white-space: nowrap;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .ticker-item .icon {
+            font-size: 14px;
+        }
+
+        .ticker-item strong {
+            color: var(--pulse-core);
+            transition: color 0.3s;
+        }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .nav-main {
+            padding: 20px 0;
+            background: rgba(10, 10, 18, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-symbol {
+            width: 48px;
+            height: 48px;
+            position: relative;
+        }
+
+        .logo-symbol svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-orbit {
+            fill: none;
+            stroke: var(--pulse-core);
+            stroke-width: 1.5;
+            animation: orbit-spin 8s linear infinite;
+            transform-origin: center;
+            transition: stroke 0.3s;
+        }
+
+        .logo-orbit.reverse {
+            animation-direction: reverse;
+            animation-duration: 12s;
+            stroke: var(--synapse-blue);
+            opacity: 0.6;
+        }
+
+        .logo-core-circle {
+            fill: var(--pulse-core);
+            animation: core-breathe 3s ease-in-out infinite;
+            transition: fill 0.3s;
+        }
+
+        @keyframes orbit-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes core-breathe {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text .accent {
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 12px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text-bright);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--pulse-core);
+            background: rgba(255, 51, 102, 0.1);
+        }
+
+        .nav-link .live-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            transition: background 0.3s;
+        }
+
+        .nav-cta {
+            padding: 12px 24px;
+            background: var(--gradient-pulse);
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            box-shadow: 0 0 30px var(--pulse-glow);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           HERO
+           ======================================== */
+        .hero {
+            padding: 100px 32px 80px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 51, 102, 0.1);
+            border: 1px solid var(--pulse-core);
+            border-radius: 30px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--pulse-core);
+            margin-bottom: 32px;
+            transition: all 0.3s;
+        }
+
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--pulse-core);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 28px;
+        }
+
+        .hero-title .line {
+            display: block;
+        }
+
+        .hero-title .highlight {
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title .highlight-gold {
+            background: var(--gradient-growth);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .hero-subtitle strong {
+            color: var(--text-bright);
+        }
+
+        .hero-philosophy {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--wisdom-violet);
+            padding: 24px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+            transition: color 0.3s;
+        }
+
+        .hero-metrics {
+            display: flex;
+            gap: 40px;
+        }
+
+        .hero-metric {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .metric-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 32px;
+            font-weight: 600;
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .metric-value .trend {
+            font-size: 14px;
+            color: var(--pulse-core);
+            -webkit-text-fill-color: var(--pulse-core);
+            transition: color 0.3s;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ========================================
+           THE BRAIN - Live Intelligence Display
+           ======================================== */
+        .brain-container {
+            position: relative;
+        }
+
+        .brain-visualization {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .brain-header {
+            padding: 20px 24px;
+            background: rgba(255, 51, 102, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brain-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--pulse-core);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.3s;
+        }
+
+        .brain-title .icon {
+            font-size: 18px;
+        }
+
+        .brain-status {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brain-status .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: heartbeat 1s ease-in-out infinite;
+            transition: background 0.3s;
+        }
+
+        .neural-activity {
+            padding: 24px;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .activity-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .activity-node {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border-left: 3px solid transparent;
+            animation: node-appear 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--pulse-glow), transparent);
+            transform: translateX(-100%);
+            animation: scan-line 3s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes scan-line {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        @keyframes node-appear {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .activity-node.searching { border-left-color: var(--synapse-blue); }
+        .activity-node.discovering { border-left-color: var(--pulse-core); }
+        .activity-node.synthesizing { border-left-color: var(--growth-gold); }
+        .activity-node.growing { border-left-color: var(--wisdom-violet); }
+
+        .node-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .activity-node.searching .node-icon { background: rgba(0, 212, 255, 0.2); }
+        .activity-node.discovering .node-icon { background: rgba(255, 51, 102, 0.2); }
+        .activity-node.synthesizing .node-icon { background: rgba(124, 58, 107, 0.2); }
+        .activity-node.growing .node-icon { background: rgba(0, 212, 255, 0.2); }
+
+        .node-content { flex: 1; }
+
+        .node-action {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .activity-node.searching .node-action { color: var(--synapse-blue); }
+        .activity-node.discovering .node-action { color: var(--pulse-core); }
+        .activity-node.synthesizing .node-action { color: var(--growth-gold); }
+        .activity-node.growing .node-action { color: var(--wisdom-violet); }
+
+        .node-text {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .node-text strong {
+            color: var(--text-bright);
+        }
+
+        .node-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           DAILY BRIEFING
+           ======================================== */
+        .section {
+            padding: 80px 32px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--pulse-core);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .section-label .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            transition: background 0.3s;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-title .highlight {
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+        }
+
+        .briefing-card {
+            background: linear-gradient(135deg, var(--card), var(--elevated));
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .briefing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-pulse);
+        }
+
+        .briefing-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 48px;
+            padding: 48px;
+        }
+
+        .briefing-main h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .briefing-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--pulse-core);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.3s;
+        }
+
+        .briefing-date .separator {
+            width: 4px;
+            height: 4px;
+            background: var(--text-muted);
+            border-radius: 50%;
+        }
+
+        .briefing-description {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .briefing-sources {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 20px;
+            background: rgba(255, 51, 102, 0.05);
+            border-radius: 12px;
+        }
+
+        .source-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .source-stat .value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--pulse-core);
+            transition: color 0.3s;
+        }
+
+        .source-stat .label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 32px;
+            transition: background 0.3s;
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .player-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .player-duration {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--pulse-core);
+            transition: color 0.3s;
+        }
+
+        .waveform-display {
+            margin-bottom: 20px;
+        }
+
+        .waveform-bars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            height: 60px;
+        }
+
+        .wave-bar {
+            width: 4px;
+            border-radius: 2px;
+            transition: all 0.3s ease, background 0.3s;
+        }
+
+        .wave-bar.played {
+            background: var(--pulse-core);
+        }
+
+        .wave-bar.muted {
+            background: var(--text-muted);
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .play-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-pulse);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            box-shadow: 0 0 30px var(--pulse-glow);
+            transform: scale(1.05);
+        }
+
+        .play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        .progress-container {
+            flex: 1;
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--elevated);
+            border-radius: 3px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 35%;
+            background: var(--gradient-pulse);
+            border-radius: 3px;
+        }
+
+        .progress-times {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            padding: 48px 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand .accent {
+            background: var(--gradient-pulse);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-status .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--pulse-core);
+            border-radius: 50%;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            transition: background 0.3s;
+        }
+
+        @media (max-width: 1200px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .briefing-content {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 48px;
+            }
+            .theme-switcher {
+                top: auto;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .intelligence-stats {
+                display: none;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-metrics {
+                flex-wrap: wrap;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="neon-noir">
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <h3>Choose Theme</h3>
+        <button class="theme-btn neon-noir active" onclick="setTheme('neon-noir')">
+            🔥 Neon Noir
+        </button>
+        <button class="theme-btn electric-dusk" onclick="setTheme('electric-dusk')">
+            ⚡ Electric Dusk
+        </button>
+        <button class="theme-btn plum" onclick="setTheme('plum')">
+            🍇 Plum + O/B
+        </button>
+    </div>
+
+    <!-- Living Background -->
+    <div class="cosmos">
+        <div class="energy-field primary"></div>
+        <div class="energy-field secondary"></div>
+        <div class="energy-field tertiary"></div>
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 25%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 45%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 65%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 8s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 4s;"></div>
+    </div>
+
+    <div class="universe">
+        <!-- Intelligence Status Bar -->
+        <div class="intelligence-bar">
+            <div class="intelligence-inner">
+                <div class="intelligence-pulse">
+                    <div class="pulse-indicator"></div>
+                    <span class="pulse-label">Intelligence Active</span>
+                </div>
+                <div class="intelligence-stats">
+                    <div class="intel-stat">
+                        <span>Scanning:</span>
+                        <span class="value live">247 sources</span>
+                    </div>
+                    <div class="intel-stat">
+                        <span>Educators Online:</span>
+                        <span class="value">3,891</span>
+                    </div>
+                    <div class="intel-stat">
+                        <span>Today's Evolutions:</span>
+                        <span class="value">23 articles</span>
+                    </div>
+                    <div class="intel-stat">
+                        <span>Last Discovery:</span>
+                        <span class="value live">12s ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discovery Ticker -->
+        <div class="discovery-ticker">
+            <div class="ticker-track" id="ticker"></div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-main">
+            <div class="nav-inner">
+                <div class="logo">
+                    <div class="logo-symbol">
+                        <svg viewBox="0 0 48 48">
+                            <circle class="logo-orbit" cx="24" cy="24" r="20"/>
+                            <circle class="logo-orbit reverse" cx="24" cy="24" r="14"/>
+                            <circle class="logo-core-circle" cx="24" cy="24" r="6"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">Innovating<span class="accent">HigherEd</span></div>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="#" class="nav-link active">
+                        The Pulse
+                        <span class="live-badge"></span>
+                    </a>
+                    <a href="#" class="nav-link">AI Tools</a>
+                    <a href="#" class="nav-link">Learn</a>
+                    <a href="#" class="nav-link">Community</a>
+                    <a href="#" class="nav-link">About Dr. J</a>
+                    <a href="#" class="nav-cta">Join the Movement</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        The Future of Educational Intelligence
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        <span class="line">A Platform That</span>
+                        <span class="line"><span class="highlight">Breathes.</span></span>
+                        <span class="line"><span class="highlight">Learns.</span></span>
+                        <span class="line"><span class="highlight-gold">Grows With You.</span></span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Every second, this intelligence is scanning the world for innovations in education. It's learning from <strong>52,000+ educators</strong>, discovering new possibilities, and evolving to help you—and your students—thrive.
+                    </p>
+                    
+                    <p class="hero-philosophy">
+                        "A rising tide lifts all ships. When educators grow, students grow. When students grow, the world grows."
+                    </p>
+                    
+                    <div class="hero-metrics">
+                        <div class="hero-metric">
+                            <div class="metric-value">
+                                52,847
+                                <span class="trend">+127 today</span>
+                            </div>
+                            <div class="metric-label">Educators Learning Together</div>
+                        </div>
+                        <div class="hero-metric">
+                            <div class="metric-value">
+                                1.2M
+                            </div>
+                            <div class="metric-label">Students Impacted</div>
+                        </div>
+                        <div class="hero-metric">
+                            <div class="metric-value">
+                                ∞
+                            </div>
+                            <div class="metric-label">Potential Unlocked</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- THE BRAIN -->
+                <div class="brain-container">
+                    <div class="brain-visualization">
+                        <div class="brain-header">
+                            <div class="brain-title">
+                                <span class="icon">🧠</span>
+                                Live Intelligence Feed
+                            </div>
+                            <div class="brain-status">
+                                <span class="dot"></span>
+                                Active • Jan 31, 2026
+                            </div>
+                        </div>
+                        
+                        <div class="neural-activity">
+                            <div class="activity-stream">
+                                <div class="activity-node searching">
+                                    <div class="node-icon">🔍</div>
+                                    <div class="node-content">
+                                        <div class="node-action">Searching</div>
+                                        <div class="node-text">Scanning <strong>247 education journals</strong> for breakthrough research</div>
+                                        <div class="node-meta">Looking for innovations that help students learn better</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-node discovering">
+                                    <div class="node-icon">💡</div>
+                                    <div class="node-content">
+                                        <div class="node-action">Discovery</div>
+                                        <div class="node-text">Found: <strong>New AI tutoring study</strong> shows 34% improvement in comprehension</div>
+                                        <div class="node-meta">Generating summary for educators • 8 seconds ago</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-node synthesizing">
+                                    <div class="node-icon">✨</div>
+                                    <div class="node-content">
+                                        <div class="node-action">Synthesizing</div>
+                                        <div class="node-text">Combining <strong>47 educator perspectives</strong> into ethics guide v4.0</div>
+                                        <div class="node-meta">Collective wisdom → actionable guidance</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-node growing">
+                                    <div class="node-icon">🌱</div>
+                                    <div class="node-content">
+                                        <div class="node-action">Growing</div>
+                                        <div class="node-text"><strong>Dr. Marcus Lee</strong> just helped 3 colleagues discover AI grading tools</div>
+                                        <div class="node-meta">The tide is rising • Howard University</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DAILY BRIEFING -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label">
+                    <span class="dot"></span>
+                    Synthesized Intelligence
+                </div>
+                <h2 class="section-title">Today's <span class="highlight">Briefing</span></h2>
+                <p class="section-subtitle">8 minutes of AI-synthesized insights from 47 sources—so you don't have to read 47 articles.</p>
+            </div>
+            
+            <div class="briefing-card">
+                <div class="briefing-content">
+                    <div class="briefing-main">
+                        <h2>AI in Education: January 31, 2026</h2>
+                        <div class="briefing-date">
+                            <span>Episode #1,249</span>
+                            <span class="separator"></span>
+                            <span>8:24 synthesized</span>
+                            <span class="separator"></span>
+                            <span>2,847 listeners today</span>
+                        </div>
+                        <p class="briefing-description">
+                            Today's breakthrough: A new study shows AI tutoring improves student outcomes by 34% when combined with instructor feedback. Plus: Three universities announce AI writing policies, a game-changing accessibility tool emerges, and why "prompt literacy" might be the new digital literacy.
+                        </p>
+                        <div class="briefing-sources">
+                            <div class="source-stat">
+                                <div class="value">47</div>
+                                <div class="label">Sources Scanned</div>
+                            </div>
+                            <div class="source-stat">
+                                <div class="value">12</div>
+                                <div class="label">Key Insights</div>
+                            </div>
+                            <div class="source-stat">
+                                <div class="value">5</div>
+                                <div class="label">Action Items</div>
+                            </div>
+                            <div class="source-stat">
+                                <div class="value">8:24</div>
+                                <div class="label">Your Time</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="audio-player">
+                        <div class="player-header">
+                            <span class="player-label">Listen Now</span>
+                            <span class="player-duration">8:24</span>
+                        </div>
+                        
+                        <div class="waveform-display">
+                            <div class="waveform-bars" id="waveformBars"></div>
+                        </div>
+                        
+                        <div class="player-controls">
+                            <button class="play-btn">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-track">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <div class="progress-times">
+                                    <span>2:57</span>
+                                    <span>8:24</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-brand">Innovating<span class="accent">HigherEd</span></div>
+            <div class="footer-status">
+                <span class="dot"></span>
+                Platform Generation v4.2 • Always Learning • Always Growing
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Generate waveform bars
+        const waveformContainer = document.getElementById('waveformBars');
+        const barCount = 40;
+        
+        for (let i = 0; i < barCount; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'wave-bar' + (i < barCount * 0.35 ? ' played' : ' muted');
+            const height = Math.random() * 45 + 10;
+            bar.style.height = height + 'px';
+            waveformContainer.appendChild(bar);
+        }
+
+        // Animate waveform
+        function animateWaveform() {
+            const bars = document.querySelectorAll('.wave-bar');
+            bars.forEach((bar, index) => {
+                setTimeout(() => {
+                    const height = Math.random() * 45 + 10;
+                    bar.style.height = height + 'px';
+                }, index * 15);
+            });
+        }
+        setInterval(animateWaveform, 800);
+
+        // Generate ticker content
+        const tickerContent = [
+            { icon: '🔍', text: '<strong>Scanning:</strong> Nature Education journal for new research' },
+            { icon: '💡', text: '<strong>Discovery:</strong> AI tutoring improves outcomes 34%' },
+            { icon: '🌱', text: '<strong>Growing:</strong> 127 new educators joined today' },
+            { icon: '✨', text: '<strong>Evolved:</strong> AI Ethics Guide updated to v4.2' },
+            { icon: '🎯', text: '<strong>Trending:</strong> AI Writing Detection +340% interest' },
+            { icon: '🌊', text: '<strong>Ripple:</strong> 1.2M students impacted this month' },
+            { icon: '🧠', text: '<strong>Learning:</strong> STEM vs Humanities tool preferences detected' },
+            { icon: '📊', text: '<strong>Synthesizing:</strong> 47 educator perspectives on grading' },
+        ];
+
+        const ticker = document.getElementById('ticker');
+        const tickerHTML = [...tickerContent, ...tickerContent].map(item => 
+            `<div class="ticker-item"><span class="icon">${item.icon}</span>${item.text}</div>`
+        ).join('');
+        ticker.innerHTML = tickerHTML;
+
+        // Theme switcher
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            
+            // Update active button
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.theme-btn.${theme}`).classList.add('active');
+        }
+
+        // Console celebration
+        console.log('%c🎨 THEME COMPARISON MODE', 'font-size: 24px; font-weight: bold;');
+        console.log('%cTry: Neon Noir • Electric Dusk • Plum', 'font-size: 14px; color: #888;');
+    </script>
+</body>
+</html>

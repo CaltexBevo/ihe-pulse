@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept A: The Command Center — Innovation Pulse</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --surface-alt: #F4F3EF;
+  --border: rgba(0,0,0,0.07);
+  --border-active: rgba(0,0,0,0.15);
+  --ink: #111111;
+  --ink-2: #333333;
+  --ink-3: #777777;
+  --ink-4: #AAAAAA;
+  --accent: #E85D26;
+  --accent-light: rgba(232,93,38,0.08);
+  --accent-glow: rgba(232,93,38,0.15);
+  --teal: #0A8F6C;
+  --blue: #2563EB;
+  --purple: #7C3AED;
+  --red: #DC2626;
+  --display: 'Newsreader', Georgia, serif;
+  --body: 'Space Grotesk', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* === CONCEPT LABEL === */
+.concept-banner{
+  background:var(--accent);color:white;text-align:center;
+  padding:0.6rem;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+}
+
+/* === TOP BAR === */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.75rem 1.5rem;border-bottom:1px solid var(--border);
+  background:var(--surface);position:sticky;top:0;z-index:100;
+}
+.topbar-brand{display:flex;align-items:baseline;gap:0.3rem;text-decoration:none;color:var(--ink);}
+.topbar-ihe{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);}
+.topbar-pulse{font-family:var(--display);font-size:1.2rem;font-style:italic;color:var(--accent);}
+.topbar-center{display:flex;align-items:center;gap:1.5rem;}
+.topbar-date{font-family:var(--mono);font-size:0.68rem;color:var(--ink-3);}
+.topbar-live{display:flex;align-items:center;gap:0.4rem;font-size:0.68rem;font-weight:600;color:var(--teal);}
+.topbar-live .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.topbar-stats{font-family:var(--mono);font-size:0.62rem;color:var(--ink-4);}
+.topbar-right{display:flex;gap:0.75rem;align-items:center;}
+.topbar-nav{font-size:0.78rem;color:var(--ink-3);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.topbar-nav:hover{color:var(--ink);}
+.topbar-sub{background:var(--ink);color:white;padding:0.4rem 1rem;border-radius:100px;font-size:0.72rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s;}
+.topbar-sub:hover{background:var(--accent);}
+
+/* === MAIN LAYOUT: 3 Column Command Center === */
+.command-layout{
+  display:grid;
+  grid-template-columns:260px 1fr 300px;
+  min-height:calc(100vh - 80px);
+  gap:0;
+}
+
+/* LEFT PANEL — Stream Navigator */
+.panel-left{
+  background:var(--surface);border-right:1px solid var(--border);
+  padding:1.25rem;overflow-y:auto;position:sticky;top:44px;height:calc(100vh - 44px);
+}
+.pl-section{margin-bottom:1.5rem;}
+.pl-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:0.6rem;}
+.pl-stream{
+  display:flex;align-items:center;gap:0.6rem;padding:0.55rem 0.6rem;
+  border-radius:var(--radius-sm);cursor:pointer;transition:all 0.2s;
+  margin-bottom:0.15rem;
+}
+.pl-stream:hover{background:var(--surface-alt);}
+.pl-stream.active{background:var(--accent-light);color:var(--accent);}
+.pl-stream .stream-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.pl-stream .stream-name{font-size:0.82rem;font-weight:500;}
+.pl-stream .stream-count{margin-left:auto;font-family:var(--mono);font-size:0.62rem;color:var(--ink-4);background:var(--surface-alt);padding:0.1rem 0.4rem;border-radius:100px;}
+.pl-stream.active .stream-count{background:var(--accent-glow);color:var(--accent);}
+
+.pl-episode{
+  background:var(--surface-alt);border-radius:var(--radius-sm);padding:0.85rem;
+  cursor:pointer;transition:all 0.2s;margin-bottom:0.5rem;
+}
+.pl-episode:hover{background:var(--accent-light);}
+.pl-episode.today{border-left:3px solid var(--accent);background:var(--accent-light);}
+.pl-ep-date{font-family:var(--mono);font-size:0.6rem;color:var(--ink-4);}
+.pl-ep-title{font-family:var(--display);font-size:0.88rem;font-weight:600;line-height:1.25;margin-top:0.15rem;}
+.pl-ep-meta{font-size:0.65rem;color:var(--ink-4);margin-top:0.2rem;}
+
+/* CENTER PANEL — Content Stream */
+.panel-center{
+  padding:1.5rem 2rem;overflow-y:auto;max-width:100%;
+}
+
+.stream-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);
+}
+.stream-header h1{font-family:var(--display);font-size:1.8rem;font-weight:400;}
+.stream-header h1 em{font-style:italic;color:var(--accent);}
+.stream-filters{display:flex;gap:0.4rem;}
+.stream-filter{
+  padding:0.35rem 0.8rem;border-radius:100px;border:1px solid var(--border);
+  font-size:0.72rem;font-weight:500;color:var(--ink-3);background:transparent;
+  cursor:pointer;transition:all 0.2s;font-family:var(--body);
+}
+.stream-filter:hover{border-color:var(--ink-3);}
+.stream-filter.active{background:var(--ink);color:white;border-color:var(--ink);}
+
+/* Story Cards */
+.story-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.5rem;margin-bottom:1rem;transition:all 0.3s;cursor:pointer;
+  position:relative;overflow:hidden;
+}
+.story-card:hover{border-color:var(--border-active);box-shadow:0 4px 20px rgba(0,0,0,0.04);transform:translateY(-1px);}
+.story-card.featured{border-left:4px solid var(--accent);background:linear-gradient(135deg,var(--surface) 0%,var(--accent-light) 100%);}
+
+.sc-top{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;}
+.sc-category{
+  font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;
+  padding:0.15rem 0.5rem;border-radius:100px;
+}
+.cat-deep-dive{background:rgba(37,99,235,0.08);color:var(--blue);}
+.cat-tools{background:rgba(10,143,108,0.08);color:var(--teal);}
+.cat-policy{background:rgba(220,38,38,0.08);color:var(--red);}
+.cat-student{background:rgba(124,58,237,0.08);color:var(--purple);}
+.cat-strategy{background:rgba(232,93,38,0.08);color:var(--accent);}
+.cat-research{background:rgba(0,0,0,0.05);color:var(--ink-3);}
+
+.sc-source{font-family:var(--mono);font-size:0.62rem;color:var(--ink-4);}
+.sc-time{font-family:var(--mono);font-size:0.6rem;color:var(--ink-4);margin-left:auto;}
+.sc-title{font-family:var(--display);font-size:1.3rem;line-height:1.25;font-weight:600;margin-bottom:0.4rem;}
+.sc-title.featured-title{font-size:1.6rem;}
+.sc-excerpt{font-size:0.85rem;color:var(--ink-2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.sc-bottom{display:flex;align-items:center;gap:1rem;margin-top:0.75rem;}
+.sc-tag{font-size:0.65rem;color:var(--ink-4);background:var(--surface-alt);padding:0.2rem 0.5rem;border-radius:100px;}
+.sc-read-time{font-family:var(--mono);font-size:0.62rem;color:var(--ink-4);}
+
+/* Stat Card */
+.stat-card{
+  background:var(--ink);color:white;border-radius:var(--radius);
+  padding:1.5rem;margin-bottom:1rem;
+}
+.stat-card .stat-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.stat-card .stat-number{font-family:var(--display);font-size:2.8rem;font-weight:400;line-height:1;margin:0.3rem 0;}
+.stat-card .stat-context{font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.4;}
+
+/* Audio Card inline */
+.audio-inline{
+  background:var(--ink);border-radius:var(--radius);padding:1.25rem;
+  margin-bottom:1rem;display:flex;align-items:center;gap:1rem;
+}
+.audio-play{
+  width:44px;height:44px;border-radius:50%;background:var(--accent);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:all 0.2s;box-shadow:0 3px 12px rgba(232,93,38,0.3);
+}
+.audio-play:hover{transform:scale(1.08);}
+.audio-info{flex:1;}
+.audio-theme{font-family:var(--mono);font-size:0.6rem;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;}
+.audio-quote{font-family:var(--display);font-size:0.92rem;font-style:italic;color:rgba(255,255,255,0.8);line-height:1.4;margin-top:0.2rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.audio-wave{display:flex;align-items:end;gap:1.5px;height:24px;flex-shrink:0;width:120px;}
+.wave-bar{flex:1;background:rgba(255,255,255,0.12);border-radius:1px;min-width:2px;}
+.wave-bar.played{background:var(--accent);}
+.audio-time{font-family:var(--mono);font-size:0.62rem;color:rgba(255,255,255,0.35);flex-shrink:0;}
+
+/* RIGHT PANEL — AI Navigator + Context */
+.panel-right{
+  background:var(--surface);border-left:1px solid var(--border);
+  display:flex;flex-direction:column;position:sticky;top:44px;height:calc(100vh - 44px);
+}
+
+.pr-section{padding:1.25rem;border-bottom:1px solid var(--border);}
+.pr-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.4rem;}
+
+/* AI Navigator */
+.ai-nav{flex:1;display:flex;flex-direction:column;padding:0;}
+.ai-nav-header{
+  padding:1rem 1.25rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:0.6rem;
+}
+.ai-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#F59E0B);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:700;color:white;
+}
+.ai-nav-title{font-size:0.85rem;font-weight:600;}
+.ai-nav-status{font-size:0.62rem;color:var(--teal);display:flex;align-items:center;gap:0.3rem;}
+.ai-nav-status .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);}
+
+.ai-chat{flex:1;overflow-y:auto;padding:1rem 1.25rem;display:flex;flex-direction:column;gap:0.75rem;}
+.ai-msg{max-width:90%;padding:0.7rem 0.9rem;border-radius:12px;font-size:0.78rem;line-height:1.5;}
+.ai-msg.bot{background:var(--surface-alt);color:var(--ink-2);align-self:flex-start;border-bottom-left-radius:4px;}
+.ai-msg.user{background:var(--accent);color:white;align-self:flex-end;border-bottom-right-radius:4px;}
+
+.ai-suggestions{padding:0 1.25rem 0.75rem;display:flex;flex-wrap:wrap;gap:0.35rem;}
+.ai-sug{
+  font-size:0.68rem;padding:0.3rem 0.65rem;border-radius:100px;
+  border:1px solid var(--border);background:var(--surface);color:var(--ink-3);
+  cursor:pointer;transition:all 0.2s;font-family:var(--body);
+}
+.ai-sug:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+
+.ai-input-bar{
+  padding:0.75rem 1.25rem;border-top:1px solid var(--border);
+  display:flex;gap:0.5rem;
+}
+.ai-input{
+  flex:1;padding:0.55rem 0.75rem;border:1px solid var(--border);border-radius:8px;
+  font-size:0.78rem;font-family:var(--body);outline:none;background:var(--surface-alt);
+  transition:border-color 0.2s;
+}
+.ai-input:focus{border-color:var(--accent);}
+.ai-input::placeholder{color:var(--ink-4);}
+.ai-send{
+  width:36px;height:36px;border-radius:8px;background:var(--accent);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;
+}
+.ai-send:hover{background:#D04E1B;}
+
+/* Tracking / Watching */
+.watch-item{
+  display:flex;align-items:start;gap:0.6rem;padding:0.5rem 0;
+  border-bottom:1px solid rgba(0,0,0,0.04);
+}
+.watch-item:last-child{border-bottom:none;}
+.watch-day{
+  font-family:var(--mono);font-size:0.55rem;font-weight:600;
+  background:var(--surface-alt);padding:0.1rem 0.4rem;border-radius:4px;
+  color:var(--ink-4);flex-shrink:0;white-space:nowrap;
+}
+.watch-text{font-size:0.75rem;color:var(--ink-2);line-height:1.35;}
+
+/* Responsive */
+@media(max-width:1100px){
+  .command-layout{grid-template-columns:1fr;} 
+  .panel-left,.panel-right{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="concept-banner">Concept A: The Command Center — Three-Panel Intelligence Dashboard</div>
+
+<div class="topbar">
+  <a class="topbar-brand" href="#"><span class="topbar-ihe">IHE</span><span class="topbar-pulse">Pulse</span></a>
+  <div class="topbar-center">
+    <div class="topbar-live"><span class="dot"></span>Live</div>
+    <div class="topbar-date">Fri, Feb 6 2026</div>
+    <div class="topbar-stats">847 tools · 2.4k prompts · Updated 3m ago</div>
+  </div>
+  <div class="topbar-right">
+    <a class="topbar-nav" href="#">Home</a>
+    <a class="topbar-nav" href="#">Prompts</a>
+    <a class="topbar-nav" href="#">AI Directory</a>
+    <a class="topbar-nav" href="#">Podcast</a>
+    <button class="topbar-sub">Subscribe</button>
+  </div>
+</div>
+
+<div class="command-layout">
+  <!-- LEFT PANEL: Stream Navigator -->
+  <aside class="panel-left">
+    <div class="pl-section">
+      <div class="pl-label">Content Streams</div>
+      <div class="pl-stream active" style="--c:var(--accent)">
+        <div class="stream-dot" style="background:var(--accent)"></div>
+        <span class="stream-name">All Stories</span>
+        <span class="stream-count">12</span>
+      </div>
+      <div class="pl-stream">
+        <div class="stream-dot" style="background:var(--blue)"></div>
+        <span class="stream-name">Deep Dives</span>
+        <span class="stream-count">2</span>
+      </div>
+      <div class="pl-stream">
+        <div class="stream-dot" style="background:var(--teal)"></div>
+        <span class="stream-name">Tools & Tech</span>
+        <span class="stream-count">3</span>
+      </div>
+      <div class="pl-stream">
+        <div class="stream-dot" style="background:var(--red)"></div>
+        <span class="stream-name">Policy & Ethics</span>
+        <span class="stream-count">2</span>
+      </div>
+      <div class="pl-stream">
+        <div class="stream-dot" style="background:var(--purple)"></div>
+        <span class="stream-name">Student Experience</span>
+        <span class="stream-count">2</span>
+      </div>
+      <div class="pl-stream">
+        <div class="stream-dot" style="background:#F59E0B"></div>
+        <span class="stream-name">Leadership</span>
+        <span class="stream-count">2</span>
+      </div>
+      <div class="pl-stream">
+        <div class="stream-dot" style="background:var(--ink-3)"></div>
+        <span class="stream-name">Research</span>
+        <span class="stream-count">1</span>
+      </div>
+    </div>
+
+    <div class="pl-section">
+      <div class="pl-label">This Week's Episodes</div>
+      <div class="pl-episode today">
+        <div class="pl-ep-date">Fri, Feb 6 · Today</div>
+        <div class="pl-ep-title">The Innovator's Edge</div>
+        <div class="pl-ep-meta">5 stories · 4:35</div>
+      </div>
+      <div class="pl-episode">
+        <div class="pl-ep-date">Thu, Feb 5</div>
+        <div class="pl-ep-title">Connecting the Dots</div>
+        <div class="pl-ep-meta">5 stories · 4:15</div>
+      </div>
+      <div class="pl-episode">
+        <div class="pl-ep-date">Wed, Feb 4</div>
+        <div class="pl-ep-title">The Student Experience</div>
+        <div class="pl-ep-meta">4 stories · 3:56</div>
+      </div>
+      <div class="pl-episode">
+        <div class="pl-ep-date">Tue, Feb 3</div>
+        <div class="pl-ep-title">The Hard Question</div>
+        <div class="pl-ep-meta">4 stories · 4:02</div>
+      </div>
+      <div class="pl-episode">
+        <div class="pl-ep-date">Mon, Feb 2</div>
+        <div class="pl-ep-title">The Practitioner's Playbook</div>
+        <div class="pl-ep-meta">4 stories · 3:45</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CENTER: Content Stream -->
+  <main class="panel-center">
+    <div class="stream-header">
+      <h1>Today's <em>Pulse</em></h1>
+      <div class="stream-filters">
+        <button class="stream-filter active">All</button>
+        <button class="stream-filter">Featured</button>
+        <button class="stream-filter">New Today</button>
+        <button class="stream-filter">Trending</button>
+      </div>
+    </div>
+
+    <!-- Audio Player Inline -->
+    <div class="audio-inline">
+      <button class="audio-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg></button>
+      <div class="audio-info">
+        <div class="audio-theme">The Innovator's Edge · Friday Edition</div>
+        <div class="audio-quote">"Students using AI scored 127% higher — but when you take the AI away, they perform worse..."</div>
+      </div>
+      <div class="audio-wave" id="wave1"></div>
+      <div class="audio-time">4:35</div>
+    </div>
+
+    <!-- Featured Story -->
+    <div class="story-card featured">
+      <div class="sc-top">
+        <span class="sc-category cat-deep-dive">Deep Dive</span>
+        <span class="sc-source">OECD</span>
+        <span class="sc-time">2h ago</span>
+      </div>
+      <div class="sc-title featured-title">The OECD's AI Education Report Changes the Conversation</div>
+      <div class="sc-excerpt">The OECD Digital Education Outlook 2026 just dropped, and it's the most comprehensive look at AI in education to date. The headline finding — students using AI perform dramatically better, but may become dependent — has profound implications for curriculum design, assessment, and institutional AI strategy.</div>
+      <div class="sc-bottom">
+        <span class="sc-tag">OECD Report</span>
+        <span class="sc-tag">Curriculum Design</span>
+        <span class="sc-tag">Assessment</span>
+        <span class="sc-read-time">8 min read</span>
+      </div>
+    </div>
+
+    <!-- Stat Interlude -->
+    <div class="stat-card">
+      <div class="stat-label">Insight of the Day</div>
+      <div class="stat-number">73%</div>
+      <div class="stat-context">of faculty report using AI tools weekly in their teaching — up from 31% just one year ago. (Educause 2026 Survey)</div>
+    </div>
+
+    <!-- Regular Stories -->
+    <div class="story-card">
+      <div class="sc-top">
+        <span class="sc-category cat-tools">Tools</span>
+        <span class="sc-source">Microsoft Blog</span>
+        <span class="sc-time">3h ago</span>
+      </div>
+      <div class="sc-title">Microsoft Copilot Gets Higher Ed–Specific Features</div>
+      <div class="sc-excerpt">New features include AI-powered course scheduling, student performance dashboards, and research paper summarization tools built directly into Teams Education.</div>
+      <div class="sc-bottom"><span class="sc-tag">Microsoft</span><span class="sc-tag">Copilot</span><span class="sc-read-time">4 min</span></div>
+    </div>
+
+    <div class="story-card">
+      <div class="sc-top">
+        <span class="sc-category cat-student">Student Experience</span>
+        <span class="sc-source">OpenAI</span>
+        <span class="sc-time">4h ago</span>
+      </div>
+      <div class="sc-title">OpenAI Partners with 10 HBCUs on AI Access Initiative</div>
+      <div class="sc-excerpt">A $50M initiative providing free enterprise access to ChatGPT, custom GPTs for tutoring, and faculty training programs across historically Black colleges and universities.</div>
+      <div class="sc-bottom"><span class="sc-tag">HBCUs</span><span class="sc-tag">OpenAI</span><span class="sc-tag">Equity</span><span class="sc-read-time">5 min</span></div>
+    </div>
+
+    <div class="story-card">
+      <div class="sc-top">
+        <span class="sc-category cat-policy">Policy</span>
+        <span class="sc-source">EdSurge</span>
+        <span class="sc-time">5h ago</span>
+      </div>
+      <div class="sc-title">First AI-Generated Textbook Approved for State Adoption in Texas</div>
+      <div class="sc-excerpt">The approval sets a precedent for how state education boards evaluate AI-created learning materials and raises new questions about authorship, accuracy verification, and editorial oversight.</div>
+      <div class="sc-bottom"><span class="sc-tag">Textbooks</span><span class="sc-tag">Texas</span><span class="sc-read-time">6 min</span></div>
+    </div>
+
+    <div class="story-card">
+      <div class="sc-top">
+        <span class="sc-category cat-strategy">Leadership</span>
+        <span class="sc-source">Educause Review</span>
+        <span class="sc-time">6h ago</span>
+      </div>
+      <div class="sc-title">The Faculty AI Training Gap: Why 80% of PD Programs Are Missing the Mark</div>
+      <div class="sc-excerpt">A new report finds that most AI professional development focuses on tool demonstrations rather than pedagogical integration — leaving faculty technically trained but strategically unprepared.</div>
+      <div class="sc-bottom"><span class="sc-tag">Faculty Dev</span><span class="sc-tag">PD</span><span class="sc-read-time">7 min</span></div>
+    </div>
+
+    <div class="story-card">
+      <div class="sc-top">
+        <span class="sc-category cat-tools">Tools</span>
+        <span class="sc-source">Brisk Teaching</span>
+        <span class="sc-time">8h ago</span>
+      </div>
+      <div class="sc-title">Brisk Teaching Launches "Feedback Studio" for Higher Ed</div>
+      <div class="sc-excerpt">The new module generates personalized, rubric-aligned feedback on student assignments in under 30 seconds — with full instructor control over tone, specificity, and areas of focus.</div>
+      <div class="sc-bottom"><span class="sc-tag">Feedback</span><span class="sc-tag">Grading</span><span class="sc-read-time">3 min</span></div>
+    </div>
+
+    <div class="story-card">
+      <div class="sc-top">
+        <span class="sc-category cat-research">Research</span>
+        <span class="sc-source">Nature Education</span>
+        <span class="sc-time">10h ago</span>
+      </div>
+      <div class="sc-title">Meta-Analysis: AI Tutoring Improves Outcomes by 0.5 Standard Deviations</div>
+      <div class="sc-excerpt">A systematic review of 142 studies finds AI tutoring systems produce effects comparable to human tutoring — but with significant variation across implementation quality.</div>
+      <div class="sc-bottom"><span class="sc-tag">Research</span><span class="sc-tag">Meta-Analysis</span><span class="sc-read-time">9 min</span></div>
+    </div>
+  </main>
+
+  <!-- RIGHT PANEL: AI Navigator -->
+  <aside class="panel-right">
+    <div class="pr-section">
+      <div class="pr-label">📡 Stories We're Watching</div>
+      <div class="watch-item">
+        <span class="watch-day">Day 4</span>
+        <span class="watch-text">Senate AI in Education hearing schedule released</span>
+      </div>
+      <div class="watch-item">
+        <span class="watch-day">Day 1</span>
+        <span class="watch-text">Google announces Gemini for Education beta</span>
+      </div>
+      <div class="watch-item">
+        <span class="watch-day">Day 12</span>
+        <span class="watch-text">Claude for Campus pilot results due this week</span>
+      </div>
+    </div>
+
+    <div class="ai-nav">
+      <div class="ai-nav-header">
+        <div class="ai-avatar">AI</div>
+        <div>
+          <div class="ai-nav-title">Pulse Navigator</div>
+          <div class="ai-nav-status"><span class="dot"></span>Ready to help</div>
+        </div>
+      </div>
+
+      <div class="ai-chat">
+        <div class="ai-msg bot">
+          👋 Hi! I'm your Pulse Navigator. I can help you find the right content based on your role, interests, or challenges. What are you looking for today?
+        </div>
+      </div>
+
+      <div class="ai-suggestions">
+        <button class="ai-sug">I'm faculty — what's new for me?</button>
+        <button class="ai-sug">AI tools for grading</button>
+        <button class="ai-sug">Latest policy updates</button>
+        <button class="ai-sug">Help with AI adoption</button>
+        <button class="ai-sug">I'm a CIO / admin</button>
+        <button class="ai-sug">Prompt library</button>
+      </div>
+
+      <div class="ai-input-bar">
+        <input class="ai-input" placeholder="Ask me anything..." type="text">
+        <button class="ai-send">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+// Generate waveform
+const w1=document.getElementById('wave1');
+for(let i=0;i<40;i++){const b=document.createElement('div');b.className='wave-bar'+(i<6?' played':'');b.style.height=(3+Math.random()*18+Math.sin(i*0.4)*5)+'px';w1.appendChild(b);}
+</script>
+</body>
+</html>

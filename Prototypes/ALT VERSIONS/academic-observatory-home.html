@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovating Higher Ed — AI Intelligence for Academia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF7F2;
+  --warm-white: #F5F1EA;
+  --parchment: #EDE8DF;
+  --sand: #E3DDD3;
+  --ink: #1A1A2E;
+  --ink-soft: #2D2D44;
+  --ink-muted: #6B6B80;
+  --ink-light: #9B9BAD;
+  --amber: #D4740E;
+  --amber-light: #F5A623;
+  --amber-glow: rgba(212, 116, 14, 0.08);
+  --amber-deep: #B5600A;
+  --teal: #0E7C6B;
+  --teal-light: #11A68D;
+  --teal-glow: rgba(14, 124, 107, 0.08);
+  --broadcast-dark: #0F1119;
+  --broadcast-surface: #171B27;
+  --broadcast-border: #252A3A;
+  --red-accent: #C43D3D;
+  --blue-accent: #3D6BC4;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ANIMATIONS */
+@keyframes pulse-dot { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,0.4)}50%{opacity:.8;box-shadow:0 0 0 4px rgba(74,222,128,0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+@keyframes slideIn { from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)} }
+@keyframes tickerScroll { 0%{transform:translateX(0)}100%{transform:translateX(-50%)} }
+@keyframes waveBar {
+  0%,100%{transform:scaleY(0.3)}
+  50%{transform:scaleY(1)}
+}
+
+.reveal { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* === TICKER BAR === */
+.ticker {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.4rem 0;
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.ticker-fixed {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  flex-shrink: 0;
+  z-index: 2;
+  background: var(--ink);
+}
+.ticker-dot { width:6px;height:6px;background:#4ADE80;border-radius:50%;animation:pulse-dot 2s infinite; }
+.ticker-scroll-wrap {
+  flex: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 3%, black 97%, transparent);
+}
+.ticker-scroll {
+  display: flex;
+  gap: 2.5rem;
+  animation: tickerScroll 40s linear infinite;
+  white-space: nowrap;
+}
+.ticker-item { color: rgba(250,247,242,0.6); }
+.ticker-item span { color: var(--amber-light); }
+.ticker-date {
+  padding: 0 1.25rem;
+  flex-shrink: 0;
+  color: rgba(250,247,242,0.5);
+  z-index: 2;
+  background: var(--ink);
+}
+
+/* === NAV === */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,247,242,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(26,26,46,0.08);
+  padding: 0 2rem;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+.nav-ihe {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.nav-pulse {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--amber);
+}
+.nav-links { display:flex;align-items:center;gap:1.5rem;list-style:none; }
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--amber); }
+.nav-links a.active { color: var(--ink); font-weight: 600; }
+.nav-cta {
+  background: var(--ink);
+  color: var(--cream) !important;
+  padding: 0.5rem 1.15rem;
+  border-radius: 6px;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  transition: all 0.2s !important;
+}
+.nav-cta:hover { background: var(--amber) !important; color: #fff !important; }
+
+/* === HERO === */
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3rem;
+  align-items: start;
+}
+.hero-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hero-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--amber);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: 3.2rem;
+  line-height: 1.12;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  max-width: 580px;
+  margin-bottom: 1.5rem;
+}
+.hero-byline {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+.hero-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber-light), var(--amber));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.hero-byline-text {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+.hero-byline-text strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Hero Sidebar - Today's Intelligence */
+.hero-sidebar {
+  background: var(--warm-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(26,26,46,0.06);
+}
+.sidebar-title {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--sand);
+}
+.sidebar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(26,26,46,0.04);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sidebar-item:last-child { border-bottom: none; }
+.sidebar-item:hover { padding-left: 4px; }
+.sidebar-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ink-light);
+  width: 20px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.sidebar-item-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.sidebar-item-meta {
+  font-size: 0.72rem;
+  color: var(--ink-light);
+  margin-top: 2px;
+}
+.sidebar-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.tag-tools { background: rgba(14,124,107,0.1); color: var(--teal); }
+.tag-policy { background: rgba(61,107,196,0.1); color: var(--blue-accent); }
+.tag-case { background: rgba(212,116,14,0.1); color: var(--amber); }
+.tag-research { background: rgba(196,61,61,0.1); color: var(--red-accent); }
+.tag-insight { background: rgba(107,107,128,0.1); color: var(--ink-muted); }
+
+/* === BROADCAST SECTION (DARK) === */
+.broadcast {
+  background: var(--broadcast-dark);
+  padding: 2.5rem 2rem;
+  margin-top: 1rem;
+}
+.broadcast-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.broadcast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.broadcast-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.broadcast-label .live-dot {
+  width: 6px;height: 6px;background: #4ADE80;border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+.broadcast-date {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: rgba(250,247,242,0.3);
+}
+.broadcast-player {
+  background: var(--broadcast-surface);
+  border: 1px solid var(--broadcast-border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.play-btn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.play-btn:hover { background: var(--amber-light); transform: scale(1.05); }
+.play-btn svg { width: 18px; height: 18px; fill: white; margin-left: 2px; }
+.broadcast-info { flex: 1; min-width: 0; }
+.broadcast-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin-bottom: 0.25rem;
+}
+.broadcast-meta {
+  font-size: 0.78rem;
+  color: rgba(250,247,242,0.4);
+}
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.waveform-bar {
+  width: 3px;
+  border-radius: 1.5px;
+  background: rgba(250,247,242,0.15);
+  transition: background 0.2s;
+  transform-origin: center;
+}
+.waveform-bar.played { background: var(--amber); }
+.broadcast-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.chip {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(250,247,242,0.05);
+  color: rgba(250,247,242,0.5);
+  border: 1px solid rgba(250,247,242,0.08);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.chip:hover { background: rgba(212,116,14,0.15); border-color: rgba(212,116,14,0.3); color: var(--amber-light); }
+
+/* === SECTION PATTERNS === */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--sand);
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.section-label .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+}
+.dot-amber { background: var(--amber); }
+.dot-teal { background: var(--teal); }
+.dot-blue { background: var(--blue-accent); }
+.dot-red { background: var(--red-accent); }
+.section-link {
+  font-size: 0.82rem;
+  color: var(--amber);
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: gap 0.2s;
+}
+.section-link:hover { gap: 0.6rem; }
+
+/* === DISCOVERY GRID === */
+.grid-editorial {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+.card {
+  background: var(--warm-white);
+  border-radius: 10px;
+  border: 1px solid rgba(26,26,46,0.05);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(26,26,46,0.08);
+  border-color: rgba(26,26,46,0.1);
+}
+.card-featured { grid-column: span 8; }
+.card-standard { grid-column: span 4; }
+.card-full { grid-column: span 12; }
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: linear-gradient(135deg, var(--parchment), var(--sand));
+}
+.card-featured .card-img { height: 280px; }
+
+.card-body { padding: 1.25rem 1.5rem; }
+.card-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 0.6rem;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.card-featured .card-title { font-size: 1.65rem; }
+.card-excerpt {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(26,26,46,0.05);
+  font-size: 0.75rem;
+  color: var(--ink-light);
+}
+
+/* Stat Card */
+.stat-card {
+  grid-column: span 4;
+  background: var(--warm-white);
+  border-radius: 10px;
+  border: 1px solid rgba(26,26,46,0.05);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+}
+.stat-card-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.stat-card-value {
+  font-family: var(--serif);
+  font-size: 3rem;
+  color: var(--ink);
+  line-height: 1;
+}
+.stat-card-value span { color: var(--amber); }
+.stat-card-context {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+/* === EMAIL CAPTURE === */
+.capture {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+  border-radius: 16px;
+  padding: 3rem;
+  margin: 0 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.capture::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(212,116,14,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.capture-text h2 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.capture-text h2 em { color: var(--amber-light); font-style: italic; }
+.capture-text p {
+  font-size: 0.95rem;
+  color: rgba(250,247,242,0.6);
+  line-height: 1.6;
+}
+.capture-form { position: relative; z-index: 1; }
+.capture-input-row {
+  display: flex;
+  gap: 0.75rem;
+}
+.capture-input {
+  flex: 1;
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
+  border: 1px solid rgba(250,247,242,0.12);
+  background: rgba(250,247,242,0.06);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.capture-input::placeholder { color: rgba(250,247,242,0.3); }
+.capture-input:focus { border-color: var(--amber); }
+.capture-btn {
+  padding: 0.85rem 1.75rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--amber);
+  color: white;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.capture-btn:hover { background: var(--amber-light); }
+.capture-note {
+  font-size: 0.72rem;
+  color: rgba(250,247,242,0.3);
+  margin-top: 0.75rem;
+  font-family: var(--mono);
+}
+
+/* === PODCAST SECTION === */
+.podcast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.podcast-card {
+  background: var(--warm-white);
+  border-radius: 10px;
+  border: 1px solid rgba(26,26,46,0.05);
+  padding: 1.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.podcast-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(26,26,46,0.06);
+}
+.podcast-card-num {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--ink-light);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+.podcast-card-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+.podcast-card-guest {
+  font-size: 0.82rem;
+  color: var(--amber);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.podcast-card-desc {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.podcast-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(26,26,46,0.05);
+}
+.mini-play {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--amber);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.mini-play:hover { transform: scale(1.1); }
+.mini-play svg { width: 12px; height: 12px; fill: white; margin-left: 1px; }
+.podcast-card-time {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ink-light);
+}
+
+/* === TOOLS SECTION === */
+.tools-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.tool-card {
+  background: var(--warm-white);
+  border-radius: 10px;
+  border: 1px solid rgba(26,26,46,0.05);
+  padding: 1.25rem;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,26,46,0.06);
+  border-color: var(--amber);
+}
+.tool-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  margin: 0 auto 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.tool-card-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.tool-card-use {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+.tool-card-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-top: 0.5rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* === COMMUNITY / DR. NORMA === */
+.norma-section {
+  background: var(--warm-white);
+  border-top: 1px solid var(--sand);
+  border-bottom: 1px solid var(--sand);
+}
+.norma-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.norma-avatar-wrap {
+  display: flex;
+  justify-content: center;
+}
+.norma-avatar {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber-light), var(--amber), var(--amber-deep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.norma-avatar-inner {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 4.5rem;
+  color: var(--ink);
+}
+.norma-text h2 {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.norma-text h2 em { color: var(--amber); font-style: italic; }
+.norma-text p {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.norma-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--amber);
+  margin: 1.5rem 0;
+  line-height: 1.5;
+}
+.norma-creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+.norma-cred {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  background: rgba(212,116,14,0.08);
+  color: var(--amber-deep);
+  letter-spacing: 0.03em;
+}
+
+/* === TINKER LAB === */
+.tinker-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.tinker-card {
+  background: var(--warm-white);
+  border-radius: 10px;
+  border: 1px solid rgba(26,26,46,0.05);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.tinker-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,26,46,0.06);
+}
+.tinker-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(14,124,107,0.1), rgba(14,124,107,0.05));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.tinker-card-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.tinker-card-desc {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.tinker-card-meta {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-light);
+  margin-top: 0.5rem;
+}
+
+/* === FOOTER === */
+.footer {
+  background: var(--ink);
+  color: rgba(250,247,242,0.5);
+  padding: 3rem 2rem 1.5rem;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+.footer-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+.footer-brand .nav-ihe { color: rgba(250,247,242,0.4); }
+.footer-brand .nav-pulse { color: var(--amber); }
+.footer-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(250,247,242,0.4);
+  max-width: 300px;
+}
+.footer-col-title {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.3);
+  margin-bottom: 1rem;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 0.5rem; }
+.footer-links a {
+  color: rgba(250,247,242,0.5);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--amber); }
+.footer-bottom {
+  border-top: 1px solid rgba(250,247,242,0.08);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: rgba(250,247,242,0.25);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-sidebar { display: none; }
+  .grid-editorial { grid-template-columns: 1fr; }
+  .card-featured, .card-standard, .stat-card { grid-column: span 1; }
+  .podcast-grid { grid-template-columns: 1fr; }
+  .tools-strip { grid-template-columns: repeat(2, 1fr); }
+  .capture { grid-template-columns: 1fr; padding: 2rem; margin: 0 1rem; }
+  .norma-inner { grid-template-columns: 1fr; text-align: center; }
+  .norma-quote { border-left: none; border-top: 3px solid var(--amber); padding-left: 0; padding-top: 1rem; }
+  .tinker-row { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-fixed">
+    <div class="ticker-dot"></div>
+    <span>IHE PULSE</span>
+  </div>
+  <div class="ticker-scroll-wrap">
+    <div class="ticker-scroll">
+      <span class="ticker-item">Claude 4 launches with <span>campus-specific features</span></span>
+      <span class="ticker-item">Survey: <span>93% of faculty</span> plan to expand AI use</span>
+      <span class="ticker-item">Stanford releases <span>open-source grading assistant</span></span>
+      <span class="ticker-item">New FERPA guidance on <span>AI data handling</span> published</span>
+      <span class="ticker-item">Georgia State's <span>AI advising chatbot</span> cuts summer melt by 22%</span>
+      <span class="ticker-item">Claude 4 launches with <span>campus-specific features</span></span>
+      <span class="ticker-item">Survey: <span>93% of faculty</span> plan to expand AI use</span>
+      <span class="ticker-item">Stanford releases <span>open-source grading assistant</span></span>
+      <span class="ticker-item">New FERPA guidance on <span>AI data handling</span> published</span>
+      <span class="ticker-item">Georgia State's <span>AI advising chatbot</span> cuts summer melt by 22%</span>
+    </div>
+  </div>
+  <div class="ticker-date">Feb 10, 2026</div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <span class="nav-ihe">IHE</span>
+      <span class="nav-pulse">Pulse</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Daily Pulse</a></li>
+      <li><a href="#">Podcast</a></li>
+      <li><a href="#">Tinker Lab</a></li>
+      <li><a href="#">AI Tools</a></li>
+      <li><a href="#">Prompts</a></li>
+      <li><a href="#" class="nav-cta">Subscribe</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-main">
+    <div class="hero-label">Today's Intelligence</div>
+    <h1>How Three Professors Used AI to <em>Reinvent</em> Final Exams This Semester</h1>
+    <p class="hero-sub">A deep dive into assessment innovation: from AI-generated personalized exam questions to real-time adaptive testing. What their students — and their deans — thought about the results.</p>
+    <div class="hero-byline">
+      <div class="hero-avatar">NJ</div>
+      <div class="hero-byline-text">
+        Curated by <strong>Dr. Norma Jones</strong> · 7 stories today
+      </div>
+    </div>
+  </div>
+  <aside class="hero-sidebar">
+    <div class="sidebar-title">Today's Stories</div>
+    <div class="sidebar-item">
+      <span class="sidebar-num">01</span>
+      <div>
+        <div class="sidebar-item-title">Three Professors Reinvent Final Exams with AI</div>
+        <div class="sidebar-item-meta"><span class="sidebar-tag tag-case">Case Study</span> · 8 min</div>
+      </div>
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-num">02</span>
+      <div>
+        <div class="sidebar-item-title">NotebookLM Adds Real-Time Collaboration for Research Teams</div>
+        <div class="sidebar-item-meta"><span class="sidebar-tag tag-tools">Tools</span> · 3 min</div>
+      </div>
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-num">03</span>
+      <div>
+        <div class="sidebar-item-title">New White House AI Guidance: What Campuses Need to Know</div>
+        <div class="sidebar-item-meta"><span class="sidebar-tag tag-policy">Policy</span> · 5 min</div>
+      </div>
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-num">04</span>
+      <div>
+        <div class="sidebar-item-title">Study: AI Tutors Boost Outcomes for First-Gen Students</div>
+        <div class="sidebar-item-meta"><span class="sidebar-tag tag-research">Research</span> · 4 min</div>
+      </div>
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-num">05</span>
+      <div>
+        <div class="sidebar-item-title">The Hidden Costs of Not Adopting AI in Advising</div>
+        <div class="sidebar-item-meta"><span class="sidebar-tag tag-insight">Insight</span> · 6 min</div>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- BROADCAST (DARK) -->
+<section class="broadcast">
+  <div class="broadcast-inner">
+    <div class="broadcast-header">
+      <div class="broadcast-label">
+        <span class="live-dot"></span>
+        Morning Briefing · Audio Edition
+      </div>
+      <div class="broadcast-date">Monday, February 10, 2026</div>
+    </div>
+    <div class="broadcast-player">
+      <button class="play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <div class="broadcast-info">
+        <div class="broadcast-title">Today's Briefing: AI Exams, NotebookLM Update & Policy Shifts</div>
+        <div class="broadcast-meta">Dr. Norma Jones · 12 min · 7 stories covered</div>
+      </div>
+      <div class="waveform" id="waveform"></div>
+    </div>
+    <div class="broadcast-chips">
+      <div class="chip">AI Exams Deep Dive</div>
+      <div class="chip">NotebookLM 2.0</div>
+      <div class="chip">White House Policy</div>
+      <div class="chip">First-Gen Student Study</div>
+      <div class="chip">Advising ROI</div>
+      <div class="chip">Tool of the Week</div>
+      <div class="chip">Week Ahead Preview</div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOVERY GRID -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label"><span class="dot dot-amber"></span> Today's Intelligence</div>
+    <a href="#" class="section-link">View all stories →</a>
+  </div>
+  <div class="grid-editorial">
+    <!-- Featured -->
+    <div class="card card-featured reveal">
+      <div class="card-img" style="background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 40%, #d4740e 100%); display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:var(--serif);font-size:3.5rem;color:rgba(250,247,242,0.15);">AI</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag tag-case">Case Study</span>
+        <div class="card-title">How Three Professors Used AI to Reinvent Final Exams This Semester</div>
+        <p class="card-excerpt">From personalized question banks generated by Claude to real-time adaptive testing that adjusts difficulty based on student performance — these three approaches represent the cutting edge of AI-powered assessment.</p>
+        <div class="card-footer">
+          <span>Dr. Norma Jones · 8 min read</span>
+          <span>Featured</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard cards -->
+    <div class="card card-standard reveal" style="animation-delay:0.1s">
+      <div class="card-body">
+        <span class="card-tag tag-tools">Tools</span>
+        <div class="card-title">NotebookLM Adds Real-Time Collaboration</div>
+        <p class="card-excerpt">Google's research tool now supports teams. Here's what this means for faculty research groups.</p>
+        <div class="card-footer">
+          <span>3 min read</span>
+          <span>Tools Update</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat cards -->
+    <div class="stat-card reveal" style="animation-delay:0.15s">
+      <div class="stat-card-label">AI Adoption Rate</div>
+      <div class="stat-card-value">93<span>%</span></div>
+      <div class="stat-card-context">of faculty plan to expand AI use in the next two years</div>
+    </div>
+    <div class="stat-card reveal" style="animation-delay:0.2s">
+      <div class="stat-card-label">Enrollment Impact</div>
+      <div class="stat-card-value">2.3<span>×</span></div>
+      <div class="stat-card-context">AI usage surge in higher ed over the past year</div>
+    </div>
+
+    <div class="card card-standard reveal" style="animation-delay:0.25s">
+      <div class="card-body">
+        <span class="card-tag tag-policy">Policy</span>
+        <div class="card-title">White House AI Guidance: What Campuses Need to Know</div>
+        <p class="card-excerpt">The new executive order includes specific provisions for educational institutions. Here's your action checklist.</p>
+        <div class="card-footer">
+          <span>5 min read</span>
+          <span>Policy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-standard reveal" style="animation-delay:0.3s">
+      <div class="card-body">
+        <span class="card-tag tag-research">Research</span>
+        <div class="card-title">AI Tutors Boost Outcomes for First-Gen Students</div>
+        <p class="card-excerpt">New longitudinal study shows 34% improvement in retention rates when AI tutoring supplements traditional advising.</p>
+        <div class="card-footer">
+          <span>4 min read</span>
+          <span>Research</span>
+        </div>
+      </div>
+    </div>
+    <div class="card card-standard reveal" style="animation-delay:0.35s">
+      <div class="card-body">
+        <span class="card-tag tag-insight">Insight</span>
+        <div class="card-title">The Hidden Costs of Not Adopting AI in Advising</div>
+        <p class="card-excerpt">What does inaction look like? We calculated the institutional cost of advisor burnout and missed retention signals.</p>
+        <div class="card-footer">
+          <span>6 min read</span>
+          <span>Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL CAPTURE -->
+<div class="capture reveal">
+  <div class="capture-text">
+    <h2>Stay ahead of the curve.<br><em>Join 2,400+ educators.</em></h2>
+    <p>Get the morning briefing, tool reviews, and case studies delivered to your inbox. Free. No spam. Unsubscribe anytime.</p>
+  </div>
+  <div class="capture-form">
+    <div class="capture-input-row">
+      <input type="email" class="capture-input" placeholder="your@university.edu">
+      <button class="capture-btn">Get the Pulse →</button>
+    </div>
+    <div class="capture-note">Join faculty from Stanford, ASU, Georgia State, and 200+ institutions</div>
+  </div>
+</div>
+
+<!-- PODCAST -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label"><span class="dot dot-teal"></span> Latest from the Podcast</div>
+    <a href="#" class="section-link">All episodes →</a>
+  </div>
+  <div class="podcast-grid">
+    <div class="podcast-card reveal">
+      <div class="podcast-card-num">EP 14 · Jan 28, 2026</div>
+      <div class="podcast-card-title">Assistive AI Tools & Accessibility in Higher Ed</div>
+      <div class="podcast-card-guest">with Dr. Sarah Chen</div>
+      <div class="podcast-card-desc">How AI-powered assistive technology is creating more inclusive learning environments for students with disabilities.</div>
+      <div class="podcast-card-footer">
+        <button class="mini-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+        <span class="podcast-card-time">38 min</span>
+      </div>
+    </div>
+    <div class="podcast-card reveal" style="animation-delay:0.1s">
+      <div class="podcast-card-num">EP 13 · Jan 21, 2026</div>
+      <div class="podcast-card-title">OER, ZTC & Lightning-Fast AI Translation</div>
+      <div class="podcast-card-guest">with Prof. Marcus Rivera</div>
+      <div class="podcast-card-desc">Open educational resources meet AI: how automated translation is making course materials accessible in 40+ languages overnight.</div>
+      <div class="podcast-card-footer">
+        <button class="mini-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+        <span class="podcast-card-time">42 min</span>
+      </div>
+    </div>
+    <div class="podcast-card reveal" style="animation-delay:0.2s">
+      <div class="podcast-card-num">EP 12 · Jan 14, 2026</div>
+      <div class="podcast-card-title">VR Rehearsals & XR Learning Engagement Hacks</div>
+      <div class="podcast-card-guest">with Dr. Amara Obi</div>
+      <div class="podcast-card-desc">From nursing simulations to public speaking practice — immersive tech is creating safe spaces for high-stakes skill building.</div>
+      <div class="podcast-card-footer">
+        <button class="mini-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+        <span class="podcast-card-time">35 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TOOLS -->
+<section class="section" style="padding-top:0">
+  <div class="section-header">
+    <div class="section-label"><span class="dot dot-blue"></span> Featured AI Tools</div>
+    <a href="#" class="section-link">Browse directory →</a>
+  </div>
+  <div class="tools-strip">
+    <div class="tool-card reveal">
+      <div class="tool-icon" style="background: linear-gradient(135deg, rgba(14,124,107,0.12), rgba(14,124,107,0.04));">🎓</div>
+      <div class="tool-card-name">MagicSchool</div>
+      <div class="tool-card-use">Lesson plans & rubrics</div>
+      <div class="tool-card-badge" style="background:rgba(14,124,107,0.08);color:var(--teal);">Free Tier</div>
+    </div>
+    <div class="tool-card reveal" style="animation-delay:0.05s">
+      <div class="tool-icon" style="background: linear-gradient(135deg, rgba(212,116,14,0.12), rgba(212,116,14,0.04));">📊</div>
+      <div class="tool-card-name">Gradescope</div>
+      <div class="tool-card-use">AI-assisted grading</div>
+      <div class="tool-card-badge" style="background:rgba(212,116,14,0.08);color:var(--amber);">Staff Pick</div>
+    </div>
+    <div class="tool-card reveal" style="animation-delay:0.1s">
+      <div class="tool-icon" style="background: linear-gradient(135deg, rgba(61,107,196,0.12), rgba(61,107,196,0.04));">📝</div>
+      <div class="tool-card-name">NotebookLM</div>
+      <div class="tool-card-use">Research synthesis</div>
+      <div class="tool-card-badge" style="background:rgba(61,107,196,0.08);color:var(--blue-accent);">New Update</div>
+    </div>
+    <div class="tool-card reveal" style="animation-delay:0.15s">
+      <div class="tool-icon" style="background: linear-gradient(135deg, rgba(196,61,61,0.12), rgba(196,61,61,0.04));">🤖</div>
+      <div class="tool-card-name">Brisk Teaching</div>
+      <div class="tool-card-use">Feedback & differentiation</div>
+      <div class="tool-card-badge" style="background:rgba(196,61,61,0.08);color:var(--red-accent);">Trending</div>
+    </div>
+  </div>
+</section>
+
+<!-- DR. NORMA -->
+<section class="norma-section">
+  <div class="norma-inner reveal">
+    <div class="norma-avatar-wrap">
+      <div class="norma-avatar">
+        <div class="norma-avatar-inner">NJ</div>
+      </div>
+    </div>
+    <div class="norma-text">
+      <h2>Your guide to <em>AI in academia</em></h2>
+      <p>Dr. Norma Jones brings decades of experience spanning academia and industry to help higher education professionals navigate AI adoption with confidence.</p>
+      <div class="norma-quote">"Every educator needs to understand how AI will impact their students — not to fear it, but to harness it ethically and effectively."</div>
+      <p>Through the Innovating Higher Ed podcast, daily briefings, and hands-on workshops, Dr. Jones translates the AI revolution into practical strategies for your classroom and campus.</p>
+      <div class="norma-creds">
+        <span class="norma-cred">AI Integration Specialist</span>
+        <span class="norma-cred">Faculty Developer</span>
+        <span class="norma-cred">Podcast Host</span>
+        <span class="norma-cred">Author</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TINKER LAB -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-label"><span class="dot dot-red"></span> From the Tinker Lab</div>
+    <a href="#" class="section-link">Explore all posts →</a>
+  </div>
+  <div class="tinker-row">
+    <div class="tinker-card reveal">
+      <div class="tinker-icon">🧪</div>
+      <div>
+        <div class="tinker-card-title">Human-Centered AI Strategy for Your Department</div>
+        <div class="tinker-card-desc">Quick insights on building an AI adoption plan that puts faculty needs and student outcomes at the center.</div>
+        <div class="tinker-card-meta">Audio Blog · 8 min · Jan 30, 2026</div>
+      </div>
+    </div>
+    <div class="tinker-card reveal" style="animation-delay:0.1s">
+      <div class="tinker-icon">⚡</div>
+      <div>
+        <div class="tinker-card-title">5 Prompt Engineering Tricks for Better AI Outputs</div>
+        <div class="tinker-card-desc">Practical techniques to get more useful, accurate responses from ChatGPT, Claude, and Gemini for academic work.</div>
+        <div class="tinker-card-meta">Audio Blog · 6 min · Jan 23, 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="nav-ihe">IHE</span>
+        <span class="nav-pulse">Pulse</span>
+      </div>
+      <p class="footer-desc">Empowering higher education professionals to confidently embrace AI and innovation through practical insights, curated tools, and a supportive community.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Content</div>
+      <ul class="footer-links">
+        <li><a href="#">Daily Pulse</a></li>
+        <li><a href="#">Podcast</a></li>
+        <li><a href="#">Tinker Lab</a></li>
+        <li><a href="#">Case Studies</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="#">AI Tools Directory</a></li>
+        <li><a href="#">Prompt Navigator</a></li>
+        <li><a href="#">Educator Tools</a></li>
+        <li><a href="#">Getting Started</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">About Dr. Jones</a></li>
+        <li><a href="#">Be Our Guest</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Innovating Higher Ed. All rights reserved.</span>
+    <span>Built with intelligence.</span>
+  </div>
+</footer>
+
+<script>
+// Waveform bars
+const waveform = document.getElementById('waveform');
+for (let i = 0; i < 55; i++) {
+  const bar = document.createElement('div');
+  bar.className = 'waveform-bar' + (i < 8 ? ' played' : '');
+  bar.style.height = (4 + Math.random() * 28 + Math.sin(i * 0.3) * 8) + 'px';
+  if (i < 8) {
+    bar.style.animation = `waveBar ${0.8 + Math.random() * 0.6}s ease-in-out infinite`;
+    bar.style.animationDelay = (i * 0.05) + 's';
+  }
+  waveform.appendChild(bar);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

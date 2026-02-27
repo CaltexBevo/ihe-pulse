@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT-NAV Prototype B: The Corridor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #030305;
+            --deep: #080810;
+            --surface: #0e0e1c;
+            --card: #14142e;
+            --cyan: #00e5ff;
+            --magenta: #c850c0;
+            --green: #00ff88;
+            --gold: #ffd700;
+            --violet: #8b5cf6;
+            --rose: #f43f5e;
+            --orange: #f97316;
+            --text-bright: #ffffff;
+            --text-primary: #ddddf0;
+            --text-secondary: #8888a8;
+            --text-muted: #555568;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* === PERSPECTIVE CORRIDOR === */
+        .corridor {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            perspective: 1200px;
+            perspective-origin: 50% 50%;
+            overflow: hidden;
+        }
+
+        .corridor-floor {
+            position: absolute;
+            bottom: 0;
+            left: -50%;
+            width: 200%;
+            height: 60%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 49px,
+                rgba(0, 229, 255, 0.03) 49px,
+                rgba(0, 229, 255, 0.03) 50px
+            ),
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 49px,
+                rgba(0, 229, 255, 0.03) 49px,
+                rgba(0, 229, 255, 0.03) 50px
+            );
+            transform: rotateX(70deg);
+            transform-origin: center top;
+        }
+
+        .corridor-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, transparent 70%);
+            animation: hubGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes hubGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        /* Vanishing point lines */
+        .vline {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1px;
+            height: 150vh;
+            transform-origin: top center;
+            opacity: 0.06;
+        }
+
+        /* === TOP BAR === */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 56px;
+            background: rgba(3, 3, 5, 0.8);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.06);
+        }
+
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .topbar-brand .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topbar-link {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .topbar-link:hover { color: var(--cyan); }
+
+        /* === MAIN HUB === */
+        .hub-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* === WELCOME === */
+        .welcome {
+            text-align: center;
+            max-width: 560px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .welcome.hidden {
+            opacity: 0;
+            transform: translateY(-60px) scale(0.95);
+            pointer-events: none;
+        }
+
+        .welcome-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--cyan);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.2s forwards;
+        }
+
+        .welcome h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.4s forwards;
+        }
+
+        .welcome h1 .glow {
+            background: linear-gradient(135deg, var(--cyan), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+
+        .welcome p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.6s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === CHAT BAR === */
+        .chat-bar {
+            width: 100%;
+            max-width: 540px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.8s forwards;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .chat-bar.docked {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 600px;
+            z-index: 50;
+            opacity: 1;
+            animation: none;
+        }
+
+        .chat-bar-inner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(14, 14, 28, 0.92);
+            border: 1px solid rgba(0, 229, 255, 0.12);
+            border-radius: 18px;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 229, 255, 0.04);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .chat-bar-inner:focus-within {
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.4), 0 0 80px rgba(0, 229, 255, 0.08);
+        }
+
+        .chat-orb {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            animation: orbSpin 6s linear infinite;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        .chat-orb-inner {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        @keyframes orbSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .chat-bar input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-bright);
+            font-family: 'Syne', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .chat-bar input::placeholder { color: var(--text-muted); }
+
+        .chat-bar-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .btn-mic {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .btn-mic:hover {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--cyan);
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            color: white;
+            font-weight: 700;
+        }
+
+        .btn-send:hover { transform: scale(1.06); }
+
+        /* === QUICK CHIPS === */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 16px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 1s forwards;
+        }
+
+        .chip {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 24px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: inherit;
+        }
+
+        .chip:hover {
+            background: rgba(0, 229, 255, 0.06);
+            border-color: rgba(0, 229, 255, 0.25);
+            color: var(--cyan);
+            transform: translateY(-2px);
+        }
+
+        /* === DOORS (content destinations) === */
+        .doors-container {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .doors-container.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .door {
+            position: absolute;
+            width: 180px;
+            height: 240px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.6) translateZ(-200px);
+            opacity: 0;
+        }
+
+        .door.show {
+            transform: scale(1) translateZ(0);
+            opacity: 1;
+        }
+
+        .door:hover {
+            transform: scale(1.08) translateZ(20px);
+        }
+
+        .door:hover .door-frame {
+            border-color: var(--door-color, var(--cyan));
+            box-shadow: 0 0 60px color-mix(in srgb, var(--door-color, var(--cyan)) 30%, transparent),
+                        inset 0 0 40px color-mix(in srgb, var(--door-color, var(--cyan)) 10%, transparent);
+        }
+
+        .door.highlighted .door-frame {
+            border-color: var(--door-color, var(--cyan));
+            box-shadow: 0 0 80px color-mix(in srgb, var(--door-color, var(--cyan)) 40%, transparent),
+                        inset 0 0 60px color-mix(in srgb, var(--door-color, var(--cyan)) 15%, transparent);
+        }
+
+        .door-frame {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            background: rgba(8, 8, 16, 0.85);
+            backdrop-filter: blur(16px);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s;
+            overflow: hidden;
+        }
+
+        .door-glow {
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle at center, var(--door-color, var(--cyan)), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .door:hover .door-glow,
+        .door.highlighted .door-glow { opacity: 0.06; }
+
+        .door-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .door-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .door-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+
+        .door-indicator {
+            position: absolute;
+            bottom: 16px;
+            width: 40px;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--door-color, var(--cyan));
+            opacity: 0.4;
+            transition: opacity 0.3s, width 0.3s;
+        }
+
+        .door:hover .door-indicator,
+        .door.highlighted .door-indicator {
+            opacity: 1;
+            width: 60px;
+        }
+
+        /* === RESPONSE PANEL === */
+        .response-panel {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 560px;
+            width: 90%;
+            z-index: 40;
+            display: none;
+        }
+
+        .response-panel.visible { display: block; }
+
+        .response-card {
+            background: rgba(14, 14, 28, 0.95);
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(24px);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .response-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+
+        .response-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .response-btn {
+            padding: 7px 16px;
+            background: rgba(0, 229, 255, 0.06);
+            border: 1px solid rgba(0, 229, 255, 0.18);
+            border-radius: 10px;
+            color: var(--cyan);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .response-btn:hover {
+            background: rgba(0, 229, 255, 0.12);
+            transform: translateY(-1px);
+        }
+
+        /* === AMBIENT LIGHT BEAMS === */
+        .beam {
+            position: fixed;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--cyan), transparent);
+            opacity: 0.03;
+            z-index: 1;
+            animation: beamFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes beamFloat {
+            0%, 100% { transform: translateY(-10px); opacity: 0.02; }
+            50% { transform: translateY(10px); opacity: 0.05; }
+        }
+
+        /* === STATUS === */
+        .status-line {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            background: rgba(3, 3, 5, 0.9);
+            border-top: 1px solid rgba(255,255,255,0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 60;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .status-line .online {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-line .online::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AMBIENT BEAMS -->
+    <div class="beam" style="left: 15%; height: 60vh; top: 20%; animation-delay: 0s;"></div>
+    <div class="beam" style="left: 35%; height: 50vh; top: 25%; animation-delay: 2s;"></div>
+    <div class="beam" style="left: 55%; height: 55vh; top: 15%; animation-delay: 4s;"></div>
+    <div class="beam" style="left: 75%; height: 45vh; top: 30%; animation-delay: 1s;"></div>
+    <div class="beam" style="left: 85%; height: 65vh; top: 10%; animation-delay: 3s;"></div>
+
+    <!-- CORRIDOR EFFECTS -->
+    <div class="corridor">
+        <div class="corridor-floor"></div>
+        <div class="corridor-glow"></div>
+    </div>
+
+    <!-- TOP BAR -->
+    <nav class="topbar">
+        <div class="topbar-brand">
+            <div class="dot"></div>
+            <span>Innovating Higher Ed</span>
+        </div>
+        <div class="topbar-right">
+            <a href="#" class="topbar-link">About</a>
+            <a href="#" class="topbar-link">Podcast</a>
+            <a href="#" class="topbar-link">Community</a>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div class="hub-container">
+        <div class="welcome" id="welcome">
+            <div class="welcome-eyebrow">Chat-Powered Navigation</div>
+            <h1>Step into the<br><span class="glow">future of learning</span></h1>
+            <p>No menus. No hunting. Just tell me what you need<br>and I'll open the right door.</p>
+
+            <div class="chat-bar" id="chatBar">
+                <div class="chat-bar-inner">
+                    <div class="chat-orb"><div class="chat-orb-inner">🧭</div></div>
+                    <input type="text" id="chatInput" placeholder="I'm a professor new to AI..."  autocomplete="off">
+                    <button class="chat-bar-btn btn-mic">🎙</button>
+                    <button class="chat-bar-btn btn-send" id="sendBtn">→</button>
+                </div>
+
+                <div class="chips">
+                    <button class="chip" data-q="new to AI">🌱 I'm new to AI</button>
+                    <button class="chip" data-q="play news">▶ Play today's news</button>
+                    <button class="chip" data-q="find tools">🛠 Find AI tools</button>
+                    <button class="chip" data-q="podcast">🎙 Latest podcast</button>
+                    <button class="chip" data-q="prompts">💡 Prompt library</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOORS -->
+    <div class="doors-container" id="doorsContainer"></div>
+
+    <!-- RESPONSE -->
+    <div class="response-panel" id="responsePanel"></div>
+
+    <!-- STATUS -->
+    <div class="status-line">
+        <div class="online">Navigator Online</div>
+        <span>51 resources • 8 pathways</span>
+        <span>Feb 7, 2026</span>
+    </div>
+
+    <script>
+        const doorData = [
+            { id: 'news', label: 'Innovation Pulse', desc: 'Daily AI briefing', icon: '📡', color: '#00e5ff', keywords: ['news', 'pulse', 'daily', 'today', 'morning', 'play'] },
+            { id: 'podcast', label: 'Podcast', desc: 'Interviews with innovators', icon: '🎙', color: '#c850c0', keywords: ['podcast', 'episode', 'listen', 'interview'] },
+            { id: 'tools', label: 'AI Tools', desc: '50+ vetted for educators', icon: '🛠', color: '#00ff88', keywords: ['tool', 'app', 'software', 'chatgpt', 'grading'] },
+            { id: 'prompts', label: 'Prompt Library', desc: 'Copy-paste prompts', icon: '💡', color: '#ffd700', keywords: ['prompt', 'template', 'write'] },
+            { id: 'tinkerlab', label: 'Tinker Lab', desc: 'Experiments & insights', icon: '🔬', color: '#f97316', keywords: ['tinker', 'lab', 'experiment'] },
+            { id: 'guides', label: 'Getting Started', desc: 'AI basics for faculty', icon: '🌱', color: '#4ade80', keywords: ['new', 'start', 'begin', 'learn', 'beginner', 'teach', 'faculty', 'professor', 'help'] },
+            { id: 'cases', label: 'Case Studies', desc: 'Real campus outcomes', icon: '📊', color: '#8b5cf6', keywords: ['case', 'study', 'example', 'success'] },
+            { id: 'community', label: 'Community', desc: 'Connect with educators', icon: '🤝', color: '#f43f5e', keywords: ['community', 'connect', 'forum'] },
+        ];
+
+        let isActive = false;
+
+        function activate() {
+            if (isActive) return;
+            isActive = true;
+
+            document.getElementById('welcome').classList.add('hidden');
+
+            setTimeout(() => {
+                const bar = document.getElementById('chatBar');
+                bar.classList.add('docked');
+                document.body.appendChild(bar);
+
+                // Create doors
+                const container = document.getElementById('doorsContainer');
+                container.classList.add('visible');
+                container.innerHTML = '';
+
+                const positions = calculateDoorPositions();
+
+                doorData.forEach((d, i) => {
+                    const el = document.createElement('div');
+                    el.className = 'door';
+                    el.style.cssText = `
+                        left: ${positions[i].x}px;
+                        top: ${positions[i].y}px;
+                        --door-color: ${d.color};
+                    `;
+                    el.innerHTML = `
+                        <div class="door-frame">
+                            <div class="door-glow"></div>
+                            <div class="door-icon">${d.icon}</div>
+                            <div class="door-label">${d.label}</div>
+                            <div class="door-desc">${d.desc}</div>
+                            <div class="door-indicator"></div>
+                        </div>
+                    `;
+                    el.addEventListener('click', () => selectDoor(d));
+                    container.appendChild(el);
+
+                    setTimeout(() => el.classList.add('show'), 150 + i * 100);
+                });
+            }, 500);
+        }
+
+        function calculateDoorPositions() {
+            const W = window.innerWidth;
+            const H = window.innerHeight;
+            const cx = W / 2;
+            const cy = H / 2;
+
+            // Two columns on each side, like a corridor
+            return [
+                // Left column
+                { x: cx - 400, y: cy - 200 },
+                { x: cx - 400, y: cy + 20 },
+                { x: cx - 220, y: cy - 260 },
+                { x: cx - 220, y: cy + 80 },
+                // Right column
+                { x: cx + 220, y: cy - 200 },
+                { x: cx + 220, y: cy + 20 },
+                { x: cx + 40, y: cy - 280 },
+                { x: cx + 40, y: cy + 100 },
+            ];
+        }
+
+        function selectDoor(door) {
+            doorData.forEach(d => d.highlighted = false);
+            door.highlighted = true;
+
+            document.querySelectorAll('.door').forEach((el, i) => {
+                el.classList.toggle('highlighted', doorData[i].id === door.id);
+            });
+
+            showResponse(door);
+        }
+
+        function showResponse(door) {
+            const panel = document.getElementById('responsePanel');
+            panel.classList.add('visible');
+
+            const msgs = {
+                news: { text: "Your morning AI briefing is ready. 4 stories, 1 deep dive, narrated by Dr. Norma Jones. Hit play.", actions: ['▶ Play Briefing', 'Read Stories'] },
+                podcast: { text: "Latest: A dean who rewired their entire college around AI — and what they learned the hard way.", actions: ['▶ Play Episode', 'All Episodes'] },
+                tools: { text: "50+ AI tools, vetted and categorized for higher ed. What do you need help with?", actions: ['Browse All', 'Teaching Tools', 'Research Tools'] },
+                prompts: { text: "Copy-paste prompts designed for educators. Tested, refined, ready to use.", actions: ['Browse Prompts', 'For Beginners'] },
+                tinkerlab: { text: "Quick experiments — try something new in 5 minutes. Dr. Jones's lab notes.", actions: ['Latest Experiment', 'Browse All'] },
+                guides: { text: "Perfect place to start. Let me walk you through AI fundamentals — no jargon, no panic.", actions: ['Start Learning', 'Quick-Start Guide'] },
+                cases: { text: "See what's working at real campuses. Measurable outcomes, honest challenges.", actions: ['Browse Cases', 'By Institution Type'] },
+                community: { text: "200+ educators navigating AI together. Questions, wins, and honest conversations.", actions: ['Join Community', 'Upcoming Events'] },
+            };
+
+            const msg = msgs[door.id] || { text: 'Opening...', actions: ['Go'] };
+
+            panel.innerHTML = `
+                <div class="response-card">
+                    <p>${msg.text}</p>
+                    <div class="response-btns">
+                        ${msg.actions.map(a => `<button class="response-btn">${a}</button>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function processInput(text) {
+            if (!text.trim()) return;
+            activate();
+
+            const lower = text.toLowerCase();
+            let best = null, bestScore = 0;
+
+            doorData.forEach(d => {
+                let score = 0;
+                d.keywords.forEach(kw => { if (lower.includes(kw)) score += 2; });
+                if (lower.includes('biology') || lower.includes('teach') || lower.includes('class')) {
+                    if (d.id === 'guides') score += 3;
+                    if (d.id === 'tools') score += 2;
+                }
+                if (lower.includes('new') || lower.includes('start') || lower.includes('help')) {
+                    if (d.id === 'guides') score += 4;
+                }
+                if (score > bestScore) { bestScore = score; best = d; }
+            });
+
+            if (!best) best = doorData[5];
+            setTimeout(() => selectDoor(best), 800);
+        }
+
+        // Events
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const inp = document.getElementById('chatInput');
+            processInput(inp.value);
+            inp.value = '';
+        });
+
+        document.getElementById('chatInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') { processInput(e.target.value); e.target.value = ''; }
+        });
+
+        document.querySelectorAll('.chip').forEach(c => {
+            c.addEventListener('click', () => processInput(c.dataset.q));
+        });
+    </script>
+</body>
+</html>

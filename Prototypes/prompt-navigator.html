@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Navigator — Innovating Higher Ed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;--surface:#111118;--card:#15151f;--border:#1e1e2e;
+  --text:#e8e8f0;--muted:#8888a0;--dim:#555570;
+  --cyan:#00d4ff;--magenta:#c850c0;--green:#34d399;--amber:#f59e0b;
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.6;min-height:100vh}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;gap:24px}
+.nav-logo{font-size:1.2rem;font-weight:700;letter-spacing:2px;color:var(--cyan)}
+.nav-logo span{color:var(--magenta)}
+.nav-links{display:flex;gap:20px;margin-left:auto}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+
+/* Hero */
+.hero{text-align:center;padding:64px 24px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(200,80,192,.06),transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;border:1px solid rgba(200,80,192,.2);background:rgba(200,80,192,.05);color:var(--magenta);font-size:.82rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-size:2.8rem;font-weight:700;line-height:1.15;margin-bottom:12px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:700px;margin:0 auto 24px}
+
+/* Section Nav */
+.sec-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:0 24px}
+.sec-btn{padding:10px 18px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.86rem;font-weight:500;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px}
+.sec-btn:hover{border-color:rgba(0,212,255,.4);color:var(--text)}
+.sec-btn.active{background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(200,80,192,.08));border-color:var(--cyan);color:var(--cyan)}
+.sec-btn svg{width:16px;height:16px;flex-shrink:0}
+
+/* Main */
+.main{max-width:960px;margin:0 auto;padding:48px 24px 80px}
+
+/* Section */
+.section{display:none;margin-bottom:48px}
+.section.visible{display:block}
+.section-head{margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.section-head h2{font-size:1.7rem;font-weight:700;margin-bottom:8px}
+.section-head p{color:var(--muted);font-size:1rem;max-width:700px}
+
+/* Technique Cards */
+.tech-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;overflow:hidden;transition:all .3s}
+.tech-card:hover{border-color:rgba(0,212,255,.2)}
+.tech-header{padding:20px 24px;cursor:pointer;display:flex;align-items:center;gap:16px;transition:background .2s}
+.tech-header:hover{background:rgba(0,212,255,.03)}
+.tech-num{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(200,80,192,.08));border:1px solid rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:var(--cyan);font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.tech-title{font-size:1.1rem;font-weight:600;flex:1}
+.tech-when{font-size:.82rem;color:var(--muted);margin-top:2px}
+.tech-arrow{color:var(--dim);transition:transform .3s;flex-shrink:0}
+.tech-card.open .tech-arrow{transform:rotate(180deg)}
+.tech-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.tech-card.open .tech-body{max-height:4000px}
+.tech-content{padding:0 24px 24px}
+
+/* Inner tabs */
+.inner-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.inner-tab{padding:6px 14px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.82rem;cursor:pointer;transition:all .2s}
+.inner-tab:hover{color:var(--text)}
+.inner-tab.active{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan)}
+.inner-panel{display:none}
+.inner-panel.visible{display:block}
+.inner-panel p{color:var(--muted);font-size:.94rem;line-height:1.7;margin-bottom:12px}
+
+/* Copy blocks */
+.copy-block{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 56px 16px 16px;margin:12px 0;font-family:'JetBrains Mono',monospace;font-size:.88rem;line-height:1.6;color:var(--text);white-space:pre-wrap;word-wrap:break-word}
+.copy-btn{position:absolute;top:10px;right:10px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-family:inherit;font-size:.76rem;cursor:pointer;transition:all .2s}
+.copy-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.copy-btn.copied{background:rgba(52,211,153,.15);border-color:var(--green);color:var(--green)}
+
+/* Templates */
+.tmpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.tmpl-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .3s}
+.tmpl-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-2px)}
+.tmpl-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid rgba(0,212,255,.15)}
+.tmpl-card h3{font-size:1rem;font-weight:600;margin-bottom:4px}
+.tmpl-card p{font-size:.84rem;color:var(--muted);margin-bottom:10px}
+.tmpl-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tmpl-tag{padding:2px 8px;border-radius:4px;font-size:.72rem;background:rgba(0,212,255,.08);color:var(--cyan);border:1px solid rgba(0,212,255,.1)}
+.tmpl-expand{display:none;margin-top:16px}
+.tmpl-card.open .tmpl-expand{display:block}
+
+/* Problems */
+.problem-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.problem-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);flex-shrink:0}
+.problem-content h3{font-size:1.02rem;font-weight:600;margin-bottom:4px}
+.problem-content .problem-desc{font-size:.9rem;color:var(--muted);margin-bottom:8px}
+.problem-fix{padding:10px 14px;border-radius:8px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.12)}
+.problem-fix-label{font-size:.76rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.problem-fix p{font-size:.88rem;color:var(--text)}
+
+/* Workflow */
+.workflow-steps{display:grid;gap:12px;counter-reset:step}
+.wf-step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:center;gap:16px;counter-increment:step;transition:all .3s}
+.wf-step:hover{border-color:rgba(0,212,255,.2);transform:translateX(4px)}
+.wf-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(200,80,192,.1));border:1px solid rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:var(--cyan);font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.wf-text h4{font-size:.98rem;font-weight:600;margin-bottom:2px}
+.wf-text p{font-size:.86rem;color:var(--muted)}
+
+/* Checklist */
+.checklist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:20px}
+.check-item{padding:12px 16px;border-radius:8px;border:1px dashed var(--border);background:var(--surface);display:flex;align-items:center;gap:10px;font-size:.9rem}
+.check-icon{color:var(--green);flex-shrink:0}
+
+/* References */
+.ref-list{display:grid;gap:10px}
+.ref-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 18px}
+.ref-item .ref-type{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--cyan);margin-bottom:4px}
+.ref-item .ref-title{font-size:.92rem;font-weight:500}
+.ref-item .ref-authors{font-size:.82rem;color:var(--muted)}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  .sec-nav{gap:4px}
+  .sec-btn{padding:8px 12px;font-size:.8rem}
+  .tmpl-grid{grid-template-columns:1fr}
+  .checklist{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .problem-card{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">IHE <span>PULSE</span></div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Innovation Pulse</a>
+    <a href="#" class="active">Prompts</a>
+    <a href="#">AI App Directory</a>
+    <a href="#">Podcast</a>
+    <a href="#">Tinker Lab</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    Prompt Navigator
+  </div>
+  <h1>A Human-Centered AI <span class="grad">Prompt Engineering</span> Guide</h1>
+  <p>Lead your classroom with confidence in the AI era. Research-backed strategies with ready-to-use tools built specifically for higher-education faculty.</p>
+  <div class="sec-nav">
+    <button class="sec-btn active" data-sec="techniques">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Core Techniques
+    </button>
+    <button class="sec-btn" data-sec="templates">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Prompt Templates
+    </button>
+    <button class="sec-btn" data-sec="problems">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Common Problems
+    </button>
+    <button class="sec-btn" data-sec="workflow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Refinement Workflow
+    </button>
+    <button class="sec-btn" data-sec="references">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      References
+    </button>
+  </div>
+</section>
+
+<div class="main">
+
+<!-- ===== CORE TECHNIQUES ===== -->
+<div class="section visible" id="techniques">
+  <div class="section-head">
+    <h2>Core Techniques</h2>
+    <p>Nine techniques that give faculty a practical toolkit for consistent, high-quality AI outputs. Each card includes a definition, a higher-ed use case, guidance on when to use it, and copyable example prompts.</p>
+  </div>
+
+  <!-- 1. Zero-Shot -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">01</div>
+      <div><div class="tech-title">Zero-Shot Prompting</div><div class="tech-when">Use when: you want a quick baseline answer without providing examples.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>Zero-shot prompting asks the AI to perform a task without any examples in the prompt. You give a direct instruction or question and the model responds using its general training. It's the fastest way to get an initial draft, explanation, or list because you don't have to prepare demonstrations or special formatting ahead of time.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>Use for fast definitions ("Explain operant conditioning in ~120 words for non-majors"), quick contrasts ("Summarize how qualitative and quantitative methods differ"), or rapid lists ("Give five discussion starters related to academic integrity in first-year seminars"). In class prep, it's a handy way to draft a first pass that you can refine with follow-ups.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Best for straightforward tasks where you want the model's unprimed attempt. It minimizes prep time and can kick off an iterative workflow (baseline → refine). If outputs are too generic or inconsistent, move to few-shot or add context to tighten format, tone, or constraints.</p>
+      </div>
+      <div class="copy-block">Explain the concept of social stratification in simple terms for an intro sociology class (~120 words) and include one concrete, everyday example.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+      <div class="copy-block">List the three most important differences between photosynthesis and cellular respiration in a single paragraph for first-year students.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 2. Few-Shot -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">02</div>
+      <div><div class="tech-title">Few-Shot Prompting</div><div class="tech-when">Use when: the output must match a specific format, tone, or rubric.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>Few-shot prompting includes one or more examples of the task and desired output inside the prompt. The model uses these demonstrations to infer structure, tone, and level, then produces a new response that mirrors the pattern. This leverages in-context learning to reduce ambiguity and improve consistency.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>Provide an example student answer with model feedback, then ask for feedback on a new answer "in the same style." Or show two well-formed quiz items (stem, distractors, rationale) and request five new items that match difficulty and structure. You can also include an example paragraph edit to teach the model your revision voice.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Reach for few-shot when zero-shot was generic, when format is critical (rubrics, item shells, citation style), or when you need a stable voice (e.g., supportive writing tutor vs. strict copyeditor). Good examples = better outputs; 1–3 concise demos are usually enough.</p>
+      </div>
+      <div class="copy-block">You are grading short answers.
+Example student answer: "[paste]"
+Example instructor feedback (tone, length, structure to imitate): "[paste]"
+Now provide feedback on the next student answer in the same style: "[paste new answer]"<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 3. System & Role -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">03</div>
+      <div><div class="tech-title">System & Role Prompts</div><div class="tech-when">Use when: you need consistent behavior, constraints, or a specific persona.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>System instructions set global ground rules for the session (tone, limits, policies, or audience). Role prompts ask the AI to adopt a persona (e.g., encouraging writing tutor, skeptical peer reviewer, reference librarian). Together, they shape how the model responds across turns and reduce unwanted surprises.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>Set a system message like: "You are a helpful teaching assistant for freshman writing who explains in plain language and avoids giving full solutions." Then add a role for the task: "Act as an encouraging writing tutor and give concise, actionable feedback on this draft." For research support, use a librarian persona that emphasizes source evaluation and citation.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Use whenever the manner of response matters as much as content — feedback tone, accessibility, policy alignment, or simulations. Roles help the model surface relevant knowledge and keep responses within scope (a tutor asks questions back; an editor focuses on clarity and mechanics).</p>
+      </div>
+      <div class="copy-block">System (session-wide): You are a supportive teaching assistant for first-year courses. Use clear, neutral language, avoid full solutions, and flag uncertainty.
+
+Role (this task): Act as an encouraging writing tutor. Give concise feedback on the draft below tied to our rubric.
+Rubric: "[paste]"
+Draft: "[paste]"<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 4. Context Injection -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">04</div>
+      <div><div class="tech-title">Context Injection</div><div class="tech-when">Use when: outputs must follow your local readings, rubrics, levels, or constraints.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>Context injection supplies the model with the background it needs: course level and audience, specific source material (excerpts, notes, slides), and explicit constraints (length, format, tone). By reducing ambiguity, you increase alignment to your course.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>Generate study guides from assigned readings; create quiz items from pasted passages; evaluate a paragraph against your rubric; adapt a lesson for online or HyFlex with stated time limits and materials. When you include the source text or policy, the output can follow it.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Use whenever "according to our materials" matters. Pair with few-shot for tone/format. Also useful to encode accessibility or integrity notes (e.g., use alt-text; avoid claims without citations).</p>
+      </div>
+      <div class="copy-block">Using the rubric below, score the student paragraph and give two specific suggestions tied to criteria.
+Course/Level: Intro Psych (non-majors)
+Rubric: "[paste rubric]"
+Student paragraph: "[paste]"<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 5. Step-Back -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">05</div>
+      <div><div class="tech-title">Step-Back Prompting</div><div class="tech-when">Use when: you want the model to identify the problem type and plan before solving.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>Step-back prompting asks the model to describe the kind of problem it's facing and outline a brief plan (2–4 steps) before attempting the solution. This promotes meta-cognition and reduces impulsive answers.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>Before solving a stats word problem, the model identifies it as a sampling vs. inference issue, lists the steps (define variables, choose test, check assumptions), and then proceeds. In philosophy, it can name whether a prompt calls for conceptual analysis, argument reconstruction, or application, then plan the response.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Helpful for multi-step or unfamiliar tasks and when teaching students how to approach problems. It surfaces a plan you can critique, making the reasoning process visible.</p>
+      </div>
+      <div class="copy-block">Identify the type of problem, outline a 3-step plan to solve it, then provide the solution.
+Problem: "[paste]"<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 6. Chain-of-Thought -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">06</div>
+      <div><div class="tech-title">Chain-of-Thought Prompting</div><div class="tech-when">Use when: the reasoning steps themselves are instructional or must be checked.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>Chain-of-thought (CoT) prompting asks the model to show intermediate reasoning steps rather than only a final answer. You can cap the number of steps to keep it concise and then request the final answer separately.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>In math or logic, have the model explain each step (up to a set limit) and then state the final result. In history or policy analysis, ask for a short evidence chain that links claims to sources before delivering a conclusion.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Use when transparency and pedagogy matter — teaching problem-solving, grading reasoning quality, or verifying how a claim was reached. Avoid for trivial tasks or when brevity is essential.</p>
+      </div>
+      <div class="copy-block">Solve the problem and explain in numbered steps (max 6). Then give the final answer on a separate line labeled "Answer:".
+Problem: "[paste]"<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 7. Self-Consistency -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">07</div>
+      <div><div class="tech-title">Self-Consistency</div><div class="tech-when">Use when: single-run outputs vary and you need a more reliable result.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>Self-consistency generates multiple independent solutions or reasoning paths to the same prompt, then compares and selects the best/most consistent answer. You can do this by regenerating, or by instructing the model to produce several alternatives and reconcile them.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>For complex calculations, conceptual proofs, or grading rubrics, ask for 3 variants and then a short synthesis that identifies agreement and chooses a final. This reduces the chance of a single erroneous run steering decisions.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Useful when correctness is critical or when earlier runs felt unstable. Sampling multiple paths and converging can reduce hallucinations and produce more dependable outcomes.</p>
+      </div>
+      <div class="copy-block">Produce three independent answers to the question below. Then summarize points of agreement, note any conflicts, and choose the best answer with a one-sentence justification.
+Question: "[paste]"<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 8. Tree-of-Thought -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">08</div>
+      <div><div class="tech-title">Tree-of-Thought Prompting</div><div class="tech-when">Use when: there are multiple viable approaches and you want options before deciding.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>Tree-of-thought prompting explores several branches of reasoning or strategy rather than a single linear path. The model proposes options, evaluates them against criteria, and then converges on a recommended approach.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>Lesson design: request three distinct approaches to teach a topic (e.g., analogy-first, hands-on demo, group problem-solving) with objectives, a keystone activity, and pros/cons. Then ask for a recommendation based on your course constraints.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Ideal when many paths could work and you want structured exploration before committing. It makes trade-offs explicit and supports critical comparison.</p>
+      </div>
+      <div class="copy-block">Propose 3 distinct approaches to teach [topic] to non-majors. For each: objectives, one keystone activity, pros/cons. Then recommend one approach and explain why given a 50-minute class and 25 students.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+
+  <!-- 9. ReAct -->
+  <div class="tech-card">
+    <div class="tech-header" onclick="toggleTech(this)">
+      <div class="tech-num">09</div>
+      <div><div class="tech-title">ReAct (Reason & Act)</div><div class="tech-when">Use when: the task benefits from alternating reasoning with actions or questions.</div></div>
+      <svg class="tech-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tech-body"><div class="tech-content">
+      <div class="inner-tabs">
+        <button class="inner-tab active" onclick="showPanel(this,'def')">Definition</button>
+        <button class="inner-tab" onclick="showPanel(this,'use')">Use Case</button>
+        <button class="inner-tab" onclick="showPanel(this,'when')">When / Why</button>
+      </div>
+      <div class="inner-panel visible" data-panel="def">
+        <p>ReAct interleaves reasoning with "actions" (asking a question, requesting missing info, invoking a tool) and then continues based on observations. It's a think-step, act-step, observe-step loop that prevents premature conclusions.</p>
+      </div>
+      <div class="inner-panel" data-panel="use">
+        <p>For scoping a literature review or project: the model restates the goal, identifies gaps, asks clarifying questions, proposes a next action, and iterates once before producing a step-by-step plan with milestones and check-ins.</p>
+      </div>
+      <div class="inner-panel" data-panel="when">
+        <p>Use for open-ended tasks that require inquiry and iteration (research planning, stakeholder analysis, design projects). It encourages deliberate progress rather than guess-and-go answers.</p>
+      </div>
+      <div class="copy-block">Follow a Reason → Action → Observation loop to build a research plan.
+Reason: Restate my topic and identify what information is missing.
+Action: Ask me up to 3 clarifying questions.
+Observation: Wait for answers.
+Repeat the loop once. Then output a step-by-step plan with milestones and risks.<button class="copy-btn" onclick="copyBlock(this)">Copy</button></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ===== PROMPT TEMPLATES ===== -->
+<div class="section" id="templates">
+  <div class="section-head">
+    <h2>Prompt Templates</h2>
+    <p>Ready-to-use prompt templates for common higher education tasks. Customize with your specific context and requirements.</p>
+  </div>
+  <div class="tmpl-grid" id="tmplGrid"></div>
+</div>
+
+<!-- ===== COMMON PROBLEMS ===== -->
+<div class="section" id="problems">
+  <div class="section-head">
+    <h2>Common Prompt Problems</h2>
+    <p>AI can save time and improve teaching, but only if your prompts are clear and targeted. These are the most frequent mistakes faculty make — and how to avoid them.</p>
+  </div>
+  <div id="problemsList"></div>
+</div>
+
+<!-- ===== REFINEMENT WORKFLOW ===== -->
+<div class="section" id="workflow">
+  <div class="section-head">
+    <h2>Refinement Workflow & Tuning Checklist</h2>
+    <p>Effective prompts rarely happen in one try. Use this streamlined workflow to refine and perfect your AI instructions.</p>
+  </div>
+  <div class="workflow-steps" id="workflowSteps"></div>
+  <h3 style="margin-top:32px;font-size:1.15rem;margin-bottom:16px">Tuning Checklist</h3>
+  <p style="color:var(--muted);font-size:.92rem;margin-bottom:16px">Before sending your final prompt, confirm it has:</p>
+  <div class="checklist" id="checklist"></div>
+  <div style="margin-top:24px;padding:18px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(200,80,192,.04));border:1px solid rgba(0,212,255,.15)">
+    <p style="font-size:.92rem;color:var(--text)"><strong style="color:var(--cyan)">Pro Tip:</strong> Even good prompts can improve. Test, refine, and save the best versions — they become powerful templates for future use.</p>
+  </div>
+</div>
+
+<!-- ===== REFERENCES ===== -->
+<div class="section" id="references">
+  <div class="section-head">
+    <h2>References & Further Reading</h2>
+    <p>This guide draws from scholarly and professional sources exploring prompt engineering and AI in education.</p>
+  </div>
+  <div class="ref-list" id="refList"></div>
+</div>
+
+</div>
+
+<script>
+// ===== TEMPLATES DATA =====
+const TEMPLATES = [
+  { title:"Lesson Plan Generator", tags:["Curriculum","Beginner"], desc:"Generate a structured lesson plan with objectives, activities, and assessment.", prompt:`Generate a [Duration]-minute lesson plan on [Topic] for [Course Name], a [Level] general education course. Include: 2-3 specific learning objectives, at least one interactive activity, and a brief assessment (e.g., a quick quiz or discussion prompt) to check understanding. Ensure the lesson plan is appropriate for [Class Size] students and engages diverse learning styles.`, usage:`Fill in [Duration] with "50", [Topic] with "climate change impacts," [Course Name] with "ENV 101: Intro to Environmental Science," [Level] with "freshman-level," and [Class Size] with "30".` },
+  { title:"Syllabus Outline Draft", tags:["Curriculum","Planning"], desc:"Draft a week-by-week syllabus with topics, readings, and assignments.", prompt:`Draft a syllabus outline for [Course Name] (a [Term Length] course). Provide a week-by-week breakdown of topics and readings for [Number of Weeks] weeks, and list major assignments (e.g., [Assignment Type1], [Assignment Type2]). Include a brief course description and 3–4 course learning outcomes aligned with general education goals.`, usage:`Replace [Course Name] (e.g., "HIST 202: World History since 1500"), [Term Length] (e.g., "15-week semester"), [Number of Weeks] (e.g., "15").` },
+  { title:"Lesson Plan Adaptation", tags:["Inclusive","Adaptation"], desc:"Adapt a lesson for different contexts while maintaining learning objectives.", prompt:`Adapt the following lesson plan on [Topic] for a different context: currently designed for [Current Context], modify it for [New Context]. Ensure you adjust the activities and examples to fit the new context and maintain the learning objectives. Provide the adapted lesson sequence and notes on changes made for [New Context].`, usage:`Current Context = "in-person classroom", New Context = "online asynchronous format" or adapt between disciplines.` },
+  { title:"Constructive Feedback Generator", tags:["Assessment","Feedback"], desc:"Generate balanced, specific feedback on student submissions.", prompt:`Provide constructive feedback on a [Assignment Type] submission that [Student Challenge]. The feedback should start by highlighting strengths (at least one specific praise), then address the areas for improvement kindly and specifically. Assume this is for a [Level] student in [Course Name]. Aim for a feedback length of about one solid paragraph.`, usage:`[Assignment Type] = "lab report", [Student Challenge] = "has a good analysis but contains several factual errors", [Level] = "junior".` },
+  { title:"Rubric Draft", tags:["Assessment","Rubric"], desc:"Create a multi-criteria rubric with performance level descriptors.", prompt:`Create a rubric for a [Assignment Type] in [Course Name]. Include [Number of Criteria] key criteria (e.g., Content Accuracy, Organization, Analysis, Writing Clarity) relevant to the assignment. For each criterion, provide descriptors for at least three performance levels (e.g., Excellent, Satisfactory, Needs Improvement).`, usage:`[Assignment Type] = "oral presentation", [Course Name] = "COMM 110 Public Speaking", [Number of Criteria] = "4".` },
+  { title:"Summative Feedback Letter", tags:["Assessment","Communication"], desc:"Draft a supportive feedback letter addressing strengths and areas for growth.", prompt:`Draft a brief feedback letter to a student about their [Assignment Type] performance. The student did well in [Strength Area] but struggled with [Student Challenge]. In the letter: (a) acknowledge their success with specific detail, (b) address the challenge by explaining what could be improved and offering 1-2 suggestions, and (c) end on an encouraging note. Use a supportive, professorly tone.`, usage:`[Assignment Type] = "research paper", [Strength Area] = "framing a compelling argument", [Student Challenge] = "integrating scholarly sources correctly".` },
+  { title:"Differentiated Instruction", tags:["Inclusive","Strategies"], desc:"Generate teaching strategies for different learning preferences and needs.", prompt:`Suggest two ways to teach [Concept] in [Course Name] that accommodate different learning preferences or needs. For each strategy, identify the target learning style or student group and describe how to implement the strategy in class. Ensure the suggestions are feasible in a [Class Size] class.`, usage:`[Concept] = "the water cycle", [Course Name] = "GEOG 101", [Class Size] = "large (100-student lecture)".` },
+  { title:"Adaptation for Diverse Learners", tags:["Inclusive","Accessibility"], desc:"Propose modifications for students with specific accessibility needs.", prompt:`Take the following assignment: [Brief Assignment Description]. Propose one modification for students with [Specific Need] and another for [Different Need]. Explain how each modification maintains the assignment's learning objectives while providing support.`, usage:`Assignment = "10-minute in-class oral presentation", [Specific Need] = "severe public speaking anxiety", [Different Need] = "a hearing impairment".` },
+  { title:"Inclusive Discussion Prompt", tags:["Inclusive","Discussion"], desc:"Generate discussion prompts that invite diverse perspectives.", prompt:`Generate a class discussion prompt on [Topic] that is inclusive and invites perspectives from students of diverse backgrounds. The prompt should be open-ended and avoid assumptions. Also suggest two follow-up questions to probe deeper or invite quieter students to contribute.`, usage:`[Topic] = "the impact of social media on daily life".` },
+  { title:"Advising Email Draft", tags:["Advising","Communication"], desc:"Draft a supportive email from advisor to student.", prompt:`Draft an email from a faculty advisor to a student who [Student Situation]. The tone should be supportive and proactive. In the email: (a) acknowledge the student's situation, (b) provide at least two suggestions or resources, and (c) invite the student to follow up or meet. Sign off as an advisor.`, usage:`[Student Situation] = "is struggling academically after the midterm exams".` },
+  { title:"Degree Planning Guide", tags:["Advising","Planning"], desc:"Create a year-by-year planning overview for student advisees.", prompt:`Explain the course planning for [Major/Program] in an easy-to-understand way for a second-year student advisee. Provide: (a) which courses to prioritize each year, (b) critical prerequisites or GPA requirements, and (c) advice on internships or extracurriculars. Write it as if an advisor is speaking to the student.`, usage:`[Major/Program] = "Psychology B.A."` },
+  { title:"Role-Play Script (Advisor-Student)", tags:["Advising","Training"], desc:"Sample dialogue demonstrating effective advising techniques.", prompt:`Provide a sample dialogue between a faculty advisor and a student who [Student Issue]. Show the advisor asking open-ended questions and guiding toward a solution. Aim for 8-10 exchanges. Include a brief advisor reflection on why certain questions were asked.`, usage:`[Student Issue] = "wants to drop a course late in the semester due to stress".` },
+  { title:"Syllabus AI Policy Draft", tags:["Policy","AI Ethics"], desc:"Draft a course policy on acceptable AI tool usage.", prompt:`Draft a syllabus policy for [Course Name] about the use of AI tools in coursework. Clearly state: (a) which uses are allowed, (b) which are forbidden, (c) how students should credit AI assistance, and (d) consequences of misuse. The tone should be educational, explaining the rationale.`, usage:`Fill in [Course Name] or keep general.` },
+  { title:"Academic Integrity Case Discussion", tags:["Policy","Discussion"], desc:"Create a hypothetical scenario for class discussion on AI ethics.", prompt:`Create a hypothetical scenario involving a breach of academic integrity with AI. A student [AI Misuse Scenario]. Outline the scenario in a few sentences, then provide 3 open-ended discussion questions about how to handle it and the ethical implications.`, usage:`[AI Misuse Scenario] = "submitted a paper that was mostly AI-generated without disclosure".` },
+  { title:"Student Handout on AI Use", tags:["Policy","Resource"], desc:"One-page handout outline on responsible AI use for students.", prompt:`Generate a one-page handout outline for students titled 'Using AI Tools Responsibly in [Institution Name] Courses'. Include: introduction on why this matters, then 3 sections — (1) Allowed Uses with examples, (2) Prohibited Uses with examples, (3) Tips for Transparency. Write in student-friendly language.`, usage:`Put your [Institution Name] or keep general.` },
+];
+
+// ===== PROBLEMS DATA =====
+const PROBLEMS = [
+  { problem:"Too Vague", desc:"Prompts without context produce generic results.", fix:"Include course level, focus, and objectives." },
+  { problem:"No Audience Level", desc:"Without stating learner level or background, AI may pitch content too high or low.", fix:'Specify the intended audience (e.g., "first-year non-majors").' },
+  { problem:"Missing Format or Length", desc:"AI will guess, often incorrectly.", fix:"State the format (bullets, table, paragraph) and desired length." },
+  { problem:"Overloaded Prompts", desc:"Multiple tasks in one prompt can confuse the AI.", fix:"Break requests into smaller, sequential prompts." },
+  { problem:"No Role or Tone", desc:"Without guidance, tone and style may be off.", fix:'Assign a role (e.g., "You are a supportive writing tutor…") to anchor the voice.' },
+  { problem:"No Iteration or Verification", desc:"First outputs can contain errors or bias.", fix:"Review, refine, and verify before use." },
+];
+
+// ===== WORKFLOW DATA =====
+const WORKFLOW = [
+  { title:"Define Your Goal", desc:"Be specific about the task and purpose." },
+  { title:"Add Context", desc:"Include audience, course level, content source, and constraints." },
+  { title:"Draft Clearly", desc:"Keep it one cohesive request; split complex tasks." },
+  { title:"Test", desc:"Run it and check for accuracy, tone, and format." },
+  { title:"Spot Gaps", desc:"Identify missing details, wrong tone, or off-target content." },
+  { title:"Refine", desc:"Adjust scope, tone, format, and add examples if needed." },
+  { title:"Iterate", desc:"Test and tweak until results consistently meet expectations." },
+  { title:"Document", desc:"Save the final prompt for reuse or sharing." },
+];
+
+const CHECKLIST = [
+  "Clarity — No vague verbs or unclear asks.",
+  "Context — Subject, learner level, and key details included.",
+  "Format — Output type and length specified.",
+  "Tone & Style — Academic, friendly, or role-based as needed.",
+  "Cognitive Level — Matches desired depth (analysis vs. recall).",
+  "Academic Fit — Supports learning goals and integrity.",
+  "Inclusivity — Avoids bias, stereotypes, and exclusionary language.",
+];
+
+// ===== REFERENCES DATA =====
+const REFS = [
+  { type:"Core Research", title:"Prompt engineering in higher education: a systematic review", authors:"Lee, D., & Palmer, E. (2025). International Journal of Educational Technology in Higher Education, 22(7)." },
+  { type:"Core Research", title:"The CLEAR Path: A Framework for Enhancing Information Literacy through Prompt Engineering", authors:"Lo, L. S. (2023). Journal of Academic Librarianship, 49(4)." },
+  { type:"Core Research", title:"Artificial intelligence prompt engineering as a new digital competence", authors:"Korzynski, P., Mazurek, G., et al. (2023). Springer/ResearchGate." },
+  { type:"Core Research", title:"Large Language Models are Zero-Shot Reasoners", authors:'Kojima, T., et al. (2022). Famous for discovering "Let\'s think step by step" enables CoT reasoning.' },
+  { type:"Core Research", title:"ReAct: Synergizing Reasoning and Acting in Language Models", authors:"Yao, S., et al. (2022). Google Research Blog & arXiv." },
+  { type:"Core Research", title:"Self-Consistency Improves Chain of Thought Reasoning", authors:"Wang, X., et al. (2022). arXiv." },
+  { type:"Practical Guide", title:"Effective Prompting in Higher Education — Faculty Guide", authors:"SATLE Project, University College Dublin (2023)." },
+  { type:"Practical Guide", title:"AI Prompt Engineering Isn't the Future — Problem Formulation Is", authors:"Acar, O. A. (2023). Harvard Business Review." },
+  { type:"Practical Guide", title:"Top 10 Prompt Mistakes to Avoid in 2025", authors:"Fourrage, L. (2025). Nucamp Blog." },
+  { type:"Practical Guide", title:"Prompt Engineering: The Steering Mechanism for Generative AI in Education", authors:"Cain, C. (2023). White paper." },
+  { type:"Academic", title:"AI in Education: A Roadmap for Prompt Patterns", authors:"Eager, D., & Brunton, J. (2023). Conference paper." },
+  { type:"Academic", title:"Academic Integrity in the Age of AI: Challenges and Recommendations", authors:"Kumar, M., et al. (2024). Journal of Academic Ethics." },
+  { type:"University Guide", title:"Prompt engineering for educators — making generative AI work for you", authors:"Danny Liu (2023). University of Sydney." },
+  { type:"University Guide", title:"AI for All Prompt Engineering Guide", authors:"MSU Denver (2023). Metropolitan State University of Denver." },
+  { type:"University Guide", title:"Prompt Engineering for Instructors", authors:"Ohio State University, Office of Teaching & Learning (2023). Pressbooks." },
+  { type:"Tool / Tutorial", title:"LearnPrompting.org — Prompt Engineering Guide", authors:"Free online course with advanced techniques." },
+  { type:"Tool / Tutorial", title:"OpenAI's Cookbook (GitHub)", authors:"Examples of few-shot and chain-of-thought in code." },
+  { type:"Tool / Tutorial", title:"ChatGPT in Higher Education: A Delphi Study", authors:"Zawacki-Richter, O., et al. (2024). Preprint." },
+  { type:"Emerging Research", title:"Teachers' Prompting Techniques in AI-Enhanced Classrooms", authors:"Sun, H., et al. (2023). Follow Computers & Education and EdTech R&D journals." },
+];
+
+// ===== RENDER FUNCTIONS =====
+function renderTemplates() {
+  const grid = document.getElementById('tmplGrid');
+  grid.innerHTML = TEMPLATES.map((t,i) => `
+    <div class="tmpl-card" onclick="toggleTmpl(this)">
+      <div class="tmpl-icon" style="background:rgba(0,212,255,.06)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <h3>${t.title}</h3>
+      <p>${t.desc}</p>
+      <div class="tmpl-tags">${t.tags.map(tag=>`<span class="tmpl-tag">${tag}</span>`).join('')}</div>
+      <div class="tmpl-expand">
+        <div class="copy-block">${t.prompt}<button class="copy-btn" onclick="event.stopPropagation();copyBlock(this)">Copy</button></div>
+        <p style="font-size:.84rem;color:var(--muted);margin-top:10px"><strong style="color:var(--text)">Usage:</strong> ${t.usage}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderProblems() {
+  document.getElementById('problemsList').innerHTML = PROBLEMS.map(p => `
+    <div class="problem-card">
+      <div class="problem-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      </div>
+      <div class="problem-content">
+        <h3>${p.problem}</h3>
+        <p class="problem-desc">${p.desc}</p>
+        <div class="problem-fix">
+          <div class="problem-fix-label">Fix</div>
+          <p>${p.fix}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderWorkflow() {
+  document.getElementById('workflowSteps').innerHTML = WORKFLOW.map((w,i) => `
+    <div class="wf-step">
+      <div class="wf-num">${i+1}</div>
+      <div class="wf-text"><h4>${w.title}</h4><p>${w.desc}</p></div>
+    </div>
+  `).join('');
+  document.getElementById('checklist').innerHTML = CHECKLIST.map(c => `
+    <div class="check-item">
+      <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      ${c}
+    </div>
+  `).join('');
+}
+
+function renderRefs() {
+  document.getElementById('refList').innerHTML = REFS.map(r => `
+    <div class="ref-item">
+      <div class="ref-type">${r.type}</div>
+      <div class="ref-title">${r.title}</div>
+      <div class="ref-authors">${r.authors}</div>
+    </div>
+  `).join('');
+}
+
+// ===== INTERACTIONS =====
+function toggleTech(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+
+function toggleTmpl(card) {
+  card.classList.toggle('open');
+}
+
+function showPanel(btn, panel) {
+  const tabs = btn.parentElement;
+  const content = tabs.parentElement;
+  tabs.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  content.querySelectorAll('.inner-panel').forEach(p => p.classList.remove('visible'));
+  content.querySelector(`[data-panel="${panel}"]`).classList.add('visible');
+}
+
+function copyBlock(btn) {
+  const block = btn.parentElement;
+  const text = block.textContent.replace('Copy','').replace('Copied','').trim();
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => { btn.textContent='Copied'; btn.classList.add('copied'); setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000); });
+  } else {
+    const ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.top='-999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    btn.textContent='Copied'; btn.classList.add('copied'); setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000);
+  }
+}
+
+// Section navigation
+document.querySelectorAll('.sec-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sec-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+    document.getElementById(btn.dataset.sec).classList.add('visible');
+    document.querySelector('.main').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+
+// Init
+renderTemplates();
+renderProblems();
+renderWorkflow();
+renderRefs();
+</script>
+</body>
+</html>

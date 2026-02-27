@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovating Higher Ed — AI Innovation for Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #08080f;
+  --bg-elevated: #0e0e1a;
+  --bg-card: #111120;
+  --surface: #1a1a30;
+  --surface-2: #222240;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.12);
+  --text: #f0ede8;
+  --text-secondary: #a8a4b8;
+  --text-muted: #6b6880;
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.15);
+  --magenta: #c850c0;
+  --magenta-dim: rgba(200,80,192,0.15);
+  --amber: #f5a623;
+  --amber-dim: rgba(245,166,35,0.12);
+  --green: #4ade80;
+  --green-dim: rgba(74,222,128,0.12);
+  --blue: #3b82f6;
+  --purple: #a78bfa;
+  --purple-dim: rgba(167,139,250,0.12);
+  --pink: #f472b6;
+  --teal: #0ea5a0;
+  --teal-dim: rgba(14,165,160,0.12);
+  --orange: #fb923c;
+  --orange-dim: rgba(251,146,60,0.12);
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max-w: 1200px;
+  --px: clamp(1rem, 4vw, 2rem);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+h1,h2,h3,h4,h5,h6 { font-family: var(--sans); }
+
+@keyframes pulseDot { 0%,100% { opacity:1; } 50% { opacity:.5; } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes waveform { 0%,100% { transform:scaleY(0.3); } 50% { transform:scaleY(1); } }
+.reveal { opacity:0; transform:translateY(24px); transition:all 0.7s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ===== NAV ===== */
+.topbar { position:sticky; top:0; z-index:100; background:rgba(8,8,15,0.85); backdrop-filter:blur(24px); border-bottom:1px solid var(--border); padding:0 var(--px); display:flex; align-items:center; height:56px; }
+.tb-brand { font-family:var(--mono); font-weight:600; font-size:0.85rem; letter-spacing:0.05em; display:flex; gap:0.35rem; }
+.tb-dot { width:6px; height:6px; background:var(--green); border-radius:50%; margin-left:4px; align-self:center; animation:pulseDot 2s infinite; }
+.tb-nav { margin-left:auto; display:flex; gap:0.15rem; }
+.tb-nav a { font-size:0.78rem; padding:0.4rem 0.75rem; border-radius:6px; color:var(--text-secondary); transition:all 0.2s; font-weight:500; }
+.tb-nav a:hover { color:var(--text); background:rgba(255,255,255,0.05); }
+.tb-nav a.active { color:var(--cyan); background:var(--cyan-dim); }
+
+/* ===== LAYOUT ===== */
+.section { max-width:var(--max-w); margin:0 auto; padding:3rem var(--px); }
+.section-soft-divider { max-width:var(--max-w); margin:0 auto; padding:0 var(--px); height:1px; background:linear-gradient(90deg, transparent, var(--border-hover) 30%, var(--border-hover) 70%, transparent); }
+.section-header { display:flex; align-items:center; gap:0.6rem; margin-bottom:1.5rem; }
+.sh-icon { font-size:1rem; }
+.sh-name { font-family:var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; }
+.sh-desc { font-family:var(--mono); font-size:0.6rem; color:var(--text-muted); }
+.sh-link { margin-left:auto; font-family:var(--mono); font-size:0.62rem; color:var(--cyan); letter-spacing:0.06em; white-space:nowrap; }
+.sh-link:hover { color:var(--text); }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+
+/* ===== HERO ===== */
+.hero { max-width:var(--max-w); margin:0 auto; padding:2.5rem var(--px) 2rem; }
+.hero-label { font-family:var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem; }
+.hero-label svg { width:14px; height:14px; }
+.hero-grid { display:grid; grid-template-columns:1fr 340px; gap:2.5rem; }
+.hero-main { animation:fadeUp 0.7s ease-out both; }
+.hero-date { font-family:var(--mono); font-size:0.72rem; color:var(--text-muted); margin-bottom:0.5rem; display:flex; align-items:center; gap:0.8rem; }
+.lens-badge { display:inline-flex; align-items:center; gap:0.35rem; padding:0.2rem 0.6rem; border-radius:100px; font-size:0.65rem; font-weight:600; font-family:var(--mono); background:var(--magenta-dim); color:var(--magenta); }
+.lens-badge .ld { width:5px; height:5px; border-radius:50%; background:var(--magenta); }
+.hero-hook { font-size:clamp(1.4rem,2.8vw,1.85rem); line-height:1.3; font-weight:700; font-style:italic; margin-bottom:1.25rem; padding-left:1.4rem; position:relative; }
+.hero-hook::before { content:''; position:absolute; left:0; top:0.3rem; bottom:0.3rem; width:3px; border-radius:2px; background:linear-gradient(to bottom,var(--cyan),var(--magenta)); }
+
+/* Audio */
+.audio-box { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1rem 1.1rem; }
+.audio-top { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.65rem; }
+.audio-live { display:flex; align-items:center; gap:0.3rem; background:rgba(74,222,128,0.1); color:var(--green); padding:0.18rem 0.5rem; border-radius:100px; font-size:0.6rem; font-weight:600; font-family:var(--mono); }
+.audio-live .dot { width:5px; height:5px; border-radius:50%; background:var(--green); animation:pulseDot 2s infinite; }
+.audio-dur { font-family:var(--mono); font-size:0.65rem; color:var(--text-muted); }
+.audio-credit { font-size:0.65rem; color:var(--text-muted); margin-left:auto; }
+.audio-row { display:flex; align-items:center; gap:0.7rem; }
+.play-btn { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--cyan),var(--magenta)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 16px rgba(0,212,255,0.2); transition:transform 0.2s; }
+.play-btn:hover { transform:scale(1.06); }
+.play-btn svg { width:16px; height:16px; fill:white; margin-left:2px; }
+.wave-wrap { flex:1; display:flex; align-items:center; height:36px; gap:1.5px; cursor:pointer; }
+.wave-bar { width:3px; border-radius:2px; background:var(--surface-2); }
+.wave-bar.played { background:var(--cyan); }
+.audio-time { font-family:var(--mono); font-size:0.63rem; color:var(--text-muted); flex-shrink:0; }
+
+/* TOC */
+.hero-toc { animation:fadeUp 0.7s 0.15s ease-out both; }
+.toc-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.1rem; }
+.toc-head { font-family:var(--mono); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.65rem; }
+.toc-list { list-style:none; }
+.toc-item { display:flex; align-items:flex-start; gap:0.5rem; padding:0.4rem 0; border-bottom:1px solid var(--border); cursor:pointer; transition:all 0.2s; }
+.toc-item:last-child { border-bottom:none; }
+.toc-item:hover .toc-t { color:var(--cyan); }
+.tb { font-family:var(--mono); font-size:0.48rem; letter-spacing:0.05em; padding:0.1rem 0.35rem; border-radius:3px; white-space:nowrap; margin-top:0.1rem; font-weight:600; }
+.tb.lead { background:var(--cyan-dim); color:var(--cyan); }
+.tb.story { background:var(--magenta-dim); color:var(--magenta); }
+.tb.update { background:var(--amber-dim); color:var(--amber); }
+.toc-t { font-size:0.73rem; color:var(--text-secondary); line-height:1.3; transition:color 0.2s; }
+.toc-c { font-size:0.55rem; color:var(--text-muted); font-family:var(--mono); margin-top:0.1rem; }
+
+/* ===== STORY CARDS ===== */
+.card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; overflow:hidden; cursor:pointer; transition:border-color 0.3s, transform 0.2s, box-shadow 0.3s; }
+.card:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }
+.card.expanded { transform:none; border-color:rgba(0,212,255,0.2); }
+.card-img-wrap { position:relative; overflow:hidden; }
+.card-img { width:100%; height:170px; object-fit:cover; }
+.card.expanded .card-img { height:190px; transition:height 0.4s; }
+.cib { position:absolute; top:10px; left:10px; font-family:var(--mono); font-size:0.53rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:3px 8px; border-radius:5px; color:#fff; backdrop-filter:blur(8px); }
+.cib-m { background:rgba(200,80,192,0.85); } .cib-c { background:rgba(0,180,220,0.85); } .cib-a { background:rgba(220,150,30,0.85); }
+.card-body { padding:0.85rem 1rem 0.95rem; }
+.card-cat { font-family:var(--mono); font-size:0.56rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.35rem; }
+.card-cat .dot { width:5px; height:5px; border-radius:50%; }
+.card-h { font-family:var(--sans); font-size:1.02rem; font-weight:700; line-height:1.22; margin-bottom:0.35rem; }
+.card-teaser { font-size:0.78rem; color:var(--text-secondary); line-height:1.55; margin-bottom:0.4rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.card.expanded .card-teaser { display:none; }
+.card-exp { font-family:var(--mono); font-size:0.53rem; color:var(--text-muted); display:flex; align-items:center; gap:0.25rem; margin-bottom:0.4rem; }
+.card-exp .arr { transition:transform 0.3s; }
+.card.expanded .card-exp .arr { transform:rotate(180deg); }
+.card.expanded .card-exp .ht { display:none; }
+.card.expanded .card-exp::after { content:'Collapse'; }
+.card-more { max-height:0; overflow:hidden; transition:max-height 0.5s, opacity 0.4s; opacity:0; }
+.card.expanded .card-more { max-height:600px; opacity:1; }
+.card-full { font-size:0.8rem; color:var(--text-secondary); line-height:1.65; margin-bottom:0.65rem; }
+.card-kp { font-size:0.76rem; color:var(--text); line-height:1.6; padding:0.5rem 0.7rem; background:rgba(0,212,255,0.04); border-left:2px solid var(--cyan); border-radius:0 5px 5px 0; margin-bottom:0.6rem; }
+.card-kp strong { color:var(--cyan); font-weight:600; font-size:0.6rem; font-family:var(--mono); letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:0.15rem; }
+.card-link { display:inline-flex; font-family:var(--mono); font-size:0.58rem; color:var(--cyan); padding:3px 8px; border:1px solid rgba(0,212,255,0.2); border-radius:5px; background:rgba(0,212,255,0.06); margin-bottom:0.45rem; text-decoration:none; }
+.card-link:hover { background:rgba(0,212,255,0.12); }
+.card-foot { display:flex; justify-content:space-between; align-items:center; padding-top:0.45rem; border-top:1px solid var(--border); }
+.card-src { font-family:var(--mono); font-size:0.58rem; color:var(--cyan); font-weight:500; }
+.card-dt { font-family:var(--mono); font-size:0.55rem; color:var(--text-muted); }
+
+/* ===== PODCAST CARDS ===== */
+.pod { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:all 0.3s; cursor:pointer; }
+.pod:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }
+.pod img { width:100%; height:170px; object-fit:cover; }
+.pod-body { padding:0.9rem 1rem; }
+.pod-tag { font-family:var(--mono); font-size:0.53rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:3px 7px; border-radius:4px; background:var(--orange-dim); color:var(--orange); display:inline-block; margin-bottom:0.4rem; }
+.pod-h { font-family:var(--sans); font-size:1.02rem; font-weight:700; line-height:1.22; margin-bottom:0.35rem; }
+.pod-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.55; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:0.5rem; }
+.pod-foot { display:flex; align-items:center; gap:0.6rem; font-family:var(--mono); font-size:0.58rem; color:var(--text-muted); padding-top:0.5rem; border-top:1px solid var(--border); }
+.pod-play { width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--cyan),var(--magenta)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-left:auto; }
+.pod-play svg { width:10px; height:10px; fill:white; margin-left:1px; }
+
+/* ===== TOOL CARDS ===== */
+.tool { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:all 0.3s; cursor:pointer; }
+.tool:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }
+.tool img { width:100%; height:160px; object-fit:cover; }
+.tool-body { padding:0.9rem 1rem; }
+.tool-tags { display:flex; gap:0.3rem; flex-wrap:wrap; margin-bottom:0.45rem; }
+.tt { font-family:var(--mono); font-size:0.5rem; font-weight:600; padding:2px 6px; border-radius:3px; }
+.tt-new { background:var(--green-dim); color:var(--green); }
+.tt-trend { background:var(--amber-dim); color:var(--amber); }
+.tt-cat { background:var(--teal-dim); color:var(--teal); }
+.tool-h { font-family:var(--sans); font-size:1.02rem; font-weight:700; line-height:1.22; margin-bottom:0.35rem; }
+.tool-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.55; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:0.5rem; }
+.tool-foot { display:flex; align-items:center; gap:0.5rem; font-family:var(--mono); font-size:0.56rem; color:var(--text-muted); padding-top:0.5rem; border-top:1px solid var(--border); }
+.tool-rate { color:var(--amber); }
+.tool-fc { margin-left:auto; }
+
+/* ===== PROMPT CARDS ===== */
+.prompt { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.15rem; transition:all 0.3s; cursor:pointer; position:relative; overflow:hidden; }
+.prompt:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }
+.prompt::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--purple),var(--cyan)); }
+.prompt-tags { display:flex; gap:0.3rem; margin-bottom:0.5rem; }
+.pt { font-family:var(--mono); font-size:0.5rem; font-weight:600; padding:2px 6px; border-radius:3px; }
+.pt-d { background:var(--green-dim); color:var(--green); }
+.pt-c { background:var(--purple-dim); color:var(--purple); }
+.pt-t { background:var(--amber-dim); color:var(--amber); }
+.prompt-h { font-family:var(--sans); font-size:1.02rem; font-weight:700; line-height:1.22; margin-bottom:0.35rem; }
+.prompt-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.55; margin-bottom:0.6rem; }
+.prompt-pre { font-family:var(--mono); font-size:0.7rem; color:var(--cyan); background:rgba(0,212,255,0.04); border:1px solid rgba(0,212,255,0.1); border-radius:7px; padding:0.6rem 0.75rem; line-height:1.5; margin-bottom:0.55rem; }
+.prompt-foot { display:flex; align-items:center; gap:0.5rem; font-family:var(--mono); font-size:0.56rem; color:var(--text-muted); }
+.prompt-uses { color:var(--green); }
+
+/* ===== TINKER LAB ===== */
+.tinker { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:all 0.3s; cursor:pointer; }
+.tinker:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.3); }
+.tinker img { width:100%; height:170px; object-fit:cover; }
+.tinker-body { padding:0.9rem 1rem; }
+.tinker-tag { font-family:var(--mono); font-size:0.53rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:3px 7px; border-radius:4px; background:rgba(0,212,255,0.1); color:var(--cyan); display:inline-block; margin-bottom:0.4rem; }
+.tinker-h { font-family:var(--sans); font-size:1.02rem; font-weight:700; line-height:1.22; margin-bottom:0.35rem; }
+.tinker-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.55; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:0.5rem; }
+.tinker-foot { font-family:var(--mono); font-size:0.58rem; color:var(--text-muted); padding-top:0.5rem; border-top:1px solid var(--border); display:flex; gap:0.6rem; }
+.tinker-dur { color:var(--cyan); }
+
+/* ===== NEWSLETTER ===== */
+.nl { max-width:var(--max-w); margin:0 auto; padding:3rem var(--px); }
+.nl-card { background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:2.5rem 2rem; text-align:center; position:relative; overflow:hidden; }
+.nl-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--cyan),var(--magenta)); }
+.nl-card h2 { font-size:1.6rem; font-weight:700; margin-bottom:0.4rem; }
+.nl-card p { font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.2rem; }
+.nl-form { display:flex; gap:0.5rem; max-width:400px; margin:0 auto 0.5rem; }
+.nl-input { flex:1; padding:0.65rem 0.9rem; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:0.82rem; font-family:var(--sans); }
+.nl-input:focus { outline:none; border-color:var(--cyan); }
+.nl-btn { padding:0.65rem 1.2rem; border-radius:8px; border:none; background:linear-gradient(135deg,var(--cyan),var(--magenta)); color:white; font-weight:600; font-size:0.82rem; cursor:pointer; white-space:nowrap; }
+.nl-note { font-size:0.68rem; color:var(--text-muted); }
+
+/* ===== FOOTER ===== */
+.footer { background:var(--bg-elevated); border-top:1px solid var(--border); padding:2.5rem var(--px) 1.5rem; }
+.footer-inner { max-width:var(--max-w); margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:3rem; }
+.footer-brand { font-family:var(--mono); font-size:0.9rem; font-weight:600; margin-bottom:0.5rem; }
+.footer-brand .fc { color:var(--cyan); }
+.footer-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.55; max-width:280px; }
+.footer-col h4 { font-family:var(--mono); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.7rem; }
+.footer-col a { display:block; font-size:0.78rem; color:var(--text-secondary); padding:0.2rem 0; transition:color 0.2s; }
+.footer-col a:hover { color:var(--cyan); }
+.footer-bottom { max-width:var(--max-w); margin:1.25rem auto 0; padding-top:1rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:0.65rem; color:var(--text-muted); }
+.footer-bottom a { color:var(--text-muted); margin-left:1.2rem; }
+.footer-bottom a:hover { color:var(--cyan); }
+
+@media (max-width:1024px) { .hero-grid { grid-template-columns:1fr; } }
+@media (max-width:768px) { .tb-nav { display:none; } .grid-3 { grid-template-columns:1fr; } .footer-inner { grid-template-columns:1fr; } .nl-form { flex-direction:column; } }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="tb-brand" href="#"><span>INNOVATING HIGHER ED</span><span class="tb-dot"></span></a>
+  <div class="tb-nav">
+    <a href="#" class="active">Home</a>
+    <a href="#">Innovation Pulse</a>
+    <a href="#">Prompts</a>
+    <a href="#">AI Tools</a>
+    <a href="#">Podcast</a>
+    <a href="#">Tinker Lab</a>
+    <a href="#">About</a>
+  </div>
+</nav>
+
+<!-- ===== HERO: INNOVATION PULSE ===== -->
+<section class="hero">
+  <div class="hero-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> THE INNOVATION PULSE</div>
+  <div class="hero-grid">
+    <div class="hero-main">
+      <div class="hero-date">Thursday, February 19, 2026 <span class="lens-badge"><span class="ld"></span> Connecting the Dots</span></div>
+      <div class="hero-hook">"The greatest risk AI poses to higher education isn't cheating — it's the erosion of learning itself. Three stories this week point to the same uncomfortable conclusion."</div>
+      <div class="audio-box">
+        <div class="audio-top"><div class="audio-live"><span class="dot"></span> LISTEN NOW</div><span class="audio-dur">4:12</span><span class="audio-credit">Dr. Norma Jones</span></div>
+        <div class="audio-row">
+          <button class="play-btn" id="playBtn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+          <div class="wave-wrap" id="waveform"></div>
+          <span class="audio-time">0:00 / 4:12</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-toc">
+      <div class="toc-card">
+        <div class="toc-head">Today's Stories</div>
+        <ul class="toc-list">
+          <li class="toc-item"><span class="tb lead">LEAD</span><div><div class="toc-t">Texas CC Rebuilds Advising with Free AI — Retention Soars</div><div class="toc-c">Infrastructure</div></div></li>
+          <li class="toc-item"><span class="tb story">STORY</span><div><div class="toc-t">Google Classroom Gets AI Grading Assistant</div><div class="toc-c">Tools</div></div></li>
+          <li class="toc-item"><span class="tb story">STORY</span><div><div class="toc-t">AI Tutors Most Effective for First-Gen Students</div><div class="toc-c">Research</div></div></li>
+          <li class="toc-item"><span class="tb story">STORY</span><div><div class="toc-t">3 State Systems Adopt Shared AI Ethics Policy</div><div class="toc-c">Policy</div></div></li>
+          <li class="toc-item"><span class="tb update">UPDATE</span><div><div class="toc-t">OECD Report — Boise State Releases Full Plan</div><div class="toc-c">Leadership</div></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOP STORIES ===== -->
+<section class="section reveal" style="padding-top:1.5rem;">
+  <div class="section-header">
+    <span class="sh-icon">📰</span><span class="sh-name" style="color:var(--cyan)">Top Stories</span><span class="sh-desc">— Today's most important AI in education news</span><a class="sh-link" href="#">View all stories →</a>
+  </div>
+  <div class="grid-3">
+    <div class="card" onclick="this.classList.toggle('expanded')">
+      <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=340&fit=crop"><span class="cib cib-m">Top Story</span></div>
+      <div class="card-body">
+        <div class="card-cat"><span class="dot" style="background:var(--magenta)"></span> TOOLS & PRODUCTS</div>
+        <div class="card-h">Google Classroom Gets AI Grading Assistant</div>
+        <div class="card-teaser">Google's latest update introduces AI-powered rubric-based feedback drafts. Instructors review before students see results.</div>
+        <div class="card-exp"><span class="arr">▾</span><span class="ht">Read more</span></div>
+        <div class="card-more"><div class="card-full">Early pilot data from 200 institutions shows a 40% reduction in grading turnaround time while maintaining feedback quality. Available to Workspace for Education Plus subscribers starting March 1.</div><div class="card-kp"><strong>Why it matters</strong>First major LMS to ship AI grading as built-in. Sets the standard every other platform follows.</div><a class="card-link" href="#">Read full story ↗</a></div>
+        <div class="card-foot"><span class="card-src">Google Education Blog</span><span class="card-dt">Feb 16</span></div>
+      </div>
+    </div>
+    <div class="card" onclick="this.classList.toggle('expanded')">
+      <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=340&fit=crop"><span class="cib cib-c">Top Story</span></div>
+      <div class="card-body">
+        <div class="card-cat"><span class="dot" style="background:var(--cyan)"></span> RESEARCH</div>
+        <div class="card-h">New Study: AI Tutors Most Effective for First-Gen Students</div>
+        <div class="card-teaser">A 12-institution study found AI tutoring narrowed the completion gap between first-gen and continuing-gen students by 18 points.</div>
+        <div class="card-exp"><span class="arr">▾</span><span class="ht">Read more</span></div>
+        <div class="card-more"><div class="card-full">Researchers credit the "no judgment" factor — students asked questions they wouldn't raise in office hours. The effect was strongest in STEM gateway courses.</div><div class="card-kp"><strong>Key takeaway</strong>AI tutoring may be the most powerful equity tool higher ed has found in a decade.</div><a class="card-link" href="#">Read full story ↗</a></div>
+        <div class="card-foot"><span class="card-src">Journal of Higher Ed</span><span class="card-dt">Feb 15</span></div>
+      </div>
+    </div>
+    <div class="card" onclick="this.classList.toggle('expanded')">
+      <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&h=340&fit=crop"><span class="cib cib-a">Top Story</span></div>
+      <div class="card-body">
+        <div class="card-cat"><span class="dot" style="background:var(--amber)"></span> POLICY & ETHICS</div>
+        <div class="card-h">3 State University Systems Adopt Shared AI Ethics Policy</div>
+        <div class="card-teaser">California, New York, and Texas jointly released a shared AI ethics framework — the first cross-state collaboration of its kind.</div>
+        <div class="card-exp"><span class="arr">▾</span><span class="ht">Read more</span></div>
+        <div class="card-more"><div class="card-full">The policy requires disclosure when AI is used in admissions, mandates annual bias audits, and creates "unrestricted," "supervised," and "prohibited" tiers.</div><div class="card-kp"><strong>What to watch</strong>Three state systems representing 1.2M students just agreed on common ground. This could become the national template.</div><a class="card-link" href="#">Read full story ↗</a></div>
+        <div class="card-foot"><span class="card-src">Inside Higher Ed</span><span class="card-dt">Feb 14</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-soft-divider"></div>
+
+<!-- ===== PODCAST ===== -->
+<section class="section reveal">
+  <div class="section-header">
+    <span class="sh-icon">🎙️</span><span class="sh-name" style="color:var(--orange)">Recent Podcasts</span><span class="sh-desc">— Conversations with higher ed innovators</span><a class="sh-link" href="#">All episodes →</a>
+  </div>
+  <div class="grid-3">
+    <div class="pod">
+      <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=340&fit=crop">
+      <div class="pod-body">
+        <span class="pod-tag">Episode 47</span>
+        <div class="pod-h">The Dean Who Built an AI Lab With Zero Budget</div>
+        <div class="pod-desc">Dr. Maria Chen shares how she launched a functional AI research lab at a mid-size regional university using only free tools and student labor.</div>
+        <div class="pod-foot"><span>Feb 17</span><span>38 min</span><button class="pod-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div>
+      </div>
+    </div>
+    <div class="pod">
+      <img src="https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=600&h=340&fit=crop">
+      <div class="pod-body">
+        <span class="pod-tag">Episode 46</span>
+        <div class="pod-h">Why Community Colleges Are Leading the AI Revolution</div>
+        <div class="pod-desc">Three community college presidents discuss why their institutions are actually ahead of R1 universities on practical AI adoption.</div>
+        <div class="pod-foot"><span>Feb 10</span><span>42 min</span><button class="pod-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div>
+      </div>
+    </div>
+    <div class="pod">
+      <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=340&fit=crop">
+      <div class="pod-body">
+        <span class="pod-tag">Episode 45</span>
+        <div class="pod-h">Student Panel: What Faculty Get Wrong About AI</div>
+        <div class="pod-desc">Five graduate students from different disciplines share their honest perspectives on how professors are handling — and mishandling — AI policies.</div>
+        <div class="pod-foot"><span>Feb 3</span><span>35 min</span><button class="pod-play"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-soft-divider"></div>
+
+<!-- ===== AI TOOLS ===== -->
+<section class="section reveal">
+  <div class="section-header">
+    <span class="sh-icon">🛠️</span><span class="sh-name" style="color:var(--teal)">New & Trending AI Tools</span><span class="sh-desc">— Curated for higher education</span><a class="sh-link" href="#">Browse all tools →</a>
+  </div>
+  <div class="grid-3">
+    <div class="tool">
+      <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=320&fit=crop">
+      <div class="tool-body">
+        <div class="tool-tags"><span class="tt tt-new">NEW</span><span class="tt tt-cat">Grading</span></div>
+        <div class="tool-h">GradeAssist AI</div>
+        <div class="tool-desc">AI-powered rubric-based grading with detailed feedback generation. Integrates with Canvas, Blackboard, and Moodle.</div>
+        <div class="tool-foot"><span class="tool-rate">★ 4.7</span><span>Free tier available</span><span class="tool-fc">Grading & Assessment</span></div>
+      </div>
+    </div>
+    <div class="tool">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=320&fit=crop">
+      <div class="tool-body">
+        <div class="tool-tags"><span class="tt tt-trend">TRENDING</span><span class="tt tt-cat">Research</span></div>
+        <div class="tool-h">ResearchBuddy</div>
+        <div class="tool-desc">Literature review assistant that finds, summarizes, and maps connections between academic papers using AI. Built for researchers.</div>
+        <div class="tool-foot"><span class="tool-rate">★ 4.8</span><span>Free for .edu</span><span class="tool-fc">Research & Writing</span></div>
+      </div>
+    </div>
+    <div class="tool">
+      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=320&fit=crop">
+      <div class="tool-body">
+        <div class="tool-tags"><span class="tt tt-new">NEW</span><span class="tt tt-trend">TRENDING</span><span class="tt tt-cat">Course Design</span></div>
+        <div class="tool-h">SyllabusAI</div>
+        <div class="tool-desc">Generate complete course structures from learning objectives. Creates modules, assignments, rubrics, and discussion prompts.</div>
+        <div class="tool-foot"><span class="tool-rate">★ 4.5</span><span>$9/mo educator</span><span class="tool-fc">Course Design</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-soft-divider"></div>
+
+<!-- ===== PROMPTS ===== -->
+<section class="section reveal">
+  <div class="section-header">
+    <span class="sh-icon">⚡</span><span class="sh-name" style="color:var(--purple)">Top Prompts</span><span class="sh-desc">— Trending in the Prompt Navigator</span><a class="sh-link" href="#">Browse all prompts →</a>
+  </div>
+  <div class="grid-3">
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-d">Beginner</span><span class="pt pt-c">Discussion</span><span class="pt pt-t">🔥 Trending</span></div>
+      <div class="prompt-h">Generate Discussion Questions That Actually Spark Debate</div>
+      <div class="prompt-desc">Creates tension-based discussion questions from any reading that students actually want to argue about — not just answer.</div>
+      <div class="prompt-pre">"Read this [text]. Identify the central tension or most debatable claim. Generate 5 discussion questions that force students to take a side..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">2.4k uses</span><span>Discussion Design</span></div>
+    </div>
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-d">Intermediate</span><span class="pt pt-c">Assessment</span></div>
+      <div class="prompt-h">AI-Resistant Assignment Redesigner</div>
+      <div class="prompt-desc">Analyzes your existing assignment and suggests modifications that maintain learning outcomes while reducing AI shortcutting.</div>
+      <div class="prompt-pre">"Here is my assignment: [paste]. Analyze which parts a student could complete using AI without learning. Suggest modifications that preserve the learning outcome..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">1.8k uses</span><span>Assessment Design</span></div>
+    </div>
+    <div class="prompt">
+      <div class="prompt-tags"><span class="pt pt-d">Beginner</span><span class="pt pt-c">Feedback</span><span class="pt pt-t">🔥 Trending</span></div>
+      <div class="prompt-h">Rubric-Based Feedback Draft Generator</div>
+      <div class="prompt-desc">Generates detailed, constructive student feedback aligned to your specific rubric criteria. You review and personalize before sending.</div>
+      <div class="prompt-pre">"Using this rubric [paste rubric], generate detailed feedback for this student submission [paste]. Score each criterion and provide specific, constructive comments..."</div>
+      <div class="prompt-foot"><span class="prompt-uses">3.1k uses</span><span>Grading & Feedback</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-soft-divider"></div>
+
+<!-- ===== TINKER LAB ===== -->
+<section class="section reveal">
+  <div class="section-header">
+    <span class="sh-icon">🧪</span><span class="sh-name" style="color:var(--cyan)">Tinker Lab</span><span class="sh-desc">— Quick experiments and AI explorations</span><a class="sh-link" href="#">All experiments →</a>
+  </div>
+  <div class="grid-3">
+    <div class="tinker">
+      <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=340&fit=crop">
+      <div class="tinker-body">
+        <span class="tinker-tag">Experiment</span>
+        <div class="tinker-h">I Graded 100 Papers with 5 Different AI Tools — Here's What Happened</div>
+        <div class="tinker-desc">Dr. Norma runs the same set of student essays through five AI grading platforms and compares the results to human graders.</div>
+        <div class="tinker-foot"><span class="tinker-dur">8 min listen</span><span>Feb 14</span></div>
+      </div>
+    </div>
+    <div class="tinker">
+      <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=340&fit=crop">
+      <div class="tinker-body">
+        <span class="tinker-tag">Experiment</span>
+        <div class="tinker-h">Building a Custom AI Tutor for Intro Biology — From Scratch</div>
+        <div class="tinker-desc">A walkthrough of creating a subject-specific AI tutor using free tools. No coding required. Total setup time: 2 hours.</div>
+        <div class="tinker-foot"><span class="tinker-dur">12 min listen</span><span>Feb 7</span></div>
+      </div>
+    </div>
+    <div class="tinker">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=340&fit=crop">
+      <div class="tinker-body">
+        <span class="tinker-tag">Experiment</span>
+        <div class="tinker-h">Can AI Write a Syllabus? We Put It to the Test</div>
+        <div class="tinker-desc">Three faculty members review an AI-generated syllabus for their own courses — blind. Their reactions are telling.</div>
+        <div class="tinker-foot"><span class="tinker-dur">10 min listen</span><span>Jan 31</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-soft-divider"></div>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="nl reveal">
+  <div class="nl-card">
+    <h2>Never Miss a Pulse</h2>
+    <p>Get the Innovation Pulse delivered to your inbox. Curated AI news for higher education — no fluff, no hype.</p>
+    <div class="nl-form"><input class="nl-input" type="email" placeholder="your@university.edu"><button class="nl-btn">Subscribe Free</button></div>
+    <div class="nl-note">Join 1,200+ educators. No spam. Unsubscribe anytime.</div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="footer-brand">Innovating Higher <span class="fc">Ed</span></div><p class="footer-desc">Empowering educators to navigate the future of teaching, learning, and innovation in higher education.</p></div>
+    <div class="footer-col"><h4>Platform</h4><a href="#">Innovation Pulse</a><a href="#">Prompt Navigator</a><a href="#">AI Directory</a><a href="#">Educator Tools</a></div>
+    <div class="footer-col"><h4>Community</h4><a href="#">Podcast</a><a href="#">Tinker Lab</a><a href="#">Be Our Guest</a><a href="#">About</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Innovating Higher Ed. All rights reserved.</span><span><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">AI Disclosure</a></span></div>
+</footer>
+
+<script>
+const wf = document.getElementById('waveform');
+for(let i=0;i<75;i++){const b=document.createElement('div');b.className='wave-bar';b.style.height=Math.max(4,6+Math.random()*26+Math.sin(i*.25)*8)+'px';wf.appendChild(b);}
+let playing=false;
+document.getElementById('playBtn').addEventListener('click',()=>{playing=!playing;const btn=document.getElementById('playBtn');const bars=document.querySelectorAll('.wave-bar');if(playing){btn.innerHTML='<svg viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';bars.forEach((b,i)=>{if(i<12)b.classList.add('played');});}else{btn.innerHTML='<svg viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>';}});
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>

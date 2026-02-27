@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHE Daily AI News – Pulse Living Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #05050a;
+            --deep: #0a0a12;
+            --surface: #0f0f1a;
+            --elevated: #14141f;
+            --border: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --pulse-core: #00ff88;
+            --pulse-glow: rgba(0, 255, 136, 0.15);
+            --synapse-blue: #00d4ff;
+            --growth-gold: #ffd700;
+            --wisdom-violet: #a855f7;
+            --alert-red: #ff4757;
+            --insight-orange: #ff6b35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Living Background */
+        .living-cosmos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .energy-field {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        .energy-field.primary {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--synapse-blue) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: drift 25s ease-in-out infinite;
+        }
+
+        .energy-field.secondary {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--pulse-core) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: drift 30s ease-in-out infinite reverse;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+        }
+
+        /* View Toggle */
+        .view-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .view-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: var(--pulse-core);
+            color: var(--void);
+        }
+
+        .view-btn:hover:not(.active) {
+            color: var(--text-primary);
+            background: var(--elevated);
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .view-section {
+            display: none;
+            padding: 80px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        /* ===== NEWS PAGE DESIGN ===== */
+        
+        /* Date Header */
+        .news-date-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--pulse-core) 0%, var(--synapse-blue) 100%);
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .date-badge .icon {
+            font-size: 20px;
+        }
+
+        .date-badge .text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--void);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .news-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .news-tagline {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Audio Briefing Card */
+        .audio-briefing {
+            background: linear-gradient(135deg, var(--elevated) 0%, var(--surface) 100%);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-briefing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pulse-core), var(--synapse-blue), var(--wisdom-violet));
+        }
+
+        .audio-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .audio-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--pulse-core) 0%, var(--synapse-blue) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px var(--pulse-glow); }
+            50% { box-shadow: 0 0 40px var(--pulse-glow), 0 0 60px var(--pulse-glow); }
+        }
+
+        .audio-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .audio-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--deep);
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--pulse-core);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--pulse-glow);
+        }
+
+        .waveform {
+            flex: 1;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .wave-bar {
+            width: 4px;
+            background: var(--synapse-blue);
+            border-radius: 2px;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { height: 10px; opacity: 0.4; }
+            50% { height: 30px; opacity: 1; }
+        }
+
+        .audio-time {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .download-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid var(--pulse-core);
+            color: var(--pulse-core);
+            border-radius: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background: var(--pulse-core);
+            color: var(--void);
+        }
+
+        /* News Sections */
+        .news-section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .section-icon.insights { background: linear-gradient(135deg, var(--synapse-blue), #0099cc); }
+        .section-icon.products { background: linear-gradient(135deg, var(--wisdom-violet), #7c3aed); }
+        .section-icon.tools { background: linear-gradient(135deg, var(--growth-gold), #f59e0b); }
+        .section-icon.cases { background: linear-gradient(135deg, var(--pulse-core), #00cc6a); }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .section-count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            background: var(--surface);
+            border-radius: 20px;
+            margin-left: auto;
+        }
+
+        /* News Cards */
+        .news-cards {
+            display: grid;
+            gap: 20px;
+        }
+
+        .news-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card:hover {
+            border-color: var(--synapse-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--synapse-blue);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .news-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-source {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--synapse-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-source::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--synapse-blue);
+            border-radius: 50%;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .card-summary {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .ihe-perspective {
+            background: var(--deep);
+            border-left: 3px solid var(--pulse-core);
+            padding: 14px 18px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+        }
+
+        .ihe-perspective-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--pulse-core);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ihe-perspective p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--synapse-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 12px;
+            color: var(--pulse-core);
+        }
+
+        /* Previous Issues */
+        .previous-issues {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .previous-issues h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .issue-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .issue-link {
+            padding: 10px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .issue-link:hover {
+            border-color: var(--pulse-core);
+            color: var(--pulse-core);
+            background: var(--pulse-glow);
+        }
+
+        /* ===== WORKFLOW PAGE DESIGN ===== */
+        
+        .workflow-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .workflow-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .workflow-header p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Workflow Timeline */
+        .workflow-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .workflow-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--synapse-blue), var(--pulse-core), var(--wisdom-violet), var(--growth-gold));
+            border-radius: 2px;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .workflow-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-content {
+            flex: 1;
+            max-width: 480px;
+        }
+
+        .workflow-step:nth-child(odd) .step-content {
+            text-align: right;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--surface);
+            border: 3px solid var(--synapse-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--synapse-blue);
+            z-index: 1;
+        }
+
+        .step-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-card::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 30px;
+            height: 2px;
+            background: var(--border);
+        }
+
+        .workflow-step:nth-child(odd) .step-card::after {
+            right: -30px;
+        }
+
+        .workflow-step:nth-child(even) .step-card::after {
+            left: -30px;
+        }
+
+        .step-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .workflow-step:nth-child(odd) .step-icon {
+            margin-left: auto;
+        }
+
+        .step-icon.aggregate { background: linear-gradient(135deg, var(--synapse-blue), #0099cc); }
+        .step-icon.process { background: linear-gradient(135deg, var(--wisdom-violet), #7c3aed); }
+        .step-icon.audio { background: linear-gradient(135deg, var(--insight-orange), #f59e0b); }
+        .step-icon.draft { background: linear-gradient(135deg, var(--pulse-core), #00cc6a); }
+        .step-icon.review { background: linear-gradient(135deg, var(--growth-gold), #eab308); }
+        .step-icon.publish { background: linear-gradient(135deg, var(--alert-red), #dc2626); }
+
+        .step-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-time {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--pulse-core);
+            margin-bottom: 12px;
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .step-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .workflow-step:nth-child(odd) .step-details {
+            justify-content: flex-end;
+        }
+
+        .detail-tag {
+            padding: 6px 12px;
+            background: var(--deep);
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Draft Preview Section */
+        .draft-preview {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        .draft-preview h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .draft-preview h3 span {
+            padding: 4px 12px;
+            background: var(--growth-gold);
+            color: var(--void);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .draft-mockup {
+            background: var(--deep);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .mockup-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--elevated);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mockup-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .mockup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .mockup-dot.red { background: #ff5f56; }
+        .mockup-dot.yellow { background: #ffbd2e; }
+        .mockup-dot.green { background: #27ca40; }
+
+        .mockup-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+            flex: 1;
+            text-align: center;
+        }
+
+        .mockup-body {
+            padding: 20px;
+        }
+
+        .mockup-toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .toolbar-btn {
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toolbar-btn.primary {
+            background: var(--pulse-core);
+            color: var(--void);
+            border-color: var(--pulse-core);
+        }
+
+        .toolbar-btn:hover:not(.primary) {
+            border-color: var(--pulse-core);
+            color: var(--pulse-core);
+        }
+
+        .mockup-content {
+            display: grid;
+            gap: 12px;
+        }
+
+        .mockup-field {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+
+        .mockup-field label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .mockup-field .value {
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .mockup-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid var(--growth-gold);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--growth-gold);
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--growth-gold);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .publish-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--pulse-core), var(--synapse-blue));
+            border: none;
+            border-radius: 10px;
+            color: var(--void);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .publish-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--pulse-glow);
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            margin-top: 60px;
+        }
+
+        .tech-stack h3 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .tech-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            border-color: var(--synapse-blue);
+            transform: translateY(-3px);
+        }
+
+        .tech-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .tech-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tech-role {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .workflow-timeline::before {
+                left: 30px;
+            }
+
+            .workflow-step,
+            .workflow-step:nth-child(even) {
+                flex-direction: column;
+                padding-left: 80px;
+            }
+
+            .step-number {
+                left: 30px;
+            }
+
+            .step-content,
+            .workflow-step:nth-child(odd) .step-content {
+                text-align: left;
+                max-width: 100%;
+            }
+
+            .workflow-step:nth-child(odd) .step-icon {
+                margin-left: 0;
+            }
+
+            .workflow-step:nth-child(odd) .step-details {
+                justify-content: flex-start;
+            }
+
+            .step-card::after {
+                display: none;
+            }
+
+            .news-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .view-toggle {
+                top: 10px;
+                right: 10px;
+            }
+
+            .view-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .audio-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .audio-player {
+                flex-wrap: wrap;
+            }
+
+            .waveform {
+                order: 3;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="living-cosmos">
+        <div class="energy-field primary"></div>
+        <div class="energy-field secondary"></div>
+    </div>
+
+    <!-- View Toggle -->
+    <div class="view-toggle">
+        <button class="view-btn active" onclick="switchView('news')">📰 News Page</button>
+        <button class="view-btn" onclick="switchView('workflow')">⚙️ Automation</button>
+    </div>
+
+    <div class="content-wrapper">
+        <!-- ===== NEWS PAGE VIEW ===== -->
+        <section id="news-view" class="view-section active">
+            <!-- Date Header -->
+            <div class="news-date-header">
+                <div class="date-badge">
+                    <span class="icon">📡</span>
+                    <span class="text">Live Intelligence Feed</span>
+                </div>
+                <h1 class="news-title">IHE Daily AI News</h1>
+                <p class="news-tagline">Thursday, January 29, 2026 — Faculty anxiety meets bold campus experiments as higher ed races to decide how AI reshapes teaching and integrity.</p>
+            </div>
+
+            <!-- Audio Briefing -->
+            <div class="audio-briefing">
+                <div class="audio-header">
+                    <div class="audio-icon">🎧</div>
+                    <div class="audio-info">
+                        <h3>Today's Audio Briefing</h3>
+                        <p>Listen to the AI Daily News with Dr. Norma Jones</p>
+                    </div>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn">▶</button>
+                    <div class="waveform" id="waveform"></div>
+                    <span class="audio-time">0:00 / 4:32</span>
+                    <button class="download-btn">⬇️ Download MP3</button>
+                </div>
+            </div>
+
+            <!-- Insights & Trends -->
+            <div class="news-section">
+                <div class="section-header">
+                    <div class="section-icon insights">💡</div>
+                    <h2 class="section-title">Insights & Trends</h2>
+                    <span class="section-count">3 stories</span>
+                </div>
+                <div class="news-cards">
+                    <article class="news-card">
+                        <div class="card-source">Fast Company</div>
+                        <h3 class="card-title">Higher Education Needs to Embrace AI</h3>
+                        <p class="card-summary">As artificial intelligence gains traction, many educators are still hesitant to fully integrate it into their teaching methods. A recent study highlights that while some colleges are making significant strides in AI adoption, a large number remain cautious, focusing on experimentation rather than implementation.</p>
+                        <div class="ihe-perspective">
+                            <div class="ihe-perspective-label">🎯 IHE Perspective</div>
+                            <p>It is crucial for educators to address these concerns through proactive training and a focus on how AI can enhance, rather than hinder, student learning.</p>
+                        </div>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-source">Globe Newswire</div>
+                        <h3 class="card-title">National Study Reveals AI Adoption Challenges</h3>
+                        <p class="card-summary">A new national study reveals that colleges are struggling with AI adoption, with many still stuck in early stages of exploration. The findings indicate that while awareness of AI's potential is growing, institutions are faced with obstacles such as lack of resources, training, and clear policies.</p>
+                        <div class="ihe-perspective">
+                            <div class="ihe-perspective-label">🎯 IHE Perspective</div>
+                            <p>Institutions should prioritize creating frameworks that support both faculty and students as they navigate the complexities of AI in education.</p>
+                        </div>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-source">Times Higher Education</div>
+                        <h3 class="card-title">Academic Staff and AI Adoption: A Grief Model</h3>
+                        <p class="card-summary">Facing significant emotional challenges in the transition to AI, academic staff can benefit from strategies designed in a five-stage grief model. This approach can help educators process the changes AI brings to the classroom environment.</p>
+                        <div class="ihe-perspective">
+                            <div class="ihe-perspective-label">🎯 IHE Perspective</div>
+                            <p>Emphasizing emotional intelligence in this transition could lead to more effective strategies for AI integration.</p>
+                        </div>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Product Releases -->
+            <div class="news-section">
+                <div class="section-header">
+                    <div class="section-icon products">🚀</div>
+                    <h2 class="section-title">Latest AI Product Releases</h2>
+                    <span class="section-count">2 releases</span>
+                </div>
+                <div class="news-cards">
+                    <article class="news-card">
+                        <div class="card-source">PR Newswire</div>
+                        <h3 class="card-title">Boodlebox's AI Innovation Initiative with NVIDIA</h3>
+                        <p class="card-summary">Boodlebox has launched a new initiative to accelerate AI innovation in education, collaborating with NVIDIA to enhance its offerings via the Nemotron platform. Available to institutions starting February 2026.</p>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="card-source">Business Wire</div>
+                        <h3 class="card-title">General Assembly Unveils 15 New AI Courses</h3>
+                        <p class="card-summary">To celebrate its 15th anniversary, General Assembly has introduced 15 new AI courses designed to teach essential skills in an ever-changing job market, covering data analysis and machine learning.</p>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Tool Spotlight -->
+            <div class="news-section">
+                <div class="section-header">
+                    <div class="section-icon tools">🔧</div>
+                    <h2 class="section-title">Tool Spotlight</h2>
+                    <span class="section-count">1 featured</span>
+                </div>
+                <div class="news-cards">
+                    <article class="news-card">
+                        <div class="card-source">The Journal</div>
+                        <h3 class="card-title">Microsoft's AI Community for Educators: Elevate Program</h3>
+                        <p class="card-summary">Microsoft has launched a dedicated AI community aimed at educators through the 'Elevate' program. This platform is designed to foster collaboration among educators interested in AI applications in teaching and learning.</p>
+                        <div class="ihe-perspective">
+                            <div class="ihe-perspective-label">🎯 IHE Perspective</div>
+                            <p>Collaborating in such communities can empower educators to adopt AI more confidently and effectively in their teaching.</p>
+                        </div>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Case Studies -->
+            <div class="news-section">
+                <div class="section-header">
+                    <div class="section-icon cases">📊</div>
+                    <h2 class="section-title">Case Studies</h2>
+                    <span class="section-count">1 study</span>
+                </div>
+                <div class="news-cards">
+                    <article class="news-card">
+                        <div class="card-source">Business Wire</div>
+                        <h3 class="card-title">Honorlock Study: Majority of Students Required to Use AI</h3>
+                        <p class="card-summary">A recent study by Honorlock reveals that a majority of college students are now required to utilize AI in their classwork. However, many institutions have been slow to offer AI-related courses, leaving students ill-prepared.</p>
+                        <div class="ihe-perspective">
+                            <div class="ihe-perspective-label">🎯 IHE Perspective</div>
+                            <p>Addressing these gaps is vital for developing a workforce that is prepared for an AI-centric future.</p>
+                        </div>
+                        <a href="#" class="read-more">Read Full Story →</a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Previous Issues -->
+            <div class="previous-issues">
+                <h3>📅 Previous Issues</h3>
+                <div class="issue-list">
+                    <a href="#" class="issue-link">📰 Wed, Jan 28</a>
+                    <a href="#" class="issue-link">📰 Tue, Jan 27</a>
+                    <a href="#" class="issue-link">📰 Mon, Jan 26</a>
+                    <a href="#" class="issue-link">📰 Sun, Jan 25</a>
+                    <a href="#" class="issue-link">📰 Sat, Jan 24</a>
+                    <a href="#" class="issue-link">📰 Fri, Jan 23</a>
+                    <a href="#" class="issue-link">View All Archives →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WORKFLOW VIEW ===== -->
+        <section id="workflow-view" class="view-section">
+            <div class="workflow-header">
+                <h1>⚙️ Automation Workflow</h1>
+                <p>How the IHE Daily AI News is automatically generated, reviewed, and published to WordPress</p>
+            </div>
+
+            <div class="workflow-timeline">
+                <!-- Step 1: Aggregate -->
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-card">
+                            <div class="step-icon aggregate">🔍</div>
+                            <h3 class="step-title">News Aggregation</h3>
+                            <div class="step-time">⏱️ Runs daily at 5:00 AM</div>
+                            <p class="step-description">AI agents scan 50+ trusted sources for higher ed and AI news. RSS feeds, APIs, and web scrapers collect stories from EdSurge, Inside Higher Ed, Chronicle, tech news, and press releases.</p>
+                            <div class="step-details">
+                                <span class="detail-tag">RSS Feeds</span>
+                                <span class="detail-tag">News APIs</span>
+                                <span class="detail-tag">Web Scraping</span>
+                                <span class="detail-tag">Google Alerts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Process -->
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-card">
+                            <div class="step-icon process">🧠</div>
+                            <h3 class="step-title">AI Processing & Curation</h3>
+                            <div class="step-time">⏱️ ~15 minutes</div>
+                            <p class="step-description">Claude/GPT-4 analyzes stories for relevance to higher ed. Articles are categorized (Insights, Products, Tools, Cases), summarized, and IHE Perspectives are generated based on your editorial voice.</p>
+                            <div class="step-details">
+                                <span class="detail-tag">Relevance Scoring</span>
+                                <span class="detail-tag">Auto-Categorization</span>
+                                <span class="detail-tag">Summarization</span>
+                                <span class="detail-tag">Editorial Voice</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Audio -->
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-card">
+                            <div class="step-icon audio">🎙️</div>
+                            <h3 class="step-title">Audio Generation</h3>
+                            <div class="step-time">⏱️ ~5 minutes</div>
+                            <p class="step-description">Text-to-speech generates the audio briefing using Dr. Norma's cloned voice (ElevenLabs/Play.ht). The MP3 is uploaded to cloud storage and linked in the post.</p>
+                            <div class="step-details">
+                                <span class="detail-tag">Voice Cloning</span>
+                                <span class="detail-tag">ElevenLabs API</span>
+                                <span class="detail-tag">Cloud Storage</span>
+                                <span class="detail-tag">Auto-Upload</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Draft -->
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-card">
+                            <div class="step-icon draft">📝</div>
+                            <h3 class="step-title">WordPress Draft Creation</h3>
+                            <div class="step-time">⏱️ Instant via REST API</div>
+                            <p class="step-description">The complete post is assembled with formatted HTML and pushed to WordPress as a DRAFT via the REST API. Categories, tags, featured image, and SEO metadata are auto-populated.</p>
+                            <div class="step-details">
+                                <span class="detail-tag">WP REST API</span>
+                                <span class="detail-tag">HTML Formatting</span>
+                                <span class="detail-tag">Auto-Tagging</span>
+                                <span class="detail-tag">SEO Metadata</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Review -->
+                <div class="workflow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-card">
+                            <div class="step-icon review">👁️</div>
+                            <h3 class="step-title">Human Review</h3>
+                            <div class="step-time">⏱️ 5-10 minutes (your time)</div>
+                            <p class="step-description">You receive a Slack/email notification with a preview link. Review the draft in WordPress, make any edits, verify links work, and listen to audio preview. One-click to approve or request regeneration.</p>
+                            <div class="step-details">
+                                <span class="detail-tag">Email Alert</span>
+                                <span class="detail-tag">Slack Integration</span>
+                                <span class="detail-tag">Preview Link</span>
+                                <span class="detail-tag">Edit in WP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Publish -->
+                <div class="workflow-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-card">
+                            <div class="step-icon publish">🚀</div>
+                            <h3 class="step-title">Publish & Distribute</h3>
+                            <div class="step-time">⏱️ Scheduled or instant</div>
+                            <p class="step-description">Click "Publish" in WordPress or set it to auto-publish at a specific time. Social media posts are queued (LinkedIn, X), newsletter subscribers are notified, and podcast feeds are updated.</p>
+                            <div class="step-details">
+                                <span class="detail-tag">Scheduled Publishing</span>
+                                <span class="detail-tag">Social Auto-Post</span>
+                                <span class="detail-tag">Email Newsletter</span>
+                                <span class="detail-tag">RSS Update</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Draft Preview Mockup -->
+            <div class="draft-preview">
+                <h3>📋 WordPress Draft Preview <span>DRAFT</span></h3>
+                <div class="draft-mockup">
+                    <div class="mockup-header">
+                        <div class="mockup-dots">
+                            <div class="mockup-dot red"></div>
+                            <div class="mockup-dot yellow"></div>
+                            <div class="mockup-dot green"></div>
+                        </div>
+                        <div class="mockup-title">Edit Post — WordPress Admin</div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-toolbar">
+                            <button class="toolbar-btn">Save Draft</button>
+                            <button class="toolbar-btn">Preview</button>
+                            <button class="toolbar-btn">Regenerate</button>
+                            <button class="toolbar-btn primary">Publish</button>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="mockup-field">
+                                <label>Title</label>
+                                <div class="value">IHE Daily AI News – Thursday, January 29, 2026</div>
+                            </div>
+                            <div class="mockup-field">
+                                <label>Categories</label>
+                                <div class="value">IHE AI in Education News Daily</div>
+                            </div>
+                            <div class="mockup-field">
+                                <label>Audio File</label>
+                                <div class="value">✅ ihe-daily-news-2026-01-29.mp3 (uploaded)</div>
+                            </div>
+                            <div class="mockup-field">
+                                <label>Stories Included</label>
+                                <div class="value">7 articles • 4 sections • 1 audio briefing</div>
+                            </div>
+                        </div>
+                        <div class="mockup-status">
+                            <div class="status-badge">Awaiting Review</div>
+                            <button class="publish-btn">🚀 Publish Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="tech-stack">
+                <h3>🛠️ Recommended Tech Stack</h3>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-icon">🤖</div>
+                        <div class="tech-name">Claude / GPT-4</div>
+                        <div class="tech-role">Content Generation</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">🎙️</div>
+                        <div class="tech-name">ElevenLabs</div>
+                        <div class="tech-role">Voice Cloning & TTS</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">⚡</div>
+                        <div class="tech-name">n8n / Make</div>
+                        <div class="tech-role">Workflow Automation</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">📰</div>
+                        <div class="tech-name">NewsAPI / RSS</div>
+                        <div class="tech-role">News Aggregation</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">📝</div>
+                        <div class="tech-name">WordPress REST</div>
+                        <div class="tech-role">Draft Creation</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">☁️</div>
+                        <div class="tech-name">Google Cloud</div>
+                        <div class="tech-role">Audio Storage</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">💬</div>
+                        <div class="tech-name">Slack</div>
+                        <div class="tech-role">Notifications</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">📅</div>
+                        <div class="tech-name">Cron / GitHub Actions</div>
+                        <div class="tech-role">Scheduling</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // View Switching
+        function switchView(view) {
+            // Update buttons
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update sections
+            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(view + '-view').classList.add('active');
+        }
+
+        // Generate waveform bars
+        const waveform = document.getElementById('waveform');
+        for (let i = 0; i < 50; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'wave-bar';
+            bar.style.animationDelay = `${i * 0.05}s`;
+            bar.style.height = `${Math.random() * 25 + 5}px`;
+            waveform.appendChild(bar);
+        }
+    </script>
+</body>
+</html>

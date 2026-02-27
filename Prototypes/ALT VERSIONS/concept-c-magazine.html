@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept C: The Magazine — Innovation Pulse</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F8F6F1;
+  --surface: #FFFFFF;
+  --surface-2: #F0EDE6;
+  --surface-3: #E6E2D9;
+  --border: rgba(0,0,0,0.08);
+  --ink: #0A0A0A;
+  --ink-2: #2A2A2A;
+  --ink-3: #6E6B63;
+  --ink-4: #A8A49C;
+  --vermillion: #E63B2E;
+  --vermillion-soft: rgba(230,59,46,0.06);
+  --teal: #0A8F6C;
+  --cobalt: #1D4ED8;
+  --plum: #7C2D82;
+  --slate: #334155;
+  --gold: #B8860B;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Work Sans', sans-serif;
+  --mono: 'Fira Code', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+.concept-banner{background:var(--vermillion);text-align:center;padding:0.6rem;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:white;}
+
+/* MASTHEAD */
+.masthead{
+  max-width:1200px;margin:0 auto;padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:3px solid var(--ink);
+}
+.masthead-brand{text-decoration:none;color:var(--ink);}
+.masthead-ihe{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3);display:block;}
+.masthead-name{font-family:var(--display);font-size:2rem;font-weight:900;line-height:1;letter-spacing:-0.02em;}
+.masthead-name span{color:var(--vermillion);}
+.masthead-nav{display:flex;gap:1.5rem;align-items:center;}
+.masthead-link{font-size:0.78rem;color:var(--ink-3);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.masthead-link:hover{color:var(--ink);}
+.masthead-sub{background:var(--vermillion);color:white;padding:0.5rem 1.2rem;border-radius:0;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;}
+.masthead-sub:hover{background:var(--ink);}
+
+/* Date bar */
+.datebar{
+  max-width:1200px;margin:0 auto;padding:0.6rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  font-family:var(--mono);font-size:0.62rem;color:var(--ink-4);letter-spacing:0.04em;
+}
+.datebar-live{display:flex;align-items:center;gap:0.3rem;color:var(--teal);font-weight:500;}
+.datebar-live .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* EDITORIAL HERO — Full Width */
+.ed-hero{
+  max-width:1200px;margin:0 auto;padding:2.5rem 2rem 2rem;
+  display:grid;grid-template-columns:1.4fr 1fr;gap:3rem;
+  border-bottom:1px solid var(--border);
+}
+
+.ed-hero-main{}
+.ed-hero-kicker{
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--vermillion);margin-bottom:0.5rem;font-weight:500;
+}
+.ed-hero-title{
+  font-family:var(--display);font-size:2.8rem;font-weight:900;line-height:1.08;
+  margin-bottom:0.75rem;letter-spacing:-0.02em;
+}
+.ed-hero-deck{font-size:1rem;color:var(--ink-2);line-height:1.65;margin-bottom:1rem;}
+.ed-hero-meta{display:flex;align-items:center;gap:1rem;font-size:0.72rem;color:var(--ink-4);}
+.ed-hero-cat{font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--cobalt);font-size:0.62rem;}
+
+/* Audio embed */
+.ed-audio{
+  background:var(--ink);border-radius:10px;padding:1.25rem;margin-top:1.5rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.ed-audio-play{width:40px;height:40px;border-radius:50%;background:var(--vermillion);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;box-shadow:0 3px 12px rgba(230,59,46,0.3);}
+.ed-audio-play:hover{transform:scale(1.08);}
+.ed-audio-info{flex:1;}
+.ed-audio-label{font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;}
+.ed-audio-title{font-size:0.82rem;color:rgba(255,255,255,0.8);margin-top:0.1rem;}
+.ed-audio-time{font-family:var(--mono);font-size:0.62rem;color:rgba(255,255,255,0.3);}
+
+/* Hero sidebar — story list */
+.ed-hero-sidebar{}
+.ed-sidebar-label{
+  font-family:var(--mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-4);padding-bottom:0.6rem;border-bottom:2px solid var(--ink);margin-bottom:0.75rem;
+}
+.ed-sidebar-item{
+  padding:0.65rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all 0.2s;
+}
+.ed-sidebar-item:hover{padding-left:0.4rem;}
+.esi-cat{font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.15rem;}
+.esi-cat.cat-tools{color:var(--teal);}
+.esi-cat.cat-student{color:var(--plum);}
+.esi-cat.cat-policy{color:var(--vermillion);}
+.esi-cat.cat-strategy{color:var(--gold);}
+.esi-cat.cat-research{color:var(--slate);}
+.esi-title{font-family:var(--display);font-size:1rem;line-height:1.25;font-weight:400;}
+.esi-source{font-family:var(--mono);font-size:0.58rem;color:var(--ink-4);margin-top:0.1rem;}
+
+/* EDITORIAL GRID — Masonry-like */
+.ed-grid{
+  max-width:1200px;margin:0 auto;padding:2rem;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:1.5rem;
+}
+
+.ed-card{
+  background:var(--surface);border:1px solid var(--border);overflow:hidden;
+  cursor:pointer;transition:all 0.3s;position:relative;
+}
+.ed-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.06);transform:translateY(-2px);}
+
+.ed-card-inner{padding:1.25rem;}
+.edc-kicker{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.35rem;font-weight:500;}
+.edc-title{font-family:var(--display);font-size:1.15rem;line-height:1.2;font-weight:700;margin-bottom:0.35rem;}
+.edc-excerpt{font-size:0.78rem;color:var(--ink-2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.edc-meta{margin-top:0.6rem;font-family:var(--mono);font-size:0.58rem;color:var(--ink-4);}
+
+/* Large card */
+.ed-card.large{grid-column:span 6;}
+.ed-card.large .edc-title{font-size:1.5rem;}
+.ed-card.large .edc-excerpt{-webkit-line-clamp:4;}
+
+/* Medium card */
+.ed-card.medium{grid-column:span 4;}
+
+/* Stat card */
+.ed-card.stat{
+  grid-column:span 4;
+  background:var(--ink);color:white;display:flex;flex-direction:column;justify-content:center;
+  padding:2rem;text-align:center;
+}
+.stat-big{font-family:var(--display);font-size:4rem;font-weight:900;line-height:1;color:var(--vermillion);}
+.stat-desc{font-size:0.85rem;color:rgba(255,255,255,0.6);margin-top:0.5rem;line-height:1.4;}
+.stat-src{font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.3);margin-top:0.5rem;}
+
+/* Wide card */
+.ed-card.wide{grid-column:span 8;}
+
+/* Full card */
+.ed-card.full{grid-column:span 12;display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.ed-card.full .ed-card-visual{
+  background:linear-gradient(135deg,var(--surface-2),var(--surface-3));
+  display:flex;align-items:center;justify-content:center;min-height:200px;
+  font-size:3rem;
+}
+.ed-card.full .ed-card-inner{padding:2rem;display:flex;flex-direction:column;justify-content:center;}
+.ed-card.full .edc-title{font-size:1.7rem;}
+
+/* AI DOCK */
+.ai-dock{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;align-items:center;gap:1rem;
+  padding:0.65rem 2rem;
+  transform:translateY(0);transition:transform 0.3s;
+}
+.ai-dock.collapsed{transform:translateY(calc(100% - 44px));}
+
+.ai-dock-toggle{
+  display:flex;align-items:center;gap:0.5rem;cursor:pointer;flex-shrink:0;
+}
+.ai-dock-avatar{
+  width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(135deg,var(--vermillion),#FF7043);
+  display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:white;
+}
+.ai-dock-label{font-size:0.82rem;font-weight:600;color:white;}
+.ai-dock-status{font-size:0.6rem;color:#34D399;}
+
+.ai-dock-input{
+  flex:1;display:flex;gap:0.5rem;
+}
+.ai-dock-inp{
+  flex:1;padding:0.55rem 0.85rem;border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  background:rgba(255,255,255,0.06);color:white;font-family:var(--body);font-size:0.82rem;outline:none;
+  transition:border-color 0.2s;
+}
+.ai-dock-inp:focus{border-color:var(--vermillion);}
+.ai-dock-inp::placeholder{color:rgba(255,255,255,0.3);}
+.ai-dock-send{width:36px;height:36px;border-radius:8px;background:var(--vermillion);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.ai-dock-send:hover{background:#D4342A;}
+
+.ai-dock-suggestions{display:flex;gap:0.35rem;flex-shrink:0;}
+.ai-dock-sug{
+  font-size:0.65rem;padding:0.3rem 0.6rem;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.5);
+  cursor:pointer;transition:all 0.2s;font-family:var(--body);white-space:nowrap;
+}
+.ai-dock-sug:hover{border-color:var(--vermillion);color:var(--vermillion);}
+
+/* Body padding for dock */
+body{padding-bottom:60px;}
+
+@media(max-width:900px){
+  .ed-hero{grid-template-columns:1fr;}
+  .ed-card.large,.ed-card.medium,.ed-card.wide,.ed-card.stat,.ed-card.full{grid-column:span 12;}
+  .ed-card.full{grid-template-columns:1fr;}
+  .masthead-name{font-size:1.4rem;}
+  .ed-hero-title{font-size:2rem;}
+  .ai-dock-suggestions{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="concept-banner">Concept C: The Magazine — Bold Editorial Grid with Persistent AI Dock</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <a class="masthead-brand" href="#">
+    <span class="masthead-ihe">Innovating Higher Ed</span>
+    <span class="masthead-name">The Innovation <span>Pulse</span></span>
+  </a>
+  <nav class="masthead-nav">
+    <a class="masthead-link" href="#">Home</a>
+    <a class="masthead-link" href="#">Prompts</a>
+    <a class="masthead-link" href="#">AI Directory</a>
+    <a class="masthead-link" href="#">Podcast</a>
+    <a class="masthead-link" href="#">Tinker Lab</a>
+    <button class="masthead-sub">Subscribe</button>
+  </nav>
+</header>
+
+<div class="datebar">
+  <span>Friday, February 6, 2026 · Vol. 47</span>
+  <div class="datebar-live"><span class="dot"></span>Updated 3 minutes ago · 847 tools indexed</div>
+</div>
+
+<!-- EDITORIAL HERO -->
+<section class="ed-hero">
+  <div class="ed-hero-main">
+    <div class="ed-hero-kicker">◆ Lead Story · Deep Dive</div>
+    <h1 class="ed-hero-title">The OECD Report That Rewrites Everything We Thought About AI in Education</h1>
+    <p class="ed-hero-deck">Students using AI scored 127% higher — but when you take it away, they actually perform worse. The most comprehensive analysis to date has profound implications for how every institution approaches curriculum design, assessment, and AI strategy.</p>
+    <div class="ed-hero-meta">
+      <span class="ed-hero-cat">Deep Dive</span>
+      <span>OECD Digital Education Outlook 2026</span>
+      <span>8 min read</span>
+      <span>2 hours ago</span>
+    </div>
+    <div class="ed-audio">
+      <button class="ed-audio-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg></button>
+      <div class="ed-audio-info">
+        <div class="ed-audio-label">Today's Broadcast</div>
+        <div class="ed-audio-title">The Innovator's Edge — Friday Edition</div>
+      </div>
+      <div class="ed-audio-time">4:35</div>
+    </div>
+  </div>
+
+  <div class="ed-hero-sidebar">
+    <div class="ed-sidebar-label">Also in Today's Pulse</div>
+    <div class="ed-sidebar-item">
+      <div class="esi-cat cat-tools">Tools</div>
+      <div class="esi-title">Microsoft Copilot Gets Higher Ed–Specific Features</div>
+      <div class="esi-source">Microsoft Blog · 3h ago</div>
+    </div>
+    <div class="ed-sidebar-item">
+      <div class="esi-cat cat-student">Student Experience</div>
+      <div class="esi-title">OpenAI Partners with 10 HBCUs on AI Access</div>
+      <div class="esi-source">OpenAI · 4h ago</div>
+    </div>
+    <div class="ed-sidebar-item">
+      <div class="esi-cat cat-policy">Policy</div>
+      <div class="esi-title">First AI Textbook Approved in Texas</div>
+      <div class="esi-source">EdSurge · 5h ago</div>
+    </div>
+    <div class="ed-sidebar-item">
+      <div class="esi-cat cat-strategy">Leadership</div>
+      <div class="esi-title">The Faculty AI Training Gap</div>
+      <div class="esi-source">Educause Review · 6h ago</div>
+    </div>
+    <div class="ed-sidebar-item">
+      <div class="esi-cat cat-research">Research</div>
+      <div class="esi-title">AI Tutoring: 0.5 SD Effect Size</div>
+      <div class="esi-source">Nature Education · 10h ago</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL GRID -->
+<div class="ed-grid">
+  <!-- Large card -->
+  <div class="ed-card large">
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--teal);">Tools & Technology</div>
+      <div class="edc-title">Microsoft Copilot Adds Course Scheduling, Student Dashboards, and Paper Summarization</div>
+      <div class="edc-excerpt">The new higher ed-specific features are built directly into Teams Education, making AI a native part of the LMS experience rather than a separate tool faculty need to learn.</div>
+      <div class="edc-meta">Microsoft Blog · 3h ago · 4 min</div>
+    </div>
+  </div>
+
+  <!-- Stat -->
+  <div class="ed-card stat">
+    <div class="stat-big">73%</div>
+    <div class="stat-desc">of faculty now use AI tools weekly — up from 31% one year ago</div>
+    <div class="stat-src">Educause 2026 Survey</div>
+  </div>
+
+  <!-- Medium cards -->
+  <div class="ed-card medium" style="grid-column:span 6;">
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--plum);">Student Experience</div>
+      <div class="edc-title">OpenAI Partners with 10 HBCUs on $50M AI Access Initiative</div>
+      <div class="edc-excerpt">Free enterprise ChatGPT, custom tutoring GPTs, and comprehensive faculty training across historically Black colleges.</div>
+      <div class="edc-meta">OpenAI · 4h ago · 5 min</div>
+    </div>
+  </div>
+
+  <div class="ed-card medium" style="grid-column:span 6;">
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--vermillion);">Policy & Regulation</div>
+      <div class="edc-title">Texas Approves First AI-Generated Textbook for State Adoption</div>
+      <div class="edc-excerpt">A precedent-setting decision raises questions about authorship, accuracy verification, and editorial oversight for AI-created learning materials.</div>
+      <div class="edc-meta">EdSurge · 5h ago · 6 min</div>
+    </div>
+  </div>
+
+  <!-- Wide card -->
+  <div class="ed-card wide">
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--gold);">Leadership & Strategy</div>
+      <div class="edc-title">Why 80% of AI Professional Development Programs Are Missing the Mark</div>
+      <div class="edc-excerpt">A new analysis finds most faculty AI training focuses on tool demonstrations rather than pedagogical integration — creating technically trained but strategically unprepared educators. The gap between knowing how to use ChatGPT and knowing when and why to use it in a lesson remains vast.</div>
+      <div class="edc-meta">Educause Review · 6h ago · 7 min</div>
+    </div>
+  </div>
+
+  <!-- Stat 2 -->
+  <div class="ed-card stat" style="grid-column:span 4;">
+    <div class="stat-big">127%</div>
+    <div class="stat-desc">higher scores when students use AI — but scores drop below baseline when AI is removed</div>
+    <div class="stat-src">OECD 2026 Report</div>
+  </div>
+
+  <!-- Full width -->
+  <div class="ed-card full">
+    <div class="ed-card-visual">🔬</div>
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--slate);">Research</div>
+      <div class="edc-title">Meta-Analysis: AI Tutoring Improves Outcomes by 0.5 Standard Deviations</div>
+      <div class="edc-excerpt">A systematic review of 142 studies spanning 47 countries finds that AI tutoring systems produce effects comparable to human one-on-one tutoring — with significant variation based on implementation quality, subject area, and student demographics. The key differentiator isn't the technology — it's how it's integrated into existing pedagogy.</div>
+      <div class="edc-meta">Nature Education · 10h ago · 9 min</div>
+    </div>
+  </div>
+
+  <!-- More medium cards -->
+  <div class="ed-card medium">
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--teal);">Tools</div>
+      <div class="edc-title">Brisk Teaching Launches "Feedback Studio" for Higher Ed</div>
+      <div class="edc-excerpt">Rubric-aligned feedback in under 30 seconds with full instructor control.</div>
+      <div class="edc-meta">Brisk Teaching · 8h ago · 3 min</div>
+    </div>
+  </div>
+
+  <div class="ed-card medium">
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--cobalt);">Campus Watch</div>
+      <div class="edc-title">Loyola's AI Assistant Hits 91% Accuracy After Two Semesters</div>
+      <div class="edc-excerpt">LUie has handled 140K student queries and reduced staff workload for routine tasks.</div>
+      <div class="edc-meta">Loyola Chicago · Yesterday · 4 min</div>
+    </div>
+  </div>
+
+  <div class="ed-card medium">
+    <div class="ed-card-inner">
+      <div class="edc-kicker" style="color:var(--plum);">Equity & Access</div>
+      <div class="edc-title">Community Colleges Lead in Practical AI Adoption</div>
+      <div class="edc-excerpt">Two-year institutions are outpacing R1 universities in classroom AI integration.</div>
+      <div class="edc-meta">AACC · Yesterday · 5 min</div>
+    </div>
+  </div>
+</div>
+
+<!-- AI DOCK -->
+<div class="ai-dock">
+  <div class="ai-dock-toggle">
+    <div class="ai-dock-avatar">AI</div>
+    <div>
+      <div class="ai-dock-label">Pulse Navigator</div>
+      <div class="ai-dock-status">● Ready to help</div>
+    </div>
+  </div>
+  <div class="ai-dock-input">
+    <input class="ai-dock-inp" placeholder="Ask me anything — find tools, content, or get recommendations for your role..." type="text">
+    <button class="ai-dock-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+  </div>
+  <div class="ai-dock-suggestions">
+    <button class="ai-dock-sug">Faculty picks</button>
+    <button class="ai-dock-sug">AI grading tools</button>
+    <button class="ai-dock-sug">Policy updates</button>
+    <button class="ai-dock-sug">For admins</button>
+  </div>
+</div>
+
+</body>
+</html>
