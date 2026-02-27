@@ -274,6 +274,71 @@ export default function BeOurGuestPage() {
         </div>
       </div>
 
+      {/* QR Code Section */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <div className="bg-[var(--surface-1)] border border-[var(--border)] rounded-[20px] p-8 flex flex-col md:flex-row items-center gap-8 max-w-[800px] mx-auto">
+          <div className="shrink-0">
+            {/* QR Code - links to this page for mobile access */}
+            <div className="w-[140px] h-[140px] bg-white rounded-[12px] p-3 flex items-center justify-center">
+              <svg viewBox="0 0 100 100" className="w-full h-full">
+                {/* Simplified QR pattern - replace with actual QR code image */}
+                <rect x="0" y="0" width="100" height="100" fill="white"/>
+                <rect x="5" y="5" width="25" height="25" fill="#0a0a0f"/>
+                <rect x="10" y="10" width="15" height="15" fill="white"/>
+                <rect x="13" y="13" width="9" height="9" fill="#0a0a0f"/>
+                <rect x="70" y="5" width="25" height="25" fill="#0a0a0f"/>
+                <rect x="75" y="10" width="15" height="15" fill="white"/>
+                <rect x="78" y="13" width="9" height="9" fill="#0a0a0f"/>
+                <rect x="5" y="70" width="25" height="25" fill="#0a0a0f"/>
+                <rect x="10" y="75" width="15" height="15" fill="white"/>
+                <rect x="13" y="78" width="9" height="9" fill="#0a0a0f"/>
+                {/* Data pattern */}
+                <rect x="35" y="5" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="45" y="5" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="55" y="5" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="35" y="15" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="50" y="15" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="5" y="35" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="15" y="40" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="25" y="35" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="35" y="35" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="45" y="40" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="55" y="35" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="65" y="40" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="75" y="35" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="85" y="40" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="35" y="50" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="50" y="55" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="65" y="50" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="80" y="55" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="35" y="65" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="45" y="70" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="55" y="65" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="70" y="70" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="80" y="75" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="90" y="70" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="35" y="80" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="50" y="85" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="65" y="80" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="75" y="90" width="5" height="5" fill="#0a0a0f"/>
+                <rect x="85" y="85" width="5" height="5" fill="#0a0a0f"/>
+              </svg>
+            </div>
+          </div>
+          <div className="text-center md:text-left">
+            <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-2">
+              Mobile Access
+            </div>
+            <h3 className="font-sans text-[1.1rem] font-bold mb-2">
+              Scan to Apply from Your Phone
+            </h3>
+            <p className="text-[0.82rem] text-[var(--text-secondary)] leading-[1.6]">
+              Scan this QR code to open this page on your mobile device and submit your guest application on the go.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Recent Episodes Teaser */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="flex items-center justify-between mb-4">
