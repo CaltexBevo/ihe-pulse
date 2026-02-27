@@ -5,6 +5,7 @@ import Card from "@/components/Card";
 import HomeAudioPlayer from "@/components/HomeAudioPlayer";
 import HomePromptCards from "@/components/HomePromptCards";
 import HomeAIAppCards from "@/components/HomeAIAppCards";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { getLatestEpisode, getAllStoriesAggregated, formatPulseDate, categoryColors, generateSlug, mapToV4Category, V4_CATEGORY_COLORS, V4_CATEGORY_SLUGS } from "@/lib/data/innovation-pulse";
 import { episodes } from "@/lib/data/episodes";
 
@@ -423,31 +424,7 @@ export default function Home() {
           NEWSLETTER SIGNUP
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 md:p-12 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
-
-          <h2 className="font-sans text-[1.6rem] font-bold mb-2">
-            Never Miss a Pulse
-          </h2>
-          <p className="text-[0.85rem] text-[var(--text-secondary)] max-w-[500px] mx-auto mb-6">
-            Get the Innovation Pulse delivered to your inbox. Curated AI news for higher education — no fluff, no hype.
-          </p>
-
-          <form className="flex flex-col sm:flex-row gap-3 max-w-[400px] mx-auto mb-2">
-            <input
-              type="email"
-              placeholder="your@university.edu"
-              className="input flex-1"
-            />
-            <button type="submit" className="btn-primary whitespace-nowrap">
-              Subscribe Free
-            </button>
-          </form>
-
-          <p className="text-[0.68rem] text-[var(--text-muted)]">
-            Join 1,200+ educators. No spam. Unsubscribe anytime.
-          </p>
-        </div>
+        <NewsletterSignup variant="card" />
       </section>
     </div>
   );
