@@ -97,49 +97,60 @@ function mapCategory(cat: string): import('./innovation-pulse-types').StoryCateg
   return v4ToLegacyMap[v4Category];
 }
 
-// Helper to normalize episode data (handles both old and new formats)
+// Helper to normalize episode data (handles both old and new V3 formats)
 function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode | null {
-  // New format has segments.deepDive and segments.quickHits
-  // Old format has top-level deepDive and quickHits
-  const segments = raw.segments as Record<string, unknown> | undefined;
-  const rawDeepDive = (segments?.deepDive || raw.deepDive) as Record<string, unknown> | undefined;
-  const rawQuickHits = (segments?.quickHits || raw.quickHits) as Record<string, unknown>[] | undefined;
+  // V3 format has: episode.*, leadStory.*, quickHits[] at top level
+  // Old format has: segments.deepDive, segments.quickHits, or top-level deepDive/quickHits
 
-  if (!rawDeepDive || !rawQuickHits) {
+  const episode = raw.episode as Record<string, unknown> | undefined;
+  const leadStory = raw.leadStory as Record<string, unknown> | undefined;
+  const segments = raw.segments as Record<string, unknown> | undefined;
+
+  // Determine deep dive source (V3: leadStory, old: segments.deepDive or raw.deepDive)
+  const rawDeepDive = leadStory || segments?.deepDive as Record<string, unknown> | undefined || raw.deepDive as Record<string, unknown> | undefined;
+
+  // Determine quick hits source (V3: top-level quickHits, old: segments.quickHits or raw.quickHits)
+  const rawQuickHits = (raw.quickHits || segments?.quickHits || []) as Record<string, unknown>[];
+
+  if (!rawDeepDive) {
     return null;
   }
 
-  // Extract text fields that might contain summary info
-  const broadcastScript = raw.broadcastScript as string || '';
-  const hook = raw.hook as string || '';
+  // Extract text fields - handle both formats
+  const broadcastScript = (episode?.broadcastScript || raw.broadcastScript) as string || '';
 
-  // Normalize deep dive - provide defaults for missing fields
+  // V3 format: leadStory.hook, old format: top-level hook
+  const hook = (leadStory?.hook || raw.hook || raw.editorialHook) as string || '';
+
+  // V3 format has pullQuote in leadStory
+  const pullQuote = (leadStory?.pullQuote) as string || '';
+
+  // Normalize deep dive - handle V3 leadStory fields
   const deepDive: InnovationPulseEpisode['deepDive'] = {
-    title: rawDeepDive.title as string || '',
-    summary: (rawDeepDive.summary as string) || hook || broadcastScript.slice(0, 500) || 'Read the full story for details.',
-    source: rawDeepDive.source as string || '',
-    sourceUrl: rawDeepDive.sourceUrl as string || '',
+    title: (leadStory?.headline || rawDeepDive.title) as string || '',
+    summary: (leadStory?.editorialTake || rawDeepDive.summary || hook || broadcastScript.slice(0, 500)) as string || 'Read the full story for details.',
+    source: (rawDeepDive.source) as string || '',
+    sourceUrl: (rawDeepDive.sourceUrl) as string || '',
     isCallback: (rawDeepDive.isCallback as boolean) ?? false,
-    category: mapCategory(rawDeepDive.category as string || ''),
-    editorialCallout: rawDeepDive.editorialCallout as string | undefined,
+    category: mapCategory((rawDeepDive.category) as string || ''),
+    editorialCallout: (rawDeepDive.editorialCallout) as string | undefined,
   };
 
   // Normalize quick hits - provide defaults for missing fields
   const quickHits: InnovationPulseEpisode['quickHits'] = rawQuickHits.map((hit) => ({
-    title: hit.title as string || '',
-    summary: (hit.summary as string) || 'Read the full story for details.',
-    source: hit.source as string || '',
-    sourceUrl: hit.sourceUrl as string || '',
-    category: mapCategory(hit.category as string || ''),
+    title: (hit.headline || hit.title) as string || '',
+    summary: (hit.summary) as string || 'Read the full story for details.',
+    source: (hit.source) as string || '',
+    sourceUrl: (hit.sourceUrl) as string || '',
+    category: mapCategory((hit.category) as string || ''),
     isCallback: hit.isCallback as boolean | undefined,
   }));
 
-  // Handle editorialLens - new format is an object with name/description/color
-  // Old format is a string matching EditorialLens type
+  // Handle editorialLens - V3 has episode.editorialLens (string) or raw.editorialLens (object or string)
   let editorialLens: InnovationPulseEpisode['editorialLens'];
-  const rawLens = raw.editorialLens as unknown;
+  const rawLens = (episode?.editorialLens || raw.editorialLens) as unknown;
   if (typeof rawLens === 'object' && rawLens !== null && 'name' in rawLens) {
-    // New format - extract the name which should match EditorialLens
+    // Object format with name property
     editorialLens = (rawLens as { name: string }).name as InnovationPulseEpisode['editorialLens'];
   } else if (typeof rawLens === 'string') {
     editorialLens = rawLens as InnovationPulseEpisode['editorialLens'];
@@ -148,21 +159,28 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     editorialLens = "The Practitioner's Playbook";
   }
 
+  // Get date/dayOfWeek - V3 has these in episode.*, old format at top level
+  const date = (episode?.date || raw.date) as string;
+  const dayOfWeek = (episode?.dayOfWeek || raw.dayOfWeek) as string;
+  const audioUrl = (episode?.audioUrl || raw.audioUrl) as string || '';
+  const audioDuration = (episode?.audioDuration || raw.audioDuration) as string || '';
+
   // Build the normalized episode with all required fields
+  // Use pullQuote for editorialHook if available (V3), otherwise fall back to hook
   const normalizedEpisode: InnovationPulseEpisode = {
-    date: raw.date as string,
-    dayOfWeek: raw.dayOfWeek as string,
+    date,
+    dayOfWeek,
     editorialLens,
-    editorialHook: hook || (raw.editorialHook as string) || '',
-    audioUrl: (raw.audioUrl as string) || '',
-    audioDuration: (raw.audioDuration as string) || '',
+    editorialHook: pullQuote || hook || '',
+    audioUrl,
+    audioDuration,
     deepDive,
     quickHits,
     storiesWatching: (raw.storiesWatching as InnovationPulseEpisode['storiesWatching']) || [],
     closingThought: (raw.closingThought as string) || '',
     categories: (raw.categories as InnovationPulseEpisode['categories']) ||
       [deepDive.category, ...quickHits.map(q => q.category)].filter((v, i, a) => a.indexOf(v) === i) as InnovationPulseEpisode['categories'],
-    themes: (raw.themes as string[]) || [],
+    themes: ((raw.meta as Record<string, unknown>)?.themes || raw.themes) as string[] || [],
   };
 
   return normalizedEpisode;
