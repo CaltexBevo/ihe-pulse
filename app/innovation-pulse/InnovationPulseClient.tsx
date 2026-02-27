@@ -19,6 +19,22 @@ function generateSlug(title: string): string {
     .slice(0, 60);
 }
 
+// Helper to render text with paragraph breaks
+function renderParagraphs(text: string, className: string): React.ReactNode {
+  if (!text) return null;
+  const paragraphs = text.split(/\n\n+/).filter(p => p.trim());
+  if (paragraphs.length <= 1) {
+    return <p className={className}>{text}</p>;
+  }
+  return (
+    <div className="space-y-4">
+      {paragraphs.map((para, i) => (
+        <p key={i} className={className}>{para.trim()}</p>
+      ))}
+    </div>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════════════════
 // V4 CATEGORY SYSTEM
 // ═══════════════════════════════════════════════════════════════════════════
@@ -645,7 +661,7 @@ export default function InnovationPulseClient({
           ═══════════════════════════════════════════════════════ */}
       <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
         <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2 mb-6">
-          <span className="text-[var(--cyan)]">LEAD STORY</span> — Today&apos;s Featured
+          <span className="text-[var(--cyan)]">LEAD STORY</span> — {selectedAudioDate ? formatShortDate(selectedAudioDate) : "Today's"} Featured
         </div>
 
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden grid md:grid-cols-2 hover:border-[var(--border-hover)] transition-colors">
@@ -676,9 +692,9 @@ export default function InnovationPulseClient({
             <h2 className="text-[1.5rem] font-bold leading-[1.25] mb-4">
               {leadStory.title}
             </h2>
-            <p className="text-[0.88rem] leading-[1.7] text-[var(--text-secondary)] mb-5">
-              {leadStory.summary}
-            </p>
+            <div className="mb-5">
+              {renderParagraphs(leadStory.summary, "text-[0.88rem] leading-[1.7] text-[var(--text-secondary)]")}
+            </div>
 
             {/* Action Links */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -707,11 +723,9 @@ export default function InnovationPulseClient({
             {leadStory.editorialCallout && (
               <div className="border-t border-[var(--border)] pt-5">
                 <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-2">
-                  OUR TAKE — {episode.editorialLens}
+                  OUR TAKE — {displayedEpisode.editorialLens}
                 </div>
-                <p className="italic text-[0.95rem] text-[var(--text)] leading-[1.6]">
-                  {leadStory.editorialCallout}
-                </p>
+                {renderParagraphs(leadStory.editorialCallout, "italic text-[0.95rem] text-[var(--text)] leading-[1.6]")}
               </div>
             )}
           </div>
