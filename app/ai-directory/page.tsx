@@ -55,6 +55,7 @@ interface AiAppsData {
 
 type Role = 'faculty' | 'administrator' | 'student';
 type TaskTag = string;
+type SortOption = 'all' | 'recent' | 'trending' | 'updated';
 
 // ── Constants ───────────────────────────────────────────────
 
@@ -251,6 +252,7 @@ export default function AIDirectoryPage() {
   const [activeRole, setActiveRole] = useState<Role | null>(null);
   const [activeTask, setActiveTask] = useState<TaskTag | null>(null);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [sortBy, setSortBy] = useState<SortOption>('all');
 
   // Load data from JSON
   useEffect(() => {
@@ -270,7 +272,7 @@ export default function AIDirectoryPage() {
   const staffPicks = useMemo(() => tools.filter((t) => t.staffPick), [tools]);
 
   const filtered = useMemo(() => {
-    return tools.filter((app) => {
+    let result = tools.filter((app) => {
       if (activeRole && !app.roles.includes(activeRole)) return false;
       if (activeTask && !app.tasks.includes(activeTask)) return false;
       if (activeCategory !== 'All' && app.category !== activeCategory) return false;
@@ -285,16 +287,41 @@ export default function AIDirectoryPage() {
       }
       return true;
     });
-  }, [tools, activeRole, activeTask, activeCategory, search]);
+
+    // Apply sorting
+    if (sortBy === 'recent') {
+      // Sort by lastUpdated descending (most recent first)
+      result = [...result].sort((a, b) =>
+        new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
+      );
+    } else if (sortBy === 'trending') {
+      // Show trending items first
+      result = [...result].sort((a, b) => {
+        if (a.badge === 'trending' && b.badge !== 'trending') return -1;
+        if (b.badge === 'trending' && a.badge !== 'trending') return 1;
+        return 0;
+      });
+    } else if (sortBy === 'updated') {
+      // Show updated items first, then by date
+      result = [...result].sort((a, b) => {
+        if (a.badge === 'updated' && b.badge !== 'updated') return -1;
+        if (b.badge === 'updated' && a.badge !== 'updated') return 1;
+        return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
+      });
+    }
+
+    return result;
+  }, [tools, activeRole, activeTask, activeCategory, search, sortBy]);
 
   const clearFilters = () => {
     setSearch('');
     setActiveRole(null);
     setActiveTask(null);
     setActiveCategory('All');
+    setSortBy('all');
   };
 
-  const hasFilters = search || activeRole || activeTask || activeCategory !== 'All';
+  const hasFilters = search || activeRole || activeTask || activeCategory !== 'All' || sortBy !== 'all';
 
   if (loading) {
     return (
@@ -392,7 +419,7 @@ export default function AIDirectoryPage() {
           </div>
 
           {/* ── Task-based filtering ─────────────────────── */}
-          <div className="flex flex-wrap justify-center gap-1.5 mb-8">
+          <div className="flex flex-wrap justify-center gap-1.5 mb-6">
             {taskKeys.map((task) => {
               const Icon = taskIcons[task] ?? Bot;
               const isActive = activeTask === task;
@@ -408,6 +435,31 @@ export default function AIDirectoryPage() {
                 >
                   <Icon size={14} />
                   {taskLabels[task]}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* ── Sort buttons ─────────────────────────────── */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {([
+              { value: 'all', label: 'All' },
+              { value: 'recent', label: 'Recently Added' },
+              { value: 'trending', label: 'Trending' },
+              { value: 'updated', label: 'Updated' },
+            ] as { value: SortOption; label: string }[]).map((opt) => {
+              const isActive = sortBy === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  onClick={() => setSortBy(opt.value)}
+                  className={`px-4 py-[7px] rounded-full text-[0.82rem] font-medium transition-all border ${
+                    isActive
+                      ? 'bg-[var(--magenta)]/10 border-[var(--magenta)]/40 text-[var(--magenta)]'
+                      : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--magenta)]/35'
+                  }`}
+                >
+                  {opt.label}
                 </button>
               );
             })}
@@ -435,16 +487,16 @@ export default function AIDirectoryPage() {
                 <BadgeCheck size={20} className="text-[var(--cyan)]" />
                 <h2 className="text-xl font-bold text-[var(--text)]">Staff Picks</h2>
               </div>
-              <div className="grid md:grid-cols-2 gap-[18px]">
-                {staffPicks.slice(0, 4).map((tool) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
+                {staffPicks.slice(0, 3).map((tool) => (
                   <ToolCard key={tool.slug} tool={tool} />
                 ))}
               </div>
             </section>
           )}
 
-          {/* ── App Grid (2-column) ──────────────────────── */}
-          <div className="grid md:grid-cols-2 gap-[18px]">
+          {/* ── App Grid (3-column) ──────────────────────── */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
             {filtered.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
