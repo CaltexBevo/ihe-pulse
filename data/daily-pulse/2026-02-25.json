@@ -1,0 +1,72 @@
+{
+  "episode": {
+    "date": "2026-02-25",
+    "dayOfWeek": "Wednesday",
+    "editorialLens": "The Student Experience",
+    "lensDescription": "Everything filtered through how it affects actual students.",
+    "lensColor": "#60a5fa",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-25.mp3",
+    "audioDuration": "3:58",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Wednesday, February 25th.\n\nWhen universities roll out A.I. at scale, students become the real test subjects for what works.\n\n-\nThis week's top education stories tell a clear narrative. A.I. has moved from experimental pilot programs to institutional infrastructure. The University of Colorado's 2 million dollar ChatGPT Edu rollout to 100,000 users, Google's native recording features in Classroom, and Anthropic's assessment partnerships signal that A.I. is no longer a question of if, but how fast.\n\nHere's what strikes me about these announcements. How little they focus on student outcomes. The University of Colorado press release emphasizes secure instances and faculty authority but says nothing about whether students actually learn better with A.I. access. Google touts workflow consolidation while sidestepping questions about whether multimodal assignments improve comprehension or just create busywork.\n\nAnd look at Anthropic's 80% accuracy rate in grading. That sounds impressive until you realize it means one in five student responses gets misinterpreted.\n\nThe 65 million dollar Department of Labor funding for community college training programs offers a telling counterpoint. This investment targets employer-aligned programs and stackable credentials. Language that suggests education's value increasingly lies in immediate job readiness rather than critical thinking development. When combined with A.I. tools that can complete assignments without learning, we're creating a system optimized for efficiency over understanding.\n\nHere's the uncomfortable question. Are we scaling A.I. in education because it improves student learning, or because it makes institutional operations more manageable? The evidence suggests the latter. Students report using A.I. to finish work faster, not to engage more deeply with material. Faculty use it to generate feedback more efficiently, not necessarily more effectively.\n\nHere's what I keep coming back to. We're implementing A.I. at the speed of technology adoption, not at the pace of educational wisdom. I've watched too many promising tools get deployed campus-wide before anyone understood their pedagogical impact. The University of Colorado's 2 million dollar investment might be exactly what students need. Or it might be an expensive way to automate away the struggle that makes learning stick.\n\nSo educators should demand more than efficiency metrics from these rollouts. Before your institution adopts the next A.I. tool, ask: What specific learning outcome will this improve? How will we measure that improvement? And most importantly, are we solving for student success or administrative convenience?\n\n-\nNow, some quick hits from around higher ed this week.\n\nOver at Florida State, Professor Shouping Hu earned a distinguished fellowship for his A.I.-enhanced student success research. His work on postsecondary outcomes becomes increasingly relevant as institutions deploy A.I. tools without clear learning benchmarks.\n\n-\nMeanwhile, Montana State hosted an A.I. in Education forum titled Friend or Foe for the community. When universities feel compelled to host public discussions about A.I.'s role, it signals the technology's impact extends far beyond campus.\n\n-\nAnd here's one more. Simpson College students are navigating A.I. policy confusion as faculty struggle with inconsistent guidelines across departments. Students face unclear expectations about what's allowed and what isn't. This campus-level confusion reflects the broader challenge of implementing coherent A.I. policies that serve student learning rather than administrative convenience.\n\n-\nThe pattern across all these stories is clear. We're moving fast on A.I. implementation but slowly on understanding its educational impact. The real test isn't whether these tools make our jobs easier. It's whether they help students learn better.\n\nThat's your Innovation Pulse for Wednesday. Find full coverage and links at innovating higher ed dot com. See you Thursday.\n\nI'm Dr. Norma Jones. Thanks for listening."
+  },
+  "leadStory": {
+    "headline": "A.I. Moves From Campus Pilot to Student Reality",
+    "hook": "When universities roll out A.I. at scale, students become the real test subjects for what works.",
+    "category": "Insights & Trends",
+    "source": "EdTech Innovation Hub",
+    "sourceUrl": "https://www.edtechinnovationhub.com/news/top-ten-edtech-stories-of-the-week-ai-leadership-shifts-platform-changes-and-workforce-funding",
+    "editorialTake": "This week's top education stories tell a clear narrative: A.I. has moved from experimental pilot programs to institutional infrastructure. The University of Colorado's $2 million ChatGPT Edu rollout to 100,000 users, Google's native recording features in Classroom, and Anthropic's assessment partnerships signal that A.I. is no longer a question of 'if' but 'how fast.'\n\nWhat's striking is how little these announcements focus on student outcomes. The University of Colorado press release emphasizes 'secure instances' and 'faculty authority' but says nothing about whether students actually learn better with A.I. access. Google touts workflow consolidation while sidestepping questions about whether multimodal assignments improve comprehension or just create busywork. Meanwhile, Anthropic's 80% accuracy rate in grading sounds impressive until you realize that means one in five student responses gets misinterpreted.\n\nThe $65 million Department of Labor funding for community college training programs offers a telling counterpoint. This investment targets 'employer-aligned programs' and 'stackable credentials' — language that suggests education's value increasingly lies in immediate job readiness rather than critical thinking development. When combined with A.I. tools that can complete assignments without learning, we're creating a system optimized for efficiency over understanding.\n\nHere's the uncomfortable question: Are we scaling A.I. in education because it improves student learning, or because it makes institutional operations more manageable? The evidence suggests the latter. Students report using A.I. to finish work faster, not to engage more deeply with material. Faculty use it to generate feedback more efficiently, not necessarily more effectively.\n\nEducators should demand more than efficiency metrics from these rollouts. Before your institution adopts the next A.I. tool, ask: What specific learning outcome will this improve? How will we measure that improvement? And most importantly: Are we solving for student success or administrative convenience?",
+    "pullQuote": "Students report using A.I. to finish work faster, not to engage more deeply with material — a distinction that reveals education's efficiency trap.",
+    "editorialCallout": "Here's what I keep coming back to: We're implementing A.I. at the speed of technology adoption, not at the pace of educational wisdom. I've watched too many promising tools get deployed campus-wide before anyone understood their pedagogical impact. The University of Colorado's $2 million investment might be exactly what students need — or it might be an expensive way to automate away the struggle that makes learning stick. My suggestion: If your institution is considering a major A.I. rollout, insist on a pilot semester focused entirely on learning outcomes, not operational efficiency. Ask your students directly: Does this tool help you understand concepts better, or just complete assignments faster?",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Students sitting at laptops with A.I. interfaces, but looking disconnected from their work"
+  },
+  "quickHits": [
+    {
+      "headline": "F.S.U. Professor Honored for A.I.-Enhanced Student Success Research",
+      "summary": "Shouping Hu's fellowship recognizes his work on postsecondary outcomes as A.I. reshapes higher education. His research on student success metrics becomes increasingly relevant as institutions deploy A.I. tools without clear learning benchmarks.",
+      "category": "Latest AI Products",
+      "source": "Florida State University News",
+      "sourceUrl": "https://news.fsu.edu/news/education-society/2026/02/26/fsu-annes-college-professor-earns-distinguished-fellowship/",
+      "isCallback": false
+    },
+    {
+      "headline": "Montana State Hosts A.I. Education Forum for Community",
+      "summary": "The 'A.I. in Education: Friend or Foe' forum reflects growing public concern about artificial intelligence in schools. When universities feel compelled to host community discussions about A.I.'s role, it signals the technology's impact extends far beyond campus.",
+      "category": "Beyond Ed",
+      "source": "Fairfield Sun Times",
+      "sourceUrl": "https://www.fairfieldsuntimes.com/news/state/artificial-intelligence-in-education-forum-at-montana-state-university/article_78051958-616c-5465-842c-12658f8eebd2.html",
+      "isCallback": false
+    },
+    {
+      "headline": "Simpson College Students Navigate A.I. Policy Confusion",
+      "summary": "Faculty struggle with inconsistent A.I. policies across departments while students face unclear expectations. This campus-level confusion reflects the broader challenge of implementing coherent A.I. guidelines that serve student learning rather than administrative convenience.",
+      "category": "Ethical AI",
+      "source": "The Simpsonian",
+      "sourceUrl": "https://thesimpsonian.com/37608/news/rethinking-artificial-intelligence-in-higher-education/",
+      "isCallback": false
+    }
+  ],
+  "meta": {
+    "date": "2026-02-25",
+    "dayOfWeek": "Wednesday",
+    "editorialLens": "The Student Experience",
+    "themes": [
+      "institutional AI rollouts",
+      "student learning outcomes",
+      "policy implementation",
+      "efficiency versus effectiveness",
+      "community college workforce training"
+    ],
+    "storiesWatching": [
+      "University-wide AI deployments and their impact on student learning",
+      "Community discussions about AI in education",
+      "Faculty AI policy development across departments"
+    ],
+    "lensDescription": "Everything filtered through how it affects actual students.",
+    "lensColor": "#60a5fa",
+    "publishedAt": "2026-02-27T18:15:48.520Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
