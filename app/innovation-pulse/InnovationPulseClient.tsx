@@ -3,11 +3,13 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import {
   formatPulseDate,
   formatShortDate,
   type InnovationPulseEpisode,
 } from "@/lib/data/innovation-pulse-types";
+import { getStoryImage, StoryImageAssigner } from "@/lib/utils/story-images";
 
 // Helper to generate slug from title
 function generateSlug(title: string): string {
@@ -35,10 +37,7 @@ function renderParagraphs(text: string, className: string): React.ReactNode {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// V4 CATEGORY SYSTEM
-// ═══════════════════════════════════════════════════════════════════════════
-
+// V4 Category System
 type V4Category =
   | "Insights & Trends"
   | "Case Study"
@@ -58,7 +57,6 @@ const V4_CATEGORIES: V4Category[] = [
   "Week in Review",
 ];
 
-// V4 Category colors
 const V4_CATEGORY_COLORS: Record<V4Category, { hex: string; bg: string; text: string }> = {
   "Insights & Trends": { hex: "#00d4ff", bg: "rgba(0,212,255,0.15)", text: "text-[#00d4ff]" },
   "Case Study": { hex: "#10b981", bg: "rgba(16,185,129,0.15)", text: "text-[#10b981]" },
@@ -69,7 +67,6 @@ const V4_CATEGORY_COLORS: Record<V4Category, { hex: string; bg: string; text: st
   "Week in Review": { hex: "#c850c0", bg: "rgba(200,80,192,0.15)", text: "text-[#c850c0]" },
 };
 
-// V4 Category badge text
 const V4_BADGE_TEXT: Record<V4Category, string> = {
   "Insights & Trends": "INSIGHTS",
   "Case Study": "CASE STUDY",
@@ -80,7 +77,6 @@ const V4_BADGE_TEXT: Record<V4Category, string> = {
   "Week in Review": "WEEK REVIEW",
 };
 
-// V4 Category slugs for archive links
 const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
   "Insights & Trends": "insights-and-trends",
   "Case Study": "case-study",
@@ -91,9 +87,7 @@ const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
   "Week in Review": "week-in-review",
 };
 
-// Map old categories to V4 categories
 const OLD_TO_V4_MAP: Record<string, V4Category> = {
-  // Direct mappings
   "Research & Innovation": "Insights & Trends",
   "Infrastructure & Operations": "Case Study",
   "Teaching & Learning": "Practical Tips",
@@ -101,7 +95,6 @@ const OLD_TO_V4_MAP: Record<string, V4Category> = {
   "Tools & Products": "Latest AI Products",
   "Student Experience": "Beyond Ed",
   "Leadership & Strategy": "Insights & Trends",
-  // Already V4
   "Insights & Trends": "Insights & Trends",
   "Case Study": "Case Study",
   "Practical Tips": "Practical Tips",
@@ -115,7 +108,7 @@ function mapToV4Category(oldCategory: string): V4Category {
   return OLD_TO_V4_MAP[oldCategory] || "Insights & Trends";
 }
 
-// Types for aggregated stories (from data layer)
+// Types
 interface AggregatedStory {
   title: string;
   summary: string;
@@ -128,94 +121,17 @@ interface AggregatedStory {
   callbackDate?: string;
 }
 
-// Extended type with V4 category
 interface AggregatedStoryWithV4 extends AggregatedStory {
   v4Category: V4Category;
 }
 
-// Extended image pool for story cards - prevents duplicates
-const storyImagePool = [
-  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1485988412941-77a35537dae4?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1560472355-536de3962603?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=450&fit=crop",
-  "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?w=800&h=450&fit=crop",
-];
-
-// Hash function for consistent image assignment
-function hashString(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  return Math.abs(hash);
-}
-
-// Get image for a story based on headline hash (consistent assignment)
-function getStoryImage(headline: string): string {
-  const hash = hashString(headline);
-  const index = hash % storyImagePool.length;
-  return storyImagePool[index];
-}
-
-// Get unique images for multiple stories (prevents duplicates on same page)
-function getUniqueStoryImages(headlines: string[]): Map<string, string> {
-  const usedIndices = new Set<number>();
-  const result = new Map<string, string>();
-
-  for (const headline of headlines) {
-    let hash = hashString(headline);
-    let index = hash % storyImagePool.length;
-
-    // If collision, find next available
-    let attempts = 0;
-    while (usedIndices.has(index) && attempts < storyImagePool.length) {
-      index = (index + 1) % storyImagePool.length;
-      attempts++;
-    }
-
-    usedIndices.add(index);
-    result.set(headline, storyImagePool[index]);
-  }
-
-  return result;
-}
-
-// Main Client Component
 interface InnovationPulseClientProps {
   episode: InnovationPulseEpisode | null;
   allEpisodes: InnovationPulseEpisode[];
   storiesByCategory: Record<string, AggregatedStory[]>;
 }
 
-// Editorial lens colors for badges
+// Editorial lens colors
 const LENS_COLORS: Record<string, { bg: string; text: string }> = {
   "The Hard Question": { bg: "bg-[var(--amber-dim)]", text: "text-[var(--amber)]" },
   "The Student Experience": { bg: "bg-[var(--green-dim)]", text: "text-[var(--green)]" },
@@ -224,7 +140,6 @@ const LENS_COLORS: Record<string, { bg: string; text: string }> = {
   "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]" },
 };
 
-// Format time for audio player
 function formatTime(seconds: number): string {
   if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
   const mins = Math.floor(seconds / 60);
@@ -238,23 +153,27 @@ export default function InnovationPulseClient({
   storiesByCategory,
 }: InnovationPulseClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<V4Category | "all">("all");
-  const [newsletterFrequency, setNewsletterFrequency] = useState<"daily" | "weekly">("daily");
-  const [expandedDay, setExpandedDay] = useState<string | null>(null);
+  const [expandedStory, setExpandedStory] = useState<string | null>(null);
 
-  // Audio state - now supports selecting different days
+  // Audio state
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [selectedAudioDate, setSelectedAudioDate] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [audioProgress, setAudioProgress] = useState(0);
 
-  // Get the currently selected episode's audio info
-  const selectedAudioEpisode = useMemo(() => {
-    if (!selectedAudioDate) return episode;
-    const found = allEpisodes.find(ep => ep.date === selectedAudioDate);
-    return found || episode;
-  }, [selectedAudioDate, allEpisodes, episode]);
+  // Last 5 episodes (sliding window)
+  const recentEpisodes = useMemo(() => {
+    return allEpisodes.slice(0, 5);
+  }, [allEpisodes]);
+
+  // Currently selected episode
+  const currentEpisode = recentEpisodes[selectedIndex] || episode;
+  const lensColors = currentEpisode ? LENS_COLORS[currentEpisode.editorialLens] || LENS_COLORS["The Hard Question"] : LENS_COLORS["The Hard Question"];
+
+  // Image assigner for page deduplication
+  const imageAssigner = useMemo(() => new StoryImageAssigner(), []);
 
   // Audio event handlers
   useEffect(() => {
@@ -268,10 +187,7 @@ export default function InnovationPulseClient({
       }
     };
 
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-    };
-
+    const handleLoadedMetadata = () => setDuration(audio.duration);
     const handleEnded = () => {
       setIsPlaying(false);
       setAudioProgress(0);
@@ -287,33 +203,34 @@ export default function InnovationPulseClient({
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [selectedAudioEpisode]);
+  }, [currentEpisode]);
 
-  // Handle selecting a different day's audio
-  const selectAudioDay = useCallback((date: string) => {
+  // Reload audio when episode changes
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio && currentEpisode?.audioUrl) {
+      audio.load();
+      setCurrentTime(0);
+      setAudioProgress(0);
+      setDuration(0);
+      setIsPlaying(false);
+    }
+  }, [currentEpisode?.audioUrl]);
+
+  const selectDay = useCallback((index: number) => {
     const audio = audioRef.current;
     if (audio) {
       audio.pause();
       setIsPlaying(false);
     }
-    setSelectedAudioDate(date);
-    setCurrentTime(0);
-    setAudioProgress(0);
-    setDuration(0);
-  }, []);
-
-  // Reload audio when source changes
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio && selectedAudioEpisode?.audioUrl) {
-      audio.load();
-    }
-  }, [selectedAudioEpisode?.audioUrl]);
+    setSelectedIndex(index);
+    setExpandedStory(null);
+    imageAssigner.reset();
+  }, [imageAssigner]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
-
     if (isPlaying) {
       audio.pause();
     } else {
@@ -325,71 +242,13 @@ export default function InnovationPulseClient({
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const audio = audioRef.current;
     if (!audio || !duration) return;
-
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const percentage = clickX / rect.width;
     audio.currentTime = percentage * duration;
   };
 
-  // Generate all 5 weekday slots (Mon-Fri) for the current week
-  const weekdaySlots = useMemo(() => {
-    if (!episode) return [];
-    const todayDate = new Date(episode.date + "T12:00:00");
-    const dayOfWeek = todayDate.getDay();
-    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    const mondayDate = new Date(todayDate);
-    mondayDate.setDate(todayDate.getDate() + mondayOffset);
-
-    const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-    const slots: { date: string; dayName: string; dayNum: number; episode: InnovationPulseEpisode | null; isToday: boolean }[] = [];
-
-    for (let i = 0; i < 5; i++) {
-      const slotDate = new Date(mondayDate);
-      slotDate.setDate(mondayDate.getDate() + i);
-      const dateStr = slotDate.toISOString().split("T")[0];
-      const ep = allEpisodes.find(e => e.date === dateStr) || null;
-      slots.push({
-        date: dateStr,
-        dayName: weekdays[i],
-        dayNum: slotDate.getDate(),
-        episode: ep,
-        isToday: dateStr === episode.date,
-      });
-    }
-    return slots;
-  }, [allEpisodes, episode]);
-
-  // Separate this week's episodes from the archive (for other uses)
-  const thisWeekEpisodes = useMemo(() => {
-    if (!episode) return [];
-    const todayDate = new Date(episode.date + "T12:00:00");
-    const dayOfWeek = todayDate.getDay();
-    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    const mondayDate = new Date(todayDate);
-    mondayDate.setDate(todayDate.getDate() + mondayOffset);
-
-    return allEpisodes.filter(ep => {
-      const epDate = new Date(ep.date + "T12:00:00");
-      return epDate >= mondayDate && epDate < todayDate;
-    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [allEpisodes, episode]);
-
-  const archiveEpisodes = useMemo(() => {
-    if (!episode) return allEpisodes.slice(1);
-    const todayDate = new Date(episode.date + "T12:00:00");
-    const dayOfWeek = todayDate.getDay();
-    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    const mondayDate = new Date(todayDate);
-    mondayDate.setDate(todayDate.getDate() + mondayOffset);
-
-    return allEpisodes.filter(ep => {
-      const epDate = new Date(ep.date + "T12:00:00");
-      return epDate < mondayDate;
-    });
-  }, [allEpisodes, episode]);
-
-  // Get ALL stories from all episodes, mapped to V4 categories (for category sections)
+  // Get ALL stories aggregated with V4 categories
   const allStoriesWithV4 = useMemo((): AggregatedStoryWithV4[] => {
     const stories: AggregatedStoryWithV4[] = [];
     for (const category of Object.keys(storiesByCategory)) {
@@ -404,20 +263,7 @@ export default function InnovationPulseClient({
     return stories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }, [storiesByCategory]);
 
-  // Get stories from current week only (for "This Week" context)
-  const thisWeekStories = useMemo((): AggregatedStoryWithV4[] => {
-    if (!episode) return [];
-    const todayDate = new Date(episode.date + "T12:00:00");
-    const dayOfWeek = todayDate.getDay();
-    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    const mondayDate = new Date(todayDate);
-    mondayDate.setDate(todayDate.getDate() + mondayOffset);
-    const mondayStr = mondayDate.toISOString().split("T")[0];
-
-    return allStoriesWithV4.filter(story => story.date >= mondayStr);
-  }, [allStoriesWithV4, episode]);
-
-  // Group ALL stories by V4 category (for category sections showing all data)
+  // Group stories by V4 category
   const storiesByV4Category = useMemo(() => {
     const result: Record<V4Category, AggregatedStoryWithV4[]> = {} as Record<V4Category, AggregatedStoryWithV4[]>;
     for (const cat of V4_CATEGORIES) {
@@ -431,7 +277,7 @@ export default function InnovationPulseClient({
     return result;
   }, [allStoriesWithV4]);
 
-  // Get V4 categories with stories
+  // Get categorized stories for display
   const categorizedStories = useMemo(() => {
     const result: { category: V4Category; stories: AggregatedStoryWithV4[] }[] = [];
     for (const category of V4_CATEGORIES) {
@@ -443,7 +289,11 @@ export default function InnovationPulseClient({
     return result;
   }, [storiesByV4Category]);
 
-  // Scroll to category section
+  // Archive episodes (after the first 5)
+  const archiveEpisodes = useMemo(() => {
+    return allEpisodes.slice(5);
+  }, [allEpisodes]);
+
   const scrollToCategory = (categoryId: string) => {
     const element = document.getElementById(categoryId);
     if (element) {
@@ -454,33 +304,27 @@ export default function InnovationPulseClient({
   if (!episode) {
     return (
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-12 text-center">
-        <h1 className="text-[2rem] font-bold text-[var(--text)] mb-4">
-          No Briefings Yet
-        </h1>
+        <h1 className="text-[2rem] font-bold text-[var(--text)] mb-4">No Briefings Yet</h1>
         <p className="text-[var(--text-secondary)]">Check back soon for the latest news.</p>
       </div>
     );
   }
 
-  // Get the lead story for the featured section - uses selected day's lead story
-  const displayedEpisode = selectedAudioEpisode || episode;
-  const leadStory = displayedEpisode.deepDive;
-  const leadStoryV4Category = mapToV4Category(leadStory.category);
+  // Get top 3 stories for the 3-card layout
+  const leadStory = currentEpisode?.deepDive;
+  const topQuickHits = currentEpisode?.quickHits.slice(0, 2) || [];
+  const remainingQuickHits = currentEpisode?.quickHits.slice(2) || [];
 
   return (
     <div className="min-h-screen">
-      {/* Hidden Audio Element - uses selected episode's audio */}
-      <audio
-        ref={audioRef}
-        src={selectedAudioEpisode?.audioUrl || episode.audioUrl}
-        preload="metadata"
-      />
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} src={currentEpisode?.audioUrl} preload="metadata" />
 
       {/* ═══════════════════════════════════════════════════════
           HERO SECTION
           ═══════════════════════════════════════════════════════ */}
       <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8">
-        <div className="grid lg:grid-cols-[1fr_380px] gap-10">
+        <div className="grid lg:grid-cols-[1fr_340px] gap-10">
           {/* Left: Episode Content */}
           <div className="animate-[fadeUp_0.8s_ease-out_both]">
             {/* Label */}
@@ -489,50 +333,45 @@ export default function InnovationPulseClient({
               THE INNOVATION PULSE
             </div>
 
-            {/* Date + Lens Badge - shows selected day's info */}
+            {/* Date + Lens Badge */}
             <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
-              <span>{formatPulseDate(selectedAudioEpisode?.date || episode.date)}</span>
-              <span className="inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                <span className="w-[5px] h-[5px] rounded-full bg-[var(--magenta)]" />
-                {selectedAudioEpisode?.editorialLens || episode.editorialLens}
+              <span>{formatPulseDate(currentEpisode?.date || episode.date)}</span>
+              <span className={`inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
+                <span className="w-[5px] h-[5px] rounded-full bg-current" />
+                {currentEpisode?.editorialLens || episode.editorialLens}
               </span>
             </div>
 
-            {/* Hero Hook Quote - shows selected day's quote */}
+            {/* Hook Quote */}
             <div className="hero-quote-card mb-6">
-              <p className="text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.3] font-bold italic relative pl-6 before:content-[''] before:absolute before:left-0 before:top-[0.3rem] before:bottom-[0.3rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
-                &ldquo;{selectedAudioEpisode?.editorialHook || episode.editorialHook}&rdquo;
+              <p className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.35] font-bold italic relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
+                &ldquo;{currentEpisode?.editorialHook || episode.editorialHook}&rdquo;
               </p>
             </div>
 
-            {/* REAL Audio Player */}
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-6">
+            {/* Audio Player */}
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-5">
               <div className="flex items-center gap-2 mb-3">
-                {/* Live Badge */}
                 <div className="flex items-center gap-[0.35rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold font-mono tracking-[0.06em]">
                   <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
                   LISTEN NOW
                 </div>
-                {/* Duration */}
                 <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
-                  {duration > 0 ? formatTime(duration) : (selectedAudioEpisode?.audioDuration || episode.audioDuration)}
+                  {duration > 0 ? formatTime(duration) : currentEpisode?.audioDuration}
                 </span>
-                {/* Date indicator when playing different day */}
-                {selectedAudioDate && (
+                {selectedIndex > 0 && (
                   <span className="font-mono text-[0.65rem] text-[var(--amber)] bg-[var(--amber-dim)] px-2 py-[0.15rem] rounded-full">
-                    {formatShortDate(selectedAudioDate)}
+                    {formatShortDate(currentEpisode?.date || "")}
                   </span>
                 )}
-                {/* Credit Line */}
-                <span className="font-mono text-[0.72rem] text-[var(--text-muted)] ml-auto">
-                  The Innovation Pulse &middot; Innovating Higher Ed
+                <span className="font-mono text-[0.68rem] text-[var(--text-muted)] ml-auto hidden sm:block">
+                  Innovating Higher Ed
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                {/* Play Button */}
                 <button
                   onClick={togglePlay}
-                  className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06] hover:shadow-[0_6px_28px_rgba(0,212,255,0.3)]"
+                  className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06]"
                 >
                   {isPlaying ? (
                     <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
@@ -546,24 +385,17 @@ export default function InnovationPulseClient({
                   )}
                 </button>
 
-                {/* Progress Bar / Waveform - CLICKABLE */}
-                <div
-                  className="flex-1 h-[44px] relative cursor-pointer group"
-                  onClick={handleProgressClick}
-                >
-                  {/* Background waveform */}
+                <div className="flex-1 h-[44px] relative cursor-pointer group" onClick={handleProgressClick}>
                   <div className="absolute inset-0 flex items-center gap-[1.5px]">
-                    {Array.from({ length: 80 }, (_, i) => {
-                      const h = 6 + Math.random() * 30 + Math.sin(i * 0.25) * 10 + Math.cos(i * 0.12) * 6;
-                      const progressPercent = (i / 80) * 100;
+                    {Array.from({ length: 60 }, (_, i) => {
+                      const h = 6 + Math.random() * 26 + Math.sin(i * 0.25) * 8;
+                      const progressPercent = (i / 60) * 100;
                       const isPlayed = progressPercent <= audioProgress;
                       return (
                         <div
                           key={i}
                           className={`w-[3px] rounded-[2px] transition-colors ${
-                            isPlayed
-                              ? "bg-[var(--cyan)]"
-                              : "bg-[var(--surface-2)] group-hover:bg-[var(--surface-3)]"
+                            isPlayed ? "bg-[var(--cyan)]" : "bg-[var(--surface-2)] group-hover:bg-[var(--surface-3)]"
                           }`}
                           style={{ height: `${Math.max(4, h)}px` }}
                         />
@@ -572,84 +404,48 @@ export default function InnovationPulseClient({
                   </div>
                 </div>
 
-                {/* Time Display */}
-                <span className="font-mono text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[72px] text-right">
-                  {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : (selectedAudioEpisode?.audioDuration || episode.audioDuration)}
+                <span className="font-mono text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[60px] text-right hidden sm:block">
+                  {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : currentEpisode?.audioDuration}
                 </span>
-
-                {/* Volume Icon */}
-                <svg
-                  className="w-7 h-7 stroke-[var(--text-muted)] hover:stroke-[var(--text)] cursor-pointer transition-colors shrink-0"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  strokeWidth="1.5"
-                >
-                  <path d="M11 5L6 9H2v6h4l5 4V5z" />
-                  <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" />
-                </svg>
               </div>
             </div>
 
-            {/* ═══════════════════════════════════════════════════════
-                DAY PILLS - All 5 weekdays (Mon-Fri)
-                ═══════════════════════════════════════════════════════ */}
-            <div className="flex flex-wrap items-center gap-2 mt-4">
+            {/* Last 5 Days Pills - Sliding Window */}
+            <div className="flex flex-wrap items-center gap-2">
               <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mr-1">
-                This Week:
+                Recent:
               </span>
-              {/* All 5 weekday pills (Mon-Fri) */}
-              {weekdaySlots.map((slot) => {
-                const hasEpisode = !!slot.episode;
-                const isSelected = slot.isToday ? !selectedAudioDate : selectedAudioDate === slot.date;
+              {recentEpisodes.map((ep, index) => {
+                const isSelected = index === selectedIndex;
+                const epDate = new Date(ep.date + 'T12:00:00');
+                const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
+                const dayNum = epDate.getDate();
 
-                if (hasEpisode) {
-                  return (
-                    <button
-                      key={slot.date}
-                      onClick={() => slot.isToday ? setSelectedAudioDate(null) : selectAudioDay(slot.date)}
-                      className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
-                        isSelected
-                          ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
-                          : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
-                      }`}
-                    >
-                      <span className="font-mono text-[0.65rem] font-semibold">
-                        {slot.dayName} {slot.dayNum}
-                      </span>
-                      <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-                      <span className="font-mono text-[0.6rem]">{slot.episode?.audioDuration}</span>
-                    </button>
-                  );
-                } else {
-                  // No episode for this day - show dimmed/disabled pill
-                  return (
-                    <span
-                      key={slot.date}
-                      className="flex items-center gap-2 px-3 py-[0.4rem] rounded-full border border-[var(--border)] text-[var(--text-muted)] opacity-50 cursor-not-allowed"
-                    >
-                      <span className="font-mono text-[0.65rem] font-semibold">
-                        {slot.dayName} {slot.dayNum}
-                      </span>
-                      <span className="w-[5px] h-[5px] rounded-full bg-[var(--surface-2)]" />
-                      <span className="font-mono text-[0.6rem]">--:--</span>
-                    </span>
-                  );
-                }
+                return (
+                  <button
+                    key={ep.date}
+                    onClick={() => selectDay(index)}
+                    className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
+                      isSelected
+                        ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
+                        : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
+                    }`}
+                  >
+                    <span className="font-mono text-[0.65rem] font-semibold">{dayName} {dayNum}</span>
+                    <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+                    <span className="font-mono text-[0.6rem]">{ep.audioDuration}</span>
+                  </button>
+                );
               })}
-              {/* Archive link */}
-              <Link
-                href="/innovation-pulse/archive"
-                className="font-mono text-[0.6rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors ml-2"
-              >
+              <Link href="/innovation-pulse/archive" className="font-mono text-[0.6rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors ml-2">
                 Full archive →
               </Link>
             </div>
           </div>
 
-          {/* Right Sidebar: About Card + TOC */}
-          <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] space-y-5">
-            {/* About Card */}
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5">
+          {/* Right Sidebar: About Card */}
+          <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:block">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 sticky top-20">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-[52px] h-[52px] rounded-full border-2 border-[var(--border)] bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center text-white text-[1.2rem] font-bold">
                   IP
@@ -663,54 +459,6 @@ export default function InnovationPulseClient({
                 Your daily guide to A.I. in higher education. Connecting the dots between innovation and practice.
               </p>
             </div>
-
-            {/* TOC Card - shows selected day's stories */}
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5">
-              <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
-                {selectedAudioDate ? formatShortDate(selectedAudioDate) : "Today's"} Stories
-              </div>
-
-              <ul className="space-y-0">
-                {/* Lead Story */}
-                <li className="flex items-start gap-3 py-3 border-b border-[var(--border)] cursor-pointer group">
-                  <span className="font-mono text-[0.55rem] tracking-[0.06em] font-semibold px-[0.45rem] py-[0.15rem] rounded-[4px] whitespace-nowrap mt-[0.15rem] bg-[var(--cyan-dim)] text-[var(--cyan)]">
-                    LEAD
-                  </span>
-                  <div>
-                    <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
-                      {(selectedAudioEpisode?.deepDive || episode.deepDive).title}
-                    </p>
-                    <span className="text-[0.62rem] text-[var(--text-muted)] font-mono mt-1">
-                      {mapToV4Category((selectedAudioEpisode?.deepDive || episode.deepDive).category)}
-                    </span>
-                  </div>
-                </li>
-
-                {/* Quick Hits */}
-                {(selectedAudioEpisode?.quickHits || episode.quickHits).slice(0, 4).map((hit, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 py-3 border-b border-[var(--border)] last:border-b-0 cursor-pointer group"
-                  >
-                    <span className={`font-mono text-[0.55rem] tracking-[0.06em] font-semibold px-[0.45rem] py-[0.15rem] rounded-[4px] whitespace-nowrap mt-[0.15rem] ${
-                      hit.isCallback
-                        ? "bg-[var(--amber-dim)] text-[var(--amber)]"
-                        : "bg-[var(--magenta-dim)] text-[var(--magenta)]"
-                    }`}>
-                      {hit.isCallback ? "CALLBACK" : "STORY"}
-                    </span>
-                    <div>
-                      <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
-                        {hit.title}
-                      </p>
-                      <span className="text-[0.62rem] text-[var(--text-muted)] font-mono mt-1">
-                        {mapToV4Category(hit.category)}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>
@@ -719,112 +467,148 @@ export default function InnovationPulseClient({
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          FEATURED STORY SECTION - Premium Editorial Card
+          TOP STORIES — 3 Card Layout
           ═══════════════════════════════════════════════════════ */}
       <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
-        {/* Lead Story Card - Full Width, Gradient Background */}
-        <div className="relative rounded-[24px] overflow-hidden">
-          {/* Subtle Electric Dusk gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0c0c14] via-[#0f0f1a] to-[#0a0a12]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(0,212,255,0.03)] via-transparent to-[rgba(200,80,192,0.03)]" />
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--cyan)] via-[rgba(200,80,192,0.6)] to-[var(--cyan)]" />
-
-          {/* Subtle corner accents */}
-          <div className="absolute top-0 left-0 w-[200px] h-[200px] bg-gradient-to-br from-[rgba(0,212,255,0.06)] to-transparent rounded-full blur-[80px]" />
-          <div className="absolute bottom-0 right-0 w-[200px] h-[200px] bg-gradient-to-tl from-[rgba(200,80,192,0.06)] to-transparent rounded-full blur-[80px]" />
-
-          {/* Content */}
-          <div className="relative p-8 md:p-12 lg:p-16">
-            {/* Badges Row */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="font-mono text-[0.65rem] font-semibold tracking-[0.08em] px-[0.75rem] py-[0.3rem] rounded-[6px] bg-gradient-to-r from-[var(--cyan)] to-[rgba(0,212,255,0.8)] text-[#08080f] uppercase">
-                Lead Story
-              </span>
-              <span
-                className="font-mono text-[0.65rem] font-semibold tracking-[0.08em] px-[0.75rem] py-[0.3rem] rounded-[6px] text-[#08080f] uppercase"
-                style={{ backgroundColor: V4_CATEGORY_COLORS[leadStoryV4Category]?.hex || "#00d4ff" }}
-              >
-                {leadStoryV4Category}
-              </span>
-              <span className="font-mono text-[0.65rem] tracking-[0.06em] px-[0.75rem] py-[0.3rem] rounded-[6px] border border-[var(--border)] text-[var(--text-muted)]">
-                {selectedAudioDate ? formatShortDate(selectedAudioDate) : formatShortDate(episode.date)}
-              </span>
-              <span
-                className={`font-mono text-[0.65rem] tracking-[0.06em] px-[0.75rem] py-[0.3rem] rounded-[6px] ${LENS_COLORS[displayedEpisode.editorialLens]?.bg || "bg-[var(--magenta-dim)]"} ${LENS_COLORS[displayedEpisode.editorialLens]?.text || "text-[var(--magenta)]"}`}
-              >
-                {displayedEpisode.editorialLens}
-              </span>
-            </div>
-
-            {/* Headline - Large Instrument Serif */}
-            <h2
-              className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-[1.15] text-white mb-6 max-w-[900px]"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              {leadStory.title}
-            </h2>
-
-            {/* Editorial Take / Summary */}
-            <div className="max-w-[800px] mb-8">
-              {renderParagraphs(
-                leadStory.summary,
-                "text-[1rem] md:text-[1.1rem] leading-[1.75] text-[var(--text-secondary)]"
-              )}
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-[10px] bg-gradient-to-r from-[var(--cyan)] to-[rgba(0,180,220,0.9)] text-[#08080f] font-semibold text-[0.85rem] hover:opacity-90 transition-opacity shadow-[0_4px_20px_rgba(0,212,255,0.25)]"
-              >
-                Read full story
-                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-              <a
-                href={leadStory.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-[10px] border border-[var(--border)] text-[var(--text-secondary)] font-mono text-[0.8rem] hover:border-[var(--cyan)] hover:text-[var(--cyan)] transition-all"
-              >
-                {leadStory.source}
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-none stroke-current" strokeWidth="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-              </a>
-            </div>
+        <div className="flex items-center justify-between mb-6">
+          <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2">
+            <span className="text-[var(--cyan)]">TODAY&apos;S TOP STORIES</span>
+            <span>—</span>
+            <span>{formatShortDate(currentEpisode?.date || episode.date)}</span>
           </div>
+          <Link href="/innovation-pulse/stories" className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
+            View all lead stories →
+          </Link>
         </div>
 
-        {/* Our Take - Separate Block Below */}
-        {leadStory.editorialCallout && (
-          <div className="mt-6 bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 md:p-8 relative overflow-hidden">
-            {/* Accent line */}
-            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[var(--magenta)] to-[var(--cyan)]" />
+        {/* 3-Card Grid */}
+        <div className="grid-3 mb-8">
+          {/* Lead Story Card */}
+          {leadStory && (
+            <Card
+              title={leadStory.title}
+              teaser={leadStory.summary}
+              fullContent={leadStory.summary}
+              editorialCallout={leadStory.editorialCallout}
+              category={mapToV4Category(leadStory.category)}
+              categoryColor={V4_CATEGORY_COLORS[mapToV4Category(leadStory.category)]?.hex}
+              source={leadStory.source}
+              sourceUrl={leadStory.sourceUrl}
+              date={formatShortDate(currentEpisode?.date || episode.date)}
+              imageUrl={imageAssigner.getImage(leadStory.title, leadStory.category)}
+              badgeText="LEAD"
+              badgeColor="rgba(200,80,192,0.9)"
+              expandable={true}
+              href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
+            />
+          )}
 
+          {/* Top 2 Quick Hits */}
+          {topQuickHits.map((hit, i) => (
+            <Card
+              key={i}
+              title={hit.title}
+              teaser={hit.summary}
+              fullContent={hit.summary}
+              category={mapToV4Category(hit.category)}
+              categoryColor={V4_CATEGORY_COLORS[mapToV4Category(hit.category)]?.hex}
+              source={hit.source}
+              sourceUrl={hit.sourceUrl}
+              date={formatShortDate(currentEpisode?.date || episode.date)}
+              imageUrl={imageAssigner.getImage(hit.title, hit.category)}
+              badgeText="STORY"
+              badgeColor={V4_CATEGORY_COLORS[mapToV4Category(hit.category)]?.hex || "rgba(0,212,255,0.9)"}
+              expandable={true}
+            />
+          ))}
+        </div>
+
+        {/* OUR TAKE - Always visible for lead story */}
+        {leadStory?.editorialCallout && (
+          <div className="bg-[var(--surface-1)] border border-[var(--border)] rounded-[16px] p-6 relative overflow-hidden mb-8">
+            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[var(--magenta)] to-[var(--cyan)]" />
             <div className="pl-4">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3">
                 <span className="font-mono text-[0.68rem] tracking-[0.1em] uppercase font-semibold text-[var(--magenta)]">
                   Our Take
                 </span>
-                <span className="font-mono text-[0.62rem] tracking-[0.06em] px-[0.6rem] py-[0.2rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                  {displayedEpisode.editorialLens}
+                <span className="font-mono text-[0.6rem] px-[0.55rem] py-[0.18rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
+                  {currentEpisode?.editorialLens}
                 </span>
               </div>
-              <div className="max-w-[800px]">
-                {renderParagraphs(
-                  leadStory.editorialCallout,
-                  "text-[1.05rem] md:text-[1.15rem] leading-[1.7] text-[var(--text)] italic"
-                )}
+              <div className="text-[1rem] text-[var(--text)] leading-[1.7] italic max-w-[800px]">
+                {renderParagraphs(leadStory.editorialCallout, "")}
               </div>
             </div>
           </div>
         )}
+
+        {/* Remaining Quick Hits */}
+        {remainingQuickHits.length > 0 && (
+          <div className="mb-8">
+            <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
+              Also Today
+            </div>
+            <div className="space-y-3">
+              {remainingQuickHits.map((hit, i) => {
+                const v4Cat = mapToV4Category(hit.category);
+                const isExpanded = expandedStory === hit.title;
+
+                return (
+                  <div
+                    key={i}
+                    className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span
+                            className="font-mono text-[0.55rem] font-semibold px-[0.5rem] py-[0.15rem] rounded-[4px] uppercase"
+                            style={{ backgroundColor: V4_CATEGORY_COLORS[v4Cat]?.bg, color: V4_CATEGORY_COLORS[v4Cat]?.hex }}
+                          >
+                            {v4Cat}
+                          </span>
+                          <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">{hit.source}</span>
+                        </div>
+                        <h3 className="font-sans text-[0.95rem] font-bold leading-[1.3] mb-2">{hit.title}</h3>
+                        <p className={`text-[0.82rem] text-[var(--text-secondary)] leading-[1.6] ${isExpanded ? "" : "line-clamp-2"}`}>
+                          {hit.summary}
+                        </p>
+                        {hit.summary.length > 150 && (
+                          <button
+                            onClick={() => setExpandedStory(isExpanded ? null : hit.title)}
+                            className="font-mono text-[0.68rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mt-2"
+                          >
+                            {isExpanded ? "Show less ↑" : "Read more ↓"}
+                          </button>
+                        )}
+                      </div>
+                      <a
+                        href={hit.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors shrink-0"
+                      >
+                        Source ↗
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </section>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
+
+      {/* ═══════════════════════════════════════════════════════
+          NEWSLETTER SIGNUP
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
+        <NewsletterSignup variant="inline" />
+      </div>
 
       {/* Section Divider */}
       <div className="section-divider" />
@@ -846,13 +630,11 @@ export default function InnovationPulseClient({
           </button>
           {V4_CATEGORIES.map((cat) => {
             const count = storiesByV4Category[cat]?.length || 0;
-            const hasStoriesThisWeek = count > 0;
+            const hasStories = count > 0;
             const catId = cat.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
-            const catSlug = V4_CATEGORY_SLUGS[cat];
             const catColor = V4_CATEGORY_COLORS[cat];
 
-            // If category has stories this week, scroll to section; otherwise link to archive
-            if (hasStoriesThisWeek) {
+            if (hasStories) {
               return (
                 <button
                   key={cat}
@@ -870,58 +652,33 @@ export default function InnovationPulseClient({
                   {cat}
                 </button>
               );
-            } else {
-              // No stories this week - link to category archive
-              return (
-                <Link
-                  key={cat}
-                  href={`/innovation-pulse/category/${catSlug}`}
-                  className="filter-pill opacity-60 hover:opacity-100"
-                  style={{
-                    borderColor: `${catColor?.hex}40`,
-                    color: catColor?.hex,
-                  }}
-                >
-                  {cat}
-                </Link>
-              );
             }
+            return null;
           })}
         </div>
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          V4 GROUPED CATEGORY SECTIONS WITH VIEW ALL LINKS
+          CATEGORY SECTIONS
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        {categorizedStories.map(({ category, stories }, sectionIdx) => {
+        {categorizedStories.map(({ category, stories }) => {
           const catId = category.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
           const catColor = V4_CATEGORY_COLORS[category]?.hex || "var(--cyan)";
           const catSlug = V4_CATEGORY_SLUGS[category];
 
           return (
             <div key={category} id={catId} className="mb-8">
-              {/* Category Row Header with View All Link */}
               <div className="flex items-center gap-[0.6rem] mb-4 mt-8 first:mt-0">
-                <span
-                  className="w-[7px] h-[7px] rounded-full"
-                  style={{ background: catColor }}
-                />
-                <span
-                  className="font-mono text-[0.7rem] tracking-[0.12em] uppercase font-semibold"
-                  style={{ color: catColor }}
-                >
+                <span className="w-[7px] h-[7px] rounded-full" style={{ background: catColor }} />
+                <span className="font-mono text-[0.7rem] tracking-[0.12em] uppercase font-semibold" style={{ color: catColor }}>
                   {category}
                 </span>
-                <Link
-                  href={`/innovation-pulse/category/${catSlug}`}
-                  className="ml-auto font-mono text-[0.65rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors"
-                >
+                <Link href={`/innovation-pulse/category/${catSlug}`} className="ml-auto font-mono text-[0.65rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors">
                   View all →
                 </Link>
               </div>
 
-              {/* Story Cards Grid */}
               <div className="grid-3">
                 {stories.map((story, i) => (
                   <Card
@@ -934,23 +691,9 @@ export default function InnovationPulseClient({
                     source={story.source}
                     sourceUrl={story.sourceUrl}
                     date={formatShortDate(story.date)}
-                    imageUrl={getStoryImage(story.title)}
-                    badgeText={
-                      story.isCallback
-                        ? "CALLBACK"
-                        : story.type === "deepDive"
-                          ? "LEAD"
-                          : V4_BADGE_TEXT[story.v4Category]
-                    }
-                    badgeColor={
-                      story.isCallback
-                        ? "rgba(245,166,35,0.85)"
-                        : story.type === "deepDive"
-                          ? "rgba(0,212,255,0.85)"
-                          : V4_CATEGORY_COLORS[story.v4Category]?.hex || "rgba(0,212,255,0.85)"
-                    }
-                    isCallback={story.isCallback}
-                    callbackDate={story.callbackDate}
+                    imageUrl={imageAssigner.getImage(story.title, story.category)}
+                    badgeText={story.isCallback ? "CALLBACK" : story.type === "deepDive" ? "LEAD" : V4_BADGE_TEXT[story.v4Category]}
+                    badgeColor={story.isCallback ? "rgba(245,166,35,0.85)" : story.type === "deepDive" ? "rgba(0,212,255,0.85)" : V4_CATEGORY_COLORS[story.v4Category]?.hex}
                     expandable={true}
                   />
                 ))}
@@ -977,9 +720,7 @@ export default function InnovationPulseClient({
                 className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] hover:-translate-y-[2px] transition-all duration-300 block group"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">
-                    {formatShortDate(ep.date)}
-                  </span>
+                  <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">{formatShortDate(ep.date)}</span>
                   <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
                     {ep.editorialLens.split(" ").slice(0, 2).join(" ")}
                   </span>
@@ -1001,65 +742,16 @@ export default function InnovationPulseClient({
           NEWSLETTER CTA
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[24px] p-8 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] via-[var(--magenta)] to-[var(--cyan)] bg-[length:200%_100%]" />
-
-          <h2 className="font-sans text-[1.8rem] font-bold mb-2">
-            Never Miss a Pulse
-          </h2>
-          <p className="text-[0.88rem] text-[var(--text-secondary)] max-w-[520px] mx-auto mb-6">
-            Get the Innovation Pulse delivered to your inbox. Curated AI news for higher education — no fluff, no hype.
-          </p>
-
-          {/* Newsletter Frequency Toggle */}
-          <div className="flex justify-center gap-4 mb-5">
-            <button
-              onClick={() => setNewsletterFrequency("daily")}
-              className={`font-mono text-[0.7rem] px-4 py-[0.4rem] rounded-full border transition-all ${
-                newsletterFrequency === "daily"
-                  ? "bg-[var(--cyan-dim)] text-[var(--cyan)] border-[rgba(0,212,255,0.3)]"
-                  : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
-              }`}
-            >
-              Daily
-            </button>
-            <button
-              onClick={() => setNewsletterFrequency("weekly")}
-              className={`font-mono text-[0.7rem] px-4 py-[0.4rem] rounded-full border transition-all ${
-                newsletterFrequency === "weekly"
-                  ? "bg-[var(--cyan-dim)] text-[var(--cyan)] border-[rgba(0,212,255,0.3)]"
-                  : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
-              }`}
-            >
-              Weekly Digest
-            </button>
-          </div>
-
-          <form className="flex flex-col sm:flex-row gap-3 max-w-[440px] mx-auto mb-3">
-            <input
-              type="email"
-              placeholder="your@university.edu"
-              className="input flex-1"
-            />
-            <button type="submit" className="btn-primary whitespace-nowrap">
-              Subscribe Free
-            </button>
-          </form>
-
-          <p className="text-[0.72rem] text-[var(--text-muted)]">
-            Join 1,200+ educators. No spam. Unsubscribe anytime.
-          </p>
-        </div>
+        <NewsletterSignup variant="card" />
       </div>
 
       {/* AI Voice Disclaimer */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12 text-center border-t border-[var(--border)] pt-4">
         <p className="text-[0.72rem] text-[var(--text-muted)]">
-          The Innovation Pulse is produced using A.I. voice technology with
-          editorial oversight by the Innovating Higher Ed team.
+          The Innovation Pulse is produced using A.I. voice technology with editorial oversight by the Innovating Higher Ed team.
           <br />
-          <Link href="/about" className="text-[var(--cyan)] hover:underline">
-            Learn more about how we use A.I. responsibly at Innovating Higher Ed.
+          <Link href="/ai-disclosure" className="text-[var(--cyan)] hover:underline">
+            Learn more about how we use A.I. responsibly.
           </Link>
         </p>
       </div>
