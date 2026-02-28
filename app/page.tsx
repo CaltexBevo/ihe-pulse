@@ -2,42 +2,43 @@ import Link from "next/link";
 import Image from "next/image";
 import SectionHeader from "@/components/SectionHeader";
 import Card from "@/components/Card";
-import HomeAudioPlayer from "@/components/HomeAudioPlayer";
+import HomeHeroClient from "@/components/HomeHeroClient";
+import LeadStoryCard from "@/components/LeadStoryCard";
 import HomePromptCards from "@/components/HomePromptCards";
 import HomeAIAppCards from "@/components/HomeAIAppCards";
 import NewsletterSignup from "@/components/NewsletterSignup";
-import { getLatestEpisode, getAllStoriesAggregated, formatPulseDate, categoryColors, generateSlug, mapToV4Category, V4_CATEGORY_COLORS, V4_CATEGORY_SLUGS } from "@/lib/data/innovation-pulse";
+import {
+  getLatestEpisode,
+  getAllEpisodes,
+  getAllStoriesAggregated,
+  formatPulseDate,
+  generateSlug,
+  mapToV4Category,
+  V4_CATEGORY_COLORS,
+} from "@/lib/data/innovation-pulse";
 import { episodes } from "@/lib/data/episodes";
-
-// Editorial lens colors (matching Innovation Pulse page)
-const LENS_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
-  "The Hard Question": { bg: "bg-[var(--amber-dim)]", text: "text-[var(--amber)]", dot: "bg-[var(--amber)]" },
-  "The Student Experience": { bg: "bg-[var(--green-dim)]", text: "text-[var(--green)]", dot: "bg-[var(--green)]" },
-  "The Practitioner's Playbook": { bg: "bg-[var(--cyan-dim)]", text: "text-[var(--cyan)]", dot: "bg-[var(--cyan)]" },
-  "Connecting the Dots": { bg: "bg-[var(--magenta-dim)]", text: "text-[var(--magenta)]", dot: "bg-[var(--magenta)]" },
-  "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]", dot: "bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" },
-};
+import { getStoryImage, StoryImageAssigner } from "@/lib/utils/story-images";
 
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
+  const allEpisodes = getAllEpisodes();
+  const recentEpisodes = allEpisodes.slice(0, 5); // Last 5 episodes (sliding window)
   const allStories = getAllStoriesAggregated();
-  const topStories = allStories.slice(0, 3);
   const latestPodcastEpisodes = episodes.slice(0, 3);
-  const lensColors = pulseEpisode ? LENS_COLORS[pulseEpisode.editorialLens] || LENS_COLORS["The Hard Question"] : LENS_COLORS["The Hard Question"];
 
-  // Placeholder images for Top Stories
-  const storyImages = [
-    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=340&fit=crop",
-    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=340&fit=crop",
-    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=340&fit=crop",
-  ];
+  // Image assigner for page-level deduplication
+  const imageAssigner = new StoryImageAssigner();
 
-  // Placeholder images for AI Tools
-  const toolImages = [
-    "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=320&fit=crop",
-    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=320&fit=crop",
-    "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=320&fit=crop",
-  ];
+  // Get lead story info
+  const leadStory = pulseEpisode?.deepDive;
+  const leadStoryV4Category = leadStory ? mapToV4Category(leadStory.category) : "Insights & Trends";
+  const leadStoryColor = V4_CATEGORY_COLORS[leadStoryV4Category] || "#00d4ff";
+  const leadStoryImage = leadStory ? imageAssigner.getImage(leadStory.title, leadStory.category) : "";
+
+  // Get top stories (excluding lead story)
+  const topStories = allStories
+    .filter(s => s.title !== leadStory?.title)
+    .slice(0, 3);
 
   // Placeholder images for Podcasts
   const podcastImages = [
@@ -53,119 +54,70 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="relative">
         {/* Premium gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.03)] via-transparent to-transparent pointer-events-none" />
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(0,212,255,0.3)] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
 
         <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8 relative">
-          {/* Hero Grid */}
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10">
-            {/* Main Content */}
+          <div className="grid lg:grid-cols-[1fr_320px] gap-10">
+            {/* Main Content - Client component for interactivity */}
             <div className="animate-[fadeUp_0.7s_ease-out_both]">
-              {/* Premium Label with tagline */}
-              <div className="mb-4">
-                <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] flex items-center gap-2 mb-1">
-                  <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
-                  THE INNOVATION PULSE
-                </div>
-                <p className="text-[0.85rem] text-[var(--text-muted)] pl-4">
-                  Your daily A.I. briefing for higher ed — curated, analyzed, delivered.
-                </p>
-              </div>
-
-            {/* Date + Lens Badge */}
-            {pulseEpisode && (
-              <div className="font-mono text-[0.72rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
-                <span>{formatPulseDate(pulseEpisode.date)}</span>
-                <span className={`inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
-                  <span className={`w-[5px] h-[5px] rounded-full ${lensColors.dot}`} />
-                  {pulseEpisode.editorialLens}
-                </span>
-              </div>
-            )}
-
-            {/* Hook Quote - Contained Card with Gradient Border */}
-            {pulseEpisode && (
-              <div className="hero-quote-card mb-6">
-                <p className="hero-quote">
-                  &ldquo;{pulseEpisode.editorialHook}&rdquo;
-                </p>
-              </div>
-            )}
-
-            {/* Audio Player - Real working player */}
-            {pulseEpisode && (
-              <HomeAudioPlayer
-                audioUrl={pulseEpisode.audioUrl}
-                audioDuration={pulseEpisode.audioDuration}
-              />
-            )}
-
-            {/* CTA */}
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/innovation-pulse"
-                className="btn-primary"
-              >
-                Read Today&apos;s Briefing
-              </Link>
-              <Link
-                href="/innovation-pulse/archive"
-                className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
-              >
-                Browse Archive &rarr;
-              </Link>
+              {pulseEpisode && (
+                <HomeHeroClient
+                  latestEpisode={pulseEpisode}
+                  recentEpisodes={recentEpisodes}
+                />
+              )}
             </div>
-          </div>
 
-          {/* TOC Sidebar - IN THIS ISSUE */}
-          {pulseEpisode && (
-            <aside className="hidden lg:block animate-[fadeUp_0.7s_0.15s_ease-out_both]">
-              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 sticky top-20">
-                <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
-                  In This Issue
-                </div>
+            {/* TOC Sidebar - IN THIS ISSUE */}
+            {pulseEpisode && (
+              <aside className="hidden lg:block animate-[fadeUp_0.7s_0.15s_ease-out_both]">
+                <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 sticky top-20">
+                  <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
+                    In This Issue
+                  </div>
 
-                <ul className="space-y-0">
-                  {/* Lead Story - Links to story page */}
-                  <Link
-                    href={`/innovation-pulse/story/${generateSlug(pulseEpisode.deepDive.title)}`}
-                    className="flex items-start gap-2 py-2 border-b border-[var(--border)] cursor-pointer group"
-                  >
-                    <span className="font-mono text-[0.48rem] tracking-[0.05em] font-semibold px-[0.35rem] py-[0.1rem] rounded-[3px] whitespace-nowrap mt-[0.1rem] bg-[var(--cyan-dim)] text-[var(--cyan)]">
-                      LEAD STORY
-                    </span>
-                    <div>
-                      <p className="text-[0.73rem] text-[var(--text-secondary)] leading-[1.3] group-hover:text-[var(--cyan)] transition-colors">
-                        {pulseEpisode.deepDive.title}
-                      </p>
-                      <span className="text-[0.55rem] text-[var(--text-muted)] font-mono">
-                        {mapToV4Category(pulseEpisode.deepDive.category)}
-                      </span>
-                    </div>
-                  </Link>
-
-                  {/* Quick Hits */}
-                  {pulseEpisode.quickHits.slice(0, 4).map((hit, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2 py-2 border-b border-[var(--border)] last:border-b-0 cursor-pointer group"
+                  <ul className="space-y-0">
+                    {/* Lead Story */}
+                    <Link
+                      href={`/innovation-pulse/story/${generateSlug(pulseEpisode.deepDive.title)}`}
+                      className="flex items-start gap-2 py-2.5 border-b border-[var(--border)] cursor-pointer group"
                     >
-                      <span className="font-mono text-[0.48rem] tracking-[0.05em] font-semibold px-[0.35rem] py-[0.1rem] rounded-[3px] whitespace-nowrap mt-[0.1rem] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                        ALSO TODAY
+                      <span className="font-mono text-[0.5rem] tracking-[0.05em] font-semibold px-[0.4rem] py-[0.12rem] rounded-[3px] whitespace-nowrap mt-[0.1rem] bg-[var(--magenta-dim)] text-[var(--magenta)]">
+                        LEAD
                       </span>
                       <div>
-                        <p className="text-[0.73rem] text-[var(--text-secondary)] leading-[1.3] group-hover:text-[var(--cyan)] transition-colors">
-                          {hit.title}
+                        <p className="text-[0.75rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
+                          {pulseEpisode.deepDive.title}
                         </p>
-                        <span className="text-[0.55rem] text-[var(--text-muted)] font-mono">
-                          {mapToV4Category(hit.category)}
+                        <span className="text-[0.58rem] text-[var(--text-muted)] font-mono">
+                          {mapToV4Category(pulseEpisode.deepDive.category)}
                         </span>
                       </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </aside>
+                    </Link>
+
+                    {/* Quick Hits */}
+                    {pulseEpisode.quickHits.slice(0, 4).map((hit, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 py-2.5 border-b border-[var(--border)] last:border-b-0 cursor-pointer group"
+                      >
+                        <span className="font-mono text-[0.5rem] tracking-[0.05em] font-semibold px-[0.4rem] py-[0.12rem] rounded-[3px] whitespace-nowrap mt-[0.1rem] bg-[var(--cyan-dim)] text-[var(--cyan)]">
+                          STORY
+                        </span>
+                        <div>
+                          <p className="text-[0.75rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
+                            {hit.title}
+                          </p>
+                          <span className="text-[0.58rem] text-[var(--text-muted)] font-mono">
+                            {mapToV4Category(hit.category)}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </aside>
             )}
           </div>
         </div>
@@ -175,7 +127,28 @@ export default function Home() {
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          TOP STORIES
+          LEAD STORY - Premium Editorial Layout
+          ═══════════════════════════════════════════════════════ */}
+      {pulseEpisode && (
+        <section className="section">
+          <SectionHeader
+            title="Lead Story"
+            titleColor="var(--magenta)"
+            tagline="Today's most important story, analyzed."
+            accentColor="var(--magenta)"
+          />
+
+          <LeadStoryCard
+            episode={pulseEpisode}
+            imageUrl={leadStoryImage}
+            v4Category={leadStoryV4Category}
+            categoryColor={leadStoryColor}
+          />
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
+          TOP STORIES - 3 Card Layout
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <SectionHeader
@@ -191,6 +164,7 @@ export default function Home() {
           {topStories.map((story, i) => {
             const v4Category = mapToV4Category(story.category);
             const v4Color = V4_CATEGORY_COLORS[v4Category] || "#00d4ff";
+            const storyImage = imageAssigner.getImage(story.title, story.category);
 
             return (
               <Card
@@ -198,24 +172,29 @@ export default function Home() {
                 title={story.title}
                 teaser={story.summary}
                 fullContent={story.summary}
-                editorialCallout={
-                  story.type === "deepDive"
-                    ? "This story represents a significant shift in how institutions are approaching A.I. integration."
-                    : undefined
-                }
                 category={v4Category}
                 categoryColor={v4Color}
                 source={story.source}
+                sourceUrl={story.sourceUrl}
                 date={formatPulseDate(story.date)}
-                imageUrl={storyImages[i]}
-                badgeText={story.type === "deepDive" ? "Lead Story" : "Top Story"}
-                badgeColor={story.type === "deepDive" ? "rgba(200,80,192,0.85)" : "rgba(0,180,220,0.85)"}
-                expandable={story.type !== "deepDive"}
-                href={story.type === "deepDive" ? `/innovation-pulse/story/${generateSlug(story.title)}` : undefined}
+                imageUrl={storyImage}
+                badgeText={story.type === "deepDive" ? "Lead" : "Story"}
+                badgeColor={story.type === "deepDive" ? "rgba(200,80,192,0.85)" : v4Color}
+                expandable={true}
               />
             );
           })}
         </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
+
+      {/* ═══════════════════════════════════════════════════════
+          NEWSLETTER SIGNUP
+          ═══════════════════════════════════════════════════════ */}
+      <section className="section">
+        <NewsletterSignup variant="inline" />
       </section>
 
       {/* Section Divider */}
@@ -241,7 +220,7 @@ export default function Home() {
               href={`/podcast/${ep.slug}`}
               className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
             >
-              {/* Image - constrained with dark background */}
+              {/* Image */}
               <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
                 <Image
                   src={ep.thumbnail || podcastImages[idx]}
@@ -249,7 +228,6 @@ export default function Home() {
                   fill
                   className="object-contain p-2"
                 />
-                {/* Category Badge - no episode numbers */}
                 <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[var(--orange)] backdrop-blur-[8px]">
                   Interview
                 </span>
@@ -257,20 +235,16 @@ export default function Home() {
 
               {/* Body */}
               <div className="p-4 pt-3">
-                {/* Category - JetBrains Mono */}
                 <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
                   <span className="w-[5px] h-[5px] rounded-full bg-[var(--orange)]" />
                   <span className="text-[var(--orange)]">Podcast</span>
                 </div>
-                {/* Title - DM Sans Bold */}
                 <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
                   {ep.title}
                 </h3>
-                {/* Description - DM Sans Regular */}
                 <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
                   {ep.description}
                 </p>
-                {/* Footer - JetBrains Mono */}
                 <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
                   <span>{ep.date || "Feb 17"}</span>
                   <span>{ep.duration}</span>
@@ -347,7 +321,7 @@ export default function Home() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* REAL POST 1: Wonka-Lantern Framework */}
+          {/* Wonka-Lantern Framework */}
           <Link
             href="/tinker-lab/wonka-lantern"
             className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
@@ -357,7 +331,7 @@ export default function Home() {
                 src="https://innovatinghighered.com/wp-content/uploads/2025/06/Tinker-Lab-WIlly-Wonka.02-585x390.jpg"
                 alt="The Wonka-Lantern Framework"
                 fill
-                className="object-contain p-2"
+                className="object-cover"
               />
               <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(0,212,255,0.85)]">
                 Experiment
@@ -369,19 +343,19 @@ export default function Home() {
                 <span className="text-[var(--cyan)]">Tinker Lab</span>
               </div>
               <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
-                The Wonka-Lantern Framework: Creative & Ethical AI in Higher Education
+                The Wonka-Lantern Framework
               </h3>
               <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
-                A framework for A.I. in higher education that channels Willy Wonka (imagination) and the Green Lantern (ethical responsibility).
+                Creative & Ethical AI in Higher Education — balancing imagination with responsibility.
               </p>
               <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
-                <span className="text-[var(--cyan)]">12 min read</span>
+                <span className="text-[var(--cyan)]">12 min</span>
                 <span>June 17, 2025</span>
               </div>
             </div>
           </Link>
 
-          {/* REAL POST 2: ChatGPT Pro Deep Research */}
+          {/* ChatGPT Pro */}
           <Link
             href="/tinker-lab/chatgpt-pro"
             className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
@@ -391,7 +365,7 @@ export default function Home() {
                 src="https://innovatinghighered.com/wp-content/uploads/2025/05/Tinker-Lab-Chat-Pro.-01-585x390.jpg"
                 alt="ChatGPT Pro Deep Research"
                 fill
-                className="object-contain p-2"
+                className="object-cover"
               />
               <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(74,222,128,0.85)]">
                 Walkthrough
@@ -406,11 +380,11 @@ export default function Home() {
                 ChatGPT Pro Deep Research: Worth It?
               </h3>
               <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
-                We test OpenAI&apos;s ChatGPT Pro and its premium Deep Research feature for creating an OER textbook on Public Speaking.
+                Testing OpenAI&apos;s premium Deep Research feature for creating an OER textbook.
               </p>
               <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
-                <span className="text-[var(--cyan)]">15 min read</span>
-                <span>February 28, 2025</span>
+                <span className="text-[var(--cyan)]">15 min</span>
+                <span>Feb 28, 2025</span>
               </div>
             </div>
           </Link>
@@ -421,7 +395,7 @@ export default function Home() {
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          NEWSLETTER SIGNUP
+          NEWSLETTER SIGNUP - Card Version
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <NewsletterSignup variant="card" />
