@@ -518,13 +518,22 @@ export default function InnovationPulseClient({
           TODAY'S TOP STORIES — Lead Story 3-Column Layout
           ═══════════════════════════════════════════════════════ */}
       <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
-        <div className="flex items-center justify-between mb-6">
-          <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2">
-            <span className="text-[var(--cyan)]">TODAY&apos;S TOP STORIES</span>
-            <span>—</span>
-            <span>{formatPulseDate(currentEpisode?.date || episode.date)}</span>
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-start gap-4">
+            <div className="w-[3px] h-[2.2rem] bg-gradient-to-b from-[var(--cyan)] to-[var(--magenta)] rounded-full mt-1" />
+            <div>
+              <h2
+                className="text-[clamp(1.5rem,3vw,1.85rem)] font-bold text-[var(--cyan)] leading-[1.2]"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                Today&apos;s Top Stories
+              </h2>
+              <p className="text-[0.82rem] text-[var(--text-muted)] mt-1">
+                {formatPulseDate(currentEpisode?.date || episode.date)} — Lead story and quick hits
+              </p>
+            </div>
           </div>
-          <Link href="/innovation-pulse/stories" className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
+          <Link href="/innovation-pulse/stories" className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
             View all lead stories →
           </Link>
         </div>
@@ -645,9 +654,19 @@ export default function InnovationPulseClient({
         {/* ALSO TODAY — Quick Hit Cards (up to 6 in 2 rows of 3) */}
         {currentEpisode?.quickHits && currentEpisode.quickHits.length > 0 && (
           <div className="mb-8">
-            <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-5 flex items-center gap-2">
-              <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
-              Also Today
+            <div className="flex items-start gap-4 mb-6">
+              <div className="w-[3px] h-[1.8rem] bg-[var(--cyan)] rounded-full mt-1" />
+              <div>
+                <h3
+                  className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--cyan)] leading-[1.2]"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  Also Today
+                </h3>
+                <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
+                  More stories from today&apos;s briefing
+                </p>
+              </div>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {currentEpisode.quickHits.slice(0, 6).map((hit, i) => {
@@ -683,20 +702,17 @@ export default function InnovationPulseClient({
                         {hit.summary}
                       </p>
                       <div className="flex items-center justify-between">
-                        <button
-                          onClick={() => setExpandedStory(isExpanded ? null : `quick-${hit.title}`)}
-                          className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
-                        >
-                          {isExpanded ? "Show less ↑" : "Read more ↓"}
-                        </button>
                         <a
                           href={hit.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-[0.6rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors"
+                          className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
                         >
-                          {hit.source} ↗
+                          Full story →
                         </a>
+                        <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">
+                          {hit.source}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -724,8 +740,19 @@ export default function InnovationPulseClient({
           V4 CATEGORY FILTERS
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
-        <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2 mb-6">
-          <span className="text-[var(--cyan)]">CURATED NEWS</span> — AI in Education & Beyond
+        <div className="flex items-start gap-4 mb-6">
+          <div className="w-[3px] h-[2.2rem] bg-gradient-to-b from-[var(--cyan)] to-[var(--magenta)] rounded-full mt-1" />
+          <div>
+            <h2
+              className="text-[clamp(1.5rem,3vw,1.85rem)] font-bold text-[var(--cyan)] leading-[1.2]"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Curated News
+            </h2>
+            <p className="text-[0.82rem] text-[var(--text-muted)] mt-1">
+              AI in education and beyond — browse by category
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
@@ -772,12 +799,22 @@ export default function InnovationPulseClient({
         {/* PREVIOUS LEAD STORIES — First position */}
         {previousLeadStories.length > 0 && (
           <div id="previous-lead-stories" className="mb-8">
-            <div className="flex items-center gap-[0.6rem] mb-4">
-              <span className="w-[7px] h-[7px] rounded-full bg-[var(--magenta)]" />
-              <span className="font-mono text-[0.7rem] tracking-[0.12em] uppercase font-semibold text-[var(--magenta)]">
-                Previous Lead Stories
-              </span>
-              <Link href="/innovation-pulse/stories" className="ml-auto font-mono text-[0.65rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-start gap-4">
+                <div className="w-[3px] h-[1.8rem] bg-[var(--magenta)] rounded-full mt-1" />
+                <div>
+                  <h3
+                    className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--magenta)] leading-[1.2]"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    Previous Lead Stories
+                  </h3>
+                  <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
+                    Deep dives from recent episodes
+                  </p>
+                </div>
+              </div>
+              <Link href="/innovation-pulse/stories" className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
                 View all →
               </Link>
             </div>
@@ -859,13 +896,29 @@ export default function InnovationPulseClient({
           const catSlug = V4_CATEGORY_SLUGS[category];
 
           return (
-            <div key={category} id={catId} className="mb-8">
-              <div className="flex items-center gap-[0.6rem] mb-4 mt-8 first:mt-0">
-                <span className="w-[7px] h-[7px] rounded-full" style={{ background: catColor }} />
-                <span className="font-mono text-[0.7rem] tracking-[0.12em] uppercase font-semibold" style={{ color: catColor }}>
-                  {category}
-                </span>
-                <Link href={`/innovation-pulse/category/${catSlug}`} className="ml-auto font-mono text-[0.65rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors">
+            <div key={category} id={catId} className="mb-10 mt-10 first:mt-0">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-[3px] h-[1.8rem] rounded-full mt-1" style={{ background: catColor }} />
+                  <div>
+                    <h3
+                      className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold leading-[1.2]"
+                      style={{ fontFamily: "var(--font-heading)", color: catColor }}
+                    >
+                      {category}
+                    </h3>
+                    <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
+                      {category === "Insights & Trends" && "Research, data, and emerging patterns"}
+                      {category === "Case Study" && "Real-world implementations and outcomes"}
+                      {category === "Practical Tips" && "Actionable strategies for educators"}
+                      {category === "Ethical AI" && "Policy, ethics, and responsible AI use"}
+                      {category === "Latest AI Products" && "New tools and platform updates"}
+                      {category === "Beyond Ed" && "AI trends from outside higher education"}
+                      {category === "Week in Review" && "Weekly roundup and analysis"}
+                    </p>
+                  </div>
+                </div>
+                <Link href={`/innovation-pulse/category/${catSlug}`} className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
                   View all →
                 </Link>
               </div>
