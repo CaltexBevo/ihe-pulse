@@ -294,6 +294,21 @@ export default function InnovationPulseClient({
     return allEpisodes.slice(5);
   }, [allEpisodes]);
 
+  // Previous lead stories (from days before today, for the PREVIOUS LEAD STORIES section)
+  const previousLeadStories = useMemo(() => {
+    // Skip the first episode (today) and get the next 3 lead stories
+    return allEpisodes.slice(1, 4).map((ep) => ({
+      title: ep.deepDive.title,
+      summary: ep.deepDive.summary,
+      source: ep.deepDive.source,
+      sourceUrl: ep.deepDive.sourceUrl,
+      category: ep.deepDive.category,
+      editorialCallout: ep.deepDive.editorialCallout,
+      date: ep.date,
+      editorialLens: ep.editorialLens,
+    }));
+  }, [allEpisodes]);
+
   const scrollToCategory = (categoryId: string) => {
     const element = document.getElementById(categoryId);
     if (element) {
@@ -443,21 +458,54 @@ export default function InnovationPulseClient({
             </div>
           </div>
 
-          {/* Right Sidebar: About Card */}
+          {/* Right Sidebar: Recent Episodes */}
           <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:block">
             <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 sticky top-20">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-[52px] h-[52px] rounded-full border-2 border-[var(--border)] bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center text-white text-[1.2rem] font-bold">
-                  IP
-                </div>
-                <div>
-                  <h3 className="text-[0.9rem] font-semibold text-[var(--text)]">The Innovation Pulse</h3>
-                  <span className="font-mono text-[0.72rem] text-[var(--cyan)]">by Innovating Higher Ed</span>
-                </div>
+              <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4 flex items-center gap-2">
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+                Recent Episodes
               </div>
-              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55]">
-                Your daily guide to A.I. in higher education. Connecting the dots between innovation and practice.
-              </p>
+              <div className="space-y-3">
+                {recentEpisodes.map((ep, index) => {
+                  const isActive = index === selectedIndex;
+                  const epDate = new Date(ep.date + 'T12:00:00');
+                  const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
+                  const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                  const epLensColors = LENS_COLORS[ep.editorialLens] || LENS_COLORS["The Hard Question"];
+
+                  return (
+                    <button
+                      key={ep.date}
+                      onClick={() => selectDay(index)}
+                      className={`w-full text-left p-3 rounded-[10px] border transition-all ${
+                        isActive
+                          ? "bg-[var(--cyan-dim)] border-[var(--cyan)]"
+                          : "border-[var(--border)] hover:border-[var(--border-hover)] hover:bg-[var(--surface-1)]"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className={`font-mono text-[0.68rem] font-semibold ${isActive ? "text-[var(--cyan)]" : "text-[var(--text)]"}`}>
+                          {dayName}, {monthDay}
+                        </span>
+                        <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">{ep.audioDuration}</span>
+                      </div>
+                      <p className={`text-[0.78rem] leading-[1.4] line-clamp-2 mb-2 ${isActive ? "text-[var(--text)]" : "text-[var(--text-secondary)]"}`}>
+                        {ep.deepDive.title}
+                      </p>
+                      <span className={`inline-flex items-center gap-[0.3rem] px-[0.5rem] py-[0.15rem] rounded-full text-[0.58rem] font-semibold ${epLensColors.bg} ${epLensColors.text}`}>
+                        <span className="w-[4px] h-[4px] rounded-full bg-current" />
+                        {ep.editorialLens}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              <Link
+                href="/innovation-pulse/archive"
+                className="block mt-4 pt-3 border-t border-[var(--border)] font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors text-center"
+              >
+                View full archive →
+              </Link>
             </div>
           </div>
         </div>
@@ -467,130 +515,189 @@ export default function InnovationPulseClient({
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          TOP STORIES — 3 Card Layout
+          TODAY'S TOP STORIES — Lead Story 3-Column Layout
           ═══════════════════════════════════════════════════════ */}
       <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
         <div className="flex items-center justify-between mb-6">
           <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] flex items-center gap-2">
             <span className="text-[var(--cyan)]">TODAY&apos;S TOP STORIES</span>
             <span>—</span>
-            <span>{formatShortDate(currentEpisode?.date || episode.date)}</span>
+            <span>{formatPulseDate(currentEpisode?.date || episode.date)}</span>
           </div>
           <Link href="/innovation-pulse/stories" className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
             View all lead stories →
           </Link>
         </div>
 
-        {/* 3-Card Grid */}
-        <div className="grid-3 mb-8">
-          {/* Lead Story Card */}
-          {leadStory && (
-            <Card
-              title={leadStory.title}
-              teaser={leadStory.summary}
-              fullContent={leadStory.summary}
-              editorialCallout={leadStory.editorialCallout}
-              category={mapToV4Category(leadStory.category)}
-              categoryColor={V4_CATEGORY_COLORS[mapToV4Category(leadStory.category)]?.hex}
-              source={leadStory.source}
-              sourceUrl={leadStory.sourceUrl}
-              date={formatShortDate(currentEpisode?.date || episode.date)}
-              imageUrl={imageAssigner.getImage(leadStory.title, leadStory.category)}
-              badgeText="LEAD"
-              badgeColor="rgba(200,80,192,0.9)"
-              expandable={true}
-              href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
-            />
-          )}
-
-          {/* Top 2 Quick Hits */}
-          {topQuickHits.map((hit, i) => (
-            <Card
-              key={i}
-              title={hit.title}
-              teaser={hit.summary}
-              fullContent={hit.summary}
-              category={mapToV4Category(hit.category)}
-              categoryColor={V4_CATEGORY_COLORS[mapToV4Category(hit.category)]?.hex}
-              source={hit.source}
-              sourceUrl={hit.sourceUrl}
-              date={formatShortDate(currentEpisode?.date || episode.date)}
-              imageUrl={imageAssigner.getImage(hit.title, hit.category)}
-              badgeText="STORY"
-              badgeColor={V4_CATEGORY_COLORS[mapToV4Category(hit.category)]?.hex || "rgba(0,212,255,0.9)"}
-              expandable={true}
-            />
-          ))}
-        </div>
-
-        {/* OUR TAKE - Always visible for lead story */}
-        {leadStory?.editorialCallout && (
-          <div className="bg-[var(--surface-1)] border border-[var(--border)] rounded-[16px] p-6 relative overflow-hidden mb-8">
-            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[var(--magenta)] to-[var(--cyan)]" />
-            <div className="pl-4">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="font-mono text-[0.68rem] tracking-[0.1em] uppercase font-semibold text-[var(--magenta)]">
-                  Our Take
-                </span>
-                <span className="font-mono text-[0.6rem] px-[0.55rem] py-[0.18rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                  {currentEpisode?.editorialLens}
-                </span>
+        {/* Lead Story — 3 Equal Columns */}
+        {leadStory && (
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden mb-8">
+            <div className="grid lg:grid-cols-3">
+              {/* Column 1: Image */}
+              <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[360px] overflow-hidden bg-[var(--surface-1)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageAssigner.getImage(leadStory.title, leadStory.category)}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
+                {/* Mobile badges overlay */}
+                <div className="lg:hidden absolute top-4 left-4 flex gap-2">
+                  <span className="font-mono text-[0.6rem] font-semibold px-[0.6rem] py-[0.25rem] rounded-[6px] bg-[var(--magenta)] text-white uppercase">
+                    Lead Story
+                  </span>
+                  <span
+                    className="font-mono text-[0.6rem] font-semibold px-[0.6rem] py-[0.25rem] rounded-[6px] text-white uppercase"
+                    style={{ backgroundColor: V4_CATEGORY_COLORS[mapToV4Category(leadStory.category)]?.hex }}
+                  >
+                    {mapToV4Category(leadStory.category)}
+                  </span>
+                </div>
               </div>
-              <div className="text-[1rem] text-[var(--text)] leading-[1.7] italic max-w-[800px]">
-                {renderParagraphs(leadStory.editorialCallout, "")}
+
+              {/* Column 2: Summary */}
+              <div className="p-6 lg:border-r border-[var(--border)]">
+                {/* Desktop badges */}
+                <div className="hidden lg:flex gap-2 mb-3">
+                  <span className="font-mono text-[0.6rem] font-semibold px-[0.55rem] py-[0.2rem] rounded-[5px] bg-[var(--magenta)] text-white uppercase">
+                    Lead Story
+                  </span>
+                  <span
+                    className="font-mono text-[0.6rem] font-semibold px-[0.55rem] py-[0.2rem] rounded-[5px] text-white uppercase"
+                    style={{ backgroundColor: V4_CATEGORY_COLORS[mapToV4Category(leadStory.category)]?.hex }}
+                  >
+                    {mapToV4Category(leadStory.category)}
+                  </span>
+                </div>
+                <h2
+                  className="text-[clamp(1.1rem,2vw,1.4rem)] font-bold leading-[1.25] mb-4"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {leadStory.title}
+                </h2>
+                <div className="text-[0.85rem] text-[var(--text-secondary)] leading-[1.65] mb-4">
+                  {(() => {
+                    const paragraphs = leadStory.summary.split(/\n\n+/).filter(p => p.trim());
+                    const preview = paragraphs.slice(0, 2).join('\n\n');
+                    const hasMore = paragraphs.length > 2;
+                    const isExpanded = expandedStory === `lead-${leadStory.title}`;
+
+                    return (
+                      <>
+                        {renderParagraphs(isExpanded ? leadStory.summary : preview, "")}
+                        {hasMore && (
+                          <button
+                            onClick={() => setExpandedStory(isExpanded ? null : `lead-${leadStory.title}`)}
+                            className="font-mono text-[0.7rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mt-3 block"
+                          >
+                            {isExpanded ? "Show less ↑" : "Read more ↓"}
+                          </button>
+                        )}
+                      </>
+                    );
+                  })()}
+                </div>
+                <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)]">
+                  <Link
+                    href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
+                    className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+                  >
+                    Full story →
+                  </Link>
+                  <a
+                    href={leadStory.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[0.72rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors ml-auto"
+                  >
+                    {leadStory.source} ↗
+                  </a>
+                </div>
+              </div>
+
+              {/* Column 3: Our Take */}
+              <div className="p-6 bg-[var(--surface-1)] relative">
+                <div className="absolute left-0 top-6 bottom-6 w-[3px] bg-gradient-to-b from-[var(--magenta)] to-[var(--cyan)] rounded-full lg:block hidden" />
+                <div className="lg:pl-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="font-mono text-[0.68rem] tracking-[0.08em] uppercase font-semibold text-[var(--magenta)]">
+                      Our Take
+                    </span>
+                    <span className="font-mono text-[0.58rem] px-[0.5rem] py-[0.15rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
+                      {currentEpisode?.editorialLens}
+                    </span>
+                  </div>
+                  {leadStory.editorialCallout ? (
+                    <div className="text-[0.88rem] text-[var(--text)] leading-[1.65] italic">
+                      {renderParagraphs(leadStory.editorialCallout, "")}
+                    </div>
+                  ) : (
+                    <p className="text-[0.85rem] text-[var(--text-muted)] italic">
+                      Editorial analysis coming soon.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Remaining Quick Hits */}
-        {remainingQuickHits.length > 0 && (
+        {/* ALSO TODAY — Quick Hit Cards (up to 6 in 2 rows of 3) */}
+        {currentEpisode?.quickHits && currentEpisode.quickHits.length > 0 && (
           <div className="mb-8">
-            <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
+            <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-5 flex items-center gap-2">
+              <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
               Also Today
             </div>
-            <div className="space-y-3">
-              {remainingQuickHits.map((hit, i) => {
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {currentEpisode.quickHits.slice(0, 6).map((hit, i) => {
                 const v4Cat = mapToV4Category(hit.category);
-                const isExpanded = expandedStory === hit.title;
+                const isExpanded = expandedStory === `quick-${hit.title}`;
 
                 return (
                   <div
                     key={i}
-                    className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 hover:border-[var(--border-hover)] transition-colors"
+                    className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span
-                            className="font-mono text-[0.55rem] font-semibold px-[0.5rem] py-[0.15rem] rounded-[4px] uppercase"
-                            style={{ backgroundColor: V4_CATEGORY_COLORS[v4Cat]?.bg, color: V4_CATEGORY_COLORS[v4Cat]?.hex }}
-                          >
-                            {v4Cat}
-                          </span>
-                          <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">{hit.source}</span>
-                        </div>
-                        <h3 className="font-sans text-[0.95rem] font-bold leading-[1.3] mb-2">{hit.title}</h3>
-                        <p className={`text-[0.82rem] text-[var(--text-secondary)] leading-[1.6] ${isExpanded ? "" : "line-clamp-2"}`}>
-                          {hit.summary}
-                        </p>
-                        {hit.summary.length > 150 && (
-                          <button
-                            onClick={() => setExpandedStory(isExpanded ? null : hit.title)}
-                            className="font-mono text-[0.68rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mt-2"
-                          >
-                            {isExpanded ? "Show less ↑" : "Read more ↓"}
-                          </button>
-                        )}
-                      </div>
-                      <a
-                        href={hit.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors shrink-0"
+                    {/* Thumbnail */}
+                    <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imageAssigner.getImage(hit.title, hit.category)}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover object-center"
+                      />
+                      <span
+                        className="absolute top-3 left-3 font-mono text-[0.55rem] font-semibold px-[0.5rem] py-[0.18rem] rounded-[4px] text-white uppercase"
+                        style={{ backgroundColor: V4_CATEGORY_COLORS[v4Cat]?.hex }}
                       >
-                        Source ↗
-                      </a>
+                        {v4Cat}
+                      </span>
+                    </div>
+                    {/* Content */}
+                    <div className="p-4">
+                      <h3 className="font-sans text-[0.92rem] font-bold leading-[1.35] mb-2 line-clamp-2">
+                        {hit.title}
+                      </h3>
+                      <p className={`text-[0.8rem] text-[var(--text-secondary)] leading-[1.55] mb-3 ${isExpanded ? "" : "line-clamp-2"}`}>
+                        {hit.summary}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <button
+                          onClick={() => setExpandedStory(isExpanded ? null : `quick-${hit.title}`)}
+                          className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+                        >
+                          {isExpanded ? "Show less ↑" : "Read more ↓"}
+                        </button>
+                        <a
+                          href={hit.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[0.6rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors"
+                        >
+                          {hit.source} ↗
+                        </a>
+                      </div>
                     </div>
                   </div>
                 );
@@ -662,6 +769,90 @@ export default function InnovationPulseClient({
           CATEGORY SECTIONS
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        {/* PREVIOUS LEAD STORIES — First position */}
+        {previousLeadStories.length > 0 && (
+          <div id="previous-lead-stories" className="mb-8">
+            <div className="flex items-center gap-[0.6rem] mb-4">
+              <span className="w-[7px] h-[7px] rounded-full bg-[var(--magenta)]" />
+              <span className="font-mono text-[0.7rem] tracking-[0.12em] uppercase font-semibold text-[var(--magenta)]">
+                Previous Lead Stories
+              </span>
+              <Link href="/innovation-pulse/stories" className="ml-auto font-mono text-[0.65rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors">
+                View all →
+              </Link>
+            </div>
+
+            <div className="grid-3">
+              {previousLeadStories.map((story, i) => {
+                const v4Cat = mapToV4Category(story.category);
+                const storyLensColors = LENS_COLORS[story.editorialLens] || LENS_COLORS["The Hard Question"];
+
+                return (
+                  <div
+                    key={`prev-lead-${i}`}
+                    className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imageAssigner.getImage(story.title, story.category)}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover object-center"
+                      />
+                      <div className="absolute top-3 left-3 flex gap-2">
+                        <span className="font-mono text-[0.55rem] font-semibold px-[0.5rem] py-[0.18rem] rounded-[4px] bg-[var(--magenta)] text-white uppercase">
+                          Lead
+                        </span>
+                        <span
+                          className="font-mono text-[0.55rem] font-semibold px-[0.5rem] py-[0.18rem] rounded-[4px] text-white uppercase"
+                          style={{ backgroundColor: V4_CATEGORY_COLORS[v4Cat]?.hex }}
+                        >
+                          {v4Cat}
+                        </span>
+                      </div>
+                    </div>
+                    {/* Content */}
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">
+                          {formatShortDate(story.date)}
+                        </span>
+                        <span className={`font-mono text-[0.52rem] px-[0.4rem] py-[0.1rem] rounded-full ${storyLensColors.bg} ${storyLensColors.text}`}>
+                          {story.editorialLens}
+                        </span>
+                      </div>
+                      <h3 className="font-sans text-[0.92rem] font-bold leading-[1.35] mb-2 line-clamp-2">
+                        {story.title}
+                      </h3>
+                      <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.55] mb-3 line-clamp-2">
+                        {story.summary}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <Link
+                          href={`/innovation-pulse/story/${generateSlug(story.title)}`}
+                          className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+                        >
+                          Full story →
+                        </Link>
+                        <a
+                          href={story.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[0.6rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors"
+                        >
+                          {story.source} ↗
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Other Category Sections */}
         {categorizedStories.map(({ category, stories }) => {
           const catId = category.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and");
           const catColor = V4_CATEGORY_COLORS[category]?.hex || "var(--cyan)";
