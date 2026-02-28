@@ -466,8 +466,10 @@ export default function InnovationPulseClient({
                 Recent Episodes
               </div>
               <div className="space-y-3">
-                {recentEpisodes.map((ep, index) => {
-                  const isActive = index === selectedIndex;
+                {/* Show only previous 4 episodes (skip today at index 0) */}
+                {recentEpisodes.slice(1, 5).map((ep, i) => {
+                  const actualIndex = i + 1; // Offset by 1 since we skipped index 0
+                  const isActive = actualIndex === selectedIndex;
                   const epDate = new Date(ep.date + 'T12:00:00');
                   const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
                   const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -476,7 +478,7 @@ export default function InnovationPulseClient({
                   return (
                     <button
                       key={ep.date}
-                      onClick={() => selectDay(index)}
+                      onClick={() => selectDay(actualIndex)}
                       className={`w-full text-left p-3 rounded-[10px] border transition-all ${
                         isActive
                           ? "bg-[var(--cyan-dim)] border-[var(--cyan)]"
