@@ -1,0 +1,88 @@
+{
+  "episode": {
+    "date": "2026-02-28",
+    "dayOfWeek": "Saturday",
+    "editorialLens": "The Practitioner's Playbook",
+    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
+    "lensColor": "#22c55e",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-28.mp3",
+    "audioDuration": "7:40",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Saturday, February 28th.\n\nWhile major research universities debate AI policy, a Tennessee regional university is bringing AI literacy directly to its neighbors.\n\n-\nHere's what caught my attention this week. Tusculum University, a private institution with fewer than 3,000 students in rural Tennessee, is hosting a public summit on artificial intelligence. Now, you might think, so what? Universities host conferences all the time. But here's the thing that makes this different. This isn't targeting other academics or higher education professionals. They're opening their doors to educate the broader community about AI's implications and applications.\n\nAnd this matters more than you might think. While flagship universities and R1 institutions dominate headlines with their AI research labs and million-dollar partnerships, it's often smaller regional universities that serve as the real bridge between cutting-edge technology and everyday communities. Tusculum's approach represents a fundamentally different model. Instead of treating AI as an elite academic pursuit, they're positioning themselves as community educators and public intellectuals.\n\nThink about the timing here. As AI tools become ubiquitous in workplaces from healthcare to manufacturing, rural and smaller communities often lack access to quality information about these technologies. They're left to navigate AI adoption through corporate marketing materials or sensationalized media coverage. You know what I'm talking about. The breathless headlines about AI taking over the world, or the slick sales pitches promising AI will solve every business problem overnight.\n\nUniversities like Tusculum can fill this gap by providing evidence-based, accessible education that helps community members make informed decisions about AI in their personal and professional lives. Imagine you're a small business owner in rural Tennessee trying to figure out if AI could help your operation. Or a healthcare worker wondering what these new AI diagnostic tools actually mean for patient care. Where do you go for trustworthy information? Tusculum is saying, come to us.\n\nBut here's the critical question I keep wrestling with. What's the sustainability model? Public education summits are resource-intensive, and smaller universities already face significant budget constraints. How do institutions like Tusculum balance their traditional educational mission with this expanded role as community AI educators? And more importantly, how do they ensure the content remains current and practical as AI technology evolves rapidly?\n\nHere's what I find fascinating about the broader implications. If regional universities embrace this public education role, they could become crucial nodes in a national AI literacy network. Community colleges and regional universities serve populations that four-year research institutions often miss. Working adults who can't take time off for a week-long conference. First-generation college students whose families are trying to understand what AI means for their career prospects. Rural communities that are frequently overlooked in technology adoption discussions.\n\nAnd look, for educators watching this development, the key takeaway isn't just about hosting your own AI summit. It's about recognizing that your institution's AI strategy shouldn't exist in isolation from your community's needs. Whether you're at a community college in Ohio or a regional university in Montana, you have unique access to populations that need practical AI education.\n\nThe question is whether you'll step into that role proactively or wait for someone else to fill the void. Because here's what I keep coming back to. We spend so much time debating AI policies within our institutions that we forget our broader educational mission to the communities we serve. Tusculum's public summit reminds us that AI literacy isn't just about preparing our enrolled students. It's about helping entire communities navigate technological change.\n\nIf you're at a regional institution, consider this. What would happen if you hosted a free AI workshop for local business owners, teachers, or healthcare workers? You might discover that your most important AI impact happens outside your classrooms, in the community conversations you facilitate and the practical guidance you provide to neighbors trying to understand what AI means for their daily lives.\n\nTusculum's summit represents a model worth studying. Small institutions leveraging their community connections to democratize AI education rather than competing with larger universities on research prestige. It's a different kind of leadership, and frankly, it might be exactly what we need right now.\n\n-\nNow, some quick hits from around higher ed this week.\n\nOver at the University of Michigan, their decentralized AI policy is creating campus-wide inconsistency. Some departments are embracing AI while others resist. Faculty report 90% of students already use generative AI, highlighting the gap between institutional hesitation and student reality. It's a perfect example of what happens when you don't have a unified approach to AI integration.\n\n-\nMeanwhile, St. Bonaventure University in New York is taking the opposite approach. They're providing ChatGPT Edu licenses to all undergraduates and faculty starting fall 2026. The move follows a 300-person pilot program and represents a comprehensive institutional commitment to AI integration with enterprise-grade security. That's the kind of all-in approach that either works brilliantly or teaches you very expensive lessons.\n\n-\nHere's one that should concern all of us. UMass Boston researchers are arguing that AI's greatest threat isn't cheating, but the hollowing out of learning ecosystems. As machines handle more cognitive work, universities risk losing the productive struggle that builds genuine expertise and critical thinking skills. They're calling it learning erosion, and it's worth taking seriously.\n\n-\nNext up, Northeastern University is creating AI focus groups for strategic planning. Their faculty senate discussions revealed that 90% of students use generative AI, prompting university-wide planning initiatives. Six focus groups will include faculty, students, and external partners to develop comprehensive AI integration strategies. At least someone's asking the right people for input.\n\n-\nAnd finally, the University of Colorado Boulder has scheduled an AI leadership discussion for March 12th. Senior Vice Chancellor Janel Forde will lead a fireside chat on AI and higher education. It reflects growing administrative focus on AI strategy at the institutional leadership level.\n\n-\nA quick update on a story we've been following. Remember that UMass Boston research on learning erosion I just mentioned? We first covered concerns about AI's impact on deep learning back in January. Now we're seeing more concrete research suggesting that the real risk isn't academic dishonesty, but the gradual weakening of the cognitive muscles students need to develop genuine expertise. It's moving from theoretical concern to documented phenomenon.\n\n-\nWhat strikes me about all these stories is how they represent different approaches to the same fundamental challenge. How do we integrate AI in ways that enhance rather than replace human learning? Tusculum is taking it to the community. Michigan is struggling with inconsistency. St. Bonaventure is going all-in. And researchers are warning us about unintended consequences. Each approach teaches us something about what works and what doesn't in this rapidly evolving landscape.\n\nThat's your Innovation Pulse for Saturday. Find full coverage and links at innovating higher ed dot com. See you Sunday.\n\nI'm Dr. Norma Jones. Thanks for listening."
+  },
+  "leadStory": {
+    "headline": "Small Universities Lead the Charge in Community AI Education",
+    "hook": "While major research universities debate AI policy, a Tennessee regional university is bringing AI literacy directly to its neighbors.",
+    "category": "Case Study",
+    "source": "WJHL",
+    "sourceUrl": "https://www.wjhl.com/video/tusculum-university-to-host-public-summit-about-artificial-intelligence/11558336/",
+    "editorialTake": "Tusculum University, a private institution with fewer than 3,000 students in rural Tennessee, is hosting a public summit on artificial intelligence. The event aims to educate the broader community about AI's implications and applications, marking a notable departure from the typical academic conference format that targets only higher education professionals.\n\nThis matters more than you might think. While flagship universities and R1 institutions dominate headlines with their AI research labs and million-dollar partnerships, it's often smaller regional universities that serve as the real bridge between cutting-edge technology and everyday communities. Tusculum's approach represents a fundamentally different model: instead of treating AI as an elite academic pursuit, they're positioning themselves as community educators and public intellectuals.\n\nThe timing is particularly significant. As AI tools become ubiquitous in workplaces from healthcare to manufacturing, rural and smaller communities often lack access to quality information about these technologies. They're left to navigate AI adoption through corporate marketing materials or sensationalized media coverage. Universities like Tusculum can fill this gap by providing evidence-based, accessible education that helps community members make informed decisions about AI in their personal and professional lives.\n\nBut here's the critical question: What's the sustainability model? Public education summits are resource-intensive, and smaller universities already face significant budget constraints. How do institutions like Tusculum balance their traditional educational mission with this expanded role as community AI educators? And more importantly, how do they ensure the content remains current and practical as AI technology evolves rapidly?\n\nThe broader implications are profound. If regional universities embrace this public education role, they could become crucial nodes in a national AI literacy network. Community colleges and regional universities serve populations that four-year research institutions often miss – working adults, first-generation college students, and rural communities that are frequently overlooked in technology adoption discussions.\n\nFor educators watching this development, the key takeaway isn't just about hosting your own AI summit. It's about recognizing that your institution's AI strategy shouldn't exist in isolation from your community's needs. Whether you're at a community college in Ohio or a regional university in Montana, you have unique access to populations that need practical AI education. The question is whether you'll step into that role proactively or wait for someone else to fill the void.\n\nTusculum's summit represents a model worth studying: small institutions leveraging their community connections to democratize AI education rather than competing with larger universities on research prestige.",
+    "pullQuote": "Regional universities can become crucial nodes in a national AI literacy network, serving populations that research institutions often miss.",
+    "editorialCallout": "Here's what I keep coming back to: we spend so much time debating AI policies within our institutions that we forget our broader educational mission to the communities we serve. Tusculum's public summit reminds us that AI literacy isn't just about preparing our enrolled students – it's about helping entire communities navigate technological change. If you're at a regional institution, consider this: What would happen if you hosted a free AI workshop for local business owners, teachers, or healthcare workers? You might discover that your most important AI impact happens outside your classrooms, in the community conversations you facilitate and the practical guidance you provide to neighbors trying to understand what AI means for their daily lives.",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Small university building with diverse community members gathering, AI symbols floating above"
+  },
+  "quickHits": [
+    {
+      "headline": "Michigan Faculty Split on AI Integration Approaches",
+      "summary": "University of Michigan's decentralized AI policy creates campus-wide inconsistency, with some departments embracing AI while others resist. Faculty report 90% of students already use generative AI, highlighting the gap between institutional hesitation and student reality.",
+      "category": "Case Study",
+      "source": "MLive.com",
+      "sourceUrl": "https://www.mlive.com/news/ann-arbor/2026/02/bot-instructors-ai-use-at-university-of-michigan-differs-across-campus.html",
+      "isCallback": false
+    },
+    {
+      "headline": "St. Bonaventure Provides Campus-Wide ChatGPT Access",
+      "summary": "The New York university will offer ChatGPT Edu licenses to all undergraduates and faculty starting fall 2026. The move follows a 300-person pilot program and represents a comprehensive institutional commitment to AI integration with enterprise-grade security.",
+      "category": "Latest AI Products",
+      "source": "The Wellsville Sun",
+      "sourceUrl": "https://wellsvillesun.com/blog/2026/02/28/st-bonaventure-partners-with-openai-to-provide-chatgpt-to-students-faculty/",
+      "isCallback": false
+    },
+    {
+      "headline": "Learning Erosion: AI's Hidden Cost to Higher Education",
+      "summary": "UMass Boston researchers argue that AI's greatest threat isn't cheating but the hollowing out of learning ecosystems. As machines handle more cognitive work, universities risk losing the 'productive struggle' that builds genuine expertise and critical thinking skills.",
+      "category": "Ethical AI",
+      "source": "Cobb Courier",
+      "sourceUrl": "https://cobbcountycourier.com/2026/02/the-greatest-risk-of-ai-in-higher-education-isnt-cheating-its-the-erosion-of-learning-itself/",
+      "isCallback": true
+    },
+    {
+      "headline": "Northeastern Creates AI Focus Groups for Strategic Planning",
+      "summary": "Faculty senate discussions reveal 90% of students use generative AI, prompting university-wide planning initiatives. Six focus groups will include faculty, students, and external partners to develop comprehensive AI integration strategies across all university operations.",
+      "category": "Insights & Trends",
+      "source": "The Huntington News",
+      "sourceUrl": "https://huntnewsnu.com/91731/primary-homepage/nu-faculty-discuss-artificial-intelligence-enrollment-statistics-at-first-faculty-senate-meeting-of-the-semester/",
+      "isCallback": false
+    },
+    {
+      "headline": "Colorado Boulder Schedules AI Leadership Discussion",
+      "summary": "Senior Vice Chancellor Janel Forde will lead a March 12 fireside chat on AI and higher education. The event reflects growing administrative focus on AI strategy at the institutional leadership level.",
+      "category": "Beyond Ed",
+      "source": "University of Colorado Boulder",
+      "sourceUrl": "https://www.colorado.edu/today/2026/02/27/ai-and-higher-ed-fireside-chat-janel-forde-march-12",
+      "isCallback": false
+    }
+  ],
+  "meta": {
+    "date": "2026-02-28",
+    "dayOfWeek": "Saturday",
+    "editorialLens": "The Practitioner's Playbook",
+    "themes": [
+      "community engagement",
+      "institutional AI strategy",
+      "learning ecosystem preservation",
+      "campus-wide implementation",
+      "regional university leadership"
+    ],
+    "storiesWatching": [
+      "Tusculum University public AI summit outcomes",
+      "St. Bonaventure ChatGPT Edu rollout results",
+      "University of Michigan AI policy standardization efforts"
+    ],
+    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
+    "lensColor": "#22c55e",
+    "publishedAt": "2026-03-01T01:37:46.208Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
