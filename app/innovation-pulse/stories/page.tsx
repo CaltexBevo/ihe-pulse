@@ -34,7 +34,7 @@ export default function LeadStoriesPage() {
       editorialLens: episode.editorialLens,
       editorialCallout: episode.deepDive.editorialCallout,
       slug: generateSlug(episode.deepDive.title),
-      imageUrl: imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category),
+      imageUrl: imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category, episode.date),
     };
   });
 

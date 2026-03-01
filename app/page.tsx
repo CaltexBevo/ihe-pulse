@@ -33,7 +33,7 @@ export default function Home() {
   const leadStory = pulseEpisode?.deepDive;
   const leadStoryV4Category = leadStory ? mapToV4Category(leadStory.category) : "Insights & Trends";
   const leadStoryColor = V4_CATEGORY_COLORS[leadStoryV4Category] || "#00d4ff";
-  const leadStoryImage = leadStory ? imageAssigner.getImage(leadStory.title, leadStory.category) : "";
+  const leadStoryImage = leadStory ? imageAssigner.getImage(leadStory.title, leadStory.category, pulseEpisode?.date) : "";
 
   // Get top stories (excluding lead story)
   const topStories = allStories
@@ -164,7 +164,7 @@ export default function Home() {
           {topStories.map((story, i) => {
             const v4Category = mapToV4Category(story.category);
             const v4Color = V4_CATEGORY_COLORS[v4Category] || "#00d4ff";
-            const storyImage = imageAssigner.getImage(story.title, story.category);
+            const storyImage = imageAssigner.getImage(story.title, story.category, story.date);
 
             return (
               <Card

@@ -548,7 +548,7 @@ export default function InnovationPulseClient({
               <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[360px] overflow-hidden bg-[var(--surface-1)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={imageAssigner.getImage(leadStory.title, leadStory.category)}
+                  src={imageAssigner.getImage(leadStory.title, leadStory.category, currentEpisode?.date)}
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
@@ -684,7 +684,7 @@ export default function InnovationPulseClient({
                     <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={imageAssigner.getImage(hit.title, hit.category)}
+                        src={imageAssigner.getImage(hit.title, hit.category, currentEpisode?.date)}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover object-center"
                       />
@@ -835,7 +835,7 @@ export default function InnovationPulseClient({
                     <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={imageAssigner.getImage(story.title, story.category)}
+                        src={imageAssigner.getImage(story.title, story.category, story.date)}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover object-center"
                       />
@@ -937,7 +937,7 @@ export default function InnovationPulseClient({
                     source={story.source}
                     sourceUrl={story.sourceUrl}
                     date={formatShortDate(story.date)}
-                    imageUrl={imageAssigner.getImage(story.title, story.category)}
+                    imageUrl={imageAssigner.getImage(story.title, story.category, story.date)}
                     badgeText={story.isCallback ? "CALLBACK" : story.type === "deepDive" ? "LEAD" : V4_BADGE_TEXT[story.v4Category]}
                     badgeColor={story.isCallback ? "rgba(245,166,35,0.85)" : story.type === "deepDive" ? "rgba(0,212,255,0.85)" : V4_CATEGORY_COLORS[story.v4Category]?.hex}
                     expandable={true}
