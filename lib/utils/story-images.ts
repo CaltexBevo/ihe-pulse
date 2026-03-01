@@ -1,3 +1,7 @@
+// RULE: NEVER use headshot or portrait photos. Scenes, concepts, and objects ONLY. No individual faces.
+// All story images must be: campus buildings, classrooms, technology, libraries, abstract patterns,
+// aerial views, conference rooms, lab equipment, data visualizations, empty lecture halls.
+
 import storyImagesData from '@/data/story-images.json';
 
 // Type for the categorized image data
@@ -14,18 +18,18 @@ const CATEGORY_TO_THEME: Record<string, string> = {
   "Insights & Trends": "research",
   "Case Study": "campus",
   "Practical Tips": "classroom",
-  "Ethical AI": "ai-concept",
+  "Ethical AI": "digital",
   "Latest AI Products": "technology",
-  "Beyond Ed": "workspace",
-  "Week in Review": "data",
+  "Beyond Ed": "collaboration",
+  "Week in Review": "library",
   // Legacy categories
   "Teaching & Learning": "classroom",
   "Research & Innovation": "research",
-  "Policy & Ethics": "ai-concept",
+  "Policy & Ethics": "digital",
   "Tools & Products": "technology",
-  "Infrastructure & Operations": "workspace",
-  "Student Experience": "library",
-  "Leadership & Strategy": "data",
+  "Infrastructure & Operations": "collaboration",
+  "Student Experience": "campus",
+  "Leadership & Strategy": "library",
 };
 
 /**
@@ -43,9 +47,10 @@ function hashString(str: string): number {
 
 /**
  * Get a consistent image URL for a story based on its headline, date, and category.
- * Same headline + date always returns the same image.
+ * Uses headline + date as hash input so same headline on different days gets different images.
  */
 export function getStoryImage(headline: string, category?: string, date?: string): string {
+  // Hash uses headline + date for better distribution
   const hashInput = date ? `${headline}::${date}` : headline;
 
   // Try to get themed image first
@@ -68,8 +73,10 @@ export function getStoryImage(headline: string, category?: string, date?: string
 
 /**
  * Image assigner class for page-level deduplication.
- * Create one instance per page render to track used images across all sections.
- * Uses headline + date for hashing to allow same headlines on different days to get different images.
+ * Create ONE instance per page render to track ALL used images across all sections.
+ * This prevents ANY duplicate images on the same page.
+ *
+ * RULE: NEVER use headshot or portrait photos. Scenes, concepts, and objects ONLY.
  */
 export class StoryImageAssigner {
   private usedImages = new Set<string>();
@@ -77,9 +84,10 @@ export class StoryImageAssigner {
 
   /**
    * Get a unique image for a story, avoiding duplicates on the same page.
-   * Uses headline + date as hash input for better distribution.
+   * Uses headline + date as hash input so same story on different days gets different images.
    */
   getImage(headline: string, category?: string, date?: string): string {
+    // Hash uses headline + date for better distribution across days
     const hashInput = date ? `${headline}::${date}` : headline;
 
     // Try themed images first
@@ -98,22 +106,25 @@ export class StoryImageAssigner {
           attempts++;
         }
 
-        // If all themed images used, fall through to flat pool
+        // If found unused themed image, use it
         if (!this.usedImages.has(themedImages[index])) {
           this.usedImages.add(themedImages[index]);
           this.assignmentCount++;
           return themedImages[index];
         }
+        // If all themed images used, fall through to flat pool
       }
     }
 
-    // Flat pool with deduplication and cycling
+    // Flat pool with deduplication and category offset cycling
     const poolSize = imageData.flatPool.length;
     const hash = hashString(hashInput);
 
-    // Add assignment count as offset to cycle through images when pool runs low
-    const cycleOffset = Math.floor(this.assignmentCount / poolSize) * 7; // Prime-ish offset for distribution
-    let index = (hash + cycleOffset) % poolSize;
+    // Use category as offset to spread images when pool cycles
+    const categoryOffset = category ? hashString(category) % 17 : 0; // Prime number for distribution
+    const cycleOffset = Math.floor(this.assignmentCount / poolSize) * 11; // Another prime
+
+    let index = (hash + categoryOffset + cycleOffset) % poolSize;
     let attempts = 0;
 
     // Try to find an unused image
@@ -122,11 +133,9 @@ export class StoryImageAssigner {
       attempts++;
     }
 
-    // If all images exhausted, cycle with a different offset pattern
+    // If all images exhausted (very rare), cycle with different offset
     if (this.usedImages.has(imageData.flatPool[index])) {
-      // Reset tracking for this cycle and use a category-based offset
-      const categoryOffset = category ? hashString(category) % poolSize : 0;
-      index = (hash + categoryOffset + this.assignmentCount) % poolSize;
+      index = (hash + this.assignmentCount * 7) % poolSize;
     }
 
     this.usedImages.add(imageData.flatPool[index]);
@@ -135,7 +144,7 @@ export class StoryImageAssigner {
   }
 
   /**
-   * Reset the assigner (for new page renders or when switching episodes)
+   * Reset the assigner (call when switching episodes or for new page renders)
    */
   reset(): void {
     this.usedImages.clear();
@@ -143,10 +152,17 @@ export class StoryImageAssigner {
   }
 
   /**
-   * Get the number of images assigned so far
+   * Get the number of unique images assigned so far
    */
   getAssignmentCount(): number {
     return this.assignmentCount;
+  }
+
+  /**
+   * Check if an image has already been used on this page
+   */
+  isUsed(imageUrl: string): boolean {
+    return this.usedImages.has(imageUrl);
   }
 }
 
