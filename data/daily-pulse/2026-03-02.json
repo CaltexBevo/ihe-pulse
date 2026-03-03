@@ -1,0 +1,80 @@
+{
+  "episode": {
+    "date": "2026-03-02",
+    "dayOfWeek": "Monday",
+    "editorialLens": "The Practitioner's Playbook",
+    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
+    "lensColor": "#22c55e",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-02.mp3",
+    "audioDuration": "7:14",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Monday, March 2nd.\n\nWhile universities debate campus-wide A.I. bans, one community college demonstrates a more practical approach that puts decisions where they belong.\n\n-\nGrand Rapids Community College has quietly figured out something that's eluding many four-year institutions: how to handle A.I. policy without paralyzing the entire campus. And honestly, their approach makes so much sense that I'm wondering why more institutions haven't landed here yet.\n\nHere's what they're doing. Rather than imposing a blanket rule from the top down, GRCC lets individual faculty decide whether to allow A.I. in their classrooms. But here's the key part, they're not just throwing faculty into the deep end. They're simultaneously providing institutional support for safe A.I. use through Google Gemini and running an A.I. Incubator for hands-on learning.\n\nThis matters because it represents a middle path that most institutions haven't found yet. Think about what we've been seeing across higher education. Universities swing between extremes, either banning A.I. entirely or mandating its use across disciplines. Neither approach really works, does it? GRCC's model acknowledges what should be obvious but often isn't: a biology lab, an English composition class, and a computer programming course have fundamentally different relationships with A.I. tools.\n\nTake Professor Megan Coakley's stance. She teaches American Literature and believes learning is \"an internal experience.\" That makes perfect sense for her discipline. Students analyzing Whitman or Morrison need to develop their own critical thinking muscles. But that same philosophy might be counterproductive in a data analysis course where A.I. is already reshaping industry practice. The beauty of GRCC's approach is that it doesn't force these different pedagogical needs into the same box.\n\nWhat's particularly smart is how they handle the infrastructure piece. By standardizing on Google Gemini for cybersecurity and cost reasons, they're not leaving faculty to navigate the wild west of A.I. tools alone. The September 2025 email to faculty explicitly states that Gemini is \"already included in our existing Google services at no additional cost\" while emphasizing that faculty should \"apply your expertise, judgement, and context to shape the final product.\" This isn't just practical, it's pedagogically sound.\n\nBut here's where I want to push back a bit on GRCC's approach. Is complete faculty autonomy actually serving students? When Professor Coakley says students \"tie the grade to their thoughts and observations\" and lack confidence, that's a real pedagogical concern. I get it. But the solution might not be A.I. prohibition. It could be better scaffolding around how to use A.I. as a thinking partner rather than a replacement for thinking.\n\nAnd this is where GRCC's A.I. Incubator becomes really interesting. Professor Jonnathan Resendiz runs this program, and his perspective cuts to the heart of higher education's responsibility. He argues that \"the greater risk would be ignoring A.I.\" because it doesn't \"prepare students or our workforce for what is already happening.\" That's not just about technology, that's about institutional mission.\n\nHere's the detail that really caught my attention. GRCC opened their A.I. Incubator in June 2024, making A.I. \"accessible, practical, and aligned with workforce needs.\" That timeline tells you something important. This wasn't reactive policy scrambling after ChatGPT went viral. This was proactive institutional leadership that recognizes community colleges' unique role in workforce preparation.\n\nAnd that workforce angle matters more than we might initially think. Community college students often move directly into jobs after graduation. If they graduate without understanding how A.I. tools work in their field, are we actually preparing them? Or are we just protecting an academic experience that we're comfortable with?\n\nWhat I keep coming back to about GRCC's model is this: they're treating A.I. policy like good teaching. It's contextual, not universal. But I wonder if they're missing an opportunity for more intentional cross-departmental conversation. What if that English professor and the STEM dean actually talked about how A.I. affects critical thinking across disciplines? What if they compared notes on how students respond to A.I. tools in different contexts?\n\nThe real innovation might not be faculty autonomy alone, but faculty collaboration around A.I. pedagogy. Because here's the thing, students don't live in disciplinary silos. They take that English class and that computer science course and that biology lab all in the same semester. How do we help them develop consistent critical thinking skills about A.I. across all those contexts?\n\nSo what should you do with this? If you're at an institution still debating campus-wide A.I. policy, consider GRCC's model: clear infrastructure choices, faculty autonomy with support, and dedicated spaces for A.I. literacy. But don't stop there. Ask whether your current approach actually prepares students for the workplaces they're entering, or just protects the academic experience you're comfortable with. And maybe most importantly, create opportunities for faculty to learn from each other about how A.I. works in different disciplines. The policy question isn't just what each department needs, it's what students need to succeed across all their classes.\n\n-\nNow, some quick hits from around higher ed this week.\n\nValley City State University's A.I. Institute is hosting free virtual and in-person sessions across North Dakota in April, covering A.I. basics, education applications, and workforce implications. Smart move, making A.I. literacy accessible beyond campus walls addresses the community college mission directly.\n\n-\nMeanwhile, Grand Valley State University is providing free online A.I. education to help community members understand practical applications. This trend of universities extending A.I. literacy beyond enrolled students suggests institutions are recognizing their broader educational responsibility in the A.I. era.\n\n-\nOver at Florida State, Professor Eric Liguori facilitated a U.S. State Department-funded forum in Thailand exploring how A.I. transforms entrepreneurship education and small business development. International collaboration on A.I. education policy is becoming essential as these technologies reshape global workforce needs.\n\n-\nAnd here's one more. York College faculty facilitated a four-day A.I. in education workshop for Chilean K-12 educators, focusing on ethical and culturally responsive A.I. integration. The maker-centered approach and bilingual student facilitators demonstrate how international A.I. education exchange can be both practical and culturally sensitive.\n\n-\nWhat strikes me about today's coverage is how institutions are moving beyond the \"should we or shouldn't we\" question about A.I. They're asking \"how do we do this well?\" GRCC shows us that good A.I. policy looks a lot like good teaching policy: contextual, supported, and focused on student success rather than institutional comfort.\n\nThat's your Innovation Pulse for Monday. Find full coverage and links at innovating higher ed dot com. See you Tuesday.\n\nI'm Dr. Norma Jones. Thanks for listening."
+  },
+  "leadStory": {
+    "headline": "Community College Shows How Faculty-Led AI Policy Actually Works",
+    "hook": "While universities debate campus-wide AI bans, one community college demonstrates a more practical approach that puts decisions where they belong.",
+    "category": "Case Study",
+    "source": "The Collegiate Live",
+    "sourceUrl": "https://thecollegiatelive.com/2026/03/grcc-faculty-provide-insight-on-ai-use-on-campus/",
+    "editorialTake": "Grand Rapids Community College has quietly figured out something that's eluding many four-year institutions: how to handle A.I. policy without paralyzing the entire campus. Rather than imposing a blanket rule, GRCC lets individual faculty decide whether to allow A.I. in their classrooms, while simultaneously providing institutional support for safe A.I. use through Google Gemini and running an A.I. Incubator for hands-on learning.\n\nThis matters because it represents a middle path that most institutions haven't found yet. We've seen universities swing between extremes—either banning A.I. entirely or mandating its use across disciplines. GRCC's approach acknowledges what should be obvious but often isn't: a biology lab, an English composition class, and a computer programming course have fundamentally different relationships with A.I. tools. Professor Megan Coakley's stance that learning is \"an internal experience\" makes perfect sense for American Literature. But that same philosophy might be counterproductive in a data analysis course where A.I. is already reshaping industry practice.\n\nWhat's particularly smart is how GRCC handles the infrastructure piece. By standardizing on Google Gemini for cybersecurity and cost reasons, they're not leaving faculty to navigate the wild west of A.I. tools alone. The September 2025 email to faculty explicitly states that Gemini is \"already included in our existing Google services at no additional cost\" while emphasizing that faculty should \"apply your expertise, judgement, and context to shape the final product.\" This isn't just practical—it's pedagogically sound.\n\nBut here's where I want to push back on GRCC's approach: Is complete faculty autonomy actually serving students? When Professor Coakley says students \"tie the grade to their thoughts and observations\" and lack confidence, that's a real pedagogical concern. But the solution might not be A.I. prohibition—it could be better scaffolding around how to use A.I. as a thinking partner rather than a replacement for thinking. The A.I. Incubator, run by Professor Jonnathan Resendiz, seems to get this. His point that \"the greater risk would be ignoring A.I.\" because it doesn't \"prepare students or our workforce for what is already happening\" cuts to the heart of higher education's responsibility.\n\nThe most telling detail? GRCC opened their A.I. Incubator in June 2024, making A.I. \"accessible, practical, and aligned with workforce needs.\" That's not reactive policy—that's proactive institutional leadership that recognizes community colleges' unique role in workforce preparation.\n\nSo what should you do with this? If you're at an institution still debating campus-wide A.I. policy, consider GRCC's model: clear infrastructure choices, faculty autonomy with support, and dedicated spaces for A.I. literacy. But don't stop there. Ask whether your current approach actually prepares students for the workplaces they're entering, or just protects the academic experience you're comfortable with.",
+    "pullQuote": "GRCC's approach acknowledges what should be obvious but often isn't: a biology lab, an English composition class, and a computer programming course have fundamentally different relationships with A.I. tools.",
+    "editorialCallout": "Here's what I keep coming back to about GRCC's model: they're treating A.I. policy like good teaching—contextual, not universal. But I wonder if they're missing an opportunity for more intentional cross-departmental conversation. What if that English professor and the STEM dean actually talked about how A.I. affects critical thinking across disciplines? The real innovation might not be faculty autonomy, but faculty collaboration around A.I. pedagogy. If you're developing A.I. policy at your institution, don't just ask what each department needs—ask what students need to succeed across all their classes.",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Split-screen illustration: faculty member at podium with AI policy document, students with diverse digital tools"
+  },
+  "quickHits": [
+    {
+      "headline": "Valley City State Launches Statewide AI Education Series",
+      "summary": "VCSU's AI Institute is hosting free virtual and in-person sessions across North Dakota in April, covering AI basics, education applications, and workforce implications. Smart move—making AI literacy accessible beyond campus walls addresses the community college mission directly.",
+      "category": "Practical Tips",
+      "source": "Valley City State University",
+      "sourceUrl": "https://www.vcsu.edu/vcsu-hosting-public-lecture-series-on-artificial-intelligence/",
+      "isCallback": false
+    },
+    {
+      "headline": "Grand Valley Offers Free AI Course for Community",
+      "summary": "GVSU is providing free online AI education to help community members understand practical applications. This trend of universities extending AI literacy beyond enrolled students suggests institutions are recognizing their broader educational responsibility in the AI era.",
+      "category": "Practical Tips",
+      "source": "hollandsentinel.com",
+      "sourceUrl": "https://www.hollandsentinel.com/story/news/local/2026/03/02/gvsu-launches-free-online-course-on-artificial-intelligence/88865987007/",
+      "isCallback": false
+    },
+    {
+      "headline": "FSU Professor Leads International AI Entrepreneurship Program",
+      "summary": "Eric Liguori facilitated a U.S. State Department-funded forum in Thailand exploring how AI transforms entrepreneurship education and small business development. International collaboration on AI education policy is becoming essential as these technologies reshape global workforce needs.",
+      "category": "Beyond Ed",
+      "source": "Florida State University News",
+      "sourceUrl": "https://news.fsu.edu/news/fsuglobal/2026/03/03/fsu-professor-leads-ai-and-entrepreneurship-program-in-thailand-sponsored-by-us-department-of-state/",
+      "isCallback": false
+    },
+    {
+      "headline": "York College Faculty Lead CUNY-Chile AI Workshop",
+      "summary": "York College faculty facilitated a four-day AI in education workshop for Chilean K-12 educators, focusing on ethical and culturally responsive AI integration. The maker-centered approach and bilingual student facilitators demonstrate how international AI education exchange can be both practical and culturally sensitive.",
+      "category": "Case Study",
+      "source": "York College",
+      "sourceUrl": "https://www.york.cuny.edu/news/2026/york-college-faculty-collaborate-in-cuny-chile-ai-in-education-workshop-1",
+      "isCallback": false
+    }
+  ],
+  "meta": {
+    "date": "2026-03-02",
+    "dayOfWeek": "Monday",
+    "editorialLens": "The Practitioner's Playbook",
+    "themes": [
+      "faculty autonomy",
+      "institutional infrastructure",
+      "community engagement",
+      "workforce preparation",
+      "policy implementation"
+    ],
+    "storiesWatching": [
+      "GRCC's AI Incubator outcomes and student engagement metrics",
+      "VCSU's statewide AI education series participation and community response",
+      "International AI education collaboration models"
+    ],
+    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
+    "lensColor": "#22c55e",
+    "publishedAt": "2026-03-03T23:24:11.393Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
