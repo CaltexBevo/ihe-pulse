@@ -1,0 +1,71 @@
+{
+  "episode": {
+    "date": "2026-03-03",
+    "dayOfWeek": "Tuesday",
+    "editorialLens": "The Student Experience",
+    "lensDescription": "Everything filtered through how it affects actual students.",
+    "lensColor": "#60a5fa",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-03.mp3",
+    "audioDuration": "5:48",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Tuesday, March 3rd.\n\nThe University of Northern Iowa just launched two brand new A.I. majors, promising to fill 11,000 regional job openings. But here's what caught my attention: are students getting the skills they actually need, or are we creating expensive credentials wrapped in A.I. buzzwords?\n\n-\nLet me catch you up on what else is happening across higher ed today.\n\nIn our Ethical A.I. category, the University of Colorado's system-wide ChatGPT rollout is hitting some serious turbulence. Faculty are pushing back hard against the 2 million dollar deployment, with hundreds signing a dissent letter over privacy, transparency, and academic integrity concerns. What's particularly striking here is that faculty argue the decision completely bypassed campus A.I. and ethics experts. It's a classic case of administrative enthusiasm meeting academic caution.\n\n-\nFrom the Practical Tips file, professors at Nazarbayev University have an intriguing framework for teaching with A.I. They argue that while A.I. excels at interpolation, connecting existing dots, students must learn extrapolation, drawing new lines into empty spaces. Their key insight? Train students to override and verify A.I. outputs using first principles. It's not about avoiding A.I., it's about knowing when to question it.\n\n-\nAnd in more Ethical A.I. news, a Colombian scholar just completed postdoctoral research at the University of Bologna examining how artificial intelligence in criminal justice must remain subordinate to constitutional guarantees and due process. The research emphasizes meaningful human oversight over algorithmic decision-making. It's academic work, but the implications for how we teach ethics in A.I. programs are significant.\n\n-\nNow, let's get to that story I teased at the top about those new A.I. majors at the University of Northern Iowa.\n\n-\nHere's what's happening. UNI just launched two artificial intelligence majors. One's housed in the Wilson College of Business, focusing on business applications. The other lives in the College of Humanities, Arts, and Sciences, emphasizing mathematical foundations. University officials say these programs will help fill more than 11,000 entry-level A.I. jobs across Iowa and neighboring states.\n\nOn the surface, this sounds like smart workforce development. The business program promises to teach students how machine learning, natural language processes, and predictive analytics integrate with business systems to create value. The mathematics program dives deep into calculus, linear algebra, discrete mathematics, probability, statistics, optimization, and computer programming.\n\nBut here's what I keep coming back to: most of those 11,000 jobs probably don't require a four-year A.I. major. Many likely need solid analytical thinking, basic programming skills, and domain expertise in finance, marketing, or operations. Skills that could be developed through existing programs with A.I. components added.\n\nThe mathematics-focused program is more intellectually honest. A.I. really is powered by mathematics, and students who understand these fundamentals will adapt as the field evolves. But here's the thing: this sounds remarkably similar to what a strong applied mathematics or computer science program already offers.\n\nWhat strikes me most is the fundamental tension between these two approaches. The business major focuses on using A.I. tools to solve real business problems. The mathematics major aims to produce graduates who can diagnose model failures, understand uncertainty and risk, and adapt to new technologies. Both are valuable, but they represent completely different educational philosophies.\n\nFor students considering these programs, the critical question isn't whether A.I. skills are valuable. They clearly are. It's whether a dedicated A.I. major provides better preparation than a traditional discipline enhanced with A.I. components.\n\nThink about it this way: a finance major who understands machine learning might be more employable than an A.I. major who lacks deep domain knowledge. Similarly, a mathematics major with A.I. coursework might have more career flexibility than someone trained specifically for today's A.I. landscape.\n\nThe real test will be what happens to UNI's first cohort of A.I. graduates in four years. Will they find meaningful work that leverages their specialized training? Or will employers prefer candidates with strong fundamentals in established fields who can adapt A.I. tools to specific problems?\n\nHere's what I think this really comes down to: we're seeing universities rush to create A.I. majors without asking whether students are better served by A.I.-enhanced traditional programs. A marketing major who understands machine learning might outcompete an A.I. major who lacks marketing intuition.\n\nThe most valuable question for any student considering these programs isn't \"Will I learn A.I.?\" but \"Will I learn to think critically about problems that A.I. can help solve?\" That's a much harder curriculum to design and a much more valuable education to provide.\n\nFor educators watching this unfold, the question isn't whether to incorporate A.I. into curricula. That ship has sailed. It's how to do it thoughtfully, ensuring students develop both technical skills and the critical thinking to use them wisely.\n\n-\nBefore we applaud every new A.I. program, we should ask: are we giving students specialized skills or just expensive credentials? The answer will shape how we prepare the next generation for a world where A.I. is everywhere, but wisdom about when and how to use it remains distinctly human.\n\nThat's your Innovation Pulse for Tuesday. Find full coverage and links at innovating higher ed dot com. See you Wednesday.\n\nDr. Norma Jones. Thanks for listening."
+  },
+  "leadStory": {
+    "headline": "When A.I. Majors Launch, Are Students Getting Skills or Hype?",
+    "hook": "University of Northern Iowa debuts two new A.I. majors targeting 11,000 regional job openings—but what will students actually learn?",
+    "category": "Case Study",
+    "source": "Pulse 2.0",
+    "sourceUrl": "https://pulse2.com/university-of-northern-iowa-launches-artificial-intelligence-curriculum-with-new-ai-majors/",
+    "editorialTake": "The University of Northern Iowa just launched two new artificial intelligence majors: one focused on business applications in the Wilson College of Business, and another emphasizing mathematical foundations in the College of Humanities, Arts, and Sciences. The programs aim to fill what officials describe as more than 11,000 entry-level A.I.-related jobs across Iowa and neighboring states.\n\nFrom a student experience perspective, this development raises fascinating questions about what students are actually signing up for. The business-focused major promises to teach students \"how machine learning, natural language processes and predictive analytics integrate with business systems to create value.\" That sounds practical and job-relevant. But here's what the press release doesn't tell you: most of those 11,000 jobs probably don't require a four-year A.I. major. Many likely need solid analytical thinking, basic programming skills, and domain expertise in finance, marketing, or operations—skills that could be developed through existing programs with A.I. components added.\n\nThe mathematics-focused program takes a different approach, diving deep into \"calculus, linear algebra, discrete mathematics, probability, statistics, optimization and computer programming.\" This is more intellectually honest—A.I. really is powered by mathematics, as department head Douglas Mupasiri notes. Students who understand these fundamentals will adapt as the field evolves. But here's the rub: this sounds remarkably similar to what a strong applied mathematics or computer science program already offers.\n\nWhat strikes me most about UNI's approach is the emphasis on practical application versus theoretical understanding. The business major focuses on using A.I. tools to \"solve real business problems,\" while the mathematics major aims to produce graduates who can \"diagnose model failures, understand uncertainty and risk, and adapt to new technologies.\" Both are valuable, but they represent fundamentally different educational philosophies.\n\nFor students considering these programs, the critical question isn't whether A.I. skills are valuable—they clearly are. It's whether a dedicated A.I. major provides better preparation than a traditional discipline enhanced with A.I. components. A finance major who understands machine learning might be more employable than an A.I. major who lacks deep domain knowledge. Similarly, a mathematics major with A.I. coursework might have more career flexibility than someone trained specifically for today's A.I. landscape.\n\nThe real test will be what happens to UNI's first cohort of A.I. graduates in four years. Will they find meaningful work that leverages their specialized training? Or will employers prefer candidates with strong fundamentals in established fields who can adapt A.I. tools to specific problems? The answer will tell us whether we're witnessing genuine educational innovation or expensive credentialism dressed up in A.I. buzzwords.\n\nFor educators watching this unfold, the question isn't whether to incorporate A.I. into curricula—that ship has sailed. It's how to do it thoughtfully, ensuring students develop both technical skills and the critical thinking to use them wisely.",
+    "pullQuote": "The real test will be what happens to UNI's first cohort of A.I. graduates in four years—will employers prefer A.I. specialists or domain experts who can adapt A.I. tools?",
+    "editorialCallout": "Here's what I keep coming back to: we're seeing universities rush to create A.I. majors without asking whether students are better served by A.I.-enhanced traditional programs. A marketing major who understands machine learning might outcompete an A.I. major who lacks marketing intuition. Before we applaud every new A.I. program, we should ask: are we giving students specialized skills or just expensive credentials? The most valuable question for any student considering these programs isn't \"Will I learn A.I.?\" but \"Will I learn to think critically about problems that A.I. can help solve?\" That's a much harder curriculum to design—and a much more valuable education to provide.",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Students at crossroads between traditional academic paths and A.I. specialization, conceptual illustration"
+  },
+  "quickHits": [
+    {
+      "headline": "CU Faculty Push Back Against $2M A.I. Rollout",
+      "summary": "University of Colorado's system-wide ChatGPT deployment faces faculty resistance over privacy, transparency, and academic integrity concerns. Hundreds signed a dissent letter arguing the decision lacked consultation with campus A.I. and ethics experts.",
+      "category": "Ethical AI",
+      "source": "Colorado Public Radio",
+      "sourceUrl": "https://www.cpr.org/2026/03/09/cu-ai-rollout/",
+      "isCallback": false
+    },
+    {
+      "headline": "Teaching Students to Question What A.I. Can't Do",
+      "summary": "Nazarbayev University professors argue that while A.I. excels at interpolation—connecting existing dots—students must learn extrapolation, drawing new lines into empty spaces. The key is training students to override and verify A.I. outputs using first principles.",
+      "category": "Practical Tips",
+      "source": "Times Higher Education",
+      "sourceUrl": "https://www.timeshighereducation.com/campus/genai-can-join-dots-so-teach-students-draw-new-lines-empty-space",
+      "isCallback": false
+    },
+    {
+      "headline": "Colombian Scholar Examines A.I. Constitutional Limits in Justice",
+      "summary": "A postdoctoral study at University of Bologna explores how artificial intelligence in criminal justice must remain subordinate to due process and constitutional guarantees. The research emphasizes meaningful human oversight over algorithmic decision-making.",
+      "category": "Ethical AI",
+      "source": "Send2Press",
+      "sourceUrl": "https://www.send2press.com/wire/colombian-legal-scholar-completes-postdoctoral-research-at-the-university-of-bologna-on-artificial-intelligence-and-constitutional-limits-in-criminal-justice/",
+      "isCallback": false
+    }
+  ],
+  "meta": {
+    "date": "2026-03-03",
+    "dayOfWeek": "Tuesday",
+    "editorialLens": "The Student Experience",
+    "themes": [
+      "curriculum design",
+      "student outcomes",
+      "institutional resistance",
+      "practical skills",
+      "ethical frameworks"
+    ],
+    "storiesWatching": [
+      "CU system-wide A.I. rollout and faculty response",
+      "UNI A.I. major outcomes tracking"
+    ],
+    "lensDescription": "Everything filtered through how it affects actual students.",
+    "lensColor": "#60a5fa",
+    "publishedAt": "2026-03-09T17:58:32.203Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
