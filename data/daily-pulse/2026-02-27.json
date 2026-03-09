@@ -1,0 +1,80 @@
+{
+  "episode": {
+    "date": "2026-02-27",
+    "dayOfWeek": "Friday",
+    "editorialLens": "The Innovator's Edge",
+    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
+    "lensColor": "#fbbf24",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-27.mp3",
+    "audioDuration": "5:30",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Friday, February 27th.\n\nWhile tech giants dominate A.I. headlines, one HBCU just secured 5 million dollars in federal funding that could reshape who controls tomorrow's computing infrastructure. The strategic implications go far beyond the hardware itself.\n\n-\nIn our Practical Tips category today, Amazon Web Services partnered with the National Applied A.I. Consortium to expand workforce training across community colleges. We're talking over 300 institutions reaching 31,000 students, with a focus on practical applications rather than theoretical knowledge. This addresses the growing demand for A.I.-skilled workers in regional job markets where community colleges are often the primary training ground.\n\n-\nFrom the Ethical A.I. file, a new survey reveals 85% of undergraduates use A.I. for coursework, but many report mixed feelings about its impact on deep thinking. Students are essentially creating their own rules about appropriate use, highlighting that gap between rapid A.I. adoption and institutional policy development. They're navigating these waters without clear guidance from their institutions.\n\n-\nMeanwhile, University of Memphis researchers received 4 million dollars to create scenario-based assessments that require students to demonstrate their thinking process, not just final answers. The project addresses how to evaluate learning when A.I. can complete traditional assignments, focusing on psychology, English, and interdisciplinary studies courses.\n\n-\nAnd in our Latest A.I. Products category, University of Northern Iowa launched two new A.I. undergraduate programs. One focuses on business applications in their Wilson College of Business, another emphasizes mathematical foundations in liberal arts. They're responding to over 11,000 entry-level A.I. jobs available in Iowa and neighboring states.\n\n-\nNow, let's get to that story I teased at the top. Morehouse College just landed a 5 million dollar NSF grant to build \"Horizon,\" a supercomputer that's part of a larger 457 million dollar project to create one of the most powerful academic computing systems in the Southeast. The historically Black institution will also launch free A.I. programs, including middle and high school summer camps and faculty development workshops in the Dominican Republic.\n\n-\nThis isn't just another grant announcement. It's a strategic repositioning that challenges who gets to shape A.I.'s future. While most A.I. infrastructure conversations center on Silicon Valley or major R1 universities, Morehouse is positioning itself as what Dr. Kinnis Gosha calls \"the undisputed HBCU leader in artificial intelligence.\" That's significant when you consider that HBCUs produce 20% of African American STEM graduates despite representing just 3% of all colleges.\n\nThe timing matters enormously. As A.I. reshapes every industry, the institutions controlling high-performance computing infrastructure will influence which voices, perspectives, and research priorities drive development. Morehouse already demonstrated this forward-thinking approach by launching the world's first spatial A.I. teaching assistants in 2024 and creating their Metaversity in 2021. Now they're scaling up to become what they call \"a national resource provider\" for other HBCUs and non-research-intensive institutions.\n\nBut here's the critical question I keep coming back to: Will this investment actually democratize A.I. access, or will it create another tier of haves and have-nots within higher education? The grant specifically targets \"broadening participation in computing,\" yet supercomputing resources are notoriously expensive to maintain and operate. The initial 5 million covers startup costs, but ongoing operational expenses for high-performance computing can easily reach millions annually.\n\nMorehouse's approach offers a compelling model for other minority-serving institutions. Rather than trying to compete directly with tech giants, they're building collaborative networks. The plan to share findings at the annual InSPIRE Workshop in Austin suggests they understand that sustainable impact requires community building, not just individual institutional advancement.\n\nFor educators watching this unfold, the implications are profound. If successful, Morehouse's model could demonstrate how specialized institutions can leverage targeted federal funding to become regional A.I. hubs. This matters particularly for community colleges and regional universities that lack the resources for major A.I. infrastructure investments but serve diverse student populations who need these skills.\n\nThe real test will be whether Morehouse can translate supercomputing power into measurable outcomes for students and partner institutions. Their track record with innovative A.I. applications suggests they understand that technology infrastructure only matters if it enhances learning and expands opportunities.\n\nHere's what strikes me most about this story: Morehouse isn't just building a supercomputer, they're building a model for how institutions with clear missions can punch above their weight in A.I. Their focus on \"broadening participation\" isn't just grant language, it's strategic positioning. The question for other institutions isn't whether they can replicate Morehouse's specific approach, but whether they can identify their own strategic advantages in the A.I. landscape. What unique perspective or community does your institution serve that could benefit from enhanced computing resources?\n\n-\nWhat we're seeing here is infrastructure investment that could reshape the conversation about who leads A.I. development in higher education. Worth watching closely.\n\nThat's your Innovation Pulse for Friday. Find full coverage and links at innovating higher ed dot com. See you Monday.\n\nDr. Norma Jones. Thanks for listening."
+  },
+  "leadStory": {
+    "headline": "Morehouse's $5M Supercomputer Grant Rewrites HBCU Computing Power",
+    "hook": "While tech giants dominate A.I. headlines, one HBCU just secured funding that could reshape who controls tomorrow's computing infrastructure.",
+    "category": "Beyond Ed",
+    "source": "People of Color in Tech",
+    "sourceUrl": "https://peopleofcolorintech.com/articles/morehouse-college-secures-5m-nsf-grant-to-develop-supercomputer/",
+    "editorialTake": "Morehouse College just landed a $5 million NSF grant to build \"Horizon,\" a supercomputer that's part of a larger $457 million project to create one of the most powerful academic computing systems in the Southeast. The historically Black institution will also launch free A.I. programs, including middle and high school summer camps and faculty development workshops in the Dominican Republic.\n\nThis isn't just another grant announcement—it's a strategic repositioning that challenges who gets to shape A.I.'s future. While most A.I. infrastructure conversations center on Silicon Valley or major R1 universities, Morehouse is positioning itself as what Dr. Kinnis Gosha calls \"the undisputed HBCU leader in artificial intelligence.\" That's significant when you consider that HBCUs produce 20% of African American STEM graduates despite representing just 3% of all colleges.\n\nThe timing matters enormously. As A.I. reshapes every industry, the institutions controlling high-performance computing infrastructure will influence which voices, perspectives, and research priorities drive development. Morehouse already demonstrated this forward-thinking approach by launching the world's first spatial A.I. teaching assistants in 2024 and creating their Metaversity in 2021. Now they're scaling up to become what they call \"a national resource provider\" for other HBCUs and non-research-intensive institutions.\n\nBut here's the critical question: Will this investment actually democratize A.I. access, or will it create another tier of haves and have-nots within higher education? The grant specifically targets \"broadening participation in computing,\" yet supercomputing resources are notoriously expensive to maintain and operate. The initial $5 million covers startup costs, but ongoing operational expenses for high-performance computing can easily reach millions annually.\n\nMorehouse's approach offers a compelling model for other minority-serving institutions. Rather than trying to compete directly with tech giants, they're building collaborative networks. The plan to share findings at the annual InSPIRE Workshop in Austin suggests they understand that sustainable impact requires community building, not just individual institutional advancement.\n\nFor educators watching this unfold, the implications are profound. If successful, Morehouse's model could demonstrate how specialized institutions can leverage targeted federal funding to become regional A.I. hubs. This matters particularly for community colleges and regional universities that lack the resources for major A.I. infrastructure investments but serve diverse student populations who need these skills.\n\nThe real test will be whether Morehouse can translate supercomputing power into measurable outcomes for students and partner institutions. Their track record with innovative A.I. applications suggests they understand that technology infrastructure only matters if it enhances learning and expands opportunities. For the broader higher education community, this represents a fascinating experiment in whether strategic federal investment can reshape the A.I. landscape beyond traditional tech powerhouses.",
+    "pullQuote": "While most A.I. infrastructure conversations center on Silicon Valley, Morehouse is positioning itself as the undisputed HBCU leader in artificial intelligence.",
+    "editorialCallout": "Here's what I keep coming back to: Morehouse isn't just building a supercomputer—they're building a model for how institutions with clear missions can punch above their weight in A.I. Their focus on \"broadening participation\" isn't just grant language; it's strategic positioning. When HBCUs produce 20% of Black STEM graduates with 3% of colleges, giving them supercomputing resources could accelerate innovation in ways we haven't seen before. The question for other institutions isn't whether they can replicate Morehouse's specific approach, but whether they can identify their own strategic advantages in the A.I. landscape. What unique perspective or community does your institution serve that could benefit from enhanced computing resources?",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Conceptual illustration showing diverse hands reaching toward interconnected computing nodes with traditional college buildings transformed by digital networks"
+  },
+  "quickHits": [
+    {
+      "headline": "AWS Scales Community College A.I. Training Nationwide",
+      "summary": "Amazon Web Services partnered with the National Applied A.I. Consortium to expand A.I. workforce training across community colleges, reaching over 300 institutions and 31,000 students. The initiative focuses on practical applications rather than theoretical knowledge, addressing the growing demand for A.I.-skilled workers in regional job markets.",
+      "category": "Practical Tips",
+      "source": "EdTech Innovation Hub",
+      "sourceUrl": "https://www.edtechinnovationhub.com/news/aws-collaboration-with-national-applied-ai-consortium-expands-training-across-community-colleges",
+      "isCallback": false
+    },
+    {
+      "headline": "Students Navigate A.I. Ethics Without Clear Institutional Guidance",
+      "summary": "A new survey reveals 85% of undergraduates use A.I. for coursework, but many report mixed feelings about its impact on deep thinking. Students are essentially creating their own rules about appropriate use, highlighting the gap between rapid A.I. adoption and institutional policy development.",
+      "category": "Ethical AI",
+      "source": "WFYI",
+      "sourceUrl": "https://www.wfyi.org/news/articles/ai-chatgpt-use-at-college-students-professors-are-making-own-rules",
+      "isCallback": false
+    },
+    {
+      "headline": "University of Memphis Develops A.I.-Era Assessment Methods",
+      "summary": "Researchers at University of Memphis received $4 million to create scenario-based assessments that require students to demonstrate their thinking process, not just final answers. The project addresses how to evaluate learning when A.I. can complete traditional assignments, focusing on psychology, English, and interdisciplinary studies courses.",
+      "category": "Practical Tips",
+      "source": "The Commercial Appeal",
+      "sourceUrl": "https://www.commercialappeal.com/story/news/education/2026/03/09/university-of-memphis-artificial-intelligence-research/88983671007/",
+      "isCallback": false
+    },
+    {
+      "headline": "University of Northern Iowa Launches Dual A.I. Majors",
+      "summary": "UNI introduced two new A.I. undergraduate programs: one focused on business applications in the Wilson College of Business, and another emphasizing mathematical foundations in liberal arts. The programs aim to prepare students for the growing demand for A.I. professionals, with over 11,000 entry-level A.I. jobs available in Iowa and neighboring states.",
+      "category": "Latest AI Products",
+      "source": "Waterloo-Cedar Falls Courier",
+      "sourceUrl": "https://wcfcourier.com/news/local/education/article_c8c00d81-5a88-5dde-8edd-3081ebd561fd.html",
+      "isCallback": false
+    }
+  ],
+  "meta": {
+    "date": "2026-02-27",
+    "dayOfWeek": "Friday",
+    "editorialLens": "The Innovator's Edge",
+    "themes": [
+      "HBCU leadership",
+      "infrastructure investment",
+      "democratizing AI access",
+      "workforce development",
+      "assessment innovation"
+    ],
+    "storiesWatching": [
+      "Morehouse supercomputer implementation and outcomes",
+      "AWS community college partnership expansion",
+      "University of Memphis assessment project results"
+    ],
+    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
+    "lensColor": "#fbbf24",
+    "publishedAt": "2026-03-09T17:09:31.234Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
