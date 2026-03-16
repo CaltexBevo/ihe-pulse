@@ -139,9 +139,21 @@ export default function Footer() {
             &copy; 2026 Innovating Higher Ed. All rights reserved.
           </span>
           <div
-            className="flex items-center gap-4 text-[0.68rem] text-[var(--text-muted)]"
+            className="flex items-center gap-4 text-[0.68rem] text-[var(--text-muted)] flex-wrap"
             style={{ fontFamily: "var(--font-mono)" }}
           >
+            <Link
+              href="/about"
+              className="hover:text-[var(--cyan)] transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              href="/terms"
+              className="hover:text-[var(--cyan)] transition-colors"
+            >
+              Terms of Use
+            </Link>
             <Link
               href="/privacy"
               className="hover:text-[var(--cyan)] transition-colors"
@@ -149,10 +161,10 @@ export default function Footer() {
               Privacy Policy
             </Link>
             <Link
-              href="/terms"
+              href="/disclaimer"
               className="hover:text-[var(--cyan)] transition-colors"
             >
-              Terms of Use
+              Disclaimer
             </Link>
             <Link
               href="/ai-disclosure"

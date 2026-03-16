@@ -6,44 +6,6 @@ export const metadata = {
     "Meet the team behind Innovating Higher Ed — empowering educators with AI knowledge, tools, and community.",
 };
 
-const offerings = [
-  {
-    icon: "📰",
-    title: "Innovation Pulse",
-    href: "/innovation-pulse",
-    description:
-      "Daily briefings on the latest AI news for higher ed, with editorial perspective and analysis.",
-  },
-  {
-    icon: "🎙️",
-    title: "Podcast",
-    href: "/podcast",
-    description:
-      "Expert conversations with educators, researchers, and innovators shaping the future of AI in higher education.",
-  },
-  {
-    icon: "⚡",
-    title: "Prompt Navigator",
-    href: "/prompts",
-    description:
-      "Evidence-based prompt engineering techniques, templates, and workflows designed for academic contexts.",
-  },
-  {
-    icon: "🛠️",
-    title: "AI Directory",
-    href: "/ai-directory",
-    description:
-      "39+ vetted AI tools reviewed for faculty, administrators, and students with detailed pros, cons, and use cases.",
-  },
-  {
-    icon: "🧪",
-    title: "Tinker Lab",
-    href: "/tinker-lab",
-    description:
-      "Hands-on experiments and explorations into AI tools, with honest reviews from an educator's perspective.",
-  },
-];
-
 const values = [
   {
     title: "Innovation With Purpose",
@@ -176,30 +138,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* What We Offer */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6 text-center">
-          What We Offer
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {offerings.map((offering) => (
-            <Link
-              key={offering.title}
-              href={offering.href}
-              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] hover:-translate-y-[1px] transition-all duration-300 group block"
-            >
-              <span className="text-[1.2rem] mb-3 block">{offering.icon}</span>
-              <h3 className="font-sans text-[1rem] font-bold mb-2 group-hover:text-[var(--cyan)] transition-colors">
-                {offering.title}
-              </h3>
-              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55]">
-                {offering.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-
       {/* Values */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6 text-center">
@@ -219,51 +157,6 @@ export default function AboutPage() {
               </p>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* AI Disclosure */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[20px] p-8 max-w-[800px] mx-auto">
-          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4 flex items-center gap-2">
-            <span className="w-[5px] h-[5px] rounded-full bg-[var(--amber)]" />
-            AI Disclosure
-          </div>
-          <h3 className="font-sans text-[1.1rem] font-bold mb-3">
-            How We Use AI on This Platform
-          </h3>
-          <p className="text-[0.85rem] text-[var(--text-secondary)] leading-[1.65] mb-4">
-            At Innovating Higher Ed, we practice what we preach. We use AI tools
-            responsibly to enhance our work, with human oversight at every step:
-          </p>
-          <ul className="space-y-2 text-[0.85rem] text-[var(--text-secondary)] leading-[1.6]">
-            <li className="flex items-start gap-3">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] mt-2 shrink-0" />
-              <span>
-                <strong className="text-[var(--text)]">Innovation Pulse audio</strong> is produced using AI
-                voice technology, with full editorial oversight by our team.
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] mt-2 shrink-0" />
-              <span>
-                <strong className="text-[var(--text)]">Content curation</strong> is AI-assisted but
-                human-reviewed. Every story and tool recommendation is verified by
-                our editorial team.
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] mt-2 shrink-0" />
-              <span>
-                <strong className="text-[var(--text)]">All prompts</strong> in the Prompt Navigator are
-                human-written and tested by real educators before publication.
-              </span>
-            </li>
-          </ul>
-          <p className="text-[0.78rem] text-[var(--text-muted)] mt-4">
-            We believe in transparent AI use. If you have questions about how we
-            use AI, please reach out.
-          </p>
         </div>
       </div>
 
