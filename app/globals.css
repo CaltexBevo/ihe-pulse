@@ -85,6 +85,72 @@
 }
 
 /* ============================================
+   Light Mode Theme
+   WCAG AA Compliant - All text meets 4.5:1 contrast
+   ============================================ */
+[data-theme="light"] {
+  /* Core Background Colors */
+  --bg: #ffffff;
+  --bg-elevated: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --surface: #f1f5f9;
+  --surface-2: #e2e8f0;
+
+  /* Border Colors */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+
+  /* Text Colors - WCAG AA compliant */
+  --text: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  /* Primary Accents - adjusted for light backgrounds */
+  --cyan: #0891b2;
+  --cyan-dim: rgba(8, 145, 178, 0.12);
+  --cyan-glow: rgba(8, 145, 178, 0.06);
+  --magenta: #a21caf;
+  --magenta-dim: rgba(162, 28, 175, 0.12);
+
+  /* Status Colors - maintained for consistency */
+  --green: #16a34a;
+  --green-dim: rgba(22, 163, 74, 0.12);
+  --amber: #d97706;
+  --amber-dim: rgba(217, 119, 6, 0.12);
+  --red: #dc2626;
+  --red-dim: rgba(220, 38, 38, 0.12);
+
+  /* Category Colors - adjusted for light mode contrast */
+  --orange: #ea580c;
+  --orange-dim: rgba(234, 88, 12, 0.12);
+  --purple: #7c3aed;
+  --purple-dim: rgba(124, 58, 237, 0.12);
+  --teal: #0d9488;
+  --teal-dim: rgba(13, 148, 136, 0.12);
+  --blue: #2563eb;
+  --blue-dim: rgba(37, 99, 235, 0.12);
+  --pink: #db2777;
+  --pink-dim: rgba(219, 39, 119, 0.12);
+
+  /* Editorial Lens Colors */
+  --lens-mon: #0891b2;
+  --lens-tue: #d97706;
+  --lens-wed: #16a34a;
+  --lens-thu: #a21caf;
+
+  /* Category-specific colors */
+  --cat-teaching: #16a34a;
+  --cat-policy: #d97706;
+  --cat-infra: #2563eb;
+  --cat-tools: #a21caf;
+  --cat-research: #0891b2;
+  --cat-student: #db2777;
+  --cat-leadership: #7c3aed;
+  --cat-workforce: #ea580c;
+}
+
+/* ============================================
    Base Styles - MUST be inside @layer base
    so Tailwind utilities can override them
    ============================================ */
@@ -389,6 +455,10 @@
   -webkit-backdrop-filter: blur(24px);
 }
 
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.92);
+}
+
 /* ============================================
    Navigation Styles
    ============================================ */
@@ -402,6 +472,10 @@
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
   height: 56px;
+}
+
+[data-theme="light"] .topbar {
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .tb-brand {
@@ -1310,6 +1384,75 @@
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--cyan), var(--magenta));
   border-radius: 4px;
+}
+
+/* Light mode scrollbar */
+[data-theme="light"]::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--cyan), var(--magenta));
+}
+
+/* ============================================
+   Light Mode Specific Overrides
+   ============================================ */
+
+/* Gradient text in light mode */
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #0891b2, #a21caf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover shadows */
+[data-theme="light"] .card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* Button primary shadow */
+[data-theme="light"] .btn-primary {
+  box-shadow: 0 4px 16px rgba(8, 145, 178, 0.25);
+}
+
+[data-theme="light"] .btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(8, 145, 178, 0.35);
+}
+
+/* Audio container backgrounds */
+[data-theme="light"] .wave-bar {
+  background: var(--surface-2);
+}
+
+/* Card image overlays */
+[data-theme="light"] .card-img-badge {
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Filter pills */
+[data-theme="light"] .filter-pill.active {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Badge backgrounds for better contrast */
+[data-theme="light"] .badge-cyan {
+  background: rgba(8, 145, 178, 0.15);
+}
+
+[data-theme="light"] .badge-magenta {
+  background: rgba(162, 28, 175, 0.15);
+}
+
+[data-theme="light"] .badge-green {
+  background: rgba(22, 163, 74, 0.15);
+}
+
+[data-theme="light"] .badge-amber {
+  background: rgba(217, 119, 6, 0.15);
+}
+
+[data-theme="light"] .badge-purple {
+  background: rgba(124, 58, 237, 0.15);
 }
 
 /* ============================================

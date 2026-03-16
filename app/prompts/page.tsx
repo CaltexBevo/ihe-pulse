@@ -14,8 +14,6 @@ const featuredPrompt = {
     "Creates tension-based discussion questions from any reading that students actually want to argue about — not just answer. Tested across 30 courses with consistently higher engagement than generic questions.",
   difficulty: "Beginner",
   category: "Discussion Design",
-  uses: "3.1k",
-  rating: "4.9",
   prompt: `Read this [text/chapter/article]. Identify the central tension or most debatable claim the author makes. Then generate 5 discussion questions that force students to take a side on that tension. Each question should: (1) be arguable from at least two perspectives, (2) connect to students' lived experience, and (3) resist a simple "right answer." Format as numbered questions with a one-line note explaining what makes each one productive.`,
   tip: `Replace "lived experience" with a specific context for your discipline. For a nursing class: "connect to clinical scenarios." For business: "connect to workplace decisions they've faced."`,
 };
@@ -27,8 +25,6 @@ const prompts = [
       "Analyzes your existing assignment and suggests modifications that maintain learning outcomes while reducing AI shortcutting.",
     difficulty: "Intermediate",
     category: "Assessment",
-    uses: "1.8k",
-    rating: "4.7",
     preview: `"Here is my assignment: [paste]. Analyze which parts a student could complete using AI without learning. Suggest 3 specific modifications that preserve the learning outcome but require original thinking..."`,
   },
   {
@@ -37,8 +33,6 @@ const prompts = [
       "Generates detailed, constructive student feedback aligned to your specific rubric. You review and personalize before sending.",
     difficulty: "Beginner",
     category: "Feedback",
-    uses: "3.1k",
-    rating: "4.9",
     trending: true,
     preview: `"Using this rubric [paste], generate detailed feedback for this student submission [paste]. Score each criterion and provide specific, constructive comments that explain what was done well and how to improve..."`,
   },
@@ -48,8 +42,6 @@ const prompts = [
       'Turns your syllabus into a Q&A knowledge base students can query. Reduces repetitive "Is this on the exam?" emails by 80%.',
     difficulty: "Beginner",
     category: "Course Design",
-    uses: "940",
-    rating: "4.6",
     isNew: true,
     preview: `"Here is my course syllabus [paste]. Extract every fact, deadline, policy, and expectation. Create a comprehensive Q&A format with 30+ questions a student might ask, and answers drawn only from the syllabus..."`,
   },
@@ -59,8 +51,6 @@ const prompts = [
       "Analyzes a set of papers and identifies where the literature has gaps, contradictions, or underexplored angles for your research.",
     difficulty: "Advanced",
     category: "Research",
-    uses: "720",
-    rating: "4.8",
     preview: `"Here are summaries of [N] papers in my research area [paste]. Identify: (1) the 3 most significant gaps in the current literature, (2) contradictions between findings, (3) methodological weaknesses that appear across multiple studies..."`,
   },
   {
@@ -69,8 +59,6 @@ const prompts = [
       "Creates structured peer review worksheets tailored to your specific assignment type and learning goals.",
     difficulty: "Beginner",
     category: "Writing",
-    uses: "1.2k",
-    rating: "4.5",
     trending: true,
     preview: `"For this assignment [paste description], create a peer review guide with 8-10 specific questions students should answer about their partner's work. Questions should focus on [argument quality / evidence / structure]..."`,
   },
@@ -80,8 +68,6 @@ const prompts = [
       "Turns messy meeting notes into clean action items with owners, deadlines, and dependencies. Built for department and committee meetings.",
     difficulty: "Intermediate",
     category: "Admin",
-    uses: "2.1k",
-    rating: "4.8",
     preview: `"Here are notes from our [department/committee] meeting [paste]. Extract every action item, decision, and open question. Format as: Action Item | Owner | Deadline | Dependencies. Flag items that need follow-up..."`,
   },
   {
@@ -90,8 +76,6 @@ const prompts = [
       "Takes your learning outcomes and generates a complete course arc: weekly topics, assessment sequence, and alignment matrix.",
     difficulty: "Advanced",
     category: "Course Design",
-    uses: "560",
-    rating: "4.7",
     preview: `"My course has these learning outcomes: [paste]. Design a 15-week course arc where each week builds toward one or more outcomes. Include: weekly topic, key readings/activities, formative assessment, and which outcomes are addressed..."`,
   },
   {
@@ -100,8 +84,6 @@ const prompts = [
       "Takes your honest but blunt feedback and rewrites it to be constructive, specific, and growth-oriented while preserving the substance.",
     difficulty: "Beginner",
     category: "Feedback",
-    uses: "1.4k",
-    rating: "4.9",
     isNew: true,
     preview: `"Here is my feedback for a student [paste]. Rewrite it to: (1) lead with something specific the student did well, (2) frame critiques as opportunities for growth, (3) end with one concrete next step. Keep the substance identical..."`,
   },
@@ -111,8 +93,6 @@ const prompts = [
       "Creates realistic, discipline-specific case studies with built-in ethical dilemmas and decision points for classroom discussion.",
     difficulty: "Intermediate",
     category: "Discussion",
-    uses: "890",
-    rating: "4.6",
     preview: `"Create a realistic case study for a [discipline] course on [topic]. Include: a named protagonist with a specific role, a realistic organizational context, a decision point with at least 3 viable options, and consequences..."`,
   },
 ];
@@ -159,17 +139,6 @@ export default function PromptsPage() {
           Tested, refined, and rated by real faculty. Every prompt is designed
           for a specific teaching or administrative task — not generic templates.
         </p>
-        <div className="flex gap-6 mt-4 font-mono text-[0.68rem] text-[var(--text-muted)]">
-          <span>
-            <strong className="text-[var(--cyan)]">2,400+</strong> prompts curated
-          </span>
-          <span>
-            <strong className="text-[var(--cyan)]">48k</strong> total uses
-          </span>
-          <span>
-            <strong className="text-[var(--cyan)]">340</strong> contributors
-          </span>
-        </div>
       </div>
 
       {/* Featured Prompt - Split Card with Actual Prompt */}
@@ -201,9 +170,7 @@ export default function PromptsPage() {
                 {featuredPrompt.description}
               </p>
               <div className="font-mono text-[0.62rem] text-[var(--text-muted)] flex gap-4">
-                <span className="text-[var(--green)]">{featuredPrompt.uses} uses</span>
                 <span>Updated Feb 14</span>
-                <span>&#9733; {featuredPrompt.rating} avg rating</span>
               </div>
             </div>
 
@@ -379,8 +346,6 @@ export default function PromptsPage() {
 
               {/* Footer with copy button */}
               <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)] font-mono text-[0.55rem] text-[var(--text-muted)]">
-                <span className="text-[var(--green)]">{prompt.uses} uses</span>
-                <span>&#9733; {prompt.rating}</span>
                 <button className="ml-auto text-[var(--cyan)] px-2 py-[3px] rounded-[4px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] transition-colors">
                   Copy
                 </button>

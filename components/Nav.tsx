@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -28,12 +29,7 @@ export default function Nav() {
 
   return (
     <nav
-      className="sticky top-0 z-[100] border-b border-[var(--border)]"
-      style={{
-        background: "rgba(8, 8, 15, 0.85)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-      }}
+      className="sticky top-0 z-[100] border-b border-[var(--border)] glass"
     >
       <div className="flex items-center h-14 px-[var(--px)] max-w-[var(--max-w)] mx-auto">
         {/* Brand Logo */}
@@ -64,31 +60,39 @@ export default function Nav() {
                 ${
                   isActive(link.href)
                     ? "text-[var(--cyan)] bg-[var(--cyan-dim)]"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[rgba(255,255,255,0.05)]"
+                    : "text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--surface)]"
                 }
               `}
             >
               {link.label}
             </Link>
           ))}
+
+          {/* Theme Toggle */}
+          <div className="ml-2 pl-2 border-l border-[var(--border)]">
+            <ThemeToggle />
+          </div>
         </div>
 
-        {/* Mobile menu button */}
-        <button className="md:hidden ml-auto p-2 text-[var(--text-secondary)]">
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
+        {/* Mobile: Theme Toggle + Menu Button */}
+        <div className="md:hidden ml-auto flex items-center gap-1">
+          <ThemeToggle />
+          <button className="p-2 text-[var(--text-secondary)]">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </nav>
   );

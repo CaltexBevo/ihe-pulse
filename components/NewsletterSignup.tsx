@@ -52,7 +52,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
       <div className={`${className}`}>
         <h4 className="font-sans text-[0.92rem] font-bold mb-3">Never Miss a Pulse</h4>
         <p className="text-[0.75rem] text-[var(--text-secondary)] mb-3">
-          A.I. news for higher ed, delivered weekly.
+          A.I. news for higher ed, delivered daily.
         </p>
         {status === 'success' ? (
           <p className="text-[0.78rem] text-[var(--green)]">{message}</p>
@@ -167,7 +167,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
           )}
 
           <p className="text-[0.68rem] text-[var(--text-muted)]">
-            Join 1,200+ educators. No spam. Unsubscribe anytime.
+            No spam. Unsubscribe anytime.
           </p>
         </>
       )}

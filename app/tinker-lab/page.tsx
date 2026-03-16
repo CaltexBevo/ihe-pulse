@@ -115,30 +115,25 @@ export default function TinkerLabPage() {
                 <span>·</span>
                 <span>Beginner</span>
                 <span>·</span>
-                <span>Grading & Assessment</span>
+                <span>AI Ethics & Creativity</span>
               </div>
 
-              {/* Tools Used */}
+              {/* Topics */}
               <div className="flex gap-2 flex-wrap mb-5">
-                {["GradeAssist", "Turnitin AI", "Canvas AI", "Grammarly Edu", "CoGrader"].slice(0, 4).map((tool) => (
-                  <span key={tool} className="font-mono text-[0.52rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--surface)] text-[var(--text-secondary)]">
-                    {tool}
+                {featuredPost.topics?.slice(0, 4).map((topic) => (
+                  <span key={topic} className="font-mono text-[0.52rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--surface)] text-[var(--text-secondary)]">
+                    {topic}
                   </span>
                 ))}
               </div>
 
-              {/* What You'll Learn */}
+              {/* Key Takeaways */}
               <div className="mt-auto">
                 <h4 className="font-mono text-[0.6rem] tracking-[0.08em] uppercase text-[var(--text-muted)] mb-3">
-                  What you&apos;ll learn
+                  Key takeaways
                 </h4>
                 <ul className="space-y-2">
-                  {[
-                    "Which tool was most accurate vs. human graders",
-                    "Where AI grading consistently fails",
-                    "The bias patterns we found across all 5 tools",
-                    "Our recommendation for the best free option",
-                  ].map((item, i) => (
+                  {featuredPost.takeaways?.slice(0, 4).map((item, i) => (
                     <li key={i} className="text-[0.8rem] text-[var(--text-secondary)] flex items-center gap-2">
                       <span className="font-mono text-[0.7rem] text-[var(--cyan)]">→</span>
                       {item}
