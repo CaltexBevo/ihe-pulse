@@ -85,29 +85,44 @@ export default function AboutPage() {
             </h1>
 
             <div className="space-y-6">
-              {/* Norma Jones, PhD - TEXT ONLY */}
-              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
-                <h2 className="font-sans text-[1.2rem] font-bold mb-1">Norma Jones, PhD</h2>
-                <p className="font-mono text-[0.68rem] text-[var(--cyan)] mb-3">Founder & Host</p>
-                <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
-                  PhD, recognized leader in AI integration for higher education, with
-                  experience spanning academia and industry. Dr. Jones is a podcast
-                  host and producer who has spent over 15 years at the intersection
-                  of technology and teaching, helping institutions navigate digital
-                  transformation — and now, the AI revolution.
-                </p>
+              {/* Dr. Norma Jones, Ph.D. - TEXT ONLY */}
+              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6">
+                <h2 className="font-sans text-[1.2rem] font-bold mb-1">Dr. Norma Jones, Ph.D.</h2>
+                <p className="font-mono text-[0.68rem] text-[var(--cyan)] mb-4">Co-Founder & Editor-in-Chief</p>
+                <div className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7] space-y-4">
+                  <p>
+                    Dr. Norma Jones is one of higher education&apos;s most active voices on AI integration in the classroom. A tenured faculty member in Communication Studies at Antelope Valley College, she founded and leads the college&apos;s AI Workgroup, co-leads its AI + OER/ZTC initiative, and has delivered more than 120 presentations on AI, education, communication, and media — including keynote addresses, conference panels, and faculty development sessions across California and nationwide.
+                  </p>
+                  <p>
+                    Her podcast, <Link href="/podcast" className="text-[var(--cyan)] hover:underline">Innovating Higher Ed</Link>, is the only podcast featured on the California Community Colleges Chancellor&apos;s Office &ldquo;GenAI and the Future of Learning&rdquo; resource page. She was selected as a CCCCO AI ChangeMaker, providing expert guidance on the Chancellor&apos;s Office Vision 2030 generative AI strategy, and serves on multiple statewide AI faculty development and policy workgroups shaping how California&apos;s 116 community colleges approach artificial intelligence.
+                  </p>
+                  <p>
+                    Dr. Jones is a published author and editor with Rowman & Littlefield, having co-edited and contributed to multiple volumes on popular culture and media. She created Fearless Public Speaking, an AI-enhanced multimedia OER textbook featuring integrated video, chatbot tutors, and follow-along practice sessions — a model for what next-generation open educational resources can look like.
+                  </p>
+                  <p>
+                    Before entering academia, Dr. Jones spent over a decade as a corporate executive in marketing, sales, and business development across telecommunications, international e-commerce, and multimedia industries — experience that gives her a practical, real-world lens on how technology transforms organizations. She holds a Ph.D. in Communication and Information from Kent State University, an M.S. from the University of North Texas, and a B.A. from UC Santa Barbara.
+                  </p>
+                </div>
               </div>
 
               {/* Brent Jones - TEXT ONLY */}
-              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
+              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6">
                 <h2 className="font-sans text-[1.2rem] font-bold mb-1">Brent Jones</h2>
-                <p className="font-mono text-[0.68rem] text-[var(--magenta)] mb-3">Co-Producer & Technology Lead</p>
-                <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
-                  Technology strategist and podcast co-producer with deep expertise in
-                  educational technology, web development, and AI applications. Brent
-                  builds the technical infrastructure that powers Innovating Higher Ed
-                  and ensures every tool and resource we recommend has been thoroughly tested.
-                </p>
+                <p className="font-mono text-[0.68rem] text-[var(--magenta)] mb-4">Co-Founder & Chief Technology Officer</p>
+                <div className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7] space-y-4">
+                  <p>
+                    Brent Jones is a producer, editor, and AI product builder with over two decades of experience across Hollywood and the technology startup space. He began his career at Warner Bros. Television and went on to serve as Post Production Supervisor on ABC&apos;s Growing Pains and Just the Ten of Us, then produce and edit more than 100 episodes of television for Disney, Discovery Channel, History Channel, HGTV, and CBS. As Director of Operations at Matchframe Film and Video, he managed end-to-end post-production workflows — editing, audio mixing, color correction, and large-scale media archiving — delivering broadcast-quality content under relentless deadlines.
+                  </p>
+                  <p>
+                    Now he builds AI products. Brent is the founder of <a href="https://smarteryoo.com" target="_blank" rel="noopener noreferrer" className="text-[var(--cyan)] hover:underline">SmarterYoo</a> (smarteryoo.com), an AI-powered mental performance platform that creates personalized audio training sessions using the same visualization and mental rehearsal techniques practiced by Navy SEALs, Olympic athletes, and surgeons — customized to each user&apos;s specific high-stakes moments and delivered as guided audio.
+                  </p>
+                  <p>
+                    He is also the technical architect behind Innovating Higher Ed, where he designed and built the entire platform from the ground up. Beyond these two ventures, Brent has additional AI products in active development — including an AI-powered OER platform for open educational resources and AI College Rankings, a data-driven approach to evaluating higher education institutions. Each one applies the same philosophy: use AI to solve real problems for real people, not to chase trends.
+                  </p>
+                  <p>
+                    Brent holds a Bachelor of Science in Radio-Television-Film from The University of Texas at Austin.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
