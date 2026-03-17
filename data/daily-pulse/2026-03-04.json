@@ -1,0 +1,79 @@
+{
+  "episode": {
+    "date": "2026-03-04",
+    "dayOfWeek": "Wednesday",
+    "editorialLens": "The Practitioner's Playbook",
+    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
+    "lensColor": "#22c55e",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-04.mp3",
+    "audioDuration": "5:56",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Wednesday, March 4th.\n\nThe University of New Haven just launched a Bachelor of Science in Artificial Intelligence that promises both technical skills and ethical foundations. But here's what I keep wondering: can one undergraduate program really prepare students for the technical complexity AND the ethical sophistication that responsible A.I. deployment requires?\n\n-\nIn our Insights & Trends category today, Maryville College is expanding their A.I. Summit beyond academic walls. Their second annual event now includes business leaders, nonprofits, and community members alongside educators. What caught my attention is their liberal arts approach to these conversations, examining ethics, culture, and practical applications together rather than treating them as separate topics.\n\n-\nFrom the Latest A.I. Products file, University of Bridgeport's Dean Khaled Elleithy just got elected to Connecticut's Academy of Science and Engineering for his A.I. and quantum computing work. His Interdisciplinary Emerging Technology Laboratory represents exactly the kind of cross-disciplinary research infrastructure that universities need to compete in A.I. innovation, not just follow it.\n\n-\nNext up in our Case Study category, Luiss Guido Carli University in Italy partnered with Google for comprehensive A.I. integration across their entire campus. We're talking A.I. tutors, simulation tools, faculty development, the works. This isn't piecemeal experimentation. It's a blueprint for systematic institutional A.I. adoption.\n\n-\nAnd here's one worth watching from our Practical Tips category. University of Arizona's chief A.I. officer is emphasizing transparency and community input over speed in their A.I. integration. They gathered feedback from over 1,000 campus members before moving forward. It's a deliberate process that prioritizes trust and human insight, which might be exactly what other institutions need to hear right now.\n\n-\nNow, let's get to that story I teased at the top about New Haven's new A.I. degree program.\n\n-\nWhat makes this announcement worth your attention isn't the degree itself. We're seeing A.I. programs pop up everywhere. It's how New Haven is structuring the curriculum to address what they call the skills gap created by rapid A.I. adoption.\n\nThe program doesn't just teach machine learning and deep learning. It requires courses on ethical, legal, regulatory, and privacy issues surrounding A.I. systems. Students also learn human-centered design approaches alongside technical implementation. Program coordinator Div Pithadia says right now is the perfect time to train engineers for A.I.-driven systems rather than legacy approaches.\n\nThis dual focus reflects a growing recognition that technical A.I. skills alone aren't enough. The curriculum builds on New Haven's existing Master of Science in Data Science program, which has been running for several years with 8 faculty members who bring both research expertise and real-world experience. This foundation matters because it suggests the university isn't rushing to capitalize on A.I. hype but building systematically on proven strengths.\n\nThe program emphasizes engineering processes for building scalable A.I. systems and using advanced tools like large language models, natural language processing, and computer vision. But it also mandates deep engagement with the societal implications of these technologies. Faculty work with industry partners to develop hands-on learning opportunities and applied projects, which could help students see how technical decisions connect to real-world consequences.\n\nBut here's the critical question I keep coming back to: Can a single undergraduate program really achieve depth in technical skills, ethical reasoning, AND human-centered design? Most undergraduate programs struggle to achieve depth in one domain, let alone three. The technical skills alone are demanding enough. Adding meaningful engagement with ethics, policy, and human-centered design creates an enormous curricular challenge.\n\nThe program's industry partnerships offer one potential solution, but they also raise questions about whether those relationships might skew toward technical solutions over ethical reflection. It's worth noting that the program explicitly prepares students for emerging roles like A.I. DevOps engineer and A.I. product manager, not just traditional computer science careers.\n\nHere's what I find most interesting about New Haven's approach: they're treating A.I. education as fundamentally interdisciplinary from day one, not as a technical field with ethics bolted on afterward. That's harder to execute but probably more realistic about what the workforce actually needs.\n\nSo what should you do with this information? If you're designing A.I.-related curricula, New Haven's framework is worth studying. Start with technical foundations, layer in applications across domains, and embed ethical reasoning throughout rather than treating it as an add-on.\n\nBut don't assume that launching an A.I. degree program is the only way to prepare students for an A.I.-enabled workforce. The real lesson here might be about integration. How do you weave A.I. literacy, technical skills, and ethical reasoning into existing programs rather than creating entirely new ones?\n\nConsider auditing your current programs across all majors. Where are students learning to evaluate A.I. outputs, understand algorithmic bias, or design human-centered solutions that happen to use A.I.? Those capabilities matter regardless of major. The question isn't whether to launch an A.I. degree program. It's whether we're preparing students in all fields to work effectively with A.I. systems while maintaining critical thinking about their applications and limitations.\n\n-\nThe real test of New Haven's approach will be whether their graduates can navigate both the technical complexity and the ethical sophistication that responsible A.I. deployment requires. That's your Innovation Pulse for Wednesday. Find full coverage and links at innovating higher ed dot com. See you Thursday.\n\nDr. Norma Jones. Thanks for listening."
+  },
+  "leadStory": {
+    "headline": "What New Haven's A.I. Degree Actually Teaches About Workforce Readiness",
+    "hook": "University of New Haven's new A.I. bachelor's program promises both technical skills and ethical foundations — but can one degree really deliver both?",
+    "category": "Practical Tips",
+    "source": "University of New Haven",
+    "sourceUrl": "https://www.newhaven.edu/news/releases/2026/bachelors-degree-in-artificial-intelligence.php",
+    "editorialTake": "The University of New Haven just launched a Bachelor of Science in Artificial Intelligence that attempts something ambitious: teaching students not just how to build A.I. systems, but how to deploy them responsibly across industries. The program combines technical foundations with real-world applications and ethical considerations, positioning graduates for roles from A.I. engineer to A.I. product manager.\n\nWhat makes this announcement worth your attention isn't the degree itself — we're seeing A.I. programs pop up everywhere. It's how New Haven is structuring the curriculum to address what program coordinator Div Pithadia calls the \"skills gap\" created by rapid A.I. adoption. The program doesn't just teach machine learning and deep learning; it requires courses on ethical, legal, regulatory, and privacy issues surrounding A.I. systems. Students also learn human-centered design approaches alongside technical implementation.\n\nThis dual focus reflects a growing recognition that technical A.I. skills alone aren't enough. As Pithadia notes, \"right now is the perfect time\" to train engineers for A.I.-driven systems rather than legacy approaches. The program emphasizes engineering processes for building scalable A.I. systems and using advanced tools like large language models, natural language processing, and computer vision. But it also mandates deep engagement with the societal implications of these technologies.\n\nThe curriculum builds on New Haven's existing M.S. in Data Science program, which has been running for several years with eight faculty members who bring both research expertise and real-world experience. This foundation matters — it suggests the university isn't rushing to capitalize on A.I. hype but building systematically on proven strengths.\n\nHere's the critical question: Can a single undergraduate program really prepare students for both the technical complexity and ethical sophistication that responsible A.I. deployment requires? The technical skills alone are demanding enough. Adding meaningful engagement with ethics, policy, and human-centered design creates an enormous curricular challenge. Most undergraduate programs struggle to achieve depth in one domain, let alone three.\n\nThe program's emphasis on industry collaboration offers one potential solution. Faculty work with industry partners to develop hands-on learning opportunities and applied projects. This could help students see how technical decisions connect to real-world consequences. But it also raises questions about whether industry partnerships might skew toward technical solutions over ethical reflection.\n\nSo what should you do with this information? If you're designing A.I.-related curricula, New Haven's approach offers a useful framework: start with technical foundations, layer in applications across domains, and embed ethical reasoning throughout rather than treating it as an add-on. The program's career preparation is also worth noting — it explicitly prepares students for emerging roles like A.I. DevOps engineer and A.I. product manager, not just traditional computer science careers.\n\nBut don't assume that launching an A.I. degree program is the only way to prepare students for an A.I.-enabled workforce. The real lesson here might be about integration: how do you weave A.I. literacy, technical skills, and ethical reasoning into existing programs rather than creating entirely new ones?",
+    "pullQuote": "The real lesson here might be about integration: how do you weave A.I. literacy, technical skills, and ethical reasoning into existing programs rather than creating entirely new ones?",
+    "editorialCallout": "Here's what I keep coming back to about New Haven's approach: they're treating A.I. education as fundamentally interdisciplinary from day one, not as a technical field with ethics bolted on afterward. That's harder to execute but probably more realistic about what the workforce actually needs. The question for the rest of us isn't whether to launch an A.I. degree program — it's whether we're preparing students in all majors to work effectively with A.I. systems while maintaining critical thinking about their applications and limitations. Consider auditing your current programs: where are students learning to evaluate A.I. outputs, understand algorithmic bias, or design human-centered solutions that happen to use A.I.? Those capabilities matter regardless of major.",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Split-screen illustration showing technical code and algorithms on one side, human figures and ethical symbols on the other, connected by flowing lines"
+  },
+  "quickHits": [
+    {
+      "headline": "Maryville College Expands A.I. Summit Beyond Academic Walls",
+      "summary": "Maryville's second annual A.I. Summit broadens from education-focused to include business, nonprofits, and community leaders. The liberal arts approach to A.I. conversations — examining ethics, culture, and practical applications together — offers a model for cross-sector dialogue about technology adoption.",
+      "category": "Insights & Trends",
+      "source": "Knox TN Today",
+      "sourceUrl": "https://www.knoxtntoday.com/maryville-college-ai-summit-to-explore-artificial-intelligence-across-education-business-and-society/",
+      "isCallback": false
+    },
+    {
+      "headline": "University Dean Elected to Connecticut Academy for A.I. Research",
+      "summary": "University of Bridgeport's Khaled Elleithy joins Connecticut's science academy, recognized for A.I. and quantum computing contributions. His Interdisciplinary Emerging Technology Laboratory represents the kind of cross-disciplinary research infrastructure that universities need to compete in A.I. innovation.",
+      "category": "Latest AI Products",
+      "source": "PR Newswire",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/university-of-bridgeport-dean-elected-to-the-connecticut-academy-of-science-and-engineering-for-pioneering-contributions-to-artificial-intelligence-and-quantum-computing-302716499.html",
+      "isCallback": false
+    },
+    {
+      "headline": "Italian University Partners with Google for Campus-Wide A.I. Integration",
+      "summary": "Luiss Guido Carli University and Google launch comprehensive A.I. integration across teaching, research, and operations. The partnership includes A.I. tutors, simulation tools, and faculty development — a blueprint for systematic institutional A.I. adoption rather than piecemeal experimentation.",
+      "category": "Case Study",
+      "source": "EdTech Innovation Hub",
+      "sourceUrl": "https://www.edtechinnovationhub.com/news/luiss-and-google-partner-to-integrate-ai-across-teaching-research-and-campus-life",
+      "isCallback": false
+    },
+    {
+      "headline": "Arizona Takes Human-Centered Approach to Campus A.I. Strategy",
+      "summary": "University of Arizona's chief A.I. officer emphasizes transparency and community input over speed in A.I. integration. Their deliberate process — gathering feedback from 1,000+ campus members — demonstrates how to build institutional A.I. strategies that prioritize trust and human insight.",
+      "category": "Practical Tips",
+      "source": "University of Arizona News",
+      "sourceUrl": "https://news.arizona.edu/news/holistic-human-centered-approach-ai-puts-u-class-its-own",
+      "isCallback": false
+    }
+  ],
+  "meta": {
+    "date": "2026-03-04",
+    "dayOfWeek": "Wednesday",
+    "editorialLens": "The Practitioner's Playbook",
+    "themes": [
+      "curriculum design",
+      "workforce preparation",
+      "ethical AI",
+      "institutional strategy",
+      "interdisciplinary education"
+    ],
+    "storiesWatching": [
+      "Arizona's comprehensive A.I. roadmap release expected spring 2026",
+      "Maryville College A.I. Summit outcomes from May 12-13 event"
+    ],
+    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
+    "lensColor": "#22c55e",
+    "publishedAt": "2026-03-17T22:52:26.486Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
