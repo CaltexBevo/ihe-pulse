@@ -1,97 +1,71 @@
 {
-  "date": "2026-02-19",
-  "dayOfWeek": "Thursday",
-  "editorialLens": {
-    "name": "Connecting the Dots",
-    "description": "Pattern recognition across stories and across the week.",
-    "color": "#a78bfa"
+  "episode": {
+    "date": "2026-02-19",
+    "dayOfWeek": "Thursday",
+    "editorialLens": "Connecting the Dots",
+    "lensDescription": "Pattern recognition across stories and across the week.",
+    "lensColor": "#a78bfa",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-19.mp3",
+    "audioDuration": "5:24",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Thursday, February 19th.\n\nTwo community college students from New Jersey just landed spots in an exclusive state AI fellowship, working 20 hours a week on real government projects while continuing their studies. What they're actually building might surprise you.\n\n-\nIn our Insights and Trends category today, Stanford researchers are raising questions about AI classroom tools. They found limited evidence that these tools actually improve student learning long-term. While students perform better while using A.I., those gains often disappear when the tools are removed. The concern? We might be seeing cognitive offloading rather than actual skill development.\n\n-\nFrom the Latest A.I. Products file, the University of Houston has partnered with Google to provide campus-wide access to Gemini for Education and NotebookLM. The university is emphasizing preparing students to be \"A.I.-fluent\" while urging faculty to set clear guidelines for ethical A.I. use in coursework.\n\n-\nAnd in our Practical Tips category, a writing professor at Babson College shared her journey integrating A.I. into the classroom. She describes evolving from initial A.I. experimentation to a more structured approach that balances tool use with critical thinking development. Her focus? Helping students develop discernment about when A.I. supports versus substitutes for learning.\n\n-\nNow, let's get to that story I mentioned at the top about those community college students in New Jersey.\n\n-\nLaila Diaz and Hassan Ibrahim, both computer science students at Middlesex College, were selected from over 250 applicants for New Jersey's A.I. for Impact Community College Fellowship. But here's what caught my attention, it's not just that they got selected for this competitive program. It's what they're actually working on.\n\nIbrahim is developing machine learning models to streamline I.T. ticketing systems for the state government. Diaz is creating an A.I. Slack bot to help engineers search data and find source citations. These aren't theoretical exercises or classroom simulations. They're addressing actual operational challenges in government settings while working 20 hours per week and receiving stipends.\n\nWhat makes this fellowship particularly interesting is how these students are framing their motivations. Ibrahim specifically mentioned wanting to work with A.I. \"in an ethical way\" and seeing \"how A.I. systems work in a regulated, government setting.\" Diaz expressed interest in cybersecurity work for government, viewing it as \"working for my community.\" They're thinking beyond just the technical skills to the broader context of responsible A.I. implementation.\n\nFrom an institutional perspective, this partnership addresses something community colleges often struggle with, providing meaningful work-based learning opportunities that connect directly to career pathways. These students aren't just learning about A.I. in isolation. They're seeing how it fits into larger organizational systems, complete with the constraints and considerations that come with government work.\n\nThe timing feels significant too. As A.I. tools become more prevalent across all sectors, there's growing recognition that we need people who understand not just how to use these tools, but how to implement them thoughtfully in complex organizational environments. Government work, with its emphasis on transparency, accountability, and public service, provides a particular lens for this kind of learning.\n\nWhat I find most compelling about this fellowship is how it addresses something we struggle with in community college A.I. education, the gap between learning tools and understanding systems. These students aren't just building A.I. applications. They're learning to navigate the regulatory, ethical, and operational complexities that come with implementing A.I. in institutional settings.\n\nThis connects to that Stanford research I mentioned earlier about A.I. tools and learning. The concern there was about cognitive offloading, students performing better with A.I. but not actually developing deeper skills. But what these New Jersey students are experiencing seems different. They're not just using A.I. tools to complete tasks. They're learning to build A.I. solutions within real organizational constraints.\n\nFor community college educators watching this development, it raises some practical questions. Not every institution will have access to state-level partnerships like this. But the model itself, pairing academic learning with real-world application in settings that prioritize ethical considerations, offers something worth exploring.\n\nHow do we create similar bridge experiences when we don't have a state Office of Innovation next door? Maybe it's partnerships with local nonprofits, small businesses, or municipal governments. Maybe it's project-based learning that simulates these kinds of constraints and considerations.\n\nThe fellowship also highlights something I've noticed in conversations with community college faculty. Our students often crave this kind of hands-on experience. They want to see how the concepts they're learning translate to real workplace problems. They want to understand not just what A.I. can do, but where it fits and where it doesn't.\n\n-\nThese partnerships remind us that A.I. education isn't just about the technology. It's about understanding context, constraints, and consequences.\n\nThat's your Innovation Pulse for Thursday. Find full coverage and links at innovating higher ed dot com. See you Friday."
   },
-  "episodeTitle": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
-  "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-19.mp3",
-  "audioDuration": "3:32",
-  "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed — it's Thursday, February 19, 2026. I'm Dr. Norma Jones. Today, we explore a provocative claim: the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself.\n\nLet's dive into this thought-provoking perspective from Nir Eisikovits and Jacob Burley at UMass Boston, published in The Conversation. While much of the public debate around AI in universities focuses on academic dishonesty, these researchers warn of a far deeper threat: the degradation of educational ecosystems. They categorize AI systems into nonautonomous tools like admissions and advising, hybrid systems such as tutoring chatbots, and fully autonomous agents capable of conducting research independently. Their core argument is that universities risk transforming into 'output machines' rather than places that cultivate judgment and capacity. The real danger lies in bypassing cognitive challenges—drafting, revising, and even failing—that are essential for building durable understanding. Without this struggle, they argue, learning itself erodes. As educators, we must ask: how do we ensure that AI enhances, rather than diminishes, the educational experience?\n\nNext up, we have a fascinating shift at Purdue and Ohio State Universities, where using AI isn't just accepted—it's a graduation requirement. Purdue is embedding an AI 'working competency' across 35 courses for students starting in fall 2025, aiming for mastery by the class of 2030. Ohio State's AI Fluency initiative requires all graduates from the class of 2029 onward to demonstrate AI competence. A Copyleaks survey reveals nearly 90% of students already use AI academically, with over half engaging with it regularly. The emphasis is on moving beyond basic chatbot use toward creating custom solutions, known as 'vibe coding.' It's a bold move, challenging us to consider: how will these requirements reshape the future workforce?\n\nMeanwhile, Seattle University is fostering crucial conversations on AI ethics through its Technology Ethics Initiative. TEI director Onur Bakiner cautions against the AI hype, stressing the importance of providing basic AI, digital, and media literacy skills. Students voice concerns, like communication major Avani Koganti, who worries AI might diminish work quality and critical thinking. Law student Itzel Gonzalez points out the inconsistency in faculty guidelines on AI use, creating confusion. As AI becomes more ubiquitous, how do we maintain clarity and consistency in its educational application?\n\nTurning to Ithaca College, students are questioning the value of traditional higher education amidst AI's rapid advancements. With AI's expanding capabilities, they're concerned about whether skills from conventional degrees will remain relevant. This tension between traditional educational models and the evolving workforce demands is central for students planning their futures. Are we equipping them with the right skills for a world in flux?\n\nFinally, Northeastern University's President Joseph E. Aoun urges higher education institutions to embrace AI technologies, as highlighted in his Boston Globe op-ed. Aoun has long championed AI on campus and encourages the broader educational community to do the same. The challenge is to integrate AI in ways that genuinely enhance learning without losing sight of essential educational values.\n\nThat's today's Innovation Pulse. I'm Dr. Norma Jones — find the full stories and links at innovatinghighered.com. Thanks for joining us as we explore new frontiers in educational innovation. See you tomorrow.",
-  "hook": "Today, we explore a provocative claim: the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself.",
-  "segments": {
-    "deepDive": {
-      "title": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
-      "summary": "Researchers at UMass Boston warn that the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself. They argue universities risk transforming into 'output machines' rather than places that cultivate judgment. Without the cognitive challenges of drafting, revising, and failing, learning itself erodes.",
-      "source": "The Conversation",
-      "sourceUrl": "https://theconversation.com/the-greatest-risk-of-ai-in-higher-education-isnt-cheating-its-the-erosion-of-learning-itself-270243",
-      "category": "Insights & Trends",
-      "editorialCallout": "This piece forces us to confront an uncomfortable truth: the convenience of AI may be antithetical to education's core purpose. The cognitive struggle of learning—including failure—isn't a bug to be optimized away; it's the feature."
-    },
-    "quickHits": [
-      {
-        "title": "At These Universities, Using AI Isn't Shunned — It's a Graduation Requirement",
-        "summary": "Purdue and Ohio State Universities are making AI competency a graduation requirement. Purdue is embedding AI 'working competency' across 35 courses starting fall 2025, while Ohio State's AI Fluency initiative requires all 2029 graduates to demonstrate AI competence. Nearly 90% of students already use AI academically.",
-        "source": "The 74",
-        "sourceUrl": "https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/",
-        "category": "Practical Tips"
-      },
-      {
-        "title": "Is AI Inescapable in Higher Education?",
-        "summary": "Seattle University's Technology Ethics Initiative is fostering crucial conversations on AI ethics. Director Onur Bakiner stresses the importance of providing basic AI, digital, and media literacy skills. Students voice concerns about AI diminishing work quality and critical thinking.",
-        "source": "Seattle Spectator",
-        "sourceUrl": "https://seattlespectator.com/2026/02/18/is-ai-inescapable-in-higher-education/",
-        "category": "Ethical AI"
-      },
-      {
-        "title": "Students Question Higher Education's Value Amid AI",
-        "summary": "Students at Ithaca College are questioning the value of traditional higher education amidst AI's rapid advancements. They're concerned about whether skills from conventional degrees will remain relevant as AI capabilities expand, highlighting tension between traditional education and evolving workforce demands.",
-        "source": "The Ithacan",
-        "sourceUrl": "https://theithacan.org/66431/news/students-question-the-value-of-higher-education-amid-ai/",
-        "category": "Beyond Ed"
-      }
-    ]
+  "leadStory": {
+    "headline": "Community College Students Land State AI Fellowship Roles",
+    "hook": "Two computer science students from Middlesex College join exclusive state program working on real government AI projects.",
+    "category": "Case Study",
+    "source": "TAPinto",
+    "sourceUrl": "https://www.tapinto.net/towns/south-plainfield/categories/press-releases/articles/middlesex-college-students-selected-for-ai-for-impact-community-college-fellowship",
+    "editorialTake": "Two computer science students from Middlesex College — Laila Diaz and Hassan Ibrahim — were selected from over 250 applicants for New Jersey's AI for Impact Community College Fellowship. The semester-long program pairs students with the state's Office of Innovation, where they work 20 hours per week on real government AI projects while receiving stipends and continuing their studies.\n\nWhat makes this story worth examining isn't just the competitive selection process, but what these students are actually working on. Ibrahim is developing machine learning models to streamline IT ticketing systems, while Diaz is creating an AI Slack bot to help engineers search data and find source citations. These aren't theoretical exercises — they're addressing actual operational challenges in government settings.\n\nThe fellowship represents something we're seeing more of: partnerships that bridge the gap between academic AI learning and practical application. In my work with community college faculty, I've noticed how often our students crave this kind of hands-on experience. They want to see how the concepts they're learning translate to real workplace problems.\n\nWhat's particularly interesting is how these students frame their motivations. Ibrahim specifically mentioned wanting to work with AI \"in an ethical way\" and seeing \"how AI systems work in a regulated, government setting.\" Diaz expressed interest in cybersecurity work for government, viewing it as \"working for my community.\" This suggests they're thinking beyond just the technical skills to the broader context of responsible AI implementation.\n\nFrom an institutional perspective, this kind of partnership offers something community colleges often struggle to provide: meaningful work-based learning opportunities that connect directly to career pathways. The students aren't just learning about AI in isolation — they're seeing how it fits into larger organizational systems, complete with the constraints and considerations that come with government work.\n\nThe timing is notable too. As AI tools become more prevalent across all sectors, there's growing recognition that we need people who understand not just how to use these tools, but how to implement them thoughtfully in complex organizational environments. Government work, with its emphasis on transparency, accountability, and public service, provides a particular lens for this kind of learning.\n\nFor community college educators watching this development, it raises questions about how we can create similar bridge experiences for our students. Not every institution will have access to state-level partnerships, but the model — pairing academic learning with real-world application in settings that prioritize ethical considerations — offers a template worth exploring.",
+    "pullQuote": "These aren't theoretical exercises — they're addressing actual operational challenges in government settings.",
+    "editorialCallout": "What I find most interesting about this fellowship is how it addresses something we struggle with in community college AI education: the gap between learning tools and understanding systems. These students aren't just building AI applications — they're learning to navigate the regulatory, ethical, and operational complexities that come with implementing AI in institutional settings. That's exactly the kind of contextual learning our students need, but it requires partnerships that many of us don't have access to. It makes me wonder: how do we create similar bridge experiences when we don't have a state Office of Innovation next door?",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Students working on laptops in a government office setting, with AI interface elements visible on screens"
   },
-  "stories": [
+  "quickHits": [
     {
-      "title": "The Greatest Risk of AI in Higher Education Isn't Cheating — It's the Erosion of Learning Itself",
-      "summary": "Researchers at UMass Boston warn that the greatest risk AI poses to higher education isn't cheating—it's the erosion of learning itself. They argue universities risk transforming into 'output machines' rather than places that cultivate judgment. Without the cognitive challenges of drafting, revising, and failing, learning itself erodes.",
-      "source": "The Conversation",
-      "sourceUrl": "https://theconversation.com/the-greatest-risk-of-ai-in-higher-education-isnt-cheating-its-the-erosion-of-learning-itself-270243",
+      "headline": "Stanford Study Questions AI Classroom Tool Effectiveness",
+      "summary": "Stanford researchers found limited evidence that AI tools improve student learning long-term. While students perform better while using AI, gains often disappear when tools are removed, raising concerns about cognitive offloading versus actual skill development.",
       "category": "Insights & Trends",
-      "isDeveloping": false,
-      "publishedAt": "2026-02-19"
+      "source": "GovTech",
+      "sourceUrl": "https://www.govtech.com/education/k-12/stanford-researchers-find-thin-evidence-behind-ai-classroom-tools",
+      "isCallback": false
     },
     {
-      "title": "At These Universities, Using AI Isn't Shunned — It's a Graduation Requirement",
-      "summary": "Purdue and Ohio State Universities are making AI competency a graduation requirement. Purdue is embedding AI 'working competency' across 35 courses starting fall 2025, while Ohio State's AI Fluency initiative requires all 2029 graduates to demonstrate AI competence.",
-      "source": "The 74",
-      "sourceUrl": "https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/",
+      "headline": "University of Houston Adopts Google AI Education Suite",
+      "summary": "UH partnered with Google to provide campus-wide access to Gemini for Education and NotebookLM. The university emphasizes preparing students to be \"AI-fluent\" while urging faculty to set clear guidelines for ethical AI use in coursework.",
+      "category": "Latest AI Products",
+      "source": "The Daily Cougar",
+      "sourceUrl": "https://thedailycougar.com/2026/03/17/uh-collaborates-with-google-to-bring-ai-tools-to-campus/",
+      "isCallback": false
+    },
+    {
+      "headline": "Writing Professor Shares AI Classroom Integration Journey",
+      "summary": "Babson College educator describes evolution from initial AI experimentation to structured approach balancing tool use with critical thinking development. Emphasizes helping students develop discernment about when AI supports versus substitutes for learning.",
       "category": "Practical Tips",
-      "isDeveloping": false,
-      "publishedAt": "2026-02-17"
-    },
-    {
-      "title": "Is AI Inescapable in Higher Education?",
-      "summary": "Seattle University's Technology Ethics Initiative is fostering crucial conversations on AI ethics. Director Onur Bakiner stresses the importance of providing basic AI, digital, and media literacy skills. Students voice concerns about AI diminishing work quality and critical thinking.",
-      "source": "Seattle Spectator",
-      "sourceUrl": "https://seattlespectator.com/2026/02/18/is-ai-inescapable-in-higher-education/",
-      "category": "Ethical AI",
-      "isDeveloping": false,
-      "publishedAt": "2026-02-18"
-    },
-    {
-      "title": "Students Question Higher Education's Value Amid AI",
-      "summary": "Students at Ithaca College are questioning the value of traditional higher education amidst AI's rapid advancements. They're concerned about whether skills from conventional degrees will remain relevant as AI capabilities expand.",
-      "source": "The Ithacan",
-      "sourceUrl": "https://theithacan.org/66431/news/students-question-the-value-of-higher-education-amid-ai/",
-      "category": "Beyond Ed",
-      "isDeveloping": false,
-      "publishedAt": "2026-02-18"
-    },
-    {
-      "title": "Aoun Urges Higher Education Institutions to Embrace AI",
-      "summary": "Northeastern University's President Joseph E. Aoun urges higher education institutions to embrace AI technologies. Aoun has long championed AI on campus and encourages the broader educational community to integrate AI in ways that genuinely enhance learning.",
-      "source": "The Huntington News",
-      "sourceUrl": "https://huntnewsnu.com/91291/campus/aoun-urges-higher-education-institutions-to-embrace-ai-in-boston-globe-op-ed/",
-      "category": "Insights & Trends",
-      "isDeveloping": false,
-      "publishedAt": "2026-02-13"
+      "source": "The North Star Monthly",
+      "sourceUrl": "https://www.northstarmonthly.com/under_the_same_north_star/learning-to-co-exist-with-ai-in-the-writing-classroom/article_e414eae6-5988-4074-b33a-b418f0ec5578.html",
+      "isCallback": false
     }
   ],
-  "callbacks": [],
-  "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
-  "publishedAt": "2026-02-19T20:43:53.580Z"
+  "meta": {
+    "date": "2026-02-19",
+    "dayOfWeek": "Thursday",
+    "editorialLens": "Connecting the Dots",
+    "themes": [
+      "work-based learning",
+      "government partnerships",
+      "ethical AI implementation",
+      "community college pathways",
+      "practical application"
+    ],
+    "storiesWatching": [
+      "New Jersey AI for Impact Fellowship outcomes and expansion",
+      "Stanford AI effectiveness research follow-up studies"
+    ],
+    "lensDescription": "Pattern recognition across stories and across the week.",
+    "lensColor": "#a78bfa",
+    "publishedAt": "2026-03-18T19:01:24.565Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
 }
