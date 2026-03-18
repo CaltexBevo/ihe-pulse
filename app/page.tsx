@@ -123,28 +123,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          ABOVE-THE-FOLD NEWSLETTER CTA
-          ═══════════════════════════════════════════════════════ */}
-      <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-4">
-        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
-              <span className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--cyan)] font-semibold">
-                Daily Briefing
-              </span>
-            </div>
-            <p className="text-[0.88rem] text-[var(--text-secondary)]">
-              Get The Innovation Pulse in your inbox — daily AI news for higher ed.
-            </p>
-          </div>
-          <NewsletterSignup variant="inline" className="sm:max-w-[380px] border-0 bg-transparent p-0" />
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
           LEAD STORY - Premium Editorial Layout
