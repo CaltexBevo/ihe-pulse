@@ -1,0 +1,64 @@
+{
+  "episode": {
+    "date": "2026-03-06",
+    "dayOfWeek": "Friday",
+    "editorialLens": "The Innovator's Edge",
+    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
+    "lensColor": "#fbbf24",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-06.mp3",
+    "audioDuration": "5:24",
+    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Friday, March 6th.\n\nTwo community college students in New Jersey just landed spots in government A.I. labs, working on real machine learning projects while still taking classes. It's raising some interesting questions about who we're preparing for A.I. work and where.\n\n-\nIn our Practical Tips category today, EdTech Magazine is looking at how universities can get their arms around A.I. risk management. They're focusing on something called continuous threat exposure management, which is basically about knowing what A.I. systems you actually have on campus, figuring out which ones matter most, and creating frameworks for ongoing risk reduction as new tools keep popping up. The emphasis is on understanding your A.I. landscape before you can manage it effectively.\n\n-\nFrom the Beyond Ed file, state and local governments are deploying A.I. across a pretty wide range of operations. Michigan's Allegan County is reporting an 8 to 9 percent increase in case clearance after implementing A.I. video analysis tools for public defenders. Meanwhile, North Las Vegas is providing live translation in virtually any language for public meetings. It's a reminder that A.I. adoption in government is moving beyond pilot programs into actual service delivery.\n\n-\nNow, let's get to that story I mentioned at the top. Two computer science students at Middlesex College, Laila Diaz and Hassan Ibrahim, were selected from over 250 applicants for New Jersey's A.I. for Impact Community College Fellowship. It's a semester-long program that pairs students with the State Office of Innovation, where they work 20 hours per week on real government A.I. projects while continuing their studies and receiving stipends.\n\nWhat makes this particularly interesting is that these aren't theoretical exercises. Ibrahim is working on machine learning models for I.T. ticketing systems, while Diaz is creating an A.I. Slack bot for engineers. These are actual government challenges with A.I. tools that will likely be deployed in production environments.\n\nThe partnership structure here is worth noting. The New Jersey Council of County Colleges administers the program, with funding from the Economic Development Authority and hosting by the State Office of Innovation. It's a model that recognizes community colleges as crucial players in A.I. workforce development, not just four-year institutions with computer science Ph.D. programs.\n\nThe students' motivations are telling. Ibrahim specifically mentioned wanting to work with A.I. in an ethical way and seeing how the technology functions in a regulated, government setting. Diaz expressed interest in cybersecurity work for government, viewing it as working for her community. These aren't students chasing Silicon Valley salaries. They're interested in public sector applications of A.I.\n\nThis raises questions about how we're preparing the A.I. workforce more broadly. Community colleges serve different populations than research universities. Students who are often working, older, from diverse backgrounds, and cost-conscious. If A.I. is going to be deployed across all sectors of the economy, we need pathways that don't require four-year computer science degrees.\n\nThe government setting also matters. Public sector A.I. deployment faces different constraints than private sector work. Transparency requirements, public accountability, diverse stakeholder needs. Students learning A.I. in this context are getting exposure to considerations that purely commercial training might miss.\n\nFor community college faculty, this fellowship model suggests possibilities. It's not just about teaching A.I. concepts in isolation, but connecting students to real-world applications where they can see how technical skills intersect with policy, ethics, and public service. The question is whether this kind of experiential learning can scale beyond a handful of highly competitive fellowships to become part of regular curriculum pathways.\n\nWhat I find most interesting about this fellowship is how it positions community colleges in A.I. workforce development. We often hear about the need for A.I. skills, but the conversation tends to center on elite computer science programs. This partnership recognizes that community colleges serve students who might bring different perspectives to A.I. work. People like Ibrahim, who's specifically interested in ethical applications, or Diaz, who sees technology work as community service.\n\nAt institutions like ours, we're constantly balancing workforce preparation with broader educational goals. The question this raises is whether we can create more pathways that give students hands-on experience with A.I. in contexts that align with their values and career interests, not just the highest-paying opportunities. How do we scale this kind of meaningful, applied learning beyond competitive fellowship programs?\n\nThe New Jersey model suggests one approach. Real partnerships with government agencies that need A.I. work done. Students who get stipends and academic credit. Projects that address actual public sector challenges. It's experiential learning that serves multiple purposes at once.\n\n-\nIt's a reminder that workforce development isn't just about filling job openings. It's about connecting students to work that feels meaningful to them.\n\nThat's your Innovation Pulse for Friday. Find full coverage and links at innovating higher ed dot com. See you Monday."
+  },
+  "leadStory": {
+    "headline": "Community College Students Enter Government A.I. Labs",
+    "hook": "Two computer science students are getting hands-on experience with A.I. in government — raising questions about workforce pipelines.",
+    "category": "Case Study",
+    "source": "Insider NJ",
+    "sourceUrl": "https://www.insidernj.com/press-releases/middlesex-college-students-selected-for-ai-for-impact-community-college-fellowship",
+    "editorialTake": "Two Middlesex College computer science students, Laila Diaz and Hassan Ibrahim, were selected from over 250 applicants for New Jersey's A.I. for Impact Community College Fellowship. The semester-long program pairs students with the State Office of Innovation, where they work 20 hours per week on real government A.I. projects while continuing their studies and receiving stipends.\n\nThe fellowship represents something genuinely new in how we think about A.I. workforce development. Ibrahim is working on machine learning models for I.T. ticketing systems, while Diaz is creating an A.I. Slack bot for engineers. These aren't theoretical exercises — they're addressing actual government challenges with A.I. tools that will likely be deployed in production environments.\n\nWhat makes this particularly interesting is the partnership structure. The New Jersey Council of County Colleges administers the program, with funding from the Economic Development Authority and hosting by the State Office of Innovation. It's a model that recognizes community colleges as crucial players in A.I. workforce development, not just four-year institutions with computer science Ph.D. programs.\n\nThe students' motivations are telling. Ibrahim specifically mentioned wanting to work with A.I. \"in an ethical way\" and seeing how the technology functions \"in a regulated, government setting.\" Diaz expressed interest in cybersecurity work for government, viewing it as \"working for my community.\" These aren't students chasing Silicon Valley salaries — they're interested in public sector applications of A.I.\n\nThis raises questions about how we're preparing the A.I. workforce more broadly. Community colleges serve different populations than research universities — students who are often working, older, from diverse backgrounds, and cost-conscious. If A.I. is going to be deployed across all sectors of the economy, we need pathways that don't require four-year computer science degrees.\n\nThe government setting also matters. Public sector A.I. deployment faces different constraints than private sector — transparency requirements, public accountability, diverse stakeholder needs. Students learning A.I. in this context are getting exposure to considerations that purely commercial training might miss.\n\nFor community college faculty, this fellowship model suggests possibilities. It's not just about teaching A.I. concepts in isolation, but connecting students to real-world applications where they can see how technical skills intersect with policy, ethics, and public service. The question is whether this kind of experiential learning can scale beyond a handful of highly competitive fellowships to become part of regular curriculum pathways.",
+    "pullQuote": "These aren't students chasing Silicon Valley salaries — they're interested in public sector applications of A.I.",
+    "editorialCallout": "What I find most interesting about this fellowship is how it positions community colleges in A.I. workforce development. We often hear about the need for A.I. skills, but the conversation tends to center on elite computer science programs. This partnership recognizes that community colleges serve students who might bring different perspectives to A.I. work — people like Ibrahim, who's specifically interested in ethical applications, or Diaz, who sees technology work as community service. At institutions like ours, we're constantly balancing workforce preparation with broader educational goals. The question this raises for me is whether we can create more pathways that give students hands-on experience with A.I. in contexts that align with their values and career interests, not just the highest-paying opportunities. How do we scale this kind of meaningful, applied learning beyond competitive fellowship programs?",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Students working on computers in a government office setting, showing collaboration between education and public sector"
+  },
+  "quickHits": [
+    {
+      "headline": "Higher Ed Leaders Focus on A.I. Risk Management",
+      "summary": "EdTech Magazine explores how continuous threat exposure management (CTEM) can help universities handle A.I.-related risks. The approach emphasizes understanding what A.I. systems exist on campus, prioritizing which matter most, and creating frameworks for ongoing risk reduction as new tools emerge.",
+      "category": "Practical Tips",
+      "source": "EdTech Magazine",
+      "sourceUrl": "https://edtechmagazine.com/higher/article/2026/03/applying-ai-risk-frameworks-higher-education-what-it-leaders-need-know",
+      "isCallback": false
+    },
+    {
+      "headline": "A.I. Transforms Government Operations Across Multiple States",
+      "summary": "State and local governments are deploying A.I. for everything from public defender case review to real-time meeting translation. Michigan's Allegan County reports 8-9% increase in case clearance after implementing A.I. video analysis tools, while North Las Vegas provides live translation in virtually any language for public meetings.",
+      "category": "Beyond Ed",
+      "source": "GovTech",
+      "sourceUrl": "https://www.govtech.com/artificial-intelligence/ai-lets-state-and-local-governments-extend-their-reach",
+      "isCallback": false
+    }
+  ],
+  "meta": {
+    "date": "2026-03-06",
+    "dayOfWeek": "Friday",
+    "editorialLens": "The Innovator's Edge",
+    "themes": [
+      "community college workforce",
+      "government AI",
+      "experiential learning",
+      "public sector technology",
+      "AI ethics"
+    ],
+    "storiesWatching": [
+      "New Jersey AI fellowship program expansion",
+      "Community college AI partnerships",
+      "Government AI workforce development"
+    ],
+    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
+    "lensColor": "#fbbf24",
+    "publishedAt": "2026-03-18T22:35:37.476Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
