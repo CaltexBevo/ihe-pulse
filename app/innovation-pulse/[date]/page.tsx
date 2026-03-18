@@ -167,38 +167,19 @@ export default async function InnovationPulseDatePage({
 
         {/* Article Body */}
         <article className="mb-10 space-y-6">
-          <p className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
-            {episode.deepDive.summary}
-          </p>
+          {/* Full editorial content - split into paragraphs */}
+          {episode.deepDive.summary.split('\n\n').map((paragraph, idx) => (
+            <p key={idx} className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
+              {paragraph}
+            </p>
+          ))}
 
-          {/* Pull Quote */}
-          <blockquote className="text-[1.2rem] font-semibold italic text-[var(--text)] leading-[1.5] py-6 pl-6 border-l-[3px] border-[var(--cyan)] my-8">
-            &ldquo;{episode.editorialHook}&rdquo;
-          </blockquote>
-
-          <p className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
-            The implementation approach differs from traditional vendor solutions in several key ways. Faculty advisors co-designed every prompt. They tested the system&apos;s responses against real student scenarios for two months before a single student saw it. The AI doesn&apos;t replace the advisor — it prepares a briefing packet before each meeting.
-          </p>
-
-          {/* Data Callout */}
-          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6 my-8 grid grid-cols-3 gap-6 text-center">
-            <div>
-              <div className="text-[2rem] font-extrabold text-[var(--cyan)] leading-none mb-1">23%</div>
-              <div className="font-mono text-[0.72rem] text-[var(--text-muted)] tracking-[0.04em]">Retention increase</div>
-            </div>
-            <div>
-              <div className="text-[2rem] font-extrabold text-[var(--cyan)] leading-none mb-1">$3</div>
-              <div className="font-mono text-[0.72rem] text-[var(--text-muted)] tracking-[0.04em]">Cost per student</div>
-            </div>
-            <div>
-              <div className="text-[2rem] font-extrabold text-[var(--cyan)] leading-none mb-1">14K</div>
-              <div className="font-mono text-[0.72rem] text-[var(--text-muted)] tracking-[0.04em]">Sessions processed</div>
-            </div>
-          </div>
-
-          <p className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
-            The real question isn&apos;t whether this works. It&apos;s why more institutions aren&apos;t doing it. The approach is entirely replicable. The tools are open-source. The hardware requirements are modest. The implementation playbook is being shared through regional consortiums.
-          </p>
+          {/* Pull Quote - only show if we have one */}
+          {episode.editorialHook && (
+            <blockquote className="text-[1.2rem] font-semibold italic text-[var(--text)] leading-[1.5] py-6 pl-6 border-l-[3px] border-[var(--cyan)] my-8">
+              &ldquo;{episode.editorialHook}&rdquo;
+            </blockquote>
+          )}
         </article>
 
         {/* Source Attribution */}
@@ -238,14 +219,16 @@ export default async function InnovationPulseDatePage({
             </span>
           </div>
           <div className="space-y-4">
-            {episode.closingThought && (
+            {episode.deepDive.editorialCallout && (
+              <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
+                {episode.deepDive.editorialCallout}
+              </p>
+            )}
+            {episode.closingThought && !episode.deepDive.editorialCallout && (
               <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
                 {episode.closingThought}
               </p>
             )}
-            <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
-              The biggest barrier isn&apos;t budget or technology — it&apos;s designing AI tools WITH the people who use them instead of FOR them. That&apos;s the pattern to replicate.
-            </p>
           </div>
           <div className="flex items-center gap-2 mt-6 pt-4 border-t border-[var(--border)] text-[0.82rem] text-[var(--text-secondary)]">
             <strong className="text-[var(--text)]">The Innovation Pulse</strong>
