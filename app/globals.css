@@ -151,6 +151,72 @@
 }
 
 /* ============================================
+   Skip Navigation Link (ADA/WCAG 2.1 AA)
+   ============================================ */
+
+.skip-nav {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--bg);
+  color: var(--text);
+  padding: 12px 24px;
+  z-index: 9999;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--cyan);
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-nav:focus {
+  top: 0;
+  outline: none;
+}
+
+[data-theme="light"] .skip-nav {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--cyan);
+}
+
+/* ============================================
+   Global Focus Indicators (ADA/WCAG 2.1 AA)
+   Visible focus rings for all interactive elements
+   ============================================ */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* Light mode focus indicator */
+[data-theme="light"] a:focus-visible,
+[data-theme="light"] button:focus-visible,
+[data-theme="light"] input:focus-visible,
+[data-theme="light"] select:focus-visible,
+[data-theme="light"] textarea:focus-visible,
+[data-theme="light"] [tabindex]:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* Remove default outline for mouse users */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
    Base Styles - MUST be inside @layer base
    so Tailwind utilities can override them
    ============================================ */

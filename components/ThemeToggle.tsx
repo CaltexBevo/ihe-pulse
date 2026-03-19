@@ -20,9 +20,9 @@ export function ThemeToggle() {
       title={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
     >
       {resolvedTheme === 'dark' ? (
-        <Sun size={18} className="text-[var(--text-secondary)] hover:text-[var(--amber)]" />
+        <Sun size={18} className="text-[var(--text-secondary)] hover:text-[var(--amber)]" aria-hidden="true" />
       ) : (
-        <Moon size={18} className="text-[var(--text-secondary)] hover:text-[var(--purple)]" />
+        <Moon size={18} className="text-[var(--text-secondary)] hover:text-[var(--purple)]" aria-hidden="true" />
       )}
     </button>
   );

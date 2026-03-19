@@ -343,10 +343,10 @@ export default function InnovationPulseClient({
           {/* Left: Episode Content */}
           <div className="animate-[fadeUp_0.8s_ease-out_both]">
             {/* Label */}
-            <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-4 flex items-center gap-2">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
-              THE INNOVATION PULSE
-            </div>
+            <h1 className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-4 flex items-center gap-2">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
+              <span>THE INNOVATION PULSE</span>
+            </h1>
 
             {/* Date + Lens Badge */}
             <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
@@ -365,10 +365,14 @@ export default function InnovationPulseClient({
             </div>
 
             {/* Audio Player */}
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-5">
+            <div
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-5"
+              role="region"
+              aria-label="Audio player"
+            >
               <div className="flex items-center gap-2 mb-3">
                 <div className="flex items-center gap-[0.35rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold font-mono tracking-[0.06em]">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
                   LISTEN NOW
                 </div>
                 <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
@@ -386,22 +390,33 @@ export default function InnovationPulseClient({
               <div className="flex items-center gap-3">
                 <button
                   onClick={togglePlay}
+                  aria-label={isPlaying ? "Pause episode" : "Play episode"}
                   className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06]"
                 >
                   {isPlaying ? (
-                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white" aria-hidden="true">
                       <rect x="6" y="4" width="4" height="16" />
                       <rect x="14" y="4" width="4" height="16" />
                     </svg>
                   ) : (
-                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-[2px]">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-[2px]" aria-hidden="true">
                       <polygon points="6,3 20,12 6,21" />
                     </svg>
                   )}
                 </button>
 
-                <div className="flex-1 h-[44px] relative cursor-pointer group" onClick={handleProgressClick}>
-                  <div className="absolute inset-0 flex items-center gap-[1.5px]">
+                <div
+                  className="flex-1 h-[44px] relative cursor-pointer group"
+                  onClick={handleProgressClick}
+                  role="slider"
+                  aria-label="Audio progress"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round(audioProgress)}
+                  aria-valuetext={`${formatTime(currentTime)} of ${duration > 0 ? formatTime(duration) : currentEpisode?.audioDuration}`}
+                  tabIndex={0}
+                >
+                  <div className="absolute inset-0 flex items-center gap-[1.5px]" aria-hidden="true">
                     {Array.from({ length: 60 }, (_, i) => {
                       const h = 6 + Math.random() * 26 + Math.sin(i * 0.25) * 8;
                       const progressPercent = (i / 60) * 100;

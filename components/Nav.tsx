@@ -77,12 +77,16 @@ export default function Nav() {
         {/* Mobile: Theme Toggle + Menu Button */}
         <div className="md:hidden ml-auto flex items-center gap-1">
           <ThemeToggle />
-          <button className="p-2 text-[var(--text-secondary)]">
+          <button
+            className="p-2 text-[var(--text-secondary)]"
+            aria-label="Open navigation menu"
+          >
             <svg
               className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

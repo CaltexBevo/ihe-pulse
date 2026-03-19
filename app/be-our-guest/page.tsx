@@ -91,9 +91,9 @@ export default function BeOurGuestPage() {
 
       {/* Who We're Looking For */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
+        <h2 className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
           Who We&apos;re Looking For
-        </div>
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {lookingFor.map((item) => (
             <div
@@ -113,16 +113,16 @@ export default function BeOurGuestPage() {
 
       {/* The Process */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
+        <h2 className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
           The Process
-        </div>
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {processSteps.map((item) => (
             <div
               key={item.step}
               className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 relative"
             >
-              <div className="absolute top-4 right-4 font-mono text-[2rem] font-bold text-[var(--cyan)] opacity-20">
+              <div className="absolute top-4 right-4 font-mono text-[2rem] font-bold text-[var(--cyan)] opacity-20" aria-hidden="true">
                 {item.step}
               </div>
               <h3 className="font-sans text-[0.92rem] font-bold mb-2">
@@ -139,10 +139,10 @@ export default function BeOurGuestPage() {
       {/* What to Expect */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 max-w-[800px] mx-auto">
-          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4 flex items-center gap-2">
-            <span className="w-[5px] h-[5px] rounded-full bg-[var(--amber)]" />
+          <h2 className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--amber)] mb-4 flex items-center gap-2">
+            <span className="w-[5px] h-[5px] rounded-full bg-[var(--amber)]" aria-hidden="true" />
             What to Expect
-          </div>
+          </h2>
           <h3 className="font-sans text-[1.2rem] font-bold mb-4">
             A Conversation, Not an Interview
           </h3>
@@ -326,9 +326,9 @@ export default function BeOurGuestPage() {
             </div>
           </div>
           <div className="text-center md:text-left">
-            <div className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-2">
+            <h2 className="font-mono text-[0.62rem] tracking-[0.1em] uppercase text-[var(--magenta)] mb-2">
               Mobile Access
-            </div>
+            </h2>
             <h3 className="font-sans text-[1.1rem] font-bold mb-2">
               Scan to Apply from Your Phone
             </h3>
@@ -342,9 +342,9 @@ export default function BeOurGuestPage() {
       {/* Recent Episodes Teaser */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="flex items-center justify-between mb-4">
-          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)]">
+          <h2 className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)]">
             Recent Episodes
-          </div>
+          </h2>
           <Link
             href="/podcast"
             className="font-mono text-[0.62rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"

@@ -58,8 +58,14 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <ThemeProvider>
-          <Nav />
-          <main className="min-h-screen">{children}</main>
+          {/* Skip navigation link for keyboard users */}
+          <a href="#main-content" className="skip-nav">
+            Skip to main content
+          </a>
+          <header>
+            <Nav />
+          </header>
+          <main id="main-content" className="min-h-screen">{children}</main>
           <Footer />
         </ThemeProvider>
         <Analytics />

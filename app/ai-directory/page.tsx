@@ -365,12 +365,14 @@ export default function AIDirectoryPage() {
               <Search
                 size={18}
                 className="absolute left-5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] pointer-events-none"
+                aria-hidden="true"
               />
               <input
                 type="text"
                 placeholder="Search by name, category, or what you need to do..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                aria-label="Search AI tools"
                 className="w-full pl-[50px] pr-5 py-3.5 rounded-[14px] bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cyan)] focus:shadow-[0_0_0_3px_rgba(0,212,255,0.08)] transition-all text-[0.95rem]"
               />
             </div>

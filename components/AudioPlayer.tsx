@@ -67,31 +67,44 @@ export default function AudioPlayer({
 
   if (compact) {
     return (
-      <div className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4">
+      <div
+        className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4"
+        role="region"
+        aria-label="Audio player"
+      >
         {/* Live Badge - JetBrains Mono */}
         <div
           className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--green)] tracking-[0.06em]"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
           LISTEN
         </div>
         <button
           onClick={() => setPlaying(!playing)}
+          aria-label={playing ? "Pause episode" : "Play episode"}
           className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 transition-transform hover:scale-105"
         >
           {playing ? (
-            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white">
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white" aria-hidden="true">
               <rect x="6" y="4" width="4" height="16" />
               <rect x="14" y="4" width="4" height="16" />
             </svg>
           ) : (
-            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white ml-[1px]">
+            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white ml-[1px]" aria-hidden="true">
               <polygon points="6,3 20,12 6,21" />
             </svg>
           )}
         </button>
-        <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px] relative cursor-pointer">
+        <div
+          className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px] relative cursor-pointer"
+          role="slider"
+          aria-label="Audio progress"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress)}
+          aria-valuetext={`${currentTime} of ${duration}`}
+        >
           <div
             className="h-full bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] rounded-[2px]"
             style={{ width: `${progress}%` }}
@@ -109,7 +122,11 @@ export default function AudioPlayer({
   }
 
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-[1.25rem]">
+    <div
+      className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-[1.25rem]"
+      role="region"
+      aria-label="Audio player"
+    >
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
         {/* Live Badge - JetBrains Mono */}
@@ -117,7 +134,7 @@ export default function AudioPlayer({
           className="flex items-center gap-[0.35rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold tracking-[0.06em]"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
           LISTEN NOW
         </div>
         {/* Duration - JetBrains Mono */}
@@ -134,15 +151,16 @@ export default function AudioPlayer({
         {/* Play Button */}
         <button
           onClick={() => setPlaying(!playing)}
+          aria-label={playing ? "Pause episode" : "Play episode"}
           className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06] hover:shadow-[0_6px_28px_rgba(0,212,255,0.3)]"
         >
           {playing ? (
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white" aria-hidden="true">
               <rect x="6" y="4" width="4" height="16" />
               <rect x="14" y="4" width="4" height="16" />
             </svg>
           ) : (
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-[2px]">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-[2px]" aria-hidden="true">
               <polygon points="6,3 20,12 6,21" />
             </svg>
           )}
@@ -152,6 +170,13 @@ export default function AudioPlayer({
         <div
           className="flex-1 flex items-center h-[44px] gap-[1.5px] cursor-pointer"
           onClick={handleBarClick}
+          role="slider"
+          aria-label="Audio progress"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress)}
+          aria-valuetext={`${currentTime} of ${duration}`}
+          tabIndex={0}
         >
           {bars.map((height, i) => {
             const barProgress = (i / barCount) * 100;
@@ -165,6 +190,7 @@ export default function AudioPlayer({
                   height: `${height}px`,
                   backgroundColor: isPlayed ? "var(--cyan)" : "var(--surface-2)",
                 }}
+                aria-hidden="true"
               />
             );
           })}

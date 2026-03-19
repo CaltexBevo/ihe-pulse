@@ -49,13 +49,13 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
 
   if (variant === 'footer') {
     return (
-      <div className={`${className}`}>
+      <div className={`${className}`} role="form" aria-label="Newsletter signup">
         <h4 className="font-sans text-[0.92rem] font-bold mb-3">Never Miss a Pulse</h4>
         <p className="text-[0.75rem] text-[var(--text-secondary)] mb-3">
           A.I. news for higher ed, delivered daily.
         </p>
         {status === 'success' ? (
-          <p className="text-[0.78rem] text-[var(--green)]">{message}</p>
+          <p className="text-[0.78rem] text-[var(--green)]" role="status">{message}</p>
         ) : (
           <form onSubmit={handleSubmit} className="flex gap-2">
             <input
@@ -63,12 +63,14 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@university.edu"
+              aria-label="Email address"
               className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
               disabled={status === 'loading'}
             />
             <button
               type="submit"
               disabled={status === 'loading'}
+              aria-label="Subscribe to newsletter"
               className="px-4 py-2 text-[0.72rem] font-semibold rounded-[8px] bg-[var(--cyan)] text-[var(--bg)] hover:opacity-90 transition-opacity disabled:opacity-50"
             >
               {status === 'loading' ? '...' : 'Go'}
@@ -76,7 +78,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
           </form>
         )}
         {status === 'error' && (
-          <p className="text-[0.68rem] text-[var(--red)] mt-2">{message}</p>
+          <p className="text-[0.68rem] text-[var(--red)] mt-2" role="alert">{message}</p>
         )}
       </div>
     );
@@ -84,7 +86,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
 
   if (variant === 'inline') {
     return (
-      <div className={`bg-[var(--surface-1)] border border-[var(--border)] rounded-[14px] p-6 ${className}`}>
+      <div className={`bg-[var(--surface-1)] border border-[var(--border)] rounded-[14px] p-6 ${className}`} role="form" aria-label="Newsletter signup">
         <div className="flex flex-col md:flex-row md:items-center gap-4">
           <div className="flex-1">
             <h3 className="font-sans text-[1.1rem] font-bold mb-1">Never Miss a Pulse</h3>
@@ -93,7 +95,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
             </p>
           </div>
           {status === 'success' ? (
-            <p className="text-[0.85rem] text-[var(--green)] font-medium">{message}</p>
+            <p className="text-[0.85rem] text-[var(--green)] font-medium" role="status">{message}</p>
           ) : (
             <form onSubmit={handleSubmit} className="flex gap-2">
               <input
@@ -101,12 +103,14 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@university.edu"
+                aria-label="Email address"
                 className="w-[220px] px-4 py-2.5 text-[0.82rem] rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
                 disabled={status === 'loading'}
               />
               <button
                 type="submit"
                 disabled={status === 'loading'}
+                aria-label="Subscribe to newsletter"
                 className="btn-primary"
               >
                 {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
@@ -115,7 +119,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
           )}
         </div>
         {status === 'error' && (
-          <p className="text-[0.75rem] text-[var(--red)] mt-2 md:text-right">{message}</p>
+          <p className="text-[0.75rem] text-[var(--red)] mt-2 md:text-right" role="alert">{message}</p>
         )}
       </div>
     );
@@ -123,8 +127,8 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
 
   // Default: card variant
   return (
-    <div className={`bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 md:p-12 text-center relative overflow-hidden ${className}`}>
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
+    <div className={`bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 md:p-12 text-center relative overflow-hidden ${className}`} role="form" aria-label="Newsletter signup">
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" aria-hidden="true" />
 
       <h2 className="font-sans text-[1.6rem] font-bold mb-2">
         Never Miss a Pulse
@@ -136,11 +140,11 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
       {status === 'success' ? (
         <div className="py-4">
           <div className="w-12 h-12 rounded-full bg-[var(--green-dim)] flex items-center justify-center mx-auto mb-3">
-            <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-[var(--green)]" fill="none" strokeWidth="3">
+            <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-[var(--green)]" fill="none" strokeWidth="3" aria-hidden="true">
               <path d="M20 6L9 17l-5-5" />
             </svg>
           </div>
-          <p className="text-[0.92rem] text-[var(--green)] font-medium">{message}</p>
+          <p className="text-[0.92rem] text-[var(--green)] font-medium" role="status">{message}</p>
         </div>
       ) : (
         <>
@@ -150,12 +154,14 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@university.edu"
+              aria-label="Email address"
               className="input flex-1"
               disabled={status === 'loading'}
             />
             <button
               type="submit"
               disabled={status === 'loading'}
+              aria-label="Subscribe to newsletter"
               className="btn-primary whitespace-nowrap disabled:opacity-50"
             >
               {status === 'loading' ? 'Subscribing...' : 'Subscribe Free'}
@@ -163,7 +169,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
           </form>
 
           {status === 'error' && (
-            <p className="text-[0.75rem] text-[var(--red)] mb-2">{message}</p>
+            <p className="text-[0.75rem] text-[var(--red)] mb-2" role="alert">{message}</p>
           )}
 
           <p className="text-[0.68rem] text-[var(--text-muted)]">

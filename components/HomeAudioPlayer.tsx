@@ -78,11 +78,15 @@ export default function HomeAudioPlayer({ audioUrl, audioDuration }: HomeAudioPl
   return (
     <>
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
-      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-6">
+      <div
+        className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-6"
+        role="region"
+        aria-label="Audio player"
+      >
         <div className="flex items-center gap-2 mb-3">
           {/* Live Badge */}
           <div className="flex items-center gap-[0.3rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.5rem] py-[0.18rem] rounded-full text-[0.6rem] font-semibold font-mono tracking-[0.06em]">
-            <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
+            <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
             LISTEN NOW
           </div>
           {/* Duration */}
@@ -98,15 +102,16 @@ export default function HomeAudioPlayer({ audioUrl, audioDuration }: HomeAudioPl
           {/* Play Button */}
           <button
             onClick={togglePlay}
+            aria-label={isPlaying ? "Pause episode" : "Play episode"}
             className="w-[42px] h-[42px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(0,212,255,0.2)] transition-transform hover:scale-[1.06]"
           >
             {isPlaying ? (
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white" aria-hidden="true">
                 <rect x="6" y="4" width="4" height="16" />
                 <rect x="14" y="4" width="4" height="16" />
               </svg>
             ) : (
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white ml-[2px]">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white ml-[2px]" aria-hidden="true">
                 <polygon points="6,3 20,12 6,21" />
               </svg>
             )}
@@ -116,8 +121,24 @@ export default function HomeAudioPlayer({ audioUrl, audioDuration }: HomeAudioPl
           <div
             className="flex-1 h-[36px] relative cursor-pointer group"
             onClick={handleProgressClick}
+            role="slider"
+            aria-label="Audio progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(progress)}
+            aria-valuetext={`${formatTime(currentTime)} of ${duration > 0 ? formatTime(duration) : audioDuration}`}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              const audio = audioRef.current;
+              if (!audio || !duration) return;
+              if (e.key === 'ArrowRight') {
+                audio.currentTime = Math.min(duration, audio.currentTime + 10);
+              } else if (e.key === 'ArrowLeft') {
+                audio.currentTime = Math.max(0, audio.currentTime - 10);
+              }
+            }}
           >
-            <div className="absolute inset-0 flex items-center gap-[1.5px]">
+            <div className="absolute inset-0 flex items-center gap-[1.5px]" aria-hidden="true">
               {Array.from({ length: 75 }, (_, i) => {
                 const h = Math.max(4, 6 + Math.sin(i * 0.35) * 14 + Math.cos(i * 0.2) * 8);
                 const progressPercent = (i / 75) * 100;
