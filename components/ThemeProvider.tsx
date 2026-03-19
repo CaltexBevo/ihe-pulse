@@ -21,9 +21,9 @@ export function useTheme() {
   return context;
 }
 
-function getSystemTheme(): ResolvedTheme {
-  if (typeof window === 'undefined') return 'dark';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+// Always return dark as the default - no system preference check
+function getDefaultTheme(): ResolvedTheme {
+  return 'dark';
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -44,30 +44,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!mounted) return;
 
-    const resolved = theme === 'system' ? getSystemTheme() : theme;
+    const resolved = theme === 'system' ? getDefaultTheme() : theme;
     setResolvedTheme(resolved);
 
     // Apply theme to document
     document.documentElement.setAttribute('data-theme', resolved);
   }, [theme, mounted]);
 
-  // Listen for system theme changes
-  useEffect(() => {
-    if (!mounted) return;
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const handleChange = () => {
-      if (theme === 'system') {
-        const resolved = getSystemTheme();
-        setResolvedTheme(resolved);
-        document.documentElement.setAttribute('data-theme', resolved);
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [theme, mounted]);
+  // No longer listening for system theme changes since we always default to dark
+  // Users who explicitly set light mode will have it stored in localStorage
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
@@ -75,6 +60,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   // Prevent flash by not rendering until mounted
+  // Dark is always default for first-time visitors
   if (!mounted) {
     return (
       <script
@@ -85,7 +71,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
                 var saved = localStorage.getItem('ihe-theme');
                 var theme = saved;
                 if (!theme || theme === 'system') {
-                  theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  theme = 'dark';
                 }
                 document.documentElement.setAttribute('data-theme', theme);
               } catch (e) {}

@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Prevent flash of wrong theme */}
+        {/* Prevent flash of wrong theme - dark is always default for first-time visitors */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -41,7 +41,7 @@ export default function RootLayout({
                   var saved = localStorage.getItem('ihe-theme');
                   var theme = saved;
                   if (!theme || theme === 'system') {
-                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                    theme = 'dark';
                   }
                   document.documentElement.setAttribute('data-theme', theme);
                 } catch (e) {}
