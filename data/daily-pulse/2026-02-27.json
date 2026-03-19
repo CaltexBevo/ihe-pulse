@@ -24,11 +24,11 @@
   },
   "quickHits": [
     {
-      "headline": "State AI Bill Success Rates Vary by Political, Economic Factors",
-      "summary": "Brookings analysis of 386 state AI bills shows wealthy, educated states introduce more legislation but also see higher failure rates due to stakeholder complexity. Republican-leaning states with strong administrative capacity tend to manage bills more carefully, avoiding outright failure.",
-      "category": "Insights & Trends",
-      "source": "Brookings",
-      "sourceUrl": "https://www.brookings.edu/articles/analyzing-the-passage-of-state-level-ai-bills/",
+      "headline": "Dartmouth Celebrates 70th Anniversary of AI's Founding",
+      "summary": "Dartmouth hosted events on February 26-27 marking 70 years since the 1956 Summer Research Project that coined 'artificial intelligence.' The McGuire Family Prize was awarded to Hany Farid, a digital forensics expert who pioneered techniques for detecting manipulated images and deepfakes.",
+      "category": "Case Study",
+      "source": "Dartmouth",
+      "sourceUrl": "https://home.dartmouth.edu/news/2026/02/celebrating-ai-milestone-and-guiding-future",
       "isCallback": false
     },
     {
@@ -85,7 +85,7 @@
     ],
     "storiesWatching": [
       "Anti-AI slop movement spread to other regions",
-      "State AI legislation passage rates",
+      "Dartmouth AI anniversary events and McGuire Prize implications",
       "Student-led AI networks development"
     ],
     "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",

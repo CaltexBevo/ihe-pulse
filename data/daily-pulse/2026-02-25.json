@@ -5,62 +5,46 @@
     "editorialLens": "The Practitioner's Playbook",
     "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
     "lensColor": "#22c55e",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-25.mp3",
-    "audioDuration": "5:59",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Wednesday, February 25th.\n\nA major university's A.I. partnership with a tech company is drawing sharp criticism from students and faculty. The resistance raises some interesting questions about who gets to make decisions about educational technology adoption, and whether the process matters as much as the product itself.\n\nIn our Practical Tips category today, Marquette University just released comprehensive A.I. guidance for faculty and staff. They've put together an A.I. primer and detailed guidance covering responsible use, approved tools, and data privacy considerations. What's interesting is their approach emphasizes enabling rather than restricting A.I. use while trying to maintain alignment with their Jesuit mission and ethical standards.\n\n-\nMeanwhile, Middlebury College librarians created some thorough guides covering A.I. tools for academic research. Their resources dig into responsible use practices and ethical considerations, including environmental impact and intellectual property concerns. They're positioning information literacy as the foundational skill for navigating A.I., which feels like a useful frame.\n\n-\nFrom the Case Study file, San Diego Unified is developing A.I. policy as new research warns about potential learning risks from overreliance on the technology. Teachers there report using A.I. for feedback and lesson planning while trying to maintain clear boundaries to prevent student dependency. They're walking that line between useful tool and crutch.\n\n-\nAnd here's one worth watching. Broward County Public Schools just approved a comprehensive A.I. framework and partnership with Magic School A.I., funded by a 1.2 million dollar philanthropic gift. The initiative includes over 80 A.I. tools for teachers and aims to save educators 30 to 60 minutes weekly on administrative tasks. That's a significant time savings claim.\n\n-\nOver in the Insights and Trends category, Harshil Gala from Navneet Education outlined how A.I. literacy will need to evolve from basic awareness today to foundational skills by 2030. He's emphasizing the importance of teaching students to work alongside A.I. tools responsibly while maintaining critical thinking abilities.\n\n-\nNow, let's get to that story I mentioned at the top about university-industry A.I. partnerships facing campus resistance.\n\n-\nWhile the specific details of this particular partnership remain unclear, the pattern of campus resistance to university-industry A.I. collaborations has become a defining issue in higher education. These partnerships typically involve universities providing research resources, student data, or academic credibility in exchange for funding, technology access, or joint research opportunities.\n\nThe tension reflects some deeper questions about academic independence and institutional priorities. Faculty often worry that corporate partnerships compromise research integrity, influence curriculum decisions, or prioritize commercial applications over fundamental inquiry. Students may feel their educational experience becomes a testing ground for corporate products without their meaningful consent.\n\nWhat makes A.I. partnerships particularly contentious is the scope of data involved and the potential for these tools to reshape how teaching and learning happen. Unlike traditional corporate sponsorships, A.I. collaborations often require access to student work, learning patterns, and institutional data. The technology itself can influence pedagogical approaches, assessment methods, and even what gets taught.\n\nFor community college educators, these debates matter even when the partnerships happen at research universities. The tools and approaches developed through these collaborations often filter down to all levels of higher education. If a major university validates a particular A.I. platform or pedagogical approach, that can influence adoption decisions across the sector.\n\nThe practical implications extend beyond the technology itself. When faculty and students resist these partnerships, it signals broader concerns about who gets to make decisions about educational technology adoption. These dynamics play out differently at community colleges, where faculty may have less formal governance power but often more direct influence on day-to-day technology decisions.\n\nThe resistance also reflects legitimate concerns about transparency. When partnerships are announced without extensive campus consultation, or when the terms remain opaque, it can feel like fundamental changes to the educational mission are being made without adequate input from those most affected.\n\nWhat's particularly interesting is how these partnerships force institutions to articulate their values around technology adoption. The criticism suggests that process matters as much as product, that how these decisions get made is as important as what decisions get made.\n\nAt community colleges, these decisions often get made by necessity rather than choice. Budget constraints mean taking the tools you can afford, not necessarily the ones you'd prefer. The faculty resistance at places like major research universities might seem like a luxury smaller institutions can't afford, but it raises important questions about agency and voice in technology adoption.\n\nHow do we ensure that the tools we use actually serve our students, especially when our student populations are often more vulnerable to the potential downsides of data collection and algorithmic bias? When university partnerships shape the A.I. tools available to us, do we have any meaningful say in how those tools were developed?\n\nThese aren't just theoretical concerns. They connect directly to Monday morning decisions about which A.I. tools to recommend to students, how to set up classroom policies, and what to tell colleagues who are trying to figure out their own approach to these technologies.\n\n-\nThe partnership tensions highlight how technology adoption in education is never just about the technology itself. It's about values, process, and who gets a voice in shaping how we teach and learn.\n\nThat's your Innovation Pulse for Wednesday. Find full coverage and links at innovating higher ed dot com. See you Thursday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
   "leadStory": {
-    "headline": "When University-Industry A.I. Partnerships Face Campus Resistance",
-    "hook": "A major university's A.I. partnership is drawing criticism from students and faculty, raising questions about academic autonomy.",
-    "category": "Ethical AI",
-    "source": "IBL News",
-    "sourceUrl": "https://iblnews.org/story/more-criticism-from-students-and-faculty-on-datmouth-university-and-anthropic-partnership",
-    "editorialTake": "While the specific details of Dartmouth's partnership with Anthropic remain unclear due to the unavailable source, the pattern of campus resistance to university-industry A.I. collaborations has become a defining issue in higher education. These partnerships typically involve universities providing research resources, student data, or academic credibility in exchange for funding, technology access, or joint research opportunities.\n\nThe tension reflects deeper questions about academic independence and institutional priorities. Faculty often worry that corporate partnerships compromise research integrity, influence curriculum decisions, or prioritize commercial applications over fundamental inquiry. Students may feel their educational experience becomes a testing ground for corporate products without their meaningful consent. From the industry perspective, these partnerships offer access to talent, research infrastructure, and the credibility that comes with academic affiliation.\n\nWhat makes A.I. partnerships particularly contentious is the scope of data involved and the potential for these tools to reshape how teaching and learning happen. Unlike traditional corporate sponsorships, A.I. collaborations often require access to student work, learning patterns, and institutional data. The technology itself can influence pedagogical approaches, assessment methods, and even what gets taught.\n\nFor community college educators, these debates matter even when the partnerships happen at research universities. The tools and approaches developed through these collaborations often filter down to all levels of higher education. If a major university validates a particular A.I. platform or pedagogical approach, that can influence adoption decisions across the sector.\n\nThe practical implications extend beyond the technology itself. When faculty and students resist these partnerships, it signals broader concerns about who gets to make decisions about educational technology adoption. These dynamics play out differently at community colleges, where faculty may have less formal governance power but often more direct influence on day-to-day technology decisions.\n\nThe resistance also reflects legitimate concerns about transparency. When partnerships are announced without extensive campus consultation, or when the terms remain opaque, it can feel like fundamental changes to the educational mission are being made without adequate input from those most affected.\n\nWhat's particularly interesting is how these partnerships force institutions to articulate their values around technology adoption. The criticism suggests that process matters as much as product—that how these decisions get made is as important as what decisions get made.",
-    "pullQuote": "The resistance reflects legitimate concerns about transparency and who gets to make decisions about educational technology adoption.",
-    "editorialCallout": "What strikes me most about these partnership tensions is how they mirror the broader challenge community colleges face with any educational technology decision. We rarely have the luxury of extensive consultation processes or the governance structures that allow for prolonged debate. Yet the core questions remain the same: How do we maintain our educational mission while adapting to technological change? At community colleges, these decisions often get made by necessity rather than choice—budget constraints mean we take the tools we can afford, not necessarily the ones we'd prefer. The faculty resistance at places like Dartmouth might seem like a luxury we can't afford, but it raises important questions about agency and voice in technology adoption. How do we ensure that the tools we use actually serve our students, especially when our student populations are often more vulnerable to the potential downsides of data collection and algorithmic bias? When university partnerships shape the A.I. tools available to us, do we have any meaningful say in how those tools were developed?",
+    "headline": "College Board Research Reveals Faculty Concerns About Student AI Use",
+    "hook": "New survey of 3,000 faculty shows 74% report students using A.I. for essays, with most feeling unprepared to guide responsible use.",
+    "category": "Insights & Trends",
+    "source": "College Board",
+    "sourceUrl": "https://newsroom.collegeboard.org/new-college-board-research-faculty-express-near-universal-concern-student-ai-use-undermines",
+    "editorialTake": "The College Board's latest research brief on faculty perceptions of generative A.I. in higher education lands at a moment when many of us are still figuring out what responsible A.I. guidance looks like in practice. The survey of more than 3,000 U.S. college faculty during summer 2025 offers some useful data points for those conversations.\n\nThe headline numbers paint a picture of widespread concern: 74% of faculty report students using A.I. for essay and paper writing, 67% see students using it to paraphrase or rewrite content, and nearly half believe at least half their students use A.I. for writing tasks. Faculty sentiment skews negative, with 45% holding an overall negative view of A.I. in higher education compared to 34% positive.\n\nBut here's what caught my attention from a practical standpoint: 79% of faculty say they're just beginning to explore A.I. or need more guidance, and only 21% feel very confident guiding student A.I. use. Meanwhile, 77% have personally used A.I. in their professional roles. There's a gap between personal familiarity and pedagogical confidence that suggests we need different kinds of support than we're currently getting.\n\nThe research also surfaces an interesting divide by institution type. Faculty at more selective institutions report higher levels of student A.I. use and greater concern about academic impact, while faculty at open enrollment colleges are more likely to see A.I. as a practical instructional tool. For those of us at community colleges, this validates something we've observed informally: our students often have different relationships with these tools, and our concerns may center more on access and skills gaps than on academic dishonesty.\n\nThe data on classroom policies is particularly relevant for faculty working on their spring syllabi. Only 48% of respondents have formal classroom A.I. policies in place, which means many of us are still operating without clear guidelines. The 72% who face at least minor challenges managing student A.I. use suggests that vague policies aren't serving anyone well.\n\nWhat's useful here is the granularity. Rather than treating A.I. as a monolithic concern, the research breaks down specific worries: 84% or more agree that A.I. reduces critical thinking, originality, and deep engagement with course material. Understanding which outcomes concern faculty most can help us design targeted interventions rather than blanket restrictions.\n\nFor the practitioner, the actionable insight is this: we need to move beyond whether to address A.I. to how. The research shows faculty aren't simply resistant; they're grappling with real pedagogical questions about how to uphold educational values while adapting to technological change. That's a different problem than technophobia, and it calls for different solutions.",
+    "pullQuote": "79% of faculty say they're just beginning to explore A.I. or need more guidance, and only 21% feel very confident guiding student A.I. use.",
+    "editorialCallout": "What I find most useful about this research is the validation that we're not alone in feeling underprepared. At community colleges, we often lack dedicated centers for teaching excellence or extensive professional development budgets for A.I. training. Knowing that 79% of faculty across higher education feel they need more guidance suggests the gap isn't about our specific institutional limitations. The divide between selective institutions seeing A.I. primarily as an integrity threat and open enrollment institutions seeing it as a practical tool resonates with my own observations. Our students are often working adults who might use A.I. to manage impossible schedules, not to avoid learning. That's a different conversation than catching cheaters, and it requires different responses.",
     "isCallback": false,
     "callbackContext": null,
-    "imagePrompt": "University campus with students holding protest signs, corporate logos visible in background, tension between academia and industry"
+    "imagePrompt": "Faculty member reviewing student work with visible uncertainty, classroom setting with technology present"
   },
   "quickHits": [
     {
-      "headline": "Marquette Launches Comprehensive A.I. Guidance for Faculty and Staff",
-      "summary": "Marquette University released new faculty resources including an A.I. primer and detailed guidance on responsible use, approved tools, and data privacy. The initiative emphasizes enabling rather than restricting A.I. use while maintaining ethical standards and Jesuit mission alignment.",
-      "category": "Practical Tips",
-      "source": "Marquette Today",
-      "sourceUrl": "https://today.marquette.edu/2026/03/ai-at-marquette-faq-on-responsible-use-recommended-tools-for-faculty-and-staff/",
-      "isCallback": false
-    },
-    {
-      "headline": "Navneet Education Executive Discusses A.I. Literacy for 2030 Graduates",
-      "summary": "Harshil Gala from Navneet Education outlined how A.I. literacy will evolve from basic awareness today to foundational skills by 2030. He emphasized the importance of teaching students to work alongside A.I. tools responsibly while maintaining critical thinking abilities.",
+      "headline": "Faculty Moving Away from Outright A.I. Bans, Study Finds",
+      "summary": "UC Berkeley researcher Igor Chirikov analyzed over 31,000 course syllabi from a large Texas university and found that highly restrictive A.I. policies introduced after ChatGPT's launch are being eased across all disciplines except arts and humanities. A.I. attribution requirements grew from 1% to 29% of syllabi between 2023 and 2025.",
       "category": "Insights & Trends",
-      "source": "ET Edge Insights",
-      "sourceUrl": "https://etedge-insights.com/industry/education/preparing-students-for-an-ai-driven-world-lessons-from-the-classroom/",
+      "source": "Inside Higher Ed",
+      "sourceUrl": "https://www.insidehighered.com/news/faculty-issues/learning-assessment/2026/02/13/faculty-moving-away-outright-bans-ai-study-finds",
       "isCallback": false
     },
     {
-      "headline": "Middlebury Librarians Launch A.I. Research and Ethics Guides",
-      "summary": "Middlebury College librarians created comprehensive guides covering A.I. tools for academic research, responsible use practices, and ethical considerations including environmental impact and intellectual property concerns. The resources emphasize information literacy as the foundational skill for navigating A.I.",
-      "category": "Practical Tips",
-      "source": "Middlebury",
-      "sourceUrl": "https://www.middlebury.edu/library/news/information-literacy-and-ai-reflections-resources-research-librarians",
+      "headline": "AAC&U Survey: 90% of Faculty Worry A.I. Will Diminish Critical Thinking",
+      "summary": "A survey of 1,057 faculty members by the American Association of Colleges and Universities and Elon University found that 90% believe A.I. will diminish students' critical thinking skills, while 95% say overreliance on A.I. tools will increase. However, 61% also believe A.I. could improve and customize learning experiences.",
+      "category": "Insights & Trends",
+      "source": "Inside Higher Ed",
+      "sourceUrl": "https://www.insidehighered.com/news/faculty-issues/teaching/2026/01/21/survey-faculty-say-ai-impactful-not-good-way",
       "isCallback": false
     },
     {
-      "headline": "San Diego Schools Balance A.I. Benefits with Learning Risks",
-      "summary": "San Diego Unified develops A.I. policy as new research warns of potential learning risks from overreliance on the technology. Teachers report using A.I. for feedback and lesson planning while maintaining clear boundaries to prevent student dependency.",
-      "category": "Case Study",
-      "source": "CBS 8",
-      "sourceUrl": "https://www.cbs8.com/article/news/local/san-diego-schools-explore-ai-tools-as-new-study-examine-impact-on-learning/509-8a1e9694-0e6a-49dd-9620-ff3d8b2700e8",
-      "isCallback": false
-    },
-    {
-      "headline": "Broward County Launches District-Wide A.I. Education Initiative",
-      "summary": "Broward County Public Schools approved a comprehensive A.I. framework and partnership with Magic School A.I., funded by a $1.2 million philanthropic gift. The initiative includes 80+ A.I. tools for teachers and aims to save educators 30-60 minutes weekly on administrative tasks.",
-      "category": "Case Study",
-      "source": "MargateNews.net",
-      "sourceUrl": "https://margatenews.net/schools-move-toward-aipowered-classrooms-p3524-229.htm",
+      "headline": "Agentic A.I. Tool Designed to Complete Entire Online Courses Sparks Faculty Debate",
+      "summary": "A 22-year-old entrepreneur who dropped out of Brown University launched Einstein, a tool that can autonomously log into Canvas, watch lectures, write papers, and submit assignments. The tool drew over 124,000 website visitors in three days before Canvas owner Instructure issued a cease-and-desist letter.",
+      "category": "Ethical AI",
+      "source": "Inside Higher Ed",
+      "sourceUrl": "https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/02/26/agentic-ai-can-complete-whole-courses-now",
       "isCallback": false
     }
   ],
@@ -69,20 +53,21 @@
     "dayOfWeek": "Wednesday",
     "editorialLens": "The Practitioner's Playbook",
     "themes": [
-      "university-industry partnerships",
-      "faculty governance",
-      "AI adoption resistance",
-      "institutional transparency",
-      "educational technology ethics"
+      "faculty preparedness",
+      "AI policy development",
+      "student AI use",
+      "pedagogical adaptation",
+      "institutional differences"
     ],
     "storiesWatching": [
-      "Dartmouth-Anthropic partnership developments",
-      "Broward County AI implementation outcomes",
-      "San Diego Unified AI policy finalization"
+      "Evolution of campus AI policies through spring semester",
+      "Faculty professional development initiatives for AI",
+      "Agentic AI tools and LMS security responses"
     ],
     "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
     "lensColor": "#22c55e",
-    "publishedAt": "2026-03-18T19:04:32.172Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "publishedAt": "2026-03-19T23:00:00.000Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
+    "contentNote": "This episode has no audio due to source verification issues with the original content. Written content has been regenerated with verified sources."
   }
 }
