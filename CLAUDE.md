@@ -1,5 +1,24 @@
 # IHE PULSE - Innovating Higher Ed Website
 
+## Required Reading — Frontend Guardian
+
+**BEFORE modifying any page, component, layout, theme, nav, footer, or content file:**
+Read `.claude/skills/ihe-frontend/SKILL.md` — this is the single source of truth for all frontend design, content, and structural rules.
+
+This skill document contains:
+- Brand rules (no "IHE" abbreviation, no fake metrics)
+- Theme rules (dark mode is unconditional default)
+- Nav order (locked — 9 items + theme toggle)
+- Footer structure (locked legal links)
+- Educator Tools order (locked — 5 tools)
+- Founder bio rules (locked credentials)
+- ADA/WCAG 2.1 AA compliance requirements
+- Pre-flight and post-deploy checklists
+
+**NO CMA sprint may override these rules without explicit founder approval.**
+
+---
+
 ## Project Overview
 This is the complete rebuild of innovatinghighered.com - transforming it from a WordPress site into a modern Next.js application with the "Electric Dusk" theme (cyan #00d4ff + magenta #c850c0).
 
