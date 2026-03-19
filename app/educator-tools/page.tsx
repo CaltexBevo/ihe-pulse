@@ -35,22 +35,6 @@ interface EducatorTool {
 const educatorTools: EducatorTool[] = [
   // Innovating Higher Ed / Cyber Doctor tools first
   {
-    title: 'COR Checker',
-    description:
-      'Analyze your Course Outline of Record against California Title 5 §55001.5(b) IDEAA compliance requirements. Upload your COR as a PDF and get an instant analysis of 8 sections with keyword detection and discipline-specific suggestions.',
-    features: [
-      'Checks 8 COR sections',
-      'IDEAA keyword detection',
-      'Discipline-specific suggestions',
-      'No data uploaded (processed locally)',
-    ],
-    platformUrl: 'https://innovatinghighered.com/cor-checker.html',
-    cta: 'Launch COR Checker',
-    icon: FileText,
-    accent: '#f59e0b',
-    attribution: 'A Cyber Doctor · Norma Jones Build',
-  },
-  {
     title: 'Canvas Quiz Builder (QTI Export)',
     description:
       'Build quiz question packages that import directly into Canvas New Quizzes. Paste your questions, choose from five question types — Multiple Choice, True/False, Multiple Answer, Fill in the Blank, and Essay — then export a single QTI 2.1 ZIP file ready for Canvas import. No software to install, no account needed. Everything runs in your browser.',
@@ -65,6 +49,22 @@ const educatorTools: EducatorTool[] = [
     cta: 'Launch Quiz Builder',
     icon: ListChecks,
     accent: '#3b82f6',
+    attribution: 'A Cyber Doctor · Norma Jones Build',
+  },
+  {
+    title: 'COR Checker',
+    description:
+      'Analyze your Course Outline of Record against California Title 5 §55001.5(b) IDEAA compliance requirements. Upload your COR as a PDF and get an instant analysis of 8 sections with keyword detection and discipline-specific suggestions.',
+    features: [
+      'Checks 8 COR sections',
+      'IDEAA keyword detection',
+      'Discipline-specific suggestions',
+      'No data uploaded (processed locally)',
+    ],
+    platformUrl: 'https://innovatinghighered.com/cor-checker.html',
+    cta: 'Launch COR Checker',
+    icon: FileText,
+    accent: '#f59e0b',
     attribution: 'A Cyber Doctor · Norma Jones Build',
   },
   // PlayLab tools
