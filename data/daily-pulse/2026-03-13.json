@@ -3,94 +3,66 @@
     "date": "2026-03-13",
     "dayOfWeek": "Friday",
     "editorialLens": "The Innovator's Edge",
-    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
-    "lensColor": "#fbbf24",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-13.mp3",
-    "audioDuration": "5:49",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Friday, March 13th.\n\nNevada lawmakers this week heard a phrase that's becoming the unofficial motto of A.I. policy everywhere: \"hurry up, but don't rush.\" They're trying to figure out how to protect students while preparing them for an A.I.-driven workforce, and the tension in that room captured something bigger happening across higher education right now.\n\n-\nIn our Insights and Trends category today, Coursera data reveals some surprising global differences in A.I. enthusiasm. Saudi Arabia leads the pack with 91% of students viewing A.I.'s impact on higher education positively, compared to 77% in the UK and 78% in the US. But here's what's interesting, Saudi students also show much stronger concern for academic integrity, with 79% worried about A.I. raising integrity issues compared to much lower rates elsewhere. It suggests that optimism about A.I. doesn't necessarily mean ignoring its risks.\n\n-\nFrom the Ethical A.I. file, King's College London discovered something that probably won't surprise many faculty. They found 72% of their researchers already use A.I. tools, but 81% lack confidence in navigating the ethical implications. The university is now updating their research governance processes based on workshops that revealed widespread adoption happening well ahead of formal policy. It's another example of technology moving faster than institutional frameworks.\n\n-\nMeanwhile, a Cornell student has raised serious questions about research integrity in A.I. scholarship itself. Writing in the Cornell Daily Sun, the student accused a postdoctoral researcher of publishing shifting, unaccountable principles for A.I. use in academic work without providing evidence for claims about ChatGPT's limitations. The piece highlights concerns about research quality in the rush to publish A.I.-related scholarship.\n\n-\nIn our Case Study category, Penn students are pushing back against their university's heavy investment in A.I. programs. The Daily Pennsylvanian editorial board argues that Penn's approach, including the first Ivy League A.I. major, threatens critical thinking development. They cite surveys showing 83% of undergraduates use A.I. academically despite unclear institutional policies. It's a reminder that student voices in these conversations matter too.\n\n-\nAnd here's one worth watching from Beyond Ed. The Federal Sixth Circuit Court of Appeals fined two lawyers thirty thousand dollars for faulty A.I. filings that included fake citations and factual errors. The ruling signals courts are moving toward tougher penalties for unverified A.I. output, which could influence how academic institutions think about accountability for A.I.-assisted work.\n\n-\nNow, let's get to that Nevada story I mentioned at the top. The state's interim education committee heard testimony that really captured where we are with A.I. policy in 2026. Education officials and researchers presented recommendations for A.I. training requirements, stronger data privacy protections, and policies ensuring technology aids rather than replaces human interaction.\n\nWhat struck me about the Nevada discussion was how it assumed A.I. adoption as inevitable. As one committee member noted, the recommendations were geared toward \"we are all for sure going to use this\" rather than examining whether it should be used at all. This reflects where most state-level policy conversations have landed. According to the testimony, a majority of states have issued some form of A.I. guidance for schools, suggesting we're past the experimental phase and into the governance phase.\n\nBut the hearing also surfaced the complexity of that governance task. Democratic Assemblymember Selena La Rue Hatch, who's also a teacher, raised concerns about cognitive decline from student over-reliance on A.I. She questioned whether teachers should have the option to refuse using tools they find ethically problematic. These aren't just policy questions, they're deeply practical ones that individual educators face daily.\n\nThe Guinn Center's research, cited in the hearing, found that Nevada educators are already using chatbots for administrative work, lesson planning, and tutoring. But as the researchers noted, there's no reliable long-term data on effectiveness or unintended consequences. We're essentially conducting a real-time experiment with student learning.\n\nWhat makes the Nevada discussion worth watching is its focus on practical guardrails. They're talking about requiring vendors to meet privacy standards, collecting better data on classroom A.I. use, and prioritizing investments in under-resourced schools. These are concrete steps that might actually help educators navigate the technology thoughtfully rather than just react to it.\n\nThe fundamental tension Nevada lawmakers are wrestling with feels familiar to anyone working in higher education right now. We need to prepare students for an A.I.-integrated workforce while protecting the human elements of learning that we know matter. In community colleges especially, faculty are experimenting with A.I. tools for lesson planning and administrative tasks, but they're also worried about students becoming overly dependent on technology for critical thinking.\n\nThe Nevada hearing highlighted something important that often gets lost in these discussions. We need policies that give educators permission to say no when A.I. doesn't serve pedagogical goals, not just guidance on how to use it responsibly. The question is how we create space for that kind of professional judgment in an environment where technological adoption often feels inevitable.\n\n-\nThe challenge isn't just keeping up with the technology, it's figuring out how to shape its use in ways that actually serve learning. That's your Innovation Pulse for Friday. Find full coverage and links at innovating higher ed dot com. See you Monday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "Nevada Lawmakers Navigate the 'Hurry Up, Don't Rush' A.I. Dilemma",
-    "hook": "State legislators grapple with protecting students while preparing them for an A.I.-driven workforce — a tension playing out nationwide.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "Nevada Lawmakers Hear A.I. Education Policy Recommendations",
+    "summary": "Nevada's interim education committee heard testimony on A.I. policy in schools, with recommendations for A.I. training requirements, stronger data privacy protections, and policies ensuring technology aids rather than replaces human interaction, according to the Nevada Current. A committee member noted the recommendations were \"geared toward 'we are all for sure going to use this'\" rather than examining whether A.I. should be used at all.\n\nA majority of states have issued some form of A.I. guidance for schools. Democratic Assemblymember Selena La Rue Hatch, who is also a teacher, raised concerns about cognitive decline from student over-reliance on A.I. and questioned whether teachers should have the option to refuse using tools they find ethically problematic.\n\nThe Guinn Center's research, cited in the hearing, found Nevada educators are already using chatbots for administrative work, lesson planning, and tutoring. The researchers noted there is no reliable long-term data on effectiveness or unintended consequences. The discussion focused on practical guardrails including requiring vendors to meet privacy standards, collecting better data on classroom A.I. use, and prioritizing investments in under-resourced schools.",
     "source": "Nevada Current",
     "sourceUrl": "https://nevadacurrent.com/2026/03/19/hurry-up-but-dont-rush-lawmakers-wrestle-with-how-to-handle-ai-in-schools/",
-    "editorialTake": "Nevada's interim education committee heard a familiar refrain this week: we need to move fast on A.I. in schools, but not so fast that we harm students in the process. The testimony from state education officials and policy researchers captured a tension that's becoming central to education governance — how do you regulate something that's already embedded in classrooms while the research on its effects is still catching up?\n\nThe committee heard recommendations for A.I. training requirements, stronger data privacy protections, and policies ensuring technology aids rather than replaces human interaction. What struck me about the Nevada discussion was how it assumed A.I. adoption as inevitable. As one committee member noted, the recommendations were \"geared toward 'we are all for sure going to use this'\" rather than examining whether it should be used at all.\n\nThis reflects where most state-level policy conversations have landed in 2026. According to the testimony, a majority of states have issued some form of A.I. guidance for schools, suggesting we're past the experimental phase and into the governance phase. The question is no longer whether A.I. will be in classrooms, but how to shape its use responsibly.\n\nYet the Nevada hearing also surfaced the complexity of that task. Democratic Assemblymember Selena La Rue Hatch, who is also a teacher, raised concerns about cognitive decline from student over-reliance on A.I. and questioned whether teachers should have the option to refuse using tools they find ethically problematic. These aren't just policy questions — they're deeply practical ones that individual educators face daily.\n\nThe Guinn Center's research, cited in the hearing, found that Nevada educators are already using chatbots for administrative work, lesson planning, and tutoring. But as the researchers noted, there's no reliable long-term data on effectiveness or unintended consequences. We're essentially conducting a real-time experiment with student learning.\n\nFor community college faculty, this dynamic feels particularly familiar. We've seen waves of educational technology promises before, often accompanied by limited training, tight budgets, and expectations that we'll figure out implementation on the ground. The difference with A.I. is the speed and scope — it's not just another tool, but potentially a fundamental shift in how knowledge work gets done.\n\nWhat makes the Nevada discussion worth watching is its focus on practical guardrails: requiring vendors to meet privacy standards, collecting better data on classroom A.I. use, and prioritizing investments in under-resourced schools. These are the kinds of concrete steps that might actually help educators navigate the technology thoughtfully rather than just react to it.",
-    "pullQuote": "We're essentially conducting a real-time experiment with student learning, with educators expected to figure out implementation on the ground.",
-    "editorialCallout": "What I find most interesting about Nevada's approach is how it acknowledges the fundamental tension we're all feeling — the need to prepare students for an A.I.-integrated workforce while protecting the human elements of learning that we know matter. In my work with community college faculty, I see this playing out daily. Instructors are experimenting with A.I. tools for lesson planning and administrative tasks, but they're also worried about students becoming overly dependent on technology for critical thinking. The Nevada hearing highlighted something important: we need policies that give educators permission to say no when A.I. doesn't serve pedagogical goals, not just guidance on how to use it responsibly. How do we create space for that kind of professional judgment in an environment where technological adoption often feels inevitable?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Split path with signposts showing 'hurry up' and 'don't rush' directions, representing policy dilemma"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "Saudi Arabia Leads Global A.I. Classroom Enthusiasm",
-      "summary": "Coursera data shows 91% of Saudi students view A.I.'s impact on higher education positively, significantly higher than the UK (77%), US (78%), and other markets. The Kingdom also shows stronger concern for academic integrity, with 79% worried about A.I. raising integrity issues compared to much lower rates elsewhere.",
-      "category": "Insights & Trends",
+      "headline": "Coursera: Saudi Arabia Leads Global A.I. Classroom Enthusiasm",
+      "summary": "Coursera data shows 91% of Saudi students view A.I.'s impact on higher education positively, significantly higher than the UK (77%), US (78%), and other markets, according to Arab News. The Kingdom also shows stronger concern for academic integrity, with 79% worried about A.I. raising integrity issues compared to lower rates elsewhere.",
       "source": "Arab News",
       "sourceUrl": "https://www.arabnews.com/node/2636984/amp",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
       "headline": "Cornell Student Alleges A.I. Research Integrity Problems",
-      "summary": "A Cornell Daily Sun guest column accuses a postdoctoral researcher of publishing shifting, unaccountable principles for A.I. use in academic work without providing evidence for claims about ChatGPT's limitations. The piece highlights concerns about research quality in the rush to publish A.I.-related scholarship.",
-      "category": "Ethical AI",
+      "summary": "A Cornell Daily Sun guest column accuses a postdoctoral researcher of publishing shifting, unaccountable principles for A.I. use in academic work without providing evidence for claims about ChatGPT's limitations, according to The Cornell Daily Sun. The piece highlights concerns about research quality in A.I.-related scholarship.",
       "source": "The Cornell Daily Sun",
       "sourceUrl": "https://www.cornellsun.com/article/2026/03/guest-room-in-ai-research-academic-integrity-falls-by-the-wayside",
-      "isCallback": false
+      "category": "Ethical AI"
     },
     {
       "headline": "Adobe and Pearson Launch First Firefly A.I. Certification",
-      "summary": "The companies introduced professional certification for Adobe Firefly, covering prompt engineering and ethical A.I. use in creative workflows. The program reflects growing demand for validated A.I. skills, with Adobe research showing 86% of creators now use generative tools daily.",
-      "category": "Latest AI Products",
+      "summary": "Adobe and Pearson introduced professional certification for Adobe Firefly, covering prompt engineering and ethical A.I. use in creative workflows, according to Trend Hunter. Adobe research shows 86% of creators now use generative tools daily.",
       "source": "Trend Hunter",
       "sourceUrl": "https://www.trendhunter.com/amp/trends/certification-for-adobe-firefly",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
       "headline": "King's College London Formalizes A.I. Research Ethics",
-      "summary": "The university found 72% of researchers already use A.I. tools, but 81% lack confidence in navigating ethical implications. King's is updating research governance processes and ethics review guidance based on workshops that revealed widespread adoption ahead of formal policy.",
-      "category": "Ethical AI",
+      "summary": "King's College London found 72% of researchers already use A.I. tools, but 81% lack confidence in navigating ethical implications, according to EdTech Innovation Hub. The university is updating research governance processes and ethics review guidance based on workshops that revealed widespread adoption ahead of formal policy.",
       "source": "EdTech Innovation Hub",
       "sourceUrl": "https://www.edtechinnovationhub.com/news/kings-college-london-moves-to-formalize-ai-ethics-as-research-use-accelerates",
-      "isCallback": false
+      "category": "Ethical AI"
     },
     {
       "headline": "Federal Appeals Court Fines Lawyers $30K for Faulty A.I. Filings",
-      "summary": "The Sixth Circuit sanctioned two attorneys after finding fake citations and factual errors in appellate briefs, marking one of the strongest judicial warnings about unreliable A.I.-assisted legal work. The ruling signals courts are moving toward tougher penalties for unverified A.I. output.",
-      "category": "Beyond Ed",
+      "summary": "The Sixth Circuit sanctioned two attorneys after finding fake citations and factual errors in appellate briefs, according to Freedom For All Americans. The ruling marks one of the strongest judicial warnings about unreliable A.I.-assisted legal work and signals courts are moving toward tougher penalties for unverified A.I. output.",
       "source": "Freedom For All Americans",
       "sourceUrl": "https://freedomforallamericans.org/appeals-court-fines-lawyers-faulty-filing/",
-      "isCallback": false
+      "category": "Beyond Ed"
     },
     {
       "headline": "Penn Students Critique University's A.I. Integration Push",
-      "summary": "The Daily Pennsylvanian editorial board argues Penn's heavy investment in A.I. programs and research — including the first Ivy League A.I. major — threatens critical thinking development. They cite surveys showing 83% of undergraduates use A.I. academically despite unclear institutional policies.",
-      "category": "Case Study",
+      "summary": "The Daily Pennsylvanian editorial board argues Penn's heavy investment in A.I. programs and research — including the first Ivy League A.I. major — threatens critical thinking development, according to The Daily Pennsylvanian. They cite surveys showing 83% of undergraduates use A.I. academically despite unclear institutional policies.",
       "source": "The Daily Pennsylvanian",
       "sourceUrl": "https://www.thedp.com/article/2026/03/penn-ai-dominance-education",
-      "isCallback": false
+      "category": "Case Study"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-13",
     "dayOfWeek": "Friday",
-    "editorialLens": "The Innovator's Edge",
-    "themes": [
-      "policy governance",
-      "academic integrity",
-      "student dependency",
-      "professional certification",
-      "institutional adoption"
-    ],
-    "storiesWatching": [
-      "Nevada A.I. education policy implementation",
-      "Cornell research integrity allegations",
-      "Federal court A.I. sanctions trend"
-    ],
-    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
-    "lensColor": "#fbbf24",
-    "publishedAt": "2026-03-20T03:33:07.149Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Innovator's Edge"
   }
 }

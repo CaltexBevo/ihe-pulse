@@ -3,94 +3,66 @@
     "date": "2026-02-26",
     "dayOfWeek": "Thursday",
     "editorialLens": "Connecting the Dots",
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-26.mp3",
-    "audioDuration": "6:13",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Thursday, February 26th.\n\nA Babson College professor's classroom experiments with A.I. tools are revealing something interesting about the gap between institutional A.I. strategies and what's actually happening in classrooms. Faculty are making individual decisions about integration while their institutions are still figuring out broader policies.\n\n-\nIn our Insights and Trends category today, universities worldwide are expanding A.I. integration across teaching and operations, creating adaptive learning environments that respond to student needs in real-time. The transformation includes personalized learning paths and automated administrative tasks, though institutions are still working through ethical considerations around data privacy and academic integrity.\n\n-\nFrom the Case Study file, UK business school graduates are expressing concerns about A.I. tools creating unfair advantages based on access to premium versions. Students also worry that employers might devalue their degrees as A.I.-generated, while they navigate inconsistent faculty policies about A.I. use across different courses.\n\n-\nIn our Latest A.I. Products category, the University of Kent hired an A.I. Training Specialist to deliver practical training on generative A.I. tools for staff and students. The role focuses on developing workshops and guidance materials as A.I. tools become more widely used across university operations.\n\n-\nFrom the Ethical A.I. file, over 1,600 Cal State faculty, students, and alumni have signed a petition urging the university system not to renew its $17 million ChatGPT Edu contract. Critics argue the investment is financially irresponsible during budget cuts and that generative A.I. undermines educational integrity rather than enhancing learning.\n\n-\nNext up in Insights and Trends, French researchers are examining how systematic use of generative A.I. for fundamental tasks may limit the development of critical thinking and creativity. Their research suggests that while A.I. can support learning, excessive reliance on it for basic cognitive work may weaken neural network development essential for complex problem-solving.\n\n-\nAnd from Beyond Ed, Brown University's CNTR created a portal to help the public navigate over 1,000 A.I.-related bills introduced across the U.S. in the past three years. The platform includes bill profiles and analysis covering transparency, data protection, bias, education, and labor impacts.\n\n-\nNow, let's get to that Babson story I mentioned at the top. This professor's experience captures something that's happening across higher education right now. Faculty members are finding themselves on the front lines of A.I. integration, often without comprehensive institutional guidance or support structures.\n\nUnlike previous educational technology rollouts that came with training programs and clear implementation strategies, generative A.I. has arrived so rapidly that many educators are experimenting in real-time. They're developing their own approaches through trial and error, which creates some interesting dynamics.\n\nThe Babson professor emphasized the importance of nurturing critical thinking skills while students increasingly rely on A.I. tools. They noted instances where A.I. delivered inaccurate results that actually prompted students to engage in fact-checking and primary research. That's an interesting outcome that probably wasn't anticipated in most A.I. policy discussions.\n\nWhat strikes me about this account is how it reflects individual experimentation happening across institutions with vastly different resources and student populations. A professor at a well-resourced private college like Babson might have different concerns and capabilities than faculty at community colleges dealing with budget constraints and diverse student needs. Yet they're all navigating similar questions about when A.I. enhances learning versus when it might diminish complex thought processes.\n\nThe professor focused on distinguishing between routine tasks suitable for A.I. assistance and complex thinking that requires human engagement. Some faculty members are embracing A.I. as a writing assistant or research tool, while others worry about students becoming overly dependent on technology for fundamental cognitive processes. This tension isn't just philosophical. It has practical implications for how we design assignments, assess learning, and prepare students for an A.I.-integrated workforce.\n\nThe emphasis on preparing students for an A.I.-integrated future raises questions about what that future actually looks like and whether our current approaches are building the right skills. Are we teaching students to use A.I. tools effectively, or are we inadvertently creating dependencies that could limit their problem-solving capabilities?\n\nThe professor's observation about the value of human intellectual contribution suggests that the most important work might be helping students understand not just how to use these tools, but when not to use them. That's a nuanced skill that requires faculty time and expertise.\n\nWhen you look at this alongside the Cal State petition against renewing the ChatGPT contract and the UK business students' concerns about equity, you see faculty and students grappling with practical questions while institutions make large-scale policy decisions. The University of Kent's decision to hire an A.I. training specialist suggests one approach to bridging this gap, though it remains to be seen how effective dedicated support roles will be.\n\nThe French research on cognitive development adds another layer to consider. If systematic use of A.I. for fundamental tasks may limit critical thinking development, then these individual faculty experiments become even more significant. Each instructor's decisions about when and how to integrate A.I. tools could have lasting effects on student learning.\n\nFor someone teaching Monday morning, this suggests that the A.I. integration decisions you're making in your classroom matter more than you might realize. Your students are part of a real-time experiment in how A.I. affects learning, and there's not yet a clear institutional playbook to follow.\n\n-\nThe pattern emerging seems to be faculty innovation happening faster than institutional policy development. That creates both opportunities and risks worth watching.\n\nThat's your Innovation Pulse for Thursday. Find full coverage and links at innovating higher ed dot com. See you Friday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "Faculty Navigate A.I. Integration Without Clear Institutional Roadmaps",
-    "hook": "A Babson professor's classroom experiments reveal the gap between A.I. hype and practical teaching realities.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "Babson Professor Describes A.I. Classroom Integration Experience",
+    "summary": "A Babson College professor shared experiences integrating generative A.I. into educational settings, according to Devdiscourse. The professor emphasized the importance of nurturing critical thinking skills while students increasingly rely on A.I. tools, noting instances where A.I. delivered inaccurate results that prompted students to engage in fact-checking and primary research.\n\nThe professor focused on distinguishing between routine tasks suitable for A.I. assistance and complex thinking that requires human engagement. The account reflects faculty members navigating A.I. integration without comprehensive institutional guidance, developing approaches through trial and error as generative A.I. has arrived faster than traditional training programs can accommodate.\n\nThe approach raises questions about preparing students for an A.I.-integrated workforce while ensuring they develop foundational thinking skills. Different faculty members are making individual decisions about A.I. integration while institutions work to develop broader strategies.",
     "source": "Devdiscourse",
     "sourceUrl": "https://www.devdiscourse.com/article/education/3840838-navigating-the-ai-wave-in-education-balancing-innovation-and-integrity",
-    "editorialTake": "A professor from Babson College shared their experience integrating generative A.I. into educational settings, highlighting both the promise and challenges of this technology in classrooms. The professor emphasized the importance of nurturing critical thinking skills while students increasingly rely on A.I. tools, noting instances where A.I. delivered inaccurate results that prompted students to engage in fact-checking and primary research.\n\nThis account reflects a broader pattern emerging across higher education institutions. Faculty members are finding themselves on the front lines of A.I. integration, often without comprehensive institutional guidance or support structures. Unlike previous educational technology rollouts that came with training programs and clear implementation strategies, generative A.I. has arrived so rapidly that many educators are experimenting in real-time, developing their own approaches through trial and error.\n\nThe Babson professor's focus on distinguishing between routine tasks suitable for A.I. assistance and complex thinking that requires human engagement resonates with what many educators are grappling with. Some faculty members are embracing A.I. as a writing assistant or research tool, while others worry about students becoming overly dependent on technology for fundamental cognitive processes. This tension isn't just philosophical — it has practical implications for how we design assignments, assess learning, and prepare students for an A.I.-integrated workforce.\n\nWhat's particularly striking is how this individual experimentation is happening across institutions with vastly different resources and student populations. A professor at a well-resourced private college like Babson might have different concerns and capabilities than faculty at community colleges dealing with budget constraints and diverse student needs. Yet they're all navigating similar questions about when A.I. enhances learning versus when it might diminish the complexity of thought processes.\n\nThe emphasis on preparing students for an \"A.I.-integrated future\" raises questions about what that future actually looks like and whether our current approaches are building the right skills. Are we teaching students to use A.I. tools effectively, or are we inadvertently creating dependencies that could limit their problem-solving capabilities? The professor's observation about the value of human intellectual contribution suggests that the most important work might be helping students understand not just how to use these tools, but when not to use them.",
-    "pullQuote": "Faculty members are finding themselves on the front lines of A.I. integration, often without comprehensive institutional guidance or support structures.",
-    "editorialCallout": "What I find most interesting about this story is how it captures the reality gap between A.I. policy discussions and classroom practice. In my work with community college faculty, I see similar patterns — educators making individual decisions about A.I. integration while institutions are still figuring out their broader strategies. The Babson professor's experience with students fact-checking A.I. outputs actually sounds promising for critical thinking development, but it also requires faculty time and expertise that many of our colleagues are already stretched thin to provide. At community colleges, where we serve students with varying levels of digital literacy and academic preparation, these individual faculty experiments could lead to very different outcomes depending on the instructor and student population. How do we ensure that A.I. integration supports rather than exacerbates existing educational inequities?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Professor at whiteboard with A.I. interface overlay, students looking thoughtful and engaged"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
       "headline": "Universities Expand A.I. Integration Across Teaching and Operations",
-      "summary": "Universities worldwide are incorporating A.I. into classrooms, research labs, and administrative systems, creating adaptive learning environments that respond to student needs in real-time. The transformation includes personalized learning paths, enhanced research capabilities, and automated administrative tasks, though institutions must address ethical considerations around data privacy and academic integrity.",
-      "category": "Insights & Trends",
-      "source": "vocal.media",
+      "summary": "Universities worldwide are incorporating A.I. into classrooms, research labs, and administrative systems, according to Vocal Media. The transformation includes adaptive learning environments that respond to student needs, personalized learning paths, enhanced research capabilities, and automated administrative tasks. Institutions are addressing ethical considerations around data privacy and academic integrity as adoption expands.",
+      "source": "Vocal Media",
       "sourceUrl": "https://vocal.media/education/the-expanding-role-of-ai-in-higher-education-systems",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
-      "headline": "Business Students Navigate A.I. Ethics and Equity Concerns",
-      "summary": "UK business school graduates express concerns about A.I. tools creating unfair advantages based on access to premium versions, while also worrying that employers might devalue their degrees as \"A.I.-generated.\" Students report using ChatGPT for study support but struggle with inconsistent faculty policies across courses.",
-      "category": "Case Study",
+      "headline": "UK Business Students Express Concerns About A.I. Tool Equity",
+      "summary": "UK business school graduates are expressing concerns about A.I. tools creating unfair advantages based on access to premium versions, according to The Conversation. Students also worry that employers might devalue their degrees as A.I.-generated. Students report using ChatGPT for study support but struggle with inconsistent faculty policies across courses.",
       "source": "The Conversation",
       "sourceUrl": "https://theconversation.com/generative-ai-in-business-schools-friend-or-foe-278249",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
       "headline": "University of Kent Hires A.I. Training Specialist",
-      "summary": "The University of Kent recruited an A.I. Training Specialist to deliver practical training on generative A.I. tools for staff and students. The role focuses on developing workshops, guidance materials, and supporting academic teams as A.I. tools become more widely used across university operations.",
-      "category": "Latest AI Products",
+      "summary": "The University of Kent recruited an A.I. Training Specialist to deliver practical training on generative A.I. tools for staff and students, according to EdTech Innovation Hub. The role focuses on developing workshops and guidance materials as A.I. tools become more widely used across university operations.",
       "source": "EdTech Innovation Hub",
       "sourceUrl": "https://www.edtechinnovationhub.com/news/university-of-kent-recruits-ai-training-specialist-as-aikent-initiative-expands",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "Cal State Faculty Petition Against OpenA.I. Contract Renewal",
-      "summary": "Over 1,600 Cal State faculty, students, and alumni have signed a petition urging the university system not to renew its $17 million ChatGPT Edu contract. Critics argue the investment is financially irresponsible during budget cuts and that generative A.I. undermines educational integrity rather than enhancing learning.",
-      "category": "Ethical AI",
+      "headline": "Over 1,600 Sign Petition Against Cal State OpenAI Contract",
+      "summary": "Over 1,600 Cal State faculty, students, and alumni have signed a petition urging the university system not to renew its $17 million ChatGPT Edu contract, according to Tech Policy Press. Critics argue the investment is financially irresponsible during budget cuts and question whether generative A.I. enhances or undermines educational integrity.",
       "source": "Tech Policy Press",
       "sourceUrl": "https://www.techpolicy.press/how-cal-state-became-ground-zero-for-the-fight-over-ai-in-higher-education/",
-      "isCallback": false
+      "category": "Ethical AI"
     },
     {
-      "headline": "French Researchers Examine A.I.'s Impact on Cognitive Development",
-      "summary": "A study from French researchers explores how systematic use of generative A.I. for fundamental tasks may limit the development of critical thinking and creativity. The research suggests that while A.I. can support learning, excessive reliance on it for basic cognitive work may weaken neural network development essential for complex problem-solving.",
-      "category": "Insights & Trends",
+      "headline": "French Researchers Examine A.I. Impact on Cognitive Development",
+      "summary": "French researchers are examining how systematic use of generative A.I. for fundamental tasks may limit critical thinking and creativity development, according to Polytechnique Insights. The research suggests that while A.I. can support learning, excessive reliance on it for basic cognitive work may affect neural network development essential for complex problem-solving.",
       "source": "Polytechnique Insights",
       "sourceUrl": "https://www.polytechnique-insights.com/en/columns/digital/how-is-generative-ai-changing-modern-education/",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
-      "headline": "New Portal Tracks A.I. Policy Bills Across U.S.",
-      "summary": "Brown University's CNTR created a portal to help the public navigate over 1,000 A.I.-related bills introduced across the U.S. in the past three years. The platform includes bill profiles and analysis frameworks covering transparency, data protection, bias, education, and labor impacts.",
-      "category": "Beyond Ed",
+      "headline": "Brown University Portal Tracks A.I. Policy Bills Nationwide",
+      "summary": "Brown University's CNTR created a portal to help the public navigate over 1,000 A.I.-related bills introduced across the U.S. in the past three years, according to the MacArthur Foundation. The platform includes bill profiles and analysis frameworks covering transparency, data protection, bias, education, and labor impacts.",
       "source": "MacArthur Foundation",
       "sourceUrl": "https://www.macfound.org/press/grantee-news/cntr-aisle-portal-makes-sense-of-ai-policy-bills-in-the-us",
-      "isCallback": false
+      "category": "Beyond Ed"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-02-26",
     "dayOfWeek": "Thursday",
-    "editorialLens": "Connecting the Dots",
-    "themes": [
-      "faculty autonomy",
-      "institutional support",
-      "cognitive development",
-      "equity concerns",
-      "policy tensions"
-    ],
-    "storiesWatching": [
-      "Cal State OpenAI contract renewal decision due June 30",
-      "University of Kent AI training specialist hiring outcomes",
-      "French research on AI and cognitive development"
-    ],
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "publishedAt": "2026-03-18T19:07:54.313Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "Connecting the Dots"
   }
 }

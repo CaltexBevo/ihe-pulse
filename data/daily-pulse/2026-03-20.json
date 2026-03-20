@@ -3,70 +3,45 @@
     "date": "2026-03-20",
     "dayOfWeek": "Friday",
     "editorialLens": "The Innovator's Edge",
-    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
-    "lensColor": "#f59e0b",
     "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-20.mp3",
     "audioDuration": "5:40",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Friday, March 20th.\n\nAcademic libraries are quietly becoming the neutral ground where A.I. literacy, academic integrity, and workforce readiness intersect. From Bryn Mawr to Carnegie Mellon, librarians are stepping into a new role that looks a lot like what information literacy meant twenty years ago.\n\n-\nFrom our Practical Tips category today, the San Diego Community College District is hosting InnovAItion Day right now, bringing together faculty, staff, and students from multiple campuses to explore responsible A.I. use. The event features student-led panels and discussions about how A.I. fits into learning. Community colleges continue to take the lead on these practical conversations.\n\n-\nIn Insights and Trends, a Jobs for the Future survey finds 70 percent of students now use A.I. on a daily or weekly basis for education, up from 59 percent in 2024. But here's the gap worth noting: 48 percent seek A.I. guidance from social media versus just 23 percent from their educational institutions. Students are going to YouTube and informal channels despite increased institutional training offerings.\n\n-\nAnd from our Ethical A.I. file, the EU AI Act enters full effect this August, classifying several common university A.I. applications as high-risk, including A.I.-assisted admissions systems and student performance analytics. European universities must now demonstrate compliance or face penalties. It's a reminder that regulatory frameworks are moving faster in some regions than institutions are prepared for.\n\n-\nNow, let's get to that story about libraries I mentioned at the top.\n\nAcademic libraries are evolving into what one researcher calls A.I. sandboxes, neutral spaces where students and faculty can experiment with tools responsibly. At Bryn Mawr College, they're using a platform called BoodleBox that gives centralized access to multiple A.I. tools while prioritizing privacy. At West Point, librarians developed a custom curriculum-mapping chatbot. Carnegie Mellon and the University of Pennsylvania offer hands-on A.I. literacy workshops.\n\nWhat's interesting about this trend is how it mirrors what happened with information literacy decades ago. Lauren Dodd at Bryn Mawr puts it directly: A.I. literacy is just a new dimension of information literacy. The skills librarians have been teaching for years, evaluating sources, understanding bias, thinking critically about information, apply directly to working with A.I. systems.\n\nBut there's a more sophisticated layer emerging too. Critical A.I. literacy focuses on understanding the power structures embedded in these systems. Whose voices are amplified? What worldviews are encoded in the training data? These aren't just technical questions; they're the kinds of questions librarians have been helping students ask about information sources for generations.\n\nWhat makes libraries particularly well-suited for this role is their position on campus. They're not tied to any single department or discipline. They serve everyone from first-year students to doctoral researchers. They have a tradition of teaching information skills in ways that complement rather than duplicate what happens in classrooms.\n\nThe scale is significant too. BoodleBox, one platform being used for this, serves over 800,000 users across more than 1,300 campuses. That's infrastructure for A.I. access and literacy that spans institution types and sizes.\n\nFor community colleges, this raises some practical possibilities. Many of us have strong library programs but limited resources for developing standalone A.I. initiatives. If libraries can become the hub for A.I. experimentation and literacy development, that's a model that might work within existing budget constraints.\n\nThere's also something appealing about the neutrality aspect. Faculty debates about A.I. can get heated, with strong opinions about appropriate use varying by discipline. Libraries offer a space that's somewhat removed from those departmental tensions, where the focus can be on practical skills rather than policy disputes.\n\nThe connection to workforce readiness is worth noting too. Employers increasingly expect graduates who can work effectively with A.I. tools. If libraries become the place where students develop that fluency, alongside the critical thinking skills to use these tools responsibly, that's a significant contribution to student outcomes.\n\nWhat I find most compelling about this development is how it builds on existing strengths rather than requiring institutions to create something entirely new. The expertise is already there. The infrastructure exists. The tradition of teaching information skills transfers naturally to A.I. literacy. It's an example of institutional innovation that doesn't require massive new investments, just recognition that librarians' skills are more relevant than ever.\n\n-\nStories we're watching heading into next week: How the White House A.I. policy framework plays out in Congress. Whether the InnovAItion Day model spreads to other community college districts. And the continuing evolution of faculty approaches to A.I. in assessment, which seems to be the conversation happening everywhere right now.\n\nThat's your Innovation Pulse for Friday. Find full coverage and links at innovating higher ed dot com. See you Monday."
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "Libraries Emerge as Campus A.I. Literacy Hubs",
-    "hook": "From Bryn Mawr to Carnegie Mellon, academic libraries are becoming neutral ground for A.I. experimentation and literacy development.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "Academic Libraries Emerge as Campus A.I. Literacy Hubs",
+    "summary": "Academic libraries are evolving into what researchers call \"A.I. sandboxes,\" neutral spaces where students and faculty can experiment with tools responsibly, according to Inside Higher Ed. At Bryn Mawr College, the library is using a platform called BoodleBox that gives centralized access to multiple A.I. tools while prioritizing privacy. At West Point, librarians developed a custom curriculum-mapping chatbot. Carnegie Mellon and the University of Pennsylvania offer hands-on A.I. literacy workshops.\n\nLauren Dodd at Bryn Mawr stated that \"A.I. literacy is just a new dimension of information literacy.\" The skills librarians have been teaching — evaluating sources, understanding bias, thinking critically about information — apply directly to working with A.I. systems.\n\nBoodleBox, one platform being used, serves over 800,000 users across more than 1,300 campuses. Libraries are positioned as neutral spaces not tied to any single department or discipline, serving everyone from first-year students to doctoral researchers with a tradition of teaching information skills.",
     "source": "Inside Higher Ed",
     "sourceUrl": "https://www.insidehighered.com/news/student-success/academic-life/2026/03/13/how-libraries-shape-ai-literacy-campus",
-    "editorialTake": "Academic libraries are evolving into what researchers call 'A.I. sandboxes,' neutral spaces where students and faculty can experiment with tools responsibly. At Bryn Mawr College, they're using a platform called BoodleBox that gives centralized access to multiple A.I. tools while prioritizing privacy. At West Point, librarians developed a custom curriculum-mapping chatbot. Carnegie Mellon and the University of Pennsylvania offer hands-on A.I. literacy workshops.\n\nWhat's interesting about this trend is how it mirrors what happened with information literacy decades ago. Lauren Dodd at Bryn Mawr puts it directly: 'A.I. literacy is just a new dimension of information literacy.' The skills librarians have been teaching for years — evaluating sources, understanding bias, thinking critically about information — apply directly to working with A.I. systems.\n\nBut there's a more sophisticated layer emerging too. Critical A.I. literacy focuses on understanding the power structures embedded in these systems. Whose voices are amplified? What worldviews are encoded in the training data? These aren't just technical questions; they're the kinds of questions librarians have been helping students ask about information sources for generations.\n\nWhat makes libraries particularly well-suited for this role is their position on campus. They're not tied to any single department or discipline. They serve everyone from first-year students to doctoral researchers. They have a tradition of teaching information skills in ways that complement rather than duplicate what happens in classrooms.\n\nThe scale is significant too. BoodleBox, one platform being used for this, serves over 800,000 users across more than 1,300 campuses. That's infrastructure for A.I. access and literacy that spans institution types and sizes.\n\nFor community colleges, this raises some practical possibilities. Many of us have strong library programs but limited resources for developing standalone A.I. initiatives. If libraries can become the hub for A.I. experimentation and literacy development, that's a model that might work within existing budget constraints. There's also something appealing about the neutrality aspect — libraries offer a space removed from departmental tensions where the focus can be on practical skills rather than policy disputes.",
-    "pullQuote": "A.I. literacy is just a new dimension of information literacy — the skills librarians have been teaching for years apply directly to working with A.I. systems.",
-    "editorialCallout": "What I find most compelling about this development is how it builds on existing strengths rather than requiring institutions to create something entirely new. In my conversations with community college faculty, one of the biggest barriers to A.I. integration is the sense that we'd need massive new investments in training and infrastructure. But this library-centered model suggests another path: recognizing that the expertise is already there. Librarians have been teaching critical evaluation of sources and information for decades. The transition to A.I. literacy feels natural, not forced. For institutions operating on tight budgets, this might be the most practical path forward — not building something new, but expanding what already works.",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Library interior with students at computers, digital literacy symbols floating above workstations"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "San Diego Colleges Host InnovAItion Day Today",
-      "summary": "The San Diego Community College District is hosting InnovAItion Day on March 20, bringing together faculty, staff, and students to explore responsible A.I. use in education. The event features student-led panels and discussions about A.I.'s role in learning.",
-      "category": "Practical Tips",
+      "headline": "San Diego Colleges Host InnovAItion Day",
+      "summary": "The San Diego Community College District is hosting InnovAItion Day on March 20, bringing together faculty, staff, and students to explore responsible A.I. use in education, according to SD City Times. The event features student-led panels and discussions about A.I.'s role in learning.",
       "source": "SD City Times",
       "sourceUrl": "https://sdcitytimes.com/news/2026/03/19/sdccd-innovaltion-day-event-explores-ai-in-higher-education/",
-      "isCallback": false
+      "category": "Practical Tips"
     },
     {
-      "headline": "70% of Students Now Use A.I. Weekly for Education",
-      "summary": "A Jobs for the Future survey finds student A.I. use for education increased from 59% in 2024 to 70% in 2026. However, 48% seek A.I. guidance from social media versus 23% from educational institutions, indicating students prefer informal learning channels.",
-      "category": "Insights & Trends",
+      "headline": "Survey: 70% of Students Now Use A.I. Weekly for Education",
+      "summary": "A Jobs for the Future survey finds student A.I. use for education increased from 59% in 2024 to 70% in 2026, according to Inside Higher Ed. However, 48% seek A.I. guidance from social media versus 23% from educational institutions, indicating students prefer informal learning channels.",
       "source": "Inside Higher Ed",
       "sourceUrl": "https://www.insidehighered.com/news/quick-takes/2026/03/20/ai-help-more-college-students-ask-social-media-first",
-      "isCallback": true
+      "category": "Insights & Trends"
     },
     {
       "headline": "EU A.I. Act Enters Full Effect for Universities in August",
-      "summary": "The EU AI Act classifies A.I.-assisted admissions systems and student performance analytics as 'high-risk,' requiring European universities to demonstrate compliance by August 2026 or face penalties. The regulation represents the most comprehensive A.I. governance framework affecting higher education globally.",
-      "category": "Ethical AI",
+      "summary": "The EU AI Act classifies A.I.-assisted admissions systems and student performance analytics as \"high-risk,\" requiring European universities to demonstrate compliance by August 2026 or face penalties, according to The Education Magazine. The regulation represents the most comprehensive A.I. governance framework affecting higher education globally.",
       "source": "The Education Magazine",
       "sourceUrl": "https://www.theeducationmagazine.com/ai-governance-in-higher-education/",
-      "isCallback": false
+      "category": "Ethical AI"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-20",
     "dayOfWeek": "Friday",
-    "editorialLens": "The Innovator's Edge",
-    "themes": [
-      "library innovation",
-      "A.I. literacy",
-      "institutional infrastructure",
-      "workforce readiness",
-      "information literacy"
-    ],
-    "storiesWatching": [
-      "White House A.I. policy framework congressional response",
-      "InnovAItion Day model adoption by other community college districts",
-      "Faculty approaches to A.I. in assessment"
-    ],
-    "lensDescription": "What's genuinely new, experimental, and worth watching. Week recap with 'Stories We're Watching' section.",
-    "lensColor": "#f59e0b",
-    "publishedAt": "2026-03-20T15:30:00.000Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Innovator's Edge"
   }
 }

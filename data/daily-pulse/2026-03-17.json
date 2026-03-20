@@ -3,86 +3,59 @@
     "date": "2026-03-17",
     "dayOfWeek": "Tuesday",
     "editorialLens": "The Student Experience",
-    "lensDescription": "Everything filtered through how it affects actual students.",
-    "lensColor": "#60a5fa",
     "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-17.mp3",
     "audioDuration": "5:59",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Tuesday, March 17th.\n\nA UK company is bundling free student A.I. access with staff licenses, targeting a cost gap that currently locks out 95% of students from institutional A.I. tools. The model raises questions about how we're building A.I. literacy as basic educational infrastructure.\n\n-\nFrom our Case Study file, Oxford's Wychwood School launched A.I. Futures Oxford, offering an A-level in Artificial Intelligence for students aged 16 and over. The program operates outside normal school hours, allowing students to stay at their current schools while adding A.I. education. It's an interesting model for specialized programs that don't require full institutional restructuring.\n\n-\nIn Ethical A.I. today, University of Amsterdam lecturer Nicos Starreveld argues that excessive focus on A.I.-secure testing undermines trust between faculty and students. He advocates for emphasizing student learning and well-being over assessment security, suggesting A.I.-secure assignments should focus on affective learning domains rather than trying to lock down every possible interaction.\n\n-\nFrom our Insights and Trends category, a Jobs for the Future survey found 70% of students use A.I. weekly for education, up from 59% in 2024. But here's the gap: 48% seek A.I. guidance from social media versus 23% from educational institutions. Students are turning to informal learning channels despite increased institutional training offerings.\n\n-\nAnd from Beyond Ed, the White House released a National Policy Framework for Artificial Intelligence with legislative recommendations emphasizing innovation over restrictive regulation. The Center for Data Innovation praised the framework for addressing legitimate concerns while avoiding barriers to A.I. deployment and calling for federal preemption of conflicting state laws.\n\n-\nNow, let's get to that story I mentioned at the top about the UK company trying to solve the student A.I. access problem.\n\nICS.AI has launched a model that gives UK university students free access to institutional A.I. tools when universities purchase staff licenses. The numbers behind this are striking. The company reports that fewer than 5% of the UK's 2.9 million higher education students currently have access to structured institutional A.I. tools, while 57% of employers report significant A.I. skills gaps.\n\nThis highlights a fundamental tension we're seeing across higher education. On one hand, we have rapid adoption of A.I. tools in the workplace, with employers increasingly expecting graduates who can use these systems effectively. On the other hand, the cost of providing universal access has created a real divide between students who can afford individual subscriptions and those who cannot.\n\nThe pricing challenge is substantial. For an institution with 20,000 students, annual spending on commercial A.I. services can reach millions, making universal access financially prohibitive for many institutions. ICS.AI's CEO Martin Neale describes this as a potential defining driver of graduate employability, access to practical A.I. experience during college.\n\nBut the bundled approach raises some interesting questions about dependency and choice. When institutions commit to a single platform for both staff and students, they're making decisions that will shape how an entire generation learns to interact with A.I. systems. The company emphasizes governance, audit trails, and compliance controls, which certainly address legitimate institutional concerns about oversight and security.\n\nWhat strikes me as particularly significant is how this model positions A.I. literacy as basic educational infrastructure, similar to internet access or library resources. Rather than treating A.I. tools as optional add-ons, it suggests they should be foundational to the educational experience.\n\nFor community college faculty, this raises some practical questions about equity and preparation. If some students arrive having used governed institutional A.I. systems throughout their undergraduate experience while others have only informal exposure through consumer tools, how do we level that playing field? We're potentially looking at a new kind of digital divide.\n\nThe model also highlights the broader challenge of preparing students for workplaces where A.I. use is increasingly expected, not optional. The emphasis on governed settings versus open access reflects ongoing debates about how students should learn to use these tools. Should it be in controlled environments that mirror workplace constraints, or through more open experimentation that builds creative confidence?\n\nThere's a parallel here to how we approached computer literacy in the 1990s. Some students had access to well-equipped labs with standardized software, others learned on whatever they could access at home. The gap in preparation was real and lasting. Are we setting up a similar dynamic with A.I. literacy, where the quality and type of access during college shapes long-term comfort and capability?\n\nThe bundled model might make institutional A.I. access more feasible for budget-conscious institutions, but it also means committing to one vendor's vision of how students should learn these tools. For faculty, it raises questions about how we balance structured learning with the kind of creative exploration that builds genuine fluency.\n\nWhat's clear is that the current situation, where most students are locked out of institutional A.I. tools while employers expect A.I. skills, isn't sustainable. Whether bundled access is the answer remains to be seen, but it's addressing a real gap between what we're providing and what students need.\n\n-\nThe challenge of A.I. access equity isn't going away, and different institutions are going to find different solutions. What matters is that we're thinking seriously about how to prepare all students, not just those who can afford premium access.\n\nThat's your Innovation Pulse for Tuesday. Find full coverage and links at innovating higher ed dot com. See you Wednesday."
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "UK Company Offers Free Student A.I. Access to Break Pricing Barriers",
-    "hook": "A new model bundles student A.I. access with staff licenses, targeting the cost gap that keeps most students locked out.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "UK Company Bundles Free Student A.I. Access With Staff Licenses",
+    "summary": "ICS.AI has launched a model that gives UK university students free access to institutional A.I. tools when universities purchase staff licenses, according to IT Brief UK. The company reports that fewer than 5% of the UK's 2.9 million higher education students currently have access to structured institutional A.I. tools, while 57% of employers report significant A.I. skills gaps.\n\nFor an institution with 20,000 students, annual spending on commercial A.I. services can reach millions, making universal access financially prohibitive for many institutions. ICS.AI's CEO Martin Neale describes this access gap as a potential defining driver of graduate employability.\n\nThe company emphasizes governance, audit trails, and compliance controls in its platform. The bundled approach positions A.I. literacy as basic educational infrastructure similar to internet access or library resources. The model addresses the cost barrier that has created a divide between students who can afford individual A.I. subscriptions and those who cannot.",
     "source": "IT Brief UK",
     "sourceUrl": "https://itbrief.co.uk/story/ics-ai-launches-free-student-ai-access-for-uk-universities",
-    "editorialTake": "ICS.AI has launched a model that gives UK university students free access to institutional A.I. tools when universities purchase staff licenses. The company reports that fewer than 5% of the UK's 2.9 million higher education students currently have access to structured institutional A.I. tools, while 57% of employers report significant A.I. skills gaps.\n\nThis highlights a fundamental tension in how we're approaching A.I. in higher education. On one hand, we're seeing rapid adoption of A.I. tools in the workplace, with employers increasingly expecting graduates who can use these systems effectively. On the other hand, the cost of providing universal access has created a divide between students who can afford individual subscriptions and those who cannot.\n\nThe pricing challenge is real. For an institution with 20,000 students, annual spending on commercial A.I. services can reach millions, making universal access financially prohibitive for many institutions. This creates what ICS.AI's CEO Martin Neale describes as a potential defining driver of graduate employability — access to practical A.I. experience during college.\n\nBut the bundled approach raises questions about dependency and choice. When institutions commit to a single platform for both staff and students, they're making decisions that will shape how an entire generation learns to interact with A.I. systems. The company emphasizes governance, audit trails, and compliance controls, which address legitimate institutional concerns about oversight and security.\n\nWhat's particularly interesting is how this model positions A.I. literacy as a basic educational infrastructure need, similar to internet access or library resources. Rather than treating A.I. tools as optional add-ons, it suggests they should be foundational to the educational experience.\n\nFor community college faculty, this raises practical questions about equity and preparation. If some students arrive having used governed institutional A.I. systems throughout their undergraduate experience while others have only informal exposure through consumer tools, how do we level that playing field? The model also highlights the broader challenge of preparing students for workplaces where A.I. use is increasingly expected, not optional.\n\nThe emphasis on \"governed settings\" versus open access also reflects ongoing debates about how students should learn to use these tools — in controlled environments that mirror workplace constraints, or through more open experimentation that builds creative confidence.",
-    "pullQuote": "The cost of providing universal access has created a divide between students who can afford individual subscriptions and those who cannot.",
-    "editorialCallout": "What I find most interesting about this model is how it reframes A.I. access as basic educational infrastructure rather than a premium service. At community colleges, we're constantly making tough choices about which technologies to prioritize with limited budgets. This bundled approach might make institutional A.I. access more feasible, but it also means committing to one vendor's vision of how students should learn these tools. I keep thinking about the parallel to how we approached computer literacy in the 1990s — some students had access to well-equipped labs with standardized software, others learned on whatever they could access at home. The gap in preparation was real and lasting. Are we setting up a similar dynamic with A.I. literacy, where the quality and type of access during college shapes long-term comfort and capability?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Students working at computers with A.I. interface screens, some connected, others isolated, representing access divide"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
       "headline": "NSF Awards $11M for K-12 A.I. Teacher Training",
-      "summary": "The National Science Foundation awarded $11 million to the Computer Science Teachers Association to train 2,500-3,000 K-12 educators in A.I. and computer science foundations. The program will operate across seven states and aims to reach 500,000-600,000 students over two years.",
-      "category": "Latest AI Products",
+      "summary": "The National Science Foundation awarded $11 million to the Computer Science Teachers Association to train 2,500-3,000 K-12 educators in A.I. and computer science foundations, according to Mirage News. The program will operate across seven states and aims to reach 500,000-600,000 students over two years.",
       "source": "Mirage News",
       "sourceUrl": "https://www.miragenews.com/nsf-pours-11m-into-ai-training-for-k-12-teachers-1640993/",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
       "headline": "Oxford School Launches A.I. Micro-School for Sixth Form",
-      "summary": "Wychwood School launched A.I. Futures Oxford, offering an A-level in Artificial Intelligence for students aged 16 and over. The program operates outside normal school hours, allowing students to stay at their current schools while adding A.I. education.",
-      "category": "Case Study",
+      "summary": "Wychwood School launched A.I. Futures Oxford, offering an A-level in Artificial Intelligence for students aged 16 and over, according to IT Brief UK. The program operates outside normal school hours, allowing students to stay at their current schools while adding A.I. education.",
       "source": "IT Brief UK",
       "sourceUrl": "https://itbrief.co.uk/story/wychwood-launches-oxford-ai-micro-school-for-sixth-form",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
-      "headline": "Dutch Faculty Member Calls for Student-Centered A.I. Approach",
-      "summary": "University of Amsterdam lecturer Nicos Starreveld argues that excessive focus on A.I.-secure testing undermines trust between faculty and students. He advocates for emphasizing student learning and well-being over assessment security, suggesting A.I.-secure assignments should focus on affective learning domains.",
-      "category": "Ethical AI",
+      "headline": "Dutch Lecturer Calls for Student-Centered A.I. Approach",
+      "summary": "University of Amsterdam lecturer Nicos Starreveld argues that excessive focus on A.I.-secure testing undermines trust between faculty and students, according to Folia.nl. He advocates for emphasizing student learning and well-being over assessment security, suggesting A.I.-secure assignments should focus on affective learning domains.",
       "source": "Folia.nl",
       "sourceUrl": "https://www.folia.nl/en/opinie/172665/refocus-on-the-student-rather-than-on-the-testing",
-      "isCallback": false
+      "category": "Ethical AI"
     },
     {
-      "headline": "Students Prefer Social Media for A.I. Learning Help",
-      "summary": "A Jobs for the Future survey found 70% of students use A.I. weekly for education, up from 59% in 2024. However, 48% seek A.I. guidance from social media versus 23% from educational institutions, indicating students prefer informal learning channels despite increased institutional training offerings.",
-      "category": "Insights & Trends",
+      "headline": "Survey: 70% of Students Use A.I. Weekly, 48% Seek Guidance on Social Media",
+      "summary": "A Jobs for the Future survey found 70% of students use A.I. weekly for education, up from 59% in 2024, according to Inside Higher Ed. However, 48% seek A.I. guidance from social media versus 23% from educational institutions, indicating students prefer informal learning channels despite increased institutional training offerings.",
       "source": "Inside Higher Ed",
       "sourceUrl": "https://www.insidehighered.com/news/quick-takes/2026/03/20/ai-help-more-college-students-ask-social-media-first",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
       "headline": "White House Releases A.I. Policy Framework for Congress",
-      "summary": "The White House released a National Policy Framework for Artificial Intelligence with legislative recommendations emphasizing innovation over restrictive regulation. The Center for Data Innovation praised the framework for addressing legitimate concerns while avoiding barriers to A.I. deployment and calling for federal preemption of conflicting state laws.",
-      "category": "Beyond Ed",
+      "summary": "The White House released a National Policy Framework for Artificial Intelligence with legislative recommendations emphasizing innovation over restrictive regulation, according to the Center for Data Innovation. The Center praised the framework for addressing legitimate concerns while avoiding barriers to A.I. deployment and calling for federal preemption of conflicting state laws.",
       "source": "Center for Data Innovation",
       "sourceUrl": "https://datainnovation.org/2026/03/white-house-gives-congress-the-right-blueprint-for-ai-policy/",
-      "isCallback": false
+      "category": "Beyond Ed"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-17",
     "dayOfWeek": "Tuesday",
-    "editorialLens": "The Student Experience",
-    "themes": [
-      "access equity",
-      "institutional infrastructure",
-      "student preparation",
-      "cost barriers",
-      "workplace readiness"
-    ],
-    "storiesWatching": [
-      "NSF K-12 A.I. teacher training program implementation and outcomes",
-      "Oxford A.I. micro-school model adoption by other institutions",
-      "White House A.I. policy framework congressional response"
-    ],
-    "lensDescription": "Everything filtered through how it affects actual students.",
-    "lensColor": "#60a5fa",
-    "publishedAt": "2026-03-20T14:23:10.341Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Student Experience"
   }
 }

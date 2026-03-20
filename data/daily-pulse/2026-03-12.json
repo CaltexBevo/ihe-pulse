@@ -3,94 +3,66 @@
     "date": "2026-03-12",
     "dayOfWeek": "Thursday",
     "editorialLens": "Connecting the Dots",
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-12.mp3",
-    "audioDuration": "5:51",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Thursday, March 12th.\n\nThree Penn State campuses are teaching students not just how to use A.I., but how to think critically about when they shouldn't. Each campus developed its own approach, but they're all grappling with the same fundamental question about what A.I. literacy actually means.\n\n-\nIn our Practical Tips category today, Modesto Junior College is working to establish clearer guidelines for A.I. usage as students navigate evolving academic policies. The institution is part of broader efforts among community colleges to develop consistent standards for artificial intelligence in coursework. It's one of those stories that sounds simple but gets complicated fast when you think about implementation across different disciplines and faculty comfort levels.\n\n-\nFrom the Case Study file, Bucks County school districts are implementing different approaches to generative A.I. Some are running pilot programs while others have created formal policies with assignment scales. A few districts have even formed A.I. think tanks, and others are participating in University of Pennsylvania literacy programs. What strikes me is how varied these approaches are, even within the same county.\n\n-\nAnd in our Ethical A.I. category, here's a sobering data point from India. Lucknow University detected plagiarism in 95% of PhD theses submitted this year. That's not about A.I., but it highlights how academic integrity challenges persist alongside our newer concerns about A.I.-generated content. Sometimes the fundamentals haven't changed as much as we think.\n\n-\nNow, let's get to that Penn State story I mentioned at the top. Penn State's three western campuses, Beaver, Behrend, and Greater Allegheny, are each taking distinctly different approaches to A.I. literacy, but they share something important. They're all teaching students not just how to use these tools, but how to engage with them thoughtfully.\n\nAt Beaver, Ashu Kumar embeds A.I. lessons into every course. His perspective is that while everybody can Google, effective A.I. prompting requires skill, and that skill creates competitive advantage. At Behrend, Kyle Chalupczynski discovered something interesting. His students weren't questioning A.I. outputs. They were accepting whatever the chatbot produced. So he started grading their engagement with the tools, not just their use of them.\n\nOver at Greater Allegheny, faculty are encountering students who, in their words, don't want A.I. to replace their learning but do value human connection. These students are asking how A.I. fits into their learning process, not whether they should use it.\n\nWhat's striking about these three approaches is how they move beyond the binary we often get stuck in. It's not prohibition versus permission. Kumar's observation about prompting skills suggests we're entering a new phase of digital literacy. Chalupczynski's discovery process, allowing A.I. use while requiring transparency about how it was used, offers a practical model for faculty who feel uncertain about integration.\n\nThe implementation details matter here. Behrend created literacy profiles for staff, faculty, and students, then worked backward to determine what support was needed. Greater Allegheny sponsors monthly A.I. workshops that bring different campus constituencies together. These aren't just technology training sessions. They're conversations about pedagogy and purpose.\n\nBut there are real challenges. Kumar's approach included having a student intern meet individually with staff to suggest A.I. implementations for their workflows. That's personalized support, but it requires time and human resources. Chalupczynski's grading rubric for A.I. engagement means more assessment work for faculty. The question becomes how do we scale thoughtful integration when we're already stretched thin.\n\nWhat I find most compelling is how these campuses are treating A.I. literacy as fundamentally about critical thinking rather than technical skills. When Greater Allegheny's faculty member notes that students care about how this fits into their learning, he's describing learners who want agency in their educational experience.\n\nThis connects to something we see across different contexts. Those Bucks County districts developing varied approaches, Modesto Junior College working on clearer standards, even that plagiarism detection story from India. They're all wrestling with the same core question about how we maintain academic rigor while adapting to new tools and new student needs.\n\nThe Penn State model offers both hope and caution for faculty at resource-constrained institutions. The individualized support sounds ideal, but it's resource-intensive. The grading rubrics for A.I. engagement add to faculty workload. Yet the alternative, ignoring these tools or banning them outright, seems increasingly unrealistic.\n\nPerhaps the most important insight is that these campuses discovered their approaches through experimentation, not through comprehensive planning. Chalupczynski found out students weren't questioning A.I. outputs by observing their work. Kumar learned about prompting skills by trying different approaches. Greater Allegheny's workshops evolved from faculty questions and concerns.\n\nFor someone teaching Monday morning, this suggests that A.I. literacy might develop more like other literacies we've integrated over time. We didn't wait for perfect digital literacy curricula before we started requiring online research. We didn't solve information literacy before we began teaching source evaluation. We learned by doing, and we adjusted as we went.\n\nThe challenge for educators is creating space for student agency while maintaining academic standards. When students say they don't want A.I. to replace their learning, they're asking for guidance about thoughtful use, not prohibition.\n\n-\nThat's your Innovation Pulse for Thursday. Find full coverage and links at innovating higher ed dot com. See you Friday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "Penn State Campuses Map A.I. Literacy Beyond Tool Training",
-    "hook": "Three Penn State campuses are teaching students not just how to use A.I., but how to think critically about when they shouldn't.",
-    "category": "Case Study",
+  "topStory": {
+    "headline": "Penn State Western Campuses Develop Distinct A.I. Literacy Approaches",
+    "summary": "Penn State's three western campuses — Beaver, Behrend, and Greater Allegheny — are taking different approaches to A.I. literacy while sharing a focus on thoughtful engagement with tools, according to Penn State University. At Beaver, Ashu Kumar embeds A.I. lessons into every course, emphasizing that effective prompting requires skill. At Behrend, Kyle Chalupczynski discovered students were not questioning A.I. outputs, leading him to grade their engagement with chatbots rather than just their use of them.\n\nAt Greater Allegheny, faculty are encountering students who \"don't want it to replace their learning\" but value human connection. Behrend created literacy profiles for staff, faculty, and students, then worked backward to determine what support was needed. Greater Allegheny sponsors monthly \"A.I. du Jour\" workshops bringing different campus constituencies together.\n\nKumar's approach included having a student intern meet individually with staff to suggest A.I. implementations for their workflows. Chalupczynski's grading rubric for A.I. engagement requires more assessment work for faculty. The campuses discovered their approaches through experimentation rather than comprehensive planning.",
     "source": "Penn State University",
     "sourceUrl": "https://www.psu.edu/news/behrend/story/thoughtful-integration-ethical-use-core-ai-literacy",
-    "editorialTake": "Penn State's three western campuses — Beaver, Behrend, and Greater Allegheny — are taking distinctly different approaches to A.I. literacy, but they share a common thread: teaching students not just how to use these tools, but how to engage with them thoughtfully. At Beaver, Ashu Kumar embeds A.I. lessons into every course, emphasizing that prompting skills create competitive advantage. At Behrend, Kyle Chalupczynski discovered that students weren't questioning A.I. outputs, leading him to grade their engagement with chatbots. At Greater Allegheny, faculty are seeing students who \"don't want it to replace their learning\" but value human connection.\n\nWhat's striking is how these campuses are moving beyond the binary of A.I. prohibition versus permission. Kumar's observation that \"everybody can Google\" but effective A.I. prompting requires skill suggests we're entering a new phase of digital literacy. Chalupczynski's discovery process — allowing A.I. use while requiring transparency about how it was used — offers a practical model for faculty who feel uncertain about integration.\n\nThe challenges are real. Behrend created literacy profiles for staff, faculty, and students, then worked backward to determine what support was needed. Greater Allegheny sponsors monthly \"A.I. du Jour\" workshops bringing different campus constituencies together. These aren't just technology training sessions — they're conversations about pedagogy and purpose.\n\nFor faculty at resource-constrained institutions, the Penn State model offers hope and caution. Kumar's student intern met individually with staff to suggest A.I. implementations for their workflows — a personalized approach that requires time and human resources. Chalupczynski's grading rubric for A.I. engagement means more assessment work. The question becomes: how do we scale thoughtful integration when we're already stretched thin?\n\nPerhaps most importantly, these campuses are treating A.I. literacy as fundamentally about critical thinking rather than technical skills. When Greater Allegheny's Daigle notes that students \"care about how this is going to fit into their learning,\" he's describing learners who want agency in their educational experience. The challenge for educators is creating space for that agency while maintaining academic rigor and authentic assessment.",
-    "pullQuote": "When students say they don't want A.I. to replace their learning but value human connection, they're describing learners who want agency in their educational experience.",
-    "editorialCallout": "What I find most interesting about Penn State's approach is how different campuses developed distinct strategies while sharing core values about thoughtful integration. At community colleges, we face similar questions with different constraints — larger class sizes, more adjunct faculty, students juggling multiple responsibilities. Kumar's point about prompting skills creating competitive advantage resonates, but I wonder about the equity implications when some students have more time to develop these skills than others. Chalupczynski's discovery that students weren't questioning A.I. outputs feels familiar — it mirrors what we see with source evaluation in research assignments. The real question might be: how do we teach critical engagement with A.I. when we're still figuring it out ourselves?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Three different paths converging toward a shared destination, representing different approaches to A.I. literacy"
+    "category": "Case Study"
   },
-  "quickHits": [
+  "stories": [
     {
       "headline": "Modesto Junior College Students Call for Clearer A.I. Standards",
-      "summary": "Modesto Junior College is working to establish clearer guidelines for A.I. usage as students navigate evolving academic policies. The institution is part of broader efforts among community colleges to develop consistent standards for artificial intelligence in coursework.",
-      "category": "Practical Tips",
+      "summary": "Modesto Junior College is working to establish clearer guidelines for A.I. usage as students navigate evolving academic policies, according to ABC10. The institution is part of broader efforts among community colleges to develop consistent standards for artificial intelligence in coursework.",
       "source": "ABC10",
       "sourceUrl": "https://www.abc10.com/article/entertainment/television/programs/to-the-point/modesto-junior-college-navigates-ai-usage-as-students-call-for-clearer-standards/103-b4056ab4-2e45-4910-9002-92d9c8e98afe",
-      "isCallback": false
+      "category": "Practical Tips"
     },
     {
       "headline": "Chronicle Plans Virtual Forum on A.I. Agents in Campus Operations",
-      "summary": "The Chronicle of Higher Education will host a virtual forum April 9 exploring how A.I. agents could automate administrative tasks like financial aid and facilities management. The event will address data security safeguards and staff concerns about A.I.'s impact on their roles.",
-      "category": "Latest AI Products",
+      "summary": "The Chronicle of Higher Education will host a virtual forum April 9 exploring how A.I. agents could automate administrative tasks like financial aid and facilities management, according to The Chronicle. The event will address data security safeguards and staff concerns about A.I.'s impact on their roles.",
       "source": "The Chronicle of Higher Education",
       "sourceUrl": "https://www.chronicle.com/events/virtual/how-ai-agents-may-change-campus-operations",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "Pennsylvania School Districts Adopt Varied A.I. Policies",
-      "summary": "Bucks County school districts are implementing different approaches to generative A.I., from pilot programs using Microsoft Copilot to formal policies with assignment scales. Some districts have created A.I. think tanks while others participate in University of Pennsylvania literacy programs.",
-      "category": "Case Study",
+      "headline": "Bucks County School Districts Adopt Varied A.I. Policies",
+      "summary": "Bucks County school districts are implementing different approaches to generative A.I., from pilot programs using Microsoft Copilot to formal policies with assignment scales, according to BUCKSCO.Today. Some districts have created A.I. think tanks while others participate in University of Pennsylvania literacy programs.",
       "source": "BUCKSCO.Today",
       "sourceUrl": "https://bucksco.today/2026/03/bucks-county-school-districts-ai/",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
       "headline": "A.I. Detection Tools Adapt to Student Usage Patterns",
-      "summary": "Copyleaks reports that 90% of students now use A.I. in academic work, with 53% using it weekly. The company is developing new detection features for hybrid human-A.I. content, custom models, and multimodal assignments as paraphrasing tools become more sophisticated.",
-      "category": "Latest AI Products",
+      "summary": "Copyleaks reports that 90% of students now use A.I. in academic work, with 53% using it weekly, according to Copyleaks. The company is developing new detection features for hybrid human-A.I. content, custom models, and multimodal assignments as paraphrasing tools become more sophisticated.",
       "source": "Copyleaks",
       "sourceUrl": "https://copyleaks.com/blog/what-educators-should-know-about-ai-detection-in-2026",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "Free A.I. Detection Tool Gains Student Adoption",
-      "summary": "Detector.io is seeing increased use among students who want to check their own work before submission. The free tool analyzes up to 3,000 words for A.I.-generated patterns, reflecting a shift toward students self-monitoring their writing processes.",
-      "category": "Latest AI Products",
+      "headline": "Free A.I. Detection Tool Sees Increased Student Adoption",
+      "summary": "Detector.io is seeing increased use among students who want to check their own work before submission, according to Morocco World News. The free tool analyzes up to 3,000 words for A.I.-generated patterns, reflecting a shift toward students self-monitoring their writing processes.",
       "source": "Morocco World News",
       "sourceUrl": "https://www.moroccoworldnews.com/2026/03/283245/how-detector-io-is-helping-spot-ai-patterns-in-the-classroom/",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "Indian University Flags Plagiarism in 95% of PhD Theses",
-      "summary": "Lucknow University detected plagiarism in 95% of PhD theses submitted this year, highlighting ongoing academic integrity challenges. The finding underscores the continued importance of plagiarism detection alongside emerging A.I. content concerns.",
-      "category": "Ethical AI",
+      "headline": "Lucknow University Flags Plagiarism in 95% of PhD Theses",
+      "summary": "Lucknow University detected plagiarism in 95% of PhD theses submitted this year, according to MSN. The finding underscores ongoing academic integrity challenges alongside emerging A.I. content concerns.",
       "source": "MSN",
-      "sourceUrl": "https://www.msn.com/en-in/money/news/academic-integrity-alert-lu-flags-plagiarism-in-95-of-phd-theses-submitted-this-year/ar-AA1YWtBU?uxmode=ruby&apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
-      "isCallback": false
+      "sourceUrl": "https://www.msn.com/en-in/money/news/academic-integrity-alert-lu-flags-plagiarism-in-95-of-phd-theses-submitted-this-year/ar-AA1YWtBU",
+      "category": "Ethical AI"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-12",
     "dayOfWeek": "Thursday",
-    "editorialLens": "Connecting the Dots",
-    "themes": [
-      "AI literacy",
-      "critical thinking",
-      "campus policies",
-      "detection tools",
-      "academic integrity"
-    ],
-    "storiesWatching": [
-      "Penn State A.I. literacy program implementation",
-      "Community college A.I. policy development",
-      "A.I. detection tool evolution"
-    ],
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "publishedAt": "2026-03-20T03:30:05.466Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "Connecting the Dots"
   }
 }

@@ -3,70 +3,45 @@
     "date": "2026-03-04",
     "dayOfWeek": "Wednesday",
     "editorialLens": "The Practitioner's Playbook",
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-04.mp3",
-    "audioDuration": "5:37",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Wednesday, March 4th.\n\nA UK university just launched its first fully cross-disciplinary AI institute, and here's what caught my attention: they put their Pro Vice-Chancellor for Teaching and Learning in charge. That's not your typical research center leadership choice.\n\n-\nIn our Latest AI Products category today, Maryville College is planning their second annual AI Summit for May 12th and 13th. This year they're expanding beyond education to include business, nonprofit, and community perspectives. They're accepting session proposals until March 18th and emphasizing liberal arts approaches to A.I.'s ethical and social implications. Worth noting if you're looking for examples of how smaller institutions are building community around A.I. conversations.\n\n-\nFrom the Practical Tips file, here's an interesting approach from Cedarville University. Dr. George Landon is using his Air Force Academy space surveillance research to teach students about A.I.'s real-world limitations. His method shows students how A.I. models often fail with noisy data, which fosters healthy skepticism alongside practical skills. It's a clever way to ground A.I. education in actual research problems rather than theoretical examples.\n\n-\nAnd here's another practical approach worth watching. A writing professor at Babson College describes shifting from neutral A.I. observer to active guide, helping students understand when A.I. shortcuts actually undermine their learning. The approach involves comparing A.I.-assisted and unassisted work to develop student discernment about tool usage. It's that ongoing challenge of teaching students not just how to use these tools, but when not to use them.\n\n-\nNow, let's get to that story I mentioned at the top. The University of Huddersfield has launched the Institute for Applied Artificial Intelligence, and it's their first fully cross-disciplinary research center. Professor John Murray is leading it, bringing together faculty from computing, engineering, health, business, sciences, education, and the arts, plus professional staff. They're focusing on responsible A.I. development and deployment to improve workplace efficiency, with support from two humanoid robots named Harold and Skye for assisted living research.\n\n-\nWhat makes this interesting is the timing and structure. This aligns with the UK government's Industrial Strategy, which identifies A.I. as a frontier industry in digital technologies. But unlike many A.I. programs that stay siloed within computer science departments, Huddersfield deliberately includes humanities and social sciences faculty. That cross-disciplinary approach could offer real advantages in addressing A.I.'s ethical dimensions and practical applications.\n\n-\nBut here's where it gets complicated. Faculty from different disciplines bring varying perspectives on research methodologies, publication standards, and collaboration norms. Anyone who's tried to coordinate across departments knows these challenges. The inclusion of professional staff alongside academics suggests they recognize that A.I. implementation requires operational expertise, not just research knowledge. That's a practical insight many institutions miss.\n\n-\nThe resource requirements are substantial. They're recruiting two research fellows, they need specialized facilities like their Smart House, and coordination across multiple schools requires significant administrative support. The institute's success will likely depend on whether they can maintain coherence across disciplines while producing research with genuine real-world impact.\n\n-\nFor those of us thinking about institutional A.I. strategies, this raises some practical questions. Is this kind of comprehensive approach necessary, or might more focused initiatives be more manageable? The emphasis on responsible deployment and ethical considerations addresses concerns many faculty have about A.I.'s impact on education and society. But the execution challenges are considerable.\n\n-\nWhat I find most interesting is that leadership choice, putting the Pro Vice-Chancellor for Teaching and Learning in charge. It suggests Huddersfield sees A.I. integration as fundamentally about pedagogy and student learning, not just research output. For those managing heavy teaching loads with limited research support, the question becomes whether we need formal institutes to achieve similar cross-disciplinary collaboration.\n\n-\nCould faculty learning communities or professional development programs create similar connections? Say, between nursing faculty and computer science instructors? The resource requirements at Huddersfield are substantial, but the underlying principle of bringing diverse perspectives together around A.I. challenges might be scalable to different contexts. The key might be fostering these conversations without requiring the formal infrastructure.\n\n-\nThis also connects to what we're seeing at places like Cedarville and Babson, where individual faculty are finding ways to integrate A.I. considerations into their existing work. Dr. Landon uses his space debris research to teach A.I. limitations. The Babson writing professor develops student discernment about tool usage. These approaches don't require institutional reorganization, but they do require intentional pedagogical thinking.\n\n-\nThe practical question for many institutions is whether cross-disciplinary A.I. collaboration needs formal structure or whether it can emerge from existing relationships and shared challenges. Huddersfield's model suggests that effective A.I. integration requires thinking beyond individual departments, but their approach isn't the only path forward.\n\n-\nThese different approaches, from formal institutes to individual faculty innovation, all grapple with the same fundamental challenge: how do we help students and colleagues navigate A.I. tools thoughtfully rather than just adopting them uncritically?\n\n-\nThat's your Innovation Pulse for Wednesday. Find full coverage and links at innovating higher ed dot com. See you Thursday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "University of Huddersfield Launches Cross-Disciplinary AI Institute",
-    "hook": "A UK university creates its first fully cross-disciplinary institute, bringing together faculty from computing to arts for applied AI research.",
-    "category": "Case Study",
+  "topStory": {
+    "headline": "University of Huddersfield Launches Cross-Disciplinary A.I. Institute",
+    "summary": "The University of Huddersfield has launched the Institute for Applied Artificial Intelligence, the institution's first fully cross-disciplinary research center, according to the university. Professor John Murray leads the institute, which brings together faculty from computing, engineering, health, business, sciences, education, and the arts, along with professional staff.\n\nThe center focuses on responsible A.I. development and deployment to improve workplace efficiency. The institute includes two humanoid robots named Harold and Skye for assisted living research. The launch aligns with the UK government's Industrial Strategy, which identifies A.I. as a frontier industry in the digital technologies sector.\n\nUnlike A.I. programs that remain siloed within computer science departments, Huddersfield's approach deliberately includes humanities and social sciences faculty. The Pro Vice-Chancellor for Teaching and Learning leads the institute, signaling that Huddersfield views A.I. integration as connected to pedagogy and student learning. The institute is recruiting two research fellows and requires specialized facilities for its cross-disciplinary work.",
     "source": "University of Huddersfield",
     "sourceUrl": "https://www.hud.ac.uk/news/2026/march/new-institute-focuses-applied-ai/",
-    "editorialTake": "The University of Huddersfield has launched the Institute for Applied Artificial Intelligence, marking the institution's first fully cross-disciplinary research center. Led by Professor John Murray, the institute brings together faculty from computing, engineering, health, business, sciences, education, and the arts, along with professional staff. The center focuses on responsible AI development and deployment to improve workplace efficiency, with support from two humanoid robots named Harold and Skye for assisted living research.\n\nThis launch reflects a broader trend in higher education toward interdisciplinary AI initiatives that move beyond computer science departments. Unlike many AI programs that remain siloed within technical fields, Huddersfield's approach deliberately includes humanities and social sciences faculty. The timing aligns with the UK government's Industrial Strategy, which identifies AI as a frontier industry in the digital technologies sector. What's particularly noteworthy is that the Pro Vice-Chancellor for Teaching and Learning is leading the institute, signaling institutional commitment to embedding AI across curriculum and operations.\n\nFrom a practical standpoint, this model raises interesting questions for institutions considering their own AI strategies. The cross-disciplinary structure could offer advantages in addressing AI's ethical dimensions and real-world applications, but it also presents coordination challenges. Faculty from different disciplines bring varying perspectives on research methodologies, publication standards, and collaboration norms. The inclusion of professional staff alongside academics suggests recognition that AI implementation requires operational expertise, not just research knowledge.\n\nFor educators wondering about institutional AI initiatives, Huddersfield's approach offers both inspiration and caution. The emphasis on responsible deployment and ethical considerations addresses concerns many faculty have about AI's impact on education and society. However, the resource requirements are substantial — two research fellows are being recruited, specialized facilities like the Smart House are needed, and coordination across multiple schools requires significant administrative support. The institute's success will likely depend on whether it can maintain coherence across disciplines while producing research with genuine real-world impact.\n\nThe practical question for many institutions is whether this kind of comprehensive approach is necessary or whether more focused initiatives might be more manageable. Huddersfield's model suggests that effective AI integration requires thinking beyond individual departments, but the execution challenges are considerable.",
-    "pullQuote": "The emphasis on responsible deployment and ethical considerations addresses concerns many faculty have about AI's impact on education and society.",
-    "editorialCallout": "What I find most interesting about this initiative is how it positions a Pro Vice-Chancellor for Teaching and Learning as the institute director. In my experience with community college budgets and governance structures, this kind of high-level academic leadership commitment is both encouraging and revealing. It suggests Huddersfield sees AI integration as fundamentally about pedagogy and student learning, not just research output. For those of us managing heavy teaching loads with limited research support, the question becomes whether we need formal institutes to achieve similar cross-disciplinary collaboration. Could our faculty learning communities or professional development programs create similar connections between, say, our nursing faculty and computer science instructors? The resource requirements here are substantial, but the underlying principle of bringing diverse perspectives together around AI challenges might be scalable to our contexts. How might we foster these conversations without the formal infrastructure?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Abstract visualization of interconnected academic disciplines converging around AI technology, diverse faculty collaboration"
+    "category": "Case Study"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "Maryville College Plans Second Annual AI Summit",
-      "summary": "Maryville College will host its second annual AI Summit on May 12-13, expanding beyond last year's education focus to include business, nonprofit, and community perspectives. The event accepts session proposals until March 18 and emphasizes liberal arts approaches to AI's ethical and social implications.",
-      "category": "Latest AI Products",
+      "headline": "Maryville College Plans Second Annual A.I. Summit",
+      "summary": "Maryville College will host its second annual A.I. Summit on May 12-13, expanding beyond education to include business, nonprofit, and community perspectives, according to Knox TN Today. The event accepts session proposals until March 18 and emphasizes liberal arts approaches to A.I.'s ethical and social implications.",
       "source": "Knox TN Today",
       "sourceUrl": "https://www.knoxtntoday.com/?p=179263",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "Cedarville Professor Uses Space Debris Research for AI Education",
-      "summary": "Dr. George Landon at Cedarville University applies his Air Force Academy space surveillance research to teach students about AI's real-world limitations. His approach shows students how AI models often fail with noisy data, fostering healthy skepticism alongside practical skills.",
-      "category": "Practical Tips",
+      "headline": "Cedarville Professor Uses Space Debris Research for A.I. Education",
+      "summary": "Dr. George Landon at Cedarville University applies his Air Force Academy space surveillance research to teach students about A.I.'s real-world limitations, according to Cedarville University. His approach shows students how A.I. models often fail with noisy data, fostering skepticism alongside practical skills.",
       "source": "Cedarville University",
       "sourceUrl": "https://www.cedarville.edu/news/2026/professor-s-research-on-space-debris-informs-hands-on-ai-education",
-      "isCallback": false
+      "category": "Practical Tips"
     },
     {
       "headline": "Writing Professor Advocates Teaching Students When to Struggle",
-      "summary": "A Babson College writing professor describes shifting from neutral AI observer to active guide, helping students understand when AI shortcuts undermine learning. The approach involves comparing AI-assisted and unassisted work to develop student discernment about tool usage.",
-      "category": "Practical Tips",
+      "summary": "A Babson College writing professor describes shifting from neutral A.I. observer to active guide, helping students understand when A.I. shortcuts undermine learning, according to Economic Times Education. The approach involves comparing A.I.-assisted and unassisted work to develop student discernment about tool usage.",
       "source": "Economic Times Education",
       "sourceUrl": "https://education.economictimes.indiatimes.com/news/industry/writing-professors-new-task-in-age-of-ai-teaching-students-when-to-struggle/129630550",
-      "isCallback": false
+      "category": "Practical Tips"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-04",
     "dayOfWeek": "Wednesday",
-    "editorialLens": "The Practitioner's Playbook",
-    "themes": [
-      "interdisciplinary collaboration",
-      "practical AI implementation",
-      "institutional strategy",
-      "pedagogy versus technology",
-      "resource allocation"
-    ],
-    "storiesWatching": [
-      "Maryville College AI Summit outcomes",
-      "Huddersfield Institute progress updates",
-      "Cross-disciplinary AI program developments"
-    ],
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
-    "publishedAt": "2026-03-18T18:48:22.283Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Practitioner's Playbook"
   }
 }

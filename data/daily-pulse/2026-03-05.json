@@ -3,94 +3,66 @@
     "date": "2026-03-05",
     "dayOfWeek": "Thursday",
     "editorialLens": "Connecting the Dots",
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-05.mp3",
-    "audioDuration": "6:16",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Thursday, March 5th.\n\nIT teams across higher education are discovering that managing campus AI requires something more sophisticated than just saying yes or no. EdTech Magazine reports on how institutions are embracing risk frameworks to handle what they're calling the \"shadow AI\" reality.\n\n-\nLet's start with our quick hits by category.\n\nFrom our Case Study file today, the University of Delaware is positioning itself as an AI healthcare hub. Computer science professor Weisong Shi guest-edited a special journal issue highlighting Delaware's collaborative approach between universities, health systems, and government. The state is emerging as what they're calling a \"living lab\" for AI-enabled healthcare innovation.\n\n-\nIn our Latest AI Products category, Chicago Booth has partnered with MasterClass on AI business education. The business school launched MasterClass Executive, a 12-week AI-native certificate program developed with OpenAI. The program combines Booth faculty expertise with global business leaders to prepare professionals for AI-driven markets through personalized, self-paced learning.\n\n-\nFrom Beyond Ed, UH Hilo Professor Winston Wu has been named a National AI Research Fellow. Wu joins 25 national ambassadors in the NSF NAIRR AI Education Fellows program. The fellowship supports faculty in integrating AI resources into courses and advancing AI education through the NAIRR Pilot Classroom initiative.\n\n-\nNext up in Insights and Trends, Indian EdTech leader Harshil Gala from Navneet Education outlined their AI literacy strategy. He's emphasizing teacher training, problem-solving over screen time, and parent engagement. The company offers free AI tools to schools while partnering with IIT Gandhinagar on responsible AI usage.\n\n-\nAnd here's one worth watching from our Ethical AI category. Over 1,600 Cal State faculty, students, and alumni signed a petition opposing renewal of the system's $17 million ChatGPT Edu contract. Critics argue the investment is financially irresponsible given budget cuts and question the educational value of generative AI tools.\n\n-\nMeanwhile, Colorado released unanimous recommendations to revise their landmark 2024 AI Act. A state working group focused on disclosure requirements and shared liability between AI developers and deployers. The proposal aims to balance consumer protection with innovation concerns.\n\n-\nNow, let's get to that story I mentioned at the top about IT teams embracing AI risk frameworks.\n\n-\nEdTech Magazine's coverage reveals how higher education IT leaders are implementing what they call Continuous Threat Exposure Management approaches to AI governance. The idea is straightforward but sophisticated. Instead of blanket policies, institutions are developing frameworks that help them understand what AI systems exist in their environment, which ones matter most to their risk posture, and how to continuously reduce that risk as new tools emerge.\n\nWhat's striking about this shift is how it reflects the maturation of AI governance thinking in higher education. We've moved past the binary choice of \"allow AI\" or \"ban AI\" toward more nuanced approaches that recognize the reality of shadow AI adoption. The article acknowledges that AI tools are entering campuses through multiple channels. Centrally procured platforms, departmental projects, faculty-led pilots, and unofficial student and staff adoption. This makes comprehensive oversight both essential and challenging.\n\nThe framework approach makes particular sense in higher education's complex environment. Unlike corporate settings where IT departments might have more centralized control, colleges and universities operate with distributed decision-making across departments, faculty autonomy in teaching methods, and diverse stakeholder needs from research to student services. A one-size-fits-all policy simply doesn't work when you're dealing with everything from student support chatbots to research computing clusters.\n\nServiceNow's recent acquisitions of Armis and Veza are being positioned as key components in creating integrated platforms where asset visibility and AI governance work together. The promise is appealing, but the human element of governance remains irreplaceable. Understanding context, making judgment calls, and adapting to new use cases still requires skilled personnel who can interpret the data and make risk assessments.\n\nThe emphasis on creating \"walled gardens\" for AI experimentation rather than blanket restrictions reflects a more sophisticated understanding of academic culture. Universities thrive on innovation and exploration. IT teams that position themselves as enablers rather than gatekeepers are more likely to build the trust necessary for effective governance. The suggestion to start with AI-powered service desk and student support systems makes practical sense. These are high-impact applications where the governance lessons learned can be applied elsewhere on campus.\n\nBut here's what the coverage doesn't fully address. The resource challenge this approach represents. Implementing comprehensive risk management requires not just technology platforms but also skilled personnel. For institutions already stretched thin on IT staffing, adding AI governance to the workload isn't trivial. The challenge, particularly for community colleges operating with lean IT staffs and tight budgets, is implementing these frameworks without creating administrative burden that outweighs the benefits.\n\nWhat I find most interesting about this shift toward risk frameworks is how it mirrors what we've seen with other technology adoptions. The recognition that governance works better than prohibition. The institutions making the most progress with AI aren't necessarily the ones with the biggest budgets or the most sophisticated IT departments. They're the ones that have figured out how to create clear boundaries while preserving space for experimentation.\n\nThe real promise of structured risk frameworks is that they let you change \"no\" to \"yes, within these boundaries.\" That's a fundamentally different conversation with faculty, and it's one that's more likely to build the collaborative relationships that effective AI governance requires.\n\n-\nThe question becomes how we build governance systems that actually serve teaching and learning rather than just satisfying compliance requirements. That's your Innovation Pulse for Thursday. Find full coverage and links at innovating higher ed dot com. See you Friday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "IT Leaders Embrace Risk Frameworks as AI Governance Reality Sets In",
-    "hook": "As shadow AI spreads across campuses, IT teams are discovering that managing AI requires more than just saying yes or no.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "EdTech Magazine: IT Leaders Adopt Risk Frameworks for Campus A.I. Governance",
+    "summary": "Higher education IT leaders are implementing Continuous Threat Exposure Management approaches to A.I. governance, according to EdTech Magazine. The strategy helps institutions understand what A.I. systems exist in their environment, which ones matter most to their risk posture, and how to continuously reduce risk as new tools emerge.\n\nThe framework approach recognizes that A.I. tools are entering campuses through multiple channels: centrally procured platforms, departmental projects, faculty-led pilots, and unofficial student and staff adoption. ServiceNow's recent acquisitions of Armis and Veza are being positioned as components for creating integrated platforms where asset visibility and A.I. governance work together.\n\nThe approach emphasizes creating \"walled gardens\" for A.I. experimentation rather than blanket restrictions, reflecting an understanding of academic culture where universities thrive on innovation and exploration. The article suggests starting with A.I.-powered service desk and student support systems as high-impact applications where governance lessons can be applied elsewhere on campus. Implementation requires skilled personnel who can interpret data, make risk assessments, and maintain ongoing oversight.",
     "source": "EdTech Magazine",
     "sourceUrl": "https://edtechmagazine.com/higher/article/2026/03/applying-ai-risk-frameworks-higher-education-what-it-leaders-need-know?amp",
-    "editorialTake": "EdTech Magazine reports on how higher education IT leaders are implementing AI risk frameworks, particularly through Continuous Threat Exposure Management (CTEM) approaches that help institutions understand what AI systems exist in their environment, which ones matter most to their risk posture, and how to continuously reduce that risk as new tools emerge. ServiceNow's recent acquisitions of Armis and Veza are being positioned as key components in creating integrated platforms where CTEM-style asset visibility and AI governance work together.\n\nWhat's striking about this coverage is how it reflects the maturation of AI governance thinking in higher education. We've moved past the binary choice of \"allow AI\" or \"ban AI\" toward more nuanced approaches that recognize the reality of shadow AI adoption. The article acknowledges that AI tools are entering campuses through multiple channels — centrally procured platforms, departmental projects, faculty-led pilots, and unofficial student and staff adoption — making comprehensive oversight both essential and challenging.\n\nThe framework approach makes particular sense in higher education's complex environment. Unlike corporate settings where IT departments might have more centralized control, colleges and universities operate with distributed decision-making across departments, faculty autonomy in teaching methods, and diverse stakeholder needs from research to student services. A one-size-fits-all policy simply doesn't work when you're dealing with everything from student support chatbots to research computing clusters.\n\nThe emphasis on creating \"walled gardens\" for AI experimentation rather than blanket restrictions reflects a more sophisticated understanding of academic culture. Universities thrive on innovation and exploration, and IT teams that position themselves as enablers rather than gatekeepers are more likely to build the trust necessary for effective governance. The suggestion to start with AI-powered service desk and student support systems makes practical sense — these are high-impact, high-risk applications where the governance lessons learned can be applied elsewhere on campus.\n\nWhat the article doesn't fully address is the resource challenge this approach represents. Implementing comprehensive CTEM requires not just technology platforms but also skilled personnel who can interpret the data, make risk assessments, and maintain ongoing oversight. For institutions already stretched thin on IT staffing, adding AI governance to the workload isn't trivial. The promise of integrated platforms like ServiceNow's offering is appealing, but the human element of governance — understanding context, making judgment calls, and adapting to new use cases — remains irreplaceable.",
-    "pullQuote": "The real promise of structured risk frameworks is that they let you change 'no' to 'yes — within these boundaries.'",
-    "editorialCallout": "What I find most interesting about this shift toward risk frameworks is how it mirrors what we've seen in community colleges with other technology adoptions — the recognition that governance works better than prohibition. In my work with faculty, I've observed that the institutions making the most progress with AI aren't necessarily the ones with the biggest budgets or the most sophisticated IT departments. They're the ones that have figured out how to create clear boundaries while preserving space for experimentation. The challenge, particularly for community colleges operating with lean IT staffs and tight budgets, is implementing these frameworks without creating administrative burden that outweighs the benefits. How do we build governance systems that actually serve teaching and learning rather than just satisfying compliance requirements?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Abstract visualization of interconnected systems with security boundaries, governance framework concept"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "University of Delaware Positions as AI Healthcare Hub",
-      "summary": "Computer science professor Weisong Shi guest-edited a special journal issue on AI in healthcare, highlighting Delaware's collaborative approach between universities, health systems, and government. The state is emerging as a \"living lab\" for AI-enabled healthcare innovation.",
-      "category": "Case Study",
+      "headline": "University of Delaware Positions as A.I. Healthcare Hub",
+      "summary": "Computer science professor Weisong Shi guest-edited a special journal issue on A.I. in healthcare, highlighting Delaware's collaborative approach between universities, health systems, and government, according to Newswise. The state is emerging as a model for A.I.-enabled healthcare innovation.",
       "source": "Newswise",
       "sourceUrl": "https://www.newswise.com/articles/new-special-journal-issue-explores-how-artificial-intelligence-is-reshaping-medicine-and-why-delaware-is-emerging-as-a-national-model",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
-      "headline": "Chicago Booth Partners with MasterClass on AI Business Education",
-      "summary": "The business school launched MasterClass Executive, a 12-week AI-native certificate program developed with OpenAI. The program combines Booth faculty expertise with global business leaders to prepare professionals for AI-driven markets through personalized, self-paced learning.",
-      "category": "Latest AI Products",
+      "headline": "Chicago Booth Partners with MasterClass on A.I. Business Education",
+      "summary": "The University of Chicago Booth School of Business launched MasterClass Executive, a 12-week A.I.-native certificate program developed with OpenAI, according to Chicago Booth. The program combines Booth faculty expertise with global business leaders to prepare professionals for A.I.-driven markets.",
       "source": "University of Chicago Booth School of Business",
       "sourceUrl": "https://www.chicagobooth.edu/why-booth/stories/hub-stories/2026/march/chicago-booth-partners-with-masterclass-on-ai-era-business-education",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "UH Hilo Professor Named National AI Research Fellow",
-      "summary": "Winston Wu joins 25 national ambassadors in the NSF NAIRR AI Education Fellows program. The fellowship supports faculty in integrating AI resources into courses and advancing AI education through the NAIRR Pilot Classroom initiative.",
-      "category": "Beyond Ed",
+      "headline": "UH Hilo Professor Named National A.I. Research Fellow",
+      "summary": "Winston Wu joins 25 national ambassadors in the NSF NAIRR A.I. Education Fellows program, according to the University of Hawaii System. The fellowship supports faculty in integrating A.I. resources into courses and advancing A.I. education through the NAIRR Pilot Classroom initiative.",
       "source": "University of Hawaii System",
       "sourceUrl": "http://www.hawaii.edu/news/article.php?aId=14440",
-      "isCallback": false
+      "category": "Beyond Ed"
     },
     {
-      "headline": "Indian EdTech Leader Outlines AI Literacy Strategy",
-      "summary": "Navneet Education's Harshil Gala discusses preparing students for an AI-driven world, emphasizing teacher training, problem-solving over screen time, and parent engagement. The company offers free AI tools to schools while partnering with IIT Gandhinagar on responsible AI usage.",
-      "category": "Insights & Trends",
+      "headline": "Indian EdTech Leader Outlines A.I. Literacy Strategy",
+      "summary": "Navneet Education's Harshil Gala discusses preparing students for an A.I.-driven world, emphasizing teacher training, problem-solving over screen time, and parent engagement, according to ET Edge Insights. The company offers free A.I. tools to schools while partnering with IIT Gandhinagar on responsible A.I. usage.",
       "source": "ET Edge Insights",
       "sourceUrl": "https://etedge-insights.com/industry/education/preparing-students-for-an-ai-driven-world-lessons-from-the-classroom/amp/",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
       "headline": "Cal State Faculty Petition Against OpenAI Contract Renewal",
-      "summary": "Over 1,600 faculty, students, and alumni signed a petition opposing renewal of Cal State's $17 million ChatGPT Edu contract. Critics argue the investment is financially irresponsible given budget cuts and question the educational value of generative AI tools.",
-      "category": "Ethical AI",
+      "summary": "Over 1,600 faculty, students, and alumni signed a petition opposing renewal of Cal State's $17 million ChatGPT Edu contract, according to Tech Policy Press. Critics argue the investment is financially irresponsible during budget cuts and question the educational value of generative A.I. tools.",
       "source": "Tech Policy Press",
       "sourceUrl": "https://techpolicy.press/how-cal-state-became-ground-zero-for-the-fight-over-ai-in-higher-education",
-      "isCallback": false
+      "category": "Ethical AI"
     },
     {
-      "headline": "Colorado Revises Comprehensive AI Law Framework",
-      "summary": "A state working group released unanimous recommendations to revise Colorado's landmark 2024 AI Act, focusing on disclosure requirements and shared liability between AI developers and deployers. The proposal aims to balance consumer protection with innovation concerns.",
-      "category": "Ethical AI",
+      "headline": "Colorado Working Group Recommends Revisions to 2024 A.I. Law",
+      "summary": "A state working group released unanimous recommendations to revise Colorado's 2024 A.I. Act, focusing on disclosure requirements and shared liability between A.I. developers and deployers, according to StateScoop. The proposal aims to balance consumer protection with innovation concerns.",
       "source": "StateScoop",
       "sourceUrl": "https://statescoop.com/colorado-releases-new-ai-policy-framework-aimed-revising-the-states-2024-law/",
-      "isCallback": false
+      "category": "Ethical AI"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-05",
     "dayOfWeek": "Thursday",
-    "editorialLens": "Connecting the Dots",
-    "themes": [
-      "AI governance",
-      "risk management",
-      "faculty resistance",
-      "public-private partnerships",
-      "educational innovation"
-    ],
-    "storiesWatching": [
-      "Cal State OpenAI contract renewal decision by June 30",
-      "Colorado AI Act legislative changes",
-      "ServiceNow AI governance platform rollout"
-    ],
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "publishedAt": "2026-03-18T21:52:00.739Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "Connecting the Dots"
   }
 }

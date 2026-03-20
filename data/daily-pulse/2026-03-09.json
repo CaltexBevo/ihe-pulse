@@ -3,70 +3,45 @@
     "date": "2026-03-09",
     "dayOfWeek": "Monday",
     "editorialLens": "The Hard Question",
-    "lensDescription": "Examine complexity and tradeoffs. Surface the questions worth asking.",
-    "lensColor": "#fb7185",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-09.mp3",
-    "audioDuration": "5:11",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Monday, March 9th, 2026.\n\nWhen students start using A.I. tools to make their human-written work look less like A.I., we may have reached a strange new phase in the campus technology debate. N.B.C. News investigates how the detection arms race is playing out on campuses, and what it means for academic integrity.\n\n-\n\nFirst, let's catch up on three other stories making waves in higher ed this week.\n\n-\n\nFrom our Ethical A.I. file, the Conference on College Composition and Communication has passed a resolution affirming students' and faculty's right to decline generative A.I. in writing classrooms. According to Inside Higher Ed, 15 percent of faculty report their institutions mandate A.I. use, while 81 percent report required use of learning management systems with embedded A.I. tools they cannot disable. The resolution represents significant pushback against what some critics call compulsory A.I. adoption.\n\n-\n\nIn our Insights and Trends category, a YouGov survey of more than 2,300 U.K. students found that 75 percent of those using A.I. tools feel stressed about being wrongfully flagged for plagiarism by detection tools. Universities U.K. chief executive Vivienne Stern called for institutions to reconsider detection tools that give false positives. The survey suggests A.I. anxiety is affecting students on both sides of the Atlantic.\n\n-\n\nAnd from our Case Study file, Washington University in St. Louis launched Plus A.I., an academic initiative led by Provost Mark D. West to integrate artificial intelligence thoughtfully into teaching, learning, and research. The initiative includes an A.I. literacy module for undergraduates and an A.I. Curriculum Corps to support faculty in developing A.I. integrated courses.\n\n-\n\nNow, let's get back to that story I mentioned at the top about students using A.I. to prove they're human.\n\nN.B.C. News reporter Tyler Kingkade investigated a growing phenomenon on college campuses. Students are turning to A.I. tools called humanizers to make their work less likely to be flagged by A.I. detection software, even when they haven't used A.I. to write their papers in the first place.\n\nThe numbers are striking. According to Kingkade's reporting, Turnitin has identified 150 A.I. humanizer tools, some charging up to $50 per subscription. In October alone, 43 of these humanizers tracked by Turnitin had 33.9 million combined website visits. Meanwhile, research cited in the article found that Turnitin's detection tool failed to identify more than 25 percent of A.I. generated or A.I. rephrased texts.\n\nErin Ramirez, an associate professor of education at California State University, Monterey Bay, offered a pointed observation. She told N.B.C. News, quote, Students now are trying to prove that they're human, even though they might have never touched A.I. ever. So where are we? We're just in a spiral that will never end, end quote. Ramirez also noted a troubling pattern, saying, quote, It's almost like the better the writer you are, the more A.I. thinks you're A.I., end quote.\n\nThe stakes are real. The article describes students who have faced academic discipline, with lawsuits filed at institutions including Yale University and Adelphi University over accusations students say were baseless. At the University at Buffalo, more than 1,500 students signed a petition against the use of A.I. detector software.\n\nTricia Bertram Gallant, director of the Academic Integrity Office at U.C. San Diego and president emeritus of the International Center for Academic Integrity, offered perspective on institutional responses. She told N.B.C. News, quote, If it's an unsupervised assessment, don't bother trying to ban A.I. And don't bother trying to prove A.I. was used because you end up spending more time doing that, end quote.\n\nWhat makes this story compelling for our Hard Question lens is the paradox it reveals. Institutions invested in detection technology to catch cheating, but the technology's unreliability has created a new problem. Students now use counter technology to protect legitimate work. The detector humanizer dynamic has become an arms race where the original goal of ensuring academic integrity seems increasingly distant.\n\nFor those of us in community college settings, this raises practical questions. Many of our students are returning adults, non native English speakers, or first generation college students whose writing patterns may differ from what A.I. detectors consider normal. The N.B.C. News article notes that A.I. detectors have been criticized as more likely to flag non native English speakers. In diverse student populations like ours, false positives are not just individual frustrations but potential equity concerns.\n\n-\n\nThe humanizer phenomenon surfaces a question worth sitting with. Are our detection systems creating more problems than they solve? That's your Innovation Pulse for Monday. Find full coverage and links at innovating higher ed dot com. See you Tuesday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "The A.I. Detection Arms Race: Students Turn to 'Humanizers' to Avoid False Accusations",
-    "hook": "When students start using A.I. tools to make their human-written work look less like A.I., we may have reached a strange new phase in the campus technology debate.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "NBC News: Students Use 'Humanizer' Tools to Avoid A.I. Detection False Positives",
+    "summary": "Students are turning to A.I. tools called \"humanizers\" to make their work less likely to be flagged by A.I. detection software, even when they have not used A.I. to write their papers, according to NBC News reporter Tyler Kingkade. Turnitin has identified 150 A.I. humanizer tools, some charging up to $50 per subscription. In October alone, 43 of these humanizers tracked by Turnitin had 33.9 million combined website visits.\n\nResearch cited in the article found that Turnitin's detection tool failed to identify more than 25% of A.I.-generated or A.I.-rephrased texts. Erin Ramirez, an associate professor at California State University, Monterey Bay, told NBC News: \"Students now are trying to prove that they're human, even though they might have never touched AI ever. So where are we? We're just in a spiral that will never end.\" She also noted: \"It's almost like the better the writer you are, the more AI thinks you're AI.\"\n\nStudents have faced academic discipline over A.I. detection accusations, with lawsuits filed at Yale University and Adelphi University. At the University at Buffalo, more than 1,500 students signed a petition against A.I. detector software. Tricia Bertram Gallant, director of the Academic Integrity Office at UC San Diego, told NBC News: \"If it's an unsupervised assessment, don't bother trying to ban AI. And don't bother trying to prove AI was used because you end up spending more time doing that.\"",
     "source": "NBC News",
     "sourceUrl": "https://www.nbcnews.com/tech/internet/college-students-ai-cheating-detectors-humanizers-rcna253878",
-    "editorialTake": "NBC News reporter Tyler Kingkade investigated a growing phenomenon on college campuses: students are turning to A.I. tools called 'humanizers' to make their work less likely to be flagged by A.I. detection software, even when they haven't used A.I. to write their papers in the first place.\n\nThe numbers paint a striking picture. According to Kingkade's reporting, Turnitin has identified 150 A.I. humanizer tools, some charging up to $50 per subscription. In October alone, 43 of these humanizers tracked by Turnitin had 33.9 million combined website visits. Meanwhile, research cited in the article found that Turnitin's detection tool failed to identify more than 25 percent of A.I.-generated or A.I.-rephrased texts.\n\nErin Ramirez, an associate professor of education at California State University, Monterey Bay, offered a pointed observation to NBC News: 'Students now are trying to prove that they're human, even though they might have never touched AI ever. So where are we? We're just in a spiral that will never end.' Ramirez also noted a troubling pattern: 'It's almost like the better the writer you are, the more AI thinks you're AI.'\n\nThe stakes are real. The article describes students who have faced academic discipline, with lawsuits filed at institutions including Yale University and Adelphi University over accusations students say were baseless. At the University at Buffalo, more than 1,500 students signed a petition against the use of A.I. detector software.\n\nTricia Bertram Gallant, director of the Academic Integrity Office at UC San Diego and president emeritus of the International Center for Academic Integrity, offered perspective on institutional responses: 'If it's an unsupervised assessment, don't bother trying to ban AI. And don't bother trying to prove AI was used because you end up spending more time doing that.'\n\nWhat makes this story compelling for Monday's 'Hard Question' lens is the paradox it reveals. Institutions invested in detection technology to catch cheating, but the technology's unreliability has created a new problem: students using counter-technology to protect legitimate work. The detector-humanizer dynamic has become an arms race where the original goal of ensuring academic integrity seems increasingly distant.\n\nFor those of us in community college settings, this raises practical questions. Many of our students are returning adults, non-native English speakers, or first-generation college students whose writing patterns may differ from what A.I. detectors consider 'normal.' The NBC News article notes that A.I. detectors have been criticized as more likely to flag non-native English speakers. In diverse student populations like ours, false positives aren't just individual frustrations but potential equity concerns.\n\nThe article also surfaces a deeper tension. As Turnitin's chief product officer Annie Chechitelli told NBC News: 'The most important question is not so much about detection, it's really about where's the line.' That question about where we draw lines, what we're actually assessing, and how we build trust with students may be more important than any technological solution.",
-    "pullQuote": "Students now are trying to prove that they're human, even though they might have never touched AI ever. So where are we? We're just in a spiral that will never end.",
-    "editorialCallout": "What I find most interesting about this story is how it flips the usual narrative. We've spent two years focused on catching students who use A.I. to cheat. Now we're seeing students who never used A.I. scrambling to prove their innocence. At community colleges, where we serve diverse student populations including many non-native English speakers and returning adults, the equity implications of unreliable detection tools deserve serious attention. The question worth thinking about: Are we creating systems that penalize good writers while missing actual cheating? And if detection is this unreliable, what does that mean for how we design assessments?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Split image showing a student writing by hand while a computer screen shows 'AI DETECTED' warning, illustrating the paradox of human work being flagged"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
       "headline": "Writing Faculty Assert Right to Refuse A.I. in Classrooms",
-      "summary": "The Conference on College Composition and Communication passed a resolution affirming students' and faculty's right to decline generative A.I. in writing classrooms. According to Inside Higher Ed, 15 percent of faculty report their institutions mandate A.I. use, while 81 percent report required use of learning management systems with embedded A.I. tools they cannot disable.",
-      "category": "Ethical AI",
+      "summary": "The Conference on College Composition and Communication passed a resolution affirming students' and faculty's right to decline generative A.I. in writing classrooms, according to Inside Higher Ed. The report states that 15% of faculty report their institutions mandate A.I. use, while 81% report required use of learning management systems with embedded A.I. tools they cannot disable.",
       "source": "Inside Higher Ed",
       "sourceUrl": "https://www.insidehighered.com/news/tech-innovation/teaching-learning/2026/03/16/writing-faculty-push-right-refuse-ai",
-      "isCallback": false
+      "category": "Ethical AI"
     },
     {
-      "headline": "U.K. Survey Finds 75 Percent of A.I.-Using Students Fear Wrongful Flagging",
-      "summary": "A YouGov survey of 2,373 U.K. students found that 75 percent of those using A.I. tools feel stressed about being wrongfully flagged for plagiarism by detection tools. Universities UK chief executive Vivienne Stern called for institutions to 'reconsider detection tools that give false positives.'",
-      "category": "Insights & Trends",
+      "headline": "UK Survey: 75% of A.I.-Using Students Fear Wrongful Flagging",
+      "summary": "A YouGov survey of 2,373 UK students found that 75% of those using A.I. tools feel stressed about being wrongfully flagged for plagiarism by detection tools, according to Times Higher Education. Universities UK chief executive Vivienne Stern called for institutions to \"reconsider detection tools that give false positives.\"",
       "source": "Times Higher Education",
       "sourceUrl": "https://www.insidehighered.com/news/faculty-issues/learning-assessment/2026/02/25/fear-being-flagged-ai-detectors-drives-student",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
-      "headline": "Washington University Launches Universitywide +A.I. Initiative",
-      "summary": "Washington University in St. Louis launched +A.I., an academic initiative led by Provost Mark D. West to integrate artificial intelligence thoughtfully into teaching, learning, and research. The initiative includes an A.I. literacy module for undergraduates and an A.I. Curriculum Corps to support faculty.",
-      "category": "Case Study",
+      "headline": "Washington University Launches +A.I. Academic Initiative",
+      "summary": "Washington University in St. Louis launched +A.I., an academic initiative led by Provost Mark D. West to integrate artificial intelligence into teaching, learning, and research, according to WashU Source. The initiative includes an A.I. literacy module for undergraduates and an A.I. Curriculum Corps to support faculty in developing A.I.-integrated courses.",
       "source": "WashU Source",
       "sourceUrl": "https://source.washu.edu/2026/03/university-introduces-ai-academic-initiative/",
-      "isCallback": false
+      "category": "Case Study"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-09",
     "dayOfWeek": "Monday",
-    "editorialLens": "The Hard Question",
-    "themes": [
-      "A.I. detection",
-      "academic integrity",
-      "humanizer tools",
-      "false positives",
-      "faculty autonomy"
-    ],
-    "storiesWatching": [
-      "CCCC resolution implementation across institutions",
-      "Turnitin updates to detect humanizer-modified text",
-      "Student lawsuits over false A.I. accusations"
-    ],
-    "lensDescription": "Examine complexity and tradeoffs. Surface the questions worth asking.",
-    "lensColor": "#fb7185",
-    "publishedAt": "2026-03-20T02:35:00.000Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Hard Question"
   }
 }

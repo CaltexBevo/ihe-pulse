@@ -3,69 +3,45 @@
     "date": "2026-03-18",
     "dayOfWeek": "Wednesday",
     "editorialLens": "The Practitioner's Playbook",
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
     "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-18.mp3",
     "audioDuration": "6:01",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Wednesday, March 18th.\n\nThe White House just released an A.I. policy framework that puts workforce development front and center alongside national security priorities. What's interesting is how this positions education not as an afterthought, but as fundamental to America's competitive strategy.\n\n-\nIn our Case Study category today, a survey of 29 local government agencies around Chattanooga found that 20 have no A.I. policies at all. Experts are warning this creates real security and privacy risks. The few agencies that do have policies emphasize A.I. as a tool to help humans rather than replace them, with explicit guidelines for appropriate use. It's a reminder that policy development is happening at every level, not just federal.\n\n-\nFrom the Beyond Ed file, William Peace University in Raleigh has named Jennifer Walsh as its 13th president. She's coming from Hawaii and plans to grow enrollment at the 700-student institution through transfer students, military veterans, and new graduate programs. One challenge she'll be tackling is the school's 32 percent four-year graduation rate, which suggests some interesting opportunities for innovation in student success strategies.\n\n-\nNow, let's get to that White House A.I. framework I mentioned at the top. The administration released this policy blueprint for Congress on Friday, and it outlines six guiding principles for lawmakers developing A.I. governance policies. What caught my attention is that one of those principles is specifically about educating Americans and developing an A.I.-ready workforce.\n\nThis framework is designed to preempt state-level regulations while ensuring, in the administration's words, that all Americans benefit from this technological revolution. It follows President Trump's December executive order that blocked states from crafting their own A.I. regulations, with the argument that inconsistent rules would hurt sector growth.\n\nWhat strikes me about this is the positioning. Workforce development sits right alongside more predictable priorities like protecting children, safeguarding communities, and ensuring American A.I. dominance. This suggests the administration views education not as a nice-to-have social program, but as core to the country's competitive strategy.\n\nFor those of us working in higher education, particularly community colleges, this creates some interesting tensions to navigate. On one hand, federal recognition of education's role in A.I. readiness could mean increased resources and support for workforce development programs. Community colleges have long served as that bridge between emerging technologies and practical job skills, so this could play to our strengths.\n\nOn the other hand, the emphasis on preventing a patchwork of rules might limit local flexibility in how institutions approach A.I. integration and governance. We've seen this tension before with other federal initiatives, where national priorities don't always align neatly with local student needs and institutional capacity.\n\nThe framework's focus on workforce development also raises some practical questions that aren't answered in the document. What does A.I.-ready actually mean in practice? Are we talking about technical skills like coding, prompt engineering, or data analysis? Or are we looking at broader competencies like critical thinking about A.I.-generated content, understanding algorithmic bias, or knowing when human judgment should override machine recommendations?\n\nThe document doesn't specify, which leaves considerable room for interpretation. That could be good news for institutional flexibility, or it could create confusion about expectations and outcomes.\n\nWhat makes this particularly relevant for community college educators is the timing. Many institutions are still developing their own A.I. policies and figuring out how to integrate these tools into curriculum. A federal framework that prioritizes workforce development could provide both direction and funding opportunities, but it might also create pressure to move faster than local contexts allow.\n\nI keep thinking about the challenge of translating broad policy principles into classroom-ready approaches that serve our diverse student populations. We're talking about recent high school graduates, career changers, returning adults seeking upskilling opportunities. Each group brings different backgrounds, different comfort levels with technology, and different career goals.\n\nThere's also the resource question. We're already stretched thin with teaching loads and limited professional development time. The framework positions education as a national security and economic competitiveness issue rather than just a social good, which could mean more funding. But it could also become another unfunded expectation.\n\nWhat I find most compelling about this development is how it might shift conversations on campus. When A.I. integration becomes tied to federal workforce development priorities, it changes the stakes. It's no longer just about whether to allow ChatGPT in assignments. It's about preparing students for an economy where A.I. literacy might be as fundamental as computer literacy was twenty years ago.\n\nThe question becomes: who gets to define what A.I.-ready looks like for our students? Will it be federal policymakers, industry leaders, or the educators who actually work with students every day? And how do we balance national priorities with the reality of a single-parent student juggling two jobs, or a returning veteran transitioning to civilian careers?\n\nThese are the conversations happening in faculty lounges and department meetings right now. This framework doesn't resolve them, but it does raise the stakes and potentially provide new resources for institutions ready to engage seriously with A.I. workforce development.\n\n-\nThe federal government is clearly betting that education will be central to America's A.I. competitiveness. The challenge for us is figuring out what that means on Monday morning in our classrooms.\n\nThat's your Innovation Pulse for Wednesday. Find full coverage and links at innovating higher ed dot com. See you Thursday."
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "White House A.I. Framework Puts Workforce Development Center Stage",
-    "hook": "The administration's new A.I. policy blueprint for Congress includes a principle that could reshape how we think about education's role.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "White House A.I. Framework Includes Workforce Development as Core Principle",
+    "summary": "The White House released its A.I. policy framework for Congress, outlining six guiding principles for lawmakers developing A.I. governance policies, according to WTAE. Among these principles is \"educating Americans and developing an A.I.-ready workforce.\" The framework aims to preempt state-level regulations while ensuring \"all Americans benefit from this technological revolution.\"\n\nWorkforce development sits alongside priorities like protecting children, safeguarding communities, and ensuring American A.I. dominance. The framework comes as President Trump signed an executive order in December blocking states from crafting their own A.I. regulations, arguing that inconsistent rules would hurt sector growth.\n\nThe framework does not specify what \"A.I.-ready\" means in practice, leaving room for interpretation about whether it refers to technical skills like coding and prompt engineering, or broader competencies like critical thinking about A.I.-generated content and understanding algorithmic bias.",
     "source": "WTAE",
     "sourceUrl": "http://www.wtae.com/article/white-house-ai-framework-congress/70802317",
-    "editorialTake": "The White House released its A.I. policy framework for Congress on Friday, outlining six guiding principles for lawmakers developing A.I. governance policies. Among these principles: \"educating Americans and developing an A.I.-ready workforce.\" The framework aims to preempt state-level regulations while ensuring \"all Americans benefit from this technological revolution,\" according to the administration's statement.\n\nWhat's striking is how workforce development sits alongside more predictable priorities like protecting children, safeguarding communities, and ensuring American A.I. dominance. This positioning suggests the administration views education not as an afterthought to A.I. policy, but as fundamental to the country's competitive strategy. The framework comes as President Trump signed an executive order in December blocking states from crafting their own A.I. regulations, arguing that inconsistent rules would hurt sector growth.\n\nFor educators, this creates an interesting tension. On one hand, federal recognition of education's role in A.I. readiness could mean increased resources and support for workforce development programs. Community colleges, in particular, have long served as the bridge between emerging technologies and practical job skills. On the other hand, the emphasis on preventing a \"patchwork of rules\" might limit local flexibility in how institutions approach A.I. integration and governance.\n\nThe framework's focus on workforce development also raises questions about what \"A.I.-ready\" actually means in practice. Are we talking about technical skills — coding, prompt engineering, data analysis? Or broader competencies like critical thinking about A.I.-generated content, understanding algorithmic bias, or knowing when human judgment should override machine recommendations? The document doesn't specify, leaving considerable room for interpretation.\n\nWhat makes this particularly relevant for community college educators is the timing. Many institutions are still developing their own A.I. policies and figuring out how to integrate these tools into curriculum. A federal framework that prioritizes workforce development could provide both direction and funding opportunities, but it might also create pressure to move faster than local contexts allow. The challenge will be translating broad policy principles into classroom-ready approaches that serve our diverse student populations — from recent high school graduates to career changers to returning adults seeking upskilling opportunities.",
-    "pullQuote": "The framework's focus on workforce development raises questions about what 'A.I.-ready' actually means in practice for our classrooms.",
-    "editorialCallout": "What I find most interesting about this framework is how it positions education as a national security and economic competitiveness issue rather than just a social good. In my work with community college faculty, I've seen how external mandates — even well-intentioned ones — can create tension between federal priorities and local student needs. We're already stretched thin with teaching loads and limited professional development time. The question becomes: how do we prepare an \"A.I.-ready workforce\" when we're still figuring out what that means for a single-parent student juggling two jobs, or a returning veteran transitioning to civilian careers? Will this framework provide the resources to match its ambitions, or will it become another unfunded expectation? And perhaps most importantly: who gets to define what \"A.I.-ready\" looks like for our students?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Conceptual illustration of workforce development meeting A.I. policy, gears and graduation caps intertwining"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "Trump A.I. Policy Aims to Block State Regulations",
-      "summary": "The White House released an A.I. policy framework that aims to preempt state rules while ensuring American industry can \"innovate and thrive.\" The move follows Trump's December executive order blocking states from crafting their own A.I. regulations.",
-      "category": "Latest AI Products",
+      "headline": "White House A.I. Policy Aims to Block State Regulations",
+      "summary": "The White House released an A.I. policy framework that aims to preempt state rules while ensuring American industry can \"innovate and thrive,\" according to Yahoo Finance. The move follows Trump's December executive order blocking states from crafting their own A.I. regulations.",
       "source": "Yahoo Finance",
       "sourceUrl": "https://finance.yahoo.com/news/white-house-releases-national-ai-122759699.html",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "Most Chattanooga Area Governments Lack A.I. Policies",
-      "summary": "A survey of 29 local agencies found 20 have no A.I. policies, despite experts warning this creates security and privacy risks. The few with policies emphasize A.I. as a tool to help humans, not replace them, with explicit guidelines for appropriate use.",
-      "category": "Case Study",
+      "headline": "Survey: Most Chattanooga Area Governments Lack A.I. Policies",
+      "summary": "A survey of 29 local agencies around Chattanooga found 20 have no A.I. policies, despite experts warning this creates security and privacy risks, according to Chattanooga Times Free Press. The few agencies with policies emphasize A.I. as a tool to help humans, not replace them, with explicit guidelines for appropriate use.",
       "source": "Chattanooga Times Free Press",
       "sourceUrl": "https://www.timesfreepress.com/news/2026/mar/19/chaos-or-not-chaos-despite-risks-many-chattanooga/",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
-      "headline": "William Peace University Names New President From Hawaii",
-      "summary": "Jennifer Walsh will serve as the 13th president of the 700-student Raleigh institution. She plans to grow enrollment through transfer students, military veterans, and new graduate programs while addressing the school's 32% four-year graduation rate.",
-      "category": "Beyond Ed",
+      "headline": "William Peace University Names New President",
+      "summary": "Jennifer Walsh will serve as the 13th president of the 700-student Raleigh institution William Peace University, according to the Charlotte Observer. She plans to grow enrollment through transfer students, military veterans, and new graduate programs while addressing the school's 32% four-year graduation rate.",
       "source": "Charlotte Observer",
       "sourceUrl": "https://www.charlotteobserver.com/news/state/north-carolina/article315099822.html",
-      "isCallback": false
+      "category": "Beyond Ed"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-18",
     "dayOfWeek": "Wednesday",
-    "editorialLens": "The Practitioner's Playbook",
-    "themes": [
-      "federal policy",
-      "workforce development",
-      "institutional governance",
-      "practical implementation",
-      "local flexibility"
-    ],
-    "storiesWatching": [
-      "White House A.I. framework implementation and congressional response",
-      "Local government A.I. policy development trends"
-    ],
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
-    "publishedAt": "2026-03-20T14:25:58.738Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Practitioner's Playbook"
   }
 }

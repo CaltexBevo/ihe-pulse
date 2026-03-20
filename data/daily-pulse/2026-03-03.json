@@ -3,79 +3,52 @@
     "date": "2026-03-03",
     "dayOfWeek": "Tuesday",
     "editorialLens": "The Student Experience",
-    "lensDescription": "Everything filtered through how it affects actual students.",
-    "lensColor": "#60a5fa",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-03.mp3",
-    "audioDuration": "5:30",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Tuesday, March 3rd.\n\nI was thinking about how students navigate A.I. rules that nobody seems to agree on. From community colleges in Kansas to Duke University in North Carolina, students and professors are making their own decisions about when and how to use these tools, and the approaches couldn't be more different.\n\n-\nIn our Insights and Trends category today, a new UK survey finds that 95% of university students now use A.I. in at least one way, and 94% use it to support assessed work. The Higher Education Policy Institute surveyed over 1,000 undergraduates and found that 12% directly include A.I.-generated text in their assignments, up from just 3% two years ago. But here's what caught my attention: 15% of students report using A.I. for companionship or addressing loneliness.\n\n-\nMeanwhile, writing faculty are pushing back on the rush to integrate A.I. into classrooms. The Conference on College Composition and Communication just passed a resolution affirming the right of students and faculty to refuse generative A.I. use in writing instruction without penalty or pressure. The resolution cites concerns about data privacy, academic freedom, and the erosion of critical thinking through writing practice.\n\n-\nFrom the Case Study file, Johnson C. Smith University professor Leslie Clement takes a different approach. She encourages responsible A.I. use in her classes, allowing students to use it for outlines, feedback, and comparing sources. She also co-created a course called \"African Diaspora and A.I.\" that examines how these tools affect people of African descent globally, including the environmental and labor impacts of A.I. infrastructure.\n\n-\nNow, let's get to that story I mentioned at the top about students and professors navigating their own A.I. rules.\n\n-\nMore than three years after ChatGPT debuted, generative A.I. has become part of everyday college life. According to a survey by Inside Higher Ed and the Generation Lab, about 85% of undergraduates use A.I. for coursework, including brainstorming ideas, outlining papers, and studying for exams. Roughly 19% also reported using A.I. to write full essays.\n\nBut here's what makes this complicated from a student perspective: the rules vary wildly from class to class, and students are often left to figure out the boundaries on their own.\n\nAt Johnson County Community College in Kansas City, English professor Dan Cryer believes A.I. use should be minimal in education. He describes using generative A.I. to write a college essay as \"bringing a forklift to the gym.\" His point is that students going through the writing process are developing intellectual muscles they'll need throughout their careers. But this adds labor for professors too, as Cryer now spends time trying to determine whether student work is their own.\n\nAt Duke University, sophomore Anjali Tatini has found her own balance. She uses A.I. to create practice problems for chemistry exams, brainstorm marketing ideas, and generate code for statistics assignments. But she draws a clear line: the actual writing is all hers. For Tatini, A.I. helps organize and outline, but it doesn't replace the thinking.\n\nWhat's particularly interesting from a student experience perspective is the emotional dimension. More than half of students who use A.I. for coursework report mixed feelings, acknowledging that it helps sometimes but can also make them think less deeply. At the University of Minnesota, senior Aysa Tarana stopped using ChatGPT because it felt like \"outsourcing my thinking.\" At UNC Chapel Hill, student Hannah Elder refuses A.I.-generated content entirely, viewing her writing as \"like a fingerprint to the world.\"\n\nThese individual decisions matter because institutional policies remain inconsistent. Some professors ban A.I. entirely; others require it. Some allow it for certain tasks but not others. Students navigate this patchwork without clear guidance, often making judgment calls about what feels right for their learning.\n\nFor community college students especially, these dynamics play out against a backdrop of competing pressures. Many are working adults juggling jobs, families, and coursework. The temptation to use A.I. to manage impossible schedules is real. But so is the concern that shortcuts today might leave them unprepared for careers tomorrow.\n\nWhat strikes me about these conversations is how they center student agency. Unlike the early days of A.I. panic, where the focus was on detection and punishment, students are now actively deciding what role they want these tools to play in their education. That's a more mature conversation, even if we haven't arrived at consensus answers.\n\nThe students who seem most confident in their approach are those who've thought carefully about what skills they're trying to develop. When you know why you're doing the work, it's easier to know when tools help and when they hinder.\n\n-\nThe A.I. rules debate isn't really about the technology. It's about what we value in education, and students are increasingly the ones defining that for themselves.\n\nThat's your Innovation Pulse for Tuesday. Find full coverage and links at innovating higher ed dot com. See you Wednesday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "Students and Professors Navigate Their Own A.I. Rules, and They Don't Always Agree",
-    "hook": "Three years after ChatGPT's debut, 85% of undergraduates use A.I. for coursework while faculty approaches range from total bans to required integration.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "NPR: 85% of Undergraduates Use A.I. for Coursework as Policies Diverge",
+    "summary": "More than three years after ChatGPT debuted, about 85% of undergraduates use A.I. for coursework including brainstorming ideas, outlining papers, and studying for exams, according to a survey by Inside Higher Ed and Generation Lab cited by NPR. Roughly 19% also reported using A.I. to write full essays.\n\nFaculty approaches vary widely. At Johnson County Community College in Kansas City, English professor Dan Cryer opposes A.I. in writing assignments, describing generative A.I. for essays as \"bringing a forklift to the gym.\" At Johnson C. Smith University, professor Leslie Clement encourages responsible A.I. use in her classes, allowing students to use it for outlines, feedback, and comparing sources. She co-created a course called \"African Diaspora and A.I.\" examining how these tools affect people of African descent globally.\n\nStudents report mixed feelings about A.I. use. At the University of Minnesota, senior Aysa Tarana stopped using ChatGPT because it felt like \"outsourcing my thinking.\" At UNC Chapel Hill, student Hannah Elder refuses A.I.-generated content, viewing her writing as \"like a fingerprint to the world.\" More than half of students who use A.I. for coursework acknowledge it can make them think less deeply.",
     "source": "NPR",
     "sourceUrl": "https://www.npr.org/2026/03/03/nx-s1-5716176/ai-college-students-professors",
-    "editorialTake": "More than three years after ChatGPT debuted, generative A.I. has become part of everyday college life. According to a survey by Inside Higher Ed and the Generation Lab conducted last July, about 85% of undergraduates use A.I. for coursework, including brainstorming ideas, outlining papers, and studying for exams. Roughly 19% also reported using A.I. to write full essays.\n\nBut here's what makes this complicated from a student perspective: the rules vary wildly from class to class, and students are often left to figure out the boundaries on their own.\n\nAt Johnson County Community College in Kansas City, English professor Dan Cryer believes A.I. use should be minimal in education. He describes using generative A.I. to write a college essay as \"bringing a forklift to the gym.\" His point is that students going through the writing process are developing intellectual muscles they'll need throughout their careers. This approach makes sense for certain kinds of learning, but it also adds labor for professors who now spend time trying to determine whether student work is authentic.\n\nAt Duke University, sophomore Anjali Tatini has found her own balance. She uses A.I. to create practice problems for chemistry exams, brainstorm marketing ideas, and generate code for statistics assignments. But she draws a clear line: the actual writing is all hers. For Tatini, A.I. helps organize and outline ideas, but it doesn't replace the thinking itself.\n\nWhat's particularly interesting from a student experience perspective is the emotional dimension. More than half of students who use A.I. for coursework report mixed feelings, acknowledging that it helps sometimes but can also make them think less deeply. At the University of Minnesota, senior Aysa Tarana stopped using ChatGPT because it felt like \"outsourcing my thinking.\" At UNC Chapel Hill, student Hannah Elder refuses A.I.-generated content entirely, viewing her writing as \"like a fingerprint to the world.\"\n\nThese individual decisions matter because institutional policies remain inconsistent. Some professors ban A.I. entirely; others require it. Some allow it for certain tasks but not others. Students navigate this patchwork without clear guidance, often making judgment calls about what feels right for their learning.\n\nFor community college students especially, these dynamics play out against a backdrop of competing pressures. Many are working adults juggling jobs, families, and coursework. The temptation to use A.I. to manage impossible schedules is real. But so is the concern that shortcuts today might leave them unprepared for careers tomorrow.",
-    "pullQuote": "Using generative A.I. to write a college essay is like bringing a forklift to the gym.",
-    "editorialCallout": "What strikes me most about these conversations is how they center student agency. Unlike the early days of A.I. panic, where the focus was on detection and punishment, students are now actively deciding what role they want these tools to play in their education. The students who seem most confident in their approach are those who've thought carefully about what skills they're trying to develop. At community colleges, our students often face the most pressure to take shortcuts due to competing life demands. But they also stand to lose the most if they miss out on developing foundational skills. How do we help students think through these tradeoffs rather than just handing them rules?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "College students at different institutions making personal decisions about AI tools, showing the range from enthusiastic adoption to principled refusal"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "UK Survey: 95% of Students Use A.I., 15% for Companionship",
-      "summary": "The Higher Education Policy Institute surveyed 1,054 UK undergraduates and found 95% use A.I. in at least one way, with 94% using it to support assessed work. Notably, 12% directly include A.I.-generated text in assignments, up from 3% in 2024, and 15% report using A.I. for companionship or loneliness.",
-      "category": "Insights & Trends",
+      "headline": "UK Survey: 95% of University Students Use A.I., 15% for Companionship",
+      "summary": "The Higher Education Policy Institute surveyed 1,054 UK undergraduates and found 95% use A.I. in at least one way, with 94% using it to support assessed work, according to HEPI. Notably, 12% directly include A.I.-generated text in assignments, up from 3% in 2024, and 15% report using A.I. for companionship or addressing loneliness.",
       "source": "HEPI",
       "sourceUrl": "https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
       "headline": "Writing Faculty Pass Resolution Affirming Right to Refuse A.I.",
-      "summary": "The Conference on College Composition and Communication overwhelmingly passed a resolution affirming that students and faculty may opt out of using generative A.I. in writing instruction without penalty. The resolution cites concerns about data privacy, academic freedom, and erosion of critical thinking.",
-      "category": "Ethical AI",
+      "summary": "The Conference on College Composition and Communication passed a resolution affirming that students and faculty may opt out of using generative A.I. in writing instruction without penalty, according to Inside Higher Ed. The resolution cites concerns about data privacy, academic freedom, and erosion of critical thinking through writing practice.",
       "source": "Inside Higher Ed",
       "sourceUrl": "https://www.insidehighered.com/news/tech-innovation/teaching-learning/2026/03/16/writing-faculty-push-right-refuse-ai",
-      "isCallback": false
+      "category": "Ethical AI"
     },
     {
       "headline": "Johnson C. Smith Professor Creates 'African Diaspora and A.I.' Course",
-      "summary": "Professor Leslie Clement at Johnson C. Smith University encourages responsible A.I. use while teaching students to critically examine its global impacts. Her course explores how A.I. affects people of African descent, including cobalt mining for hardware, labor conditions, and contributions of Black researchers to the field.",
-      "category": "Case Study",
+      "summary": "Professor Leslie Clement at Johnson C. Smith University encourages responsible A.I. use while teaching students to critically examine its global impacts, according to NPR. Her course explores how A.I. affects people of African descent, including cobalt mining for hardware, labor conditions, and contributions of Black researchers to the field.",
       "source": "NPR",
       "sourceUrl": "https://www.npr.org/2026/03/03/nx-s1-5716176/ai-college-students-professors",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
       "headline": "College Board: 74% of Faculty See Students Using A.I. for Essays",
-      "summary": "A survey of over 3,000 faculty found that 74% report students using A.I. for essay writing, with only 21% feeling confident guiding A.I. use. Faculty at selective institutions report higher concern, while open enrollment colleges see A.I. more as a practical instructional tool.",
-      "category": "Insights & Trends",
+      "summary": "A survey of over 3,000 faculty found that 74% report students using A.I. for essay writing, with only 21% feeling confident guiding A.I. use, according to the College Board. Faculty at selective institutions report higher concern, while faculty at open enrollment colleges view A.I. more as a practical instructional tool.",
       "source": "College Board",
       "sourceUrl": "https://newsroom.collegeboard.org/new-college-board-research-faculty-express-near-universal-concern-student-ai-use-undermines",
-      "isCallback": false
+      "category": "Insights & Trends"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-03",
     "dayOfWeek": "Tuesday",
-    "editorialLens": "The Student Experience",
-    "themes": [
-      "student agency",
-      "AI policy variation",
-      "critical thinking",
-      "faculty approaches",
-      "responsible AI use"
-    ],
-    "storiesWatching": [
-      "Evolution of student AI use patterns",
-      "CCCC resolution implementation across institutions",
-      "African Diaspora and AI course outcomes"
-    ],
-    "lensDescription": "Everything filtered through how it affects actual students.",
-    "lensColor": "#60a5fa",
-    "publishedAt": "2026-03-19T23:00:00.000Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
-    "contentNote": "This episode has been regenerated to replace off-topic content (missing persons, peanut allergies) with AI-relevant higher education stories."
+    "editorialLens": "The Student Experience"
   }
 }

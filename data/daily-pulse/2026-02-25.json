@@ -3,71 +3,45 @@
     "date": "2026-02-25",
     "dayOfWeek": "Wednesday",
     "editorialLens": "The Practitioner's Playbook",
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
     "audioUrl": null,
     "audioDuration": null,
     "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "College Board Research Reveals Faculty Concerns About Student AI Use",
-    "hook": "New survey of 3,000 faculty shows 74% report students using A.I. for essays, with most feeling unprepared to guide responsible use.",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "College Board Survey: 74% of Faculty Report Student A.I. Use for Essays",
+    "summary": "A College Board research brief surveying more than 3,000 U.S. college faculty during summer 2025 reveals widespread concern about student A.I. use. According to the College Board, 74% of faculty report students using A.I. for essay and paper writing, while 67% observe students using it to paraphrase or rewrite content. Nearly half of faculty believe at least half their students use A.I. for writing tasks.\n\nFaculty sentiment toward A.I. in higher education skews negative, with 45% holding an overall negative view compared to 34% positive. The survey found that 79% of faculty say they are just beginning to explore A.I. or need more guidance, with only 21% feeling confident in guiding student A.I. use. Meanwhile, 77% of faculty report personally using A.I. in their professional roles.\n\nThe research shows differences by institution type: faculty at more selective institutions report higher levels of student A.I. use and greater concern about academic impact, while faculty at open enrollment colleges are more likely to view A.I. as a practical instructional tool. Only 48% of respondents have formal classroom A.I. policies in place.",
     "source": "College Board",
     "sourceUrl": "https://newsroom.collegeboard.org/new-college-board-research-faculty-express-near-universal-concern-student-ai-use-undermines",
-    "editorialTake": "The College Board's latest research brief on faculty perceptions of generative A.I. in higher education lands at a moment when many of us are still figuring out what responsible A.I. guidance looks like in practice. The survey of more than 3,000 U.S. college faculty during summer 2025 offers some useful data points for those conversations.\n\nThe headline numbers paint a picture of widespread concern: 74% of faculty report students using A.I. for essay and paper writing, 67% see students using it to paraphrase or rewrite content, and nearly half believe at least half their students use A.I. for writing tasks. Faculty sentiment skews negative, with 45% holding an overall negative view of A.I. in higher education compared to 34% positive.\n\nBut here's what caught my attention from a practical standpoint: 79% of faculty say they're just beginning to explore A.I. or need more guidance, and only 21% feel very confident guiding student A.I. use. Meanwhile, 77% have personally used A.I. in their professional roles. There's a gap between personal familiarity and pedagogical confidence that suggests we need different kinds of support than we're currently getting.\n\nThe research also surfaces an interesting divide by institution type. Faculty at more selective institutions report higher levels of student A.I. use and greater concern about academic impact, while faculty at open enrollment colleges are more likely to see A.I. as a practical instructional tool. For those of us at community colleges, this validates something we've observed informally: our students often have different relationships with these tools, and our concerns may center more on access and skills gaps than on academic dishonesty.\n\nThe data on classroom policies is particularly relevant for faculty working on their spring syllabi. Only 48% of respondents have formal classroom A.I. policies in place, which means many of us are still operating without clear guidelines. The 72% who face at least minor challenges managing student A.I. use suggests that vague policies aren't serving anyone well.\n\nWhat's useful here is the granularity. Rather than treating A.I. as a monolithic concern, the research breaks down specific worries: 84% or more agree that A.I. reduces critical thinking, originality, and deep engagement with course material. Understanding which outcomes concern faculty most can help us design targeted interventions rather than blanket restrictions.\n\nFor the practitioner, the actionable insight is this: the path forward is moving beyond whether to address A.I. to how. The research shows faculty aren't simply resistant; they're grappling with real pedagogical questions about how to uphold educational values while adapting to technological change. That's a different problem than technophobia, and it calls for different solutions.",
-    "pullQuote": "79% of faculty say they're just beginning to explore A.I. or need more guidance, and only 21% feel very confident guiding student A.I. use.",
-    "editorialCallout": "What I find most useful about this research is the validation that we're not alone in feeling underprepared. At community colleges, we often lack dedicated centers for teaching excellence or extensive professional development budgets for A.I. training. Knowing that 79% of faculty across higher education feel they need more guidance suggests the gap isn't about our specific institutional limitations. The divide between selective institutions seeing A.I. primarily as an integrity threat and open enrollment institutions seeing it as a practical tool resonates with my own observations. Our students are often working adults who might use A.I. to manage impossible schedules, not to avoid learning. That's a different conversation than catching cheaters, and it requires different responses.",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Faculty member reviewing student work with visible uncertainty, classroom setting with technology present"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "Faculty Moving Away from Outright A.I. Bans, Study Finds",
-      "summary": "UC Berkeley researcher Igor Chirikov analyzed over 31,000 course syllabi from a large Texas university and found that highly restrictive A.I. policies introduced after ChatGPT's launch are being eased across all disciplines except arts and humanities. A.I. attribution requirements grew from 1% to 29% of syllabi between 2023 and 2025.",
-      "category": "Insights & Trends",
+      "headline": "Faculty Moving Away From Outright A.I. Bans, UC Berkeley Study Finds",
+      "summary": "UC Berkeley researcher Igor Chirikov analyzed over 31,000 course syllabi from a large Texas university and found that highly restrictive A.I. policies introduced after ChatGPT's launch are being eased across disciplines, according to Inside Higher Ed. The exception is arts and humanities, which have maintained stricter policies. A.I. attribution requirements grew from 1% to 29% of syllabi between 2023 and 2025.",
       "source": "Inside Higher Ed",
       "sourceUrl": "https://www.insidehighered.com/news/faculty-issues/learning-assessment/2026/02/13/faculty-moving-away-outright-bans-ai-study-finds",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
       "headline": "AAC&U Survey: 90% of Faculty Worry A.I. Will Diminish Critical Thinking",
-      "summary": "A survey of 1,057 faculty members by the American Association of Colleges and Universities and Elon University found that 90% believe A.I. will diminish students' critical thinking skills, while 95% say overreliance on A.I. tools will increase. However, 61% also believe A.I. could improve and customize learning experiences.",
-      "category": "Insights & Trends",
+      "summary": "A survey of 1,057 faculty members by the American Association of Colleges and Universities and Elon University found that 90% believe A.I. will diminish students' critical thinking skills, according to Inside Higher Ed. Additionally, 95% expect overreliance on A.I. tools will increase. However, 61% also believe A.I. could improve and customize learning experiences.",
       "source": "Inside Higher Ed",
       "sourceUrl": "https://www.insidehighered.com/news/faculty-issues/teaching/2026/01/21/survey-faculty-say-ai-impactful-not-good-way",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
-      "headline": "Agentic A.I. Tool Designed to Complete Entire Online Courses Sparks Faculty Debate",
-      "summary": "A 22-year-old entrepreneur who dropped out of Brown University launched Einstein, a tool that can autonomously log into Canvas, watch lectures, write papers, and submit assignments. The tool drew over 124,000 website visitors in three days before Canvas owner Instructure issued a cease-and-desist letter.",
-      "category": "Ethical AI",
+      "headline": "Agentic A.I. Tool Designed to Complete Online Courses Draws Instructure Response",
+      "summary": "A 22-year-old entrepreneur who dropped out of Brown University launched Einstein, a tool that can autonomously log into Canvas, watch lectures, write papers, and submit assignments, according to Inside Higher Ed. The tool drew over 124,000 website visitors in three days before Canvas owner Instructure issued a cease-and-desist letter.",
       "source": "Inside Higher Ed",
       "sourceUrl": "https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/02/26/agentic-ai-can-complete-whole-courses-now",
-      "isCallback": false
+      "category": "Ethical AI"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-02-25",
     "dayOfWeek": "Wednesday",
-    "editorialLens": "The Practitioner's Playbook",
-    "themes": [
-      "faculty preparedness",
-      "AI policy development",
-      "student AI use",
-      "pedagogical adaptation",
-      "institutional differences"
-    ],
-    "storiesWatching": [
-      "Evolution of campus AI policies through spring semester",
-      "Faculty professional development initiatives for AI",
-      "Agentic AI tools and LMS security responses"
-    ],
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
-    "publishedAt": "2026-03-19T23:00:00.000Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
-    "contentNote": "This episode has no audio due to source verification issues with the original content. Written content has been regenerated with verified sources."
+    "editorialLens": "The Practitioner's Playbook"
   }
 }

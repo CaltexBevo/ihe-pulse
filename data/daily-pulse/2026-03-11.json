@@ -3,94 +3,66 @@
     "date": "2026-03-11",
     "dayOfWeek": "Wednesday",
     "editorialLens": "The Practitioner's Playbook",
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-11.mp3",
-    "audioDuration": "6:14",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Wednesday, March 11th.\n\nWhen the National Science Foundation picks just 25 faculty nationwide to lead A.I. education, what does that selection process tell us about where the field is actually heading? We'll dig into that story in a few minutes.\n\n-\nIn our Practical Tips category today, a Babson College writing professor is exploring something many of us are wrestling with: when should students struggle without A.I. tools? Kristi Girdharry advocates for strategic moments when students work unassisted to develop their own thinking first, then learn to use A.I. strategically. Her approach includes having students compare A.I.-assisted and unassisted drafts to build discernment about when shortcuts actually help versus hinder learning.\n\n-\nNext up, Old Dominion University is hosting a webinar on March 24th called \"What Is New in Artificial Intelligence? Developments and Faculty Research in Higher Education.\" Their Research Institute for Digital Innovation in Learning will examine current A.I. developments and highlight faculty research on generative A.I. in teaching and learning.\n\n-\nFrom the Insights and Trends file, Stanford researchers are challenging five common myths about A.I. in education. The Stanford Accelerator for Learning team argues that A.I. won't replace teachers, cheating concerns should actually drive assessment reform, and intentional design can support rather than stifle creativity. Their research emphasizes that banning A.I. is less effective than teaching responsible use and A.I. literacy.\n\n-\nAnd here's one worth watching from our Case Study category. Penn State just launched a comprehensive A.I. Literacy Framework as part of its A.I. Transformation Initiative. They've established four core competencies: technical knowledge, ethical awareness, critical thinking, and practical use. The framework was developed by working groups focused on undergraduates, graduate students, faculty, and staff, with resources available through University Libraries.\n\n-\nNow, let's get to that story I mentioned at the top about the National Science Foundation's new A.I. education fellowship.\n\nWinston Wu, an assistant professor at the University of Hawaii at Hilo, has been selected as one of just 25 faculty nationwide for the NSF's inaugural NAIRR A.I. Education Fellows program. The fellowship runs through February 2027 and includes a $5,000 stipend. Fellows are tasked with piloting courses using NSF A.I. resources, supporting faculty integration nationwide, and helping shape strategic direction for the national project.\n\nWhat caught my attention about this initiative is its focus on building sustainable communities of practice rather than just distributing tools. The NAIRR Pilot Classroom project aims to create \"a national initiative dedicated to building a sustainable community of practice for advancing A.I. education for all.\" This suggests the NSF recognizes that effective A.I. integration requires more than access to technology. It needs pedagogical frameworks, peer networks, and ongoing support structures.\n\nWu's background offers insight into what NSF values in these ambassadors. His expertise spans natural language processing and machine learning with a focus on multilingual and low-resource applications, particularly supporting language revitalization efforts in local communities. He teaches everything from introductory programming to advanced courses on natural language processing and deep learning, while also coaching competitive programming teams. This combination of technical depth, pedagogical breadth, and community engagement seems to reflect NSF's vision for A.I. education leadership.\n\nFor faculty considering their own A.I. integration efforts, Wu's appointment highlights several practical considerations. First, there's an emphasis on community benefit. His stated goal is to \"build technologies that benefit the local community,\" which suggests that effective A.I. education connects technical skills to real-world applications that matter to students' lives and contexts. Second, his range of courses from introductory to advanced indicates that A.I. literacy isn't just for computer science majors but needs scaffolding across skill levels.\n\nThe fellowship structure itself offers a model worth examining. Rather than one-time workshops or isolated pilot programs, this is a year-long commitment with national visibility and peer collaboration. That suggests meaningful A.I. integration requires sustained effort and community building. The $5,000 stipend, while modest, acknowledges that this work requires dedicated time and resources.\n\nWhat I find most interesting about this fellowship is how it frames A.I. education as fundamentally collaborative work. At community colleges, where we often feel isolated in trying new approaches, the idea of 25 faculty across 23 states working together on similar challenges feels both inspiring and practical. Wu's focus on serving local communities resonates with our mission. We're not just teaching students to use A.I. tools, but helping them think about how these technologies might address real needs in their own contexts.\n\nThe year-long timeline also acknowledges something we know from experience: meaningful pedagogical change takes sustained effort, not just a weekend workshop. It raises some interesting questions for institutions developing their own A.I. strategies. How do we balance technical training with pedagogical support? What does it mean to build sustainable communities of practice around A.I. education, especially at resource-constrained institutions? And how do we ensure that A.I. integration serves diverse student populations and community needs rather than just following technological trends?\n\nThe NSF's approach suggests that the future of A.I. education isn't about individual faculty becoming A.I. experts in isolation. It's about building networks of practitioners who can learn from each other, share resources, and collectively figure out what works for different student populations and institutional contexts.\n\n-\nThese fellowship models remind us that meaningful change in higher education often happens through sustained collaboration rather than quick fixes. Whether it's NSF's year-long commitment or Penn State's comprehensive framework development, the institutions making progress seem to be investing in long-term community building.\n\nThat's your Innovation Pulse for Wednesday. Find full coverage and links at innovating higher ed dot com. See you Thursday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "NSF Fellowship Shows How A.I. Education Goes Beyond Tools",
-    "hook": "When the National Science Foundation picks 25 faculty to lead A.I. education, what does that tell us about where the field is heading?",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "NSF Selects 25 Faculty for Inaugural A.I. Education Fellows Program",
+    "summary": "Winston Wu, an assistant professor at the University of Hawaii at Hilo, has been selected as one of 25 faculty nationwide for the NSF's inaugural NAIRR A.I. Education Fellows program, according to the University of Hawaii at Hilo. The fellowship runs through February 2027 and includes a $5,000 stipend. Fellows are tasked with piloting courses using NSF A.I. resources, supporting faculty integration nationwide, and helping shape strategic direction for the national project.\n\nThe NAIRR Pilot Classroom project aims to create \"a national initiative dedicated to building a sustainable community of practice for advancing A.I. education for all.\" Wu's expertise spans natural language processing and machine learning with a focus on multilingual and low-resource applications, particularly supporting language revitalization efforts in local communities.\n\nWu stated his goal to \"build technologies that benefit the local community.\" He teaches courses ranging from introductory programming to advanced natural language processing and deep learning, while coaching competitive programming teams. The fellowship structure involves a year-long commitment with national visibility and peer collaboration rather than one-time workshops or isolated pilot programs.",
     "source": "University of Hawaii at Hilo",
     "sourceUrl": "https://hilo.hawaii.edu/chancellor/stories/2026/03/19/winston-wu-ai-education-fellow-nsf/",
-    "editorialTake": "Winston Wu, an assistant professor at the University of Hawaii at Hilo, has been selected as one of 25 faculty nationwide for the NSF's inaugural NAIRR A.I. Education Fellows program. The fellowship runs through February 2027 and includes a $5,000 stipend, with fellows tasked to pilot courses using NSF A.I. resources, support faculty integration nationwide, and help shape strategic direction for the national project.\n\nWhat's particularly interesting about this initiative is its focus on building sustainable communities of practice rather than just distributing tools. The NAIRR Pilot Classroom project aims to create \"a national initiative dedicated to building a sustainable community of practice for advancing A.I. education for all.\" This suggests a recognition that effective A.I. integration requires more than access to technology—it needs pedagogical frameworks, peer networks, and ongoing support structures.\n\nWu's background offers insight into what NSF values in these ambassadors. His expertise spans natural language processing and machine learning with a focus on multilingual and low-resource applications, particularly supporting language revitalization efforts in local communities. He teaches everything from introductory programming to advanced courses on natural language processing and deep learning, while also coaching competitive programming teams. This combination of technical depth, pedagogical breadth, and community engagement seems to reflect NSF's vision for A.I. education leadership.\n\nFor faculty considering their own A.I. integration efforts, Wu's appointment highlights several practical considerations. First, the emphasis on community benefit—his stated goal to \"build technologies that benefit the local community\"—suggests that effective A.I. education connects technical skills to real-world applications that matter to students' lives and contexts. Second, his range of courses from introductory to advanced indicates that A.I. literacy isn't just for computer science majors but needs scaffolding across skill levels.\n\nThe fellowship structure itself offers a model worth examining. Rather than one-time workshops or isolated pilot programs, this year-long commitment with national visibility and peer collaboration suggests that meaningful A.I. integration requires sustained effort and community building. The $5,000 stipend, while modest, acknowledges that this work requires dedicated time and resources.\n\nWhat questions does this raise for institutions developing their own A.I. strategies? How do we balance technical training with pedagogical support? What does it mean to build sustainable communities of practice around A.I. education, especially at resource-constrained institutions? And how do we ensure that A.I. integration serves diverse student populations and community needs rather than just following technological trends?",
-    "pullQuote": "The emphasis on building sustainable communities of practice suggests that effective A.I. integration requires more than access to technology—it needs pedagogical frameworks, peer networks, and ongoing support structures.",
-    "editorialCallout": "What I find most interesting about this fellowship is how it frames A.I. education as fundamentally collaborative work. At community colleges, where we often feel isolated in trying new approaches, the idea of 25 faculty across 23 states working together on similar challenges feels both inspiring and practical. Wu's focus on serving local communities resonates with our mission—we're not just teaching students to use A.I. tools, but helping them think about how these technologies might address real needs in their own contexts. The year-long timeline also acknowledges something we know from experience: meaningful pedagogical change takes sustained effort, not just a weekend workshop. It makes me wonder: what would it look like to build these kinds of peer networks regionally, connecting community college faculty who are wrestling with similar questions about A.I. integration, resource constraints, and serving diverse student populations?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Network of connected nodes representing collaboration between educators, with A.I. symbols integrated into community-focused design"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
       "headline": "Google Launches A.I. Fellowship for University Faculty",
-      "summary": "Google announced a Higher Education Faculty A.I. Fellowship targeting instructors already using A.I. in teaching or research. The program focuses on solving institutional challenges like assessment design and policy development, with participants working on specific impact challenges at their schools. Applications require portfolios of A.I. work and include an in-person component in London.",
-      "category": "Latest AI Products",
+      "summary": "Google announced a Higher Education Faculty A.I. Fellowship targeting instructors already using A.I. in teaching or research, according to EdTech Innovation Hub. The program focuses on solving institutional challenges like assessment design and policy development, with participants working on specific impact challenges at their schools. Applications require portfolios of A.I. work and include an in-person component in London.",
       "source": "EdTech Innovation Hub",
       "sourceUrl": "https://www.edtechinnovationhub.com/news/google-opens-ai-fellowship-for-university-faculty-as-focus-shifts-to-real-world-adoption",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
       "headline": "Hirezon Launches A.I. Tools for Higher Ed Recruitment",
-      "summary": "Higher education HR technology provider Hirezon introduced A.I. Suites, starting with A.I. Candidate Summary that analyzes application materials and generates structured summaries for search committees. The company reports 30-40% reduction in review time and promises more A.I. tools designed specifically for college and university hiring processes.",
-      "category": "Latest AI Products",
+      "summary": "Higher education HR technology provider Hirezon introduced A.I. Suites, starting with A.I. Candidate Summary that analyzes application materials and generates structured summaries for search committees, according to HRTech Series. The company reports 30-40% reduction in review time and plans additional A.I. tools for college and university hiring processes.",
       "source": "HRTech Series",
       "sourceUrl": "https://techrseries.com/hrtechnology/hirezon-launches-ai-suites-to-accelerate-faculty-and-staff-recruitment-in-higher-education/",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
       "headline": "Babson Professor Explores When Students Should Struggle in A.I. Age",
-      "summary": "Writing professor Kristi Girdharry reflects on teaching critical thinking alongside A.I. tools, advocating for moments when students work without A.I. to develop their own thinking before learning to use tools strategically. Her approach includes comparing A.I.-assisted and unassisted drafts to build student discernment about when shortcuts help versus hinder learning.",
-      "category": "Practical Tips",
+      "summary": "Writing professor Kristi Girdharry at Babson College advocates for moments when students work without A.I. to develop their own thinking before learning to use tools strategically, according to Babson College. Her approach includes comparing A.I.-assisted and unassisted drafts to build student discernment about when shortcuts help versus hinder learning.",
       "source": "Babson College",
       "sourceUrl": "https://entrepreneurship.babson.edu/conversation-writing-age-ai/",
-      "isCallback": false
+      "category": "Practical Tips"
     },
     {
       "headline": "Old Dominion University Hosts A.I. Developments Webinar March 24",
-      "summary": "ODU's Research Institute for Digital Innovation in Learning will present \"What Is New in Artificial Intelligence? Developments and Faculty Research in Higher Education\" on March 24. The session examines current A.I. developments and highlights faculty research on generative A.I. in teaching and learning.",
-      "category": "Practical Tips",
+      "summary": "ODU's Research Institute for Digital Innovation in Learning will present \"What Is New in Artificial Intelligence? Developments and Faculty Research in Higher Education\" on March 24, according to Old Dominion University. The session examines current A.I. developments and highlights faculty research on generative A.I. in teaching and learning.",
       "source": "Old Dominion University",
       "sourceUrl": "https://www.odu.edu/announcements/2026/2026-03/2026-03-18/march-24th-webinar-what-new-ai-developments-faculty-research",
-      "isCallback": false
+      "category": "Practical Tips"
     },
     {
       "headline": "Stanford Researchers Challenge Five A.I. Education Myths",
-      "summary": "Stanford Accelerator for Learning experts addressed common misconceptions about A.I. in education, arguing that A.I. won't replace teachers, cheating concerns should drive assessment reform, and intentional design can support rather than stifle creativity. The research emphasizes that banning A.I. is less effective than teaching responsible use and A.I. literacy.",
-      "category": "Insights & Trends",
+      "summary": "Stanford Accelerator for Learning experts addressed common misconceptions about A.I. in education, arguing that A.I. will not replace teachers, cheating concerns should drive assessment reform, and intentional design can support creativity, according to Stanford Report. The research emphasizes that banning A.I. is less effective than teaching responsible use and A.I. literacy.",
       "source": "Stanford Report",
       "sourceUrl": "https://news.stanford.edu/stories/2026/03/myths-facts-ai-education-classroom-cheating-creativity-teachers",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
-      "headline": "Penn State Launches Comprehensive A.I. Literacy Framework",
-      "summary": "Penn State introduced an A.I. Literacy Framework as part of its A.I. Transformation Initiative, establishing four core competencies: technical knowledge, ethical awareness, critical thinking, and practical use. The framework was developed by working groups focused on undergraduates, graduate students, faculty, and staff, with resources available through University Libraries.",
-      "category": "Case Study",
+      "headline": "Penn State Launches A.I. Literacy Framework",
+      "summary": "Penn State introduced an A.I. Literacy Framework as part of its A.I. Transformation Initiative, establishing four core competencies: technical knowledge, ethical awareness, critical thinking, and practical use, according to Penn State University. The framework was developed by working groups focused on undergraduates, graduate students, faculty, and staff, with resources available through University Libraries.",
       "source": "Penn State University",
       "sourceUrl": "https://www.psu.edu/news/administration/story/penn-state-launches-ai-literacy-framework-advance-university-wide-ai-literacy",
-      "isCallback": false
+      "category": "Case Study"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-11",
     "dayOfWeek": "Wednesday",
-    "editorialLens": "The Practitioner's Playbook",
-    "themes": [
-      "AI education fellowships",
-      "faculty development",
-      "community of practice",
-      "pedagogical frameworks",
-      "institutional strategy"
-    ],
-    "storiesWatching": [
-      "NSF NAIRR pilot program outcomes",
-      "Google faculty fellowship application results",
-      "Penn State AI literacy implementation"
-    ],
-    "lensDescription": "What can you DO with this? Practical, tactical, classroom-ready.",
-    "lensColor": "#22c55e",
-    "publishedAt": "2026-03-20T03:27:00.416Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Practitioner's Playbook"
   }
 }

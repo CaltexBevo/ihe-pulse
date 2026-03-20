@@ -3,69 +3,45 @@
     "date": "2026-02-19",
     "dayOfWeek": "Thursday",
     "editorialLens": "Connecting the Dots",
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-02-19.mp3",
-    "audioDuration": "5:24",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Thursday, February 19th.\n\nTwo community college students from New Jersey just landed spots in an exclusive state AI fellowship, working 20 hours a week on real government projects while continuing their studies. What they're actually building might surprise you.\n\n-\nIn our Insights and Trends category today, Stanford researchers are raising questions about AI classroom tools. They found limited evidence that these tools actually improve student learning long-term. While students perform better while using A.I., those gains often disappear when the tools are removed. The concern? We might be seeing cognitive offloading rather than actual skill development.\n\n-\nFrom the Latest A.I. Products file, the University of Houston has partnered with Google to provide campus-wide access to Gemini for Education and NotebookLM. The university is emphasizing preparing students to be \"A.I.-fluent\" while urging faculty to set clear guidelines for ethical A.I. use in coursework.\n\n-\nAnd in our Practical Tips category, a writing professor at Babson College shared her journey integrating A.I. into the classroom. She describes evolving from initial A.I. experimentation to a more structured approach that balances tool use with critical thinking development. Her focus? Helping students develop discernment about when A.I. supports versus substitutes for learning.\n\n-\nNow, let's get to that story I mentioned at the top about those community college students in New Jersey.\n\n-\nLaila Diaz and Hassan Ibrahim, both computer science students at Middlesex College, were selected from over 250 applicants for New Jersey's A.I. for Impact Community College Fellowship. But here's what caught my attention, it's not just that they got selected for this competitive program. It's what they're actually working on.\n\nIbrahim is developing machine learning models to streamline I.T. ticketing systems for the state government. Diaz is creating an A.I. Slack bot to help engineers search data and find source citations. These aren't theoretical exercises or classroom simulations. They're addressing actual operational challenges in government settings while working 20 hours per week and receiving stipends.\n\nWhat makes this fellowship particularly interesting is how these students are framing their motivations. Ibrahim specifically mentioned wanting to work with A.I. \"in an ethical way\" and seeing \"how A.I. systems work in a regulated, government setting.\" Diaz expressed interest in cybersecurity work for government, viewing it as \"working for my community.\" They're thinking beyond just the technical skills to the broader context of responsible A.I. implementation.\n\nFrom an institutional perspective, this partnership addresses something community colleges often struggle with, providing meaningful work-based learning opportunities that connect directly to career pathways. These students aren't just learning about A.I. in isolation. They're seeing how it fits into larger organizational systems, complete with the constraints and considerations that come with government work.\n\nThe timing feels significant too. As A.I. tools become more prevalent across all sectors, there's growing recognition that we need people who understand not just how to use these tools, but how to implement them thoughtfully in complex organizational environments. Government work, with its emphasis on transparency, accountability, and public service, provides a particular lens for this kind of learning.\n\nWhat I find most compelling about this fellowship is how it addresses something we struggle with in community college A.I. education, the gap between learning tools and understanding systems. These students aren't just building A.I. applications. They're learning to navigate the regulatory, ethical, and operational complexities that come with implementing A.I. in institutional settings.\n\nThis connects to that Stanford research I mentioned earlier about A.I. tools and learning. The concern there was about cognitive offloading, students performing better with A.I. but not actually developing deeper skills. But what these New Jersey students are experiencing seems different. They're not just using A.I. tools to complete tasks. They're learning to build A.I. solutions within real organizational constraints.\n\nFor community college educators watching this development, it raises some practical questions. Not every institution will have access to state-level partnerships like this. But the model itself, pairing academic learning with real-world application in settings that prioritize ethical considerations, offers something worth exploring.\n\nHow do we create similar bridge experiences when we don't have a state Office of Innovation next door? Maybe it's partnerships with local nonprofits, small businesses, or municipal governments. Maybe it's project-based learning that simulates these kinds of constraints and considerations.\n\nThe fellowship also highlights something I've noticed in conversations with community college faculty. Our students often crave this kind of hands-on experience. They want to see how the concepts they're learning translate to real workplace problems. They want to understand not just what A.I. can do, but where it fits and where it doesn't.\n\n-\nThese partnerships remind us that A.I. education isn't just about the technology. It's about understanding context, constraints, and consequences.\n\nThat's your Innovation Pulse for Thursday. Find full coverage and links at innovating higher ed dot com. See you Friday."
+    "audioUrl": null,
+    "audioDuration": null,
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "Community College Students Land State AI Fellowship Roles",
-    "hook": "Two computer science students from Middlesex College join exclusive state program working on real government AI projects.",
-    "category": "Case Study",
+  "topStory": {
+    "headline": "Community College Students Selected for New Jersey A.I. Fellowship",
+    "summary": "Two Middlesex College computer science students, Laila Diaz and Hassan Ibrahim, have been selected from over 250 applicants for New Jersey's A.I. for Impact Community College Fellowship. The semester-long program pairs students with the state's Office of Innovation, where they work 20 hours per week on government A.I. projects while receiving stipends and continuing their studies.\n\nIbrahim is developing machine learning models to streamline I.T. ticketing systems for state government operations. Diaz is creating an A.I. Slack bot to help engineers search data and find source citations. Both projects address operational challenges in government settings.\n\nIbrahim stated his interest in working with A.I. \"in an ethical way\" and understanding \"how A.I. systems work in a regulated, government setting.\" Diaz expressed interest in cybersecurity work for government, describing it as \"working for my community.\"\n\nThe New Jersey Council of County Colleges administers the program, with funding from the Economic Development Authority. The fellowship model connects community college students directly to career pathways in government technology roles while providing practical experience with A.I. implementation in institutional settings.",
     "source": "TAPinto",
     "sourceUrl": "https://www.tapinto.net/towns/south-plainfield/categories/press-releases/articles/middlesex-college-students-selected-for-ai-for-impact-community-college-fellowship",
-    "editorialTake": "Two computer science students from Middlesex College — Laila Diaz and Hassan Ibrahim — were selected from over 250 applicants for New Jersey's AI for Impact Community College Fellowship. The semester-long program pairs students with the state's Office of Innovation, where they work 20 hours per week on real government AI projects while receiving stipends and continuing their studies.\n\nWhat makes this story worth examining isn't just the competitive selection process, but what these students are actually working on. Ibrahim is developing machine learning models to streamline IT ticketing systems, while Diaz is creating an AI Slack bot to help engineers search data and find source citations. These aren't theoretical exercises — they're addressing actual operational challenges in government settings.\n\nThe fellowship represents something we're seeing more of: partnerships that bridge the gap between academic AI learning and practical application. In my work with community college faculty, I've noticed how often our students crave this kind of hands-on experience. They want to see how the concepts they're learning translate to real workplace problems.\n\nWhat's particularly interesting is how these students frame their motivations. Ibrahim specifically mentioned wanting to work with AI \"in an ethical way\" and seeing \"how AI systems work in a regulated, government setting.\" Diaz expressed interest in cybersecurity work for government, viewing it as \"working for my community.\" This suggests they're thinking beyond just the technical skills to the broader context of responsible AI implementation.\n\nFrom an institutional perspective, this kind of partnership offers something community colleges often struggle to provide: meaningful work-based learning opportunities that connect directly to career pathways. The students aren't just learning about AI in isolation — they're seeing how it fits into larger organizational systems, complete with the constraints and considerations that come with government work.\n\nThe timing is notable too. As AI tools become more prevalent across all sectors, there's growing recognition that we need people who understand not just how to use these tools, but how to implement them thoughtfully in complex organizational environments. Government work, with its emphasis on transparency, accountability, and public service, provides a particular lens for this kind of learning.\n\nFor community college educators watching this development, it raises questions about how we can create similar bridge experiences for our students. Not every institution will have access to state-level partnerships, but the model — pairing academic learning with real-world application in settings that prioritize ethical considerations — offers a template worth exploring.",
-    "pullQuote": "These aren't theoretical exercises — they're addressing actual operational challenges in government settings.",
-    "editorialCallout": "What I find most interesting about this fellowship is how it addresses something we struggle with in community college AI education: the gap between learning tools and understanding systems. These students aren't just building AI applications — they're learning to navigate the regulatory, ethical, and operational complexities that come with implementing AI in institutional settings. That's exactly the kind of contextual learning our students need, but it requires partnerships that many of us don't have access to. It makes me wonder: how do we create similar bridge experiences when we don't have a state Office of Innovation next door?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Students working on laptops in a government office setting, with AI interface elements visible on screens"
+    "category": "Case Study"
   },
-  "quickHits": [
+  "stories": [
     {
-      "headline": "Stanford Study Questions AI Classroom Tool Effectiveness",
-      "summary": "Stanford researchers found limited evidence that AI tools improve student learning long-term. While students perform better while using AI, gains often disappear when tools are removed, raising concerns about cognitive offloading versus actual skill development.",
-      "category": "Insights & Trends",
+      "headline": "Stanford Study Questions A.I. Classroom Tool Effectiveness",
+      "summary": "Stanford researchers have found limited evidence that A.I. tools improve student learning long-term. According to GovTech, while students perform better while using A.I. tools, those gains often disappear when the tools are removed. The research raises concerns about cognitive offloading, where students may become dependent on A.I. assistance rather than developing underlying skills. The findings suggest A.I. tools may help with immediate task completion but may not contribute to lasting skill development.",
       "source": "GovTech",
       "sourceUrl": "https://www.govtech.com/education/k-12/stanford-researchers-find-thin-evidence-behind-ai-classroom-tools",
-      "isCallback": false
+      "category": "Insights & Trends"
     },
     {
-      "headline": "University of Houston Adopts Google AI Education Suite",
-      "summary": "UH partnered with Google to provide campus-wide access to Gemini for Education and NotebookLM. The university emphasizes preparing students to be \"AI-fluent\" while urging faculty to set clear guidelines for ethical AI use in coursework.",
-      "category": "Latest AI Products",
+      "headline": "University of Houston Adopts Google A.I. Education Suite",
+      "summary": "The University of Houston has partnered with Google to provide campus-wide access to Gemini for Education and NotebookLM. According to The Daily Cougar, the university is emphasizing preparing students to be \"A.I.-fluent\" as part of the initiative. Faculty are being urged to set clear guidelines for ethical A.I. use in coursework. The partnership gives students and faculty access to Google's educational A.I. tools across the university.",
       "source": "The Daily Cougar",
       "sourceUrl": "https://thedailycougar.com/2026/03/17/uh-collaborates-with-google-to-bring-ai-tools-to-campus/",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
-      "headline": "Writing Professor Shares AI Classroom Integration Journey",
-      "summary": "Babson College educator describes evolution from initial AI experimentation to structured approach balancing tool use with critical thinking development. Emphasizes helping students develop discernment about when AI supports versus substitutes for learning.",
-      "category": "Practical Tips",
+      "headline": "Babson Writing Professor Integrates A.I. Into Classroom Practice",
+      "summary": "A writing professor at Babson College has shared her experience integrating A.I. into educational settings. According to The North Star Monthly, the professor's approach evolved from initial A.I. experimentation to a more structured method balancing tool use with critical thinking development. The focus centers on helping students develop discernment about when A.I. supports learning versus when it substitutes for learning.",
       "source": "The North Star Monthly",
       "sourceUrl": "https://www.northstarmonthly.com/under_the_same_north_star/learning-to-co-exist-with-ai-in-the-writing-classroom/article_e414eae6-5988-4074-b33a-b418f0ec5578.html",
-      "isCallback": false
+      "category": "Practical Tips"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-02-19",
     "dayOfWeek": "Thursday",
-    "editorialLens": "Connecting the Dots",
-    "themes": [
-      "work-based learning",
-      "government partnerships",
-      "ethical AI implementation",
-      "community college pathways",
-      "practical application"
-    ],
-    "storiesWatching": [
-      "New Jersey AI for Impact Fellowship outcomes and expansion",
-      "Stanford AI effectiveness research follow-up studies"
-    ],
-    "lensDescription": "Pattern recognition across stories and across the week.",
-    "lensColor": "#a78bfa",
-    "publishedAt": "2026-03-18T19:01:24.565Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "Connecting the Dots"
   }
 }

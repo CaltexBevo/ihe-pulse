@@ -3,94 +3,66 @@
     "date": "2026-03-16",
     "dayOfWeek": "Monday",
     "editorialLens": "The Hard Question",
-    "lensDescription": "Examine complexity and tradeoffs. Surface the questions worth asking.",
-    "lensColor": "#fb7185",
     "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-16.mp3",
     "audioDuration": "6:27",
-    "broadcastScript": "Welcome to The Innovation Pulse from Innovating Higher Ed. It's Monday, March 16th.\n\nAt Metropolitan State University Denver, faculty are confronting a reality many of us recognize: A.I. has fundamentally changed how we think about student assessment. When professors say they don't know how to validate online assessments anymore, what does that mean for the future of higher education?\n\n-\nFrom our Case Study file today, Universidad Austral has partnered with Universidad de La Sabana to develop an intelligent dashboard that allows educators and students to interact with A.I. as both teammate and teaching assistant. The tool provides continuous feedback and helps students develop better judgment in A.I. use, essentially turning the technology into a learning partner rather than just a productivity tool.\n\n-\nNext up, the San Diego Community College District is holding InnovAItion Day on March 20th, bringing together faculty, staff and students to explore responsible A.I. use in education. The event features student-led panels and discussions about A.I.'s role in learning. It's worth noting how community colleges are taking the lead on these conversations, given their diverse student populations and practical focus.\n\n-\nOver at UNC Greensboro, the School of Nursing has appointed A.I. Champions to integrate artificial intelligence across curriculum, simulation, and faculty training. Seventy percent of faculty are actively using A.I. tools to enhance student engagement and support different learning styles. The nursing field's embrace of A.I. integration is particularly interesting given the hands-on, high-stakes nature of healthcare education.\n\n-\nAnd here's one worth watching from George Washington University. Professor Michael Tadesse has restructured his marketing courses around an innovation mindset lab where students work with real businesses to build A.I.-enabled prototypes. His approach emphasizes strategic thinking and adaptation over traditional content delivery, essentially flipping the classroom to focus on application rather than absorption.\n\n-\nMeanwhile, from our Practical Tips category, new analysis highlights how no-code A.I. platforms are enabling students and faculty to leverage artificial intelligence without programming expertise. Tools range from Google Teachable Machine for beginners to research assistants for literature review, potentially democratizing access to A.I. capabilities across academic disciplines.\n\n-\nNow, let's get to that story I mentioned at the top. At Metropolitan State University Denver, faculty are grappling with what might be the most fundamental challenge A.I. poses to higher education: how do we assess student learning when we can't be sure who or what completed the work?\n\nJeff Loats, a professor and director of the Center for Teaching, Learning and Design at MSU, put it bluntly. If assessments are online, he said, we don't know how to do that in a valid way. That's a striking admission from someone whose job involves helping faculty improve their teaching practices.\n\nBut what's equally interesting is how the institution is framing this challenge. Sam Jay, MSU's Executive Director of Online Learning, noted this isn't entirely new. It's a problem that requires significant investment of resources, time and effort. But he's positioning it as an opportunity to right the ship on assessment practices that may have been fragile all along.\n\nThat framing suggests something important. Maybe A.I. isn't breaking our assessment systems so much as revealing their existing weaknesses. If a chatbot can complete our assignments convincingly, what does that tell us about whether those assignments were measuring meaningful learning in the first place?\n\nThe responses emerging at MSU offer a glimpse of where assessment might be heading. Vice Provost Shaun Schafer described flipping his journalism class from in-person lectures with online assignments to online lectures with in-person assignments. He's anticipating more case studies and apply this to your life, apply to your community assignments because these are harder for A.I. to complete authentically.\n\nThis shift toward contextual, personal application represents a significant pedagogical change. It requires more from both instructors and students. Instead of testing recall or even analysis in the abstract, faculty are moving toward assessments that ask students to connect learning to their specific experiences and communities.\n\nBut the article also reveals the complexity of implementation. Schafer acknowledged that it's difficult for instructors to drastically change their teaching methods, and faculty buy-in varies widely. Some professors allow limited A.I. use while others restrict it entirely, creating what you might call a patchwork approach across the institution.\n\nThe challenge of creating definitive guidelines across more than 100 majors at MSU illustrates how institutional responses are still evolving. Different disciplines have different relationships with A.I., different assessment traditions, and different practical constraints.\n\nFor those of us teaching Monday morning, this raises immediate questions. How do we balance the pedagogical benefits of authentic assessment with the practical realities of large classes and limited time? What happens to equity when some students have access to sophisticated A.I. tools while others don't?\n\nThe MSU faculty seem to be wrestling with these same tensions, recognizing that avoiding A.I. isn't realistic while also maintaining academic integrity standards. They're essentially asking whether our traditional approaches to assessment were serving students well even before A.I. arrived on the scene.\n\nWhat strikes me about this is how it mirrors conversations happening at community colleges, regional universities, and research institutions alike. We're all grappling with the same fundamental tension. A.I. tools can genuinely enhance learning, but they also complicate how we measure what students actually know.\n\nThe shift toward more contextual, applied assessments sounds promising, but it demands more time and creativity from faculty who are already stretched thin. And the equity questions become even more complex when you consider students with varying levels of tech access and digital literacy.\n\n-\nThese aren't problems with easy solutions, but they're conversations worth having. The faculty at MSU Denver are asking the right questions, even if the answers remain elusive.\n\nThat's your Innovation Pulse for Monday. Find full coverage and links at innovating higher ed dot com. See you Tuesday."
+    "broadcastScript": null
   },
-  "leadStory": {
-    "headline": "Colorado Professors Grapple With Assessment in the A.I. Age",
-    "hook": "When faculty say online assessments have become impossible to validate, what comes next for higher education?",
-    "category": "Insights & Trends",
+  "topStory": {
+    "headline": "MSU Denver Faculty Say Online Assessments Have Become Impossible to Validate",
+    "summary": "At Metropolitan State University Denver, faculty are confronting challenges with student assessment in the A.I. age, according to Denver7. Jeff Loats, professor and director of the Center for Teaching, Learning and Design at MSU, stated that if assessments are online, \"we don't know how to do that in a valid way.\"\n\nSam Jay, MSU's Executive Director of Online Learning, described this as an opportunity to \"right the ship\" on assessment practices. Vice Provost Shaun Schafer described flipping his journalism class from in-person lectures with online assignments to online lectures with in-person assignments. He anticipates more case studies and \"apply this to your life, apply to your community\" assignments because these are harder for A.I. to complete authentically.\n\nSchafer acknowledged that it is difficult for instructors to drastically change their teaching methods, and faculty buy-in varies. Some professors allow limited A.I. use while others restrict it entirely, creating a patchwork approach. The challenge of creating definitive guidelines across more than 100 majors at MSU illustrates how institutional responses are still evolving.",
     "source": "Denver7",
     "sourceUrl": "https://www.denver7.com/decodedc/technology/colorado-college-professors-re-assessing-student-testing-in-the-age-of-artificial-intelligence",
-    "editorialTake": "At Metropolitan State University Denver, faculty are confronting a reality many of us recognize: A.I. has fundamentally changed how we think about student assessment. According to the article, professors there are signaling that student assessment needs to be re-evaluated to ensure academic honesty and help students use A.I. as a learning tool rather than a crutch. Jeff Loats, a professor and director of the Center for Teaching, Learning and Design, put it bluntly: if assessments are online, \"we don't know how to do that in a valid way.\"\n\nThis isn't just a technical problem—it's an existential one for higher education. The challenge goes beyond detecting A.I. use to fundamentally rethinking what we're measuring and how. Sam Jay, MSU's Executive Director of Online Learning, noted this isn't entirely new: \"It's a problem that we're going to have to be willing to invest a lot of resources and time and effort into.\" What's striking is his framing—this is an opportunity to \"right the ship\" on assessment practices that may have been fragile all along.\n\nThe responses emerging at MSU offer a glimpse of where assessment might be heading. Vice Provost Shaun Schafer described flipping his journalism class from in-person lectures with online assignments to online lectures with in-person assignments. He anticipates more case studies and \"apply this to your life, apply to your community\" assignments because these are harder for A.I. to complete authentically. This shift toward contextual, personal application represents a significant pedagogical change—one that requires more from both instructors and students.\n\nYet the article also reveals the complexity of implementation. Schafer acknowledged that it's difficult for instructors to drastically change their teaching methods, and faculty buy-in varies widely. Some professors allow limited A.I. use while others restrict it entirely, creating what one might call a patchwork approach across institutions. The challenge of creating definitive guidelines across more than 100 majors at MSU illustrates how institutional responses are still evolving.\n\nFor those of us teaching Monday morning, this raises immediate questions: How do we balance the pedagogical benefits of authentic assessment with the practical realities of large classes and limited time? What happens to equity when some students have access to sophisticated A.I. tools while others don't? The MSU faculty seem to be wrestling with these same tensions, recognizing that avoiding A.I. isn't realistic while also maintaining academic integrity standards.",
-    "pullQuote": "What's striking is the framing—this is an opportunity to \"right the ship\" on assessment practices that may have been fragile all along.",
-    "editorialCallout": "What I find most interesting about this is how it mirrors conversations I'm having with community college faculty across California. We're all grappling with the same fundamental tension: A.I. tools can genuinely enhance learning, but they also complicate how we measure what students actually know. The shift toward more contextual, applied assessments that Schafer describes sounds promising, but it also demands more time and creativity from faculty who are already stretched thin. At community colleges, where we serve diverse student populations with varying levels of tech access, the equity questions become even more complex. Some of our students are using A.I. to level the playing field, while others lack reliable internet for basic coursework. How do we design assessments that are both A.I.-aware and accessible? And perhaps more fundamentally: if A.I. can complete many of our traditional assignments, what does that tell us about whether those assignments were measuring meaningful learning in the first place?",
-    "isCallback": false,
-    "callbackContext": null,
-    "imagePrompt": "Split-screen showing traditional paper test and laptop with AI interface, representing assessment evolution"
+    "category": "Insights & Trends"
   },
-  "quickHits": [
+  "stories": [
     {
       "headline": "Kazakhstan Plans A.I. University Launch for 2026",
-      "summary": "Kazakhstan will open a dedicated artificial intelligence university in 2026, according to TV BRICS reports. The initiative represents the country's commitment to developing A.I. expertise and education infrastructure.",
-      "category": "Latest AI Products",
+      "summary": "Kazakhstan will open a dedicated artificial intelligence university in 2026, according to TV BRICS. The initiative represents the country's commitment to developing A.I. expertise and education infrastructure.",
       "source": "TV BRICS",
       "sourceUrl": "https://tvbrics.com/en/news/artificial-intelligence-university-to-open-in-kazakhstan-in-2026/",
-      "isCallback": false
+      "category": "Latest AI Products"
     },
     {
       "headline": "Universidad Austral Integrates A.I. Dashboard for Student Assessment",
-      "summary": "Universidad Austral partnered with Universidad de La Sabana to develop an intelligent dashboard that allows educators and students to interact with A.I. as both teammate and teaching assistant. The tool provides continuous feedback and helps students develop better judgment in A.I. use.",
-      "category": "Case Study",
+      "summary": "Universidad Austral partnered with Universidad de La Sabana to develop an intelligent dashboard that allows educators and students to interact with A.I. as both teammate and teaching assistant, according to Times Higher Education. The tool provides continuous feedback and helps students develop better judgment in A.I. use.",
       "source": "Times Higher Education",
       "sourceUrl": "https://www.timeshighereducation.com/campus/genai-teaching-colleague-assessment-case-study",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
-      "headline": "San Diego Community College District Hosts 'InnovAItion Day'",
-      "summary": "The San Diego Community College District is holding InnovAItion Day on March 20, bringing together faculty, staff and students to explore responsible A.I. use in education. The event features student-led panels and discussions about A.I.'s role in learning.",
-      "category": "Practical Tips",
+      "headline": "San Diego Community College District Hosts 'InnovAItion Day' March 20",
+      "summary": "The San Diego Community College District is holding InnovAItion Day on March 20, bringing together faculty, staff and students to explore responsible A.I. use in education, according to City Times. The event features student-led panels and discussions about A.I.'s role in learning.",
       "source": "City Times",
       "sourceUrl": "https://sdcitytimes.com/news/2026/03/19/sdccd-innovaltion-day-event-explores-ai-in-higher-education/",
-      "isCallback": false
+      "category": "Practical Tips"
     },
     {
-      "headline": "UNC Greensboro Nursing School Leads A.I. Integration Efforts",
-      "summary": "UNCG's School of Nursing has appointed A.I. Champions to integrate artificial intelligence across curriculum, simulation, and faculty training. Seventy percent of faculty are actively using A.I. tools to enhance student engagement and support different learning styles.",
-      "category": "Case Study",
+      "headline": "UNC Greensboro Nursing School Leads A.I. Integration",
+      "summary": "UNCG's School of Nursing has appointed A.I. Champions to integrate artificial intelligence across curriculum, simulation, and faculty training, according to UNC Greensboro. Seventy percent of faculty are actively using A.I. tools to enhance student engagement and support different learning styles.",
       "source": "UNC Greensboro",
       "sourceUrl": "https://www.uncg.edu/news/ai-at-work-nursing-uncg/",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
-      "headline": "George Washington Professor Redesigns Business Education for A.I. Era",
-      "summary": "GW Professor Michael Tadesse has restructured his marketing courses around an \"innovation mindset lab\" where students work with real businesses to build A.I.-enabled prototypes. His approach emphasizes strategic thinking and adaptation over traditional content delivery.",
-      "category": "Case Study",
+      "headline": "George Washington Professor Redesigns Marketing Courses for A.I. Era",
+      "summary": "GW Professor Michael Tadesse has restructured his marketing courses around an \"innovation mindset lab\" where students work with real businesses to build A.I.-enabled prototypes, according to GW Today. His approach emphasizes strategic thinking and adaptation over traditional content delivery.",
       "source": "GW Today",
       "sourceUrl": "https://gwtoday.gwu.edu/how-gw-professor-rethinking-business-education-age-ai",
-      "isCallback": false
+      "category": "Case Study"
     },
     {
       "headline": "No-Code A.I. Tools Expand Access for Academic Users",
-      "summary": "New analysis highlights how no-code A.I. platforms are enabling students and faculty to leverage artificial intelligence without programming expertise. Tools range from Google Teachable Machine for beginners to research assistants for literature review.",
-      "category": "Practical Tips",
+      "summary": "New analysis highlights how no-code A.I. platforms enable students and faculty to leverage artificial intelligence without programming expertise, according to Open Source For You. Tools range from Google Teachable Machine for beginners to research assistants for literature review.",
       "source": "Open Source For You",
       "sourceUrl": "https://www.opensourceforu.com/2026/03/no-code-ai-tools-a-boon-for-the-academic-and-professional-world/",
-      "isCallback": false
+      "category": "Practical Tips"
     }
   ],
   "meta": {
+    "version": "3.0",
+    "format": "straight-news",
     "date": "2026-03-16",
     "dayOfWeek": "Monday",
-    "editorialLens": "The Hard Question",
-    "themes": [
-      "assessment",
-      "academic integrity",
-      "faculty adaptation",
-      "institutional policy",
-      "equity"
-    ],
-    "storiesWatching": [
-      "MSU Denver assessment policy development",
-      "SDCCD InnovAItion Day outcomes",
-      "No-code AI adoption in higher ed"
-    ],
-    "lensDescription": "Examine complexity and tradeoffs. Surface the questions worth asking.",
-    "lensColor": "#fb7185",
-    "publishedAt": "2026-03-20T14:19:42.453Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+    "editorialLens": "The Hard Question"
   }
 }
