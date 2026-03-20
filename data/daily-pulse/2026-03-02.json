@@ -22,7 +22,16 @@
     "callbackContext": null,
     "imagePrompt": "Split illustration showing policy documents on one side and people collaborating with technology on the other, connected by a bridge"
   },
-  "quickHits": [],
+  "quickHits": [
+    {
+      "headline": "Opinion: A.I. Exposes Where Learning Was Thin to Begin With",
+      "summary": "University of Virginia computer science professor Xinyao Yi argues that A.I. hasn't changed how students learn — it has revealed where assessments allowed students to succeed without genuine understanding. Students now submit working code they cannot explain, exposing a gap between producing solutions and comprehending them.",
+      "category": "Insights & Trends",
+      "source": "Inside Higher Ed",
+      "sourceUrl": "https://www.insidehighered.com/opinion/views/2026/03/10/ai-exposes-where-learning-was-thin-begin-opinion",
+      "isCallback": false
+    }
+  ],
   "meta": {
     "date": "2026-03-02",
     "dayOfWeek": "Monday",
