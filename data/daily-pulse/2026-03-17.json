@@ -3,59 +3,78 @@
     "date": "2026-03-17",
     "dayOfWeek": "Tuesday",
     "editorialLens": "The Student Experience",
+    "lensDescription": "Everything filtered through how it affects actual students.",
+    "lensColor": "#60a5fa",
     "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-17.mp3",
-    "audioDuration": "3:23",
-    "broadcastScript": "This is The Innovation Pulse for Tuesday, March 17, 2026. Here's what's happening in A.I. and higher education.\n-\nToday, a UK company offers free A.I. access to university students when institutions purchase staff licenses, addressing a growing digital divide.\n-\nIn Insights and Trends today, ICS.AI has launched a model that gives UK university students free access to institutional A.I. tools when universities purchase staff licenses.\n\nAccording to IT Brief UK, fewer than five percent of the UK's 2.9 million higher education students currently have access to structured institutional A.I. tools. Meanwhile, 57 percent of employers report significant A.I. skills gaps in their workforce.\n\nICS.AI's CEO Martin Neale describes this access gap as a potential defining driver of graduate employability. For an institution with 20,000 students, annual spending on commercial A.I. services can reach millions, making universal access financially prohibitive for many institutions.\n\nThe company emphasizes governance, audit trails, and compliance controls in its platform. The bundled approach positions A.I. literacy as basic educational infrastructure, similar to internet access or library resources. The model addresses the cost barrier that has created a divide between students who can afford individual A.I. subscriptions and those who cannot.\n-\nIn Case Studies, Wychwood School in Oxford has launched A.I. Futures Oxford, offering an A-level in Artificial Intelligence for students aged 16 and over.\n\nAccording to IT Brief UK, the program operates outside normal school hours, allowing students to stay at their current schools while adding A.I. education. The micro-school model provides specialized A.I. instruction without requiring students to transfer institutions.\n-\nTurning to Ethical A.I., University of Amsterdam lecturer Nicos Starreveld argues that excessive focus on A.I.-secure testing undermines trust between faculty and students.\n\nAccording to Folia.nl, Starreveld advocates for emphasizing student learning and well-being over assessment security. He suggests A.I.-secure assignments should focus on affective learning domains rather than attempting to detect or prevent all A.I. use.\n-\nIn Insights and Trends, a Jobs for the Future survey found 70 percent of students use A.I. weekly for education, up from 59 percent in 2024.\n\nAccording to Inside Higher Ed, 48 percent of students seek A.I. guidance from social media versus only 23 percent from educational institutions. This indicates students prefer informal learning channels despite increased institutional training offerings.\n-\nIn Beyond Ed, the White House released a National Policy Framework for Artificial Intelligence with legislative recommendations for Congress.\n\nAccording to the Center for Data Innovation, the framework emphasizes innovation over restrictive regulation. The Center praised the framework for addressing legitimate concerns while avoiding barriers to A.I. deployment and calling for federal preemption of conflicting state laws.\n-\nThat's today's Innovation Pulse. Full coverage and source links at innovating higher ed dot com."
+    "audioDuration": null,
+    "broadcastScript": "This is The Innovation Pulse for Tuesday, March 17th, 2026. And here's who is innovating in higher education today.\n\n<break time=\"1.0s\"/>\n\nIn Ethical A.I. today, college sports departments are encountering a new challenge in athletic recruitment. According to NJ.com, high school recruits are submitting videos created by artificial intelligence as part of their recruitment materials. The use of A.I.-generated videos has reportedly entered the world of college sports recruiting, creating new verification challenges for admissions and athletics staff. College recruiters now face the task of distinguishing between genuine athletic footage and artificially generated content, adding a new layer of complexity to the recruitment process. The development represents a shift in how technology is being used to potentially misrepresent athletic abilities and achievements. The emergence of A.I.-generated recruiting videos highlights the growing accessibility of sophisticated video creation tools among high school students. This trend forces college athletics departments to develop new verification protocols and detection methods to ensure fair evaluation of prospective student-athletes. The practice raises questions about academic integrity standards in athletic recruitment and the need for updated policies addressing artificial intelligence use in admissions materials.\n\n<break time=\"1.0s\"/>\n\nIn Case Study today, three Morgan State University faculty members have received national recognition for trustworthy A.I. projects. According to Morgan State University, Dr. Krishna Bista, Dr. Virginia Byrne, and Dr. Elizabeth Morgan from the Department of Advanced Studies, Leadership, and Policy received TRAILS Broader Impact Awards. The faculty were among 11 recipients nationwide selected from a competitive pool to receive funding up to 25,000 dollars each. Dr. Bista will lead A.I. Learning Labs, offering a three-week online seminar series for community college leaders. Dr. Byrne will collaborate with University of Maryland faculty to develop A.I. literacy lessons for middle and high school educators. Dr. Morgan will work with families of children receiving special education services to help them use A.I. tools for advocacy related to IEPs and 504 plans. Two additional Morgan State faculty members in teacher education also received awards.\n\n<break time=\"1.0s\"/>\n\nTurning to Practical Tips, SUNY Sullivan recently hosted regional educators for A.I. training. According to Mid Hudson News, SUNY Sullivan and Sullivan BOCES co-hosted 30 high school teachers from across the region for a full-day professional development workshop titled \"Artificial Intelligence in the Classroom: Approaches and Strategies for Teachers.\" The March 13th event brought educators to the college's campus for training on A.I. integration in education. The morning session featured a keynote by Laurie Guyon, Lead Coordinator for Instructional Technology Programs at WSWHE BOCES, who guided participants through current A.I. trends and practical strategies. The afternoon included breakout sessions bringing together high school and college faculty to share resources and develop best practices. SUNY Sullivan's College in the High School program currently partners with ten high schools across the region, offering more than 150 courses to more than 740 students this academic year.\n\n<break time=\"1.0s\"/>\n\nAlso in Case Study, two Middlesex College students are participating in a state A.I. fellowship program. According to TAPinto, computer science students Laila Diaz from Sewaren and Hassan Ibrahim from Old Bridge were among five New Jersey students chosen from 250 applicants for the statewide learning program. The fellowship, conducted in partnership with the NJ Office of Innovation, pairs college students with professional advisors to provide hands-on experience in applying artificial intelligence to address government challenges. Students work 20 hours per week and receive stipends while continuing their academic studies. Diaz's project involves creating an artificial intelligence program for engineers to search through government data, while Ibrahim applied because of his interest in the ethical use of artificial intelligence. The students will be honored at a ceremony in May.\n\n<break time=\"1.0s\"/>\n\nIn Insights and Trends, San Francisco State University recently convened faculty to explore A.I.'s impact on research. According to SF State News, the university hosted the \"Research in the Age of A.I.: SFSU Faculty Symposium\" on February 20th, bringing together faculty from across disciplines. The half-day gathering featured a keynote address by Gaurav Suri, a panel on A.I. ethics and digital responsibility, and 15 lightning talks highlighting innovative A.I.-driven research underway at SFSU. The event created space to share emerging tools while critically examining the opportunities and responsibilities that accompany A.I.'s growing influence in scholarly work. Suri, an associate professor of Psychology, noted in his keynote that \"There's a lot of noise about A.I. It's not the answer to all of our problems and it's not this horrible thing that should never be used. It's both. It's a tool.\"\n\nThat's today's Innovation Pulse. Full coverage and source links at innovating higher ed dot com."
   },
-  "topStory": {
-    "headline": "UK Company Bundles Free Student A.I. Access With Staff Licenses",
-    "summary": "ICS.AI has launched a model that gives UK university students free access to institutional A.I. tools when universities purchase staff licenses, according to IT Brief UK. The company reports that fewer than 5% of the UK's 2.9 million higher education students currently have access to structured institutional A.I. tools, while 57% of employers report significant A.I. skills gaps.\n\nFor an institution with 20,000 students, annual spending on commercial A.I. services can reach millions, making universal access financially prohibitive for many institutions. ICS.AI's CEO Martin Neale describes this access gap as a potential defining driver of graduate employability.\n\nThe company emphasizes governance, audit trails, and compliance controls in its platform. The bundled approach positions A.I. literacy as basic educational infrastructure similar to internet access or library resources. The model addresses the cost barrier that has created a divide between students who can afford individual A.I. subscriptions and those who cannot.",
-    "source": "IT Brief UK",
-    "sourceUrl": "https://itbrief.co.uk/story/ics-ai-launches-free-student-ai-access-for-uk-universities",
-    "category": "Insights & Trends"
+  "leadStory": {
+    "headline": "When A.I. Agents Can Take Your Entire Course for You",
+    "hook": "New A.I. tools can now log into online classes and complete entire courses independently — what does this mean for learning?",
+    "category": "Insights & Trends",
+    "source": "iblnews.org",
+    "sourceUrl": "https://iblnews.org/summary?topic=19&date=17032026",
+    "editorialTake": "A striking claim emerged from a recent faculty presentation: new A.I. agents like Perplexity's Comet and ChatGPT's Atlas can now log into online college courses and complete them entirely on their own. This represents a significant escalation from the early days of ChatGPT helping with individual assignments to systems that can navigate entire learning management platforms independently.\n\nThe implications ripple far beyond traditional concerns about academic integrity. When Nicholas Spina, a political science professor at Slippery Rock University, told his audience that these tools can take \"the entire course independently,\" he was highlighting a fundamental shift in what's possible. We're moving from students using A.I. as a writing assistant to A.I. systems that can potentially replace the student experience altogether.\n\nThis development arrives as universities are still grappling with basic questions about A.I. use in individual assignments. Faculty across the country are revising syllabi, experimenting with new assessment methods, and trying to balance the potential benefits of A.I. tools with concerns about learning outcomes. The emergence of course-taking A.I. agents adds another layer of complexity to these already challenging conversations.\n\nFrom a student experience perspective, this raises profound questions about what we're actually offering in higher education. If an A.I. can complete coursework that requires \"just a screen,\" as Spina noted, then we need to examine whether that coursework is serving its intended purpose. Are we designing learning experiences that genuinely require human engagement, critical thinking, and personal growth? Or have we inadvertently created systems that can be automated?\n\nThe response isn't necessarily to ban these technologies outright. Some institutions are taking more nuanced approaches, like the writing professor who asks students to draft both with and without A.I., then compare the results. This kind of metacognitive work helps students understand when tools enhance their thinking versus when they replace it.\n\nFor community college educators, these developments are particularly relevant. Our students often juggle multiple responsibilities and may be drawn to any tool that promises to make coursework more efficient. But efficiency and learning aren't always aligned. The challenge is helping students recognize when struggling through a problem or wrestling with a concept is actually the point of the assignment.\n\nThe broader question facing all of us is whether we're designing education that remains valuable in an age of increasingly capable A.I. This might mean shifting toward more experiential learning, collaborative projects, or assessments that require students to apply knowledge in novel contexts rather than simply demonstrate they can produce correct answers.",
+    "pullQuote": "If an A.I. can complete coursework that requires 'just a screen,' then we need to examine whether that coursework is serving its intended purpose.",
+    "editorialCallout": "What I find most interesting about this development is how it forces us to confront what we're really trying to accomplish in our courses. At community colleges, we're often working with students who are balancing jobs, families, and financial pressures. The appeal of a tool that could handle coursework automatically is understandable. But if A.I. can complete our assignments without genuine learning occurring, then we're not serving our students well — we're just credentialing them. The question that keeps coming back to me is: How do we design learning experiences that are inherently human? Not because we're anti-technology, but because we're pro-learning. What aspects of education require the kind of struggle, reflection, and growth that can't be automated?",
+    "isCallback": false,
+    "callbackContext": null,
+    "imagePrompt": "Split screen showing human student and A.I. interface both accessing the same online course"
   },
-  "stories": [
+  "quickHits": [
     {
-      "headline": "NSF Awards $11M for K-12 A.I. Teacher Training",
-      "summary": "The National Science Foundation awarded $11 million to the Computer Science Teachers Association to train 2,500-3,000 K-12 educators in A.I. and computer science foundations, according to Mirage News. The program will operate across seven states and aims to reach 500,000-600,000 students over two years.",
-      "source": "Mirage News",
-      "sourceUrl": "https://www.miragenews.com/nsf-pours-11m-into-ai-training-for-k-12-teachers-1640993/",
-      "category": "Latest AI Products"
+      "headline": "Santiago Canyon College Explores A.I.'s Concerning Aspects",
+      "summary": "Santiago Canyon College hosted investigative reporter Karen Hao to discuss concerning aspects of A.I. with President Jeannie Kim and Distance Education coordinator Scotty James. The presentation addressed growing faculty and administrative concerns about A.I.'s impact on education.",
+      "category": "Case Study",
+      "source": "Orange County Register",
+      "sourceUrl": "https://www.ocregister.com/2026/03/17/journalist-talks-to-santiago-canyon-college-about-the-concerning-aspects-of-ai/",
+      "isCallback": false
     },
     {
-      "headline": "Oxford School Launches A.I. Micro-School for Sixth Form",
-      "summary": "Wychwood School launched A.I. Futures Oxford, offering an A-level in Artificial Intelligence for students aged 16 and over, according to IT Brief UK. The program operates outside normal school hours, allowing students to stay at their current schools while adding A.I. education.",
-      "source": "IT Brief UK",
-      "sourceUrl": "https://itbrief.co.uk/story/wychwood-launches-oxford-ai-micro-school-for-sixth-form",
-      "category": "Case Study"
+      "headline": "Northwestern Joins Growing List of A.I. Major Offerings",
+      "summary": "Northwestern University has announced a new artificial intelligence major, joining other institutions responding to student demand for A.I.-focused programs. The trend reflects universities' efforts to prepare students for an A.I.-driven job market.",
+      "category": "Latest AI Products",
+      "source": "USA Today",
+      "sourceUrl": "https://www.usatoday.com/story/news/education/2026/03/16/what-is-an-artificial-intelligence-major-ai/89179810007/",
+      "isCallback": false
     },
     {
-      "headline": "Dutch Lecturer Calls for Student-Centered A.I. Approach",
-      "summary": "University of Amsterdam lecturer Nicos Starreveld argues that excessive focus on A.I.-secure testing undermines trust between faculty and students, according to Folia.nl. He advocates for emphasizing student learning and well-being over assessment security, suggesting A.I.-secure assignments should focus on affective learning domains.",
-      "source": "Folia.nl",
-      "sourceUrl": "https://www.folia.nl/en/opinie/172665/refocus-on-the-student-rather-than-on-the-testing",
-      "category": "Ethical AI"
+      "headline": "MSU Denver Professor: General Studies Gains Value",
+      "summary": "A Metropolitan State University Denver professor argues that general studies programs may prove more valuable as A.I. changes the job market. The perspective suggests broad-based education could be more resilient to technological disruption than specialized technical training.",
+      "category": "Insights & Trends",
+      "source": "Denver7",
+      "sourceUrl": "https://www.denver7.com/lifestyle/education/general-studies-could-prove-more-valuable-amid-changing-job-market-for-college-students-msu-denver-professor",
+      "isCallback": false
     },
     {
-      "headline": "Survey: 70% of Students Use A.I. Weekly, 48% Seek Guidance on Social Media",
-      "summary": "A Jobs for the Future survey found 70% of students use A.I. weekly for education, up from 59% in 2024, according to Inside Higher Ed. However, 48% seek A.I. guidance from social media versus 23% from educational institutions, indicating students prefer informal learning channels despite increased institutional training offerings.",
-      "source": "Inside Higher Ed",
-      "sourceUrl": "https://www.insidehighered.com/news/quick-takes/2026/03/20/ai-help-more-college-students-ask-social-media-first",
-      "category": "Insights & Trends"
-    },
-    {
-      "headline": "White House Releases A.I. Policy Framework for Congress",
-      "summary": "The White House released a National Policy Framework for Artificial Intelligence with legislative recommendations emphasizing innovation over restrictive regulation, according to the Center for Data Innovation. The Center praised the framework for addressing legitimate concerns while avoiding barriers to A.I. deployment and calling for federal preemption of conflicting state laws.",
-      "source": "Center for Data Innovation",
-      "sourceUrl": "https://datainnovation.org/2026/03/white-house-gives-congress-the-right-blueprint-for-ai-policy/",
-      "category": "Beyond Ed"
+      "headline": "Writing Professor Advocates Teaching When to Struggle",
+      "summary": "A Babson College writing professor describes shifting from neutral A.I. observer to guide with expertise, emphasizing the importance of helping students understand when intellectual struggle is necessary for learning versus when A.I. assistance is appropriate.",
+      "category": "Practical Tips",
+      "source": "The Conversation",
+      "sourceUrl": "https://theconversation.com/a-writing-professors-new-task-in-the-age-of-ai-teaching-students-when-to-struggle-276590",
+      "isCallback": false
     }
   ],
   "meta": {
-    "version": "3.0",
-    "format": "straight-news",
     "date": "2026-03-17",
     "dayOfWeek": "Tuesday",
-    "editorialLens": "The Student Experience"
+    "editorialLens": "The Student Experience",
+    "themes": [
+      "AI course completion",
+      "learning vs efficiency",
+      "academic integrity evolution",
+      "student struggle",
+      "educational value"
+    ],
+    "storiesWatching": [
+      "AI agents completing entire courses",
+      "General studies programs gaining relevance",
+      "Faculty shifting from neutral to guided AI approaches"
+    ],
+    "lensDescription": "Everything filtered through how it affects actual students.",
+    "lensColor": "#60a5fa",
+    "publishedAt": "2026-03-23T20:01:34.982Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
   }
 }
