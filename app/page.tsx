@@ -132,7 +132,7 @@ export default function Home() {
           <SectionHeader
             title="Lead Story"
             titleColor="var(--magenta)"
-            tagline="Today's most important story, analyzed."
+            tagline="Today's top story."
             accentColor="var(--magenta)"
           />
 

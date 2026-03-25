@@ -150,27 +150,6 @@ export default function LeadStoryCard({ episode, imageUrl, v4Category, categoryC
         </div>
       </div>
 
-      {/* OUR TAKE Section - Always Visible Below Card */}
-      {leadStory.editorialCallout && (
-        <div className="mt-5 bg-[var(--surface-1)] border border-[var(--border)] rounded-[16px] p-6 relative overflow-hidden">
-          {/* Accent border */}
-          <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[var(--magenta)] to-[var(--cyan)]" />
-
-          <div className="pl-4">
-            <div className="flex items-center gap-3 mb-3">
-              <span className="font-mono text-[0.68rem] tracking-[0.1em] uppercase font-semibold text-[var(--magenta)]">
-                Our Take
-              </span>
-              <span className="font-mono text-[0.6rem] tracking-[0.06em] px-[0.55rem] py-[0.18rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                {episode.editorialLens}
-              </span>
-            </div>
-            <div className="text-[1rem] text-[var(--text)] leading-[1.7] italic">
-              {renderParagraphs(leadStory.editorialCallout)}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

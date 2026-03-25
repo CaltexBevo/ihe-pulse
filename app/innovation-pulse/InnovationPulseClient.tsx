@@ -571,18 +571,20 @@ export default function InnovationPulseClient({
           </Link>
         </div>
 
-        {/* Lead Story — 3 Equal Columns */}
+        {/* Lead Story — Image Left, Content Right (matches homepage) */}
         {leadStory && (
           <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden mb-8">
-            <div className="grid lg:grid-cols-3">
-              {/* Column 1: Image */}
-              <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[360px] overflow-hidden bg-[var(--surface-1)]">
+            <div className="grid lg:grid-cols-[40%_60%]">
+              {/* Image Side */}
+              <div className="relative aspect-[16/9] lg:aspect-[3/4] overflow-hidden bg-[var(--surface-1)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={imageAssigner.getImage(leadStory.title, leadStory.category, currentEpisode?.date)}
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,10,15,0.4)] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[rgba(10,10,15,0.3)]" />
                 {/* Mobile badges overlay */}
                 <div className="lg:hidden absolute top-4 left-4 flex gap-2">
                   <span className="font-mono text-[0.6rem] font-semibold px-[0.6rem] py-[0.25rem] rounded-[6px] bg-[var(--magenta)] text-white uppercase">
@@ -597,27 +599,27 @@ export default function InnovationPulseClient({
                 </div>
               </div>
 
-              {/* Column 2: Summary */}
-              <div className="p-6 lg:border-r border-[var(--border)]">
+              {/* Content Side */}
+              <div className="p-6 lg:p-8 flex flex-col">
                 {/* Desktop badges */}
-                <div className="hidden lg:flex gap-2 mb-3">
-                  <span className="font-mono text-[0.6rem] font-semibold px-[0.55rem] py-[0.2rem] rounded-[5px] bg-[var(--magenta)] text-white uppercase">
+                <div className="hidden lg:flex gap-2 mb-4">
+                  <span className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] px-[0.65rem] py-[0.25rem] rounded-[6px] bg-[var(--magenta)] text-white uppercase">
                     Lead Story
                   </span>
                   <span
-                    className="font-mono text-[0.6rem] font-semibold px-[0.55rem] py-[0.2rem] rounded-[5px] text-white uppercase"
+                    className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] px-[0.65rem] py-[0.25rem] rounded-[6px] text-white uppercase"
                     style={{ backgroundColor: V4_CATEGORY_COLORS[mapToV4Category(leadStory.category)]?.hex }}
                   >
                     {mapToV4Category(leadStory.category)}
                   </span>
                 </div>
                 <h2
-                  className="text-[clamp(1.1rem,2vw,1.4rem)] font-bold leading-[1.25] mb-4"
+                  className="text-[clamp(1.25rem,3vw,1.75rem)] font-bold leading-[1.2] mb-4"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   {leadStory.title}
                 </h2>
-                <div className="text-[0.85rem] text-[var(--text-secondary)] leading-[1.65] mb-4">
+                <div className="text-[0.9rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
                   {(() => {
                     const paragraphs = leadStory.summary.split(/\n\n+/).filter(p => p.trim());
                     const preview = paragraphs.slice(0, 2).join('\n\n');
@@ -630,19 +632,28 @@ export default function InnovationPulseClient({
                         {hasMore && (
                           <button
                             onClick={() => setExpandedStory(isExpanded ? null : `lead-${leadStory.title}`)}
-                            className="font-mono text-[0.7rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mt-3 block"
+                            className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mt-3 block flex items-center gap-1"
                           >
-                            {isExpanded ? "Show less ↑" : "Read more ↓"}
+                            {isExpanded ? "Show less" : "Read more"}
+                            <svg
+                              viewBox="0 0 24 24"
+                              className={`w-3 h-3 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <path d="M6 9l6 6 6-6" />
+                            </svg>
                           </button>
                         )}
                       </>
                     );
                   })()}
                 </div>
-                <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)]">
+                <div className="flex flex-wrap items-center gap-3 mt-auto pt-4 border-t border-[var(--border)]">
                   <Link
                     href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
-                    className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
+                    className="btn-primary text-[0.75rem]"
                   >
                     Full story →
                   </Link>
@@ -650,34 +661,15 @@ export default function InnovationPulseClient({
                     href={leadStory.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-[0.72rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors ml-auto"
+                    className="inline-flex items-center gap-2 text-[0.75rem] text-[var(--cyan)] font-mono hover:text-[var(--text)] transition-colors"
                   >
-                    {leadStory.source} ↗
+                    {leadStory.source}
+                    <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
                   </a>
-                </div>
-              </div>
-
-              {/* Column 3: Our Take */}
-              <div className="p-6 bg-[var(--surface-1)] relative">
-                <div className="absolute left-0 top-6 bottom-6 w-[3px] bg-gradient-to-b from-[var(--magenta)] to-[var(--cyan)] rounded-full lg:block hidden" />
-                <div className="lg:pl-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="font-mono text-[0.68rem] tracking-[0.08em] uppercase font-semibold text-[var(--magenta)]">
-                      Our Take
-                    </span>
-                    <span className="font-mono text-[0.58rem] px-[0.5rem] py-[0.15rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                      {currentEpisode?.editorialLens}
-                    </span>
-                  </div>
-                  {leadStory.editorialCallout ? (
-                    <div className="text-[0.88rem] text-[var(--text)] leading-[1.65] italic">
-                      {renderParagraphs(leadStory.editorialCallout, "")}
-                    </div>
-                  ) : (
-                    <p className="text-[0.85rem] text-[var(--text-muted)] italic">
-                      Editorial analysis coming soon.
-                    </p>
-                  )}
                 </div>
               </div>
             </div>
