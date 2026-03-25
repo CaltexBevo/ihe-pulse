@@ -142,12 +142,20 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
         </span>
       </div>
 
-      {/* Hook Quote */}
-      <div className="hero-quote-card mb-6">
-        <p className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.35] font-bold italic relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
-          &ldquo;{currentEpisode.editorialHook}&rdquo;
-        </p>
-      </div>
+      {/* Lead Story Teaser - show headline if available */}
+      {currentEpisode.deepDive?.title && (
+        <div className="mb-6">
+          <h2
+            className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--magenta)] leading-[1.2] mb-2"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Lead Story
+          </h2>
+          <p className="text-[clamp(1rem,1.8vw,1.25rem)] leading-[1.4] text-[var(--text)] relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
+            {currentEpisode.deepDive.title}
+          </p>
+        </div>
+      )}
 
       {/* Audio Player */}
       <div
