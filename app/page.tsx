@@ -7,6 +7,7 @@ import LeadStoryCard from "@/components/LeadStoryCard";
 import HomePromptCards from "@/components/HomePromptCards";
 import HomeAIAppCards from "@/components/HomeAIAppCards";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import FiveMinuteEdge from "@/components/FiveMinuteEdge";
 import {
   getLatestEpisode,
   getAllEpisodes,
@@ -388,6 +389,20 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
+
+      {/* ═══════════════════════════════════════════════════════
+          THE 5-MINUTE EDGE - Audio CTA
+          ═══════════════════════════════════════════════════════ */}
+      {pulseEpisode && (
+        <FiveMinuteEdge
+          storyCount={1 + (pulseEpisode.quickHits?.length || 0)}
+          audioDuration={pulseEpisode.audioDuration || "5:00"}
+          audioUrl={pulseEpisode.audioUrl}
+        />
+      )}
 
       {/* Section Divider */}
       <div className="section-divider" />

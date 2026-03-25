@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import FiveMinuteEdge from "@/components/FiveMinuteEdge";
 import {
   formatPulseDate,
   formatShortDate,
@@ -1006,6 +1007,32 @@ export default function InnovationPulseClient({
           </div>
         </div>
       )}
+
+      {/* ═══════════════════════════════════════════════════════
+          THE 5-MINUTE EDGE - Audio CTA
+          ═══════════════════════════════════════════════════════ */}
+      <FiveMinuteEdge
+        storyCount={1 + (currentEpisode?.quickHits?.length || episode.quickHits?.length || 0)}
+        audioDuration={currentEpisode?.audioDuration || episode.audioDuration || "5:00"}
+        audioUrl={currentEpisode?.audioUrl || episode.audioUrl}
+        onPlay={() => {
+          // Scroll to top audio player and start playing
+          const audioPlayer = document.querySelector('[role="region"][aria-label="Audio player"]');
+          if (audioPlayer) {
+            audioPlayer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+              const audio = audioRef.current;
+              if (audio && !isPlaying) {
+                audio.play();
+                setIsPlaying(true);
+              }
+            }, 500);
+          }
+        }}
+      />
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
           NEWSLETTER CTA
