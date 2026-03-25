@@ -21,6 +21,17 @@ function formatTime(seconds: number): string {
   return `${mins}:${secs.toString().padStart(2, "0")}`;
 }
 
+// Parse duration string like "3:36" to minutes (rounded)
+function durationToMinutes(duration: string): number {
+  const parts = duration.split(':');
+  if (parts.length === 2) {
+    const minutes = parseInt(parts[0], 10);
+    const seconds = parseInt(parts[1], 10);
+    return Math.round(minutes + seconds / 60);
+  }
+  return parseInt(duration, 10) || 5;
+}
+
 interface HomeHeroClientProps {
   latestEpisode: InnovationPulseEpisode;
   recentEpisodes: InnovationPulseEpisode[]; // Last 5 episodes
@@ -113,6 +124,10 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
     audio.currentTime = percentage * duration;
   };
 
+  // Calculate story count and duration for stat line
+  const storyCount = 1 + (currentEpisode.quickHits?.length || 0);
+  const minutes = durationToMinutes(currentEpisode.audioDuration || "5:00");
+
   return (
     <>
       {/* Hidden Audio Element */}
@@ -122,19 +137,14 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
         preload="metadata"
       />
 
-      {/* Premium Label with tagline */}
-      <div className="mb-4">
-        <h1 className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] flex items-center gap-2 mb-1">
-          <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
-          <span>THE INNOVATION PULSE</span>
-        </h1>
-        <p className="text-[0.85rem] text-[var(--text-muted)] pl-4">
-          Your daily A.I. briefing for higher ed — curated, analyzed, delivered.
-        </p>
+      {/* Site Identifier */}
+      <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] flex items-center gap-2 mb-2">
+        <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
+        <span>THE INNOVATION PULSE</span>
       </div>
 
       {/* Date + Lens Badge */}
-      <div className="font-mono text-[0.72rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
+      <div className="font-mono text-[0.72rem] text-[var(--text-muted)] mb-4 flex items-center gap-3">
         <span>{formatPulseDate(currentEpisode.date)}</span>
         <span className={`inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
           <span className={`w-[5px] h-[5px] rounded-full ${lensColors.dot}`} />
@@ -142,16 +152,27 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
         </span>
       </div>
 
+      {/* The 5-Minute Edge - Main Heading */}
+      <h1
+        className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] leading-[1.15] mb-2"
+        style={{ fontFamily: "var(--font-heading)" }}
+      >
+        The 5-Minute Edge
+      </h1>
+      <p className="text-[0.95rem] text-[var(--text-secondary)] mb-6">
+        What every educator needs to know about AI today — in the time it takes to park.
+      </p>
+
       {/* Lead Story Teaser - show headline if available */}
       {currentEpisode.deepDive?.title && (
         <div className="mb-6">
           <h2
-            className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--magenta)] leading-[1.2] mb-2"
+            className="text-[clamp(1.1rem,2vw,1.3rem)] font-bold text-[var(--magenta)] leading-[1.2] mb-2"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Lead Story
           </h2>
-          <p className="text-[clamp(1rem,1.8vw,1.25rem)] leading-[1.4] text-[var(--text)] relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
+          <p className="text-[clamp(0.95rem,1.6vw,1.15rem)] leading-[1.4] text-[var(--text)] relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
             {currentEpisode.deepDive.title}
           </p>
         </div>
@@ -159,7 +180,7 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
 
       {/* Audio Player */}
       <div
-        className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-5"
+        className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-4"
         role="region"
         aria-label="Audio player"
       >
@@ -185,6 +206,20 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
           </span>
         </div>
         <div className="flex items-center gap-3">
+          {/* Animated Equalizer Bars - Left */}
+          <div className="hidden sm:flex items-end gap-[2px] h-[32px]" aria-hidden="true">
+            {[0.6, 0.9, 0.5, 0.8].map((delay, i) => (
+              <div
+                key={`eq-l-${i}`}
+                className="w-[3px] rounded-[2px] bg-gradient-to-t from-[var(--cyan)] to-[var(--magenta)]"
+                style={{
+                  animation: `waveform ${0.8 + delay * 0.4}s ease-in-out ${delay * 0.15}s infinite`,
+                  transformOrigin: 'bottom',
+                }}
+              />
+            ))}
+          </div>
+
           {/* Play Button */}
           <button
             onClick={togglePlay}
@@ -202,6 +237,20 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
               </svg>
             )}
           </button>
+
+          {/* Animated Equalizer Bars - Right */}
+          <div className="hidden sm:flex items-end gap-[2px] h-[32px]" aria-hidden="true">
+            {[0.4, 0.7, 1.0, 0.5].map((delay, i) => (
+              <div
+                key={`eq-r-${i}`}
+                className="w-[3px] rounded-[2px] bg-gradient-to-t from-[var(--cyan)] to-[var(--magenta)]"
+                style={{
+                  animation: `waveform ${0.8 + delay * 0.4}s ease-in-out ${delay * 0.15}s infinite`,
+                  transformOrigin: 'bottom',
+                }}
+              />
+            ))}
+          </div>
 
           {/* Waveform Progress Bar */}
           <div
@@ -250,6 +299,15 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
           </span>
         </div>
       </div>
+
+      {/* Stat Line */}
+      <p className="font-mono text-[0.8rem] text-[var(--text-muted)] tracking-[0.02em] mb-5">
+        <span className="text-[var(--cyan)] font-semibold">{storyCount}</span>
+        {' '}stories.{' '}
+        <span className="text-[var(--cyan)] font-semibold">{minutes}</span>
+        {' '}minutes.{' '}
+        <span className="text-[var(--text)]">Go.</span>
+      </p>
 
       {/* Last 5 Days Pills */}
       <div className="flex flex-wrap items-center gap-2 mb-6">

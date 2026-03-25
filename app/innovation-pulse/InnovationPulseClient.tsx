@@ -4,7 +4,6 @@ import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
 import NewsletterSignup from "@/components/NewsletterSignup";
-import FiveMinuteEdge from "@/components/FiveMinuteEdge";
 import {
   formatPulseDate,
   formatShortDate,
@@ -343,22 +342,14 @@ export default function InnovationPulseClient({
         <div className="grid lg:grid-cols-[1fr_340px] gap-10">
           {/* Left: Episode Content */}
           <div className="animate-[fadeUp_0.8s_ease-out_both]">
-            {/* Page Title */}
-            <div className="mb-4">
-              <h1
-                className="text-[clamp(1.5rem,3vw,1.85rem)] font-bold text-[var(--cyan)] leading-[1.2] flex items-center gap-3"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
-                The Innovation Pulse
-              </h1>
-              <p className="text-[0.9rem] text-[var(--text-secondary)] mt-1 ml-[18px]">
-                Your daily A.I. briefing for higher ed
-              </p>
+            {/* Site Identifier */}
+            <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] flex items-center gap-2 mb-2">
+              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
+              <span>THE INNOVATION PULSE</span>
             </div>
 
             {/* Date + Lens Badge */}
-            <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
+            <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-4 flex items-center gap-3">
               <span>{formatPulseDate(currentEpisode?.date || episode.date)}</span>
               <span className={`inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
                 <span className="w-[5px] h-[5px] rounded-full bg-current" />
@@ -366,16 +357,27 @@ export default function InnovationPulseClient({
               </span>
             </div>
 
+            {/* The 5-Minute Edge - Main Heading */}
+            <h1
+              className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] leading-[1.15] mb-2"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              The 5-Minute Edge
+            </h1>
+            <p className="text-[0.95rem] text-[var(--text-secondary)] mb-6">
+              What every educator needs to know about AI today — in the time it takes to park.
+            </p>
+
             {/* Lead Story Teaser - show headline if available */}
             {(currentEpisode?.deepDive?.title || episode.deepDive?.title) && (
               <div className="mb-6">
                 <h2
-                  className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--magenta)] leading-[1.2] mb-2"
+                  className="text-[clamp(1.1rem,2vw,1.3rem)] font-bold text-[var(--magenta)] leading-[1.2] mb-2"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   Lead Story
                 </h2>
-                <p className="text-[clamp(1rem,1.8vw,1.25rem)] leading-[1.4] text-[var(--text)] relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
+                <p className="text-[clamp(0.95rem,1.6vw,1.15rem)] leading-[1.4] text-[var(--text)] relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
                   {currentEpisode?.deepDive?.title || episode.deepDive?.title}
                 </p>
               </div>
@@ -383,7 +385,7 @@ export default function InnovationPulseClient({
 
             {/* Audio Player */}
             <div
-              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-5"
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-4"
               role="region"
               aria-label="Audio player"
             >
@@ -405,6 +407,20 @@ export default function InnovationPulseClient({
                 </span>
               </div>
               <div className="flex items-center gap-3">
+                {/* Animated Equalizer Bars - Left */}
+                <div className="hidden sm:flex items-end gap-[2px] h-[32px]" aria-hidden="true">
+                  {[0.6, 0.9, 0.5, 0.8].map((delay, i) => (
+                    <div
+                      key={`eq-l-${i}`}
+                      className="w-[3px] rounded-[2px] bg-gradient-to-t from-[var(--cyan)] to-[var(--magenta)]"
+                      style={{
+                        animation: `waveform ${0.8 + delay * 0.4}s ease-in-out ${delay * 0.15}s infinite`,
+                        transformOrigin: 'bottom',
+                      }}
+                    />
+                  ))}
+                </div>
+
                 <button
                   onClick={togglePlay}
                   aria-label={isPlaying ? "Pause episode" : "Play episode"}
@@ -421,6 +437,20 @@ export default function InnovationPulseClient({
                     </svg>
                   )}
                 </button>
+
+                {/* Animated Equalizer Bars - Right */}
+                <div className="hidden sm:flex items-end gap-[2px] h-[32px]" aria-hidden="true">
+                  {[0.4, 0.7, 1.0, 0.5].map((delay, i) => (
+                    <div
+                      key={`eq-r-${i}`}
+                      className="w-[3px] rounded-[2px] bg-gradient-to-t from-[var(--cyan)] to-[var(--magenta)]"
+                      style={{
+                        animation: `waveform ${0.8 + delay * 0.4}s ease-in-out ${delay * 0.15}s infinite`,
+                        transformOrigin: 'bottom',
+                      }}
+                    />
+                  ))}
+                </div>
 
                 <div
                   className="flex-1 h-[44px] relative cursor-pointer group"
@@ -456,6 +486,15 @@ export default function InnovationPulseClient({
                 </span>
               </div>
             </div>
+
+            {/* Stat Line */}
+            <p className="font-mono text-[0.8rem] text-[var(--text-muted)] tracking-[0.02em] mb-5">
+              <span className="text-[var(--cyan)] font-semibold">{1 + (currentEpisode?.quickHits?.length || episode.quickHits?.length || 0)}</span>
+              {' '}stories.{' '}
+              <span className="text-[var(--cyan)] font-semibold">{Math.round(parseInt((currentEpisode?.audioDuration || episode.audioDuration || "5:00").split(':')[0]) + parseInt((currentEpisode?.audioDuration || episode.audioDuration || "5:00").split(':')[1] || "0") / 60)}</span>
+              {' '}minutes.{' '}
+              <span className="text-[var(--text)]">Go.</span>
+            </p>
 
             {/* Last 5 Days Pills - Sliding Window */}
             <div className="flex flex-wrap items-center gap-2">
@@ -1007,32 +1046,6 @@ export default function InnovationPulseClient({
           </div>
         </div>
       )}
-
-      {/* ═══════════════════════════════════════════════════════
-          THE 5-MINUTE EDGE - Audio CTA
-          ═══════════════════════════════════════════════════════ */}
-      <FiveMinuteEdge
-        storyCount={1 + (currentEpisode?.quickHits?.length || episode.quickHits?.length || 0)}
-        audioDuration={currentEpisode?.audioDuration || episode.audioDuration || "5:00"}
-        audioUrl={currentEpisode?.audioUrl || episode.audioUrl}
-        onPlay={() => {
-          // Scroll to top audio player and start playing
-          const audioPlayer = document.querySelector('[role="region"][aria-label="Audio player"]');
-          if (audioPlayer) {
-            audioPlayer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => {
-              const audio = audioRef.current;
-              if (audio && !isPlaying) {
-                audio.play();
-                setIsPlaying(true);
-              }
-            }, 500);
-          }
-        }}
-      />
-
-      {/* Section Divider */}
-      <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
           NEWSLETTER CTA
