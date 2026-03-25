@@ -342,11 +342,19 @@ export default function InnovationPulseClient({
         <div className="grid lg:grid-cols-[1fr_340px] gap-10">
           {/* Left: Episode Content */}
           <div className="animate-[fadeUp_0.8s_ease-out_both]">
-            {/* Label */}
-            <h1 className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-4 flex items-center gap-2">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
-              <span>THE INNOVATION PULSE</span>
-            </h1>
+            {/* Page Title */}
+            <div className="mb-4">
+              <h1
+                className="text-[clamp(1.5rem,3vw,1.85rem)] font-bold text-[var(--cyan)] leading-[1.2] flex items-center gap-3"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
+                The Innovation Pulse
+              </h1>
+              <p className="text-[0.9rem] text-[var(--text-secondary)] mt-1 ml-[18px]">
+                Your daily A.I. briefing for higher ed
+              </p>
+            </div>
 
             {/* Date + Lens Badge */}
             <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-3 flex items-center gap-3">
@@ -357,12 +365,14 @@ export default function InnovationPulseClient({
               </span>
             </div>
 
-            {/* Hook Quote */}
-            <div className="hero-quote-card mb-6">
-              <p className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.35] font-bold italic relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
-                &ldquo;{currentEpisode?.editorialHook || episode.editorialHook}&rdquo;
-              </p>
-            </div>
+            {/* Hook Quote - only show if we have one */}
+            {(currentEpisode?.editorialHook || episode.editorialHook) && (
+              <div className="hero-quote-card mb-6">
+                <p className="text-[clamp(1.1rem,2vw,1.5rem)] leading-[1.35] font-bold italic relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
+                  &ldquo;{currentEpisode?.editorialHook || episode.editorialHook}&rdquo;
+                </p>
+              </div>
+            )}
 
             {/* Audio Player */}
             <div
