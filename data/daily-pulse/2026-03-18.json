@@ -3,59 +3,73 @@
     "date": "2026-03-18",
     "dayOfWeek": "Wednesday",
     "editorialLens": "The Practitioner's Playbook",
+    "lensDescription": "Practical implementation strategies and actionable insights",
+    "lensColor": "#10b981",
     "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-18.mp3",
-    "audioDuration": "3:55",
-    "broadcastScript": "This is The Innovation Pulse for Wednesday, March 18, 2026. Here's what's happening in A.I. and higher education.\n-\nToday, writing faculty pass a resolution affirming their right to refuse A.I. in the classroom, while the White House releases a framework that includes workforce development as a core principle.\n-\nIn Insights and Trends today, the White House has released its A.I. policy framework for Congress, outlining six guiding principles for lawmakers developing A.I. governance policies.\n\nAccording to WTAE, among these principles is, quote, educating Americans and developing an A.I.-ready workforce, end quote. The framework aims to preempt state-level regulations while ensuring, quote, all Americans benefit from this technological revolution, end quote.\n\nWorkforce development sits alongside priorities like protecting children, safeguarding communities, and ensuring American A.I. dominance. The framework does not specify what A.I.-ready means in practice. This leaves room for interpretation about whether it refers to technical skills like coding and prompt engineering, or broader competencies like critical thinking about A.I.-generated content.\n-\nTurning to Ethical A.I., the Conference on College Composition and Communication passed a resolution affirming the rights of students and faculty to decline generative A.I. use in writing classrooms.\n\nAccording to Inside Higher Ed, the resolution was overwhelmingly approved at CCCC's annual convention in Cleveland. Jennifer Sano-Franchini of West Virginia University stated this is an academic freedom issue. The resolution cites unsubstantiated productivity claims, data privacy concerns, and threats to critical thinking. Over 1,000 education professionals globally signed an open letter opposing mandatory A.I. adoption in education.\n-\nIn Case Studies, Austin Community College District announced a human-centered A.I. initiative supported by an $875,000 three-year grant from the Trellis Foundation.\n\nAccording to ACC Newsroom, the initiative includes A.I.-powered student support to identify barriers early and connect students to advising, tutoring, financial aid, and mental health resources, launching in April 2026. Nationally, nearly 40 percent of community college students fail to earn a credential within six years. ACC will also create an A.I.-focused workforce pathway including an Electrician Certification program for digital infrastructure careers. Chancellor Russell Lowery-Hart emphasized doing this in a way that privileges humanity.\n-\nAlso in Insights and Trends, the U.S. Department of Labor released a voluntary A.I. literacy framework outlining five content areas and seven delivery principles to guide workforce training nationwide.\n\nAccording to the Department of Labor, the framework prioritizes hands-on experiential learning and human skills like judgment, creativity, and communication over abstract A.I. theory. Secretary of Labor Lori Chavez-DeRemer stated the framework will help accelerate effective A.I. skill development. The initiative follows guidance promoting WIOA funding for A.I. skills training.\n-\nIn another Case Study, a survey of 29 local agencies around Chattanooga, Tennessee found that 20 have no A.I. policies in place.\n\nAccording to the Chattanooga Times Free Press, experts warn this creates security and privacy risks for government operations. The few agencies with policies emphasize A.I. as a tool to help humans, not replace them, with explicit guidelines for appropriate use.\n-\nThat's today's Innovation Pulse. Full coverage and source links at innovating higher ed dot com."
+    "audioDuration": "3:29",
+    "broadcastScript": "This is The Innovation Pulse for Wednesday, March 18, 2026. And here's who is innovating in higher education today.\n\n<break time=\"1.0s\"/>\n\nIn Insights and Trends today, more colleges and universities are adding artificial intelligence majors to their curriculum. According to USA Today, Northwestern University announced the creation of a new A.I. major on March 9, with enrollment available beginning in the fall 2026 semester. Northwestern joins a growing list of institutions offering dedicated A.I. degrees, with Carnegie Mellon University having launched the first undergraduate A.I. degree back in 2018. The major aims to prepare students to lead in a rapidly evolving field, teaching machine learning, natural language processing, A.I. systems and infrastructure, and the mathematical foundations of modern A.I. Students will also learn about the human and societal dimensions of the technology, including privacy, sustainability, and intellectual property. Schools including the University of Arizona, Purdue University, M.I.T., and U.C. San Diego also offer A.I. programs. At Purdue, students can choose between a Bachelor of Arts that examines A.I. ethics and societal impacts, or a Bachelor of Science focused on building A.I. machines.\n\n<break time=\"1.0s\"/>\n\nTurning to Case Study, faculty at the University of North Carolina at Chapel Hill are embracing A.I. in their teaching and research. According to UNC, faculty across multiple schools are working to ensure students are literate in artificial intelligence while also integrating A.I. into their own scholarly work. The initiative spans the university's colleges and professional schools, with faculty developing approaches to incorporate A.I. tools responsibly into coursework.\n\n<break time=\"1.0s\"/>\n\nIn Investing in Innovation, the City University of New York system is expanding its use of A.I. in teaching and student support with a three million dollar investment. According to GovTech, the funding supports one hundred thirteen A.I. initiatives across CUNY campuses through a one-year innovation fund, part of Governor Kathy Hochul's effort to position New York as a leader in A.I. The projects focus on four areas: student and academic support, courses, ethical and social implications, and literacy. At Borough of Manhattan Community College, A.I. will be integrated into an introductory computing course taken by thousands of students each year. Hostos Community College will include A.I. instruction in its first-year seminar for incoming students. Brooklyn College is using automated systems to analyze usage data and optimize inventory at food pantries to address student food insecurity. Another initiative at CUNY Graduate School of Public Health will create an A.I. powered navigator to help students find mental health resources and legal support.\n\n<break time=\"1.0s\"/>\n\nIn Ethical A.I. today, professors across Georgia are returning to traditional blue book exams as a response to A.I. powered cheating. According to the Atlanta Journal Constitution, university professors are embracing these handwritten exam booklets not for nostalgia, but as a practical countermeasure against students using A.I. tools to complete assignments. The shift reflects ongoing challenges faculty face in maintaining academic integrity as A.I. writing tools become more sophisticated and harder to detect.\n\n<break time=\"1.0s\"/>\n\nThat's today's Innovation Pulse. Full coverage and source links at innovating higher ed dot com."
   },
-  "topStory": {
-    "headline": "White House A.I. Framework Includes Workforce Development as Core Principle",
-    "summary": "The White House released its A.I. policy framework for Congress, outlining six guiding principles for lawmakers developing A.I. governance policies, according to WTAE. Among these principles is \"educating Americans and developing an A.I.-ready workforce.\" The framework aims to preempt state-level regulations while ensuring \"all Americans benefit from this technological revolution.\"\n\nWorkforce development sits alongside priorities like protecting children, safeguarding communities, and ensuring American A.I. dominance. The framework comes as President Trump signed an executive order in December blocking states from crafting their own A.I. regulations, arguing that inconsistent rules would hurt sector growth.\n\nThe framework does not specify what \"A.I.-ready\" means in practice, leaving room for interpretation about whether it refers to technical skills like coding and prompt engineering, or broader competencies like critical thinking about A.I.-generated content and understanding algorithmic bias.",
-    "source": "WTAE",
-    "sourceUrl": "http://www.wtae.com/article/white-house-ai-framework-congress/70802317",
-    "category": "Insights & Trends"
+  "leadStory": {
+    "headline": "More Colleges and Universities Now Offering Dedicated A.I. Majors",
+    "category": "Insights & Trends",
+    "summary": "According to USA Today, Northwestern University announced the creation of a new A.I. major on March 9, with enrollment available beginning in the fall 2026 semester. Northwestern joins a growing list of institutions offering dedicated A.I. degrees, with Carnegie Mellon University having launched the first undergraduate A.I. degree back in 2018. The major aims to prepare students to lead in a rapidly evolving field, teaching machine learning, natural language processing, A.I. systems and infrastructure, and the mathematical foundations of modern A.I. Students will also learn about the human and societal dimensions of the technology, including privacy, sustainability, and intellectual property. Schools including the University of Arizona, Purdue University, M.I.T., and U.C. San Diego also offer A.I. programs. At Purdue, students can choose between a Bachelor of Arts that examines A.I. ethics and societal impacts, or a Bachelor of Science focused on building A.I. machines. The growing number of programs reflects strong employer demand for graduates with A.I. expertise across tech companies, startups, healthcare, government, and nonprofits.",
+    "sourceUrl": "https://www.usatoday.com/story/news/education/2026/03/16/what-is-an-artificial-intelligence-major-ai/89179810007/",
+    "sourceName": "USA Today"
   },
-  "stories": [
+  "quickHits": [
     {
-      "headline": "White House A.I. Policy Aims to Block State Regulations",
-      "summary": "The White House released an A.I. policy framework that aims to preempt state rules while ensuring American industry can \"innovate and thrive,\" according to Yahoo Finance. The move follows Trump's December executive order blocking states from crafting their own A.I. regulations.",
-      "source": "Yahoo Finance",
-      "sourceUrl": "https://finance.yahoo.com/news/white-house-releases-national-ai-122759699.html",
-      "category": "Latest AI Products"
+      "headline": "UNC Chapel Hill Faculty Embrace A.I. in Teaching and Research",
+      "category": "Case Study",
+      "summary": "Faculty at the University of North Carolina at Chapel Hill are integrating artificial intelligence across teaching and research. According to UNC, faculty across multiple schools are working to ensure students are literate in A.I. while also incorporating the technology into their own scholarly work. The initiative spans the university's colleges and professional schools, with faculty developing approaches to use A.I. tools responsibly in coursework. The effort reflects a broader institutional commitment to preparing students for careers where A.I. literacy will be expected, while also advancing research capabilities through A.I.-assisted methods.",
+      "sourceUrl": "https://www.unc.edu/discover/heres-how-carolina-faculty-use-ai/",
+      "sourceName": "UNC Chapel Hill"
     },
     {
-      "headline": "Survey: Most Chattanooga Area Governments Lack A.I. Policies",
-      "summary": "A survey of 29 local agencies around Chattanooga found 20 have no A.I. policies, despite experts warning this creates security and privacy risks, according to Chattanooga Times Free Press. The few agencies with policies emphasize A.I. as a tool to help humans, not replace them, with explicit guidelines for appropriate use.",
-      "source": "Chattanooga Times Free Press",
-      "sourceUrl": "https://www.timesfreepress.com/news/2026/mar/19/chaos-or-not-chaos-despite-risks-many-chattanooga/",
-      "category": "Case Study"
+      "headline": "CUNY Invests $3 Million to Support 113 Campus A.I. Projects",
+      "category": "Investing in Innovation",
+      "summary": "The City University of New York system is expanding its use of artificial intelligence in teaching and student support with a $3 million investment. According to GovTech, the funding supports 113 A.I. initiatives across CUNY campuses through a one-year innovation fund, part of Governor Kathy Hochul's effort to position New York as a leader in A.I. The projects focus on four areas: student and academic support, courses, ethical and social implications, and literacy. At Borough of Manhattan Community College, A.I. will be integrated into an introductory computing course taken by thousands of students each year. Hostos Community College will include A.I. instruction in its first-year seminar for incoming students. Brooklyn College is using automated systems to analyze usage data and optimize inventory at food pantries to address student food insecurity. CUNY Graduate School of Public Health will create an A.I.-powered navigator to help students find mental health resources and legal support.",
+      "sourceUrl": "https://www.govtech.com/education/higher-ed/cuny-invests-3m-to-support-113-campus-ai-projects",
+      "sourceName": "GovTech"
     },
     {
-      "headline": "Writing Faculty Pass Resolution Affirming Right to Refuse A.I.",
-      "summary": "The Conference on College Composition and Communication passed a resolution affirming the rights of students and faculty to decline generative A.I. use in writing classrooms, according to Inside Higher Ed. The resolution was overwhelmingly approved at CCCC's annual convention in Cleveland. Jennifer Sano-Franchini of WVU stated this is an academic freedom issue. The resolution cites unsubstantiated productivity claims, data privacy concerns, and threats to critical thinking. Over 1,000 education professionals globally signed an open letter opposing mandatory A.I. adoption.",
-      "source": "Inside Higher Ed",
-      "sourceUrl": "https://www.insidehighered.com/news/tech-innovation/teaching-learning/2026/03/16/writing-faculty-push-right-refuse-ai",
-      "category": "Ethical AI"
+      "headline": "Georgia Professors Return to Blue Book Exams to Combat A.I. Cheating",
+      "category": "Ethical AI",
+      "summary": "University professors across Georgia are returning to traditional blue book exams as a response to A.I.-powered cheating. According to the Atlanta Journal-Constitution, professors are embracing these handwritten exam booklets not for nostalgia, but as a practical countermeasure against students using A.I. tools to complete assignments. The shift reflects ongoing challenges faculty face in maintaining academic integrity as A.I. writing tools become more sophisticated and harder to detect. The blue book, a staple of higher education for decades, offers a low-tech solution that ensures student work is completed in person without digital assistance.",
+      "sourceUrl": "https://www.ajc.com/education/2026/03/college-students-are-cheating-professors-are-struggling-to-stop-them/",
+      "sourceName": "Atlanta Journal-Constitution"
     },
     {
-      "headline": "Austin Community College Launches A.I. Initiative with $875K Grant",
-      "summary": "Austin Community College District announced a human-centered A.I. initiative supported by an $875,000 three-year grant from the Trellis Foundation, according to ACC Newsroom. The initiative includes A.I.-powered student support to identify barriers early and connect students to resources, launching April 2026. ACC will also create an A.I.-focused workforce pathway including an Electrician Certification program for digital infrastructure careers. Chancellor Russell Lowery-Hart emphasized doing this in a way that privileges humanity.",
-      "source": "ACC Newsroom",
-      "sourceUrl": "https://sites.austincc.edu/newsroom/2026/03/11/acc-launches-ai-initiative-to-predict-student-needs-and-strengthen-workforce-training/",
-      "category": "Case Study"
+      "headline": "Austin Community College Receives $875,000 Grant for A.I. Initiative",
+      "category": "Investing in Innovation",
+      "summary": "Austin Community College District has announced a partnership with the Trellis Foundation that includes an $875,000 grant for its Digital Twin Initiative. According to Spectrum News, the initiative will use A.I. to proactively support students by connecting them to services like advising, tutoring, and mental health resources in real time. ACC Chancellor Russell Lowery-Hart explained the approach: \"Take all of the data points that we have on our students and make them immediately actionable so that instead of waiting for the student to identify a need and then try to find that need fulfilled, we could know when they have the need in real time.\" Small business owners will also be able to access training on using A.I. to expand their businesses. Additionally, ACC will offer an electrical technician certification to meet demands of the growing data center industry in Texas.",
+      "sourceUrl": "https://spectrumlocalnews.com/tx/austin/news/2026/03/17/ai-education",
+      "sourceName": "Spectrum News",
+      "websiteOnly": true
     },
     {
-      "headline": "Department of Labor Releases A.I. Literacy Framework",
-      "summary": "The U.S. Department of Labor released a voluntary A.I. literacy framework outlining five content areas and seven delivery principles to guide workforce training nationwide, according to the DOL. The framework prioritizes hands-on experiential learning and human skills like judgment, creativity, and communication over abstract A.I. theory. Secretary of Labor Lori Chavez-DeRemer stated the framework will help accelerate effective A.I. skill development. The initiative follows guidance promoting WIOA funding for A.I. skills training.",
-      "source": "U.S. Department of Labor",
-      "sourceUrl": "https://www.dol.gov/newsroom/releases/eta/eta20260213",
-      "category": "Insights & Trends"
+      "headline": "MIT-IBM Watson AI Lab Accelerates Early-Career Faculty Research",
+      "category": "Case Study",
+      "summary": "Five MIT faculty members describe how early engagement with the MIT-IBM Watson AI Lab has shaped their research careers. According to MIT News, the academia-industry collaboration has provided computing resources, intellectual support, and partnerships that helped faculty establish their research groups. Jacob Andreas, associate professor in EECS, credits the lab with launching his work on natural language processing during a pivotal moment when the field was undergoing significant shifts. Yoon Kim, also in EECS, describes the relationship as \"completely transformative\" for his research on large language model capabilities. The collaboration has allowed faculty including Justin Solomon, Chuchu Fan, and Faez Ahmed to pursue multi-year projects spanning robotics, geometric machine learning, and engineering design.",
+      "sourceUrl": "https://news.mit.edu/2026/mit-ibm-watson-ai-lab-seed-signal-amplifying-early-career-faculty-impact-0317",
+      "sourceName": "MIT News",
+      "websiteOnly": true
+    },
+    {
+      "headline": "Research Shows Which Jobs Face A.I. Disruption—and Who Can Adapt",
+      "category": "Beyond Ed",
+      "summary": "New research from GovAI and the Brookings Institution estimates which workers may be most and least able to adapt if A.I. transforms their jobs. According to the Washington Post, researchers found that many people most at risk if A.I. transforms work are also best placed to find new jobs. However, approximately 6.1 million largely clerical and administrative workers scored high for both A.I. exposure and low adaptability. Women make up about 86 percent of these most vulnerable workers. The researchers measured adaptability based on education, varied work experience, wealth, age under 55, and living in cities with plentiful jobs.",
+      "sourceUrl": "https://www.washingtonpost.com/technology/interactive/2026/jobs-most-affected-ai-automation/",
+      "sourceName": "Washington Post",
+      "websiteOnly": true
     }
   ],
   "meta": {
+    "storyCount": 7,
+    "broadcastStoryCount": 4,
+    "websiteOnlyCount": 3,
     "version": "3.0",
     "format": "straight-news",
-    "date": "2026-03-18",
-    "dayOfWeek": "Wednesday",
-    "editorialLens": "The Practitioner's Playbook"
+    "publishedAt": "2026-03-26T16:55:00.000Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
   }
 }
