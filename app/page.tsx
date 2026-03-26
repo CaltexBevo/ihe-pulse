@@ -17,7 +17,6 @@ import {
   V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
 import { episodes } from "@/lib/data/episodes";
-import { getStoryImage, StoryImageAssigner } from "@/lib/utils/story-images";
 
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
@@ -26,14 +25,11 @@ export default function Home() {
   const allStories = getAllStoriesAggregated();
   const latestPodcastEpisodes = episodes.slice(0, 3);
 
-  // Image assigner for page-level deduplication
-  const imageAssigner = new StoryImageAssigner();
-
-  // Get lead story info
+  // Get lead story info - image is pre-assigned in the data
   const leadStory = pulseEpisode?.deepDive;
   const leadStoryV4Category = leadStory ? mapToV4Category(leadStory.category) : "Insights & Trends";
   const leadStoryColor = V4_CATEGORY_COLORS[leadStoryV4Category] || "#00d4ff";
-  const leadStoryImage = leadStory ? imageAssigner.getImage(leadStory.title, leadStory.category, pulseEpisode?.date) : "";
+  const leadStoryImage = leadStory?.image || "";
 
   // Get top stories (excluding lead story)
   const topStories = allStories
@@ -162,7 +158,6 @@ export default function Home() {
           {topStories.map((story, i) => {
             const v4Category = mapToV4Category(story.category);
             const v4Color = V4_CATEGORY_COLORS[v4Category] || "#00d4ff";
-            const storyImage = imageAssigner.getImage(story.title, story.category, story.date);
 
             return (
               <Card
@@ -175,7 +170,7 @@ export default function Home() {
                 source={story.source}
                 sourceUrl={story.sourceUrl}
                 date={formatPulseDate(story.date)}
-                imageUrl={storyImage}
+                imageUrl={story.image || ""}
                 badgeText={story.type === "deepDive" ? "Lead" : "Story"}
                 badgeColor={story.type === "deepDive" ? "rgba(200,80,192,0.85)" : v4Color}
                 expandable={true}

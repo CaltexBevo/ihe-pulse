@@ -9,7 +9,6 @@ import {
   formatShortDate,
   type InnovationPulseEpisode,
 } from "@/lib/data/innovation-pulse-types";
-import { getStoryImage, StoryImageAssigner } from "@/lib/utils/story-images";
 
 // Helper to generate slug from title
 function generateSlug(title: string): string {
@@ -119,6 +118,7 @@ interface AggregatedStory {
   type: "deepDive" | "quickHit";
   isCallback?: boolean;
   callbackDate?: string;
+  image?: string; // Pre-assigned at data load time
 }
 
 interface AggregatedStoryWithV4 extends AggregatedStory {
@@ -172,9 +172,6 @@ export default function InnovationPulseClient({
   const currentEpisode = recentEpisodes[selectedIndex] || episode;
   const lensColors = currentEpisode ? LENS_COLORS[currentEpisode.editorialLens] || LENS_COLORS["The Hard Question"] : LENS_COLORS["The Hard Question"];
 
-  // Image assigner for page deduplication
-  const imageAssigner = useMemo(() => new StoryImageAssigner(), []);
-
   // Audio event handlers
   useEffect(() => {
     const audio = audioRef.current;
@@ -225,8 +222,7 @@ export default function InnovationPulseClient({
     }
     setSelectedIndex(index);
     setExpandedStory(null);
-    imageAssigner.reset();
-  }, [imageAssigner]);
+  }, []);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -306,6 +302,7 @@ export default function InnovationPulseClient({
       editorialCallout: ep.deepDive.editorialCallout,
       date: ep.date,
       editorialLens: ep.editorialLens,
+      image: ep.deepDive.image,
     }));
   }, [allEpisodes]);
 
@@ -619,7 +616,7 @@ export default function InnovationPulseClient({
               <div className="relative aspect-[16/9] lg:aspect-[3/4] overflow-hidden bg-[var(--surface-1)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={imageAssigner.getImage(leadStory.title, leadStory.category, currentEpisode?.date)}
+                  src={leadStory.image || ""}
                   alt=""
                   className="absolute inset-0 w-full h-full object-cover object-center"
                 />
@@ -752,7 +749,7 @@ export default function InnovationPulseClient({
                     <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={imageAssigner.getImage(hit.title, hit.category, currentEpisode?.date)}
+                        src={hit.image || ""}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover object-center"
                       />
@@ -926,7 +923,7 @@ export default function InnovationPulseClient({
                     <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={imageAssigner.getImage(story.title, story.category, story.date)}
+                        src={story.image || ""}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover object-center"
                       />
@@ -1046,7 +1043,7 @@ export default function InnovationPulseClient({
                     source={story.source}
                     sourceUrl={story.sourceUrl}
                     date={formatShortDate(story.date)}
-                    imageUrl={imageAssigner.getImage(story.title, story.category, story.date)}
+                    imageUrl={story.image || ""}
                     badgeText={story.isCallback ? "CALLBACK" : story.type === "deepDive" ? "LEAD" : V4_BADGE_TEXT[story.v4Category]}
                     badgeColor={story.isCallback ? "rgba(245,166,35,0.85)" : story.type === "deepDive" ? "rgba(0,212,255,0.85)" : V4_CATEGORY_COLORS[story.v4Category]?.hex}
                     expandable={true}

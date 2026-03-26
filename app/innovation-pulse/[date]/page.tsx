@@ -34,14 +34,11 @@ export async function generateMetadata({
   };
 }
 
-// Placeholder images
-const storyImages = [
-  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&fit=crop",
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop",
-  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&h=300&fit=crop",
-];
+// Default fallback images
+const DEFAULT_LEAD_IMAGE = "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop";
+const DEFAULT_STORY_IMAGE = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&fit=crop";
 
+// Related story placeholder images (for static placeholder content)
 const relatedImages = [
   "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=280&fit=crop",
   "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=280&fit=crop",
@@ -92,7 +89,7 @@ export default async function InnovationPulseDatePage({
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[1200px] mx-auto relative overflow-hidden h-[420px]">
         <Image
-          src={storyImages[0]}
+          src={episode.deepDive.image || DEFAULT_LEAD_IMAGE}
           alt="Story hero"
           fill
           className="object-cover"
@@ -293,7 +290,7 @@ export default async function InnovationPulseDatePage({
                 categoryColor={categoryColors[hit.category]?.hex}
                 source={hit.source}
                 date={formatShortDate(episode.date)}
-                imageUrl={storyImages[(i + 1) % storyImages.length]}
+                imageUrl={hit.image || DEFAULT_STORY_IMAGE}
                 badgeText="Story"
                 badgeColor="rgba(200,80,192,0.85)"
                 expandable={true}

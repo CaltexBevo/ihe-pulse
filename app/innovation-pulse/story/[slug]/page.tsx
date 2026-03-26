@@ -45,13 +45,8 @@ function mapToV4Category(category: string): string {
   return OLD_TO_V4[category] || category;
 }
 
-// Placeholder images
-const storyImages = [
-  "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1400&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1400&h=600&fit=crop",
-];
+// Default fallback image if story doesn't have one
+const DEFAULT_STORY_IMAGE = "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop";
 
 export async function generateStaticParams() {
   const slugs = getAllStorySlugs();
@@ -81,7 +76,8 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
   const relatedStories = getRelatedStories(slug, story.category, 3);
   const v4Category = mapToV4Category(story.category);
   const categoryConfig = V4_CATEGORY_CONFIG[story.category] || V4_CATEGORY_CONFIG["Insights & Trends"];
-  const imageIndex = Math.abs(slug.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % storyImages.length;
+  // Use pre-assigned image from story data, or fall back to default
+  const storyImage = story.image || DEFAULT_STORY_IMAGE;
 
   return (
     <div className="min-h-screen">
@@ -105,7 +101,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       {/* Hero Image */}
       <div className="max-w-[1200px] mx-auto relative h-[420px] overflow-hidden">
         <Image
-          src={storyImages[imageIndex]}
+          src={storyImage}
           alt={story.title}
           fill
           className="object-cover"
@@ -277,10 +273,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
             </Link>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {relatedStories.map((related, i) => {
+            {relatedStories.map((related) => {
               const relatedV4 = mapToV4Category(related.category);
               const relatedConfig = V4_CATEGORY_CONFIG[related.category] || V4_CATEGORY_CONFIG["Insights & Trends"];
-              const relatedImageIndex = Math.abs(related.slug.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % storyImages.length;
+              // Use pre-assigned image from related story data
+              const relatedImage = related.image || DEFAULT_STORY_IMAGE;
 
               return (
                 <Link
@@ -290,7 +287,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
                 >
                   <div className="relative h-[140px] overflow-hidden">
                     <Image
-                      src={storyImages[relatedImageIndex]}
+                      src={relatedImage}
                       alt={related.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"

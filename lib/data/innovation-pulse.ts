@@ -8,6 +8,7 @@ import path from 'path';
 export * from './innovation-pulse-types';
 
 import type { InnovationPulseEpisode } from './innovation-pulse-types';
+import { StoryImageAssigner } from '@/lib/utils/story-images';
 
 // ── Data Loading Utilities ───────────────────────────────────────────────────
 
@@ -186,6 +187,32 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   return normalizedEpisode;
 }
 
+// ── Image Assignment ─────────────────────────────────────────────────────────
+// Assigns images to all stories in an episode using a SINGLE StoryImageAssigner instance.
+// This ensures no duplicate images within the same episode and deterministic assignment.
+
+function assignImagesToEpisode(episode: InnovationPulseEpisode): InnovationPulseEpisode {
+  const imageAssigner = new StoryImageAssigner();
+
+  // Assign image to lead story (deepDive) first
+  const deepDiveWithImage = {
+    ...episode.deepDive,
+    image: imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category, episode.date),
+  };
+
+  // Assign images to all quickHits
+  const quickHitsWithImages = episode.quickHits.map((hit) => ({
+    ...hit,
+    image: imageAssigner.getImage(hit.title, hit.category, episode.date),
+  }));
+
+  return {
+    ...episode,
+    deepDive: deepDiveWithImage,
+    quickHits: quickHitsWithImages,
+  };
+}
+
 // ── Episode Loading Functions ────────────────────────────────────────────────
 
 export function getAllEpisodes(): InnovationPulseEpisode[] {
@@ -209,7 +236,8 @@ export function getAllEpisodes(): InnovationPulseEpisode[] {
           // Avoid duplicates - prefer primary source
           if (!seenDates.has(episode.date)) {
             seenDates.add(episode.date);
-            episodes.push(episode);
+            // Assign images to all stories in the episode
+            episodes.push(assignImagesToEpisode(episode));
           }
         } catch {
           // Skip invalid JSON files
@@ -237,7 +265,7 @@ export function getEpisodeByDate(date: string): InnovationPulseEpisode | null {
       const content = fs.readFileSync(primaryPath, 'utf-8');
       const raw = JSON.parse(content) as Record<string, unknown>;
       const episode = normalizeEpisode(raw);
-      if (episode) return episode;
+      if (episode) return assignImagesToEpisode(episode);
     }
   } catch { /* continue to fallback */ }
 
@@ -248,7 +276,7 @@ export function getEpisodeByDate(date: string): InnovationPulseEpisode | null {
       const content = fs.readFileSync(legacyPath, 'utf-8');
       const raw = JSON.parse(content) as Record<string, unknown>;
       const episode = normalizeEpisode(raw);
-      if (episode) return episode;
+      if (episode) return assignImagesToEpisode(episode);
     }
   } catch { /* not found */ }
 
@@ -276,6 +304,7 @@ export interface AggregatedStory {
   date: string;
   type: 'deepDive' | 'quickHit';
   isCallback?: boolean;
+  image?: string; // Pre-assigned at data load time
 }
 
 // ── Story Aggregation Utilities ─────────────────────────────────────────────
@@ -295,6 +324,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
       date: episode.date,
       type: 'deepDive',
       isCallback: episode.deepDive.isCallback,
+      image: episode.deepDive.image,
     });
 
     // Add quick hits
@@ -307,6 +337,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
         category: hit.category,
         date: episode.date,
         type: 'quickHit',
+        image: hit.image,
       });
     }
   }
@@ -364,6 +395,7 @@ export interface StoryWithContext extends AggregatedStory {
   audioUrl?: string;
   fullText?: string;
   editorialTake?: string;
+  image?: string; // Pre-assigned at data load time
 }
 
 export function getStoryBySlug(slug: string): StoryWithContext | null {
@@ -389,6 +421,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
         audioUrl: episode.audioUrl,
         fullText: episode.deepDive.summary,
         editorialTake: episode.deepDive.editorialCallout,
+        image: episode.deepDive.image,
       };
     }
 
@@ -409,6 +442,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
           episodeDate: episode.date,
           editorialLens: episode.editorialLens,
           audioUrl: episode.audioUrl,
+          image: hit.image,
         };
       }
     }
@@ -524,6 +558,7 @@ export function getStoriesByV4Category(v4Category: V4Category): StoryWithContext
       editorialLens: episode.editorialLens,
       audioUrl: episode.audioUrl,
       editorialCallout,
+      image: story.image,
     });
   }
 
@@ -552,6 +587,7 @@ export function getRelatedStories(currentSlug: string, category: string, limit: 
       episodeDate: story.date,
       editorialLens: episode.editorialLens,
       audioUrl: episode.audioUrl,
+      image: story.image,
     });
 
     if (related.length >= limit) break;

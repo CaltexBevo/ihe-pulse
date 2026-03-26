@@ -121,6 +121,7 @@ export interface DeepDive {
   callbackFirstCovered?: string;
   category: StoryCategory;
   editorialCallout?: string;
+  image?: string; // Assigned at data load time for consistency
 }
 
 export interface QuickHit {
@@ -131,6 +132,7 @@ export interface QuickHit {
   category: StoryCategory;
   isCallback?: boolean;
   callbackDate?: string;
+  image?: string; // Assigned at data load time for consistency
 }
 
 export interface StoryWatching {
