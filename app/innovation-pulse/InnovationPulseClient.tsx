@@ -741,7 +741,12 @@ export default function InnovationPulseClient({
                 return (
                   <div
                     key={i}
-                    className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                    onClick={() => setExpandedStory(isExpanded ? null : `quick-${hit.title}`)}
+                    className={`bg-[var(--bg-card)] border rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 ${
+                      isExpanded
+                        ? "border-[rgba(0,212,255,0.2)]"
+                        : "border-[var(--border)] hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)]"
+                    }`}
                   >
                     {/* Thumbnail */}
                     <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
@@ -763,14 +768,31 @@ export default function InnovationPulseClient({
                       <h3 className="font-sans text-[0.92rem] font-bold leading-[1.35] mb-2 line-clamp-2">
                         {hit.title}
                       </h3>
-                      <p className={`text-[0.8rem] text-[var(--text-secondary)] leading-[1.55] mb-3 ${isExpanded ? "" : "line-clamp-2"}`}>
-                        {hit.summary}
-                      </p>
-                      <div className="flex items-center justify-between">
+                      {/* Teaser when collapsed */}
+                      {!isExpanded && (
+                        <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.55] mb-2 line-clamp-2">
+                          {hit.summary}
+                        </p>
+                      )}
+                      {/* Expand indicator */}
+                      <div className="text-[0.53rem] text-[var(--text-muted)] flex items-center gap-[0.25rem] mb-2 font-mono">
+                        <span className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
+                          &#9662;
+                        </span>
+                        <span>{isExpanded ? "Collapse" : "Read more"}</span>
+                      </div>
+                      {/* Expanded content */}
+                      <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.65] mb-3">
+                          {hit.summary}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between pt-2 border-t border-[var(--border)]">
                         <a
                           href={hit.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
                         >
                           Full story →
@@ -888,11 +910,17 @@ export default function InnovationPulseClient({
               {previousLeadStories.map((story, i) => {
                 const v4Cat = mapToV4Category(story.category);
                 const storyLensColors = LENS_COLORS[story.editorialLens] || LENS_COLORS["The Hard Question"];
+                const isExpanded = expandedStory === `prev-lead-${story.title}`;
 
                 return (
                   <div
                     key={`prev-lead-${i}`}
-                    className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                    onClick={() => setExpandedStory(isExpanded ? null : `prev-lead-${story.title}`)}
+                    className={`bg-[var(--bg-card)] border rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 ${
+                      isExpanded
+                        ? "border-[rgba(0,212,255,0.2)]"
+                        : "border-[var(--border)] hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)]"
+                    }`}
                   >
                     {/* Thumbnail */}
                     <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
@@ -927,12 +955,29 @@ export default function InnovationPulseClient({
                       <h3 className="font-sans text-[0.92rem] font-bold leading-[1.35] mb-2 line-clamp-2">
                         {story.title}
                       </h3>
-                      <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.55] mb-3 line-clamp-2">
-                        {story.summary}
-                      </p>
-                      <div className="flex items-center justify-between">
+                      {/* Teaser when collapsed */}
+                      {!isExpanded && (
+                        <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.55] mb-2 line-clamp-2">
+                          {story.summary}
+                        </p>
+                      )}
+                      {/* Expand indicator */}
+                      <div className="text-[0.53rem] text-[var(--text-muted)] flex items-center gap-[0.25rem] mb-2 font-mono">
+                        <span className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
+                          &#9662;
+                        </span>
+                        <span>{isExpanded ? "Collapse" : "Read more"}</span>
+                      </div>
+                      {/* Expanded content */}
+                      <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.65] mb-3">
+                          {story.summary}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between pt-2 border-t border-[var(--border)]">
                         <Link
                           href={`/innovation-pulse/story/${generateSlug(story.title)}`}
+                          onClick={(e) => e.stopPropagation()}
                           className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
                         >
                           Full story →
@@ -941,6 +986,7 @@ export default function InnovationPulseClient({
                           href={story.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="font-mono text-[0.6rem] text-[var(--text-muted)] hover:text-[var(--cyan)] transition-colors"
                         >
                           {story.source} ↗
