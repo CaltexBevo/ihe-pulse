@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { getContrastTextColor } from "@/lib/utils/color";
 
 interface CardProps {
   title: string;
@@ -77,10 +78,11 @@ export default function Card({
         {badgeText && (
           <div className="absolute top-[10px] left-[10px] flex flex-col gap-1">
             <span
-              className="text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white backdrop-blur-[8px] w-fit"
+              className="text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] backdrop-blur-[8px] w-fit"
               style={{
                 fontFamily: "var(--font-mono)",
                 backgroundColor: badgeColor,
+                color: getContrastTextColor(badgeColor),
               }}
             >
               {isCallback && "↩ "}{badgeText}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
+import { getContrastTextColor } from '@/lib/utils/color';
 
 interface LeadStoryCardProps {
   episode: InnovationPulseEpisode;
@@ -69,8 +70,8 @@ export default function LeadStoryCard({ episode, imageUrl, v4Category, categoryC
                 Lead Story
               </span>
               <span
-                className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-[0.6rem] py-[0.25rem] rounded-[6px] text-white uppercase"
-                style={{ backgroundColor: categoryColor }}
+                className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-[0.6rem] py-[0.25rem] rounded-[6px] uppercase"
+                style={{ backgroundColor: categoryColor, color: getContrastTextColor(categoryColor) }}
               >
                 {v4Category}
               </span>
@@ -85,8 +86,8 @@ export default function LeadStoryCard({ episode, imageUrl, v4Category, categoryC
                 Lead Story
               </span>
               <span
-                className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] px-[0.65rem] py-[0.25rem] rounded-[6px] text-white uppercase"
-                style={{ backgroundColor: categoryColor }}
+                className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] px-[0.65rem] py-[0.25rem] rounded-[6px] uppercase"
+                style={{ backgroundColor: categoryColor, color: getContrastTextColor(categoryColor) }}
               >
                 {v4Category}
               </span>

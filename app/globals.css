@@ -29,13 +29,13 @@
   /* Text Colors */
   --text: #f0ede8;
   --text-secondary: #a8a4b8;
-  --text-muted: #6b6880;
+  --text-muted: #9590a6;
 
   /* Primary Accents */
   --cyan: #00d4ff;
   --cyan-dim: rgba(0,212,255,0.15);
   --cyan-glow: rgba(0,212,255,0.08);
-  --magenta: #c850c0;
+  --magenta: #b040a8;
   --magenta-dim: rgba(200,80,192,0.15);
 
   /* Status Colors */

@@ -221,7 +221,7 @@ export default function Home() {
                   fill
                   className="object-contain p-2"
                 />
-                <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[var(--orange)] backdrop-blur-[8px]">
+                <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-[#08080f] bg-[var(--orange)] backdrop-blur-[8px]">
                   Interview
                 </span>
               </div>
@@ -326,7 +326,7 @@ export default function Home() {
                 fill
                 className="object-cover"
               />
-              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(0,212,255,0.85)]">
+              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-[#08080f] bg-[rgba(0,212,255,0.85)]">
                 Experiment
               </span>
             </div>
@@ -360,7 +360,7 @@ export default function Home() {
                 fill
                 className="object-cover"
               />
-              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-white bg-[rgba(74,222,128,0.85)]">
+              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-[#08080f] bg-[rgba(74,222,128,0.85)]">
                 Walkthrough
               </span>
             </div>
