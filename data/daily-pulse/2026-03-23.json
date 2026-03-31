@@ -1,0 +1,54 @@
+{
+  "episode": {
+    "date": "2026-03-23",
+    "dayOfWeek": "Monday",
+    "editorialLens": "The Hard Question",
+    "lensDescription": "Examine complexity and tradeoffs. Surface the questions worth asking.",
+    "lensColor": "#fb7185",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-03-23.mp3",
+    "audioDuration": "4:20",
+    "broadcastScript": "This is The Innovation Pulse for Monday, March 23rd, 2026. And here's who is innovating in higher education today.\n\n<break time=\"1.0s\"/>\n\nIn Insights and Trends today, Instructure announced the launch of its IgniteAI Agent for Canvas, according to Inside Higher Ed. The A.I. teaching agent can automate tasks like rubric generation, content alignment, and discussion reviews for faculty. The company says the agent will be free for U.S. Canvas customers through June 30th, after which it will be available as part of premium offerings. Canvas is used by more than forty percent of higher education institutions across North America. The announcement comes weeks after an external A.I. agent called Einstein caused controversy for its ability to complete entire courses within Canvas before being shut down by cease-and-desist orders. While Canvas's agent can create customized assignments and generate personalized feedback, Instructure chief architect Zach Pendleton said the company purposefully built guardrails to prevent instructors from fully automating grading. Jason Gulya, a professor at Berkeley College, expressed concerns that integrating agentic A.I. could eventually lead institutions to question faculty value if they rely heavily on automation. The technology represents a shift from generative A.I., which produces content in response to prompts, to agentic A.I., which can complete tasks independently with minimal human supervision.\n\n<break time=\"1.0s\"/>\n\nIn A.I. Workforce and Careers today, Reddit CEO Steve Huffman says his company is ramping up hiring of new college graduates specifically because of their A.I. fluency. \"They're so much more A.I. native,\" Huffman said, adding that employers who do not hire graduates right out of school risk losing them forever, and paying a steep premium later. The counterintuitive bet: A.I. comfort, not A.I. displacement, is what makes Gen Z graduates valuable right now.\n\n<break time=\"1.0s\"/>\n\nIn Insights and Trends today, the U.S. Department of Labor launched \"Make America A.I.-Ready,\" a free artificial intelligence literacy course that Americans can access by texting \"READY\" to twenty-twenty-two. The course delivers content entirely through text messages and can be completed in seven days with ten minutes of daily engagement. The initiative was developed through a public-private partnership with education technology company Arist and aligns with five foundational areas from the Labor Department's A.I. Literacy Framework. The text message format is designed to be accessible to Americans without laptops or with limited internet access. The course covers understanding A.I. principles, exploring A.I. uses, directing A.I. effectively, evaluating A.I. outputs, and using A.I. responsibly.\n\n<break time=\"1.0s\"/>\n\nIn Case Study today, Case Western Reserve University's School of Law held its first Vibe Coding Competition for students after becoming the first law school nationally to require all first-year students to complete A.I. certification. Students used vibe coding, a method of using A.I. to write web code based on intuition rather than formal structure, to build functional prototype tools for real legal practice problems. First-year student Jamie Werner won with a platform that tracks local court rules and judges' standing orders while providing background information about judges. Another first-year student, Sophie Kwiatkowski, earned honorable mention despite having never coded before. The competition was part of the school's \"Introduction to A.I. and the Law\" program, developed in partnership with Wickard.ai. Other student projects included timekeeping automation tools, citation-checking systems, and A.I.-assisted jury selection platforms.\n\n<break time=\"1.0s\"/>\n\nThat's today's Innovation Pulse. Full coverage and source links at innovating higher ed dot com.\n"
+  },
+  "leadStory": {
+    "headline": "Canvas Launches A.I. Teaching Agent to Automate Faculty Tasks",
+    "category": "Insights & Trends",
+    "source": "Inside Higher Ed",
+    "sourceUrl": "https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/03/23/canvas-unrolls-ai-teaching-agent",
+    "summary": "According to Inside Higher Ed, Instructure announced the launch of its IgniteAI Agent for Canvas, which can automate tasks like rubric generation, content alignment, and discussion reviews for faculty. The company says the agent will be free for U.S. Canvas customers through June 30, after which it will be available as part of premium offerings. Canvas is used by more than 40 percent of higher education institutions across North America. The announcement comes weeks after an external A.I. agent called Einstein caused controversy for its ability to complete entire courses within Canvas before being shut down by cease-and-desist orders. While Canvas's agent can create customized assignments and generate personalized feedback, Instructure chief architect Zach Pendleton said the company purposefully built guardrails to prevent instructors from fully automating grading. Jason Gulya, a professor at Berkeley College, expressed concerns that integrating agentic A.I. could eventually lead institutions to question faculty value if they rely heavily on automation. The technology represents a shift from generative A.I., which produces content in response to prompts, to agentic A.I., which can complete tasks independently with minimal human supervision."
+  },
+  "quickHits": [
+    {
+      "headline": "Reddit CEO Favors Hiring A.I.-Native College Graduates",
+      "category": "AI Workforce & Careers",
+      "source": "Fortune",
+      "sourceUrl": "https://fortune.com/2026/03/23/billionaire-reddit-ceo-steve-huffman-go-heavy-hiring-graduates-much-more-ai-native-older-peers/",
+      "summary": "Reddit CEO Steve Huffman says his company is ramping up hiring of new college graduates specifically because of their AI fluency. \"They are so much more A.I. native,\" Huffman said, adding that employers who do not hire graduates right out of school risk losing them forever and paying a steep premium later. The counterintuitive bet: A.I. comfort, not A.I. displacement, is what makes Gen Z graduates valuable right now."
+    },
+    {
+      "headline": "Labor Department Launches Text-Based A.I. Literacy Course",
+      "category": "Insights & Trends",
+      "source": "U.S. Department of Labor",
+      "sourceUrl": "https://www.dol.gov/newsroom/releases/osec/osec20260324",
+      "summary": "According to the U.S. Department of Labor, the agency launched \"Make America A.I.-Ready,\" a free artificial intelligence literacy course that Americans can access by texting \"READY\" to 20202. The course delivers content entirely through text messages and can be completed in seven days with 10 minutes of daily engagement. The initiative was developed through a public-private partnership with education technology company Arist and aligns with five foundational areas from the Labor Department's A.I. Literacy Framework. The text message format is designed to be accessible to Americans without laptops or with limited internet access. The course covers understanding A.I. principles, exploring A.I. uses, directing A.I. effectively, evaluating A.I. outputs, and using A.I. responsibly."
+    },
+    {
+      "headline": "Case Western Law School Introduces Vibe Coding Competition",
+      "category": "Case Study",
+      "source": "Case Western Reserve University",
+      "sourceUrl": "https://case.edu/news/preparing-students-future-law-ai",
+      "summary": "According to Case Western Reserve University, the School of Law held its first Vibe Coding Competition for students after becoming the first law school nationally to require all first-year students to complete A.I. certification. Students used vibe coding—a method of using A.I. to write web code based on intuition rather than formal structure—to build functional prototype tools for real legal practice problems. First-year student Jamie Werner won with a platform that tracks local court rules and judges' standing orders while providing background information about judges. Another first-year student, Sophie Kwiatkowski, earned honorable mention despite having never coded before. The competition was part of the school's \"Introduction to A.I. and the Law\" program, developed in partnership with Wickard.ai. Other student projects included timekeeping automation tools, citation-checking systems, and A.I.-assisted jury selection platforms."
+    }
+  ],
+  "meta": {
+    "date": "2026-03-23",
+    "storyCount": 4,
+    "themes": [
+      "AI teaching agents",
+      "workforce readiness",
+      "AI literacy",
+      "legal education"
+    ],
+    "publishedAt": "2026-03-31T17:49:50.933Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
