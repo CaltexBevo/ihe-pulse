@@ -143,13 +143,9 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
         <span>THE INNOVATION PULSE</span>
       </div>
 
-      {/* Date + Lens Badge */}
-      <div className="font-mono text-[0.72rem] text-[var(--text-muted)] mb-4 flex items-center gap-3">
+      {/* Date */}
+      <div className="font-mono text-[0.72rem] text-[var(--text-muted)] mb-4">
         <span>{formatPulseDate(currentEpisode.date)}</span>
-        <span className={`inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
-          <span className={`w-[5px] h-[5px] rounded-full ${lensColors.dot}`} />
-          {currentEpisode.editorialLens}
-        </span>
       </div>
 
       {/* The 5-Minute Edge - Main Heading */}

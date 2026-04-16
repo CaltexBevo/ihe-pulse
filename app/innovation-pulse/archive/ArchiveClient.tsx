@@ -134,16 +134,6 @@ export default function ArchiveClient({ episode, lensColor }: ArchiveClientProps
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <span
-              className="inline-flex items-center gap-[0.3rem] px-[0.5rem] py-[0.15rem] rounded-full text-[0.6rem] font-semibold"
-              style={{ backgroundColor: `${lensColor}20`, color: lensColor }}
-            >
-              <span
-                className="w-[4px] h-[4px] rounded-full"
-                style={{ backgroundColor: lensColor }}
-              />
-              {episode.editorialLens}
-            </span>
             <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">
               {episode.storyCount} stories
             </span>

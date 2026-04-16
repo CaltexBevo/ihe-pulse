@@ -8,7 +8,8 @@ import {
   getEpisodeDates,
   formatPulseDate,
   formatShortDate,
-  categoryColors,
+  mapToV4Category,
+  V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
 
 // Static Params
@@ -116,14 +117,11 @@ export default async function InnovationPulseDatePage({
           <span
             className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-[0.6rem] py-[0.2rem] rounded-[5px]"
             style={{
-              backgroundColor: `${categoryColors[episode.deepDive.category]?.hex}20`,
-              color: categoryColors[episode.deepDive.category]?.hex,
+              backgroundColor: `${V4_CATEGORY_COLORS[mapToV4Category(episode.deepDive.category)]}20`,
+              color: V4_CATEGORY_COLORS[mapToV4Category(episode.deepDive.category)],
             }}
           >
-            {episode.deepDive.category}
-          </span>
-          <span className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-[0.6rem] py-[0.2rem] rounded-[5px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-            {episode.editorialLens}
+            {mapToV4Category(episode.deepDive.category)}
           </span>
           <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
             {formatShortDate(date)}
@@ -158,7 +156,7 @@ export default async function InnovationPulseDatePage({
             <div className="h-full w-0 bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] rounded-[2px]" />
           </div>
           <span className="font-mono text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap">
-            1:32
+            {episode.audioDuration || "0:00"}
           </span>
         </div>
 
@@ -202,38 +200,37 @@ export default async function InnovationPulseDatePage({
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          EDITORIAL TAKE CARD
+          EDITORIAL TAKE CARD (only renders if content exists)
           ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[820px] mx-auto px-[var(--px)] pb-10">
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--magenta)] to-[var(--cyan)]" />
-          <div className="flex items-center gap-2 mb-4">
-            <span className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] uppercase text-[var(--magenta)]">
-              OUR TAKE
-            </span>
-            <span className="font-mono text-[0.62rem] text-[var(--text-muted)] tracking-[0.04em]">
-              — {episode.editorialLens}
-            </span>
-          </div>
-          <div className="space-y-4">
-            {episode.deepDive.editorialCallout && (
-              <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
-                {episode.deepDive.editorialCallout}
-              </p>
-            )}
-            {episode.closingThought && !episode.deepDive.editorialCallout && (
-              <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
-                {episode.closingThought}
-              </p>
-            )}
-          </div>
-          <div className="flex items-center gap-2 mt-6 pt-4 border-t border-[var(--border)] text-[0.82rem] text-[var(--text-secondary)]">
-            <strong className="text-[var(--text)]">The Innovation Pulse</strong>
-            <span>·</span>
-            <span>Innovating Higher Ed</span>
+      {(episode.deepDive.editorialCallout || episode.closingThought) && (
+        <div className="max-w-[820px] mx-auto px-[var(--px)] pb-10">
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--magenta)] to-[var(--cyan)]" />
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] uppercase text-[var(--magenta)]">
+                OUR TAKE
+              </span>
+            </div>
+            <div className="space-y-4">
+              {episode.deepDive.editorialCallout && (
+                <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
+                  {episode.deepDive.editorialCallout}
+                </p>
+              )}
+              {episode.closingThought && !episode.deepDive.editorialCallout && (
+                <p className="text-[1rem] text-[var(--text)] leading-[1.75] italic">
+                  {episode.closingThought}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center gap-2 mt-6 pt-4 border-t border-[var(--border)] text-[0.82rem] text-[var(--text-secondary)]">
+              <strong className="text-[var(--text)]">The Innovation Pulse</strong>
+              <span>·</span>
+              <span>Innovating Higher Ed</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* ═══════════════════════════════════════════════════════
           SHARE BAR
@@ -280,14 +277,14 @@ export default async function InnovationPulseDatePage({
           </div>
 
           <div className="grid-3">
-            {episode.quickHits.slice(0, 3).map((hit, i) => (
+            {episode.quickHits.map((hit, i) => (
               <Card
                 key={i}
                 title={hit.title}
                 teaser={hit.summary}
                 fullContent={hit.summary}
-                category={hit.category}
-                categoryColor={categoryColors[hit.category]?.hex}
+                category={mapToV4Category(hit.category)}
+                categoryColor={V4_CATEGORY_COLORS[mapToV4Category(hit.category)]}
                 source={hit.source}
                 date={formatShortDate(episode.date)}
                 imageUrl={hit.image || DEFAULT_STORY_IMAGE}

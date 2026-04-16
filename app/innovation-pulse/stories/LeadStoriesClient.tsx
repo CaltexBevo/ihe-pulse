@@ -58,9 +58,6 @@ export default function LeadStoriesClient({ stories }: LeadStoriesClientProps) {
                   >
                     {story.category}
                   </span>
-                  <span className="font-mono text-[0.55rem] px-[0.5rem] py-[0.12rem] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                    {story.editorialLens}
-                  </span>
                 </div>
 
                 <h3 className="text-[1rem] font-bold leading-[1.3] mb-2">{story.title}</h3>

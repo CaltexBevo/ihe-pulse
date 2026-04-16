@@ -345,13 +345,9 @@ export default function InnovationPulseClient({
               <span>THE INNOVATION PULSE</span>
             </div>
 
-            {/* Date + Lens Badge */}
-            <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-4 flex items-center gap-3">
+            {/* Date */}
+            <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-4">
               <span>{formatPulseDate(currentEpisode?.date || episode.date)}</span>
-              <span className={`inline-flex items-center gap-[0.35rem] px-[0.65rem] py-[0.2rem] rounded-full text-[0.68rem] font-semibold ${lensColors.bg} ${lensColors.text}`}>
-                <span className="w-[5px] h-[5px] rounded-full bg-current" />
-                {currentEpisode?.editorialLens || episode.editorialLens}
-              </span>
             </div>
 
             {/* The 5-Minute Edge - Main Heading */}
@@ -559,13 +555,9 @@ export default function InnovationPulseClient({
                         </span>
                         <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">{ep.audioDuration}</span>
                       </div>
-                      <p className={`text-[0.78rem] leading-[1.4] line-clamp-2 mb-2 ${isActive ? "text-[var(--text)]" : "text-[var(--text-secondary)]"}`}>
+                      <p className={`text-[0.78rem] leading-[1.4] line-clamp-2 ${isActive ? "text-[var(--text)]" : "text-[var(--text-secondary)]"}`}>
                         {ep.deepDive.title}
                       </p>
-                      <span className={`inline-flex items-center gap-[0.3rem] px-[0.5rem] py-[0.15rem] rounded-full text-[0.58rem] font-semibold ${epLensColors.bg} ${epLensColors.text}`}>
-                        <span className="w-[4px] h-[4px] rounded-full bg-current" />
-                        {ep.editorialLens}
-                      </span>
                     </button>
                   );
                 })}
@@ -944,9 +936,6 @@ export default function InnovationPulseClient({
                       <div className="flex items-center gap-2 mb-2">
                         <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">
                           {formatShortDate(story.date)}
-                        </span>
-                        <span className={`font-mono text-[0.52rem] px-[0.4rem] py-[0.1rem] rounded-full ${storyLensColors.bg} ${storyLensColors.text}`}>
-                          {story.editorialLens}
                         </span>
                       </div>
                       <h3 className="font-sans text-[0.92rem] font-bold leading-[1.35] mb-2 line-clamp-2">
