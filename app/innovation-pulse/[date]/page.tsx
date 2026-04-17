@@ -331,8 +331,8 @@ export default async function InnovationPulseDatePage({
               </div>
               <div className="p-4 pt-3">
                 <div className="font-mono text-[0.55rem] font-semibold tracking-[0.08em] uppercase mb-2 flex items-center gap-[0.35rem]">
-                  <span className="w-[4px] h-[4px] rounded-full bg-[var(--blue)]" />
-                  <span className="text-[var(--blue)]">{story.cat}</span>
+                  <span className="w-[4px] h-[4px] rounded-full bg-[var(--cyan)]" />
+                  <span className="text-[var(--cyan)]">{story.cat}</span>
                 </div>
                 <h3 className="font-sans text-[0.92rem] font-bold leading-[1.25] mb-3">
                   {story.title}

@@ -56,14 +56,16 @@ const V4_CATEGORIES: V4Category[] = [
   "Week in Review",
 ];
 
+// Palette-locked category colors — no green, teal, coral, orange, or blue
+// Uses CSS variables from docs/DESIGN-TOKENS.md
 const V4_CATEGORY_COLORS: Record<V4Category, { hex: string; bg: string; text: string }> = {
-  "Insights & Trends": { hex: "#00d4ff", bg: "rgba(0,212,255,0.15)", text: "text-[#00d4ff]" },
-  "Case Study": { hex: "#10b981", bg: "rgba(16,185,129,0.15)", text: "text-[#10b981]" },
-  "Practical Tips": { hex: "#f59e0b", bg: "rgba(245,158,11,0.15)", text: "text-[#f59e0b]" },
-  "Ethical AI": { hex: "#f43f5e", bg: "rgba(244,63,94,0.15)", text: "text-[#f43f5e]" },
-  "Latest AI Products": { hex: "#8b5cf6", bg: "rgba(139,92,246,0.15)", text: "text-[#8b5cf6]" },
-  "Beyond Ed": { hex: "#0ea5e9", bg: "rgba(14,165,233,0.15)", text: "text-[#0ea5e9]" },
-  "Week in Review": { hex: "#c850c0", bg: "rgba(200,80,192,0.15)", text: "text-[#c850c0]" },
+  "Insights & Trends": { hex: "var(--cyan)", bg: "var(--cyan-soft)", text: "text-[var(--cyan)]" },
+  "Case Study": { hex: "var(--purple)", bg: "var(--purple-soft)", text: "text-[var(--purple)]" },
+  "Practical Tips": { hex: "var(--cyan)", bg: "var(--cyan-soft)", text: "text-[var(--cyan)]" },
+  "Ethical AI": { hex: "var(--amber)", bg: "var(--amber-soft)", text: "text-[var(--amber)]" },
+  "Latest AI Products": { hex: "var(--purple)", bg: "var(--purple-soft)", text: "text-[var(--purple)]" },
+  "Beyond Ed": { hex: "var(--cyan)", bg: "var(--cyan-soft)", text: "text-[var(--cyan)]" },
+  "Week in Review": { hex: "var(--magenta)", bg: "var(--magenta-soft)", text: "text-[var(--magenta)]" },
 };
 
 const V4_BADGE_TEXT: Record<V4Category, string> = {
@@ -131,10 +133,10 @@ interface InnovationPulseClientProps {
   storiesByCategory: Record<string, AggregatedStory[]>;
 }
 
-// Editorial lens colors
+// Editorial lens colors — palette-locked (no green)
 const LENS_COLORS: Record<string, { bg: string; text: string }> = {
   "The Hard Question": { bg: "bg-[var(--amber-dim)]", text: "text-[var(--amber)]" },
-  "The Student Experience": { bg: "bg-[var(--green-dim)]", text: "text-[var(--green)]" },
+  "The Student Experience": { bg: "bg-[var(--purple-dim)]", text: "text-[var(--purple)]" },
   "The Practitioner's Playbook": { bg: "bg-[var(--cyan-dim)]", text: "text-[var(--cyan)]" },
   "Connecting the Dots": { bg: "bg-[var(--magenta-dim)]", text: "text-[var(--magenta)]" },
   "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]" },

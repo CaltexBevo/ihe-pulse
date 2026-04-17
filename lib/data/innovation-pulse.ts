@@ -496,14 +496,16 @@ export const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
   "Week in Review": "week-in-review",
 };
 
+// Palette-locked category colors — no green, teal, coral, orange, or blue
+// Uses CSS variables that resolve at render time
 export const V4_CATEGORY_COLORS: Record<V4Category, string> = {
-  "Insights & Trends": "#00d4ff",
-  "Case Study": "#10b981",
-  "Practical Tips": "#f59e0b",
-  "Ethical AI": "#f43f5e",
-  "Latest AI Products": "#8b5cf6",
-  "Beyond Ed": "#3b82f6",
-  "Week in Review": "#c850c0",
+  "Insights & Trends": "var(--cyan)",
+  "Case Study": "var(--purple)",
+  "Practical Tips": "var(--cyan)",
+  "Ethical AI": "var(--amber)",
+  "Latest AI Products": "var(--purple)",
+  "Beyond Ed": "var(--cyan)",
+  "Week in Review": "var(--magenta)",
 };
 
 export const V4_CATEGORY_DESCRIPTIONS: Record<V4Category, string> = {

@@ -7,8 +7,6 @@ import {
   V4_CATEGORY_COLORS,
   generateSlug,
 } from "@/lib/data/innovation-pulse";
-import { formatShortDate } from "@/lib/data/innovation-pulse-types";
-import { getStoryImage, StoryImageAssigner } from "@/lib/utils/story-images";
 import LeadStoriesClient from "./LeadStoriesClient";
 
 export const metadata: Metadata = {
@@ -18,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function LeadStoriesPage() {
   const allEpisodes = getAllEpisodes();
-  const imageAssigner = new StoryImageAssigner();
 
   // Get all lead stories with their episode context
+  // Images are pre-assigned at data load time for consistency across all pages
   const leadStories = allEpisodes.map((episode) => {
     const v4Category = mapToV4Category(episode.deepDive.category);
     return {
@@ -29,12 +27,12 @@ export default function LeadStoriesPage() {
       source: episode.deepDive.source,
       sourceUrl: episode.deepDive.sourceUrl,
       category: v4Category,
-      categoryColor: V4_CATEGORY_COLORS[v4Category] || "#00d4ff",
+      categoryColor: V4_CATEGORY_COLORS[v4Category] || "var(--cyan)",
       date: episode.date,
       editorialLens: episode.editorialLens,
       editorialCallout: episode.deepDive.editorialCallout,
       slug: generateSlug(episode.deepDive.title),
-      imageUrl: imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category, episode.date),
+      imageUrl: episode.deepDive.image || "",
     };
   });
 
@@ -75,7 +73,7 @@ export default function LeadStoriesPage() {
       {todaysStory && (
         <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
           <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6 flex items-center gap-2">
-            <span className="text-[var(--green)]">TODAY</span>
+            <span className="text-[var(--cyan)]">TODAY</span>
             <span>—</span>
             <span>{formatPulseDate(todaysStory.date)}</span>
           </div>

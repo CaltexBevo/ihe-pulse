@@ -11,23 +11,23 @@ import {
 } from "@/lib/data/innovation-pulse";
 import StoryPageClient from "./StoryPageClient";
 
-// V4 Category colors and slugs
+// V4 Category colors and slugs — palette-locked (no green, teal, coral, blue)
 const V4_CATEGORY_CONFIG: Record<string, { color: string; slug: string }> = {
-  "Insights & Trends": { color: "#00d4ff", slug: "insights-and-trends" },
-  "Case Study": { color: "#10b981", slug: "case-study" },
-  "Practical Tips": { color: "#f59e0b", slug: "practical-tips" },
-  "Ethical AI": { color: "#f43f5e", slug: "ethical-ai" },
-  "Latest AI Products": { color: "#8b5cf6", slug: "latest-ai-products" },
-  "Beyond Ed": { color: "#3b82f6", slug: "beyond-ed" },
-  "Week in Review": { color: "#c850c0", slug: "week-in-review" },
+  "Insights & Trends": { color: "var(--cyan)", slug: "insights-and-trends" },
+  "Case Study": { color: "var(--purple)", slug: "case-study" },
+  "Practical Tips": { color: "var(--cyan)", slug: "practical-tips" },
+  "Ethical AI": { color: "var(--amber)", slug: "ethical-ai" },
+  "Latest AI Products": { color: "var(--purple)", slug: "latest-ai-products" },
+  "Beyond Ed": { color: "var(--cyan)", slug: "beyond-ed" },
+  "Week in Review": { color: "var(--magenta)", slug: "week-in-review" },
   // Old categories mapping
-  "Research & Innovation": { color: "#00d4ff", slug: "insights-and-trends" },
-  "Infrastructure & Operations": { color: "#10b981", slug: "case-study" },
-  "Teaching & Learning": { color: "#f59e0b", slug: "practical-tips" },
-  "Policy & Ethics": { color: "#f43f5e", slug: "ethical-ai" },
-  "Tools & Products": { color: "#8b5cf6", slug: "latest-ai-products" },
-  "Student Experience": { color: "#3b82f6", slug: "beyond-ed" },
-  "Leadership & Strategy": { color: "#00d4ff", slug: "insights-and-trends" },
+  "Research & Innovation": { color: "var(--cyan)", slug: "insights-and-trends" },
+  "Infrastructure & Operations": { color: "var(--purple)", slug: "case-study" },
+  "Teaching & Learning": { color: "var(--cyan)", slug: "practical-tips" },
+  "Policy & Ethics": { color: "var(--amber)", slug: "ethical-ai" },
+  "Tools & Products": { color: "var(--purple)", slug: "latest-ai-products" },
+  "Student Experience": { color: "var(--cyan)", slug: "beyond-ed" },
+  "Leadership & Strategy": { color: "var(--cyan)", slug: "insights-and-trends" },
 };
 
 // Map old categories to V4
