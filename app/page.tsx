@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import SectionHeader from "@/components/SectionHeader";
 import Card from "@/components/Card";
-import HomeHeroClient from "@/components/HomeHeroClient";
+import HeroNowPlaying from "@/components/HeroNowPlaying";
+import TopStoriesSlider from "@/components/TopStoriesSlider";
 import LeadStoryCard from "@/components/LeadStoryCard";
 import HomePromptCards from "@/components/HomePromptCards";
 import HomeAIAppCards from "@/components/HomeAIAppCards";
@@ -63,7 +64,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* ═══════════════════════════════════════════════════════
-          INNOVATION PULSE HERO - FLAGSHIP SECTION
+          INNOVATION PULSE HERO - V9 "NOW PLAYING" DESIGN
           ═══════════════════════════════════════════════════════ */}
       <section className="relative">
         {/* Premium gradient background */}
@@ -72,10 +73,10 @@ export default function Home() {
 
         <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8 relative">
           <div className="grid lg:grid-cols-[1fr_320px] gap-10">
-            {/* Main Content - Client component for interactivity */}
+            {/* Main Content - V9 Now Playing Hero */}
             <div className="animate-[fadeUp_0.7s_ease-out_both]">
               {pulseEpisode && (
-                <HomeHeroClient
+                <HeroNowPlaying
                   latestEpisode={pulseEpisode}
                   recentEpisodes={recentEpisodes}
                 />
@@ -138,7 +139,7 @@ export default function Home() {
 
 
       {/* ═══════════════════════════════════════════════════════
-          TOP STORIES - Lead Story + 3 Cards (Lead Story merged in)
+          TOP STORIES - Horizontal Slider (Lead Story as Card 1)
           ═══════════════════════════════════════════════════════ */}
       <section className="section">
         <SectionHeader
@@ -150,30 +151,7 @@ export default function Home() {
           viewAllText="View all stories"
         />
 
-        <div className="grid-3">
-          {topStories.map((story, i) => {
-            const v4Category = mapToV4Category(story.category);
-            const v4Color = V4_CATEGORY_COLORS[v4Category] || "#00d4ff";
-
-            return (
-              <Card
-                key={i}
-                title={story.title}
-                teaser={story.summary}
-                fullContent={story.summary}
-                category={v4Category}
-                categoryColor={v4Color}
-                source={story.source}
-                sourceUrl={story.sourceUrl}
-                date={formatPulseDate(story.date)}
-                imageUrl={story.image || ""}
-                badgeText={story.type === "deepDive" ? "Lead" : "Story"}
-                badgeColor={story.type === "deepDive" ? "rgba(200,80,192,0.85)" : v4Color}
-                expandable={true}
-              />
-            );
-          })}
-        </div>
+        <TopStoriesSlider stories={topStories} />
       </section>
 
       {/* Section Divider */}

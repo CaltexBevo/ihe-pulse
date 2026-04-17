@@ -181,3 +181,59 @@ export function getDayOfWeek(dateStr: string): string {
   const d = new Date(dateStr + 'T12:00:00');
   return d.toLocaleDateString('en-US', { weekday: 'long' });
 }
+
+// ── Slug Utilities (Client-Safe) ──────────────────────────────────────────────
+
+export function generateSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 60);
+}
+
+// ── V4 Category Types & Utilities (Client-Safe) ───────────────────────────────
+
+export type V4Category =
+  | "Insights & Trends"
+  | "Case Study"
+  | "Practical Tips"
+  | "Ethical AI"
+  | "Latest AI Products"
+  | "Beyond Ed"
+  | "Week in Review";
+
+export const V4_CATEGORIES: V4Category[] = [
+  "Insights & Trends",
+  "Case Study",
+  "Practical Tips",
+  "Ethical AI",
+  "Latest AI Products",
+  "Beyond Ed",
+  "Week in Review",
+];
+
+export const V4_CATEGORY_COLORS: Record<V4Category, string> = {
+  "Insights & Trends": "#00d4ff",
+  "Case Study": "#10b981",
+  "Practical Tips": "#f59e0b",
+  "Ethical AI": "#f43f5e",
+  "Latest AI Products": "#8b5cf6",
+  "Beyond Ed": "#3b82f6",
+  "Week in Review": "#c850c0",
+};
+
+const OLD_TO_V4_MAP: Record<string, V4Category> = {
+  "Research & Innovation": "Insights & Trends",
+  "Infrastructure & Operations": "Case Study",
+  "Teaching & Learning": "Practical Tips",
+  "Policy & Ethics": "Ethical AI",
+  "Tools & Products": "Latest AI Products",
+  "Student Experience": "Beyond Ed",
+  "Leadership & Strategy": "Insights & Trends",
+};
+
+export function mapToV4Category(oldCategory: string): V4Category {
+  return OLD_TO_V4_MAP[oldCategory] || (oldCategory as V4Category) || "Insights & Trends";
+}
