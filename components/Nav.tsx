@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 
+// Nav order is locked per SKILL.md — only 7 items visible (Tinker Lab and Be Our Guest hidden)
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/innovation-pulse", label: "Innovation Pulse" },
@@ -13,9 +14,8 @@ const navLinks = [
   { href: "/ai-directory", label: "AI Directory" },
   { href: "/educator-tools", label: "Educator Tools" },
   { href: "/podcast", label: "Podcast" },
-  { href: "/tinker-lab", label: "Tinker Lab" },
   { href: "/about", label: "About" },
-  { href: "/be-our-guest", label: "Be Our Guest" },
+  // Hidden from nav per 2026-04-17 sprint — pages still exist at /tinker-lab and /be-our-guest
 ];
 
 export default function Nav() {
@@ -34,18 +34,27 @@ export default function Nav() {
       className="sticky top-0 z-[100] border-b border-[var(--border)] glass"
     >
       <div className="flex items-center h-14 px-[var(--px)] max-w-[var(--max-w)] mx-auto">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center shrink-0">
+        {/* Brand Logo with hover glow */}
+        <Link
+          href="/"
+          className="flex items-center shrink-0 transition-all duration-200 hover:scale-[1.02]"
+          style={{
+            filter: 'none',
+            transition: 'transform 0.2s ease, filter 0.2s ease'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.filter = 'drop-shadow(0 0 12px rgba(0,212,255,0.35))'}
+          onMouseLeave={(e) => e.currentTarget.style.filter = 'none'}
+        >
           <Image
             src="/images/ihe-logo.png"
             alt="Innovating Higher Ed"
             width={180}
-            height={40}
-            className="h-9 w-auto object-contain"
+            height={56}
+            className="h-14 w-auto object-contain max-[1100px]:h-12 max-[900px]:h-11"
             priority
           />
           <span
-            className="w-[6px] h-[6px] bg-[var(--green)] rounded-full ml-2"
+            className="w-[6px] h-[6px] bg-[var(--cyan)] rounded-full ml-2"
             style={{ animation: "pulseDot 2s infinite" }}
           />
         </Link>
@@ -70,15 +79,18 @@ export default function Nav() {
             </Link>
           ))}
 
-          {/* Theme Toggle */}
-          <div className="ml-2 pl-2 border-l border-[var(--border)]">
-            <ThemeToggle />
-          </div>
+          {/* Theme Toggle — hidden until light-mode logo ships */}
+          {/* TODO: re-enable when light-mode logo ships */}
+          {false && (
+            <div className="ml-2 pl-2 border-l border-[var(--border)]">
+              <ThemeToggle />
+            </div>
+          )}
         </div>
 
-        {/* Mobile: Theme Toggle + Menu Button */}
+        {/* Mobile: Menu Button (Theme toggle hidden until light-mode logo ships) */}
         <div className="md:hidden ml-auto flex items-center gap-1">
-          <ThemeToggle />
+          {/* TODO: re-enable ThemeToggle when light-mode logo ships */}
           <button
             className="p-2 text-[var(--text-secondary)]"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
