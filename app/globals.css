@@ -19,60 +19,72 @@
   --bg-elevated: #0e0e1a;
   --bg-card: #111120;
   --bg-card-hover: #16162a;
-  --surface: #1a1a30;
+  --surface: #111120;
   --surface-2: #222240;
+  --raised: #1a1a30;
 
   /* Border Colors */
   --border: rgba(255,255,255,0.06);
   --border-hover: rgba(255,255,255,0.12);
+  --border-strong: rgba(255,255,255,0.14);
 
   /* Text Colors */
   --text: #f0ede8;
   --text-secondary: #a8a4b8;
-  --text-muted: #9590a6;
+  --text-muted: #a8a4b8;
+  --text-dim: #6b6880;
 
-  /* Primary Accents */
+  /* Primary Accents — Locked Palette (see docs/DESIGN-TOKENS.md) */
   --cyan: #00d4ff;
   --cyan-dim: rgba(0,212,255,0.15);
+  --cyan-soft: rgba(0,212,255,0.10);
+  --cyan-strong: rgba(0,212,255,0.30);
   --cyan-glow: rgba(0,212,255,0.08);
   --magenta: #b040a8;
-  --magenta-dim: rgba(200,80,192,0.15);
+  --magenta-dim: rgba(176,64,168,0.15);
+  --magenta-soft: rgba(176,64,168,0.12);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167,139,250,0.12);
+  --purple-soft: rgba(167,139,250,0.15);
+  --amber: #f59e0b;
+  --amber-dim: rgba(245,158,11,0.12);
+  --amber-soft: rgba(245,158,11,0.12);
+
+  /* Brand Gradient */
+  --brand-grad: linear-gradient(135deg, #00d4ff 0%, #b040a8 100%);
 
   /* Status Colors */
-  --green: #4ade80;
-  --green-dim: rgba(74,222,128,0.12);
-  --amber: #f5a623;
-  --amber-dim: rgba(245,166,35,0.12);
   --red: #ef4444;
   --red-dim: rgba(239,68,68,0.12);
 
-  /* Category Colors */
-  --orange: #fb923c;
-  --orange-dim: rgba(251,146,60,0.12);
-  --purple: #a78bfa;
-  --purple-dim: rgba(167,139,250,0.12);
-  --teal: #0ea5a0;
-  --teal-dim: rgba(14,165,160,0.12);
-  --blue: #3b82f6;
-  --blue-dim: rgba(59,130,246,0.12);
-  --pink: #f472b6;
-  --pink-dim: rgba(244,114,182,0.12);
+  /* RETIRED COLORS — aliased for migration, DO NOT USE in new code */
+  /* See docs/DESIGN-TOKENS.md for rationale */
+  --green: #00d4ff; /* RETIRED: aliased to cyan */
+  --green-dim: rgba(0,212,255,0.15); /* RETIRED: aliased to cyan-dim */
+  --orange: #f59e0b; /* RETIRED: aliased to amber */
+  --orange-dim: rgba(245,158,11,0.12); /* RETIRED: aliased to amber-dim */
+  --teal: #00d4ff; /* RETIRED: aliased to cyan */
+  --teal-dim: rgba(0,212,255,0.15); /* RETIRED: aliased to cyan-dim */
+  --blue: #a78bfa; /* RETIRED: aliased to purple */
+  --blue-dim: rgba(167,139,250,0.12); /* RETIRED: aliased to purple-dim */
+  --pink: #b040a8; /* RETIRED: aliased to magenta */
+  --pink-dim: rgba(176,64,168,0.12); /* RETIRED: aliased to magenta-dim */
 
-  /* Editorial Lens Colors (Monday-Friday) */
+  /* Editorial Lens Colors — migrated to palette */
   --lens-mon: #00d4ff;
   --lens-tue: #f59e0b;
-  --lens-wed: #4ade80;
-  --lens-thu: #c850c0;
+  --lens-wed: #00d4ff; /* Was green, now cyan */
+  --lens-thu: #b040a8;
 
-  /* Category-specific colors for content types */
-  --cat-teaching: #4ade80;
+  /* Category colors — migrated to palette */
+  --cat-teaching: #00d4ff; /* Was green, now cyan */
   --cat-policy: #f59e0b;
-  --cat-infra: #3b82f6;
-  --cat-tools: #c850c0;
+  --cat-infra: #a78bfa; /* Was blue, now purple */
+  --cat-tools: #b040a8;
   --cat-research: #00d4ff;
-  --cat-student: #f472b6;
+  --cat-student: #b040a8; /* Was pink, now magenta */
   --cat-leadership: #a78bfa;
-  --cat-workforce: #fb923c;
+  --cat-workforce: #f59e0b; /* Was orange, now amber */
 
   /* Layout */
   --max-w: 1200px;
@@ -87,6 +99,7 @@
 /* ============================================
    Light Mode Theme
    WCAG AA Compliant - All text meets 4.5:1 contrast
+   NOTE: Light mode is disabled until light-mode logo exists
    ============================================ */
 [data-theme="light"] {
   /* Core Background Colors */
@@ -94,60 +107,71 @@
   --bg-elevated: #f8fafc;
   --bg-card: #ffffff;
   --bg-card-hover: #f1f5f9;
-  --surface: #f1f5f9;
+  --surface: #f8fafc;
   --surface-2: #e2e8f0;
+  --raised: #f1f5f9;
 
   /* Border Colors */
   --border: rgba(0, 0, 0, 0.08);
   --border-hover: rgba(0, 0, 0, 0.15);
+  --border-strong: rgba(0, 0, 0, 0.14);
 
   /* Text Colors - WCAG AA compliant */
   --text: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
+  --text-secondary: #475569;
+  --text-muted: #475569;
+  --text-dim: #64748b;
 
-  /* Primary Accents - adjusted for light backgrounds */
-  --cyan: #0891b2;
-  --cyan-dim: rgba(8, 145, 178, 0.12);
-  --cyan-glow: rgba(8, 145, 178, 0.06);
+  /* Primary Accents — Locked Palette (see docs/DESIGN-TOKENS.md) */
+  --cyan: #0e7490;
+  --cyan-dim: rgba(14, 116, 144, 0.12);
+  --cyan-soft: rgba(14, 116, 144, 0.08);
+  --cyan-strong: rgba(14, 116, 144, 0.25);
+  --cyan-glow: rgba(14, 116, 144, 0.06);
   --magenta: #a21caf;
   --magenta-dim: rgba(162, 28, 175, 0.12);
+  --magenta-soft: rgba(162, 28, 175, 0.08);
+  --purple: #6d28d9;
+  --purple-dim: rgba(109, 40, 217, 0.12);
+  --purple-soft: rgba(109, 40, 217, 0.10);
+  --amber: #b45309;
+  --amber-dim: rgba(180, 83, 9, 0.12);
+  --amber-soft: rgba(180, 83, 9, 0.10);
 
-  /* Status Colors - maintained for consistency */
-  --green: #16a34a;
-  --green-dim: rgba(22, 163, 74, 0.12);
-  --amber: #d97706;
-  --amber-dim: rgba(217, 119, 6, 0.12);
+  /* Brand Gradient — darker siblings */
+  --brand-grad: linear-gradient(135deg, #0e7490 0%, #a21caf 100%);
+
+  /* Status Colors */
   --red: #dc2626;
   --red-dim: rgba(220, 38, 38, 0.12);
 
-  /* Category Colors - adjusted for light mode contrast */
-  --orange: #ea580c;
-  --orange-dim: rgba(234, 88, 12, 0.12);
-  --purple: #7c3aed;
-  --purple-dim: rgba(124, 58, 237, 0.12);
-  --teal: #0d9488;
-  --teal-dim: rgba(13, 148, 136, 0.12);
-  --blue: #2563eb;
-  --blue-dim: rgba(37, 99, 235, 0.12);
-  --pink: #db2777;
-  --pink-dim: rgba(219, 39, 119, 0.12);
+  /* RETIRED COLORS — aliased for migration, DO NOT USE in new code */
+  --green: #0e7490; /* RETIRED: aliased to cyan */
+  --green-dim: rgba(14, 116, 144, 0.12);
+  --orange: #b45309; /* RETIRED: aliased to amber */
+  --orange-dim: rgba(180, 83, 9, 0.12);
+  --teal: #0e7490; /* RETIRED: aliased to cyan */
+  --teal-dim: rgba(14, 116, 144, 0.12);
+  --blue: #6d28d9; /* RETIRED: aliased to purple */
+  --blue-dim: rgba(109, 40, 217, 0.12);
+  --pink: #a21caf; /* RETIRED: aliased to magenta */
+  --pink-dim: rgba(162, 28, 175, 0.12);
 
-  /* Editorial Lens Colors */
-  --lens-mon: #0891b2;
-  --lens-tue: #d97706;
-  --lens-wed: #16a34a;
+  /* Editorial Lens Colors — migrated to palette */
+  --lens-mon: #0e7490;
+  --lens-tue: #b45309;
+  --lens-wed: #0e7490; /* Was green, now cyan */
   --lens-thu: #a21caf;
 
-  /* Category-specific colors */
-  --cat-teaching: #16a34a;
-  --cat-policy: #d97706;
-  --cat-infra: #2563eb;
+  /* Category colors — migrated to palette */
+  --cat-teaching: #0e7490;
+  --cat-policy: #b45309;
+  --cat-infra: #6d28d9;
   --cat-tools: #a21caf;
-  --cat-research: #0891b2;
-  --cat-student: #db2777;
-  --cat-leadership: #7c3aed;
-  --cat-workforce: #ea580c;
+  --cat-research: #0e7490;
+  --cat-student: #a21caf;
+  --cat-leadership: #6d28d9;
+  --cat-workforce: #b45309;
 }
 
 /* ============================================
@@ -382,11 +406,11 @@ textarea:focus:not(:focus-visible) {
 @keyframes pulseDot {
   0%, 100% {
     opacity: 1;
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+    box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.5);
   }
   50% {
     opacity: 0.7;
-    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 6px rgba(0, 212, 255, 0);
   }
 }
 
@@ -557,7 +581,7 @@ textarea:focus:not(:focus-visible) {
 .tb-dot {
   width: 6px;
   height: 6px;
-  background: var(--green);
+  background: var(--cyan);
   border-radius: 50%;
   margin-left: 4px;
   animation: pulseDot 2s infinite;
@@ -663,7 +687,8 @@ textarea:focus:not(:focus-visible) {
 }
 
 .card-img-badge.green {
-  background: rgba(74, 222, 128, 0.85);
+  /* RETIRED: green aliased to cyan */
+  background: rgba(0, 212, 255, 0.85);
 }
 
 /* Card Body */
@@ -826,8 +851,8 @@ textarea:focus:not(:focus-visible) {
 }
 
 .lens-badge.wednesday {
-  background: rgba(74, 222, 128, 0.12);
-  color: #4ade80;
+  background: var(--cyan-soft);
+  color: var(--cyan);
 }
 
 .lens-badge.thursday {
@@ -1181,8 +1206,8 @@ textarea:focus:not(:focus-visible) {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  background: rgba(74, 222, 128, 0.1);
-  color: var(--green);
+  background: var(--cyan-soft);
+  color: var(--cyan);
   padding: 0.2rem 0.6rem;
   border-radius: 100px;
   font-size: 0.65rem;
@@ -1195,7 +1220,7 @@ textarea:focus:not(:focus-visible) {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--green);
+  background: var(--cyan);
   animation: pulseDot 2s infinite;
 }
 
