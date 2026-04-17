@@ -94,169 +94,93 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════
           TOP STORIES - Horizontal Slider (Lead Story as Card 1)
           ═══════════════════════════════════════════════════════ */}
-      <section className="section">
-        <SectionHeader
-          title="Top Stories"
-          titleColor="var(--cyan)"
-          tagline="The latest from the Innovation Pulse — curated daily."
-          accentColor="var(--cyan)"
-          viewAllHref="/innovation-pulse"
-          viewAllText="View all stories"
-        />
+      <section className="py-12">
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+          <SectionHeader
+            title="Top Stories"
+            titleColor="var(--cyan)"
+            tagline="The latest from the Innovation Pulse — curated daily."
+            accentColor="var(--cyan)"
+            viewAllHref="/innovation-pulse"
+            viewAllText="View all stories"
+          />
 
-        <TopStoriesSlider stories={topStories} />
-      </section>
-
-      {/* Section Divider */}
-      <div className="section-divider" />
-
-      {/* ═══════════════════════════════════════════════════════
-          NEWSLETTER SIGNUP
-          ═══════════════════════════════════════════════════════ */}
-      <section className="section">
-        <NewsletterSignup variant="inline" />
-      </section>
-
-      {/* Section Divider */}
-      <div className="section-divider" />
-
-      {/* ═══════════════════════════════════════════════════════
-          PODCAST + TINKER LAB (2 podcast + 1 experiment)
-          ═══════════════════════════════════════════════════════ */}
-      <section className="section">
-        <SectionHeader
-          title="Podcast"
-          titleColor="var(--cyan)"
-          tagline="Conversations with the people shaping higher ed's future."
-          accentColor="var(--cyan)"
-          viewAllHref="/podcast"
-          viewAllText="All episodes"
-        />
-
-        <div className="grid-3">
-          {/* First 2 podcast episodes */}
-          {latestPodcastEpisodes.slice(0, 2).map((ep, idx) => (
-            <Link
-              key={ep.slug}
-              href={`/podcast/${ep.slug}`}
-              className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
-            >
-              {/* Image */}
-              <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
-                <Image
-                  src={ep.thumbnail || podcastImages[idx]}
-                  alt={ep.title}
-                  fill
-                  className="object-contain p-2"
-                />
-                <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-[#08080f] bg-[var(--cyan)] backdrop-blur-[8px]">
-                  Interview
-                </span>
-              </div>
-
-              {/* Body */}
-              <div className="p-4 pt-3">
-                <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
-                  <span className="text-[var(--cyan)]">Podcast</span>
-                </div>
-                <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
-                  {ep.title}
-                </h3>
-                <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
-                  {ep.description}
-                </p>
-                <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
-                  <span>{ep.date || "Feb 17"}</span>
-                  <span>{ep.duration}</span>
-                  <button className="w-[26px] h-[26px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center ml-auto">
-                    <svg viewBox="0 0 24 24" className="w-[10px] h-[10px] fill-white ml-[1px]">
-                      <polygon points="6,3 20,12 6,21" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </Link>
-          ))}
-
-          {/* Tinker Lab Experiment - Card 3 */}
-          <Link
-            href="/tinker-lab/wonka-lantern"
-            className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
-          >
-            <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
-              <Image
-                src="https://innovatinghighered.com/wp-content/uploads/2025/06/Tinker-Lab-WIlly-Wonka.02-585x390.jpg"
-                alt="The Wonka-Lantern Framework"
-                fill
-                className="object-cover"
-              />
-              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-[#08080f] bg-[var(--purple)] backdrop-blur-[8px]">
-                Experiment
-              </span>
-            </div>
-            <div className="p-4 pt-3">
-              <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
-                <span className="w-[5px] h-[5px] rounded-full bg-[var(--purple)]" />
-                <span className="text-[var(--purple)]">Tinker Lab</span>
-              </div>
-              <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
-                The Wonka-Lantern Framework
-              </h3>
-              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
-                Creative & Ethical AI in Higher Education — balancing imagination with responsibility.
-              </p>
-              <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
-                <span className="text-[var(--purple)]">12 min</span>
-                <span>June 17, 2025</span>
-              </div>
-            </div>
-          </Link>
+          <TopStoriesSlider stories={topStories} />
         </div>
       </section>
 
       {/* Section Divider */}
-      <div className="section-divider" />
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+        <div className="h-px bg-[var(--border)]" />
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          TOP PROMPTS
+          ═══════════════════════════════════════════════════════ */}
+      <section className="py-12">
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+          <SectionHeader
+            title="Top Prompts"
+            titleColor="var(--cyan)"
+            tagline="Ready-to-use prompts built for educators and administrators."
+            accentColor="var(--cyan)"
+            viewAllHref="/prompts"
+            viewAllText="Browse all prompts"
+          />
+
+          <HomePromptCards />
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+        <div className="h-px bg-[var(--border)]" />
+      </div>
 
       {/* ═══════════════════════════════════════════════════════
           AI APP DIRECTORY
           ═══════════════════════════════════════════════════════ */}
-      <section className="section">
-        <SectionHeader
-          title="AI App Directory"
-          titleColor="var(--cyan)"
-          tagline="Every A.I. tool worth knowing about, reviewed for higher education."
-          accentColor="var(--cyan)"
-          viewAllHref="/ai-directory"
-          viewAllText="Browse all tools"
-        />
+      <section className="py-12">
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+          <SectionHeader
+            title="AI App Directory"
+            titleColor="var(--cyan)"
+            tagline="Every A.I. tool worth knowing about, reviewed for higher education."
+            accentColor="var(--cyan)"
+            viewAllHref="/ai-directory"
+            viewAllText="Browse all tools"
+          />
 
-        {/* Recently Added Label */}
-        <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--cyan)] mb-4 flex items-center gap-2">
-          <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
-          Recently Added
+          {/* Recently Added Label */}
+          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--cyan)] mb-4 flex items-center gap-2">
+            <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
+            Recently Added
+          </div>
+
+          <HomeAIAppCards />
         </div>
-
-        <HomeAIAppCards />
       </section>
 
       {/* Section Divider */}
-      <div className="section-divider" />
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+        <div className="h-px bg-[var(--border)]" />
+      </div>
 
       {/* ═══════════════════════════════════════════════════════
           EDUCATOR TOOLS (NEW SECTION)
           ═══════════════════════════════════════════════════════ */}
-      <section className="section">
-        <SectionHeader
-          title="Educator Tools"
-          titleColor="var(--cyan)"
-          tagline="Practical tools built by educators, for educators."
-          accentColor="var(--cyan)"
-          viewAllHref="/educator-tools"
-          viewAllText="View all tools"
-        />
+      <section className="py-12">
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+          <SectionHeader
+            title="Educator Tools"
+            titleColor="var(--cyan)"
+            tagline="Practical tools built by educators, for educators."
+            accentColor="var(--cyan)"
+            viewAllHref="/educator-tools"
+            viewAllText="View all tools"
+          />
 
-        <div className="grid-3">
+          <div className="grid-3">
           {/* Syllabot */}
           <a
             href="https://www.playlab.ai/project/cmcxiu07005zbm20uf1mawflg"
@@ -367,33 +291,119 @@ export default function Home() {
               </div>
             </div>
           </a>
+          </div>
         </div>
       </section>
 
       {/* Section Divider */}
-      <div className="section-divider" />
+      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+        <div className="h-px bg-[var(--border)]" />
+      </div>
 
       {/* ═══════════════════════════════════════════════════════
-          TOP PROMPTS
+          PODCAST + TINKER LAB (2 podcast + 1 experiment)
           ═══════════════════════════════════════════════════════ */}
-      <section className="section">
-        <SectionHeader
-          title="Top Prompts"
-          titleColor="var(--cyan)"
-          tagline="Ready-to-use prompts built for educators and administrators."
-          accentColor="var(--cyan)"
-          viewAllHref="/prompts"
-          viewAllText="Browse all prompts"
-        />
+      <section className="py-12">
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+          <SectionHeader
+            title="Podcast"
+            titleColor="var(--cyan)"
+            tagline="Conversations with the people shaping higher ed's future."
+            accentColor="var(--cyan)"
+            viewAllHref="/podcast"
+            viewAllText="All episodes"
+          />
 
-        <HomePromptCards />
+          <div className="grid-3">
+          {/* First 2 podcast episodes */}
+          {latestPodcastEpisodes.slice(0, 2).map((ep, idx) => (
+            <Link
+              key={ep.slug}
+              href={`/podcast/${ep.slug}`}
+              className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
+            >
+              {/* Image */}
+              <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
+                <Image
+                  src={ep.thumbnail || podcastImages[idx]}
+                  alt={ep.title}
+                  fill
+                  className="object-contain p-2"
+                />
+                <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-[#08080f] bg-[var(--cyan)] backdrop-blur-[8px]">
+                  Interview
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="p-4 pt-3">
+                <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
+                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
+                  <span className="text-[var(--cyan)]">Podcast</span>
+                </div>
+                <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
+                  {ep.title}
+                </h3>
+                <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
+                  {ep.description}
+                </p>
+                <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
+                  <span>{ep.date || "Feb 17"}</span>
+                  <span>{ep.duration}</span>
+                  <button className="w-[26px] h-[26px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center ml-auto">
+                    <svg viewBox="0 0 24 24" className="w-[10px] h-[10px] fill-white ml-[1px]">
+                      <polygon points="6,3 20,12 6,21" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </Link>
+          ))}
+
+          {/* Tinker Lab Experiment - Card 3 */}
+          <Link
+            href="/tinker-lab/wonka-lantern"
+            className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
+          >
+            <div className="relative h-[170px] overflow-hidden bg-[var(--surface-1)] flex items-center justify-center">
+              <Image
+                src="https://innovatinghighered.com/wp-content/uploads/2025/06/Tinker-Lab-WIlly-Wonka.02-585x390.jpg"
+                alt="The Wonka-Lantern Framework"
+                fill
+                className="object-cover"
+              />
+              <span className="absolute top-[10px] left-[10px] font-mono text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] text-[#08080f] bg-[var(--purple)] backdrop-blur-[8px]">
+                Experiment
+              </span>
+            </div>
+            <div className="p-4 pt-3">
+              <div className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase mb-[0.35rem] flex items-center gap-[0.35rem]">
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--purple)]" />
+                <span className="text-[var(--purple)]">Tinker Lab</span>
+              </div>
+              <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-[0.35rem]">
+                The Wonka-Lantern Framework
+              </h3>
+              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-[0.5rem] line-clamp-2">
+                Creative & Ethical AI in Higher Education — balancing imagination with responsibility.
+              </p>
+              <div className="flex items-center gap-[0.6rem] font-mono text-[0.58rem] text-[var(--text-muted)] pt-[0.5rem] border-t border-[var(--border)]">
+                <span className="text-[var(--purple)]">12 min</span>
+                <span>June 17, 2025</span>
+              </div>
+            </div>
+          </Link>
+          </div>
+        </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════
           NEWSLETTER SIGNUP - Card Version
           ═══════════════════════════════════════════════════════ */}
-      <section className="section">
-        <NewsletterSignup variant="card" />
+      <section className="py-12">
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+          <NewsletterSignup variant="card" />
+        </div>
       </section>
     </div>
   );

@@ -21,15 +21,10 @@ export default function SectionHeader({
   viewAllText = "View all",
   accentColor,
 }: SectionHeaderProps) {
-  const borderColor = accentColor || titleColor;
-
   return (
     <div className="mb-8">
-      {/* Main header with left accent border */}
-      <div
-        className="pl-4 border-l-[3px]"
-        style={{ borderColor }}
-      >
+      {/* Main header */}
+      <div>
         {/* Icon + Title Row */}
         <div className="flex items-center gap-3 mb-1">
           {icon && <span className="text-[1.4rem]">{icon}</span>}
@@ -79,7 +74,7 @@ export default function SectionHeader({
       {viewAllHref && (
         <Link
           href={viewAllHref}
-          className="md:hidden inline-flex mt-3 ml-4 text-[0.72rem] text-[var(--cyan)] tracking-[0.06em] whitespace-nowrap hover:text-[var(--text)] transition-colors items-center gap-1"
+          className="md:hidden inline-flex mt-3 text-[0.72rem] text-[var(--cyan)] tracking-[0.06em] whitespace-nowrap hover:text-[var(--text)] transition-colors items-center gap-1"
           style={{ fontFamily: "var(--font-mono)" }}
         >
           {viewAllText} <span className="text-[0.9em]">→</span>

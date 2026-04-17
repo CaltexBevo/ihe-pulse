@@ -66,7 +66,7 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
         bar.style.setProperty("--h2", h2.toFixed(3));
         bar.style.animationDuration = (1 + Math.random() * 1.6).toFixed(2) + "s";
         bar.style.animationDelay = (Math.random() * 2.2).toFixed(2) + "s";
-        if (Math.random() > 0.86) bar.classList.add("wf-accent");
+        if (Math.random() > 0.78) bar.classList.add("wf-accent");
         frag.appendChild(bar);
       }
       container.appendChild(frag);
