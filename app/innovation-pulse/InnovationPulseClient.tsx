@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect, useCallback } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import HeroNowPlaying from "@/components/HeroNowPlaying";
+import TopStoriesSlider from "@/components/TopStoriesSlider";
+import SectionHeader from "@/components/SectionHeader";
 import {
   formatPulseDate,
   formatShortDate,
@@ -142,13 +145,6 @@ const LENS_COLORS: Record<string, { bg: string; text: string }> = {
   "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]" },
 };
 
-function formatTime(seconds: number): string {
-  if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins}:${secs.toString().padStart(2, "0")}`;
-}
-
 export default function InnovationPulseClient({
   episode,
   allEpisodes,
@@ -157,94 +153,46 @@ export default function InnovationPulseClient({
   const [selectedCategory, setSelectedCategory] = useState<V4Category | "all">("all");
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
 
-  // Audio state
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [audioProgress, setAudioProgress] = useState(0);
-
-  // Last 5 episodes (sliding window)
+  // Last 5 episodes (sliding window) - used by HeroNowPlaying
   const recentEpisodes = useMemo(() => {
     return allEpisodes.slice(0, 5);
   }, [allEpisodes]);
 
-  // Currently selected episode
-  const currentEpisode = recentEpisodes[selectedIndex] || episode;
-  const lensColors = currentEpisode ? LENS_COLORS[currentEpisode.editorialLens] || LENS_COLORS["The Hard Question"] : LENS_COLORS["The Hard Question"];
+  // "Also in this episode" strip data for HeroNowPlaying
+  const heroOtherStories = useMemo(() => {
+    return episode?.quickHits?.slice(0, 3).map(hit => ({
+      source: hit.source,
+      tease: hit.title,
+    })) || [];
+  }, [episode]);
 
-  // Audio event handlers
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
+  // Top stories for slider (lead story first, then quick hits)
+  const topStories = useMemo(() => {
+    const leadStoryAsCard = episode?.deepDive ? {
+      title: episode.deepDive.title,
+      summary: episode.deepDive.summary,
+      category: episode.deepDive.category,
+      source: episode.deepDive.source,
+      sourceUrl: episode.deepDive.sourceUrl,
+      date: episode.date,
+      image: episode.deepDive.image,
+      type: "deepDive" as const,
+      isLead: true,
+    } : null;
 
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-      if (audio.duration > 0) {
-        setAudioProgress((audio.currentTime / audio.duration) * 100);
-      }
-    };
+    const quickHitCards = episode?.quickHits?.slice(0, 5).map(hit => ({
+      title: hit.title,
+      summary: hit.summary,
+      category: hit.category,
+      source: hit.source,
+      sourceUrl: hit.sourceUrl,
+      date: episode.date,
+      image: hit.image,
+      type: "quickHit" as const,
+    })) || [];
 
-    const handleLoadedMetadata = () => setDuration(audio.duration);
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setAudioProgress(0);
-      setCurrentTime(0);
-    };
-
-    audio.addEventListener("timeupdate", handleTimeUpdate);
-    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
-    audio.addEventListener("ended", handleEnded);
-
-    return () => {
-      audio.removeEventListener("timeupdate", handleTimeUpdate);
-      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      audio.removeEventListener("ended", handleEnded);
-    };
-  }, [currentEpisode]);
-
-  // Reload audio when episode changes
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio && currentEpisode?.audioUrl) {
-      audio.load();
-      setCurrentTime(0);
-      setAudioProgress(0);
-      setDuration(0);
-      setIsPlaying(false);
-    }
-  }, [currentEpisode?.audioUrl]);
-
-  const selectDay = useCallback((index: number) => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.pause();
-      setIsPlaying(false);
-    }
-    setSelectedIndex(index);
-    setExpandedStory(null);
-  }, []);
-
-  const togglePlay = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const audio = audioRef.current;
-    if (!audio || !duration) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const percentage = clickX / rect.width;
-    audio.currentTime = percentage * duration;
-  };
+    return leadStoryAsCard ? [leadStoryAsCard, ...quickHitCards] : quickHitCards;
+  }, [episode]);
 
   // Get ALL stories aggregated with V4 categories
   const allStoriesWithV4 = useMemo((): AggregatedStoryWithV4[] => {
@@ -324,252 +272,67 @@ export default function InnovationPulseClient({
     );
   }
 
-  // Get top 3 stories for the 3-card layout
-  const leadStory = currentEpisode?.deepDive;
-  const topQuickHits = currentEpisode?.quickHits.slice(0, 2) || [];
-  const remainingQuickHits = currentEpisode?.quickHits.slice(2) || [];
-
   return (
     <div className="min-h-screen">
-      {/* Hidden Audio Element */}
-      <audio ref={audioRef} src={currentEpisode?.audioUrl} preload="metadata" />
-
       {/* ═══════════════════════════════════════════════════════
-          HERO SECTION
+          HERO SECTION — HeroNowPlaying + Recent Episodes Sidebar
           ═══════════════════════════════════════════════════════ */}
-      <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8">
-        <div className="grid lg:grid-cols-[1fr_340px] gap-10">
-          {/* Left: Episode Content */}
-          <div className="animate-[fadeUp_0.8s_ease-out_both]">
-            {/* Site Identifier */}
-            <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] flex items-center gap-2 mb-2">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
-              <span>THE INNOVATION PULSE</span>
+      <section className="relative">
+        {/* Premium gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
+
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
+          <div className="grid lg:grid-cols-[1fr_340px] gap-10 pt-10 pb-8">
+            {/* Left: HeroNowPlaying */}
+            <div className="animate-[fadeUp_0.8s_ease-out_both]">
+              <HeroNowPlaying
+                latestEpisode={episode}
+                recentEpisodes={recentEpisodes}
+                otherStories={heroOtherStories}
+              />
             </div>
 
-            {/* Date */}
-            <div className="font-mono text-[0.75rem] text-[var(--text-muted)] mb-4">
-              <span>{formatPulseDate(currentEpisode?.date || episode.date)}</span>
-            </div>
+            {/* Right Sidebar: Recent Episodes (converted to links) */}
+            <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:block">
+              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 sticky top-20">
+                <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4 flex items-center gap-2">
+                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
+                  Recent Episodes
+                </div>
+                <div className="space-y-3">
+                  {/* Show previous 4 episodes (skip today at index 0) */}
+                  {recentEpisodes.slice(1, 5).map((ep) => {
+                    const epDate = new Date(ep.date + 'T12:00:00');
+                    const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
+                    const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
-            {/* The 5-Minute Edge - Main Heading */}
-            <h1
-              className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] leading-[1.15] mb-2"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              The 5-Minute Edge
-            </h1>
-            <p className="text-[0.95rem] text-[var(--text-secondary)] mb-6">
-              What every educator needs to know about AI today — in the time it takes to park.
-            </p>
-
-            {/* Lead Story Teaser - show headline if available */}
-            {(currentEpisode?.deepDive?.title || episode.deepDive?.title) && (
-              <div className="mb-6">
-                <h2
-                  className="text-[clamp(1.1rem,2vw,1.3rem)] font-bold text-[var(--magenta)] leading-[1.2] mb-2"
-                  style={{ fontFamily: "var(--font-heading)" }}
+                    return (
+                      <Link
+                        key={ep.date}
+                        href={`/innovation-pulse/${ep.date}`}
+                        className="w-full text-left p-3 rounded-[10px] border border-[var(--border)] hover:border-[var(--border-hover)] hover:bg-[var(--surface-1)] transition-all block group"
+                      >
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="font-mono text-[0.68rem] font-semibold text-[var(--text)] group-hover:text-[var(--cyan)] transition-colors">
+                            {dayName}, {monthDay}
+                          </span>
+                          <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">{ep.audioDuration}</span>
+                        </div>
+                        <p className="text-[0.78rem] leading-[1.4] line-clamp-2 text-[var(--text-secondary)] group-hover:text-[var(--text)] transition-colors">
+                          {ep.deepDive.title}
+                        </p>
+                      </Link>
+                    );
+                  })}
+                </div>
+                <Link
+                  href="/innovation-pulse/archive"
+                  className="block mt-4 pt-3 border-t border-[var(--border)] font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors text-center"
                 >
-                  Lead Story
-                </h2>
-                <p className="text-[clamp(0.95rem,1.6vw,1.15rem)] leading-[1.4] text-[var(--text)] relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[0.2rem] before:bottom-[0.2rem] before:w-[3px] before:rounded-[2px] before:bg-gradient-to-b before:from-[var(--cyan)] before:to-[var(--magenta)]">
-                  {currentEpisode?.deepDive?.title || episode.deepDive?.title}
-                </p>
+                  View full archive →
+                </Link>
               </div>
-            )}
-
-            {/* Audio Player */}
-            <div
-              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 mb-4"
-              role="region"
-              aria-label="Audio player"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <div className="flex items-center gap-[0.35rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold font-mono tracking-[0.06em]">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
-                  LISTEN NOW
-                </div>
-                <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
-                  {duration > 0 ? formatTime(duration) : currentEpisode?.audioDuration}
-                </span>
-                {selectedIndex > 0 && (
-                  <span className="font-mono text-[0.65rem] text-[var(--amber)] bg-[var(--amber-dim)] px-2 py-[0.15rem] rounded-full">
-                    {formatShortDate(currentEpisode?.date || "")}
-                  </span>
-                )}
-                <span className="font-mono text-[0.68rem] text-[var(--text-muted)] ml-auto hidden sm:block">
-                  Innovating Higher Ed
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                {/* Animated Equalizer Bars - Left */}
-                <div className="hidden sm:flex items-end gap-[2px] h-[32px]" aria-hidden="true">
-                  {[0.6, 0.9, 0.5, 0.8].map((delay, i) => (
-                    <div
-                      key={`eq-l-${i}`}
-                      className="w-[3px] rounded-[2px] bg-gradient-to-t from-[var(--cyan)] to-[var(--magenta)]"
-                      style={{
-                        animation: `waveform ${0.8 + delay * 0.4}s ease-in-out ${delay * 0.15}s infinite`,
-                        transformOrigin: 'bottom',
-                      }}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={togglePlay}
-                  aria-label={isPlaying ? "Pause episode" : "Play episode"}
-                  className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06]"
-                >
-                  {isPlaying ? (
-                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white" aria-hidden="true">
-                      <rect x="6" y="4" width="4" height="16" />
-                      <rect x="14" y="4" width="4" height="16" />
-                    </svg>
-                  ) : (
-                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-[2px]" aria-hidden="true">
-                      <polygon points="6,3 20,12 6,21" />
-                    </svg>
-                  )}
-                </button>
-
-                {/* Animated Equalizer Bars - Right */}
-                <div className="hidden sm:flex items-end gap-[2px] h-[32px]" aria-hidden="true">
-                  {[0.4, 0.7, 1.0, 0.5].map((delay, i) => (
-                    <div
-                      key={`eq-r-${i}`}
-                      className="w-[3px] rounded-[2px] bg-gradient-to-t from-[var(--cyan)] to-[var(--magenta)]"
-                      style={{
-                        animation: `waveform ${0.8 + delay * 0.4}s ease-in-out ${delay * 0.15}s infinite`,
-                        transformOrigin: 'bottom',
-                      }}
-                    />
-                  ))}
-                </div>
-
-                <div
-                  className="flex-1 h-[44px] relative cursor-pointer group"
-                  onClick={handleProgressClick}
-                  role="slider"
-                  aria-label="Audio progress"
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={Math.round(audioProgress)}
-                  aria-valuetext={`${formatTime(currentTime)} of ${duration > 0 ? formatTime(duration) : currentEpisode?.audioDuration}`}
-                  tabIndex={0}
-                >
-                  <div className="absolute inset-0 flex items-center gap-[1.5px]" aria-hidden="true">
-                    {Array.from({ length: 60 }, (_, i) => {
-                      const h = 6 + Math.random() * 26 + Math.sin(i * 0.25) * 8;
-                      const progressPercent = (i / 60) * 100;
-                      const isPlayed = progressPercent <= audioProgress;
-                      return (
-                        <div
-                          key={i}
-                          className={`w-[3px] rounded-[2px] transition-colors ${
-                            isPlayed ? "bg-[var(--cyan)]" : "bg-[var(--surface-2)] group-hover:bg-[var(--surface-3)]"
-                          }`}
-                          style={{ height: `${Math.max(4, h)}px` }}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <span className="font-mono text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[60px] text-right hidden sm:block">
-                  {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : currentEpisode?.audioDuration}
-                </span>
-              </div>
-            </div>
-
-            {/* Stat Line */}
-            <p className="font-mono text-[0.8rem] text-[var(--text-muted)] tracking-[0.02em] mb-5">
-              <span className="text-[var(--cyan)] font-semibold">{1 + (currentEpisode?.quickHits?.length || episode.quickHits?.length || 0)}</span>
-              {' '}stories.{' '}
-              <span className="text-[var(--cyan)] font-semibold">{Math.round(parseInt((currentEpisode?.audioDuration || episode.audioDuration || "5:00").split(':')[0]) + parseInt((currentEpisode?.audioDuration || episode.audioDuration || "5:00").split(':')[1] || "0") / 60)}</span>
-              {' '}minutes.{' '}
-              <span className="text-[var(--text)]">Go.</span>
-            </p>
-
-            {/* Last 5 Days Pills - Sliding Window */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase mr-1">
-                Recent:
-              </span>
-              {recentEpisodes.map((ep, index) => {
-                const isSelected = index === selectedIndex;
-                const epDate = new Date(ep.date + 'T12:00:00');
-                const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
-                const dayNum = epDate.getDate();
-
-                return (
-                  <button
-                    key={ep.date}
-                    onClick={() => selectDay(index)}
-                    className={`flex items-center gap-2 px-3 py-[0.4rem] rounded-full border transition-all ${
-                      isSelected
-                        ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
-                        : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)]"
-                    }`}
-                  >
-                    <span className="font-mono text-[0.65rem] font-semibold">{dayName} {dayNum}</span>
-                    <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-                    <span className="font-mono text-[0.6rem]">{ep.audioDuration}</span>
-                  </button>
-                );
-              })}
-              <Link href="/innovation-pulse/archive" className="font-mono text-[0.6rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors ml-2">
-                Full archive →
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Sidebar: Recent Episodes */}
-          <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:block">
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 sticky top-20">
-              <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4 flex items-center gap-2">
-                <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
-                Recent Episodes
-              </div>
-              <div className="space-y-3">
-                {/* Show only previous 4 episodes (skip today at index 0) */}
-                {recentEpisodes.slice(1, 5).map((ep, i) => {
-                  const actualIndex = i + 1; // Offset by 1 since we skipped index 0
-                  const isActive = actualIndex === selectedIndex;
-                  const epDate = new Date(ep.date + 'T12:00:00');
-                  const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
-                  const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                  const epLensColors = LENS_COLORS[ep.editorialLens] || LENS_COLORS["The Hard Question"];
-
-                  return (
-                    <button
-                      key={ep.date}
-                      onClick={() => selectDay(actualIndex)}
-                      className={`w-full text-left p-3 rounded-[10px] border transition-all ${
-                        isActive
-                          ? "bg-[var(--cyan-dim)] border-[var(--cyan)]"
-                          : "border-[var(--border)] hover:border-[var(--border-hover)] hover:bg-[var(--surface-1)]"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className={`font-mono text-[0.68rem] font-semibold ${isActive ? "text-[var(--cyan)]" : "text-[var(--text)]"}`}>
-                          {dayName}, {monthDay}
-                        </span>
-                        <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">{ep.audioDuration}</span>
-                      </div>
-                      <p className={`text-[0.78rem] leading-[1.4] line-clamp-2 ${isActive ? "text-[var(--text)]" : "text-[var(--text-secondary)]"}`}>
-                        {ep.deepDive.title}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
-              <Link
-                href="/innovation-pulse/archive"
-                className="block mt-4 pt-3 border-t border-[var(--border)] font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors text-center"
-              >
-                View full archive →
-              </Link>
             </div>
           </div>
         </div>
@@ -579,226 +342,21 @@ export default function InnovationPulseClient({
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          TODAY'S TOP STORIES — Lead Story 3-Column Layout
+          TOP STORIES — Horizontal Slider (matches homepage)
           ═══════════════════════════════════════════════════════ */}
-      <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-start gap-4">
-            <div className="w-[3px] h-[2.2rem] bg-gradient-to-b from-[var(--cyan)] to-[var(--magenta)] rounded-full mt-1" />
-            <div>
-              <h2
-                className="text-[clamp(1.5rem,3vw,1.85rem)] font-bold text-[var(--cyan)] leading-[1.2]"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Today&apos;s Top Stories
-              </h2>
-              <p className="text-[0.82rem] text-[var(--text-muted)] mt-1">
-                {formatPulseDate(currentEpisode?.date || episode.date)} — Today's top stories and coverage
-              </p>
-            </div>
-          </div>
-          <Link href="/innovation-pulse/stories" className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
-            View all lead stories →
-          </Link>
+      <section className="py-12">
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
+          <SectionHeader
+            title="Top Stories"
+            titleColor="var(--cyan)"
+            tagline={`${formatPulseDate(episode.date)} — Today's top stories and coverage`}
+            accentColor="var(--cyan)"
+            viewAllHref="/innovation-pulse/stories"
+            viewAllText="View all lead stories"
+          />
+
+          <TopStoriesSlider stories={topStories} />
         </div>
-
-        {/* Lead Story — Image Left, Content Right (matches homepage) */}
-        {leadStory && (
-          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden mb-8">
-            <div className="grid lg:grid-cols-[40%_60%]">
-              {/* Image Side */}
-              <div className="relative aspect-[16/9] lg:aspect-[3/4] overflow-hidden bg-[var(--surface-1)]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={leadStory.image || ""}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover object-center"
-                />
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,10,15,0.4)] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[rgba(10,10,15,0.3)]" />
-                {/* Mobile badges overlay */}
-                <div className="lg:hidden absolute top-4 left-4 flex gap-2">
-                  <span className="font-mono text-[0.6rem] font-semibold px-[0.6rem] py-[0.25rem] rounded-[6px] bg-[var(--magenta)] text-white uppercase">
-                    Lead Story
-                  </span>
-                  <span
-                    className="font-mono text-[0.6rem] font-semibold px-[0.6rem] py-[0.25rem] rounded-[6px] text-white uppercase"
-                    style={{ backgroundColor: V4_CATEGORY_COLORS[mapToV4Category(leadStory.category)]?.hex }}
-                  >
-                    {mapToV4Category(leadStory.category)}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content Side */}
-              <div className="p-6 lg:p-8 flex flex-col">
-                {/* Desktop badges */}
-                <div className="hidden lg:flex gap-2 mb-4">
-                  <span className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] px-[0.65rem] py-[0.25rem] rounded-[6px] bg-[var(--magenta)] text-white uppercase">
-                    Lead Story
-                  </span>
-                  <span
-                    className="font-mono text-[0.62rem] font-semibold tracking-[0.06em] px-[0.65rem] py-[0.25rem] rounded-[6px] text-white uppercase"
-                    style={{ backgroundColor: V4_CATEGORY_COLORS[mapToV4Category(leadStory.category)]?.hex }}
-                  >
-                    {mapToV4Category(leadStory.category)}
-                  </span>
-                </div>
-                <h2
-                  className="text-[clamp(1.25rem,3vw,1.75rem)] font-bold leading-[1.2] mb-4"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {leadStory.title}
-                </h2>
-                <div className="text-[0.9rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
-                  {(() => {
-                    const paragraphs = leadStory.summary.split(/\n\n+/).filter(p => p.trim());
-                    const preview = paragraphs.slice(0, 2).join('\n\n');
-                    const hasMore = paragraphs.length > 2;
-                    const isExpanded = expandedStory === `lead-${leadStory.title}`;
-
-                    return (
-                      <>
-                        {renderParagraphs(isExpanded ? leadStory.summary : preview, "")}
-                        {hasMore && (
-                          <button
-                            onClick={() => setExpandedStory(isExpanded ? null : `lead-${leadStory.title}`)}
-                            className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors mt-3 block flex items-center gap-1"
-                          >
-                            {isExpanded ? "Show less" : "Read more"}
-                            <svg
-                              viewBox="0 0 24 24"
-                              className={`w-3 h-3 transition-transform ${isExpanded ? "rotate-180" : ""}`}
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                            >
-                              <path d="M6 9l6 6 6-6" />
-                            </svg>
-                          </button>
-                        )}
-                      </>
-                    );
-                  })()}
-                </div>
-                <div className="flex flex-wrap items-center gap-3 mt-auto pt-4 border-t border-[var(--border)]">
-                  <Link
-                    href={`/innovation-pulse/story/${generateSlug(leadStory.title)}`}
-                    className="btn-primary text-[0.75rem]"
-                  >
-                    Full story →
-                  </Link>
-                  <a
-                    href={leadStory.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[0.75rem] text-[var(--cyan)] font-mono hover:text-[var(--text)] transition-colors"
-                  >
-                    {leadStory.source}
-                    <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2">
-                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ALSO TODAY — Quick Hit Cards (up to 6 in 2 rows of 3) */}
-        {currentEpisode?.quickHits && currentEpisode.quickHits.length > 0 && (
-          <div className="mb-8">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="w-[3px] h-[1.8rem] bg-[var(--cyan)] rounded-full mt-1" />
-              <div>
-                <h3
-                  className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--cyan)] leading-[1.2]"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  Also Today
-                </h3>
-                <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
-                  More stories from today&apos;s briefing
-                </p>
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {currentEpisode.quickHits.slice(0, 6).map((hit, i) => {
-                const v4Cat = mapToV4Category(hit.category);
-                const isExpanded = expandedStory === `quick-${hit.title}`;
-
-                return (
-                  <div
-                    key={i}
-                    onClick={() => setExpandedStory(isExpanded ? null : `quick-${hit.title}`)}
-                    className={`bg-[var(--bg-card)] border rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 ${
-                      isExpanded
-                        ? "border-[rgba(0,212,255,0.2)]"
-                        : "border-[var(--border)] hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)]"
-                    }`}
-                  >
-                    {/* Thumbnail */}
-                    <div className="relative aspect-[16/9] overflow-hidden bg-[var(--surface-1)]">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={hit.image || ""}
-                        alt=""
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                      />
-                      <span
-                        className="absolute top-3 left-3 font-mono text-[0.55rem] font-semibold px-[0.5rem] py-[0.18rem] rounded-[4px] text-white uppercase"
-                        style={{ backgroundColor: V4_CATEGORY_COLORS[v4Cat]?.hex }}
-                      >
-                        {v4Cat}
-                      </span>
-                    </div>
-                    {/* Content */}
-                    <div className="p-4">
-                      <h3 className="font-sans text-[0.92rem] font-bold leading-[1.35] mb-2 line-clamp-2">
-                        {hit.title}
-                      </h3>
-                      {/* Teaser when collapsed */}
-                      {!isExpanded && (
-                        <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.55] mb-2 line-clamp-2">
-                          {hit.summary}
-                        </p>
-                      )}
-                      {/* Expand indicator */}
-                      <div className="text-[0.53rem] text-[var(--text-muted)] flex items-center gap-[0.25rem] mb-2 font-mono">
-                        <span className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
-                          &#9662;
-                        </span>
-                        <span>{isExpanded ? "Collapse" : "Read more"}</span>
-                      </div>
-                      {/* Expanded content */}
-                      <div className={`overflow-hidden transition-all duration-500 ${isExpanded ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
-                        <p className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.65] mb-3">
-                          {hit.summary}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between pt-2 border-t border-[var(--border)]">
-                        <a
-                          href={hit.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors"
-                        >
-                          Full story →
-                        </a>
-                        <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">
-                          {hit.source}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </section>
 
       {/* Section Divider */}
