@@ -76,12 +76,13 @@ function LogoWithFallback({
 function getBadgeStyle(badge: string | null | undefined) {
   if (!badge) return null;
   const upperBadge = badge.toUpperCase();
+  // Palette rules: cyan/magenta/purple/amber only — no green, teal, orange
   if (upperBadge === "NEW") {
-    return "bg-[var(--green-dim)] text-[var(--green)]";
+    return "bg-[var(--cyan-dim)] text-[var(--cyan)]";
   } else if (upperBadge === "TRENDING") {
     return "bg-[var(--amber-dim)] text-[var(--amber)]";
   } else if (upperBadge === "UPDATED") {
-    return "bg-[var(--cyan-dim)] text-[var(--cyan)]";
+    return "bg-[var(--purple-dim)] text-[var(--purple)]";
   }
   return "bg-[var(--cyan-dim)] text-[var(--cyan)]";
 }
@@ -145,7 +146,7 @@ export default function HomeAIAppCards() {
               <ul className="text-[0.72rem] text-[var(--text-muted)] mb-3 space-y-1">
                 {tool.values.slice(0, 2).map((value, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-[var(--green)] mt-[2px]">✓</span>
+                    <span className="text-[var(--cyan)] mt-[2px]">✓</span>
                     <span className="line-clamp-1">{value}</span>
                   </li>
                 ))}
