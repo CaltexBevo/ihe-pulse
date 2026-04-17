@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
 
 function formatTime(seconds: number): string {
@@ -13,9 +13,10 @@ function formatTime(seconds: number): string {
 interface HeroNowPlayingProps {
   latestEpisode: InnovationPulseEpisode;
   recentEpisodes: InnovationPulseEpisode[];
+  otherStories?: Array<{ source: string; tease: string }>;
 }
 
-export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNowPlayingProps) {
+export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherStories }: HeroNowPlayingProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
@@ -44,16 +45,38 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
   // Episode number (count from oldest)
   const episodeNumber = recentEpisodes.length - selectedIndex;
 
-  // Generate waveform bars
-  const waveformBars = useMemo(() => {
-    return Array.from({ length: 60 }, (_, i) => {
-      const h1 = 0.2 + Math.random() * 0.3;
-      const h2 = 0.5 + Math.random() * 0.5;
-      const isAccent = i % 7 === 0;
-      const animDuration = 0.8 + Math.random() * 0.6;
-      const animDelay = Math.random() * 0.5;
-      return { h1, h2, isAccent, animDuration, animDelay };
-    });
+  // Dynamic waveform generation based on container width
+  useEffect(() => {
+    const container = waveformRef.current;
+    if (!container) return;
+
+    const generate = () => {
+      container.innerHTML = "";
+      const width = container.offsetWidth;
+      if (width === 0) return;
+      const barPlusGap = 3; // 2px bar + 1px gap
+      const numBars = Math.max(40, Math.floor(width / barPlusGap));
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < numBars; i++) {
+        const bar = document.createElement("div");
+        bar.className = "wf-bar";
+        const h1 = 0.28 + Math.random() * 0.52;
+        const h2 = Math.min(1, h1 + 0.15 + Math.random() * 0.35);
+        bar.style.setProperty("--h1", h1.toFixed(3));
+        bar.style.setProperty("--h2", h2.toFixed(3));
+        bar.style.animationDuration = (1 + Math.random() * 1.6).toFixed(2) + "s";
+        bar.style.animationDelay = (Math.random() * 2.2).toFixed(2) + "s";
+        if (Math.random() > 0.86) bar.classList.add("wf-accent");
+        frag.appendChild(bar);
+      }
+      container.appendChild(frag);
+    };
+
+    generate();
+    let t: ReturnType<typeof setTimeout>;
+    const onResize = () => { clearTimeout(t); t = setTimeout(generate, 150); };
+    window.addEventListener("resize", onResize);
+    return () => { window.removeEventListener("resize", onResize); clearTimeout(t); };
   }, []);
 
   // Audio event handlers
@@ -106,6 +129,18 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
       audio.play();
     }
     setIsPlaying(!isPlaying);
+  };
+
+  const handleSkipBack = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 15);
+    }
+  };
+
+  const handleSkipForward = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = Math.min(audioRef.current.duration || 0, audioRef.current.currentTime + 15);
+    }
   };
 
   const handlePrev = () => {
@@ -179,27 +214,20 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
 
           <div className="np-scrubber">
             <span className="np-time np-time-current">{formatTime(currentTime)}</span>
-            <div className="np-waveform" ref={waveformRef}>
-              {waveformBars.map((bar, i) => (
-                <div
-                  key={i}
-                  className={`wf-bar ${bar.isAccent ? 'wf-accent' : ''}`}
-                  style={{
-                    '--h1': bar.h1,
-                    '--h2': bar.h2,
-                    animationDuration: `${bar.animDuration}s`,
-                    animationDelay: `${bar.animDelay}s`,
-                  } as React.CSSProperties}
-                />
-              ))}
-            </div>
+            <div className="np-waveform" ref={waveformRef} />
             <span className="np-time np-time-total">{durationDisplay}</span>
           </div>
 
           <div className="np-transport">
+            <button className="np-ctrl" aria-label="Skip back 15 seconds" type="button" onClick={handleSkipBack}>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V2L6 6l6 4V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8z"/>
+                <text x="9" y="15" fontSize="7" fontFamily="monospace" fontWeight="bold" fill="currentColor">15</text>
+              </svg>
+            </button>
             <button className="np-ctrl" aria-label="Previous" type="button" onClick={handlePrev}>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6l-8.5 6z" />
+                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6l-8.5 6z"/>
               </svg>
             </button>
             <button className="np-play-main" aria-label={paused ? "Play" : "Pause"} type="button" onClick={togglePlay}>
@@ -207,7 +235,13 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
             </button>
             <button className="np-ctrl" aria-label="Next" type="button" onClick={handleNext}>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+              </svg>
+            </button>
+            <button className="np-ctrl" aria-label="Skip forward 15 seconds" type="button" onClick={handleSkipForward}>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V2l6 4-6 4V7c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6h2c0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8z"/>
+                <text x="9" y="15" fontSize="7" fontFamily="monospace" fontWeight="bold" fill="currentColor">15</text>
               </svg>
             </button>
             <div className="np-transport-meta">
@@ -216,6 +250,35 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Also in this episode strip */}
+      {otherStories && otherStories.length > 0 && (
+        <div className="np-upnext">
+          <div className="np-upnext-label">Also in this episode</div>
+          <div className="np-upnext-stories">
+            {otherStories.map((s, i) => (
+              <span key={i}>
+                {i > 0 && <span className="np-upnext-dot">● </span>}
+                <strong>{s.source}</strong> {s.tease}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Inline subscribe strip */}
+      <div className="np-subscribe">
+        <div className="np-sub-copy">
+          <strong>Never miss an episode.</strong>{" "}
+          <span className="np-sub-muted">
+            Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
+          </span>
+        </div>
+        <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
+          <input type="email" placeholder="your@email.edu" aria-label="Email address" />
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </section>
   );

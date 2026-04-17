@@ -54,6 +54,12 @@ export default function Home() {
     ? [leadStoryAsCard, ...otherStories]
     : otherStories.slice(0, 3);
 
+  // "Also in this episode" strip data for HeroNowPlaying
+  const heroOtherStories = pulseEpisode?.quickHits?.slice(0, 3).map(hit => ({
+    source: hit.source,
+    tease: hit.title,
+  })) || [];
+
   // Placeholder images for Podcasts
   const podcastImages = [
     "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=340&fit=crop",
@@ -77,6 +83,7 @@ export default function Home() {
               <HeroNowPlaying
                 latestEpisode={pulseEpisode}
                 recentEpisodes={recentEpisodes}
+                otherStories={heroOtherStories}
               />
             )}
           </div>
