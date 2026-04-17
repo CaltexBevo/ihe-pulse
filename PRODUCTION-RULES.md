@@ -304,3 +304,20 @@ If incoming pipeline data fails these checks, the normalizeEpisode() function sh
 ### A.I. Handling
 - "A.I." abbreviation must NOT be truncated in any text field
 - Check for fields ending in "A." or "A.I" (missing final period)
+
+---
+
+## 17. FRONTEND PALETTE RULE (April 17, 2026)
+
+No CMA session may commit CSS or component code that introduces:
+- Green (#4ade80 or similar)
+- Teal (#2dd4bf or similar)
+- Coral/pink (#fb7185 or similar)
+- Orange (#fb923c or similar)
+- Blue (#3b82f6 or similar)
+
+The only accent colors allowed are: cyan (#00d4ff dark / #0e7490 light), magenta (#b040a8 dark / #a21caf light), purple (#a78bfa dark / #6d28d9 light), amber (#f59e0b dark / #b45309 light), and the brand gradient.
+
+Any violation caught in `/gstack review` blocks the commit.
+
+See `docs/DESIGN-TOKENS.md` for the full palette specification and WCAG contrast ratios.

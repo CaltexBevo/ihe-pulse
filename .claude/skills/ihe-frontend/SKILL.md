@@ -287,7 +287,39 @@ These rules CANNOT be changed by any CMA sprint. Only the founder can modify the
 
 ---
 
-## 12. KEY FILE LOCATIONS
+## 12. STORY IMAGE ARCHITECTURE
+
+### Image Assignment (Centralized)
+Story images are assigned ONCE at data load time in `lib/data/innovation-pulse.ts` via `assignImagesToEpisode()`. Every component reads `story.image` from the pre-assigned data.
+
+**DO NOT** instantiate `StoryImageAssigner` in individual page components. This was the old pattern that caused the same story to show different images on different pages.
+
+### How It Works
+1. When episodes are loaded via `getAllEpisodes()` or `getEpisodeByDate()`, each episode passes through `assignImagesToEpisode()`
+2. A single `StoryImageAssigner` instance assigns images to the lead story and all quick hits within that episode
+3. The assigner ensures no duplicate images within the same episode
+4. Images are deterministic: headline + date hash produces the same image every time
+
+### Key Files
+| Purpose | File |
+|---------|------|
+| Image assignment logic | `lib/utils/story-images.ts` |
+| Image pool data | `data/story-images.json` |
+| Centralized assignment | `lib/data/innovation-pulse.ts` → `assignImagesToEpisode()` |
+
+### Image Pool
+- **7 themed categories**: technology, campus, classroom, collaboration, research, digital, library
+- **44 total images** in flat pool (no duplicates)
+- Source: Unsplash (scene-based, no portraits)
+
+### Rules
+- NEVER use headshot or portrait photos — scenes, concepts, and objects ONLY
+- All pages must read `story.image` or `episode.deepDive.image` — never call `imageAssigner.getImage()` directly
+- Fallback images should be used only when data is missing (edge case)
+
+---
+
+## 13. KEY FILE LOCATIONS
 
 | Purpose | File |
 |---------|------|
@@ -304,7 +336,7 @@ These rules CANNOT be changed by any CMA sprint. Only the founder can modify the
 
 ---
 
-## 13. PRE-FLIGHT CHECKLIST
+## 14. PRE-FLIGHT CHECKLIST
 
 Before ANY CMA sprint modifies frontend files:
 
@@ -323,7 +355,7 @@ Before ANY CMA sprint modifies frontend files:
 
 ---
 
-## 14. POST-DEPLOY CHECKLIST
+## 15. POST-DEPLOY CHECKLIST
 
 After pushing changes to Vercel:
 
@@ -340,12 +372,28 @@ After pushing changes to Vercel:
 
 ---
 
-## 15. AMENDMENT LOG
+## 16. AMENDMENT LOG
 
 | Date | Change | Approved By |
 |------|--------|-------------|
 | 2026-03-18 | Initial skill creation | Founder |
+| 2026-03-26 | Added Section 12: Story Image Architecture | System |
 
 ---
 
 *This document was created to preserve design decisions, prevent regression, and ensure all future work maintains the integrity of the Innovating Higher Ed platform.*
+
+---
+
+## 17. PALETTE LOCK (April 17, 2026)
+
+The site uses a locked 5-accent palette documented in `docs/DESIGN-TOKENS.md`. Any CMA session that modifies CSS or component styles MUST:
+
+1. Read `docs/DESIGN-TOKENS.md` before changing visual code
+2. Never introduce green (#4ade80), teal (#2dd4bf), coral (#fb7185), orange (#fb923c), or blue (#3b82f6)
+3. Use only cyan/magenta/purple/amber as accent colors, plus the brand gradient
+4. Use cyan for all section labels — no exceptions
+5. Use gradient for all primary buttons — no solid-colored launch buttons
+6. Verify contrast passes WCAG AA (4.5:1 body, 3:1 large) on both dark and light themes
+
+If a palette change is needed, queue a decision in the Decision Queue before implementing. Never expand the palette silently.
