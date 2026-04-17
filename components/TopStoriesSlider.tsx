@@ -3,7 +3,8 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { generateSlug, mapToV4Category, V4_CATEGORY_COLORS, formatPulseDate } from '@/lib/data/innovation-pulse-types';
+import { generateSlug, mapToV4Category, formatPulseDate } from '@/lib/data/innovation-pulse-types';
+import { pillColorsFor } from '@/lib/categoryPalette';
 
 interface Story {
   title: string;
@@ -72,7 +73,8 @@ export default function TopStoriesSlider({ stories }: TopStoriesSliderProps) {
       >
         {stories.map((story, i) => {
           const v4Category = mapToV4Category(story.category);
-          const v4Color = V4_CATEGORY_COLORS[v4Category] || "#00d4ff";
+          // Use palette-locked colors instead of data-driven V4_CATEGORY_COLORS
+          const pill = pillColorsFor(v4Category);
           const isLead = story.type === 'deepDive' || story.isLead;
           const slug = generateSlug(story.title);
 
@@ -92,10 +94,13 @@ export default function TopStoriesSlider({ stories }: TopStoriesSliderProps) {
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="360px"
                   />
-                  {/* Badge overlay */}
+                  {/* Badge overlay - Lead Story uses magenta, others use pill color */}
                   <span
-                    className="absolute top-3 left-3 font-mono text-[0.5rem] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded text-white"
-                    style={{ background: isLead ? 'rgba(176,64,168,0.9)' : v4Color }}
+                    className="absolute top-3 left-3 font-mono text-[0.5rem] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded"
+                    style={{
+                      background: isLead ? 'rgba(176,64,168,0.9)' : pill.bg,
+                      color: isLead ? 'white' : pill.text
+                    }}
                   >
                     {isLead ? 'Lead Story' : 'Story'}
                   </span>
@@ -107,11 +112,11 @@ export default function TopStoriesSlider({ stories }: TopStoriesSliderProps) {
                 {/* Category label */}
                 <div
                   className="font-mono text-[0.55rem] font-semibold tracking-[0.1em] uppercase mb-2 flex items-center gap-1.5"
-                  style={{ color: v4Color }}
+                  style={{ color: pill.text }}
                 >
                   <span
                     className="w-[5px] h-[5px] rounded-full"
-                    style={{ background: v4Color }}
+                    style={{ background: pill.text }}
                   />
                   {v4Category}
                 </div>

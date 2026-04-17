@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import aiAppData from '@/lib/data/ai-app-directory.json';
+import { paletteFor } from '@/lib/palette';
 
 interface Tool {
   id: string;
@@ -50,10 +51,11 @@ function LogoWithFallback({
 
   if (hasError) {
     // Fallback: colored circle with first letter
+    // Use dark text (#08080f) for contrast on palette colors
     return (
       <div
-        className="w-[32px] h-[32px] rounded-full flex items-center justify-center font-bold text-white text-[14px]"
-        style={{ background: accent }}
+        className="w-[32px] h-[32px] rounded-full flex items-center justify-center font-bold text-[14px]"
+        style={{ background: accent, color: "#08080f" }}
       >
         {name.charAt(0)}
       </div>
@@ -92,7 +94,10 @@ export default function HomeAIAppCards() {
 
   return (
     <div className="grid-3">
-      {recentTools.map((tool) => (
+      {recentTools.map((tool) => {
+        // Derive accent from palette rotation — ignore data-driven tool.accent
+        const accent = paletteFor(tool.id || tool.name);
+        return (
         <Link
           key={tool.id}
           href={`/ai-directory/${tool.id}`}
@@ -100,14 +105,14 @@ export default function HomeAIAppCards() {
         >
           {/* Header with logo and accent bar */}
           <div className="relative">
-            <div className="h-[3px]" style={{ background: tool.accent }} />
+            <div className="h-[3px]" style={{ background: accent }} />
             <div className="flex items-center gap-3 p-4 pb-3">
               {/* App Logo with Fallback */}
               <div className="w-[48px] h-[48px] rounded-[12px] bg-[var(--surface-1)] border border-[var(--border)] flex items-center justify-center overflow-hidden shrink-0">
                 <LogoWithFallback
                   domain={tool.domain}
                   name={tool.name}
-                  accent={tool.accent}
+                  accent={accent}
                 />
               </div>
               <div className="flex-1 min-w-0">
@@ -116,11 +121,11 @@ export default function HomeAIAppCards() {
                 </h3>
                 <div
                   className="font-mono text-[0.56rem] font-semibold tracking-[0.1em] uppercase flex items-center gap-[0.35rem]"
-                  style={{ color: tool.accent }}
+                  style={{ color: accent }}
                 >
                   <span
                     className="w-[5px] h-[5px] rounded-full"
-                    style={{ background: tool.accent }}
+                    style={{ background: accent }}
                   />
                   {tool.category}
                 </div>
@@ -176,7 +181,8 @@ export default function HomeAIAppCards() {
             </div>
           </div>
         </Link>
-      ))}
+        );
+      })}
     </div>
   );
 }
