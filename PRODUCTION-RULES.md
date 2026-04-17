@@ -321,3 +321,9 @@ The only accent colors allowed are: cyan (#00d4ff dark / #0e7490 light), magenta
 Any violation caught in `/gstack review` blocks the commit.
 
 See `docs/DESIGN-TOKENS.md` for the full palette specification and WCAG contrast ratios.
+
+### Rule 17.3 — No Inline Data-Driven Colors in Card Components
+
+No component may render `style={{ background: someData.color }}` where `someData.color` comes from a fetched data payload. All accent colors must resolve through `paletteFor()` or `pillColorsFor()` helpers, which return palette-locked tokens only.
+
+GStack review should block commits that introduce `style.*background.*\.color` patterns in component files.

@@ -397,3 +397,15 @@ The site uses a locked 5-accent palette documented in `docs/DESIGN-TOKENS.md`. A
 6. Verify contrast passes WCAG AA (4.5:1 body, 3:1 large) on both dark and light themes
 
 If a palette change is needed, queue a decision in the Decision Queue before implementing. Never expand the palette silently.
+
+### Card Accent Color Rule (added 2026-04-17 Part 6)
+
+Card components MUST derive accent colors from the palette, NOT from data. Any per-item `color`, `brandColor`, `categoryColor` field in data payloads is to be IGNORED by the frontend.
+
+Use:
+- `paletteFor(key)` from `lib/palette.ts` for decorative rotation on tool cards (AI Directory, Educator Tools)
+- `pillColorsFor(categoryName)` from `lib/categoryPalette.ts` for story category pills
+
+Amber is reserved for taxonomy (Advanced difficulty, Ethical AI). Not for decorative rotation.
+
+If a new category appears that isn't in CATEGORY_PALETTE, add it with cyan as default and queue a decision via Decision Queue if it needs a different color.
