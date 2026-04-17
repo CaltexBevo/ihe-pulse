@@ -1,26 +1,13 @@
 'use client';
 
 import { useState, useRef, useEffect, useMemo } from 'react';
-import Link from 'next/link';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
-import { formatPulseDate, formatShortDate } from '@/lib/data/innovation-pulse-types';
 
 function formatTime(seconds: number): string {
   if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs.toString().padStart(2, "0")}`;
-}
-
-// Parse duration string like "3:36" to minutes (rounded)
-function durationToMinutes(duration: string): number {
-  const parts = duration.split(':');
-  if (parts.length === 2) {
-    const minutes = parseInt(parts[0], 10);
-    const seconds = parseInt(parts[1], 10);
-    return Math.round(minutes + seconds / 60);
-  }
-  return parseInt(duration, 10) || 5;
 }
 
 interface HeroNowPlayingProps {
@@ -31,21 +18,41 @@ interface HeroNowPlayingProps {
 export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNowPlayingProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const waveformRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [audioProgress, setAudioProgress] = useState(0);
 
   const currentEpisode = recentEpisodes[selectedIndex] || latestEpisode;
+  const paused = !isPlaying;
 
-  // Generate stable waveform bar heights
-  const waveformHeights = useMemo(() => {
-    return Array.from({ length: 50 }, (_, i) => {
-      // Create a wave pattern that looks natural
-      const base = 8;
-      const variance = Math.sin(i * 0.3) * 12 + Math.cos(i * 0.7) * 8;
-      const noise = ((i * 17) % 13) - 6; // Pseudo-random noise
-      return Math.max(4, Math.min(36, base + variance + noise));
+  // Compute date parts for artwork
+  const publishDate = new Date(currentEpisode.date + 'T12:00:00');
+  const dayAbbr = publishDate.toLocaleDateString("en-US", { weekday: "short" }).toUpperCase().slice(0, 3);
+  const monthAbbr = publishDate.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+  const dayNum = String(publishDate.getDate()).padStart(2, "0");
+  const year = publishDate.getFullYear();
+  const isoDate = currentEpisode.date;
+
+  // Headline from lead story
+  const headline = currentEpisode.deepDive?.title || "Today's AI News for Higher Ed";
+
+  // Story count and duration
+  const storyCount = 1 + (currentEpisode.quickHits?.length || 0);
+  const durationDisplay = duration > 0 ? formatTime(duration) : currentEpisode.audioDuration;
+
+  // Episode number (count from oldest)
+  const episodeNumber = recentEpisodes.length - selectedIndex;
+
+  // Generate waveform bars
+  const waveformBars = useMemo(() => {
+    return Array.from({ length: 60 }, (_, i) => {
+      const h1 = 0.2 + Math.random() * 0.3;
+      const h2 = 0.5 + Math.random() * 0.5;
+      const isAccent = i % 7 === 0;
+      const animDuration = 0.8 + Math.random() * 0.6;
+      const animDelay = Math.random() * 0.5;
+      return { h1, h2, isAccent, animDuration, animDelay };
     });
   }, []);
 
@@ -56,9 +63,6 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
 
     const handleTimeUpdate = () => {
       setCurrentTime(audio.currentTime);
-      if (audio.duration > 0) {
-        setAudioProgress((audio.currentTime / audio.duration) * 100);
-      }
     };
 
     const handleLoadedMetadata = () => {
@@ -67,7 +71,6 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
 
     const handleEnded = () => {
       setIsPlaying(false);
-      setAudioProgress(0);
       setCurrentTime(0);
     };
 
@@ -88,20 +91,10 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
     if (audio && currentEpisode?.audioUrl) {
       audio.load();
       setCurrentTime(0);
-      setAudioProgress(0);
       setDuration(0);
       setIsPlaying(false);
     }
   }, [currentEpisode?.audioUrl]);
-
-  const selectDay = (index: number) => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.pause();
-      setIsPlaying(false);
-    }
-    setSelectedIndex(index);
-  };
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -115,194 +108,115 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes }: HeroNo
     setIsPlaying(!isPlaying);
   };
 
-  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const audio = audioRef.current;
-    if (!audio || !duration) return;
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const percentage = clickX / rect.width;
-    audio.currentTime = percentage * duration;
+  const handlePrev = () => {
+    if (selectedIndex < recentEpisodes.length - 1) {
+      const audio = audioRef.current;
+      if (audio) audio.pause();
+      setIsPlaying(false);
+      setSelectedIndex(selectedIndex + 1);
+    }
   };
 
-  // Calculate story count and duration
-  const storyCount = 1 + (currentEpisode.quickHits?.length || 0);
-  const minutes = durationToMinutes(currentEpisode.audioDuration || "5:00");
+  const handleNext = () => {
+    if (selectedIndex > 0) {
+      const audio = audioRef.current;
+      if (audio) audio.pause();
+      setIsPlaying(false);
+      setSelectedIndex(selectedIndex - 1);
+    }
+  };
 
   return (
-    <div className="hero-now-playing">
-      {/* Hidden Audio Element */}
-      <audio
-        ref={audioRef}
-        src={currentEpisode.audioUrl}
-        preload="metadata"
-      />
+    <section className={`np-hero ${paused ? "np-paused" : ""}`}>
+      {currentEpisode.audioUrl && (
+        <audio ref={audioRef} src={currentEpisode.audioUrl} preload="metadata" />
+      )}
 
-      <div className="p-6 sm:p-8">
-        {/* Header row: NOW PLAYING badge + date */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            {/* NOW PLAYING badge with pulse */}
-            <div className="flex items-center gap-2 bg-[var(--cyan-soft)] px-3 py-1.5 rounded-full">
-              <span
-                className="w-2 h-2 rounded-full bg-[var(--cyan)] animate-[pulseDot_2s_infinite]"
-                aria-hidden="true"
-              />
-              <span className="font-mono text-[0.65rem] font-semibold tracking-[0.08em] uppercase text-[var(--cyan)]">
-                Now Playing
-              </span>
-            </div>
-            {/* Episode indicator when not on latest */}
-            {selectedIndex > 0 && (
-              <span className="font-mono text-[0.6rem] text-[var(--amber)] bg-[var(--amber-dim)] px-2 py-1 rounded-full">
-                {formatShortDate(currentEpisode.date)}
-              </span>
-            )}
-          </div>
-          {/* Duration */}
-          <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
-            {duration > 0 ? formatTime(duration) : currentEpisode.audioDuration}
-          </span>
-        </div>
-
-        {/* Main content area */}
-        <div className="flex gap-6 items-start">
-          {/* Play button - larger, centered */}
-          <button
-            onClick={togglePlay}
-            aria-label={isPlaying ? "Pause episode" : "Play episode"}
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_24px_rgba(0,212,255,0.25)] transition-all hover:scale-105 hover:shadow-[0_6px_32px_rgba(0,212,255,0.35)]"
-          >
-            {isPlaying ? (
-              <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white" aria-hidden="true">
-                <rect x="6" y="4" width="4" height="16" />
-                <rect x="14" y="4" width="4" height="16" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white ml-1" aria-hidden="true">
-                <polygon points="6,3 20,12 6,21" />
-              </svg>
-            )}
-          </button>
-
-          {/* Text content */}
-          <div className="flex-1 min-w-0">
-            {/* Title - The Innovation Pulse */}
-            <div className="font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[var(--cyan)] mb-1">
-              The Innovation Pulse
-            </div>
-            <h1
-              className="text-[1.5rem] sm:text-[1.75rem] font-bold text-[var(--text)] leading-tight mb-2"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              The 5-Minute Edge
-            </h1>
-            <p className="text-[0.85rem] text-[var(--text-secondary)] leading-relaxed hidden sm:block">
-              What every educator needs to know about AI today.
-            </p>
-          </div>
-        </div>
-
-        {/* Waveform progress bar */}
-        <div
-          className="mt-6 h-12 relative cursor-pointer group"
-          onClick={handleProgressClick}
-          role="slider"
-          aria-label="Audio progress"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(audioProgress)}
-          aria-valuetext={`${formatTime(currentTime)} of ${duration > 0 ? formatTime(duration) : currentEpisode.audioDuration}`}
-          tabIndex={0}
-          onKeyDown={(e) => {
-            const audio = audioRef.current;
-            if (!audio || !duration) return;
-            if (e.key === 'ArrowRight') {
-              audio.currentTime = Math.min(duration, audio.currentTime + 10);
-            } else if (e.key === 'ArrowLeft') {
-              audio.currentTime = Math.max(0, audio.currentTime - 10);
-            }
-          }}
-        >
-          <div className="absolute inset-0 flex items-end gap-[2px]" aria-hidden="true">
-            {waveformHeights.map((h, i) => {
-              const progressPercent = (i / waveformHeights.length) * 100;
-              const isPlayed = progressPercent <= audioProgress;
-              return (
-                <div
-                  key={i}
-                  className={`hero-waveform-bar flex-1 ${isPlayed ? 'played' : ''}`}
-                  style={{ height: `${h}px` }}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Time display */}
-        <div className="flex justify-between items-center mt-2 font-mono text-[0.7rem] text-[var(--text-muted)]">
-          <span>{formatTime(currentTime)}</span>
-          <span>{duration > 0 ? formatTime(duration) : currentEpisode.audioDuration}</span>
-        </div>
-
-        {/* Stat line */}
-        <p className="font-mono text-[0.75rem] text-[var(--text-muted)] tracking-[0.02em] mt-4">
-          <span className="text-[var(--cyan)] font-semibold">{storyCount}</span>
-          {' '}stories.{' '}
-          <span className="text-[var(--cyan)] font-semibold">{minutes}</span>
-          {' '}minutes.{' '}
-          <span className="text-[var(--text)]">Go.</span>
-        </p>
-
-        {/* Lead story teaser */}
-        {currentEpisode.deepDive?.title && (
-          <Link
-            href={`/innovation-pulse/${currentEpisode.date}`}
-            className="block mt-4 p-4 bg-[var(--surface)] rounded-xl border border-[var(--border)] hover:border-[var(--border-hover)] transition-all group"
-          >
-            <div className="flex items-start gap-3">
-              <span className="font-mono text-[0.5rem] font-semibold px-2 py-1 rounded bg-[var(--magenta-dim)] text-[var(--magenta)] uppercase tracking-wider shrink-0">
-                Lead
-              </span>
-              <p className="text-[0.9rem] text-[var(--text-secondary)] leading-snug group-hover:text-[var(--text)] transition-colors line-clamp-2">
-                {currentEpisode.deepDive.title}
-              </p>
-            </div>
-          </Link>
-        )}
-
-        {/* Recent episodes pills */}
-        <div className="flex flex-wrap items-center gap-2 mt-5">
-          <span className="font-mono text-[0.55rem] text-[var(--text-muted)] tracking-[0.06em] uppercase">
-            Recent:
-          </span>
-          {recentEpisodes.slice(0, 5).map((ep, index) => {
-            const isSelected = index === selectedIndex;
-            const epDate = new Date(ep.date + 'T12:00:00');
-            const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
-
-            return (
-              <button
-                key={ep.date}
-                onClick={() => selectDay(index)}
-                className={`font-mono text-[0.6rem] px-2.5 py-1 rounded-full border transition-all ${
-                  isSelected
-                    ? "bg-[var(--cyan-dim)] border-[var(--cyan)] text-[var(--cyan)]"
-                    : "border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--border-hover)] hover:text-[var(--text-secondary)]"
-                }`}
-              >
-                {dayName}
-              </button>
-            );
-          })}
-          <Link
-            href="/innovation-pulse"
-            className="font-mono text-[0.55rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors ml-1"
-          >
-            All episodes →
-          </Link>
+      <div className="np-hero-header">
+        <div className="np-brand">The Innovation Pulse</div>
+        <div className="np-now">
+          <span className="np-dot" />
+          Now Playing · Today&apos;s Broadcast
         </div>
       </div>
-    </div>
+
+      <div className="np-card">
+        <div className="np-artwork">
+          <div className="np-art-top">
+            <div className="np-art-logo">The Innovation Pulse</div>
+            <div className="np-art-chip">{isoDate}</div>
+          </div>
+          <div className="np-art-center">
+            <div className="np-art-slash">//</div>
+            <div className="np-art-day">{dayAbbr}</div>
+            <div className="np-art-rule" />
+            <div className="np-art-readout">
+              {monthAbbr}<span className="np-dim">·</span>{dayNum}<span className="np-dim">·</span>{year}
+            </div>
+          </div>
+          <div className="np-art-bottom">
+            <div className="np-art-wave">
+              <span style={{ animationDuration: "0.9s" }} />
+              <span style={{ animationDuration: "1.2s", animationDelay: "0.2s" }} />
+              <span style={{ animationDuration: "0.8s", animationDelay: "0.4s" }} />
+              <span style={{ animationDuration: "1.1s", animationDelay: "0.1s" }} />
+              <span style={{ animationDuration: "1.3s", animationDelay: "0.3s" }} />
+              <span style={{ animationDuration: "0.95s", animationDelay: "0.5s" }} />
+            </div>
+          </div>
+        </div>
+
+        <div className="np-player">
+          <div className="np-kicker">Today&apos;s AI News for Higher Ed</div>
+          <h1 className="np-title">{headline}</h1>
+          <div className="np-meta">
+            <strong>Episode {episodeNumber}</strong>
+            <span className="np-meta-dot">●</span>
+            <span>{storyCount} Stories</span>
+            <span className="np-meta-dot">●</span>
+            <span>{durationDisplay}</span>
+          </div>
+
+          <div className="np-scrubber">
+            <span className="np-time np-time-current">{formatTime(currentTime)}</span>
+            <div className="np-waveform" ref={waveformRef}>
+              {waveformBars.map((bar, i) => (
+                <div
+                  key={i}
+                  className={`wf-bar ${bar.isAccent ? 'wf-accent' : ''}`}
+                  style={{
+                    '--h1': bar.h1,
+                    '--h2': bar.h2,
+                    animationDuration: `${bar.animDuration}s`,
+                    animationDelay: `${bar.animDelay}s`,
+                  } as React.CSSProperties}
+                />
+              ))}
+            </div>
+            <span className="np-time np-time-total">{durationDisplay}</span>
+          </div>
+
+          <div className="np-transport">
+            <button className="np-ctrl" aria-label="Previous" type="button" onClick={handlePrev}>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6l-8.5 6z" />
+              </svg>
+            </button>
+            <button className="np-play-main" aria-label={paused ? "Play" : "Pause"} type="button" onClick={togglePlay}>
+              <span className="np-play-icon" />
+            </button>
+            <button className="np-ctrl" aria-label="Next" type="button" onClick={handleNext}>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+              </svg>
+            </button>
+            <div className="np-transport-meta">
+              <span className="np-kbd">Space</span>
+              <span>to play</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

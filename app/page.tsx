@@ -71,67 +71,13 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
 
-        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8 relative">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-10">
-            {/* Main Content - V9 Now Playing Hero */}
-            <div className="animate-[fadeUp_0.7s_ease-out_both]">
-              {pulseEpisode && (
-                <HeroNowPlaying
-                  latestEpisode={pulseEpisode}
-                  recentEpisodes={recentEpisodes}
-                />
-              )}
-            </div>
-
-            {/* TOC Sidebar - IN THIS ISSUE */}
+        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
+          <div className="animate-[fadeUp_0.7s_ease-out_both]">
             {pulseEpisode && (
-              <aside className="hidden lg:block animate-[fadeUp_0.7s_0.15s_ease-out_both]">
-                <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 sticky top-20">
-                  <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
-                    In This Issue
-                  </div>
-
-                  <ul className="space-y-0">
-                    {/* Lead Story */}
-                    <Link
-                      href={`/innovation-pulse/story/${generateSlug(pulseEpisode.deepDive.title)}`}
-                      className="flex items-start gap-2 py-2.5 border-b border-[var(--border)] cursor-pointer group"
-                    >
-                      <span className="font-mono text-[0.5rem] tracking-[0.05em] font-semibold px-[0.4rem] py-[0.12rem] rounded-[3px] whitespace-nowrap mt-[0.1rem] bg-[var(--magenta-dim)] text-[var(--magenta)]">
-                        LEAD
-                      </span>
-                      <div>
-                        <p className="text-[0.75rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
-                          {pulseEpisode.deepDive.title}
-                        </p>
-                        <span className="text-[0.58rem] text-[var(--text-muted)] font-mono">
-                          {mapToV4Category(pulseEpisode.deepDive.category)}
-                        </span>
-                      </div>
-                    </Link>
-
-                    {/* Quick Hits */}
-                    {pulseEpisode.quickHits.slice(0, 4).map((hit, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 py-2.5 border-b border-[var(--border)] last:border-b-0 cursor-pointer group"
-                      >
-                        <span className="font-mono text-[0.5rem] tracking-[0.05em] font-semibold px-[0.4rem] py-[0.12rem] rounded-[3px] whitespace-nowrap mt-[0.1rem] bg-[var(--cyan-dim)] text-[var(--cyan)]">
-                          STORY
-                        </span>
-                        <div>
-                          <p className="text-[0.75rem] text-[var(--text-secondary)] leading-[1.35] group-hover:text-[var(--cyan)] transition-colors">
-                            {hit.title}
-                          </p>
-                          <span className="text-[0.58rem] text-[var(--text-muted)] font-mono">
-                            {mapToV4Category(hit.category)}
-                          </span>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </aside>
+              <HeroNowPlaying
+                latestEpisode={pulseEpisode}
+                recentEpisodes={recentEpisodes}
+              />
             )}
           </div>
         </div>
