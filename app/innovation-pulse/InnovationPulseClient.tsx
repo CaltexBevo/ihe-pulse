@@ -158,11 +158,13 @@ export default function InnovationPulseClient({
     return allEpisodes.slice(0, 6);
   }, [allEpisodes]);
 
-  // "Also in this episode" strip data for HeroNowPlaying
+  // "Also in this episode" data — used in sidebar and passed to HeroNowPlaying
   const heroOtherStories = useMemo(() => {
     return episode?.quickHits?.slice(0, 3).map(hit => ({
       source: hit.source,
       tease: hit.title,
+      headline: hit.title,
+      sourceUrl: hit.sourceUrl,
     })) || [];
   }, [episode]);
 
@@ -305,60 +307,65 @@ export default function InnovationPulseClient({
               />
             </div>
 
-            {/* Right Sidebar: Recent Episodes — flex-1 to stretch to match hero height */}
+            {/* Right Sidebar: Also in this episode — Part 10 redesign */}
             <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:flex flex-col">
-              <div className="ip-sidebar-box bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 flex-1 flex flex-col">
-                <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4 flex items-center gap-2">
-                  <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
-                  Recent Episodes
+              <div className="ip-sidebar-box flex-1 flex flex-col">
+                <div className="ip-sidebar-heading">
+                  <span className="np-dot" />
+                  <h3>Also in this episode</h3>
                 </div>
-                <div className="space-y-3 flex-1">
-                  {/* Show previous 5 episodes (skip today at index 0) */}
-                  {recentEpisodes.slice(1, 6).map((ep) => {
-                    const epDate = new Date(ep.date + 'T12:00:00');
-                    const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
-                    const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
-                    return (
-                      <Link
-                        key={ep.date}
-                        href={`/innovation-pulse/${ep.date}`}
-                        className="w-full text-left p-3 rounded-[10px] border border-[var(--border)] hover:border-[var(--border-hover)] hover:bg-[var(--surface-1)] transition-all block group"
-                      >
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="font-mono text-[0.68rem] font-semibold text-[var(--text)] group-hover:text-[var(--cyan)] transition-colors">
-                            {dayName}, {monthDay}
-                          </span>
-                          <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">{ep.audioDuration}</span>
-                        </div>
-                        <p className="text-[0.78rem] leading-[1.4] line-clamp-2 text-[var(--text-secondary)] group-hover:text-[var(--text)] transition-colors">
-                          {ep.deepDive.title}
-                        </p>
-                      </Link>
-                    );
-                  })}
+                <div className="ip-also-list">
+                  {heroOtherStories.map((story, i) => (
+                    <a
+                      key={i}
+                      href={story.sourceUrl || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ip-also-item"
+                    >
+                      <div className="ip-also-source">{story.source}</div>
+                      <div className="ip-also-headline">{story.headline}</div>
+                    </a>
+                  ))}
                 </div>
-                <Link
-                  href="/innovation-pulse/archive"
-                  className="block mt-4 pt-3 border-t border-[var(--border)] font-mono text-[0.65rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors text-center"
-                >
-                  View full archive →
-                </Link>
               </div>
             </div>
           </div>
 
-          {/* UPNEXT + SUBSCRIBE rendered at FULL WIDTH (outside grid, inside max-w container) */}
-          {heroOtherStories && heroOtherStories.length > 0 && (
-            <div className="np-upnext" style={{ marginTop: '16px' }}>
-              <div className="np-upnext-label">Also in this episode</div>
-              <div className="np-upnext-stories">
-                {heroOtherStories.map((s, i) => (
-                  <span key={i}>
-                    {i > 0 && <span className="np-upnext-dot">● </span>}
-                    <strong>{s.source}</strong> {s.tease}
-                  </span>
-                ))}
+          {/* Recent Episodes grid — Part 10 redesign */}
+          {recentEpisodes && recentEpisodes.length > 1 && (
+            <div className="ip-recent-strip">
+              <div className="ip-recent-header">
+                <div className="ip-recent-header-title">
+                  <span className="np-dot" />
+                  <h3>Recent Episodes</h3>
+                </div>
+                <Link href="/innovation-pulse/archive" className="ip-recent-archive-link">
+                  View full archive →
+                </Link>
+              </div>
+
+              <div className="ip-recent-grid">
+                {recentEpisodes.slice(1, 6).map((ep) => {
+                  const epDate = new Date(ep.date + 'T12:00:00');
+                  const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
+                  const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+                  return (
+                    <Link
+                      key={ep.date}
+                      href={`/innovation-pulse/${ep.date}`}
+                      className="ip-recent-card"
+                    >
+                      <div className="ip-recent-card-meta">
+                        <span className="ip-recent-card-date">{dayName}, {monthDay}</span>
+                        <span className="ip-recent-card-duration">{ep.audioDuration}</span>
+                      </div>
+                      <div className="ip-recent-card-title">{ep.deepDive?.title}</div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}

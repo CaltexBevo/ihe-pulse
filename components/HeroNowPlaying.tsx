@@ -181,18 +181,30 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
 
       <div className="np-card">
         <div className="np-artwork">
-          <div className="np-art-top">
-            <div className="np-art-logo">The Innovation Pulse</div>
-            <div className="np-art-chip">{isoDate}</div>
+          {/* Brand row */}
+          <div className="np-art-brand">
+            <div className="np-art-mark" />
+            <div className="np-art-brand-name">
+              Innovating<br />Higher Ed
+            </div>
+            <div className="np-art-ep">EP {episodeNumber}</div>
           </div>
+
+          {/* Innovation Pulse subtitle with divider */}
+          <div className="np-art-title">
+            The Innovation<br />Pulse
+          </div>
+
+          {/* Day hero */}
           <div className="np-art-center">
-            <div className="np-art-slash">//</div>
             <div className="np-art-day">{dayAbbr}</div>
             <div className="np-art-rule" />
             <div className="np-art-readout">
               {monthAbbr}<span className="np-dim">·</span>{dayNum}<span className="np-dim">·</span>{year}
             </div>
           </div>
+
+          {/* Wave indicator bottom-right */}
           <div className="np-art-bottom">
             <div className="np-art-wave">
               <span style={{ animationDuration: "0.9s" }} />

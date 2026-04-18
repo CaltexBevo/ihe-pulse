@@ -2035,12 +2035,12 @@ textarea:focus:not(:focus-visible) {
 }
 .np-art-day {
   font-family: 'DM Sans', sans-serif;
-  font-size: 112px;
+  font-size: 96px;           /* was 112px — slightly smaller to make room for brand */
   font-weight: 800;
-  line-height: 0.82;
-  letter-spacing: -0.045em;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
   color: var(--text);
-  margin-bottom: 14px;
+  margin-bottom: 8px;        /* was 14px */
 }
 .np-art-rule {
   width: 42px;
@@ -2050,10 +2050,10 @@ textarea:focus:not(:focus-visible) {
 }
 .np-art-readout {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.22em;
-  color: rgba(240,237,232,0.85);
+  letter-spacing: 0.24em;    /* was 0.22em */
+  color: rgba(240,237,232,0.82);
   text-transform: uppercase;
 }
 .np-art-readout .np-dim { color: rgba(240,237,232,0.45); }
@@ -2175,8 +2175,8 @@ textarea:focus:not(:focus-visible) {
 }
 .np-hero.np-paused .wf-bar {
   animation-play-state: paused;
-  opacity: 0.35;
-  transform: scaleY(0.25);
+  opacity: 0.85;
+  transform: scaleY(var(--h1, 0.5));
 }
 
 .np-transport {
@@ -2465,4 +2465,246 @@ textarea:focus:not(:focus-visible) {
   .ip-unified-card {
     padding: 24px;
   }
+}
+
+/* ==========================================================================
+   MON cover art — redesigned with IHE brand (Part 10)
+   ========================================================================== */
+
+.np-art-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  position: relative;
+}
+
+.np-art-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--brand-grad);
+  box-shadow: 0 0 12px rgba(0,212,255,0.4);
+  flex-shrink: 0;
+}
+
+.np-art-brand-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(240,237,232,0.95);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.np-art-ep {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: rgba(240,237,232,0.65);
+  background: rgba(0,0,0,0.3);
+  padding: 3px 7px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.np-art-title {
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  line-height: 1.18;
+}
+
+/* ==========================================================================
+   Innovation Pulse — Sidebar "Also in this episode" list (Part 10)
+   ========================================================================== */
+
+.ip-sidebar-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ip-sidebar-heading .np-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+}
+
+.ip-sidebar-heading h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ip-also-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.ip-also-item {
+  display: block;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.ip-also-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ip-also-item:hover {
+  transform: translateX(2px);
+}
+
+.ip-also-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ip-also-item:hover .ip-also-source {
+  color: var(--cyan);
+}
+
+.ip-also-headline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Innovation Pulse — Recent Episodes grid strip (Part 10)
+   ========================================================================== */
+
+.ip-recent-strip {
+  margin-top: 24px;
+  padding: 24px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.ip-recent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ip-recent-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ip-recent-header-title .np-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
+.ip-recent-header-title h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ip-recent-archive-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--cyan);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ip-recent-archive-link:hover {
+  text-decoration: underline;
+}
+
+.ip-recent-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1100px) {
+  .ip-recent-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .ip-recent-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ip-recent-card {
+  display: block;
+  padding: 14px 16px;
+  background: var(--raised);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.ip-recent-card:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateY(-1px);
+}
+
+.ip-recent-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.ip-recent-card-date,
+.ip-recent-card-duration {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.ip-recent-card-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--text);
+  font-weight: 500;
 }
