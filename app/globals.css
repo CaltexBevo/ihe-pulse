@@ -2151,7 +2151,7 @@ textarea:focus:not(:focus-visible) {
 
 .np-waveform {
   flex: 1;
-  height: 40px;
+  height: 56px;   /* was 40px — taller to match prototype */
   min-width: 0;
   display: flex;
   align-items: center;
@@ -2300,11 +2300,18 @@ textarea:focus:not(:focus-visible) {
 .np-upnext-stories {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;    /* was: wrap — CHANGED to keep on one line */
   flex: 1;
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   color: var(--text-muted);
+  overflow: hidden;     /* clip if too long */
+  white-space: nowrap;  /* prevent line breaks */
+}
+.np-upnext-stories span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .np-upnext-stories strong { color: var(--text); font-weight: 500; }
 .np-upnext-stories .np-upnext-dot { color: var(--text-dim); }

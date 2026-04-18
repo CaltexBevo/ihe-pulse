@@ -283,24 +283,26 @@ export default function InnovationPulseClient({
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
 
         <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10 pt-10 pb-8">
-            {/* Left: HeroNowPlaying */}
-            <div className="animate-[fadeUp_0.8s_ease-out_both]">
+          {/* Grid with items-stretch for aligned tops/bottoms */}
+          <div className="grid lg:grid-cols-[1fr_340px] gap-10 pt-10 pb-4 items-stretch">
+            {/* Left: HeroNowPlaying (showExtras=false, we render them below at full width) */}
+            <div className="animate-[fadeUp_0.8s_ease-out_both] flex flex-col">
               <HeroNowPlaying
                 latestEpisode={episode}
                 recentEpisodes={recentEpisodes}
                 otherStories={heroOtherStories}
+                showExtras={false}
               />
             </div>
 
-            {/* Right Sidebar: Recent Episodes (converted to links) */}
-            <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:block">
-              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 sticky top-20">
+            {/* Right Sidebar: Recent Episodes — flex-1 to stretch to match hero height */}
+            <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:flex flex-col">
+              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 flex-1 flex flex-col">
                 <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4 flex items-center gap-2">
                   <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
                   Recent Episodes
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-3 flex-1">
                   {/* Show previous 4 episodes (skip today at index 0) */}
                   {recentEpisodes.slice(1, 5).map((ep) => {
                     const epDate = new Date(ep.date + 'T12:00:00');
@@ -334,6 +336,34 @@ export default function InnovationPulseClient({
                 </Link>
               </div>
             </div>
+          </div>
+
+          {/* UPNEXT + SUBSCRIBE rendered at FULL WIDTH (outside grid, inside max-w container) */}
+          {heroOtherStories && heroOtherStories.length > 0 && (
+            <div className="np-upnext" style={{ marginTop: '16px' }}>
+              <div className="np-upnext-label">Also in this episode</div>
+              <div className="np-upnext-stories">
+                {heroOtherStories.map((s, i) => (
+                  <span key={i}>
+                    {i > 0 && <span className="np-upnext-dot">● </span>}
+                    <strong>{s.source}</strong> {s.tease}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="np-subscribe" style={{ marginTop: '20px', marginBottom: '8px' }}>
+            <div className="np-sub-copy">
+              <strong>Never miss an episode.</strong>{" "}
+              <span className="np-sub-muted">
+                Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
+              </span>
+            </div>
+            <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
+              <input type="email" placeholder="your@email.edu" aria-label="Email address" />
+              <button type="submit">Subscribe</button>
+            </form>
           </div>
         </div>
       </section>

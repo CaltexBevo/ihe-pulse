@@ -14,9 +14,10 @@ interface HeroNowPlayingProps {
   latestEpisode: InnovationPulseEpisode;
   recentEpisodes: InnovationPulseEpisode[];
   otherStories?: Array<{ source: string; tease: string }>;
+  showExtras?: boolean;  // default true; when false, hides upnext + subscribe
 }
 
-export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherStories }: HeroNowPlayingProps) {
+export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherStories, showExtras = true }: HeroNowPlayingProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
@@ -60,8 +61,8 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
       for (let i = 0; i < numBars; i++) {
         const bar = document.createElement("div");
         bar.className = "wf-bar";
-        const h1 = 0.28 + Math.random() * 0.52;
-        const h2 = Math.min(1, h1 + 0.15 + Math.random() * 0.35);
+        const h1 = 0.12 + Math.random() * 0.65;
+        const h2 = Math.min(1, h1 + 0.1 + Math.random() * 0.55);
         bar.style.setProperty("--h1", h1.toFixed(3));
         bar.style.setProperty("--h2", h2.toFixed(3));
         bar.style.animationDuration = (1 + Math.random() * 1.6).toFixed(2) + "s";
@@ -253,7 +254,7 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
       </div>
 
       {/* Also in this episode strip */}
-      {otherStories && otherStories.length > 0 && (
+      {showExtras && otherStories && otherStories.length > 0 && (
         <div className="np-upnext">
           <div className="np-upnext-label">Also in this episode</div>
           <div className="np-upnext-stories">
@@ -268,18 +269,20 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
       )}
 
       {/* Inline subscribe strip */}
-      <div className="np-subscribe">
-        <div className="np-sub-copy">
-          <strong>Never miss an episode.</strong>{" "}
-          <span className="np-sub-muted">
-            Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
-          </span>
+      {showExtras && (
+        <div className="np-subscribe">
+          <div className="np-sub-copy">
+            <strong>Never miss an episode.</strong>{" "}
+            <span className="np-sub-muted">
+              Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
+            </span>
+          </div>
+          <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
+            <input type="email" placeholder="your@email.edu" aria-label="Email address" />
+            <button type="submit">Subscribe</button>
+          </form>
         </div>
-        <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
-          <input type="email" placeholder="your@email.edu" aria-label="Email address" />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
+      )}
     </section>
   );
 }
