@@ -15,9 +15,10 @@ interface HeroNowPlayingProps {
   recentEpisodes: InnovationPulseEpisode[];
   otherStories?: Array<{ source: string; tease: string }>;
   showExtras?: boolean;  // default true; when false, hides upnext + subscribe
+  showHeader?: boolean;  // default true; when false, hides the eyebrow row
 }
 
-export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherStories, showExtras = true }: HeroNowPlayingProps) {
+export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherStories, showExtras = true, showHeader = true }: HeroNowPlayingProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
@@ -168,13 +169,15 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
         <audio ref={audioRef} src={currentEpisode.audioUrl} preload="metadata" />
       )}
 
-      <div className="np-hero-header">
-        <div className="np-brand">The Innovation Pulse</div>
-        <div className="np-now">
-          <span className="np-dot" />
-          Now Playing · Today&apos;s Broadcast
+      {showHeader && (
+        <div className="np-hero-header">
+          <div className="np-brand">The Innovation Pulse</div>
+          <div className="np-now">
+            <span className="np-dot" />
+            Now Playing · Today&apos;s Broadcast
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="np-card">
         <div className="np-artwork">

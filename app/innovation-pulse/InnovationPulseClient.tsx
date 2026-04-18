@@ -153,9 +153,9 @@ export default function InnovationPulseClient({
   const [selectedCategory, setSelectedCategory] = useState<V4Category | "all">("all");
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
 
-  // Last 5 episodes (sliding window) - used by HeroNowPlaying
+  // Last 6 episodes (sliding window) - used by HeroNowPlaying and sidebar (5 shown after skipping today)
   const recentEpisodes = useMemo(() => {
-    return allEpisodes.slice(0, 5);
+    return allEpisodes.slice(0, 6);
   }, [allEpisodes]);
 
   // "Also in this episode" strip data for HeroNowPlaying
@@ -283,15 +283,25 @@ export default function InnovationPulseClient({
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
 
         <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
+          {/* EYEBROW — above the grid so card and sidebar start at same top */}
+          <div className="flex items-center justify-between pt-10 pb-6 flex-wrap gap-4">
+            <div className="np-brand">The Innovation Pulse</div>
+            <div className="np-now">
+              <span className="np-dot" />
+              Now Playing · Today&apos;s Broadcast
+            </div>
+          </div>
+
           {/* Grid with items-stretch for aligned tops/bottoms */}
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10 pt-10 pb-4 items-stretch">
-            {/* Left: HeroNowPlaying (showExtras=false, we render them below at full width) */}
+          <div className="grid lg:grid-cols-[1fr_340px] gap-10 pb-4 items-stretch">
+            {/* Left: HeroNowPlaying (showExtras=false, showHeader=false — we render eyebrow above grid) */}
             <div className="animate-[fadeUp_0.8s_ease-out_both] flex flex-col">
               <HeroNowPlaying
                 latestEpisode={episode}
                 recentEpisodes={recentEpisodes}
                 otherStories={heroOtherStories}
                 showExtras={false}
+                showHeader={false}
               />
             </div>
 
@@ -303,8 +313,8 @@ export default function InnovationPulseClient({
                   Recent Episodes
                 </div>
                 <div className="space-y-3 flex-1">
-                  {/* Show previous 4 episodes (skip today at index 0) */}
-                  {recentEpisodes.slice(1, 5).map((ep) => {
+                  {/* Show previous 5 episodes (skip today at index 0) */}
+                  {recentEpisodes.slice(1, 6).map((ep) => {
                     const epDate = new Date(ep.date + 'T12:00:00');
                     const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
                     const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
