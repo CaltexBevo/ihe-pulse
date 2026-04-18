@@ -2398,3 +2398,71 @@ textarea:focus:not(:focus-visible) {
   .np-sub-form { flex-wrap: wrap; }
   .np-sub-form input { width: 100%; }
 }
+
+/* ==========================================================================
+   Innovation Pulse — Unified hero + sidebar card wrapper
+   Added 2026-04-17 Part 9
+   ========================================================================== */
+
+.ip-unified-card {
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid var(--border-strong);
+  background:
+    radial-gradient(ellipse at top left, rgba(0,212,255,0.06), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(176,64,168,0.06), transparent 50%),
+    var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.ip-unified-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.ip-unified-card::after {
+  content: '';
+  position: absolute;
+  top: 32px;
+  bottom: 32px;
+  right: 372px; /* 340px sidebar + 32px padding */
+  width: 1px;
+  background: var(--border);
+  z-index: 2;
+}
+
+/* Override np-card styles when inside unified wrapper */
+.ip-unified-card .np-card {
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  padding: 8px 16px 8px 0;
+}
+.ip-unified-card .np-card::before {
+  display: none; /* Remove the individual card's gradient accent */
+}
+
+/* Override sidebar box styles when inside unified wrapper */
+.ip-unified-card .ip-sidebar-box {
+  border: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 1023px) {
+  .ip-unified-card::after {
+    display: none; /* No divider on mobile — stacked layout */
+  }
+  .ip-unified-card {
+    padding: 24px;
+  }
+}

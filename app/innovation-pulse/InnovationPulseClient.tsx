@@ -292,8 +292,8 @@ export default function InnovationPulseClient({
             </div>
           </div>
 
-          {/* Grid with items-stretch for aligned tops/bottoms */}
-          <div className="grid lg:grid-cols-[1fr_340px] gap-10 pb-4 items-stretch">
+          {/* Unified card wrapper for hero + sidebar (Part 9) */}
+          <div className="ip-unified-card grid lg:grid-cols-[1fr_340px] gap-10 items-stretch">
             {/* Left: HeroNowPlaying (showExtras=false, showHeader=false — we render eyebrow above grid) */}
             <div className="animate-[fadeUp_0.8s_ease-out_both] flex flex-col">
               <HeroNowPlaying
@@ -307,7 +307,7 @@ export default function InnovationPulseClient({
 
             {/* Right Sidebar: Recent Episodes — flex-1 to stretch to match hero height */}
             <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:flex flex-col">
-              <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 flex-1 flex flex-col">
+              <div className="ip-sidebar-box bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-5 flex-1 flex flex-col">
                 <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4 flex items-center gap-2">
                   <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
                   Recent Episodes
