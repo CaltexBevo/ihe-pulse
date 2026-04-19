@@ -21,6 +21,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
+import { paletteFor } from '@/lib/palette';
 
 // ── Types ───────────────────────────────────────────────────
 
@@ -112,9 +113,9 @@ const taskKeys: TaskTag[] = [
 
 function PricingBadge({ model }: { model: string }) {
   const styles: Record<string, string> = {
-    free: 'bg-green-500/10 text-green-400 border-green-500/20',
-    freemium: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
-    paid: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+    free: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
+    freemium: 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20',
+    paid: 'bg-[var(--amber)]/10 text-[var(--amber)] border-[var(--amber)]/20',
   };
   const labels: Record<string, string> = {
     free: 'Free',
@@ -145,9 +146,9 @@ function RoleTag({ role }: { role: string }) {
 
 function ToolBadge({ badge }: { badge: string }) {
   const styles: Record<string, string> = {
-    new: 'bg-green-500/10 text-green-400 border-green-500/20',
-    trending: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    updated: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
+    new: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
+    trending: 'bg-[var(--amber)]/10 text-[var(--amber)] border-[var(--amber)]/20',
+    updated: 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20',
   };
   return (
     <span className={`px-2 py-0.5 rounded text-[0.65rem] font-semibold uppercase tracking-wider border font-mono ${styles[badge] ?? styles.new}`}>
@@ -160,17 +161,18 @@ function ToolBadge({ badge }: { badge: string }) {
 
 function ToolCard({ tool }: { tool: AiTool }) {
   const logoUrl = `https://www.google.com/s2/favicons?domain=${tool.domain}&sz=64`;
+  const accentColor = paletteFor(tool.slug);
 
   return (
     <Link
       href={`/ai-directory/${tool.slug}`}
       className="group relative bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] flex flex-col"
-      style={{ '--tool-accent': tool.accent } as React.CSSProperties}
+      style={{ '--tool-accent': accentColor } as React.CSSProperties}
     >
       {/* Accent strip at top */}
       <div
         className="h-[3px] transition-[height] duration-300 group-hover:h-[4px]"
-        style={{ background: tool.accent }}
+        style={{ background: accentColor }}
       />
 
       <div className="p-5 flex flex-col flex-1">
@@ -185,7 +187,7 @@ function ToolCard({ tool }: { tool: AiTool }) {
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
-                target.parentElement!.innerHTML = `<span class="text-[1.1rem] font-bold" style="color: ${tool.accent}">${tool.name[0]}</span>`;
+                target.parentElement!.innerHTML = `<span class="text-[1.1rem] font-bold" style="color: ${accentColor}">${tool.name[0]}</span>`;
               }}
             />
           </div>
@@ -214,7 +216,7 @@ function ToolCard({ tool }: { tool: AiTool }) {
             >
               <span
                 className="absolute left-0 top-[7px] w-2 h-2 rounded-sm opacity-70"
-                style={{ background: tool.accent }}
+                style={{ background: accentColor }}
               />
               {value}
             </li>
@@ -231,7 +233,7 @@ function ToolCard({ tool }: { tool: AiTool }) {
           </div>
           <span
             className="ml-auto text-[0.82rem] font-semibold flex items-center gap-1 transition-[gap] duration-200 group-hover:gap-2"
-            style={{ color: tool.accent }}
+            style={{ color: accentColor }}
           >
             Learn More
             <ArrowRight size={14} />

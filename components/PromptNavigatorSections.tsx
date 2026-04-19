@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Copy, Check, ExternalLink } from 'lucide-react';
+import { paletteFor } from '@/lib/palette';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CORE TECHNIQUES DATA (ALL 9)
@@ -19,8 +20,7 @@ const coreTechniques = [
     prompts: [
       "Explain the concept of social stratification in simple terms for an intro sociology class (~120 words) and include one concrete, everyday example.",
       "List the three most important differences between photosynthesis and cellular respiration in a single paragraph for first-year students."
-    ],
-    color: "#4ade80"
+    ]
   },
   {
     name: "Few-Shot Prompting",
@@ -32,8 +32,7 @@ const coreTechniques = [
     whenWhy: "Reach for few-shot when zero-shot was generic, when format is critical, or when you need stable voice. 1-3 concise demos usually enough.",
     prompts: [
       `You are grading short answers.\n\nExample student answer: "[paste]"\n\nExample instructor feedback (tone, length, structure to imitate): "[paste]"\n\nNow provide feedback on the next student answer in the same style: "[paste new answer]"`
-    ],
-    color: "#60a5fa"
+    ]
   },
   {
     name: "System & Role Prompts",
@@ -45,8 +44,7 @@ const coreTechniques = [
     whenWhy: "Use whenever manner of response matters as much as content — feedback tone, accessibility, policy alignment, simulations.",
     prompts: [
       `System (session-wide): You are a supportive teaching assistant for first-year courses. Use clear, neutral language, avoid full solutions, and flag uncertainty.\n\nRole (this task): Act as an encouraging writing tutor. Give concise feedback on the draft below tied to our rubric.\n\nRubric: "[paste]"\nDraft: "[paste]"`
-    ],
-    color: "#c084fc"
+    ]
   },
   {
     name: "Context Injection",
@@ -57,8 +55,7 @@ const coreTechniques = [
     whenWhy: "Use whenever 'according to our materials' matters. Pair with few-shot for tone/format.",
     prompts: [
       `Using the rubric below, score the student paragraph and give two specific suggestions tied to criteria.\n\nCourse/Level: Intro Psych (non-majors)\nRubric: "[paste rubric]"\nStudent paragraph: "[paste]"`
-    ],
-    color: "#f59e0b"
+    ]
   },
   {
     name: "Step-Back Prompting",
@@ -69,8 +66,7 @@ const coreTechniques = [
     whenWhy: "Helpful for multi-step or unfamiliar tasks. Surfaces a plan you can critique.",
     prompts: [
       `Identify the type of problem, outline a 3-step plan to solve it, then provide the solution.\n\nProblem: "[paste]"`
-    ],
-    color: "#fb923c"
+    ]
   },
   {
     name: "Chain-of-Thought Prompting",
@@ -81,8 +77,7 @@ const coreTechniques = [
     whenWhy: "Use when transparency and pedagogy matter — teaching problem-solving, grading reasoning, verifying claims.",
     prompts: [
       `Solve the problem and explain in numbered steps (max 6). Then give the final answer on a separate line labeled "Answer:".\n\nProblem: "[paste]"`
-    ],
-    color: "#22d3ee"
+    ]
   },
   {
     name: "Self-Consistency",
@@ -93,8 +88,7 @@ const coreTechniques = [
     whenWhy: "Useful when correctness is critical or earlier runs felt unstable. Reduces hallucinations.",
     prompts: [
       `Produce three independent answers to the question below. Then summarize points of agreement, note any conflicts, and choose the best answer with a one-sentence justification.\n\nQuestion: "[paste]"`
-    ],
-    color: "#f472b6"
+    ]
   },
   {
     name: "Tree-of-Thought Prompting",
@@ -105,8 +99,7 @@ const coreTechniques = [
     whenWhy: "Ideal when many paths could work and you want structured exploration. Makes trade-offs explicit.",
     prompts: [
       `Propose 3 distinct approaches to teach [topic] to non-majors. For each: objectives, one keystone activity, pros/cons. Then recommend one approach and explain why given a 50-minute class and 25 students.`
-    ],
-    color: "#a78bfa"
+    ]
   },
   {
     name: "ReAct (Reason & Act)",
@@ -117,8 +110,7 @@ const coreTechniques = [
     whenWhy: "Use for open-ended tasks requiring inquiry and iteration — research planning, stakeholder analysis, design projects.",
     prompts: [
       `Follow a Reason → Action → Observation loop to build a research plan.\nReason: Restate my topic and identify what information is missing.\nAction: Ask me up to 3 clarifying questions.\nObservation: Wait for answers.\nRepeat the loop once. Then output a step-by-step plan with milestones and risks.`
-    ],
-    color: "#ef4444"
+    ]
   }
 ];
 
@@ -230,20 +222,22 @@ const references = [
 
 function getDifficultyColor(difficulty: string) {
   switch (difficulty) {
-    case "Beginner": return { bg: "var(--green-dim)", color: "var(--green)" };
+    case "Beginner": return { bg: "var(--cyan-dim)", color: "var(--cyan)" };
     case "Intermediate": return { bg: "var(--amber-dim)", color: "var(--amber)" };
-    case "Advanced": return { bg: "var(--red-dim)", color: "var(--red)" };
+    case "Advanced": return { bg: "var(--magenta-dim)", color: "var(--magenta)" };
     default: return { bg: "var(--surface)", color: "var(--text-muted)" };
   }
 }
 
-function TechniqueCard({ technique, isExpanded, onToggle }: {
+function TechniqueCard({ technique, index, isExpanded, onToggle }: {
   technique: typeof coreTechniques[0];
+  index: number;
   isExpanded: boolean;
   onToggle: () => void;
 }) {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const diffColors = getDifficultyColor(technique.difficulty);
+  const accentColor = paletteFor(index);
 
   const handleCopy = async (text: string, index: number) => {
     try {
@@ -258,7 +252,7 @@ function TechniqueCard({ technique, isExpanded, onToggle }: {
   return (
     <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)]">
       {/* Accent bar */}
-      <div className="h-[3px]" style={{ background: technique.color }} />
+      <div className="h-[3px]" style={{ background: accentColor }} />
 
       {/* Header - always visible */}
       <div
@@ -283,7 +277,7 @@ function TechniqueCard({ technique, isExpanded, onToggle }: {
             </div>
 
             {/* Name */}
-            <h3 className="font-sans text-[1.1rem] font-bold leading-tight mb-2" style={{ color: technique.color }}>
+            <h3 className="font-sans text-[1.1rem] font-bold leading-tight mb-2" style={{ color: accentColor }}>
               {technique.name}
             </h3>
 
@@ -402,6 +396,7 @@ export default function PromptNavigatorSections() {
             <TechniqueCard
               key={technique.name}
               technique={technique}
+              index={i}
               isExpanded={expandedTechnique === i}
               onToggle={() => setExpandedTechnique(expandedTechnique === i ? null : i)}
             />
@@ -431,7 +426,7 @@ export default function PromptNavigatorSections() {
             >
               {/* Problem */}
               <div className="flex items-center gap-2 mb-3">
-                <span className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--red-dim)] text-[var(--red)]">
+                <span className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
                   PROBLEM
                 </span>
                 <span className="font-bold text-[0.95rem]">{item.problem}</span>
@@ -439,7 +434,7 @@ export default function PromptNavigatorSections() {
 
               {/* Fix */}
               <div className="mb-3">
-                <span className="font-mono text-[0.55rem] font-semibold text-[var(--green)] block mb-1">FIX:</span>
+                <span className="font-mono text-[0.55rem] font-semibold text-[var(--cyan)] block mb-1">FIX:</span>
                 <p className="text-[0.82rem] text-[var(--text-secondary)] leading-relaxed">{item.fix}</p>
               </div>
 

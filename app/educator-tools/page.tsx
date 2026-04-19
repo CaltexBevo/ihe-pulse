@@ -48,7 +48,7 @@ const educatorTools: EducatorTool[] = [
     platformUrl: 'https://innovatinghighered.com/QTI-quiz-builder.html',
     cta: 'Launch Quiz Builder',
     icon: ListChecks,
-    accent: '#3b82f6',
+    accent: '#a78bfa',
     attribution: 'A Cyber Doctor · Norma Jones Build',
   },
   {
@@ -114,7 +114,7 @@ const educatorTools: EducatorTool[] = [
     platformUrl: 'https://www.playlab.ai/project/cmb1835ju01w3opiglm8j6par',
     cta: 'Launch EquiGrade',
     icon: Scale,
-    accent: '#10b981',
+    accent: '#00d4ff',
   },
 ];
 
