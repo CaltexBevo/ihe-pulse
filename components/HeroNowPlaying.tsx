@@ -190,7 +190,7 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
 
           {/* Mic illustration — LEFT side, NOT flipped (nozzle points right toward title) */}
           <img
-            src="/images/mic02.png"
+            src="/images/mic03.png"
             alt=""
             className="np-art-mic"
             aria-hidden="true"
