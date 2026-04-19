@@ -1929,7 +1929,7 @@ textarea:focus:not(:focus-visible) {
   border-radius: 24px;
   padding: 40px;
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 360px 1fr;
   gap: 48px;
   align-items: center;
   border: 1px solid var(--border-strong);
@@ -2323,74 +2323,6 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ==========================================================================
-   Innovation Pulse — Unified hero + sidebar card wrapper
-   Added 2026-04-17 Part 9
-   ========================================================================== */
-
-.ip-unified-card {
-  border-radius: 24px;
-  padding: 32px;
-  border: 1px solid var(--border-strong);
-  background:
-    radial-gradient(ellipse at top left, rgba(0,212,255,0.06), transparent 50%),
-    radial-gradient(ellipse at bottom right, rgba(176,64,168,0.06), transparent 50%),
-    var(--surface);
-  position: relative;
-  overflow: hidden;
-}
-
-.ip-unified-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
-  opacity: 0.8;
-  z-index: 2;
-}
-
-.ip-unified-card::after {
-  content: '';
-  position: absolute;
-  top: 32px;
-  bottom: 32px;
-  right: 372px; /* 340px sidebar + 32px padding */
-  width: 1px;
-  background: var(--border);
-  z-index: 2;
-}
-
-/* Override np-card styles when inside unified wrapper */
-.ip-unified-card .np-card {
-  border: none;
-  background: transparent;
-  border-radius: 0;
-  padding: 8px 16px 8px 0;
-}
-.ip-unified-card .np-card::before {
-  display: none; /* Remove the individual card's gradient accent */
-}
-
-/* Override sidebar box styles when inside unified wrapper */
-.ip-unified-card .ip-sidebar-box {
-  border: none !important;
-  background: transparent !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-}
-
-@media (max-width: 1023px) {
-  .ip-unified-card::after {
-    display: none; /* No divider on mobile — stacked layout */
-  }
-  .ip-unified-card {
-    padding: 24px;
-  }
-}
-
-/* ==========================================================================
    Hero cover artwork — Set 7 Variation D (Part 12)
    ========================================================================== */
 
@@ -2479,81 +2411,6 @@ textarea:focus:not(:focus-visible) {
   color: rgba(0, 212, 255, 0.72);
   white-space: nowrap;
   text-align: right;
-}
-
-/* ==========================================================================
-   Innovation Pulse — Sidebar "Also in this episode" list (Part 10)
-   ========================================================================== */
-
-.ip-sidebar-heading {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.ip-sidebar-heading .np-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--cyan);
-  flex-shrink: 0;
-}
-
-.ip-sidebar-heading h3 {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--cyan);
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 0;
-}
-
-.ip-also-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex: 1;
-}
-
-.ip-also-item {
-  display: block;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  text-decoration: none;
-  transition: transform 0.2s;
-}
-
-.ip-also-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.ip-also-item:hover {
-  transform: translateX(2px);
-}
-
-.ip-also-source {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.ip-also-item:hover .ip-also-source {
-  color: var(--cyan);
-}
-
-.ip-also-headline {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--text);
-  font-weight: 500;
 }
 
 /* ==========================================================================

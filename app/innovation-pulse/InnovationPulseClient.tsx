@@ -294,44 +294,31 @@ export default function InnovationPulseClient({
             </div>
           </div>
 
-          {/* Unified card wrapper for hero + sidebar (Part 9) */}
-          <div className="ip-unified-card grid lg:grid-cols-[1fr_340px] gap-10 items-stretch">
-            {/* Left: HeroNowPlaying (showExtras=false, showHeader=false — we render eyebrow above grid) */}
-            <div className="animate-[fadeUp_0.8s_ease-out_both] flex flex-col">
-              <HeroNowPlaying
-                latestEpisode={episode}
-                recentEpisodes={recentEpisodes}
-                otherStories={heroOtherStories}
-                showExtras={false}
-                showHeader={false}
-              />
-            </div>
+          {/* Hero player — same component as homepage */}
+          <div className="animate-[fadeUp_0.8s_ease-out_both]">
+            <HeroNowPlaying
+              latestEpisode={episode}
+              recentEpisodes={recentEpisodes}
+              otherStories={heroOtherStories}
+              showExtras={false}
+              showHeader={false}
+            />
+          </div>
 
-            {/* Right Sidebar: Also in this episode — Part 10 redesign */}
-            <div className="animate-[fadeUp_0.8s_0.15s_ease-out_both] hidden lg:flex flex-col">
-              <div className="ip-sidebar-box flex-1 flex flex-col">
-                <div className="ip-sidebar-heading">
-                  <span className="np-dot" />
-                  <h3>Also in this episode</h3>
-                </div>
-
-                <div className="ip-also-list">
-                  {heroOtherStories.map((story, i) => (
-                    <a
-                      key={i}
-                      href={story.sourceUrl || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ip-also-item"
-                    >
-                      <div className="ip-also-source">{story.source}</div>
-                      <div className="ip-also-headline">{story.headline}</div>
-                    </a>
-                  ))}
-                </div>
+          {/* Also in this episode strip — matches homepage .np-upnext pattern */}
+          {heroOtherStories.length > 0 && (
+            <div className="np-upnext">
+              <div className="np-upnext-label">Also in this episode</div>
+              <div className="np-upnext-stories">
+                {heroOtherStories.map((story, i) => (
+                  <span key={i}>
+                    {i > 0 && <span className="np-upnext-dot">● </span>}
+                    <strong>{story.source}</strong> {story.headline}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
+          )}
 
           {/* Recent Episodes grid — Part 10 redesign */}
           {recentEpisodes && recentEpisodes.length > 1 && (
