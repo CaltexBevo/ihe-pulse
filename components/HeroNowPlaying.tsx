@@ -181,24 +181,14 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
 
       <div className="np-card">
         <div className="np-artwork">
-          {/* Top meta row — LIVE/ON AIR + EP + duration */}
-          <div className="np-art-top-meta">
-            <div className="np-art-live">
-              <span className="np-art-live-dot" />
-              LIVE · ON AIR
-            </div>
-            <div className="np-art-ep-meta">EP {String(episodeNumber).padStart(3, '0')} · {durationDisplay}</div>
-          </div>
+          {/* IHE logo — top-left inside cover */}
+          <img
+            src="/images/ihe-logo.png"
+            alt="Innovating Higher Ed"
+            className="np-art-logo"
+          />
 
-          {/* IHE brand mark */}
-          <div className="np-art-brand">
-            <div className="np-art-mark" />
-            <div className="np-art-brand-name">
-              Innovating<br />Higher Ed
-            </div>
-          </div>
-
-          {/* Broadcast mic illustration */}
+          {/* Mic illustration — LEFT side, NOT flipped (nozzle points right toward title) */}
           <img
             src="/images/mic02.png"
             alt=""
@@ -206,21 +196,21 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
             aria-hidden="true"
           />
 
-          {/* Kicker */}
-          <div className="np-art-kicker">▸ DAILY AI BRIEFING</div>
-
-          {/* Title */}
-          <div className="np-art-show-title">
-            The<br />Innovation<br />Pulse
+          {/* Kicker + Title — RIGHT side, right-aligned */}
+          <div className="np-art-right-stack">
+            <div className="np-art-kicker">DAILY AI NEWS FOR ED ◂</div>
+            <div className="np-art-show-title">
+              The<br />Innovation<br />Pulse
+            </div>
           </div>
 
-          {/* Date band */}
+          {/* Date band — full-width bottom */}
           <div className="np-art-date-band">
             <div className="np-art-date-row">
+              <div className="np-art-date-year">{year}</div>
               <div className="np-art-date-main">
                 {dayAbbr}<span className="np-art-date-sep">·</span>{monthAbbr} {dayNum}
               </div>
-              <div className="np-art-date-year">{year}</div>
             </div>
             <div className="np-art-date-tag">— 5 MIN · COMMUTE · LUNCH · DRIVE HOME —</div>
           </div>

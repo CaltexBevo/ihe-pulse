@@ -1957,8 +1957,10 @@ textarea:focus:not(:focus-visible) {
   border-radius: 20px;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 55% 48% at 70% 55%, rgba(34, 211, 238, 0.3) 0%, transparent 55%),
-    linear-gradient(165deg, #05080f 0%, #0a1830 55%, #030612 100%);
+    linear-gradient(to right, rgba(0, 212, 255, 0.05) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(to bottom, rgba(0, 212, 255, 0.05) 1px, transparent 1px) 0 0 / 24px 24px,
+    radial-gradient(ellipse 60% 50% at 28% 55%, rgba(0, 212, 255, 0.3) 0%, transparent 55%),
+    linear-gradient(160deg, #05101e 0%, #0c2040 55%, #030814 100%);
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,0.08),
     0 16px 48px rgba(0,212,255,0.2),
@@ -1984,15 +1986,17 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* Mic illustration — right side, anchored center-right */
+/* Mic — LEFT side, NOT horizontally flipped */
 .np-art-mic {
   position: absolute;
-  right: -14px;
-  top: 70px;
-  width: 240px;
+  left: -22px;
+  top: 78px;
+  width: 220px;
   height: auto;
   z-index: 2;
   pointer-events: none;
-  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.6));
+  /* NO transform: scaleX(-1) — dial faces RIGHT toward title */
 }
 
 /* Old MON cover rules removed in Part 11 */
@@ -2182,9 +2186,12 @@ textarea:focus:not(:focus-visible) {
   .np-artwork { width: 100%; max-width: 320px; height: 320px; min-width: 280px; margin: 0 auto; }
   .np-transport { flex-wrap: wrap; }
   .np-transport-meta { margin-left: 0; }
-  .np-art-mic { width: 180px; top: 50px; }
-  .np-art-show-title { font-size: 22px; top: 148px; }
-  .np-art-date-main { font-size: 18px; }
+  .np-art-logo { width: 88px; top: 20px; left: 20px; }
+  .np-art-mic { width: 170px; top: 62px; left: -16px; }
+  .np-art-right-stack { top: 74px; right: 20px; width: 140px; }
+  .np-art-show-title { font-size: 23px; }
+  .np-art-date-band { bottom: 18px; left: 20px; right: 20px; }
+  .np-art-date-main { font-size: 19px; }
   .np-art-date-tag { font-size: 6.5px; }
 }
 
@@ -2384,112 +2391,57 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ==========================================================================
-   Hero cover artwork — BoxShure composition (Part 11)
+   Hero cover artwork — Set 7 Variation D (Part 12)
    ========================================================================== */
 
-/* Top meta row: LIVE/ON AIR + EP badge */
-.np-art-top-meta {
+/* IHE logo — top-left inside cover */
+.np-art-logo {
   position: absolute;
-  top: 18px;
+  top: 24px;
   left: 24px;
+  width: 110px;
+  height: auto;
+  display: block;
+  z-index: 3;
+}
+
+/* Right-aligned title stack */
+.np-art-right-stack {
+  position: absolute;
+  top: 92px;
   right: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  color: rgba(255, 255, 255, 0.6);
+  width: 180px;
+  text-align: right;
   z-index: 3;
 }
 
-.np-art-live {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--cyan);
-  white-space: nowrap;
-}
-
-.np-art-live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 8px var(--cyan);
-}
-
-.np-art-ep-meta {
-  white-space: nowrap;
-}
-
-/* Brand row — IHE mark + name, upper left */
-.np-artwork .np-art-brand {
-  position: absolute;
-  top: 48px;
-  left: 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 3;
-}
-
-.np-artwork .np-art-mark {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: var(--brand-grad);
-  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
-  flex-shrink: 0;
-}
-
-.np-artwork .np-art-brand-name {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: rgba(245, 241, 232, 0.95);
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-/* Kicker — above title */
 .np-art-kicker {
-  position: absolute;
-  top: 158px;
-  left: 24px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.22em;
   color: var(--cyan);
   font-weight: 600;
-  z-index: 3;
+  margin-bottom: 8px;
   white-space: nowrap;
 }
 
-/* Show title — "The Innovation Pulse" */
 .np-art-show-title {
-  position: absolute;
-  top: 178px;
-  left: 24px;
-  width: 165px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 800;
   color: #f5f1e8;
   letter-spacing: -0.03em;
   line-height: 0.98;
-  z-index: 3;
 }
 
-/* Date band — bottom */
+/* Date band — full-width bottom */
 .np-art-date-band {
   position: absolute;
-  bottom: 18px;
+  bottom: 22px;
   left: 24px;
   right: 24px;
   padding-top: 12px;
-  border-top: 1px solid rgba(34, 211, 238, 0.3);
+  border-top: 1px solid rgba(0, 212, 255, 0.28);
   z-index: 3;
 }
 
@@ -2500,8 +2452,14 @@ textarea:focus:not(:focus-visible) {
   font-family: 'JetBrains Mono', monospace;
 }
 
+.np-art-date-year {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .np-art-date-main {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   color: #f5f1e8;
   letter-spacing: -0.02em;
@@ -2510,22 +2468,17 @@ textarea:focus:not(:focus-visible) {
 
 .np-art-date-sep {
   color: var(--cyan);
-  margin: 0 4px;
-}
-
-.np-art-date-year {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  color: rgba(255, 255, 255, 0.5);
+  margin: 0 5px;
 }
 
 .np-art-date-tag {
   margin-top: 5px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 7.5px;
+  font-size: 8px;
   letter-spacing: 0.22em;
-  color: rgba(34, 211, 238, 0.7);
+  color: rgba(0, 212, 255, 0.72);
   white-space: nowrap;
+  text-align: right;
 }
 
 /* ==========================================================================
