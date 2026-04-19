@@ -181,39 +181,48 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
 
       <div className="np-card">
         <div className="np-artwork">
-          {/* Brand row */}
+          {/* Top meta row — LIVE/ON AIR + EP + duration */}
+          <div className="np-art-top-meta">
+            <div className="np-art-live">
+              <span className="np-art-live-dot" />
+              LIVE · ON AIR
+            </div>
+            <div className="np-art-ep-meta">EP {String(episodeNumber).padStart(3, '0')} · {durationDisplay}</div>
+          </div>
+
+          {/* IHE brand mark */}
           <div className="np-art-brand">
             <div className="np-art-mark" />
             <div className="np-art-brand-name">
               Innovating<br />Higher Ed
             </div>
-            <div className="np-art-ep">EP {episodeNumber}</div>
           </div>
 
-          {/* Innovation Pulse subtitle with divider */}
-          <div className="np-art-title">
-            The Innovation<br />Pulse
+          {/* Broadcast mic illustration */}
+          <img
+            src="/images/mic02.png"
+            alt=""
+            className="np-art-mic"
+            aria-hidden="true"
+          />
+
+          {/* Kicker */}
+          <div className="np-art-kicker">▸ DAILY AI BRIEFING</div>
+
+          {/* Title */}
+          <div className="np-art-show-title">
+            The<br />Innovation<br />Pulse
           </div>
 
-          {/* Day hero */}
-          <div className="np-art-center">
-            <div className="np-art-day">{dayAbbr}</div>
-            <div className="np-art-rule" />
-            <div className="np-art-readout">
-              {monthAbbr}<span className="np-dim">·</span>{dayNum}<span className="np-dim">·</span>{year}
+          {/* Date band */}
+          <div className="np-art-date-band">
+            <div className="np-art-date-row">
+              <div className="np-art-date-main">
+                {dayAbbr}<span className="np-art-date-sep">·</span>{monthAbbr} {dayNum}
+              </div>
+              <div className="np-art-date-year">{year}</div>
             </div>
-          </div>
-
-          {/* Wave indicator bottom-right */}
-          <div className="np-art-bottom">
-            <div className="np-art-wave">
-              <span style={{ animationDuration: "0.9s" }} />
-              <span style={{ animationDuration: "1.2s", animationDelay: "0.2s" }} />
-              <span style={{ animationDuration: "0.8s", animationDelay: "0.4s" }} />
-              <span style={{ animationDuration: "1.1s", animationDelay: "0.1s" }} />
-              <span style={{ animationDuration: "1.3s", animationDelay: "0.3s" }} />
-              <span style={{ animationDuration: "0.95s", animationDelay: "0.5s" }} />
-            </div>
+            <div className="np-art-date-tag">— 5 MIN · COMMUTE · LUNCH · DRIVE HOME —</div>
           </div>
         </div>
 

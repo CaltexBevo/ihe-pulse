@@ -1951,21 +1951,20 @@ textarea:focus:not(:focus-visible) {
 
 .np-artwork {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: 360px;
+  height: 360px;
+  min-width: 360px;
   border-radius: 20px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 30% 30%, rgba(0,212,255,0.8) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(176,64,168,0.7) 0%, transparent 50%),
-    linear-gradient(135deg, #0a0a20, #1a0a28);
+    radial-gradient(ellipse 55% 48% at 70% 55%, rgba(34, 211, 238, 0.3) 0%, transparent 55%),
+    linear-gradient(165deg, #05080f 0%, #0a1830 55%, #030612 100%);
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,0.08),
     0 16px 48px rgba(0,212,255,0.2),
     0 0 80px rgba(176,64,168,0.15);
-  display: flex;
-  flex-direction: column;
-  padding: 22px;
+  font-family: 'DM Sans', sans-serif;
+  color: #f5f1e8;
 }
 .np-artwork::before {
   content: '';
@@ -1984,105 +1983,19 @@ textarea:focus:not(:focus-visible) {
   66% { transform: scale(0.96) translate(-3%, 4%); }
 }
 
-.np-art-top,
-.np-art-center,
-.np-art-bottom { position: relative; z-index: 2; }
-
-.np-art-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.np-art-logo {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: rgba(240,237,232,0.88);
-  text-transform: uppercase;
-  line-height: 1.2;
-  max-width: 110px;
-}
-.np-art-chip {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  color: rgba(240,237,232,0.8);
-  text-transform: uppercase;
-  background: rgba(0,0,0,0.3);
-  padding: 4px 10px;
-  border-radius: 999px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  white-space: nowrap;
+/* Mic illustration — right side, anchored center-right */
+.np-art-mic {
+  position: absolute;
+  right: -14px;
+  top: 70px;
+  width: 240px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.55));
 }
 
-.np-art-center {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 8px 0;
-}
-.np-art-slash {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--cyan);
-  margin-bottom: 12px;
-  opacity: 0.9;
-}
-.np-art-day {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 96px;           /* was 112px — slightly smaller to make room for brand */
-  font-weight: 800;
-  line-height: 0.85;
-  letter-spacing: -0.05em;
-  color: var(--text);
-  margin-bottom: 8px;        /* was 14px */
-}
-.np-art-rule {
-  width: 42px;
-  height: 2px;
-  background: var(--cyan);
-  margin-bottom: 14px;
-}
-.np-art-readout {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.24em;    /* was 0.22em */
-  color: rgba(240,237,232,0.82);
-  text-transform: uppercase;
-}
-.np-art-readout .np-dim { color: rgba(240,237,232,0.45); }
-
-.np-art-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 8px;
-}
-.np-art-wave {
-  width: 56px;
-  height: 22px;
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  flex-shrink: 0;
-}
-.np-art-wave span {
-  flex: 1;
-  background: rgba(240,237,232,0.95);
-  border-radius: 1px;
-  animation: np-art-wave infinite ease-in-out;
-}
-@keyframes np-art-wave {
-  0%, 100% { height: 30%; }
-  50% { height: 100%; }
-}
+/* Old MON cover rules removed in Part 11 */
 
 .np-player {
   display: flex;
@@ -2266,10 +2179,13 @@ textarea:focus:not(:focus-visible) {
 
 @media (max-width: 900px) {
   .np-card { grid-template-columns: 1fr; gap: 28px; padding: 32px; }
-  .np-artwork { width: 100%; max-width: 320px; height: 320px; margin: 0 auto; }
+  .np-artwork { width: 100%; max-width: 320px; height: 320px; min-width: 280px; margin: 0 auto; }
   .np-transport { flex-wrap: wrap; }
   .np-transport-meta { margin-left: 0; }
-  .np-art-day { font-size: 88px; }
+  .np-art-mic { width: 180px; top: 50px; }
+  .np-art-show-title { font-size: 22px; top: 148px; }
+  .np-art-date-main { font-size: 18px; }
+  .np-art-date-tag { font-size: 6.5px; }
 }
 
 /* ==========================================================================
@@ -2468,63 +2384,148 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ==========================================================================
-   MON cover art — redesigned with IHE brand (Part 10)
+   Hero cover artwork — BoxShure composition (Part 11)
    ========================================================================== */
 
-.np-art-brand {
+/* Top meta row: LIVE/ON AIR + EP badge */
+.np-art-top-meta {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 3;
+}
+
+.np-art-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+.np-art-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.np-art-ep-meta {
+  white-space: nowrap;
+}
+
+/* Brand row — IHE mark + name, upper left */
+.np-artwork .np-art-brand {
+  position: absolute;
+  top: 48px;
+  left: 24px;
   display: flex;
   align-items: center;
   gap: 8px;
-  z-index: 2;
-  position: relative;
+  z-index: 3;
 }
 
-.np-art-mark {
+.np-artwork .np-art-mark {
   width: 22px;
   height: 22px;
   border-radius: 6px;
   background: var(--brand-grad);
-  box-shadow: 0 0 12px rgba(0,212,255,0.4);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
   flex-shrink: 0;
 }
 
-.np-art-brand-name {
+.np-artwork .np-art-brand-name {
   font-family: 'DM Sans', sans-serif;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  color: rgba(240,237,232,0.95);
-  line-height: 1.2;
+  color: rgba(245, 241, 232, 0.95);
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
-.np-art-ep {
-  margin-left: auto;
+/* Kicker — above title */
+.np-art-kicker {
+  position: absolute;
+  top: 158px;
+  left: 24px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  color: rgba(240,237,232,0.65);
-  background: rgba(0,0,0,0.3);
-  padding: 3px 7px;
-  border-radius: 999px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  color: var(--cyan);
+  font-weight: 600;
+  z-index: 3;
   white-space: nowrap;
-  text-transform: uppercase;
 }
 
-.np-art-title {
-  position: relative;
-  z-index: 2;
-  margin-top: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+/* Show title — "The Innovation Pulse" */
+.np-art-show-title {
+  position: absolute;
+  top: 178px;
+  left: 24px;
+  width: 165px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  color: var(--text);
-  line-height: 1.18;
+  font-size: 26px;
+  font-weight: 800;
+  color: #f5f1e8;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  z-index: 3;
+}
+
+/* Date band — bottom */
+.np-art-date-band {
+  position: absolute;
+  bottom: 18px;
+  left: 24px;
+  right: 24px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(34, 211, 238, 0.3);
+  z-index: 3;
+}
+
+.np-art-date-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.np-art-date-main {
+  font-size: 22px;
+  font-weight: 800;
+  color: #f5f1e8;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.np-art-date-sep {
+  color: var(--cyan);
+  margin: 0 4px;
+}
+
+.np-art-date-year {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.np-art-date-tag {
+  margin-top: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px;
+  letter-spacing: 0.22em;
+  color: rgba(34, 211, 238, 0.7);
+  white-space: nowrap;
 }
 
 /* ==========================================================================
