@@ -132,23 +132,15 @@ Sections that MUST exist (in order):
 
 1. **Hero**: "Built by Educators. Powered by AI. Made for You."
 2. **Founder Bios** (Dr. Jones first, Brent second) — with monogram badges, taglines, credential badges
-3. **By the Numbers** stat strip:
-   - 120+ presentations
-   - 100+ TV episodes
-   - 44 AI tools reviewed
-   - 7-step automated pipeline
-4. **Mission Quote** (pull-quote styling)
-5. **Our Story Timeline** (2024 → 2025 → 2026)
-6. **What We Stand For** (4 value cards with icons):
-   - Innovation With Purpose
-   - Practical Over Theoretical
-   - Community-Driven
-   - Equity at the Center
-7. **Get in Touch CTA**
+3. **Let's Connect CTA** — Contact Us + Be Our Guest buttons
 
 ### Sections that were REMOVED and must NOT be re-added:
 - "What We Offer" cards (redundant with nav)
 - Inline AI Disclosure section (has its own page at /ai-disclosure)
+- "By the Numbers" stat strip (fabricated/unverifiable metrics — removed 2026-04-20)
+- "Mission Quote" block (self-aggrandizing puffery — removed 2026-04-20)
+- "Our Story Timeline" (fabricated narrative — removed 2026-04-20)
+- "What We Stand For" value cards (generic marketing copy — removed 2026-04-20)
 
 **Implementation reference:** `app/about/page.tsx`
 
@@ -378,6 +370,7 @@ After pushing changes to Vercel:
 |------|--------|-------------|
 | 2026-03-18 | Initial skill creation | Founder |
 | 2026-03-26 | Added Section 12: Story Image Architecture | System |
+| 2026-04-20 | Section 6: Removed fabricated credibility blocks from About page | Founder |
 
 ---
 
