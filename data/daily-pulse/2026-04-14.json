@@ -1,0 +1,100 @@
+{
+  "episode": {
+    "date": "2026-04-14",
+    "dayOfWeek": "Monday",
+    "editorialLens": "The Hard Question",
+    "lensDescription": "Examine complexity and tradeoffs. Surface the questions worth asking.",
+    "lensColor": "#fb7185",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-04-14.mp3",
+    "audioDuration": "5:22",
+    "broadcastScript": "This is The Innovation Pulse for Tuesday, April 14, 2026. And here's who is innovating in higher education today.\n\n<break time=\"1.0s\"/>\n\nIn Insights and Trends today, hundreds of students at Berklee College of Music have signed an online petition opposing a new course on generative A.I. and music. According to Futurism, more than four hundred people had signed the petition as of Tuesday, calling for the school to stop leveraging A.I. on campus. The two-credit course, titled Bots and Beats: A.I. and the Future of Songwriting, would explore how A.I. aided songwriting both assists and hinders musical creativity, while examining the technology's broader impact on the music industry and musicians' future careers. Petition organizers argue that OpenAI's technology steals the art of tens of thousands of artists and creates, in their words, facsimiles of real human art. The petition calls the technology a threat to the creative industries Berklee students are training to enter. One alumnus wrote: Very unfortunate behavior from an esteemed creative music college. Do better, Berklee. Another graduate noted concerns about the educational approach, saying: If I were a paying student now, I'd be angry being told to use it in place of struggling through every assignment fully myself. Berklee maintained that as an artist-first institution, it has a responsibility to prepare students to navigate technologies impacting the creative industries. The statement did not address whether the course would proceed as planned.\n\n<break time=\"1.0s\"/>\n\nTurning to Practical Tips, a University of Nebraska instructor has published recommendations for helping students maintain independent thinking skills as A.I. tools become ubiquitous. According to the UNL Center for Transformative Teaching, fifty-seven percent of students now use large language models daily or at least weekly in their coursework, based on 2026 Lumina-Gallup research. Sydney Brown, assistant director at the Center, identifies three concrete approaches for instructors. First, designate at least one gym task that explicitly prohibits A.I. use while explaining the cognitive benefits of working independently. Second, design assessments requiring students to explain their reasoning without A.I. access. Third, create construction-site learning experiences where A.I. magnifies human capability within structured, discipline-specific frameworks. Brown references researcher Marvin Starominski-Uehara's concept of creeping cognitive displacement syndrome, describing three stages: students progress from using A.I. as an editing tool, to uncritically generating arguments they have not thought through, to eventually losing what he calls cognitive sovereignty and independent judgment capacity.\n\n<break time=\"1.0s\"/>\n\nIn Case Study today, University of Virginia Librarian Leo Lo and Dean Christa Acampora are launching an A.I. Literacy and Action Lab to teach students critical thinking skills for an A.I. enabled world. According to UVA Today, the initiative addresses concerns about A.I.'s impact on education while positioning libraries as essential institutions for developing judgment about information. Lo described encountering students who asked for books and sources that the chatbot had fabricated. Those students needed a librarian before they needed a better A.I. tool, Lo said. The lab emphasizes what Lo calls cognitive agency, meaning students learn to consciously decide which intellectual tasks to delegate to machines versus preserve for human judgment. Lo warns against an emerging A.I. answer economy where synthesized responses replace critical evaluation of sources. Rather than banning A.I. entirely, Lo advocates developing deliberate frameworks for its educational use. A research library has always done two things, he said: help people find information, and help them judge it.\n\n<break time=\"1.0s\"/>\n\nIn A.I. Workforce and Careers, Florida International University students face inconsistent guidance on A.I. use across courses. According to PantherNOW, a Gallup study found thirty-three percent of students have reconsidered their major due to A.I. concerns, while fifty-two percent report their courses lack clear A.I. guidelines. The same study found a sixteen percent employment decline for workers ages twenty-two to twenty-five in A.I. exposed fields between 2022 and 2025. Graduate programs at FIU offer clearer guidance than undergraduate courses, and enforcement varies by professor and course level. The university emphasizes data security through approved tools like Microsoft Copilot rather than career-focused skill development.\n\n<break time=\"1.0s\"/>\n\nAnd in Investing in Innovation, TED, Khan Academy, and ETS have announced the Khan TED Institute, a higher education model centered on artificial intelligence and competency-based assessment. According to EdTech Innovation Hub, the partnership was announced at TED 2026 in Vancouver and includes corporate partners Google, Microsoft, Accenture, Bain and Company, McKinsey and Company, and Replit. Rather than measuring success through time spent in courses, the institute assesses students based on demonstrated skills across three areas: academic foundations, applied A.I., and communication and leadership. Sal Khan stated: People need new ways to learn, build and demonstrate their capabilities. Applications are expected to open within twelve to eighteen months.\n\n<break time=\"1.0s\"/>\n\nThat's today's Innovation Pulse. Full coverage and source links at innovating higher ed dot com.\n"
+  },
+  "leadStory": {
+    "headline": "Berklee College of Music Students Petition Against AI Songwriting Course",
+    "summary": "Hundreds of students at Berklee College of Music have signed an online petition opposing a new course on generative AI and music. According to Futurism, 418 people had signed the petition as of Tuesday, calling for the school to stop leveraging AI on campus.\n\nThe two-credit course, titled \"Bots and Beats: AI and the Future of Songwriting,\" would explore how AI-aided songwriting both assists and hinders musical creativity, while examining AI's broader impact on the music industry and musicians' future careers.\n\nPetition organizers argue that OpenAI's ChatGPT \"steals the art\" of tens of thousands of artists and creates \"facsimiles of real human art.\" The petition calls the technology a threat to the creative industries Berklee students are training to enter.\n\nCurrent and former students expressed disapproval in petition comments. One alumnus wrote: \"Very unfortunate behavior from an esteemed creative/music college. Do better, Berklee.\" Another graduate noted concerns about the educational approach: \"If I were a paying student now, I'd be angry being told to use it in place of struggling through every assignment fully myself.\"\n\nBerklee maintained that as an \"artist-first institution,\" it has a responsibility to prepare students to \"navigate technologies impacting the creative industries.\" The statement did not address whether the course would proceed as planned.",
+    "source": "Futurism",
+    "sourceUrl": "https://futurism.com/artificial-intelligence/berklee-college-ai-music",
+    "category": "Insights & Trends",
+    "wordCount": 218,
+    "verification": {
+      "pass1": true,
+      "pass2": true,
+      "notes": "All quotes, statistics, and proper nouns verified against source"
+    }
+  },
+  "quickHits": [
+    {
+      "headline": "Nebraska Instructor Offers Three Strategies for Teaching Judgment in AI Era",
+      "summary": "A University of Nebraska–Lincoln instructor has published recommendations for helping students maintain independent thinking skills as AI tools become ubiquitous. According to the UNL Center for Transformative Teaching, 57 percent of students now use large language models like ChatGPT, Gemini, and Copilot daily or at least weekly in their coursework, based on 2026 Lumina-Gallup research.\n\nSydney Brown, assistant director at the Center for Transformative Teaching, identifies three concrete approaches. First, instructors should designate at least one \"gym task\" that explicitly prohibits AI use while explaining the cognitive benefits of working independently. Second, assessments should require students to explain their reasoning without AI access. Third, instructors should create \"construction-site\" learning experiences where AI magnifies human capability within structured, discipline-specific frameworks.\n\nBrown references researcher Marvin Starominski-Uehara's concept of \"creeping cognitive displacement syndrome,\" describing how students progress from using AI as an editing tool to uncritically generating arguments they have not thought through, to eventually losing what he calls \"cognitive sovereignty\" and independent judgment capacity.",
+      "source": "University of Nebraska–Lincoln",
+      "sourceUrl": "https://newsroom.unl.edu/announce/teacherconnect/20222/107533",
+      "category": "Practical Tips",
+      "wordCount": 178,
+      "verification": {
+        "pass1": true,
+        "pass2": true,
+        "notes": "All quotes, statistics, and proper nouns verified against source"
+      }
+    },
+    {
+      "headline": "UVA Librarian Launches AI Literacy Lab to Teach Critical Judgment",
+      "summary": "University of Virginia Librarian Leo Lo and Dean Christa Acampora are launching an \"AI Literacy and Action Lab\" to teach students critical thinking skills for an AI-enabled world. According to UVA Today, the initiative addresses concerns about AI's impact on education while positioning libraries as essential institutions for developing judgment about information.\n\nLo described encountering students who asked for books and sources that ChatGPT had fabricated. \"Those students needed a librarian before they needed a better AI tool,\" Lo said.\n\nThe lab emphasizes what Lo calls \"cognitive agency\"—students learning to consciously decide which intellectual tasks to delegate to machines versus preserve for human judgment. Lo warns against an emerging \"AI answer economy\" where synthesized responses replace critical evaluation of sources.\n\nRather than banning AI entirely, Lo advocates developing deliberate frameworks for its educational use. \"A research library has always done two things: help people find information, and help them judge it,\" he said.",
+      "source": "UVA Today",
+      "sourceUrl": "https://news.virginia.edu/content/qa-age-ai-what-library",
+      "category": "Case Study",
+      "wordCount": 165,
+      "verification": {
+        "pass1": true,
+        "pass2": true,
+        "notes": "All quotes, statistics, and proper nouns verified against source"
+      }
+    },
+    {
+      "headline": "FIU Students Report Inconsistent AI Guidance Across Courses",
+      "summary": "Florida International University students face inconsistent guidance on AI use across courses, leaving them to navigate the technology's practical applications independently. According to PantherNOW, a Gallup study found 33 percent of students have reconsidered their major due to AI concerns, while 52 percent report their courses lack clear AI guidelines.\n\nThe same study found a 16 percent employment decline for workers ages 22 to 25 in AI-exposed fields between 2022 and 2025.\n\nGraduate programs at FIU offer clearer guidance than undergraduate courses, and enforcement varies by professor and course level, according to the report. The university emphasizes data security through approved tools like Microsoft Copilot rather than career-focused skill development.\n\nBrooke Johnson, writing for PantherNOW, argues that universities struggle to implement policies reflecting real-world AI use faster than the technology advances. She recommends FIU establish clearer, consistent guidelines across all majors, urging each department to define current AI industry applications and integrate that knowledge into curricula while supporting foundational skills.",
+      "source": "PantherNOW",
+      "sourceUrl": "https://panthernow.com/2026/04/15/fiu-isnt-preparing-students-for-an-ai-workforce/",
+      "category": "AI Workforce & Careers",
+      "wordCount": 171,
+      "verification": {
+        "pass1": true,
+        "pass2": true,
+        "notes": "All quotes, statistics, and proper nouns verified against source"
+      }
+    },
+    {
+      "headline": "TED, Khan Academy, and ETS Announce AI-Focused Higher Education Institute",
+      "summary": "TED, Khan Academy, and ETS have announced the Khan TED Institute, a higher education model centered on artificial intelligence and competency-based assessment. According to EdTech Innovation Hub, the partnership was announced at TED2026 in Vancouver and includes corporate partners Google, Microsoft, Accenture, Bain and Company, McKinsey and Company, and Replit.\n\nRather than measuring success through time spent in courses, the institute assesses students based on demonstrated skills. Learners advance by completing defined benchmarks across three areas: academic foundations, applied AI, and communication and leadership. The curriculum includes mathematics, computer science, economics, writing, and practical AI projects.\n\nApplications are expected to open within 12 to 18 months.\n\nSal Khan stated: \"People need new ways to learn, build and demonstrate their capabilities\" in response to rapid educational and technological change. Logan McClure Davda emphasized that TED aims to help people \"engage with ideas, develop judgment, and apply what they learn\" in the AI era.\n\nKhan Academy provides the learning platform, TED supplies content and its network, and ETS contributes assessment expertise.",
+      "source": "EdTech Innovation Hub",
+      "sourceUrl": "https://www.edtechinnovationhub.com/news/ted-khan-academy-and-ets-move-into-higher-education-with-new-ai-focused-institute",
+      "category": "Investing in Innovation",
+      "wordCount": 176,
+      "verification": {
+        "pass1": true,
+        "pass2": true,
+        "notes": "All quotes, statistics, and proper nouns verified against source"
+      }
+    }
+  ],
+  "meta": {
+    "totalStories": 5,
+    "categoriesUsed": [
+      "Insights & Trends",
+      "Practical Tips",
+      "Case Study",
+      "AI Workforce & Careers",
+      "Investing in Innovation"
+    ],
+    "categoryCount": 5,
+    "scrapeFailures": 3,
+    "swapsExecuted": 3,
+    "generatedAt": "2026-04-21T08:30:00Z",
+    "date": "2026-04-14",
+    "dayOfWeek": "Tuesday",
+    "editorialLens": "The Student Experience",
+    "version": "3.0",
+    "format": "straight-news",
+    "publishedAt": "2026-04-21T17:50:13.704Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
