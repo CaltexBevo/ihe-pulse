@@ -2005,7 +2005,7 @@ textarea:focus:not(:focus-visible) {
 .np-player {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .np-kicker {
@@ -2349,7 +2349,7 @@ textarea:focus:not(:focus-visible) {
    ========================================================================== */
 
 .np-subscribe {
-  margin-top: 20px;
+  margin-top: 24px;
   padding: 24px 28px;
   background:
     radial-gradient(ellipse at 20% 50%, rgba(0,212,255,0.06), transparent 60%),

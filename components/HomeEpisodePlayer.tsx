@@ -79,7 +79,7 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
       </div>
 
       {/* Subscribe strip — matches Innovation Pulse page */}
-      <div className="np-subscribe" style={{ marginTop: '20px', marginBottom: '8px' }}>
+      <div className="np-subscribe" style={{ marginTop: '24px', marginBottom: '8px' }}>
         <div className="np-sub-copy">
           <strong>Never miss an episode.</strong>{" "}
           <span className="np-sub-muted">
