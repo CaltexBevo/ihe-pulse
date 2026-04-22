@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SectionHeader from "@/components/SectionHeader";
 import Card from "@/components/Card";
-import HeroNowPlaying from "@/components/HeroNowPlaying";
+import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
 import TopStoriesSlider from "@/components/TopStoriesSlider";
 import LeadStoryCard from "@/components/LeadStoryCard";
 import HomePromptCards from "@/components/HomePromptCards";
@@ -22,7 +22,7 @@ import { episodes } from "@/lib/data/episodes";
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
   const allEpisodes = getAllEpisodes();
-  const recentEpisodes = allEpisodes.slice(0, 5); // Last 5 episodes (sliding window)
+  const recentEpisodes = allEpisodes.slice(0, 6); // Last 6 episodes (sliding window)
   const allStories = getAllStoriesAggregated();
   const latestPodcastEpisodes = episodes.slice(0, 3);
 
@@ -54,12 +54,6 @@ export default function Home() {
     ? [leadStoryAsCard, ...otherStories]
     : otherStories.slice(0, 3);
 
-  // "Also in this episode" strip data for HeroNowPlaying
-  const heroOtherStories = pulseEpisode?.quickHits?.slice(0, 3).map(hit => ({
-    source: hit.source,
-    tease: hit.title,
-  })) || [];
-
   // Placeholder images for Podcasts
   const podcastImages = [
     "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=340&fit=crop",
@@ -70,7 +64,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* ═══════════════════════════════════════════════════════
-          INNOVATION PULSE HERO - V9 "NOW PLAYING" DESIGN
+          INNOVATION PULSE HERO - Episode Player with Recent Episodes
           ═══════════════════════════════════════════════════════ */}
       <section className="relative">
         {/* Premium gradient background */}
@@ -78,15 +72,12 @@ export default function Home() {
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
 
         <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
-          <div className="animate-[fadeUp_0.7s_ease-out_both]">
-            {pulseEpisode && (
-              <HeroNowPlaying
-                latestEpisode={pulseEpisode}
-                recentEpisodes={recentEpisodes}
-                otherStories={heroOtherStories}
-              />
-            )}
-          </div>
+          {pulseEpisode && (
+            <HomeEpisodePlayer
+              latestEpisode={pulseEpisode}
+              recentEpisodes={recentEpisodes}
+            />
+          )}
         </div>
       </section>
 

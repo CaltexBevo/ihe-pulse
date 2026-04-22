@@ -2049,6 +2049,33 @@ textarea:focus:not(:focus-visible) {
 .np-meta .np-meta-dot { color: var(--cyan); }
 .np-meta strong { color: var(--text); font-weight: 600; }
 
+/* Share button in meta row */
+.np-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.np-share-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+}
+.np-share-icon {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.5;
+}
+
 .np-scrubber {
   display: flex;
   align-items: center;
@@ -2238,6 +2265,18 @@ textarea:focus:not(:focus-visible) {
 }
 .np-upnext-stories strong { color: var(--text); font-weight: 500; }
 .np-upnext-stories .np-upnext-dot { color: var(--text-dim); }
+.np-upnext-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+.np-upnext-link:hover {
+  color: var(--cyan);
+}
+.np-upnext-link:hover strong {
+  color: var(--cyan);
+}
 
 /* ==========================================================================
    V9 HERO — Subscribe Strip
@@ -2484,12 +2523,15 @@ textarea:focus:not(:focus-visible) {
 
 .ip-recent-card {
   display: block;
+  width: 100%;
   padding: 14px 16px;
   background: var(--raised);
   border: 1px solid var(--border);
   border-radius: 12px;
   text-decoration: none;
-  transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
 }
 
 .ip-recent-card:hover {
@@ -2518,4 +2560,35 @@ textarea:focus:not(:focus-visible) {
   line-height: 1.35;
   color: var(--text);
   font-weight: 500;
+  text-align: left;
+}
+
+/* Active/Selected state for recent episode cards */
+.ip-recent-card-active {
+  border-color: var(--cyan) !important;
+  background: var(--cyan-dim) !important;
+}
+.ip-recent-card-active:hover {
+  border-color: var(--cyan) !important;
+}
+
+/* Now Playing indicator */
+.ip-recent-card-playing {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.ip-recent-card-playing-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulseDot 2s infinite;
 }

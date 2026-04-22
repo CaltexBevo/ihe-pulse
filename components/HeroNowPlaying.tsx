@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
 
 function formatTime(seconds: number): string {
@@ -13,18 +13,40 @@ function formatTime(seconds: number): string {
 interface HeroNowPlayingProps {
   latestEpisode: InnovationPulseEpisode;
   recentEpisodes: InnovationPulseEpisode[];
-  otherStories?: Array<{ source: string; tease: string }>;
+  otherStories?: Array<{ source: string; tease: string; headline?: string }>;
   showExtras?: boolean;  // default true; when false, hides upnext + subscribe
   showHeader?: boolean;  // default true; when false, hides the eyebrow row
+  // Controlled mode props
+  selectedEpisodeIndex?: number;
+  onEpisodeChange?: (index: number, episode: InnovationPulseEpisode) => void;
+  onAlsoInEpisodeClick?: () => void; // Called when "Also in this episode" item is clicked
+  autoPlay?: boolean; // Auto-play when episode changes
 }
 
-export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherStories, showExtras = true, showHeader = true }: HeroNowPlayingProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+export default function HeroNowPlaying({
+  latestEpisode,
+  recentEpisodes,
+  otherStories,
+  showExtras = true,
+  showHeader = true,
+  selectedEpisodeIndex,
+  onEpisodeChange,
+  onAlsoInEpisodeClick,
+  autoPlay = false,
+}: HeroNowPlayingProps) {
+  // Support both controlled and uncontrolled mode
+  const [internalIndex, setInternalIndex] = useState(0);
+  const isControlled = selectedEpisodeIndex !== undefined;
+  const selectedIndex = isControlled ? selectedEpisodeIndex : internalIndex;
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [showCopied, setShowCopied] = useState(false);
+  const prevIndexRef = useRef(selectedIndex);
 
   const currentEpisode = recentEpisodes[selectedIndex] || latestEpisode;
   const paused = !isPlaying;
@@ -118,8 +140,19 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
       setCurrentTime(0);
       setDuration(0);
       setIsPlaying(false);
+
+      // Auto-play when episode changes (if controlled and autoPlay or if different from prev)
+      if (prevIndexRef.current !== selectedIndex && autoPlay) {
+        const playTimer = setTimeout(() => {
+          audio.play()
+            .then(() => setIsPlaying(true))
+            .catch((err) => console.log('Autoplay blocked:', err));
+        }, 300);
+        return () => clearTimeout(playTimer);
+      }
+      prevIndexRef.current = selectedIndex;
     }
-  }, [currentEpisode?.audioUrl]);
+  }, [currentEpisode?.audioUrl, selectedIndex, autoPlay]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -145,12 +178,21 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
     }
   };
 
+  const setSelectedIndexWrapper = useCallback((newIndex: number) => {
+    const episode = recentEpisodes[newIndex];
+    if (isControlled && onEpisodeChange && episode) {
+      onEpisodeChange(newIndex, episode);
+    } else {
+      setInternalIndex(newIndex);
+    }
+  }, [isControlled, onEpisodeChange, recentEpisodes]);
+
   const handlePrev = () => {
     if (selectedIndex < recentEpisodes.length - 1) {
       const audio = audioRef.current;
       if (audio) audio.pause();
       setIsPlaying(false);
-      setSelectedIndex(selectedIndex + 1);
+      setSelectedIndexWrapper(selectedIndex + 1);
     }
   };
 
@@ -159,12 +201,63 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
       const audio = audioRef.current;
       if (audio) audio.pause();
       setIsPlaying(false);
-      setSelectedIndex(selectedIndex - 1);
+      setSelectedIndexWrapper(selectedIndex - 1);
+    }
+  };
+
+  // Share functionality
+  const handleShare = async () => {
+    const shareUrl = `${window.location.origin}/innovation-pulse/${currentEpisode.date}`;
+    const shareData = {
+      title: currentEpisode.deepDive?.title || 'The Innovation Pulse',
+      text: `Listen to The Innovation Pulse: ${currentEpisode.deepDive?.title}`,
+      url: shareUrl,
+    };
+
+    // Try Web Share API first (mobile)
+    if (navigator.share && navigator.canShare?.(shareData)) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err) {
+        // User cancelled or error - fall through to clipboard
+        if ((err as Error).name !== 'AbortError') {
+          console.log('Share failed:', err);
+        }
+      }
+    }
+
+    // Fallback to clipboard
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShowCopied(true);
+      setTimeout(() => setShowCopied(false), 2000);
+    } catch (err) {
+      console.log('Copy failed:', err);
+    }
+  };
+
+  // Handle "Also in this episode" click
+  const handleAlsoInEpisodeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Scroll to hero if not visible
+    if (heroRef.current) {
+      heroRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Start playing
+    if (audioRef.current && !isPlaying) {
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => console.log('Autoplay blocked:', err));
+    }
+    // Call external handler if provided
+    if (onAlsoInEpisodeClick) {
+      onAlsoInEpisodeClick();
     }
   };
 
   return (
-    <section className={`np-hero ${paused ? "np-paused" : ""}`}>
+    <section ref={heroRef} className={`np-hero ${paused ? "np-paused" : ""}`}>
       {currentEpisode.audioUrl && (
         <audio ref={audioRef} src={currentEpisode.audioUrl} preload="metadata" />
       )}
@@ -225,6 +318,29 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
             <span>{storyCount} Stories</span>
             <span className="np-meta-dot">●</span>
             <span>{durationDisplay}</span>
+            <button
+              className="np-share-btn"
+              aria-label="Share episode"
+              onClick={handleShare}
+              type="button"
+            >
+              {showCopied ? (
+                <>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="np-share-icon">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="np-share-icon">
+                    <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                    <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+                  </svg>
+                  <span>Share</span>
+                </>
+              )}
+            </button>
           </div>
 
           <div className="np-scrubber">
@@ -275,7 +391,13 @@ export default function HeroNowPlaying({ latestEpisode, recentEpisodes, otherSto
             {otherStories.map((s, i) => (
               <span key={i}>
                 {i > 0 && <span className="np-upnext-dot">● </span>}
-                <strong>{s.source}</strong> {s.tease}
+                <button
+                  type="button"
+                  onClick={handleAlsoInEpisodeClick}
+                  className="np-upnext-link"
+                >
+                  <strong>{s.source}</strong> {s.tease}
+                </button>
               </span>
             ))}
           </div>
