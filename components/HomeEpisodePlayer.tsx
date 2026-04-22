@@ -64,16 +64,32 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
 
   return (
     <>
-      {/* Hero player with episode artwork and controls */}
+      {/* Hero player with episode artwork and controls — matches Innovation Pulse page */}
       <div className="animate-[fadeUp_0.7s_ease-out_both]">
         <HeroNowPlaying
           latestEpisode={currentEpisode}
           recentEpisodes={recentEpisodes}
           otherStories={heroOtherStories}
+          showExtras={false}
+          showHeader={false}
           selectedEpisodeIndex={selectedEpisodeIndex}
           onEpisodeChange={handleEpisodeChange}
           autoPlay={shouldAutoPlay}
         />
+      </div>
+
+      {/* Subscribe strip — matches Innovation Pulse page */}
+      <div className="np-subscribe" style={{ marginTop: '20px', marginBottom: '8px' }}>
+        <div className="np-sub-copy">
+          <strong>Never miss an episode.</strong>{" "}
+          <span className="np-sub-muted">
+            Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
+          </span>
+        </div>
+        <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
+          <input type="email" placeholder="your@email.edu" aria-label="Email address" />
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
 
       {/* Recent Episodes grid — matches Innovation Pulse page */}

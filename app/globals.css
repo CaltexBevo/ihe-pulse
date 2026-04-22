@@ -2223,7 +2223,60 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ==========================================================================
-   V9 HERO — Upnext Strip
+   V10 HERO — "Also In This Episode" (INSIDE card, center-justified)
+   Added 2026-04-22
+   ========================================================================== */
+
+.np-also-in-episode {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.np-also-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.np-also-stories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+}
+.np-also-story {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-align: left;
+  line-height: 1.4;
+}
+.np-also-story:hover {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+}
+.np-also-story strong {
+  color: var(--cyan);
+  font-weight: 500;
+  margin-right: 6px;
+}
+.np-also-story:hover strong {
+  color: var(--text);
+}
+
+/* ==========================================================================
+   V9 HERO — Upnext Strip (legacy, now unused)
    Added 2026-04-17 Part 4
    ========================================================================== */
 

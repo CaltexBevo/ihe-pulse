@@ -380,29 +380,27 @@ export default function HeroNowPlaying({
               <span>to play</span>
             </div>
           </div>
+
+          {/* Also in this episode — INSIDE the card, center-justified */}
+          {otherStories && otherStories.length > 0 && (
+            <div className="np-also-in-episode">
+              <span className="np-also-label">Also in this episode</span>
+              <div className="np-also-stories">
+                {otherStories.map((s, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={handleAlsoInEpisodeClick}
+                    className="np-also-story"
+                  >
+                    <strong>{s.source}</strong> {s.tease || s.headline}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Also in this episode strip */}
-      {showExtras && otherStories && otherStories.length > 0 && (
-        <div className="np-upnext">
-          <div className="np-upnext-label">Also in this episode</div>
-          <div className="np-upnext-stories">
-            {otherStories.map((s, i) => (
-              <span key={i}>
-                {i > 0 && <span className="np-upnext-dot">● </span>}
-                <button
-                  type="button"
-                  onClick={handleAlsoInEpisodeClick}
-                  className="np-upnext-link"
-                >
-                  <strong>{s.source}</strong> {s.tease}
-                </button>
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Inline subscribe strip */}
       {showExtras && (
