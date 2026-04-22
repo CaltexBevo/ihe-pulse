@@ -2228,15 +2228,17 @@ textarea:focus:not(:focus-visible) {
    ========================================================================== */
 
 .np-also-in-episode {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 12px 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
   gap: 0;
   text-align: center;
+  margin-top: 0;
 }
 .np-also-label {
   font-family: 'JetBrains Mono', monospace;
@@ -2268,7 +2270,7 @@ textarea:focus:not(:focus-visible) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 280px;
+  max-width: 220px;
 }
 .np-also-story:hover {
   color: var(--cyan);
