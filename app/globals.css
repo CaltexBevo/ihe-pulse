@@ -2236,6 +2236,7 @@ textarea:focus:not(:focus-visible) {
   justify-content: center;
   flex-wrap: nowrap;
   gap: 0;
+  text-align: center;
 }
 .np-also-label {
   font-family: 'JetBrains Mono', monospace;
