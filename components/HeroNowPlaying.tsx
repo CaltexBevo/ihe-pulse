@@ -396,7 +396,7 @@ export default function HeroNowPlaying({
                     onClick={handleAlsoInEpisodeClick}
                     className="np-also-story"
                   >
-                    <strong>{s.source}</strong> {s.tease || s.headline}
+                    {s.tease || s.headline}
                   </button>
                 </span>
               ))}

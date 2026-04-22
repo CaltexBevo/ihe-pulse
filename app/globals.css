@@ -2241,7 +2241,7 @@ textarea:focus:not(:focus-visible) {
   flex-wrap: nowrap;
   gap: 0;
   text-align: center;
-  margin-top: 24px;
+  margin-top: 16px;
   overflow: hidden;
 }
 .np-also-label {
@@ -2278,13 +2278,6 @@ textarea:focus:not(:focus-visible) {
 }
 .np-also-story:hover {
   color: var(--cyan);
-}
-.np-also-story strong {
-  color: var(--cyan);
-  font-weight: 600;
-}
-.np-also-story:hover strong {
-  color: var(--text);
 }
 .np-also-sep {
   color: var(--text-dim);
