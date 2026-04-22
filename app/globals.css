@@ -1869,7 +1869,7 @@ textarea:focus:not(:focus-visible) {
    Added 2026-04-17 Part 3 — use these EXACT class names
    ========================================================================== */
 
-.np-hero { padding: 48px 0 40px; }
+.np-hero { padding: 48px 0 0; }
 
 .np-hero-header {
   display: flex;
@@ -1927,7 +1927,7 @@ textarea:focus:not(:focus-visible) {
 
 .np-card {
   border-radius: 24px;
-  padding: 40px;
+  padding: 40px 40px 16px 40px;
   display: grid;
   grid-template-columns: 360px 1fr;
   column-gap: 48px;
@@ -2233,7 +2233,7 @@ textarea:focus:not(:focus-visible) {
   width: calc(100% + 80px);
   margin-left: -40px;
   margin-right: -40px;
-  margin-bottom: -40px;
+  margin-bottom: -16px;
   padding: 14px 40px;
   border-top: 1px solid rgba(255,255,255,0.06);
   display: flex;
