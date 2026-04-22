@@ -2229,8 +2229,11 @@ textarea:focus:not(:focus-visible) {
 
 .np-also-in-episode {
   grid-column: 1 / -1;
-  width: 100%;
-  padding: 12px 24px;
+  width: calc(100% + 80px);
+  margin-left: -40px;
+  margin-right: -40px;
+  margin-bottom: -40px;
+  padding: 14px 40px;
   border-top: 1px solid rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
@@ -2238,7 +2241,8 @@ textarea:focus:not(:focus-visible) {
   flex-wrap: nowrap;
   gap: 0;
   text-align: center;
-  margin-top: 0;
+  margin-top: 24px;
+  overflow: hidden;
 }
 .np-also-label {
   font-family: 'JetBrains Mono', monospace;
@@ -2260,7 +2264,7 @@ textarea:focus:not(:focus-visible) {
 .np-also-story {
   display: inline-block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   background: transparent;
   border: none;
@@ -2270,7 +2274,7 @@ textarea:focus:not(:focus-visible) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 220px;
+  max-width: 180px;
 }
 .np-also-story:hover {
   color: var(--cyan);
