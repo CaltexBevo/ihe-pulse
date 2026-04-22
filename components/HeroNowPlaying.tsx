@@ -381,22 +381,24 @@ export default function HeroNowPlaying({
             </div>
           </div>
 
-          {/* Also in this episode — INSIDE the card, center-justified */}
+          {/* Also in this episode — INSIDE the card, horizontal inline */}
           {otherStories && otherStories.length > 0 && (
             <div className="np-also-in-episode">
               <span className="np-also-label">Also in this episode</span>
-              <div className="np-also-stories">
+              <span className="np-also-stories">
                 {otherStories.map((s, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={handleAlsoInEpisodeClick}
-                    className="np-also-story"
-                  >
-                    <strong>{s.source}</strong> {s.tease || s.headline}
-                  </button>
+                  <span key={i}>
+                    {i > 0 && <span className="np-also-sep">●</span>}
+                    <button
+                      type="button"
+                      onClick={handleAlsoInEpisodeClick}
+                      className="np-also-story"
+                    >
+                      <strong>{s.source}</strong> {s.tease || s.headline}
+                    </button>
+                  </span>
                 ))}
-              </div>
+              </span>
             </div>
           )}
         </div>

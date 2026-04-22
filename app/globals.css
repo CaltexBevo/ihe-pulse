@@ -2223,7 +2223,7 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ==========================================================================
-   V10 HERO — "Also In This Episode" (INSIDE card, center-justified)
+   V10 HERO — "Also In This Episode" (INSIDE card, horizontal inline)
    Added 2026-04-22
    ========================================================================== */
 
@@ -2232,47 +2232,47 @@ textarea:focus:not(:focus-visible) {
   padding-top: 20px;
   border-top: 1px solid var(--border);
   text-align: center;
+  line-height: 1.6;
 }
 .np-also-label {
-  display: block;
+  display: inline;
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.18em;
   color: var(--text-muted);
   text-transform: uppercase;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-right: 12px;
 }
 .np-also-stories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 16px;
+  display: inline;
 }
 .np-also-story {
+  display: inline;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.82rem;
   color: var(--text-secondary);
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  text-align: left;
-  line-height: 1.4;
+  padding: 0;
+  transition: color 0.2s ease;
 }
 .np-also-story:hover {
-  background: var(--cyan-dim);
   color: var(--cyan);
 }
 .np-also-story strong {
   color: var(--cyan);
-  font-weight: 500;
-  margin-right: 6px;
+  font-weight: 600;
 }
 .np-also-story:hover strong {
   color: var(--text);
+}
+.np-also-sep {
+  display: inline;
+  color: var(--text-dim);
+  margin: 0 10px;
+  font-size: 0.65rem;
 }
 
 /* ==========================================================================
