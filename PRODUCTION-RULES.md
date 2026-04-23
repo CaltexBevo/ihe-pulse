@@ -52,6 +52,12 @@
 5. **Big Story** (2-3+ minutes): Full context, analysis, practical implications — this is the value
 6. **Closing** (10-15s): Theme summary + URL + sign-off
 
+### Broadcast Closing Line (PERMANENT — April 2026)
+Every broadcast MUST end with this exact phrase:
+> "That's today's Innovation Pulse. Thank you for joining us. Full coverage and source links at innovating higher ed dot com."
+
+The "Thank you for joining us." line is mandatory and must not be removed.
+
 ### Tease Rules
 - Tease to the HOOK, never the answer
 - Specific enough to get wheels turning, vague enough to keep guessing
@@ -327,3 +333,79 @@ See `docs/DESIGN-TOKENS.md` for the full palette specification and WCAG contrast
 No component may render `style={{ background: someData.color }}` where `someData.color` comes from a fetched data payload. All accent colors must resolve through `paletteFor()` or `pillColorsFor()` helpers, which return palette-locked tokens only.
 
 GStack review should block commits that introduce `style.*background.*\.color` patterns in component files.
+
+---
+
+## 18. Story Picking Rules (PERMANENT — April 2026)
+
+Apply BEFORE selecting stories for any episode:
+
+### The 9 Rules
+
+1. **Story value filter** — reject personnel moves, event announcements, press releases, traffic drivers
+2. **"Would a CC faculty member share this?"** — if no, reject
+3. **"That's Interesting" framework** — look for TENSION, REVERSAL, SCALE, CHANGE
+4. **Categories earned, not assigned** — if it doesn't deliver on the category promise, it's Insights & Trends
+5. **Lead = broad appeal** — every faculty member sees themselves. Something HAPPENED, not proposed
+6. **Never two stories from the same underlying data source** in one episode
+7. **Beyond Ed = major AI industry stories everyone is discussing** (e.g., Mythos/Glasswing)
+8. **Single-institution grants are NOT broadly interesting** unless the grant creates something open/shared
+9. **"Considering" or "reviewing proposals" stories are NOT news** — nothing has happened yet
+
+### Automatic Rejection
+
+These story types are NEVER included:
+
+- **Personnel moves:** Hiring announcements, promotions, retirements (unless systemic pattern)
+- **Event announcements:** Conference dates, webinar promos, call for papers
+- **Press releases without news:** Product launches without implications for educators
+- **Self-promotional content:** Vendor marketing disguised as news
+- **Repetitive coverage:** Story we've already told (callback only with new information)
+- **Single-institution internal news:** Unless it has clear broader relevance
+- **Unverified claims:** No sources, no data, no attribution
+
+### Story Value Filter
+
+For each candidate story, ask:
+> "If a busy faculty member only has 5 minutes today, would they want to spend 60 seconds on this?"
+
+If the answer is "maybe" or "probably not" — cut it.
+
+### Anti-Fabrication Verification
+
+Before any story is included, verify:
+- All statistics have a named source
+- All quotes are attributed
+- Institution names are spelled correctly
+- Claims can be traced back to the original source
+- No "studies show" without naming the study
+
+If a story cannot be verified, it does not run.
+
+---
+
+## 19. Pipeline Workflow (Added April 22, 2026)
+
+### Streamlined 5-Step Production Process
+
+1. **Source** — Gather candidate stories from RSS feeds, newsletters, alerts
+2. **Filter** — Apply Section 18 story picking rules (9 criteria + rejection list)
+3. **Draft** — Generate broadcast script following Section 3 daily structure
+4. **Review** — Two-pass quality control (Section 7: accuracy, then voice)
+5. **Publish** — Export audio + JSON, verify data integrity (Section 16)
+
+### Approval Document Rule
+
+Every episode requires a versioned approval document before publish:
+- Filename: `approval-YYYY-MM-DD-vN.md` where N is version number
+- Must contain: story list, lead story justification, source diversity check
+- Version increments on any content change after initial review
+- Final approved version noted in episode JSON as `approvalDoc` field
+
+### Category Integrity Check
+
+Before publishing, verify:
+- Every story has exactly one category from the V4 list (Section 13)
+- No duplicate categories across all stories (aim for variety)
+- Lead story category matches the story's actual content
+- Category names match V4 exactly (case-sensitive)
