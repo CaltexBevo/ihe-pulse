@@ -1,0 +1,52 @@
+{
+  "episode": {
+    "date": "2026-04-20",
+    "dayOfWeek": "Monday",
+    "editorialLens": "The Hard Question",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-04-20.mp3",
+    "audioDuration": "5:08",
+    "broadcastScript": "This is The Innovation Pulse for Monday, April 20, 2026. And here's who is innovating in higher education today.\n\n<break time=\"1.0s\"/>\n\nIn Ethical A.I. today, an update on a story from Friday. We reported that Purdue University became the first in the nation to require A.I. literacy for graduation. This weekend, a cheating scandal in a computer science course sparked a broader campus debate about A.I.'s place in college.\n\nAccording to the Journal and Courier, professor Jeffrey Turkstra sent an email to more than two hundred students in his CS 240 class, alleging he caught them cheating with A.I. tools. Sent on the deadline for dropping a class, more than half the students unenrolled. Lines formed outside the lecture hall Monday as teaching assistants guarded doors.\n\nOne student told the newspaper the issue was how it was handled, not that cheaters were caught. The university's own academic integrity guide encourages but does not require a one-on-one meeting before allegations, leaving the process ambiguous. After talks with department heads, Turkstra announced Monday that allegations are dropped and students can re-enroll. But he will continue using A.I. detection going forward.\n\nThe tension reflects a fundamental question. The professor said his goal is ensuring students leave as good programmers. If they rely on A.I. to write code, that will not happen. But students countered that A.I. integration is a question of when, not if. The industry is pushing A.I. code development to make work faster and less costly.\n\n<break time=\"1.0s\"/>\n\nTurning to Insights and Trends, anxiety is spreading through Texas computer science programs as the job market shifts. According to the Texas Tribune, admissions are down roughly twenty percent, mirroring national trends as software engineering hiring slows.\n\nSoftware development job postings have plunged since a 2022 hiring boom. Some of the highest unemployment rates for recent graduates are in computer science at seven percent, according to a Federal Reserve Bank of New York study.\n\nPeter Stone, chair of U.T. Austin's computer science department, acknowledged the uncertainty. The students are anxious, the faculty are anxious, he said. One recent graduate was laid off from a cybersecurity firm in December along with half the software engineers. His bosses said the company restructured because of efficiencies A.I. introduced.\n\nProfessors noted reasons for optimism. Median wages for early career computer science graduates remain higher than any other degree. All three department chairs interviewed said they have introduced new A.I. curricula in response.\n\n<break time=\"1.0s\"/>\n\nIn A.I. Workforce and Careers, employers say finding graduates with the right A.I. skills is their main challenge. According to Higher Ed Dive, fifty-three percent of employers cited this as their primary hiring challenge, based on research from Pearson and Amazon Web Services.\n\nThe report found a significant perception gap. Seventy-eight percent of higher education leaders said they were meeting employer expectations, but only twenty-eight percent of employers agreed. Only fourteen percent of current graduates said they had achieved high proficiency applying A.I. tools professionally.\n\nTom ap Simon, president of higher education at Pearson, said basic A.I. literacy was no longer sufficient. Schools that lead in A.I. readiness today will shape workforce readiness tomorrow, he said.\n\n<break time=\"1.0s\"/>\n\nIn Practical Tips, a University of Pennsylvania economics professor used A.I. to compress a week-long master's module into just twelve hours. According to the College Fix, Jesús Fernández-Villaverde created a personalized study plan on sociologist Erving Goffman using an A.I. tool.\n\nHe wrote that a ninetieth percentile real professor could not have produced a better plan. He suggested someone could design self-learning courses better than what institutions outside top universities offer, at close to zero marginal cost.\n\nSteven Mintz, a U.T. Austin history professor, said A.I. forces higher education to confront weaknesses in pedagogy. If used well, it frees instructors to do what only humans can do: mentor, challenge, and engage students in sustained intellectual conversation.\n\n<break time=\"1.0s\"/>\n\nIn Case Study, the University of Cincinnati became the first Ohio university to offer a private A.I. platform for students and staff. According to W.L.W.T., BearcatGPT provides university-supported access to A.I. tools for test preparation and studying.\n\nThe platform was unveiled to students in February, allowing users to create study guides and tutoring tools. Bharath Prabhakaran, U.C. vice president and chief digital officer, said it gives the community access to private A.I. tools without sharing data publicly. The platform is part of the university's Bearcats A.I. Ready initiative.\n\n<break time=\"1.0s\"/>\n\nThat's today's Innovation Pulse. Thank you for joining us. Full coverage and source links at innovating higher ed dot com.\n"
+  },
+  "leadStory": {
+    "headline": "Purdue Cheating Scandal Sparks Debate Over AI's Place in College",
+    "summary": "A cheating scandal in a Purdue University computer science course has sparked a broader campus debate about A.I.'s place in college, just days after the university became the first in the nation to require A.I. literacy for graduation. Professor Jeffrey Turkstra sent an email to more than two hundred students in his CS 240 class, alleging he caught them cheating with A.I. tools. Sent on the deadline for dropping a class, more than half the students unenrolled. One student told the Journal and Courier the issue was how it was handled, not that cheaters were caught. The university's own academic integrity guide encourages but does not require a one-on-one meeting before allegations, leaving the process ambiguous. After talks with department heads, Turkstra announced allegations are dropped and students can re-enroll, but he will continue using A.I. detection going forward.",
+    "source": "Journal & Courier",
+    "sourceUrl": "https://www.jconline.com/story/news/local/purdue/2026/04/20/cheating-scandal-in-purdue-class-sparks-debate-over-ais-place-in-college/89703861007/",
+    "category": "Ethical AI"
+  },
+  "quickHits": [
+    {
+      "headline": "Texas CS Admissions Down 20% as Job Market Slows",
+      "summary": "Anxiety is spreading through Texas computer science programs as admissions are down roughly twenty percent, mirroring national trends as software engineering hiring slows. According to the Texas Tribune, some of the highest unemployment rates for recent graduates are in computer science at seven percent. Peter Stone, chair of U.T. Austin's computer science department, said the students are anxious and the faculty are anxious. Professors noted reasons for optimism: median wages for early career computer science graduates remain higher than any other degree.",
+      "source": "Texas Tribune",
+      "sourceUrl": "https://www.texastribune.org/2026/04/21/texas-computer-science-college-degree-ai/",
+      "category": "Insights & Trends"
+    },
+    {
+      "headline": "Employers Struggle to Find Graduates with Right AI Skillset",
+      "summary": "Employers say finding graduates with the right A.I. skills is their main challenge. According to Higher Ed Dive, fifty-three percent of employers cited this as their primary hiring challenge, based on research from Pearson and Amazon Web Services. The report found a perception gap: seventy-eight percent of higher education leaders said they were meeting employer expectations, but only twenty-eight percent of employers agreed.",
+      "source": "Higher Ed Dive",
+      "sourceUrl": "https://www.highereddive.com/news/employers-struggle-to-find-workers-with-the-right-ai-skillset/818017/",
+      "category": "AI Workforce & Careers"
+    },
+    {
+      "headline": "Penn Professor Uses AI to Generate Sociology Module in 12 Hours",
+      "summary": "A University of Pennsylvania economics professor used A.I. to compress a week-long master's module into just twelve hours. According to the College Fix, Jesús Fernández-Villaverde created a personalized study plan on sociologist Erving Goffman using an A.I. tool. He wrote that a ninetieth percentile real professor could not have produced a better plan. Steven Mintz, a U.T. Austin history professor, said A.I. forces higher education to confront weaknesses in pedagogy.",
+      "source": "The College Fix",
+      "sourceUrl": "https://www.thecollegefix.com/penn-professor-uses-ai-to-generate-sociology-module-suggests-shift-in-higher-ed-learning/",
+      "category": "Practical Tips"
+    },
+    {
+      "headline": "BearcatGPT: UC Becomes First Ohio University with Institutional AI Platform",
+      "summary": "The University of Cincinnati became the first Ohio university to offer a private A.I. platform for students and staff. According to W.L.W.T., BearcatGPT provides university-supported access to A.I. tools for test preparation and studying. Bharath Prabhakaran, U.C. vice president and chief digital officer, said it gives the community access to private A.I. tools without sharing data publicly.",
+      "source": "WLWT",
+      "sourceUrl": "https://www.wlwt.com/article/bearcatgpt-university-cincinnati-ohio-ai-platform/71087984",
+      "category": "Case Study"
+    }
+  ],
+  "meta": {
+    "version": "3.0",
+    "format": "straight-news",
+    "generatedAt": "2026-04-24T21:22:42.903Z"
+  }
+}
