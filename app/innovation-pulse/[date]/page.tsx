@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Card from "@/components/Card";
+import EpisodeAudioPlayer from "@/components/EpisodeAudioPlayer";
 import {
   getAllEpisodes,
   getEpisodeByDate,
@@ -141,24 +143,22 @@ export default async function InnovationPulseDatePage({
           {episode.deepDive.summary}
         </p>
 
-        {/* Audio Player */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3">
-          <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--green)] font-mono tracking-[0.06em]">
-            <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" />
-            LISTEN
+        {/* Audio Player with autoplay support */}
+        <Suspense fallback={
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3">
+            <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
+              <span className="w-[5px] h-[5px] rounded-full bg-[var(--text-muted)]" />
+              LOADING
+            </div>
+            <div className="w-9 h-9 rounded-full bg-[var(--surface-2)]" />
+            <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px]" />
           </div>
-          <button className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 transition-transform hover:scale-105">
-            <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white ml-[1px]">
-              <polygon points="6,3 20,12 6,21" />
-            </svg>
-          </button>
-          <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px] relative">
-            <div className="h-full w-0 bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] rounded-[2px]" />
-          </div>
-          <span className="font-mono text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap">
-            {episode.audioDuration || "0:00"}
-          </span>
-        </div>
+        }>
+          <EpisodeAudioPlayer
+            audioUrl={episode.audioUrl || ''}
+            audioDuration={episode.audioDuration || '0:00'}
+          />
+        </Suspense>
 
         {/* Article Body */}
         <article className="mb-10 space-y-6">
