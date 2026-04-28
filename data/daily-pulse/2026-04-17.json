@@ -17,14 +17,15 @@
   "quickHits": [
     {
       "headline": "Anthropic Unveils Mythos, A.I. Model 'Too Dangerous' to Release Publicly",
-      "summary": "Anthropic has unveiled a new A.I. model called Mythos that the company says is too dangerous to release publicly. Mythos operates with senior-level software engineering capabilities, identifying and exploiting software vulnerabilities. In testing, it discovered critical flaws in every major operating system and web browser examined. The U.K.'s A.I. Security Institute found Mythos succeeded in expert-level hacking tasks 73% of the time—prior to April 2025, no A.I. model could complete such tasks at all. Of the critical faults discovered, 99% remain unpatched. Rather than releasing Mythos publicly, Anthropic is limiting access through Project Glasswing to organizations like Microsoft, Google, and Apple for defensive cybersecurity testing.",
+      "summary": "Anthropic has unveiled a new A.I. model called Mythos that the company says is too dangerous to release publicly. Mythos operates with senior-level software engineering capabilities, identifying and exploiting software vulnerabilities. In testing, it discovered critical flaws in every major operating system and web browser examined. The U.K.'s A.I. Security Institute found Mythos succeeded in expert-level hacking tasks 73% of the time\u2014prior to April 2025, no A.I. model could complete such tasks at all. Of the critical faults discovered, 99% remain unpatched. Rather than releasing Mythos publicly, Anthropic is limiting access through Project Glasswing to organizations like Microsoft, Google, and Apple for defensive cybersecurity testing.",
       "source": "Scientific American",
       "sourceUrl": "https://www.scientificamerican.com/article/what-is-mythos-and-why-are-experts-worried-about-anthropics-ai-model/",
-      "category": "Beyond Ed"
+      "category": "Beyond Ed",
+      "image": "/images/stories/anthropic-unveils-mythos-ai-model-too-dangerous-to-release-publicly.webp"
     },
     {
       "headline": "UMD Research Challenges A.I. Job Loss Narrative with 155 Million Job Postings Analysis",
-      "summary": "New research from the University of Maryland challenges widespread claims about A.I.-driven job losses. The UMD–LinkUp A.I. Maps project analyzed 155 million U.S. job postings since 2018. A.I.-related job postings rose from 0.28% in 2022 to 1.13% by 2025. Overall job postings remain above pre-pandemic levels, with no empirical correlation between increased A.I. adoption and declining job opportunities economy-wide. Entry-level positions reached 6% of total postings in 2025—the highest level in eight years excluding the post-pandemic hiring surge. Professor Anil K. Gupta stated that when looking at economy-wide data, A.I. is not shrinking the labor market but reshaping it.",
+      "summary": "New research from the University of Maryland challenges widespread claims about A.I.-driven job losses. The UMD\u2013LinkUp A.I. Maps project analyzed 155 million U.S. job postings since 2018. A.I.-related job postings rose from 0.28% in 2022 to 1.13% by 2025. Overall job postings remain above pre-pandemic levels, with no empirical correlation between increased A.I. adoption and declining job opportunities economy-wide. Entry-level positions reached 6% of total postings in 2025\u2014the highest level in eight years excluding the post-pandemic hiring surge. Professor Anil K. Gupta stated that when looking at economy-wide data, A.I. is not shrinking the labor market but reshaping it.",
       "source": "Newswise",
       "sourceUrl": "https://www.newswise.com/articles/new-data-challenges-ai-job-loss-narrative2",
       "category": "Insights & Trends"
@@ -34,7 +35,8 @@
       "summary": "A Tennessee bill aimed at regulating A.I. safety has advanced after significant changes following White House review. The Artificial Intelligence Public Safety and Child Protection Transparency Act originally required large A.I. companies to publish safety plans addressing catastrophic risks. An analyst told a state advisory council that the White House incorporated feedback that narrowed the bill's scope. The revised version focuses on frontier developers earning more than $500 million in A.I. revenue and chatbots generating $25 million annually with at least one million monthly users. The amendments carved out exemptions for chatbots used in video games, customer service, and academic research.",
       "source": "StateScoop",
       "sourceUrl": "https://statescoop.com/ai-safety-bill-tennessee-amended-by-white-house/",
-      "category": "Ethical AI"
+      "category": "Ethical AI",
+      "image": "/images/stories/tennessee-ai-safety-bill-narrowed-after-white-house-review.webp"
     },
     {
       "headline": "Notre Dame Philosopher Teaching Ethics to A.I. Developers Finds Receptive Audience",

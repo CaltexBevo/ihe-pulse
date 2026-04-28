@@ -25,8 +25,8 @@
   "quickHits": [
     {
       "headline": "Nebraska Instructor Offers Three Strategies for Teaching Judgment in AI Era",
-      "summary": "A University of Nebraska–Lincoln instructor has published recommendations for helping students maintain independent thinking skills as AI tools become ubiquitous. According to the UNL Center for Transformative Teaching, 57 percent of students now use large language models like ChatGPT, Gemini, and Copilot daily or at least weekly in their coursework, based on 2026 Lumina-Gallup research.\n\nSydney Brown, assistant director at the Center for Transformative Teaching, identifies three concrete approaches. First, instructors should designate at least one \"gym task\" that explicitly prohibits AI use while explaining the cognitive benefits of working independently. Second, assessments should require students to explain their reasoning without AI access. Third, instructors should create \"construction-site\" learning experiences where AI magnifies human capability within structured, discipline-specific frameworks.\n\nBrown references researcher Marvin Starominski-Uehara's concept of \"creeping cognitive displacement syndrome,\" describing how students progress from using AI as an editing tool to uncritically generating arguments they have not thought through, to eventually losing what he calls \"cognitive sovereignty\" and independent judgment capacity.",
-      "source": "University of Nebraska–Lincoln",
+      "summary": "A University of Nebraska\u2013Lincoln instructor has published recommendations for helping students maintain independent thinking skills as AI tools become ubiquitous. According to the UNL Center for Transformative Teaching, 57 percent of students now use large language models like ChatGPT, Gemini, and Copilot daily or at least weekly in their coursework, based on 2026 Lumina-Gallup research.\n\nSydney Brown, assistant director at the Center for Transformative Teaching, identifies three concrete approaches. First, instructors should designate at least one \"gym task\" that explicitly prohibits AI use while explaining the cognitive benefits of working independently. Second, assessments should require students to explain their reasoning without AI access. Third, instructors should create \"construction-site\" learning experiences where AI magnifies human capability within structured, discipline-specific frameworks.\n\nBrown references researcher Marvin Starominski-Uehara's concept of \"creeping cognitive displacement syndrome,\" describing how students progress from using AI as an editing tool to uncritically generating arguments they have not thought through, to eventually losing what he calls \"cognitive sovereignty\" and independent judgment capacity.",
+      "source": "University of Nebraska\u2013Lincoln",
       "sourceUrl": "https://newsroom.unl.edu/announce/teacherconnect/20222/107533",
       "category": "Practical Tips",
       "wordCount": 178,
@@ -38,7 +38,7 @@
     },
     {
       "headline": "UVA Librarian Launches AI Literacy Lab to Teach Critical Judgment",
-      "summary": "University of Virginia Librarian Leo Lo and Dean Christa Acampora are launching an \"AI Literacy and Action Lab\" to teach students critical thinking skills for an AI-enabled world. According to UVA Today, the initiative addresses concerns about AI's impact on education while positioning libraries as essential institutions for developing judgment about information.\n\nLo described encountering students who asked for books and sources that ChatGPT had fabricated. \"Those students needed a librarian before they needed a better AI tool,\" Lo said.\n\nThe lab emphasizes what Lo calls \"cognitive agency\"—students learning to consciously decide which intellectual tasks to delegate to machines versus preserve for human judgment. Lo warns against an emerging \"AI answer economy\" where synthesized responses replace critical evaluation of sources.\n\nRather than banning AI entirely, Lo advocates developing deliberate frameworks for its educational use. \"A research library has always done two things: help people find information, and help them judge it,\" he said.",
+      "summary": "University of Virginia Librarian Leo Lo and Dean Christa Acampora are launching an \"AI Literacy and Action Lab\" to teach students critical thinking skills for an AI-enabled world. According to UVA Today, the initiative addresses concerns about AI's impact on education while positioning libraries as essential institutions for developing judgment about information.\n\nLo described encountering students who asked for books and sources that ChatGPT had fabricated. \"Those students needed a librarian before they needed a better AI tool,\" Lo said.\n\nThe lab emphasizes what Lo calls \"cognitive agency\"\u2014students learning to consciously decide which intellectual tasks to delegate to machines versus preserve for human judgment. Lo warns against an emerging \"AI answer economy\" where synthesized responses replace critical evaluation of sources.\n\nRather than banning AI entirely, Lo advocates developing deliberate frameworks for its educational use. \"A research library has always done two things: help people find information, and help them judge it,\" he said.",
       "source": "UVA Today",
       "sourceUrl": "https://news.virginia.edu/content/qa-age-ai-what-library",
       "category": "Case Study",
@@ -47,7 +47,8 @@
         "pass1": true,
         "pass2": true,
         "notes": "All quotes, statistics, and proper nouns verified against source"
-      }
+      },
+      "image": "/images/stories/uva-librarian-launches-ai-literacy-lab-to-teach-critical-judgment.webp"
     },
     {
       "headline": "FIU Students Report Inconsistent AI Guidance Across Courses",

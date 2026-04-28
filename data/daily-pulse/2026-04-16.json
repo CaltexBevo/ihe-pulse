@@ -34,14 +34,16 @@
       "summary": "The Arizona Board of Regents approved a new $100 per semester fee for artificial intelligence and technology tools at Arizona State University, according to The Arizona Republic. The fee, approved on April 16, will be charged to both undergraduate and graduate students and is projected to generate roughly $28.1 million in annual revenue.\n\nThe fee signals the university's latest investment in AI technology and innovation. ASU joins a growing number of institutions implementing dedicated funding mechanisms for AI infrastructure as the technology becomes increasingly central to higher education operations and student learning.",
       "source": "The Arizona Republic",
       "sourceUrl": "https://www.azcentral.com/story/news/politics/arizona-education/2026/04/17/asu-implementing-ai-innovative-tech-fee/89648720007/",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "image": "/images/stories/arizona-state-university-adds-100-per-semester-ai-and-tech-fee.webp"
     },
     {
       "headline": "Indiana University Opens Free GenAI 101 Course to Anyone Worldwide",
       "summary": "Indiana University is now offering its generative AI course, GenAI 101, to everyone worldwide at no cost, according to IU News. The course, developed by faculty and staff at the IU Kelley School of Business, has enrolled more than 114,000 students, staff, and faculty since launching in August.\n\nThe self-paced course includes eight modules and sixteen lessons covering prompt engineering, data storytelling, fact-checking AI-generated content, and ethical AI use. It features an AI learning agent named Crimson that provides on-demand support. Kelley School Dean Pat Hopkins cited data indicating 90 percent of employers are expected to implement AI solutions by 2028.",
       "source": "News at IU",
       "sourceUrl": "https://news.iu.edu/live/news/49928-iu-opens-its-free-generative-ai-course-to-anyone",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "image": "/images/stories/indiana-university-opens-free-genai-101-course-to-anyone-worldwide.webp"
     }
   ],
   "meta": {

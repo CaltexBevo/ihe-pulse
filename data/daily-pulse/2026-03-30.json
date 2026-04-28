@@ -14,7 +14,8 @@
     "summary": "According to a Packback survey of nearly 700 college students, roughly 5 percent said they always or often use A.I. to generate a full assignment, comparable to pre-A.I. contract cheating rates. The report found that nearly three-quarters of students are at least moderately concerned about being wrongly accused of using A.I., including more than 40 percent who described it as a major concern. About a quarter of students said they often use A.I. to support coursework such as summarizing books and articles, while roughly three times as many believe their peers are doing so. Students cited time constraints as the primary reason for using A.I. shortcuts, with 46 percent reporting this factor, while 43 percent said they didn't know enough about the topic and 42 percent lacked interest. About two-thirds of respondents said A.I. helps them grasp complex topics and deepen their understanding, while more than half said it aids them in overcoming academic obstacles. Students in business and management use A.I. more frequently across academic tasks and report more significant benefits, while students in social sciences and humanities were less likely to use A.I. often and reported fewer benefits. The survey included students from four-year universities, community colleges and online programs, all enrolled in at least one Packback-supported course.",
     "source": "Inside Higher Ed",
     "sourceUrl": "https://www.insidehighered.com/news/student-success/academic-life/2026/03/31/students-embrace-ai-fear-false-accusations",
-    "category": "Insights & Trends"
+    "category": "Insights & Trends",
+    "image": "/images/stories/students-use-ai-for-learning-support-but-fear-false-accusations.webp"
   },
   "quickHits": [
     {
@@ -22,7 +23,8 @@
       "summary": "According to GovTech, more than 700 students, faculty and staff at the University of Colorado Boulder signed a dissent letter questioning the CU system's $2 million agreement with OpenAI to provide campuswide access to ChatGPT Edu. The letter raises concerns over data privacy, academic integrity, student input and A.I. governance. While the university's agreement prohibits OpenAI from using data generated within the CU environment to train its public large language models, critics say the language is vague enough to raise concerns about de-identified data potentially being used for research or product improvement. The dissent letter argues that the A.I. working group that developed the partnership lacked representation from students, faculty and those with deep expertise in A.I. Aaron Gluck, a Ph.D. student at CU Boulder researching machine learning in educational contexts who helped write the letter, said the issue is introducing A.I. in an environment where there's already misuse and limited education about proper use. The letter calls for more explicit limits on data use, transparent auditing processes, and pedagogical policies including A.I. literacy training materials beyond the initial brief training required by the university.",
       "source": "GovTech",
       "sourceUrl": "https://www.govtech.com/education/higher-ed/cu-boulder-community-raises-concerns-over-chatgpt-edu-deal",
-      "category": "Ethical AI"
+      "category": "Ethical AI",
+      "image": "/images/stories/cu-boulder-community-opposes-chatgpt-edu-deal-over-data-privacy.webp"
     },
     {
       "headline": "Stanford Study Finds A.I. Tutors Give Unequal Feedback by Race and Gender",
@@ -36,14 +38,16 @@
       "summary": "According to The EDU Ledger, the Texas A&M University System is launching a targeted A.I. intervention to support Pell-eligible first-year students across six diverse campuses, from a flagship to a large public historically Black university to smaller regional campuses. The initiative uses chatbots powered by Mainstay to provide automated, 24/7 guidance, with data showing students engage most between 11 p.m. and 3 a.m. when no staff would be available. System leaders meet weekly to share insights about student engagement with the bots, which help with everything from class registration and course exchanges to emergency grant referrals and mental health triaging. The strategy aims to offload high-volume transactional hurdles like registration challenges and financial aid complexities, allowing university staff to focus on high-touch transformational interventions and crisis support. The system has set a mandate to scale system-wide by 2030 and raise persistence rates by 2.5 percent for Pell-eligible and first-generation students. The technology aligns with the same system used by the Texas Higher Education Coordinating Board to advise high school seniors and adult learners statewide, providing a coordinated experience across educational sectors.",
       "source": "The EDU Ledger",
       "sourceUrl": "https://www.theeduledger.com/ai/article/15821076/texas-is-taking-a-systematic-approach-to-leveraging-ai-to-support-student-success",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "image": "/images/stories/texas-am-system-deploys-ai-chatbots-for-pell-eligible-students.webp"
     },
     {
       "headline": "More Than 60 Percent of Federal Judges Report Using A.I. Tools",
       "summary": "According to Northwestern Now, a new study surveying federal judges across the U.S. found that more than 60 percent of respondents reported using at least one A.I. tool in their judicial work, though only 22.4 percent use A.I. tools on a weekly or daily basis. The research, led by Daniel Linna, director of Law and Technology Initiatives at Northwestern Pritzker Law, and V.S. Subrahmanian, professor of computer science at Northwestern McCormick School of Engineering, surveyed 502 judges and collected 112 responses. Judges reported using A.I. tools primarily for conducting legal research (30 percent) and reviewing documents (15.5 percent). The study found that 45.5 percent of judges said A.I. training was not provided by court administration, and 24.1 percent have no official policy on A.I. use. Approximately 20 percent of judges formally prohibit A.I. use in their chambers, while one in three permit or encourage its use. The study was published by the Sedona Conference.",
       "source": "Northwestern Now",
       "sourceUrl": "https://news.northwestern.edu/stories/2026/03/northwestern-study-finds-a-significant-number-of-federal-judges-are-already-using-ai-tools",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "image": "/images/stories/more-than-60-percent-of-federal-judges-report-using-ai-tools.webp"
     }
   ],
   "meta": {
