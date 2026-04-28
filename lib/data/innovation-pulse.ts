@@ -127,6 +127,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   const pullQuote = (leadStory?.pullQuote) as string || '';
 
   // Normalize deep dive - handle V3 leadStory fields
+  // Read image from JSON if present (for custom story images)
   const deepDive: InnovationPulseEpisode['deepDive'] = {
     title: (leadStory?.headline || rawDeepDive.title) as string || '',
     summary: (leadStory?.editorialTake || rawDeepDive.summary || hook || broadcastScript.slice(0, 500)) as string || 'Read the full story for details.',
@@ -135,9 +136,11 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     isCallback: (rawDeepDive.isCallback as boolean) ?? false,
     category: mapCategory((rawDeepDive.category) as string || ''),
     editorialCallout: (rawDeepDive.editorialCallout) as string | undefined,
+    image: (rawDeepDive.image) as string | undefined,
   };
 
   // Normalize quick hits - provide defaults for missing fields
+  // Read image from JSON if present (for custom story images)
   const quickHits: InnovationPulseEpisode['quickHits'] = rawQuickHits.map((hit) => ({
     title: (hit.headline || hit.title) as string || '',
     summary: (hit.summary) as string || 'Read the full story for details.',
@@ -145,6 +148,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     sourceUrl: (hit.sourceUrl) as string || '',
     category: mapCategory((hit.category) as string || ''),
     isCallback: hit.isCallback as boolean | undefined,
+    image: (hit.image) as string | undefined,
   }));
 
   // Handle editorialLens - V3 has episode.editorialLens (string) or raw.editorialLens (object or string)
@@ -194,16 +198,16 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
 function assignImagesToEpisode(episode: InnovationPulseEpisode): InnovationPulseEpisode {
   const imageAssigner = new StoryImageAssigner();
 
-  // Assign image to lead story (deepDive) first
+  // Assign image to lead story (deepDive) - use JSON image if present, otherwise fallback
   const deepDiveWithImage = {
     ...episode.deepDive,
-    image: imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category, episode.date),
+    image: episode.deepDive.image || imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category, episode.date),
   };
 
-  // Assign images to all quickHits
+  // Assign images to all quickHits - use JSON image if present, otherwise fallback
   const quickHitsWithImages = episode.quickHits.map((hit) => ({
     ...hit,
-    image: imageAssigner.getImage(hit.title, hit.category, episode.date),
+    image: hit.image || imageAssigner.getImage(hit.title, hit.category, episode.date),
   }));
 
   return {
