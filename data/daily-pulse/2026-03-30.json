@@ -31,7 +31,8 @@
       "summary": "According to EdTech Innovation Hub, researchers at Stanford University found that A.I. tutors produce varied feedback depending on perceived student identity, language background, and academic ability. The study, published as a preprint on arXiv, tested how large language models respond to variations in race, gender, achievement level, and English language proficiency across simulated student profiles. Students identified as high-achieving or White were more likely to receive detailed, development-focused feedback including critique of argumentation and suggestions for improving reasoning. In contrast, responses associated with Hispanic students or English language learners focused more heavily on grammar, spelling, and formality, reducing attention on higher-order thinking and content development. For students labeled as low-achieving or having learning disabilities, the study found a pattern of feedback withholding bias, where A.I. tutors provided positive reinforcement with limited critical input, resulting in less actionable guidance. The research shows that bias is embedded in the instructional decisions models make, with these patterns emerging even when prompts are held constant and only student descriptors change. The findings raise questions about how personalized learning systems behave and whether consistency of learning support can be guaranteed as A.I. tutors are integrated into K-12, higher education, and workforce training platforms.",
       "source": "EdTech Innovation Hub",
       "sourceUrl": "https://www.edtechinnovationhub.com/news/ai-tutor-bias-study-finds-unequal-feedback-for-students-across-race-gender-and-ability",
-      "category": "Ethical AI"
+      "category": "Ethical AI",
+      "image": "/images/stories/stanford-study-finds-ai-tutors-give-unequal-feedback-by-race.webp"
     },
     {
       "headline": "Texas A&M System Deploys A.I. Chatbots for Pell-Eligible Students",

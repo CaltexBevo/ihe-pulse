@@ -29,7 +29,8 @@
       "summary": "New research from the University of Maryland challenges widespread claims about A.I.-driven job losses. The UMD\u2013LinkUp A.I. Maps project analyzed 155 million U.S. job postings since 2018. A.I.-related job postings rose from 0.28% in 2022 to 1.13% by 2025. Overall job postings remain above pre-pandemic levels, with no empirical correlation between increased A.I. adoption and declining job opportunities economy-wide. Entry-level positions reached 6% of total postings in 2025\u2014the highest level in eight years excluding the post-pandemic hiring surge. Professor Anil K. Gupta stated that when looking at economy-wide data, A.I. is not shrinking the labor market but reshaping it.",
       "source": "Newswise",
       "sourceUrl": "https://www.newswise.com/articles/new-data-challenges-ai-job-loss-narrative2",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "image": "/images/stories/umd-research-challenges-ai-job-loss-narrative-with-155-million-jobs.webp"
     },
     {
       "headline": "Tennessee A.I. Safety Bill Narrowed After White House Review",
@@ -44,7 +45,8 @@
       "summary": "A philosophy professor at Notre Dame is finding a receptive audience among A.I. developers. Meghan Sullivan has spent 25 years training for conversations about ethics that Silicon Valley is now ready to have. Sullivan's work is supported by a $50.8 million grant from the Lilly Endowment designated to advance philosophy and theology in national A.I. ethics discussions. Rather than lecturing, she employs the Socratic method, posing questions that help developers recognize unexplored possibilities. In March 2026, Sullivan attended Anthropic's summit where Christian leaders discussed how Claude should handle morally complex situations, including appropriate responses to grieving users and those at risk of self-harm.",
       "source": "NPR",
       "sourceUrl": "https://www.npr.org/2026/04/17/nx-s1-5750554/the-philosopher-trying-to-teach-ethics-to-ai-developers",
-      "category": "Case Study"
+      "category": "Case Study",
+      "image": "/images/stories/notre-dame-philosopher-teaching-ethics-to-ai-developers.webp"
     }
   ],
   "meta": {

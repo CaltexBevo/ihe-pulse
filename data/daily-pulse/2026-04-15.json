@@ -23,21 +23,24 @@
       "summary": "An op-ed in University Business argues that generative AI tools can interrupt a cycle where people are penalized for communication gaps unrelated to intelligence or capability.\n\nThe piece recounts a fast-food worker named Sara whose social media post drew criticism not for its ideas but for how it was written. When advised to use AI to reword future posts, she welcomed the suggestion with enthusiasm.\n\nThe author contends that communication skills function as social currency accumulated through formal education systems. Those fluent in academic norms reap benefits while others are excluded. AI tools, the argument goes, now give people access to communicative power that once required years of formal training.\n\nThe piece raises questions for higher education: Are institutions assessing critical thinking or simply fluency in elite communication norms? If AI use is acceptable across the professional world, why prohibit it for students preparing to enter that world?",
       "source": "University Business",
       "sourceUrl": "https://universitybusiness.com/who-gets-to-sound-smart-in-the-age-of-ai/",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "image": "/images/stories/op-ed-argues-ai-writing-tools-democratize-access.webp"
     },
     {
       "headline": "Grand Valley State University Defends $166 Million Investment in AI and Technology Education",
       "summary": "Grand Valley State University leaders are defending the school's one hundred sixty-six million dollar investment in technology and AI-related education as necessary to prepare students for the modern workforce, according to Crain's Grand Rapids.\n\nFour past and present university presidents gathered April 15 at the Loosemore Auditorium on GVSU's downtown Grand Rapids Robert C. Pew campus to discuss stewardship of the institution. The presidents pictured include Philomena Mantella, Thomas Haas, Mark Murray, and Arend \"Don\" Lubbers.\n\nThe investment represents one of the largest publicly disclosed commitments to AI-focused education infrastructure at a regional public university in Michigan.",
       "source": "Crain's Grand Rapids",
       "sourceUrl": "https://www.crainsgrandrapids.com/education/cgr-gvsu-leaders-address-ai-as-tensions-rise-20260416/",
-      "category": "Investing in Innovation"
+      "category": "Investing in Innovation",
+      "image": "/images/stories/grand-valley-state-university-defends-166-million-investment-in-ai.webp"
     },
     {
       "headline": "SDSU Imperial Valley Faculty Redesign Math Courses Using Adobe AI Tools",
       "summary": "San Diego State University's Imperial Valley campus is redesigning two mathematics courses using Adobe AI tools through a California State University systemwide initiative, according to SDSU News.\n\nThe thirty-thousand-dollar grant, awarded to 22 CSU campuses per cycle, supports a three-semester pilot integrating Adobe Express and AI tools into mathematics and statistics courses. The pilot begins this spring with Statistical Principles and Practices, followed by Calculus I, and concludes with a refined iteration in fall 2026 and spring 2027.\n\nIn the statistics course, students complete a class project using Excel for data analysis, then pair their computational work with Adobe Express and Firefly to transform raw data into visual projects. In calculus, students will use Adobe Express Video and animation tools to create visual explanations of derivatives and rates of change.\n\nThe project team includes principal investigators Tingting Tang and Weichen Zhao, with course instructors Huan Qin and Christopher Ryan. The initiative aims to help students from nursing, criminal justice, and liberal studies who may struggle with required math courses.",
       "source": "San Diego State University",
       "sourceUrl": "https://www.sdsu.edu/news/2026/04/sdsu-imperial-valley-faculty-integrated-adope-ai-tools-to-redesign-mathematics-courses",
-      "category": "Case Study"
+      "category": "Case Study",
+      "image": "/images/stories/sdsu-imperial-valley-faculty-redesign-math-courses-using-adobe-ai.webp"
     }
   ],
   "meta": {

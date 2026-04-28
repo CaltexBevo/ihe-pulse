@@ -21,21 +21,24 @@
       "summary": "According to VentureBeat, Anthropic announced Project Glasswing, a one hundred million dollar AI cybersecurity initiative using its unreleased Claude Mythos Preview model to find zero-day vulnerabilities in critical infrastructure. The company stated it does not plan to make Claude Mythos Preview generally available due to its cybersecurity capabilities. The model has already identified thousands of high-severity zero-day vulnerabilities in every major operating system and web browser, including a twenty-seven-year-old flaw in OpenBSD, a seventeen-year-old remote code execution bug in FreeBSD, and a sixteen-year-old codec vulnerability in FFmpeg. Claude Mythos Preview scores eighty-three point one percent on the CyberGym benchmark compared to sixty-six point six percent for Claude Opus 4.6. Launch partners include Amazon Web Services, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks. Anthropic is committing up to one hundred million dollars in usage credits plus four million dollars in donations to open-source security organizations. Former Facebook security chief Alex Stamos warned that open-weight models could catch up within six months.",
       "source": "VentureBeat",
       "sourceUrl": "https://venturebeat.com/technology/anthropic-says-its-most-powerful-ai-cyber-model-is-too-dangerous-to-release",
-      "category": "Beyond Ed"
+      "category": "Beyond Ed",
+      "image": "/images/stories/anthropic-launches-100-million-cybersecurity-initiative.webp"
     },
     {
       "headline": "Drexel Study Identifies Six Addiction Components in Teen AI Chatbot Use",
       "summary": "According to Drexel University, researchers analyzed more than three hundred Reddit posts from teens ages thirteen to seventeen discussing their dependency on AI companion chatbots like Character.AI, Replika, and Kindroid. The study identified all six components of behavioral addiction in the posts: conflict, salience, withdrawal, tolerance, relapse, and mood modification. More than half of U.S. teens regularly use companion chatbots, with about twenty-five percent initially using them for emotional or psychological support. Teens described experiencing disrupted sleep, academic struggles, and strained relationships resulting from overuse. Lead author Matt Namvarpour and senior researcher Dr. Afsaneh Razi of the College of Computing and Informatics led the study. The researchers proposed design frameworks including usage tracking, emotional check-ins, personalized limits, and easy exit options.",
       "source": "Drexel University",
       "sourceUrl": "https://drexel.edu/news/archive/2026/April/teen-AI-chatbot-addiction",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "image": "/images/stories/drexel-study-identifies-six-addiction-components-in-teen-ai-chatbot.webp"
     },
     {
       "headline": "UChicago Partners With Microsoft and NVIDIA to Support Midwest AI Startups",
       "summary": "According to the University of Chicago Polsky Center, a new partnership with AI Research Commons, Microsoft, and NVIDIA will support early-stage AI startups from eight Midwest universities. The initiative is part of Third Coast Foundry, including Carnegie Mellon, Northwestern, Ohio State, Purdue, University of Chicago, University of Illinois Urbana-Champaign, University of Wisconsin-Madison, and Washington University in St. Louis. Microsoft for Startups provides up to three hundred fifty thousand dollars in startup credits on eligible services, access to AI models through Azure, and technical guidance. The NVIDIA Inception Program offers developer tools, preferred pricing on hardware and software, and exposure to investor ecosystems. Additional support includes co-working space, mentorship from AI operators, and presentation opportunities with Mayfield venture capital. Startups identified in spring 2026 will be announced in early summer.",
       "source": "University of Chicago Polsky Center",
       "sourceUrl": "https://polsky.uchicago.edu/2026/04/14/university-of-chicago-announces-partnership-with-ai-research-commons-and-microsoft-to-accelerate-midwest-ai-startups/",
-      "category": "Investing in Innovation"
+      "category": "Investing in Innovation",
+      "image": "/images/stories/uchicago-partners-with-microsoft-and-nvidia-for-midwest-ai-startups.webp"
     },
     {
       "headline": "Faulkner Guide Proposes AI as Discussion Board Critique Tool",
