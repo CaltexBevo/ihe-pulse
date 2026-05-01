@@ -1865,6 +1865,40 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ==========================================================================
+   DataViz Component Styles
+   Charts for displaying survey data, poll results, and statistics
+   ========================================================================== */
+
+.dataviz-container {
+  padding: 16px;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin: 12px 0;
+  max-width: 500px;
+  width: 100%;
+}
+
+.dataviz-container .chart-content {
+  min-height: 80px;
+}
+
+/* Responsive: full width on mobile */
+@media (max-width: 640px) {
+  .dataviz-container {
+    max-width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+  }
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .dataviz-container {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* ==========================================================================
    V9 HERO — Now Playing with C3 Mono cover art
    Added 2026-04-17 Part 3 — use these EXACT class names
    ========================================================================== */

@@ -109,6 +109,21 @@ export const categoryColors: Record<
   },
 };
 
+// ── DataViz Types ────────────────────────────────────────────────────────────
+
+export interface DataVizPoint {
+  label: string;
+  value: number;
+  unit?: string;
+}
+
+export interface DataVizConfig {
+  type: 'bar' | 'donut' | 'comparison';
+  title?: string;
+  data: DataVizPoint[];
+  source?: string;
+}
+
 // ── Data Interfaces ──────────────────────────────────────────────────────────
 
 export interface DeepDive {
@@ -122,6 +137,7 @@ export interface DeepDive {
   category: StoryCategory;
   editorialCallout?: string;
   image?: string; // Assigned at data load time for consistency
+  dataViz?: DataVizConfig; // Optional chart data
 }
 
 export interface QuickHit {
@@ -133,6 +149,7 @@ export interface QuickHit {
   isCallback?: boolean;
   callbackDate?: string;
   image?: string; // Assigned at data load time for consistency
+  dataViz?: DataVizConfig; // Optional chart data
 }
 
 export interface StoryWatching {

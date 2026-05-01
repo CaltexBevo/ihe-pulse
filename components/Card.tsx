@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getContrastTextColor } from "@/lib/utils/color";
+import DataViz, { type DataVizConfig } from "@/components/DataViz";
 
 interface CardProps {
   title: string;
@@ -22,6 +23,7 @@ interface CardProps {
   expandable?: boolean;
   isCallback?: boolean;
   callbackDate?: string;
+  dataViz?: DataVizConfig;
 }
 
 export default function Card({
@@ -41,6 +43,7 @@ export default function Card({
   expandable = true,
   isCallback = false,
   callbackDate,
+  dataViz,
 }: CardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -121,6 +124,11 @@ export default function Card({
         >
           {title}
         </h3>
+
+        {/* DataViz - render chart if dataViz config is present */}
+        {dataViz && (
+          <DataViz config={dataViz} className="my-3" />
+        )}
 
         {/* Teaser - DM Sans Regular 400, 0.78rem, 2-line clamp (hidden when expanded) */}
         {!isExpanded && (

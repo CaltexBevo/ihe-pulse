@@ -129,7 +129,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
 
   // Normalize deep dive - handle V3/V3.1 leadStory/topStory fields
   // V3.1 uses topStory.headline, V3 uses leadStory.headline, old uses rawDeepDive.title
-  // Read image from JSON if present (for custom story images)
+  // Read image and dataViz from JSON if present
   const deepDive: InnovationPulseEpisode['deepDive'] = {
     title: ((rawDeepDive as Record<string, unknown>).headline || rawDeepDive.title) as string || '',
     summary: (leadStory?.editorialTake || rawDeepDive.summary || hook || broadcastScript.slice(0, 500)) as string || 'Read the full story for details.',
@@ -139,10 +139,11 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     category: mapCategory((rawDeepDive.category) as string || ''),
     editorialCallout: (rawDeepDive.editorialCallout) as string | undefined,
     image: (rawDeepDive.image) as string | undefined,
+    dataViz: (rawDeepDive.dataViz) as InnovationPulseEpisode['deepDive']['dataViz'] | undefined,
   };
 
   // Normalize quick hits - provide defaults for missing fields
-  // Read image from JSON if present (for custom story images)
+  // Read image and dataViz from JSON if present
   const quickHits: InnovationPulseEpisode['quickHits'] = rawQuickHits.map((hit) => ({
     title: (hit.headline || hit.title) as string || '',
     summary: (hit.summary) as string || 'Read the full story for details.',
@@ -151,6 +152,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     category: mapCategory((hit.category) as string || ''),
     isCallback: hit.isCallback as boolean | undefined,
     image: (hit.image) as string | undefined,
+    dataViz: (hit.dataViz) as InnovationPulseEpisode['quickHits'][number]['dataViz'] | undefined,
   }));
 
   // Handle editorialLens - V3 has episode.editorialLens (string) or raw.editorialLens (object or string)
