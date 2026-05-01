@@ -127,10 +127,11 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   // V3 format has pullQuote in leadStory
   const pullQuote = (leadStory?.pullQuote) as string || '';
 
-  // Normalize deep dive - handle V3 leadStory fields
+  // Normalize deep dive - handle V3/V3.1 leadStory/topStory fields
+  // V3.1 uses topStory.headline, V3 uses leadStory.headline, old uses rawDeepDive.title
   // Read image from JSON if present (for custom story images)
   const deepDive: InnovationPulseEpisode['deepDive'] = {
-    title: (leadStory?.headline || rawDeepDive.title) as string || '',
+    title: ((rawDeepDive as Record<string, unknown>).headline || rawDeepDive.title) as string || '',
     summary: (leadStory?.editorialTake || rawDeepDive.summary || hook || broadcastScript.slice(0, 500)) as string || 'Read the full story for details.',
     source: (rawDeepDive.source) as string || '',
     sourceUrl: (rawDeepDive.sourceUrl) as string || '',
