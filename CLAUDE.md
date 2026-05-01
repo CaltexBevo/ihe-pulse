@@ -109,3 +109,16 @@ The complete HTML mockup is available at:
 `/mnt/user-data/outputs/ihe-pulse-electric-dusk-complete.html`
 
 Use this as the design reference for all components and pages.
+
+## gstack
+
+GStack skills are installed at .claude/skills/gstack/. Available skills:
+/office-hours, /plan-ceo-review, /plan-eng-review, /plan-design-review,
+/design-consultation, /review, /ship, /qa, /qa-only, /design-review,
+/retro, /investigate, /document-release, /browse, /careful
+
+Use the /browse skill from gstack for all web browsing.
+If gstack skills aren't working, run: cd .claude/skills/gstack && ./setup
+
+GStack skills supplement but DO NOT override the existing Guardian skills
+in .claude/skills/ihe-frontend/SKILL.md or PRODUCTION-RULES.md.

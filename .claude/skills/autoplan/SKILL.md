@@ -1,0 +1,1 @@
+/Volumes/MISHA 2TB/ihe-pulse/.claude/skills/gstack/autoplan/SKILL.md

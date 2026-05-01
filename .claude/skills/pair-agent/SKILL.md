@@ -1,0 +1,1 @@
+/Volumes/MISHA 2TB/ihe-pulse/.claude/skills/gstack/pair-agent/SKILL.md

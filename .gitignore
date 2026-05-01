@@ -41,3 +41,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 new api's keys ihe pulse.rtf
+.gstack/

@@ -5,10 +5,10 @@ import Link from 'next/link';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
 import { formatPulseDate, formatShortDate } from '@/lib/data/innovation-pulse-types';
 
-// Editorial lens colors
+// Editorial lens colors — migrated to locked palette (green retired → cyan)
 const LENS_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
   "The Hard Question": { bg: "bg-[var(--amber-dim)]", text: "text-[var(--amber)]", dot: "bg-[var(--amber)]" },
-  "The Student Experience": { bg: "bg-[var(--green-dim)]", text: "text-[var(--green)]", dot: "bg-[var(--green)]" },
+  "The Student Experience": { bg: "bg-[var(--purple-dim)]", text: "text-[var(--purple)]", dot: "bg-[var(--purple)]" },
   "The Practitioner's Playbook": { bg: "bg-[var(--cyan-dim)]", text: "text-[var(--cyan)]", dot: "bg-[var(--cyan)]" },
   "Connecting the Dots": { bg: "bg-[var(--magenta-dim)]", text: "text-[var(--magenta)]", dot: "bg-[var(--magenta)]" },
   "The Innovator's Edge": { bg: "bg-gradient-to-r from-[var(--cyan-dim)] to-[var(--magenta-dim)]", text: "text-[var(--text)]", dot: "bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" },
@@ -139,7 +139,7 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
 
       {/* Site Identifier */}
       <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] flex items-center gap-2 mb-2">
-        <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
+        <span className="w-[6px] h-[6px] rounded-full bg-[var(--cyan)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
         <span>THE INNOVATION PULSE</span>
       </div>
 
@@ -182,8 +182,8 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
       >
         <div className="flex items-center gap-2 mb-3">
           {/* Live Badge */}
-          <div className="flex items-center gap-[0.35rem] bg-[rgba(74,222,128,0.1)] text-[var(--green)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold font-mono tracking-[0.06em]">
-            <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
+          <div className="flex items-center gap-[0.35rem] bg-[var(--cyan-soft)] text-[var(--cyan)] px-[0.6rem] py-[0.2rem] rounded-full text-[0.65rem] font-semibold font-mono tracking-[0.06em]">
+            <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)] animate-[pulseDot_2s_infinite]" aria-hidden="true" />
             LISTEN NOW
           </div>
           {/* Duration */}
@@ -329,7 +329,7 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
               <span className="font-mono text-[0.65rem] font-semibold">
                 {dayName} {dayNum}
               </span>
-              <span className="w-[5px] h-[5px] rounded-full bg-[var(--green)]" />
+              <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
               <span className="font-mono text-[0.6rem]">{ep.audioDuration}</span>
             </button>
           );

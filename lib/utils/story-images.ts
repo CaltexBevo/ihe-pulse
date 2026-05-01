@@ -1,3 +1,23 @@
+// ══════════════════════════════════════════════════════════════════════════════
+// STORY IMAGE UTILITY
+// ══════════════════════════════════════════════════════════════════════════════
+//
+// ARCHITECTURE NOTE (2026-03-26):
+// This utility is called by assignImagesToEpisode() in lib/data/innovation-pulse.ts.
+// Images are assigned ONCE at data load time, then stored on each story object.
+//
+// DO NOT instantiate StoryImageAssigner in individual page components.
+// All components should read story.image from the pre-assigned data instead.
+//
+// This ensures the SAME story shows the SAME image across:
+// - Homepage
+// - Innovation Pulse page
+// - Story detail pages
+// - Date pages
+// - Stories archive
+//
+// ══════════════════════════════════════════════════════════════════════════════
+//
 // RULE: NEVER use headshot or portrait photos. Scenes, concepts, and objects ONLY. No individual faces.
 // All story images must be: campus buildings, classrooms, technology, libraries, abstract patterns,
 // aerial views, conference rooms, lab equipment, data visualizations, empty lecture halls.

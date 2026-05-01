@@ -5,6 +5,9 @@ import {
 } from '@/lib/data/innovation-pulse';
 import InnovationPulseClient from './InnovationPulseClient';
 
+// ISR: Revalidate every 60 seconds so new episodes appear quickly
+export const revalidate = 60;
+
 export const metadata = {
   title: "Innovation Pulse | Innovating Higher Ed",
   description:

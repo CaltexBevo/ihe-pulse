@@ -14,6 +14,12 @@ import {
   V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
 
+// ISR: Revalidate every 60 seconds so new episodes appear quickly
+export const revalidate = 60;
+
+// Allow dynamic params for episodes added after build
+export const dynamicParams = true;
+
 // Static Params
 export function generateStaticParams() {
   const dates = getEpisodeDates();
