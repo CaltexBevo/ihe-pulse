@@ -105,13 +105,14 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
 
   const episode = raw.episode as Record<string, unknown> | undefined;
   const leadStory = raw.leadStory as Record<string, unknown> | undefined;
+  const topStory = raw.topStory as Record<string, unknown> | undefined; // V3.1 format
   const segments = raw.segments as Record<string, unknown> | undefined;
 
-  // Determine deep dive source (V3: leadStory, old: segments.deepDive or raw.deepDive)
-  const rawDeepDive = leadStory || segments?.deepDive as Record<string, unknown> | undefined || raw.deepDive as Record<string, unknown> | undefined;
+  // Determine deep dive source (V3.1: topStory, V3: leadStory, old: segments.deepDive or raw.deepDive)
+  const rawDeepDive = topStory || leadStory || segments?.deepDive as Record<string, unknown> | undefined || raw.deepDive as Record<string, unknown> | undefined;
 
-  // Determine quick hits source (V3: top-level quickHits, old: segments.quickHits or raw.quickHits)
-  const rawQuickHits = (raw.quickHits || segments?.quickHits || []) as Record<string, unknown>[];
+  // Determine quick hits source (V3.1: stories, V3: quickHits, old: segments.quickHits or raw.quickHits)
+  const rawQuickHits = (raw.stories || raw.quickHits || segments?.quickHits || []) as Record<string, unknown>[];
 
   if (!rawDeepDive) {
     return null;
