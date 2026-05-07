@@ -16,13 +16,6 @@
   },
   "stories": [
     {
-      "headline": "Coursera: Saudi Arabia Leads Global A.I. Classroom Enthusiasm",
-      "summary": "Coursera data shows 91% of Saudi students view A.I.'s impact on higher education positively, significantly higher than the UK (77%), US (78%), and other markets, according to Arab News. The Kingdom also shows stronger concern for academic integrity, with 79% worried about A.I. raising integrity issues compared to lower rates elsewhere.",
-      "source": "Arab News",
-      "sourceUrl": "https://www.arabnews.com/node/2636984/amp",
-      "category": "Insights & Trends"
-    },
-    {
       "headline": "Cornell Student Alleges A.I. Research Integrity Problems",
       "summary": "A Cornell Daily Sun guest column accuses a postdoctoral researcher of publishing shifting, unaccountable principles for A.I. use in academic work without providing evidence for claims about ChatGPT's limitations, according to The Cornell Daily Sun. The piece highlights concerns about research quality in A.I.-related scholarship.",
       "source": "The Cornell Daily Sun",
@@ -35,13 +28,6 @@
       "source": "Trend Hunter",
       "sourceUrl": "https://www.trendhunter.com/amp/trends/certification-for-adobe-firefly",
       "category": "Latest AI Products"
-    },
-    {
-      "headline": "King's College London Formalizes A.I. Research Ethics",
-      "summary": "King's College London found 72% of researchers already use A.I. tools, but 81% lack confidence in navigating ethical implications, according to EdTech Innovation Hub. The university is updating research governance processes and ethics review guidance based on workshops that revealed widespread adoption ahead of formal policy.",
-      "source": "EdTech Innovation Hub",
-      "sourceUrl": "https://www.edtechinnovationhub.com/news/kings-college-london-moves-to-formalize-ai-ethics-as-research-use-accelerates",
-      "category": "Ethical AI"
     },
     {
       "headline": "Federal Appeals Court Fines Lawyers $30K for Faulty A.I. Filings",
@@ -63,6 +49,7 @@
     "format": "straight-news",
     "date": "2026-03-13",
     "dayOfWeek": "Friday",
-    "editorialLens": "The Innovator's Edge"
+    "editorialLens": "The Innovator's Edge",
+    "editorialNote": "Saudi Arabia and King's College London stories removed per US-only policy."
   }
 }
