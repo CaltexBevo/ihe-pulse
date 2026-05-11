@@ -12,8 +12,42 @@
     "source": "Fortune",
     "sourceUrl": "https://fortune.com/2026/04/27/salesforce-ceo-marc-benioff-hiring-1000-new-grads-ai-jobs/",
     "category": "AI Workforce & Careers",
-    "image": ""
+    "image": "/images/stories/salesforce-to-hire-1-000-new-graduates-as-company-defends-la.webp"
   },
+  "quickHits": [
+    {
+      "headline": "Scottsdale Community College Launches AI Certificate for Non-Coders",
+      "summary": "Starting fall 2026, working professionals can earn an artificial intelligence certificate without writing a single line of code. Scottsdale Community College announced its new Foundations of Applied A.I. Certificate of Completion, a nine-credit program designed for managers, analysts, entrepreneurs, educators, and healthcare workers who need A.I. skills but not programming expertise.\n\nThe one-semester certificate requires no prerequisites and no coding background. Students take three courses: A.I. Literacy & Everyday Applications, Applied A.I. Agents & Data Basics, and an A.I. Integration Project focused on real business applications.\n\n\"We're not teaching students to build A.I. We're teaching them to use it wisely, ethically, and effectively,\" said Nancy Dedakia, Computer Information Systems Faculty.",
+      "source": "Arizona Digital Free Press",
+      "sourceUrl": "https://arizonadigitalfreepress.com/scottsdale-community-college-launches-applied-ai-certificate/",
+      "category": "Case Study",
+      "image": "/images/stories/scottsdale-community-college-launches-ai-certificate-for-non.webp"
+    },
+    {
+      "headline": "Trinity Computer Science Students Deploy A.I. Solutions for Hartford Safety and Healthcare Partners",
+      "summary": "Eight Trinity College seniors spent their final semester building artificial intelligence solutions for real community partners — from analyzing Hartford street cameras for pedestrian safety to developing healthcare tools for Connecticut Children's Medical Center. The students worked through Trinity's Applied A.I. Innovation Sandbox, a pilot program launched by the college's Elting Center for Innovation and Entrepreneurship.",
+      "source": "Trinity College",
+      "sourceUrl": "https://www.trincoll.edu/news/trinitys-applied-ai-innovation-sandbox-pilot-program-delivers-ai-based-solutions-to-local-community/",
+      "category": "Case Study",
+      "image": "/images/stories/trinity-computer-science-students-deploy-a-i-solutions-for-h.webp"
+    },
+    {
+      "headline": "Alabama A&M Launches State's First Bachelor's Degree in Artificial Intelligence",
+      "summary": "Alabama A&M University will become the first institution in Alabama to offer a Bachelor of Science in Artificial Intelligence when its inaugural cohort begins classes this fall. The historically Black university received approval for the 125-credit, four-year program. The degree builds on computer science curriculum that has included an A.I. concentration since 2022.",
+      "source": "WHNT",
+      "sourceUrl": "https://whnt.com/news/alabama-am-to-launch-states-first-bachelors-degree-in-ai-this-fall/",
+      "category": "Case Study",
+      "image": "/images/stories/alabama-a-m-launches-state-s-first-bachelor-s-degree-in-arti.webp"
+    },
+    {
+      "headline": "Florida Poised to Become First State to Shield Consumers from A.I. Data Center Utility Costs",
+      "summary": "Florida consumers may soon be shielded from paying higher electricity bills to subsidize large-scale A.I. data centers. Governor Ron DeSantis is expected to sign Senate Bill 484 at Florida Polytechnic University tomorrow, in what officials are calling the first legislation of its kind in the country.",
+      "source": "Fox 13 Tampa Bay",
+      "sourceUrl": "https://www.fox13news.com/news/desantis-bill-costs-water-use-ai-data-centers-florida",
+      "category": "Beyond Ed",
+      "image": "/images/stories/florida-poised-to-become-first-state-to-shield-consumers-fro.webp"
+    }
+  ],
   "meta": {
     "date": "2026-05-06",
     "dayOfWeek": "Wednesday",
