@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/ihe-daily-news-audio/**',
+      },
     ],
   },
   poweredByHeader: false,
