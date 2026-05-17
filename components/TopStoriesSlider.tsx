@@ -84,9 +84,9 @@ export default function TopStoriesSlider({ stories }: TopStoriesSliderProps) {
               href={`/innovation-pulse/story/${slug}`}
               className={`slider-card ${isLead ? 'lead' : ''} block group`}
             >
-              {/* Image */}
+              {/* Image - 3:2 aspect ratio to match 1536x1024 source images */}
               {story.image && (
-                <div className="relative h-[160px] overflow-hidden bg-[var(--surface)]">
+                <div className="relative aspect-[3/2] overflow-hidden bg-[var(--surface)]">
                   <Image
                     src={story.image}
                     alt=""
