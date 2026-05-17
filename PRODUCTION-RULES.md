@@ -409,3 +409,16 @@ Before publishing, verify:
 - No duplicate categories across all stories (aim for variety)
 - Lead story category matches the story's actual content
 - Category names match V4 exactly (case-sensitive)
+
+### Image Field Name Rule
+
+Episode JSON must use `imageUrl` (not `image`). Frontend `normalizeEpisode()` checks both for backwards compatibility, but the canonical field is `imageUrl`. All new episodes must use `imageUrl`.
+
+### CMA Story Substitution Ban
+
+The CMA must NEVER substitute founder story picks without asking. If a validator hook rejects a founder-selected story, the CMA must:
+1. Report the rejection with the specific reason
+2. Wait for founder instructions
+3. Do not silently swap in a different story
+
+This rule exists because story selection reflects editorial judgment that only the founder can override.
