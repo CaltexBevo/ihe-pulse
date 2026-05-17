@@ -138,7 +138,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     isCallback: (rawDeepDive.isCallback as boolean) ?? false,
     category: mapCategory((rawDeepDive.category) as string || ''),
     editorialCallout: (rawDeepDive.editorialCallout) as string | undefined,
-    image: (rawDeepDive.image) as string | undefined,
+    image: (rawDeepDive.image || rawDeepDive.imageUrl) as string | undefined,
     dataViz: (rawDeepDive.dataViz) as InnovationPulseEpisode['deepDive']['dataViz'] | undefined,
   };
 
@@ -151,7 +151,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     sourceUrl: (hit.sourceUrl) as string || '',
     category: mapCategory((hit.category) as string || ''),
     isCallback: hit.isCallback as boolean | undefined,
-    image: (hit.image) as string | undefined,
+    image: (hit.image || hit.imageUrl) as string | undefined,
     dataViz: (hit.dataViz) as InnovationPulseEpisode['quickHits'][number]['dataViz'] | undefined,
   }));
 
