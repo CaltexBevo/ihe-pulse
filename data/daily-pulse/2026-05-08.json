@@ -12,7 +12,7 @@
     "source": "The Lancet / Columbia University School of Nursing",
     "sourceUrl": "https://www.nursing.columbia.edu/news/nearly-3-000-peer-reviewed-medical-papers-have-fake-citations-columbia-nursing-ai-assisted-audit-finds",
     "category": "Insights & Trends",
-    "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/columbia-fake-citations.png"
+    "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/columbia-fake-citations.png?v=2"
   },
   "quickHits": [
     {
@@ -21,7 +21,7 @@
       "source": "Stanford Report",
       "sourceUrl": "https://news.stanford.edu/stories/2026/05/stanford-merges-hai-data-science",
       "category": "Insights & Trends",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/stanford-hai-merge.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/stanford-hai-merge.png?v=2"
     },
     {
       "headline": "Hawaii Legislature Passes A.I. Disclosure Act Requiring Transparency for Minors",
@@ -29,7 +29,7 @@
       "source": "Hawaii State Legislature",
       "sourceUrl": "https://www.hawaiisenatemajority.com/press-release/hawai%CA%BBi-state-legislature-passes-sb3001-cd1-the-artificial-intelligence-disclosure-and-safety-act",
       "category": "Beyond Ed",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/hawaii-ai-disclosure.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/hawaii-ai-disclosure.png?v=2"
     },
     {
       "headline": "Recent Graduate Unemployment Reaches Four-Year High at 5.7 Percent",
@@ -37,7 +37,7 @@
       "source": "Scripps News",
       "sourceUrl": "https://www.scrippsnews.com/politics/economy/class-of-2026-faces-tough-job-market-and-ai-concerns-as-graduation-season-approaches",
       "category": "AI Workforce & Careers",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/graduate-unemployment.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/graduate-unemployment.png?v=2"
     },
     {
       "headline": "Arizona State Completes First Semester of Agentic A.I. Course Without Coding Prerequisites",
@@ -45,7 +45,7 @@
       "source": "AfroTech",
       "sourceUrl": "https://afrotech.com/will-i-am-completed-his-first-semester-at-asu-teaching-an-agentic-ai-course",
       "category": "Case Study",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/asu-agentic-course.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-08/asu-agentic-course.png?v=2"
     }
   ],
   "meta": {
@@ -53,7 +53,7 @@
     "dayOfWeek": "Friday",
     "version": "3.1",
     "format": "straight-news",
-    "publishedAt": "2026-05-17T18:51:20.560Z",
+    "publishedAt": "2026-05-17T20:02:31.214Z",
     "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
   }
 }
