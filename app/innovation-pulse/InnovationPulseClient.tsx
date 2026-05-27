@@ -437,14 +437,18 @@ export default function InnovationPulseClient({
       <div className="section-divider" />
 
       {/* ═══════════════════════════════════════════════════════
-          NEWSLETTER SIGNUP
+          NEWSLETTER SIGNUP — Hidden on homepage (showHero=false)
           ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
-        <NewsletterSignup variant="inline" />
-      </div>
+      {showHero !== false && (
+        <>
+          <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
+            <NewsletterSignup variant="inline" />
+          </div>
 
-      {/* Section Divider */}
-      <div className="section-divider" />
+          {/* Section Divider */}
+          <div className="section-divider" />
+        </>
+      )}
 
       {/* ═══════════════════════════════════════════════════════
           V4 CATEGORY FILTERS
@@ -670,46 +674,48 @@ export default function InnovationPulseClient({
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          ARCHIVE SECTION
+          ARCHIVE SECTION + BOTTOM NEWSLETTER — Hidden on homepage (showHero=false)
           ═══════════════════════════════════════════════════════ */}
-      {archiveEpisodes.length > 0 && (
-        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-          <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
-            Briefing Archive
-          </div>
+      {showHero !== false && (
+        <>
+          {archiveEpisodes.length > 0 && (
+            <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+              <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-4">
+                Briefing Archive
+              </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {archiveEpisodes.slice(0, 8).map((ep) => (
-              <Link
-                key={ep.date}
-                href={`/innovation-pulse/${ep.date}`}
-                className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] hover:-translate-y-[2px] transition-all duration-300 block group"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">{formatShortDate(ep.date)}</span>
-                  <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
-                    {ep.editorialLens.split(" ").slice(0, 2).join(" ")}
-                  </span>
-                </div>
-                <p className="text-[0.85rem] font-bold text-[var(--text)] leading-[1.4] line-clamp-2 group-hover:text-[var(--cyan)] transition-colors">
-                  {ep.deepDive.title}
-                </p>
-                <div className="flex items-center gap-3 mt-2 font-mono text-[0.55rem] text-[var(--text-muted)]">
-                  <span>{ep.audioDuration}</span>
-                  <span>{ep.quickHits.length + 1} stories</span>
-                </div>
-              </Link>
-            ))}
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {archiveEpisodes.slice(0, 8).map((ep) => (
+                  <Link
+                    key={ep.date}
+                    href={`/innovation-pulse/${ep.date}`}
+                    className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] hover:-translate-y-[2px] transition-all duration-300 block group"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="font-mono text-[0.55rem] text-[var(--text-muted)]">{formatShortDate(ep.date)}</span>
+                      <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
+                        {ep.editorialLens.split(" ").slice(0, 2).join(" ")}
+                      </span>
+                    </div>
+                    <p className="text-[0.85rem] font-bold text-[var(--text)] leading-[1.4] line-clamp-2 group-hover:text-[var(--cyan)] transition-colors">
+                      {ep.deepDive.title}
+                    </p>
+                    <div className="flex items-center gap-3 mt-2 font-mono text-[0.55rem] text-[var(--text-muted)]">
+                      <span>{ep.audioDuration}</span>
+                      <span>{ep.quickHits.length + 1} stories</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Bottom Newsletter CTA */}
+          <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+            <NewsletterSignup variant="card" />
           </div>
-        </div>
+        </>
       )}
-
-      {/* ═══════════════════════════════════════════════════════
-          NEWSLETTER CTA
-          ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <NewsletterSignup variant="card" />
-      </div>
 
       {/* AI Voice Disclaimer */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12 text-center border-t border-[var(--border)] pt-4">
