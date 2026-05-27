@@ -1,9 +1,4 @@
-import {
-  getAllEpisodes,
-  getLatestEpisode,
-  getStoriesByCategory,
-} from '@/lib/data/innovation-pulse';
-import InnovationPulseClient from './InnovationPulseClient';
+import { redirect } from 'next/navigation';
 
 // ISR: Revalidate every 60 seconds so new episodes appear quickly
 export const revalidate = 60;
@@ -15,15 +10,5 @@ export const metadata = {
 };
 
 export default function InnovationPulsePage() {
-  const episode = getLatestEpisode();
-  const allEpisodes = getAllEpisodes();
-  const storiesByCategory = getStoriesByCategory();
-
-  return (
-    <InnovationPulseClient
-      episode={episode}
-      allEpisodes={allEpisodes}
-      storiesByCategory={storiesByCategory}
-    />
-  );
+  redirect('/');
 }

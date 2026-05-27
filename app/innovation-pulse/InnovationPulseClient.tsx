@@ -134,6 +134,7 @@ interface InnovationPulseClientProps {
   episode: InnovationPulseEpisode | null;
   allEpisodes: InnovationPulseEpisode[];
   storiesByCategory: Record<string, AggregatedStory[]>;
+  showHero?: boolean;
 }
 
 // Editorial lens colors — palette-locked (no green)
@@ -149,6 +150,7 @@ export default function InnovationPulseClient({
   episode,
   allEpisodes,
   storiesByCategory,
+  showHero = true,
 }: InnovationPulseClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<V4Category | "all">("all");
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
@@ -312,102 +314,106 @@ export default function InnovationPulseClient({
   }
 
   return (
-    <div className="min-h-screen">
-      {/* ═══════════════════════════════════════════════════════
-          HERO SECTION — HeroNowPlaying + Recent Episodes Sidebar
-          ═══════════════════════════════════════════════════════ */}
-      <section className="relative">
-        {/* Premium gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
+    <div className={showHero ? "min-h-screen" : ""}>
+      {showHero && (
+        <>
+          {/* ═══════════════════════════════════════════════════════
+              HERO SECTION — HeroNowPlaying + Recent Episodes Sidebar
+              ═══════════════════════════════════════════════════════ */}
+          <section className="relative">
+            {/* Premium gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
 
-        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
-          {/* EYEBROW — above the grid so card and sidebar start at same top */}
-          <div className="flex items-center justify-between pt-10 pb-6 flex-wrap gap-4">
-            <div className="np-brand">The Innovation Pulse</div>
-            <div className="np-now">
-              <span className="np-dot" />
-              Now Playing · Today&apos;s Broadcast
-            </div>
-          </div>
-
-          {/* Hero player — same component as homepage */}
-          <div className="animate-[fadeUp_0.8s_ease-out_both]">
-            <HeroNowPlaying
-              latestEpisode={currentEpisode}
-              recentEpisodes={recentEpisodes}
-              otherStories={heroOtherStories}
-              showExtras={false}
-              showHeader={false}
-              selectedEpisodeIndex={selectedEpisodeIndex}
-              onEpisodeChange={handleEpisodeChange}
-              autoPlay={shouldAutoPlay}
-            />
-          </div>
-
-          {/* Recent Episodes grid — Part 10 redesign */}
-          {recentEpisodes && recentEpisodes.length > 1 && (
-            <div className="ip-recent-strip">
-              <div className="ip-recent-header">
-                <div className="ip-recent-header-title">
+            <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
+              {/* EYEBROW — above the grid so card and sidebar start at same top */}
+              <div className="flex items-center justify-between pt-10 pb-6 flex-wrap gap-4">
+                <div className="np-brand">The Innovation Pulse</div>
+                <div className="np-now">
                   <span className="np-dot" />
-                  <h3>Recent Episodes</h3>
+                  Now Playing · Today&apos;s Broadcast
                 </div>
-                <Link href="/innovation-pulse/archive" className="ip-recent-archive-link">
-                  View full archive →
-                </Link>
               </div>
 
-              <div className="ip-recent-grid">
-                {recentEpisodes.slice(1, 6).map((ep, idx) => {
-                  const epDate = new Date(ep.date + 'T12:00:00');
-                  const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
-                  const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                  const actualIndex = idx + 1; // Account for slice(1, 6)
-                  const isSelected = selectedEpisodeIndex === actualIndex;
+              {/* Hero player — same component as homepage */}
+              <div className="animate-[fadeUp_0.8s_ease-out_both]">
+                <HeroNowPlaying
+                  latestEpisode={currentEpisode}
+                  recentEpisodes={recentEpisodes}
+                  otherStories={heroOtherStories}
+                  showExtras={false}
+                  showHeader={false}
+                  selectedEpisodeIndex={selectedEpisodeIndex}
+                  onEpisodeChange={handleEpisodeChange}
+                  autoPlay={shouldAutoPlay}
+                />
+              </div>
 
-                  return (
-                    <button
-                      key={ep.date}
-                      type="button"
-                      onClick={() => handleRecentEpisodeClick(ep)}
-                      className={`ip-recent-card ${isSelected ? 'ip-recent-card-active' : ''}`}
-                    >
-                      <div className="ip-recent-card-meta">
-                        <span className="ip-recent-card-date">{dayName}, {monthDay}</span>
-                        <span className="ip-recent-card-duration">{ep.audioDuration}</span>
-                      </div>
-                      <div className="ip-recent-card-title">{ep.deepDive?.title}</div>
-                      {isSelected && (
-                        <div className="ip-recent-card-playing">
-                          <span className="ip-recent-card-playing-dot" />
-                          Now Playing
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
+              {/* Recent Episodes grid — Part 10 redesign */}
+              {recentEpisodes && recentEpisodes.length > 1 && (
+                <div className="ip-recent-strip">
+                  <div className="ip-recent-header">
+                    <div className="ip-recent-header-title">
+                      <span className="np-dot" />
+                      <h3>Recent Episodes</h3>
+                    </div>
+                    <Link href="/innovation-pulse/archive" className="ip-recent-archive-link">
+                      View full archive →
+                    </Link>
+                  </div>
+
+                  <div className="ip-recent-grid">
+                    {recentEpisodes.slice(1, 6).map((ep, idx) => {
+                      const epDate = new Date(ep.date + 'T12:00:00');
+                      const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
+                      const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                      const actualIndex = idx + 1; // Account for slice(1, 6)
+                      const isSelected = selectedEpisodeIndex === actualIndex;
+
+                      return (
+                        <button
+                          key={ep.date}
+                          type="button"
+                          onClick={() => handleRecentEpisodeClick(ep)}
+                          className={`ip-recent-card ${isSelected ? 'ip-recent-card-active' : ''}`}
+                        >
+                          <div className="ip-recent-card-meta">
+                            <span className="ip-recent-card-date">{dayName}, {monthDay}</span>
+                            <span className="ip-recent-card-duration">{ep.audioDuration}</span>
+                          </div>
+                          <div className="ip-recent-card-title">{ep.deepDive?.title}</div>
+                          {isSelected && (
+                            <div className="ip-recent-card-playing">
+                              <span className="ip-recent-card-playing-dot" />
+                              Now Playing
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <div className="np-subscribe" style={{ marginTop: '20px', marginBottom: '8px' }}>
+                <div className="np-sub-copy">
+                  <strong>Never miss an episode.</strong>{" "}
+                  <span className="np-sub-muted">
+                    Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
+                  </span>
+                </div>
+                <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
+                  <input type="email" placeholder="your@email.edu" aria-label="Email address" />
+                  <button type="submit">Subscribe</button>
+                </form>
               </div>
             </div>
-          )}
+          </section>
 
-          <div className="np-subscribe" style={{ marginTop: '20px', marginBottom: '8px' }}>
-            <div className="np-sub-copy">
-              <strong>Never miss an episode.</strong>{" "}
-              <span className="np-sub-muted">
-                Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
-              </span>
-            </div>
-            <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="your@email.edu" aria-label="Email address" />
-              <button type="submit">Subscribe</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="section-divider" />
+          {/* Section Divider */}
+          <div className="section-divider" />
+        </>
+      )}
 
       {/* ═══════════════════════════════════════════════════════
           TOP STORIES — Horizontal Slider (matches homepage)
@@ -444,19 +450,16 @@ export default function InnovationPulseClient({
           V4 CATEGORY FILTERS
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
-        <div className="flex items-start gap-4 mb-6">
-          <div className="w-[3px] h-[2.2rem] bg-gradient-to-b from-[var(--cyan)] to-[var(--magenta)] rounded-full mt-1" />
-          <div>
-            <h2
-              className="text-[clamp(1.5rem,3vw,1.85rem)] font-bold text-[var(--cyan)] leading-[1.2]"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              Curated News
-            </h2>
-            <p className="text-[0.82rem] text-[var(--text-muted)] mt-1">
-              AI in education and beyond — browse by category
-            </p>
-          </div>
+        <div className="mb-6">
+          <h2
+            className="text-[clamp(1.5rem,3vw,1.85rem)] font-bold text-[var(--cyan)] leading-[1.2]"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Curated News
+          </h2>
+          <p className="text-[0.82rem] text-[var(--text-muted)] mt-1">
+            AI in education and beyond — browse by category
+          </p>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
@@ -504,19 +507,16 @@ export default function InnovationPulseClient({
         {previousLeadStories.length > 0 && (
           <div id="previous-lead-stories" className="mb-8">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-start gap-4">
-                <div className="w-[3px] h-[1.8rem] bg-[var(--magenta)] rounded-full mt-1" />
-                <div>
-                  <h3
-                    className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--magenta)] leading-[1.2]"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    Previous Lead Stories
-                  </h3>
-                  <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
-                    Deep dives from recent episodes
-                  </p>
-                </div>
+              <div>
+                <h3
+                  className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold text-[var(--magenta)] leading-[1.2]"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  Previous Lead Stories
+                </h3>
+                <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
+                  Deep dives from recent episodes
+                </p>
               </div>
               <Link href="/innovation-pulse/stories" className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
                 View all →
@@ -623,25 +623,22 @@ export default function InnovationPulseClient({
           return (
             <div key={category} id={catId} className="mb-10 mt-10 first:mt-0">
               <div className="flex items-center justify-between mb-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-[3px] h-[1.8rem] rounded-full mt-1" style={{ background: catColor }} />
-                  <div>
-                    <h3
-                      className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold leading-[1.2]"
-                      style={{ fontFamily: "var(--font-heading)", color: catColor }}
-                    >
-                      {category}
-                    </h3>
-                    <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
-                      {category === "Insights & Trends" && "Research, data, and emerging patterns"}
-                      {category === "Case Study" && "Real-world implementations and outcomes"}
-                      {category === "Practical Tips" && "Actionable strategies for educators"}
-                      {category === "Ethical AI" && "Policy, ethics, and responsible AI use"}
-                      {category === "Latest AI Products" && "New tools and platform updates"}
-                      {category === "Beyond Ed" && "AI trends from outside higher education"}
-                      {category === "Week in Review" && "Weekly roundup and analysis"}
-                    </p>
-                  </div>
+                <div>
+                  <h3
+                    className="text-[clamp(1.25rem,2.5vw,1.5rem)] font-bold leading-[1.2]"
+                    style={{ fontFamily: "var(--font-heading)", color: catColor }}
+                  >
+                    {category}
+                  </h3>
+                  <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
+                    {category === "Insights & Trends" && "Research, data, and emerging patterns"}
+                    {category === "Case Study" && "Real-world implementations and outcomes"}
+                    {category === "Practical Tips" && "Actionable strategies for educators"}
+                    {category === "Ethical AI" && "Policy, ethics, and responsible AI use"}
+                    {category === "Latest AI Products" && "New tools and platform updates"}
+                    {category === "Beyond Ed" && "AI trends from outside higher education"}
+                    {category === "Week in Review" && "Weekly roundup and analysis"}
+                  </p>
                 </div>
                 <Link href={`/innovation-pulse/category/${catSlug}`} className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
                   View all →
