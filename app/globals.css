@@ -2280,12 +2280,15 @@ textarea:focus:not(:focus-visible) {
   .np-art-date-tag { font-size: 6.5px; }
 }
 
-/* Mobile: show artwork play overlay, hide transport controls */
+/* Mobile: show artwork play overlay, hide transport controls and scrubber */
 @media (max-width: 767px) {
   .np-artwork-play-overlay {
     display: flex;
   }
   .np-transport {
+    display: none;
+  }
+  .np-scrubber {
     display: none;
   }
 }
@@ -2838,6 +2841,32 @@ textarea:focus:not(:focus-visible) {
   background: linear-gradient(135deg, var(--surface), var(--bg-card));
 }
 
+.ip-recent-thumb-artwork {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #131c2e 0%, #0f172a 60%, #1a2535 100%);
+  overflow: hidden;
+}
+.ip-recent-thumb-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--purple));
+  opacity: 0.7;
+}
+.ip-recent-thumb-active .ip-recent-thumb-accent { opacity: 1; }
+.ip-recent-thumb-mic {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 28px;
+  height: 38px;
+  opacity: 0.7;
+}
+.ip-recent-thumb-active .ip-recent-thumb-mic { opacity: 1; }
+
 .ip-recent-thumb-label {
   font-size: 0.6rem;
   color: var(--text-muted);
@@ -2852,4 +2881,5 @@ textarea:focus:not(:focus-visible) {
   .ip-recent-thumb { width: 80px; }
   .ip-recent-thumb-img { width: 80px; height: 80px; }
   .ip-recent-thumbs { gap: 10px; }
+  .ip-recent-thumb-mic { width: 22px; height: 30px; top: 6px; left: 6px; }
 }
