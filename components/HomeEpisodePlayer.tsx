@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import HeroNowPlaying from '@/components/HeroNowPlaying';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
 
@@ -105,32 +106,48 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
             </Link>
           </div>
 
-          <div className="ip-recent-grid">
-            {recentEpisodes.slice(1, 6).map((ep, idx) => {
+          <div className="ip-recent-thumbs">
+            {recentEpisodes.slice(1, 7).map((ep, idx) => {
               const epDate = new Date(ep.date + 'T12:00:00');
-              const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][epDate.getDay()];
               const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-              const actualIndex = idx + 1; // Account for slice(1, 6)
+              const actualIndex = idx + 1;
               const isSelected = selectedEpisodeIndex === actualIndex;
+              const thumbImage = ep.deepDive?.image || '';
+              const shortTitle = ep.deepDive?.title
+                ? ep.deepDive.title.length > 25
+                  ? ep.deepDive.title.slice(0, 22) + '...'
+                  : ep.deepDive.title
+                : '';
 
               return (
                 <button
                   key={ep.date}
                   type="button"
                   onClick={() => handleRecentEpisodeClick(ep)}
-                  className={`ip-recent-card ${isSelected ? 'ip-recent-card-active' : ''}`}
+                  className={`ip-recent-thumb ${isSelected ? 'ip-recent-thumb-active' : ''}`}
                 >
-                  <div className="ip-recent-card-meta">
-                    <span className="ip-recent-card-date">{dayName}, {monthDay}</span>
-                    <span className="ip-recent-card-duration">{ep.audioDuration}</span>
+                  <div className="ip-recent-thumb-img">
+                    {thumbImage ? (
+                      <Image src={thumbImage} alt="" fill className="object-cover" sizes="120px" />
+                    ) : (
+                      <div className="ip-recent-thumb-fallback" />
+                    )}
+                    <div className="ip-recent-thumb-date">{monthDay.toUpperCase()}</div>
+                    {isSelected && (
+                      <div className="ip-recent-thumb-now">
+                        <span className="ip-recent-thumb-now-dot" />
+                        NOW
+                      </div>
+                    )}
+                    {!isSelected && (
+                      <div className="ip-recent-thumb-play">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                          <polygon points="6,3 20,12 6,21" fill="white" fillOpacity="0.7" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
-                  <div className="ip-recent-card-title">{ep.deepDive?.title}</div>
-                  {isSelected && (
-                    <div className="ip-recent-card-playing">
-                      <span className="ip-recent-card-playing-dot" />
-                      Now Playing
-                    </div>
-                  )}
+                  <div className="ip-recent-thumb-label">{shortTitle}</div>
                 </button>
               );
             })}

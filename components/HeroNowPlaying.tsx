@@ -121,14 +121,21 @@ export default function HeroNowPlaying({
       setCurrentTime(0);
     };
 
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
     };
   }, [currentEpisode]);
 
@@ -163,7 +170,7 @@ export default function HeroNowPlaying({
     } else {
       audio.play();
     }
-    setIsPlaying(!isPlaying);
+    // Don't call setIsPlaying — the event listeners handle it
   };
 
   const handleSkipBack = () => {
@@ -307,6 +314,25 @@ export default function HeroNowPlaying({
             </div>
             <div className="np-art-date-tag">— 5 MIN · COMMUTE · LUNCH · DRIVE HOME —</div>
           </div>
+
+          {/* Mobile play overlay — hidden on desktop */}
+          <button
+            className="np-artwork-play-overlay"
+            onClick={togglePlay}
+            aria-label={paused ? "Play episode" : "Pause episode"}
+            type="button"
+          >
+            {isPlaying ? (
+              <svg viewBox="0 0 24 24" width="32" height="32">
+                <rect x="6" y="4" width="4" height="16" fill="white" />
+                <rect x="14" y="4" width="4" height="16" fill="white" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="32" height="32" style={{ marginLeft: '3px' }}>
+                <polygon points="6,3 20,12 6,21" fill="white" />
+              </svg>
+            )}
+          </button>
         </div>
 
         <div className="np-player">
@@ -362,7 +388,16 @@ export default function HeroNowPlaying({
               </svg>
             </button>
             <button className="np-play-main" aria-label={paused ? "Play" : "Pause"} type="button" onClick={togglePlay}>
-              <span className="np-play-icon" />
+              {isPlaying ? (
+                <svg viewBox="0 0 24 24" className="np-play-svg">
+                  <rect x="6" y="4" width="4" height="16" fill="white" />
+                  <rect x="14" y="4" width="4" height="16" fill="white" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" className="np-play-svg">
+                  <polygon points="6,3 20,12 6,21" fill="white" />
+                </svg>
+              )}
             </button>
             <button className="np-ctrl" aria-label="Next" type="button" onClick={handleNext}>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
