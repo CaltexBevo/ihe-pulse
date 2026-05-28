@@ -2744,35 +2744,43 @@ textarea:focus:not(:focus-visible) {
 
 .ip-recent-thumb {
   flex-shrink: 0;
-  width: 100px;
-  background: none;
-  border: none;
+  width: 240px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   padding: 0;
   cursor: pointer;
-  text-align: center;
-}
-
-.ip-recent-thumb-img {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
+  text-align: left;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
   overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  margin-bottom: 6px;
   transition: border-color 0.2s, transform 0.2s;
 }
 
-.ip-recent-thumb:hover .ip-recent-thumb-img {
+.ip-recent-thumb:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
 }
 
-.ip-recent-thumb-active .ip-recent-thumb-img {
-  border: 2px solid var(--cyan);
-  box-shadow: 0 0 16px rgba(0, 212, 255, 0.15);
+.ip-recent-thumb-active {
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px rgba(0,212,255,0.15);
 }
+
+.ip-recent-thumb-img {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--surface);
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+}
+
+/* Hover/active styles now on .ip-recent-thumb parent */
 
 .ip-recent-thumb-date {
   position: absolute;
@@ -2917,19 +2925,35 @@ textarea:focus:not(:focus-visible) {
 }
 .ip-recent-thumb-active .ip-recent-thumb-accent { opacity: 1; }
 
-.ip-recent-thumb-label {
-  font-size: 0.6rem;
-  color: var(--text-muted);
+/* Right side title panel for horizontal card layout */
+.ip-recent-thumb-side {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.ip-recent-thumb-side-title {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
   line-height: 1.3;
-  max-height: 2.6em;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.ip-recent-thumb-active .ip-recent-thumb-label { color: var(--text-secondary); }
+.ip-recent-thumb-active .ip-recent-thumb-side-title {
+  color: var(--cyan);
+}
 
 @media (max-width: 767px) {
-  .ip-recent-thumb { width: 80px; }
-  .ip-recent-thumb-img { width: 80px; height: 80px; }
+  .ip-recent-thumb { width: 200px; }
+  .ip-recent-thumb-img { width: 90px; height: 90px; }
   .ip-recent-thumbs { gap: 10px; }
   .ip-recent-thumb-title { display: none; }
+  .ip-recent-thumb-side-title { font-size: 0.72rem; -webkit-line-clamp: 3; }
 }

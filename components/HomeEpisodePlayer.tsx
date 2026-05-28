@@ -111,11 +111,6 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
               const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
               const actualIndex = idx + 1;
               const isSelected = selectedEpisodeIndex === actualIndex;
-              const shortTitle = ep.deepDive?.title
-                ? ep.deepDive.title.length > 25
-                  ? ep.deepDive.title.slice(0, 22) + '...'
-                  : ep.deepDive.title
-                : '';
 
               return (
                 <button
@@ -146,7 +141,9 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
                       </div>
                     )}
                   </div>
-                  <div className="ip-recent-thumb-label">{shortTitle}</div>
+                  <div className="ip-recent-thumb-side">
+                    <div className="ip-recent-thumb-side-title">{ep.deepDive?.title || ''}</div>
+                  </div>
                 </button>
               );
             })}
