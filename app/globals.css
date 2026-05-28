@@ -2046,15 +2046,6 @@ textarea:focus:not(:focus-visible) {
   background: rgba(0, 0, 0, 0.55);
 }
 
-@media (max-width: 767px) {
-  .np-artwork-play-overlay {
-    display: flex;
-  }
-  .np-transport {
-    display: none;
-  }
-}
-
 /* Mic illustration — right side, anchored center-right */
 /* Mic — LEFT side, NOT horizontally flipped */
 .np-art-mic {
@@ -2287,6 +2278,16 @@ textarea:focus:not(:focus-visible) {
   .np-art-date-band { bottom: 18px; left: 20px; right: 20px; }
   .np-art-date-main { font-size: 19px; }
   .np-art-date-tag { font-size: 6.5px; }
+}
+
+/* Mobile: show artwork play overlay, hide transport controls */
+@media (max-width: 767px) {
+  .np-artwork-play-overlay {
+    display: flex;
+  }
+  .np-transport {
+    display: none;
+  }
 }
 
 /* ==========================================================================
