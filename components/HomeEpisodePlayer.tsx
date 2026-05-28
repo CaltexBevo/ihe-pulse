@@ -106,7 +106,7 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
           </div>
 
           <div className="ip-recent-thumbs">
-            {recentEpisodes.slice(1, 7).map((ep, idx) => {
+            {recentEpisodes.slice(1, 10).map((ep, idx) => {
               const epDate = new Date(ep.date + 'T12:00:00');
               const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
               const actualIndex = idx + 1;
@@ -127,12 +127,9 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
                   <div className="ip-recent-thumb-img">
                     <div className="ip-recent-thumb-artwork">
                       <div className="ip-recent-thumb-accent" />
-                      <img
-                        src="/images/mic03.png"
-                        alt=""
-                        className="ip-recent-thumb-micimg"
-                        aria-hidden="true"
-                      />
+                      <img src="/images/ihe-logo.png" alt="" className="ip-recent-thumb-logo" aria-hidden="true" />
+                      <img src="/images/mic03.png" alt="" className="ip-recent-thumb-micimg" aria-hidden="true" />
+                      <div className="ip-recent-thumb-title">The Innovation Pulse</div>
                     </div>
                     <div className="ip-recent-thumb-date">{monthDay.toUpperCase()}</div>
                     {isSelected && (

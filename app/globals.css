@@ -2744,7 +2744,7 @@ textarea:focus:not(:focus-visible) {
 
 .ip-recent-thumb {
   flex-shrink: 0;
-  width: 120px;
+  width: 100px;
   background: none;
   border: none;
   padding: 0;
@@ -2754,8 +2754,8 @@ textarea:focus:not(:focus-visible) {
 
 .ip-recent-thumb-img {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 10px;
   overflow: hidden;
   background: var(--surface);
@@ -2871,15 +2871,38 @@ textarea:focus:not(:focus-visible) {
   background: radial-gradient(circle, rgba(0,212,255,0.18), transparent 70%);
 }
 
+.ip-recent-thumb-logo {
+  position: absolute;
+  top: 8%;
+  left: 7%;
+  width: 42%;
+  height: auto;
+  z-index: 2;
+}
+
 .ip-recent-thumb-micimg {
   position: absolute;
-  left: 6%;
-  bottom: 14%;
-  width: 52%;
+  left: 4%;
+  bottom: 16%;
+  width: 46%;
   height: auto;
   object-fit: contain;
   z-index: 1;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+
+.ip-recent-thumb-title {
+  position: absolute;
+  top: 30%;
+  right: 7%;
+  width: 44%;
+  text-align: right;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.62rem;
+  line-height: 1.05;
+  color: white;
+  z-index: 2;
 }
 
 .ip-recent-thumb-accent {
@@ -2908,4 +2931,5 @@ textarea:focus:not(:focus-visible) {
   .ip-recent-thumb { width: 80px; }
   .ip-recent-thumb-img { width: 80px; height: 80px; }
   .ip-recent-thumbs { gap: 10px; }
+  .ip-recent-thumb-title { display: none; }
 }
