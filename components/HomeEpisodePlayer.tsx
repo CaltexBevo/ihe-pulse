@@ -106,7 +106,7 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
           </div>
 
           <div className="ip-recent-thumbs">
-            {recentEpisodes.slice(1, 10).map((ep, idx) => {
+            {recentEpisodes.slice(1, 16).map((ep, idx) => {
               const epDate = new Date(ep.date + 'T12:00:00');
               const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
               const actualIndex = idx + 1;

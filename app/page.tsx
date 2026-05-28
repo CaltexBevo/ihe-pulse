@@ -10,7 +10,7 @@ import {
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
   const allEpisodes = getAllEpisodes();
-  const recentEpisodes = allEpisodes.slice(0, 6); // Last 6 episodes (sliding window)
+  const recentEpisodes = allEpisodes.slice(0, 16); // Last 16 episodes for thumbnail strip
   const storiesByCategory = getStoriesByCategory();
 
   return (
