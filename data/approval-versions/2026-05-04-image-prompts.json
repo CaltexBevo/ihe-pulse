@@ -1,0 +1,68 @@
+{
+  "episode": "2026-05-04",
+  "generatedAt": "2026-05-07T17:45:00.000Z",
+  "images": [
+    {
+      "story": "LEAD: Los Angeles Community Colleges Spend $3.8M on Chatbots That Give Students Wrong Answers",
+      "tension": "Millions invested in AI assistants that cannot answer basic questions, leaving students worse off than a simple Google search",
+      "style": "bold_conceptual",
+      "metaphor_pattern": "SPLIT/FRACTURE",
+      "symbolic_objects": ["chat bubble", "cracked screen"],
+      "metaphor": "Chat bubble with crack running through it, the fracture revealing static/noise inside instead of text",
+      "prompt": "Large speech bubble with jagged crack running vertically through center, left side clean white with neat text lines, right side fragmenting into digital static and noise, sharp fracture line, bold graphic style, coral and slate gray palette, clean minimal background, conceptual editorial illustration like Axios, 16:9 composition. CONSTRAINTS: No people. No figures. No silhouettes. No text artifacts. No watermark. No vignette. No frosted borders."
+    },
+    {
+      "story": "QH1: FSU Launches Nation's First AI Nursing Micro-Credential",
+      "tension": "Healthcare needs AI-literate nurses, and one university built the first formal pathway before anyone else",
+      "style": "modern_flat",
+      "metaphor_pattern": "JUXTAPOSITION",
+      "symbolic_objects": ["stethoscope", "circuit pattern"],
+      "metaphor": "Stethoscope where the tubing forms a subtle circuit board pattern, modern medical meets modern tech",
+      "prompt": "Stethoscope laid flat on clean white surface, tubing rendered with subtle circuit trace patterns integrated into design, chest piece as geometric shape, modern flat design illustration, clean vector edges, limited palette of teal and warm coral accent, Apple keynote aesthetic, bright and contemporary, 16:9 composition. CONSTRAINTS: No people. No figures. No silhouettes. No text artifacts. No watermark. No vignette. No frosted borders."
+    },
+    {
+      "story": "QH2: Yale: The Real Job Destruction from AI Is Hitting Before Careers Start",
+      "tension": "Entry-level jobs disappearing not through layoffs but through doors that never open",
+      "style": "data_visualization",
+      "metaphor_pattern": "ABSENCE",
+      "symbolic_objects": ["bar chart", "dissolving bars"],
+      "metaphor": "Bar chart where the shortest bars (entry level) are dissolving into particles while taller bars remain solid",
+      "prompt": "Abstract bar chart, five vertical bars in descending height left to right, two shortest bars on right side dissolving into floating particles, remaining tall bars solid and crisp, Bloomberg data graphics style, clean white background, limited palette of slate blue and coral, geometric precision, data visualization aesthetic, conceptual editorial illustration, 16:9 composition. CONSTRAINTS: No people. No figures. No silhouettes. No text artifacts. No watermark. No vignette. No frosted borders."
+    },
+    {
+      "story": "QH3: Nvidia Board Member Donates $200M to USC for AI Research",
+      "tension": "A massive bet that universities must move fast or get left behind in the AI race",
+      "style": "bold_graphic_poster",
+      "metaphor_pattern": "SCALE SUBVERSION",
+      "symbolic_objects": ["building foundation", "geometric accelerator"],
+      "metaphor": "Architectural foundation blueprint with bold geometric shapes suggesting acceleration and growth",
+      "prompt": "Bold architectural blueprint grid, geometric foundation lines in white on deep navy, single golden rectangle rising from center with forward-leaning diagonal, Swiss poster design aesthetic, Saul Bass influence, maximum 4 colors — navy, white, gold, slate, strong geometric composition, clean lines, no texture noise, poster-quality impact, 16:9 composition. CONSTRAINTS: No people. No figures. No silhouettes. No text artifacts. No watermark. No vignette. No frosted borders."
+    },
+    {
+      "story": "QH4: SUNY Sets Systemwide AI Policy for 64 Campuses",
+      "tension": "One framework attempting to govern AI use across 64 different institutional cultures",
+      "style": "economist_refined",
+      "metaphor_pattern": "TRANSFORMATION IN PROGRESS",
+      "symbolic_objects": ["grid of squares", "unified frame"],
+      "metaphor": "64 small squares in a grid, each slightly different shade, being unified by a single frame descending around them",
+      "prompt": "Grid of 64 small squares in varied shades of blue and gray, single bold rectangular frame descending over grid from above, frame partially enclosing squares, mid-transformation moment, refined conceptual editorial illustration, muted sophisticated palette, Economist cover style, clean composition, single visual metaphor rendered with precision, 16:9 composition. CONSTRAINTS: No people. No figures. No silhouettes. No text artifacts. No watermark. No vignette. No frosted borders."
+    }
+  ],
+  "style_diversity_check": {
+    "styles_used": ["bold_conceptual", "modern_flat", "data_visualization", "bold_graphic_poster", "economist_refined"],
+    "unique_styles": 5,
+    "pass": true
+  },
+  "metaphor_diversity_check": {
+    "patterns_used": ["SPLIT/FRACTURE", "JUXTAPOSITION", "ABSENCE", "SCALE SUBVERSION", "TRANSFORMATION IN PROGRESS"],
+    "unique_patterns": 5,
+    "pass": true
+  },
+  "anti_fantasy_check": {
+    "ornate": false,
+    "glowing": false,
+    "antique": false,
+    "magical": false,
+    "pass": true
+  }
+}

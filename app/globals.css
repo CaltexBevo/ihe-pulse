@@ -2784,16 +2784,18 @@ textarea:focus:not(:focus-visible) {
 
 .ip-recent-thumb-date {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 4px 8px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  top: 52%;
+  right: 7%;
+  width: 44%;
+  text-align: right;
+  background: none;
+  padding: 0;
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.75);
+  z-index: 2;
 }
 
 .ip-recent-thumb-active .ip-recent-thumb-date { color: white; }
@@ -2901,7 +2903,7 @@ textarea:focus:not(:focus-visible) {
 
 .ip-recent-thumb-title {
   position: absolute;
-  top: 30%;
+  top: 26%;
   right: 7%;
   width: 44%;
   text-align: right;
