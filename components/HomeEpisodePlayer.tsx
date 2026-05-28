@@ -127,12 +127,12 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
                   <div className="ip-recent-thumb-img">
                     <div className="ip-recent-thumb-artwork">
                       <div className="ip-recent-thumb-accent" />
-                      <svg className="ip-recent-thumb-mic" viewBox="0 0 60 80" aria-hidden="true">
-                        <rect x="20" y="15" width="20" height="38" rx="10" fill="rgba(148,163,184,0.2)" />
-                        <rect x="28.5" y="50" width="3" height="22" rx="1.5" fill="rgba(148,163,184,0.12)" />
-                        <ellipse cx="30" cy="72" rx="10" ry="3" fill="rgba(148,163,184,0.08)" />
-                        <path d="M18 35 Q18 55 30 55 Q42 55 42 35" fill="none" stroke="rgba(148,163,184,0.1)" strokeWidth="1.5" />
-                      </svg>
+                      <img
+                        src="/images/mic03.png"
+                        alt=""
+                        className="ip-recent-thumb-micimg"
+                        aria-hidden="true"
+                      />
                     </div>
                     <div className="ip-recent-thumb-date">{monthDay.toUpperCase()}</div>
                     {isSelected && (

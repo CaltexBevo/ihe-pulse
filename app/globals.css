@@ -2844,9 +2844,44 @@ textarea:focus:not(:focus-visible) {
 .ip-recent-thumb-artwork {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #131c2e 0%, #0f172a 60%, #1a2535 100%);
+  background: linear-gradient(135deg, #131c2e 0%, #0f172a 55%, #1d2740 100%);
   overflow: hidden;
 }
+
+/* Grid line pattern to match the real hero artwork */
+.ip-recent-thumb-artwork::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.07) 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: 0.6;
+}
+
+/* Cyan glow behind the mic, like the hero */
+.ip-recent-thumb-artwork::after {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  left: 30%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(0,212,255,0.18), transparent 70%);
+}
+
+.ip-recent-thumb-micimg {
+  position: absolute;
+  left: 6%;
+  bottom: 14%;
+  width: 52%;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+
 .ip-recent-thumb-accent {
   position: absolute;
   top: 0;
@@ -2855,17 +2890,9 @@ textarea:focus:not(:focus-visible) {
   height: 2px;
   background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--purple));
   opacity: 0.7;
+  z-index: 2;
 }
 .ip-recent-thumb-active .ip-recent-thumb-accent { opacity: 1; }
-.ip-recent-thumb-mic {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 28px;
-  height: 38px;
-  opacity: 0.7;
-}
-.ip-recent-thumb-active .ip-recent-thumb-mic { opacity: 1; }
 
 .ip-recent-thumb-label {
   font-size: 0.6rem;
@@ -2881,5 +2908,4 @@ textarea:focus:not(:focus-visible) {
   .ip-recent-thumb { width: 80px; }
   .ip-recent-thumb-img { width: 80px; height: 80px; }
   .ip-recent-thumbs { gap: 10px; }
-  .ip-recent-thumb-mic { width: 22px; height: 30px; top: 6px; left: 6px; }
 }
