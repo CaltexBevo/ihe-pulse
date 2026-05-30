@@ -100,8 +100,8 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
               <span className="np-dot" />
               <h3>Recent Episodes</h3>
             </div>
-            <Link href="/innovation-pulse/archive" className="ip-recent-archive-link">
-              View full archive →
+            <Link href="/innovation-pulse/archive" className="ip-recent-all-btn">
+              All Episodes
             </Link>
           </div>
 

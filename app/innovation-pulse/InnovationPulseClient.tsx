@@ -357,8 +357,8 @@ export default function InnovationPulseClient({
                       <span className="np-dot" />
                       <h3>Recent Episodes</h3>
                     </div>
-                    <Link href="/innovation-pulse/archive" className="ip-recent-archive-link">
-                      View full archive →
+                    <Link href="/innovation-pulse/archive" className="ip-recent-all-btn">
+                      All Episodes
                     </Link>
                   </div>
 
@@ -645,7 +645,7 @@ export default function InnovationPulseClient({
                   </p>
                 </div>
                 <Link href={`/innovation-pulse/category/${catSlug}`} className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">
-                  View all →
+                  View all {category === "Case Study" ? "Case Studies" : category} →
                 </Link>
               </div>
 

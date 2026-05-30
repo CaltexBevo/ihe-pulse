@@ -7,10 +7,10 @@ import {
   mapToV4Category,
   V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
-import AllEpisodesClient from "./AllEpisodesClient";
+import ArchiveClient from "./ArchiveClient";
 
 export const metadata = {
-  title: "All Episodes | Innovating Higher Ed",
+  title: "The Innovation Pulse Archive | Innovating Higher Ed",
   description: "Every episode, every story. Browse the complete archive of The Innovation Pulse daily A.I. briefings for higher education.",
 };
 
@@ -65,7 +65,16 @@ function groupEpisodesByWeek(episodes: ReturnType<typeof getAllEpisodes>): WeekG
   return weeks;
 }
 
-export default function AllEpisodesPage() {
+// Editorial lens colors
+const LENS_COLORS: Record<string, string> = {
+  "The Hard Question": "#f59e0b",
+  "The Student Experience": "#22c55e",
+  "The Practitioner's Playbook": "#00d4ff",
+  "Connecting the Dots": "#c850c0",
+  "The Innovator's Edge": "#a855f7",
+};
+
+export default function ArchivePage() {
   const allEpisodes = getAllEpisodes();
   const weekGroups = groupEpisodesByWeek(allEpisodes);
   const totalEpisodes = allEpisodes.length;
@@ -77,82 +86,90 @@ export default function AllEpisodesPage() {
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-8">
         {/* Back Link */}
         <Link
-          href="/"
+          href="/innovation-pulse"
           className="font-mono text-[0.72rem] text-[var(--cyan)] flex items-center gap-2 hover:text-[var(--text)] transition-colors mb-6"
         >
           <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current" strokeWidth="2">
             <path d="M19 12H5" />
             <path d="M12 19l-7-7 7-7" />
           </svg>
-          Back to Home
+          Back to Innovation Pulse
         </Link>
 
-        {/* Title — gradient text, no accent bar */}
-        <h1
-          className="text-[clamp(1.8rem,4vw,2.4rem)] font-bold mb-4"
-          style={{
-            background: "linear-gradient(90deg, var(--cyan), var(--purple))",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          All Episodes
-        </h1>
+        {/* Title */}
+        <div className="flex items-center gap-3 mb-4">
+          <span className="w-[10px] h-[10px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)]" />
+          <h1 className="text-[clamp(1.8rem,4vw,2.4rem)] font-bold">
+            The Innovation Pulse Archive
+          </h1>
+        </div>
 
         <p className="text-[1rem] text-[var(--text-secondary)] leading-[1.6] max-w-[640px] mb-6">
-          Every episode, every story — the daily A.I. briefing for higher education.
+          Every episode, every story. Browse the complete archive of daily A.I. briefings for higher education.
         </p>
 
-        {/* Stats — mono style, cyan numbers */}
-        <div className="flex items-center gap-4 font-mono text-[0.72rem]">
-          <span>
+        {/* Stats */}
+        <div className="flex items-center gap-6 font-mono text-[0.7rem]">
+          <div className="flex items-center gap-2">
             <span className="text-[var(--cyan)]">{totalEpisodes}</span>
-            <span className="text-[var(--text-muted)]"> episodes</span>
-          </span>
-          <span className="text-[var(--text-muted)]">·</span>
-          <span>
-            <span className="text-[var(--cyan)]">{totalStories}</span>
-            <span className="text-[var(--text-muted)]"> stories</span>
-          </span>
-          <span className="text-[var(--text-muted)]">·</span>
-          <span>
-            <span className="text-[var(--cyan)]">{weekGroups.length}</span>
-            <span className="text-[var(--text-muted)]"> weeks</span>
-          </span>
+            <span className="text-[var(--text-muted)]">episodes</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[var(--magenta)]">{totalStories}</span>
+            <span className="text-[var(--text-muted)]">stories</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[var(--green)]">{weekGroups.length}</span>
+            <span className="text-[var(--text-muted)]">weeks</span>
+          </div>
         </div>
       </div>
 
       {/* Divider */}
       <div className="section-divider" />
 
-      {/* Episodes by Week */}
+      {/* Archive by Week */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
-        {weekGroups.map((week) => (
+        {weekGroups.map((week, weekIdx) => (
           <div key={week.weekStart} className="mb-10">
             {/* Week Header */}
-            <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] mb-4">
-              {week.weekLabel}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--cyan)]">
+                {week.weekLabel}
+              </span>
+              <span className="font-mono text-[0.6rem] text-[var(--text-muted)]">
+                {week.episodes.length} episodes
+              </span>
             </div>
 
             {/* Episodes */}
             <div className="space-y-3">
               {week.episodes.map((episode) => {
                 const storyCount = 1 + episode.quickHits.length;
+                const lensColor = LENS_COLORS[episode.editorialLens] || "#00d4ff";
                 const leadSlug = generateSlug(episode.deepDive.title);
 
                 return (
-                  <AllEpisodesClient
+                  <ArchiveClient
                     key={episode.date}
                     episode={{
                       date: episode.date,
                       dayOfWeek: episode.dayOfWeek,
+                      editorialLens: episode.editorialLens,
+                      editorialHook: episode.editorialHook,
                       audioUrl: episode.audioUrl,
                       audioDuration: episode.audioDuration,
                       deepDiveTitle: episode.deepDive.title,
                       deepDiveSlug: leadSlug,
+                      deepDiveCategory: mapToV4Category(episode.deepDive.category),
                       storyCount,
+                      quickHits: episode.quickHits.map(h => ({
+                        title: h.title,
+                        category: mapToV4Category(h.category),
+                        source: h.source,
+                      })),
                     }}
+                    lensColor={lensColor}
                   />
                 );
               })}
@@ -162,7 +179,7 @@ export default function AllEpisodesPage() {
 
         {weekGroups.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-[var(--text-muted)]">No episodes yet.</p>
+            <p className="text-[var(--text-muted)]">No episodes in the archive yet.</p>
           </div>
         )}
       </div>

@@ -6,10 +6,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 
-// Nav order is locked per SKILL.md — only 7 items visible (Tinker Lab and Be Our Guest hidden)
+// Nav order updated 2026-05-29: Innovation Pulse removed (homepage IS the Innovation Pulse now), All Episodes added
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/innovation-pulse", label: "Innovation Pulse" },
+  { href: "/innovation-pulse/archive", label: "All Episodes" },
   { href: "/prompts", label: "Prompts" },
   { href: "/ai-directory", label: "AI Directory" },
   { href: "/educator-tools", label: "Educator Tools" },
