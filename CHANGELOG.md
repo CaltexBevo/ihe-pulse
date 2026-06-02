@@ -1,5 +1,66 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## v2.0.0 — May 26–29, 2026 (Homepage Restructure: Innovation Pulse as Homepage)
+
+### Homepage Architecture Overhaul
+- **Innovation Pulse is now the homepage** — The `/` route renders Innovation Pulse content via `InnovationPulseClient` with `showHero={false}`
+- **Redirect safety net** — `/innovation-pulse` now redirects to `/` (in `app/innovation-pulse/page.tsx`)
+- **Removed vertical accent bars** from section headings site-wide
+- **Top Stories** — Converted from horizontal slider to 3-column grid (`TopStoriesSlider.tsx`)
+- **Removed duplicate CTAs** — "Never Miss a Pulse" CTA and Briefing Archive section gated behind `showHero`/`showNewsletterCTA` props in `InnovationPulseClient.tsx`
+- **New "Explore more" section** — Added at homepage bottom with gradient-accent cards for Podcast, AI Directory, Top Prompts, Educator Tools
+
+### Audio Player Fixes
+- **Play/pause icon toggle fixed** — Was stuck showing play icon; added proper event listeners in `HeroNowPlaying.tsx`
+- **Mobile play overlay** — Added play-button overlay on hero artwork for mobile; hid full transport controls and waveform on mobile (<768px)
+
+### Recent Episodes Redesign
+- **Thumbnail strip** — Initial redesign as horizontal scrolling thumbnails with branded mini-cover artwork
+- **Wide horizontal cards** — Further redesign to horizontal cards (branded cover left, title right)
+- **Increased episode cap** — Raised from 6 to ~16 episodes visible in the strip
+- **CSS conventions** — `.ip-recent-thumb-*` classes for thumbnail/card styling
+
+### All Episodes Page (Archive Rebuild)
+- **Renamed "Archive" → "All Episodes"** — Gradient text header, no more "Archive" terminology
+- **Playlist-style rows** — Each episode is a horizontal row with branded cover box (~160px) on left
+- **Play button overlay** — Centered gradient play button with glow on each cover
+- **Info container** — Right side shows: "Daily AI News for Higher Ed" kicker, bold headline, date·stories·duration meta line
+- **No episode numbers** — Removed all "Episode 16" style numbering
+- **Week groupings** — Kept "Week of May 11" style group dividers
+- **CSS conventions** — `.ae-*` classes for All Episodes styling
+
+### Navigation Cleanup
+- **Removed "Innovation Pulse"** from nav (homepage IS the Innovation Pulse)
+- **Added "All Episodes"** nav item pointing to `/innovation-pulse/archive`
+- **Updated `components/Nav.tsx`** — navLinks array modified
+
+### Category Improvements
+- **Category "View All" links** — Now read "View all [Category Name]" (e.g., "View all Case Studies")
+- **Category pages** — Now use expandable `Card` component matching homepage (via `CategoryStoriesGrid.tsx`)
+
+### New/Modified Files
+- `app/innovation-pulse/archive/AllEpisodesClient.tsx` — NEW: playlist row component
+- `app/innovation-pulse/category/[category]/CategoryStoriesGrid.tsx` — NEW: expandable card grid
+- `components/HomeEpisodePlayer.tsx` — Recent episodes wide card redesign
+- `components/HeroNowPlaying.tsx` — Play/pause fix + mobile overlay
+- `components/Nav.tsx` — Nav item changes
+- `app/globals.css` — Added `.ae-*` and `.ip-recent-all-btn` styles
+- `app/innovation-pulse/InnovationPulseClient.tsx` — showHero prop, category links
+
+### Key Commits
+- `eeda1bf` — Initial homepage restructure
+- `9068519` — Top Stories grid, accent bar removal
+- `687efbd` — Explore More section
+- `7731805` — CTA deduplication
+- `6552245` — Play/pause toggle fix, mobile overlay
+- `620599b` — Recent episode thumbnail redesign
+- `b9ea0ea` — Date repositioning in thumbnails
+- `3aee606` — Wide horizontal card redesign
+- `3b2a184` — Archive backup
+- `d0eba00` — All Episodes page, nav cleanup, category View All links
+
+---
+
 ## v1.1.0 — February 26, 2026 (Build 12: Data Recovery + Category Fix + UI Restoration)
 
 ### Critical Fix: Data Recovery

@@ -59,15 +59,19 @@ All colors must work in both themes with WCAG AA compliance.
 The nav must contain these items in this exact order. Do NOT add, remove, or reorder without founder approval:
 
 1. Home (`/`)
-2. Innovation Pulse (`/innovation-pulse`)
+2. All Episodes (`/innovation-pulse/archive`)
 3. Prompts (`/prompts`)
 4. AI Directory (`/ai-directory`)
 5. Educator Tools (`/educator-tools`)
 6. Podcast (`/podcast`)
-7. Tinker Lab (`/tinker-lab`)
-8. About (`/about`)
-9. Be Our Guest (`/be-our-guest`)
-10. [Theme Toggle Icon]
+7. About (`/about`)
+8. [Theme Toggle Icon]
+
+**Hidden items** (pages exist but not in nav per May 2026 restructure):
+- Tinker Lab (`/tinker-lab`)
+- Be Our Guest (`/be-our-guest`)
+
+**Note:** "Innovation Pulse" was removed from nav in May 2026 — the homepage IS the Innovation Pulse content now. `/innovation-pulse` redirects to `/`.
 
 **Implementation reference:** `components/Nav.tsx` — navLinks array
 
@@ -234,8 +238,8 @@ These accessibility features MUST be maintained:
 ## 10. PAGES THAT EXIST — DO NOT DELETE
 
 ### Main Pages
-- `/` (homepage)
-- `/innovation-pulse` (daily briefing hub)
+- `/` (homepage — renders Innovation Pulse content via `InnovationPulseClient` with `showHero={false}`)
+- `/innovation-pulse` (redirects to `/` — safety net for old links)
 - `/prompts` (Prompt Navigator)
 - `/ai-directory` (AI tool directory)
 - `/educator-tools` (5 peer-built tools)
@@ -326,6 +330,29 @@ Story images are assigned ONCE at data load time in `lib/data/innovation-pulse.t
 | About page | `app/about/page.tsx` |
 | Educator Tools | `app/educator-tools/page.tsx` |
 
+### Innovation Pulse Components (May 2026 Restructure)
+| Purpose | File |
+|---------|------|
+| Main client component | `app/innovation-pulse/InnovationPulseClient.tsx` |
+| Hero audio/artwork | `components/HeroNowPlaying.tsx` |
+| Recent episodes strip | `components/HomeEpisodePlayer.tsx` |
+| Top Stories grid | `components/TopStoriesSlider.tsx` |
+| All Episodes rows | `app/innovation-pulse/archive/AllEpisodesClient.tsx` |
+| Category expandable cards | `app/innovation-pulse/category/[category]/CategoryStoriesGrid.tsx` |
+
+### CSS Conventions
+| Class prefix | Purpose |
+|--------------|---------|
+| `.ip-recent-thumb-*` | Recent episodes thumbnail/card styling |
+| `.ip-recent-all-btn` | "All Episodes" button in Recent Episodes strip |
+| `.ae-*` | All Episodes page playlist row styling |
+
+### InnovationPulseClient Props
+| Prop | Type | Purpose |
+|------|------|---------|
+| `showHero` | boolean | Show/hide hero section (false on homepage) |
+| `showNewsletterCTA` | boolean | Show/hide newsletter CTA (false on homepage) |
+
 ---
 
 ## 14. PRE-FLIGHT CHECKLIST
@@ -371,6 +398,9 @@ After pushing changes to Vercel:
 | 2026-03-18 | Initial skill creation | Founder |
 | 2026-03-26 | Added Section 12: Story Image Architecture | System |
 | 2026-04-20 | Section 6: Removed fabricated credibility blocks from About page | Founder |
+| 2026-05-29 | Section 3: Nav updated (Innovation Pulse → All Episodes, hidden items noted) | Founder |
+| 2026-05-29 | Section 10: Homepage now renders Innovation Pulse content | Founder |
+| 2026-05-29 | Section 13: Added Innovation Pulse components and CSS conventions | System |
 
 ---
 

@@ -1,5 +1,52 @@
 # ROADMAP — Innovating Higher Ed (ihe-pulse)
 
+## Phase 0: DNS Cutover (OPEN)
+
+**Status:** The new Next.js site is live at `ihe-pulse.vercel.app`. The production domain `innovatinghighered.com` is still served by Apache/WordPress.
+
+- [ ] Configure DNS to point `innovatinghighered.com` to Vercel
+- [ ] Verify SSL certificate auto-provisioning on Vercel
+- [ ] Set up 301 redirects for legacy WordPress URLs
+- [ ] Decommission WordPress hosting after cutover verification
+
+---
+
+## Completed: Homepage Restructure (May 26–29, 2026)
+
+### Innovation Pulse as Homepage
+- [x] Homepage (`/`) now renders Innovation Pulse content
+- [x] `/innovation-pulse` redirects to `/`
+- [x] Removed vertical accent bars from section headings
+- [x] Top Stories: converted slider → 3-column grid
+- [x] Removed duplicate CTAs (gated via showHero/showNewsletterCTA props)
+- [x] Added "Explore more from Innovating Higher Ed" section at bottom
+
+### Audio Player
+- [x] Fixed play/pause icon toggle (was stuck on play)
+- [x] Added mobile play-button overlay on hero artwork
+- [x] Hidden transport controls and waveform on mobile (<768px)
+
+### Recent Episodes
+- [x] Redesigned as horizontal thumbnail strip with branded covers
+- [x] Further redesigned as wide horizontal cards (cover left, title right)
+- [x] Raised display cap from 6 to ~16 episodes
+
+### All Episodes Page
+- [x] Renamed "Archive" → "All Episodes" (gradient header)
+- [x] Playlist-style rows with branded cover boxes + play button overlay
+- [x] Info container: kicker / headline / meta line
+- [x] Removed episode numbers, kept week groupings
+
+### Navigation
+- [x] Removed "Innovation Pulse" nav item
+- [x] Added "All Episodes" nav item
+
+### Categories
+- [x] "View All" links now specify category name
+- [x] Category pages use expandable Card component
+
+---
+
 ## Completed This Sprint (Feb 23, 2026)
 
 ### Build 13.2: Interactive Components (Feb 23)
