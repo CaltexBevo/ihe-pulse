@@ -59,7 +59,12 @@ export type StoryCategory =
   | 'Tools & Products'
   | 'Research & Innovation'
   | 'Student Experience'
-  | 'Leadership & Strategy';
+  | 'Leadership & Strategy'
+  // V5 categories (pass-through from JSON)
+  | 'Research'
+  | 'AI Workforce & Careers'
+  | 'Investing in Innovation'
+  | 'Tool Spotlight';
 
 export const categoryColors: Record<
   StoryCategory,
@@ -106,6 +111,31 @@ export const categoryColors: Record<
     text: 'text-indigo-400',
     border: 'border-indigo-500/30',
     hex: '#6366f1',
+  },
+  // V5 categories using locked palette colors
+  'Research': {
+    bg: 'bg-purple-500/15',
+    text: 'text-purple-400',
+    border: 'border-purple-500/30',
+    hex: '#a78bfa',
+  },
+  'AI Workforce & Careers': {
+    bg: 'bg-cyan-500/15',
+    text: 'text-cyan-400',
+    border: 'border-cyan-500/30',
+    hex: '#00d4ff',
+  },
+  'Investing in Innovation': {
+    bg: 'bg-cyan-500/15',
+    text: 'text-cyan-400',
+    border: 'border-cyan-500/30',
+    hex: '#00d4ff',
+  },
+  'Tool Spotlight': {
+    bg: 'bg-cyan-500/15',
+    text: 'text-cyan-400',
+    border: 'border-cyan-500/30',
+    hex: '#00d4ff',
   },
 };
 

@@ -93,13 +93,13 @@ function mapCategoryToV4(cat: string): V4CategoryName {
   return UNIFIED_TO_V4_MAP[cat] || "Insights & Trends";
 }
 
-// Map category for the internal StoryCategory type (for backward compat with types)
-// This now returns V4 names cast as StoryCategory since the UI handles both
+// Map category for the internal StoryCategory type
+// V5 categories pass through directly; legacy/pipeline categories map to V4 first
 function mapCategory(cat: string): import('./innovation-pulse-types').StoryCategory {
   const v4Category = mapCategoryToV4(cat);
-  // Return as StoryCategory - the UI's mapToV4Category will handle display
-  // Map V4 back to closest StoryCategory for type compatibility
-  const v4ToLegacyMap: Record<V4CategoryName, import('./innovation-pulse-types').StoryCategory> = {
+  // V5 categories (Research, AI Workforce & Careers, etc.) are now valid StoryCategory values
+  // so we can return them directly. Legacy V4 categories map to their closest StoryCategory.
+  const v4ToStoryMap: Record<V4CategoryName, import('./innovation-pulse-types').StoryCategory> = {
     "Insights & Trends": "Research & Innovation",
     "Case Study": "Infrastructure & Operations",
     "Practical Tips": "Teaching & Learning",
@@ -107,13 +107,13 @@ function mapCategory(cat: string): import('./innovation-pulse-types').StoryCateg
     "Latest AI Products": "Tools & Products",
     "Beyond Ed": "Student Experience",
     "Week in Review": "Leadership & Strategy",
-    // V5 categories map to closest legacy
-    "Research": "Research & Innovation",
-    "AI Workforce & Careers": "Leadership & Strategy",
-    "Investing in Innovation": "Leadership & Strategy",
-    "Tool Spotlight": "Tools & Products",
+    // V5 categories pass through as-is (now valid StoryCategory values)
+    "Research": "Research",
+    "AI Workforce & Careers": "AI Workforce & Careers",
+    "Investing in Innovation": "Investing in Innovation",
+    "Tool Spotlight": "Tool Spotlight",
   };
-  return v4ToLegacyMap[v4Category];
+  return v4ToStoryMap[v4Category];
 }
 
 // Helper to normalize episode data (handles both old and new V3 formats)
