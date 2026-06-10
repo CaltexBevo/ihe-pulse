@@ -12,6 +12,10 @@ const V4_BADGE_TEXT: Record<V4Category, string> = {
   "Latest AI Products": "PRODUCTS",
   "Beyond Ed": "BEYOND ED",
   "Week in Review": "WEEK REVIEW",
+  "Research": "RESEARCH",
+  "AI Workforce & Careers": "CAREERS",
+  "Investing in Innovation": "INVESTING",
+  "Tool Spotlight": "TOOLS",
 };
 
 interface CategoryStory {

@@ -28,7 +28,11 @@ type V4CategoryName =
   | "Ethical AI"
   | "Latest AI Products"
   | "Beyond Ed"
-  | "Week in Review";
+  | "Week in Review"
+  | "Research"
+  | "AI Workforce & Careers"
+  | "Investing in Innovation"
+  | "Tool Spotlight";
 
 // Valid V4 category names for validation
 const VALID_V4_CATEGORIES: V4CategoryName[] = [
@@ -39,6 +43,10 @@ const VALID_V4_CATEGORIES: V4CategoryName[] = [
   "Latest AI Products",
   "Beyond Ed",
   "Week in Review",
+  "Research",
+  "AI Workforce & Careers",
+  "Investing in Innovation",
+  "Tool Spotlight",
 ];
 
 // UNIFIED category mapping: all input formats → V4 category names
@@ -68,6 +76,11 @@ const UNIFIED_TO_V4_MAP: Record<string, V4CategoryName> = {
   "Latest AI Products": "Latest AI Products",
   "Beyond Ed": "Beyond Ed",
   "Week in Review": "Week in Review",
+  // V5 categories pass through
+  "Research": "Research",
+  "AI Workforce & Careers": "AI Workforce & Careers",
+  "Investing in Innovation": "Investing in Innovation",
+  "Tool Spotlight": "Tool Spotlight",
 };
 
 // Map ANY category format directly to V4 category name
@@ -94,6 +107,11 @@ function mapCategory(cat: string): import('./innovation-pulse-types').StoryCateg
     "Latest AI Products": "Tools & Products",
     "Beyond Ed": "Student Experience",
     "Week in Review": "Leadership & Strategy",
+    // V5 categories map to closest legacy
+    "Research": "Research & Innovation",
+    "AI Workforce & Careers": "Leadership & Strategy",
+    "Investing in Innovation": "Leadership & Strategy",
+    "Tool Spotlight": "Tools & Products",
   };
   return v4ToLegacyMap[v4Category];
 }
@@ -482,7 +500,11 @@ export type V4Category =
   | "Ethical AI"
   | "Latest AI Products"
   | "Beyond Ed"
-  | "Week in Review";
+  | "Week in Review"
+  | "Research"
+  | "AI Workforce & Careers"
+  | "Investing in Innovation"
+  | "Tool Spotlight";
 
 export const V4_CATEGORIES: V4Category[] = [
   "Insights & Trends",
@@ -492,6 +514,10 @@ export const V4_CATEGORIES: V4Category[] = [
   "Latest AI Products",
   "Beyond Ed",
   "Week in Review",
+  "Research",
+  "AI Workforce & Careers",
+  "Investing in Innovation",
+  "Tool Spotlight",
 ];
 
 export const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
@@ -502,6 +528,10 @@ export const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
   "Latest AI Products": "latest-ai-products",
   "Beyond Ed": "beyond-ed",
   "Week in Review": "week-in-review",
+  "Research": "research",
+  "AI Workforce & Careers": "ai-workforce-and-careers",
+  "Investing in Innovation": "investing-in-innovation",
+  "Tool Spotlight": "tool-spotlight",
 };
 
 // Palette-locked category colors — no green, teal, coral, orange, or blue
@@ -514,6 +544,10 @@ export const V4_CATEGORY_COLORS: Record<V4Category, string> = {
   "Latest AI Products": "var(--purple)",
   "Beyond Ed": "var(--cyan)",
   "Week in Review": "var(--magenta)",
+  "Research": "var(--purple)",
+  "AI Workforce & Careers": "var(--cyan)",
+  "Investing in Innovation": "var(--cyan)",
+  "Tool Spotlight": "var(--cyan)",
 };
 
 export const V4_CATEGORY_DESCRIPTIONS: Record<V4Category, string> = {
@@ -524,6 +558,10 @@ export const V4_CATEGORY_DESCRIPTIONS: Record<V4Category, string> = {
   "Latest AI Products": "New tools, platforms, and technologies relevant to higher education.",
   "Beyond Ed": "A.I. developments outside education that still matter for the sector.",
   "Week in Review": "Friday synthesis connecting the week's themes and looking ahead.",
+  "Research": "Academic studies and scientific findings advancing A.I. in education.",
+  "AI Workforce & Careers": "How A.I. is changing hiring, skills, and career pathways.",
+  "Investing in Innovation": "Funding, partnerships, and strategic investments in educational A.I.",
+  "Tool Spotlight": "In-depth look at specific A.I. tools for educators.",
 };
 
 const OLD_TO_V4_MAP: Record<string, V4Category> = {
@@ -534,6 +572,11 @@ const OLD_TO_V4_MAP: Record<string, V4Category> = {
   "Tools & Products": "Latest AI Products",
   "Student Experience": "Beyond Ed",
   "Leadership & Strategy": "Insights & Trends",
+  // V5 categories pass through
+  "Research": "Research",
+  "AI Workforce & Careers": "AI Workforce & Careers",
+  "Investing in Innovation": "Investing in Innovation",
+  "Tool Spotlight": "Tool Spotlight",
 };
 
 export function mapToV4Category(oldCategory: string): V4Category {

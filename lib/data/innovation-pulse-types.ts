@@ -219,7 +219,11 @@ export type V4Category =
   | "Ethical AI"
   | "Latest AI Products"
   | "Beyond Ed"
-  | "Week in Review";
+  | "Week in Review"
+  | "Research"
+  | "AI Workforce & Careers"
+  | "Investing in Innovation"
+  | "Tool Spotlight";
 
 export const V4_CATEGORIES: V4Category[] = [
   "Insights & Trends",
@@ -229,16 +233,24 @@ export const V4_CATEGORIES: V4Category[] = [
   "Latest AI Products",
   "Beyond Ed",
   "Week in Review",
+  "Research",
+  "AI Workforce & Careers",
+  "Investing in Innovation",
+  "Tool Spotlight",
 ];
 
 export const V4_CATEGORY_COLORS: Record<V4Category, string> = {
   "Insights & Trends": "#00d4ff",
-  "Case Study": "#10b981",
-  "Practical Tips": "#f59e0b",
-  "Ethical AI": "#f43f5e",
-  "Latest AI Products": "#8b5cf6",
-  "Beyond Ed": "#3b82f6",
-  "Week in Review": "#c850c0",
+  "Case Study": "#a78bfa",
+  "Practical Tips": "#00d4ff",
+  "Ethical AI": "#f59e0b",
+  "Latest AI Products": "#a78bfa",
+  "Beyond Ed": "#00d4ff",
+  "Week in Review": "#b040a8",
+  "Research": "#a78bfa",
+  "AI Workforce & Careers": "#00d4ff",
+  "Investing in Innovation": "#00d4ff",
+  "Tool Spotlight": "#00d4ff",
 };
 
 const OLD_TO_V4_MAP: Record<string, V4Category> = {
@@ -249,6 +261,11 @@ const OLD_TO_V4_MAP: Record<string, V4Category> = {
   "Tools & Products": "Latest AI Products",
   "Student Experience": "Beyond Ed",
   "Leadership & Strategy": "Insights & Trends",
+  // V5 categories pass through
+  "Research": "Research",
+  "AI Workforce & Careers": "AI Workforce & Careers",
+  "Investing in Innovation": "Investing in Innovation",
+  "Tool Spotlight": "Tool Spotlight",
 };
 
 export function mapToV4Category(oldCategory: string): V4Category {

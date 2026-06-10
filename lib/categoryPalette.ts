@@ -15,6 +15,7 @@ export const CATEGORY_PALETTE: Record<string, { bg: string; text: string }> = {
   "tool spotlight": { bg: "var(--cyan-soft)", text: "var(--cyan)" },
   "latest ai products": { bg: "var(--purple-soft)", text: "var(--purple)" },
   "week in review": { bg: "var(--magenta-soft)", text: "var(--magenta)" },
+  "research": { bg: "var(--purple-soft)", text: "var(--purple)" },
 };
 
 export function pillColorsFor(category: string): { bg: string; text: string } {
