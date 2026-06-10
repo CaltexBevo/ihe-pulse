@@ -1,0 +1,91 @@
+{
+  "episode": {
+    "date": "2026-05-22",
+    "cadence": "weekly",
+    "weekCovered": "2026-05-16/2026-05-22",
+    "dayOfWeek": "Friday",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-05-22.mp3",
+    "audioDuration": "9:13"
+  },
+  "leadStory": {
+    "headline": "AI Passes Turing Test for First Time in Rigorous Study",
+    "category": "Beyond Ed",
+    "source": "UC San Diego / PNAS",
+    "sourceUrl": "https://www.pnas.org/doi/10.1073/pnas.2414531121",
+    "summary": "OpenAI's GPT-4.5 was judged to be human 73 percent of the time in controlled Turing test experiments, a UC San Diego study published in the Proceedings of the National Academy of Sciences found. The actual humans in the same experiments were judged to be human only 54 percent of the time. The study is the first to rigorously test large language models using the framework that British mathematician Alan Turing created in 1950. Cameron Jones, the study's corresponding author, said that with the right prompts, advanced large language models can exhibit the same tone, directness, humor, and fallibility as humans. The key factor was persona prompting.",
+    "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-18-story1.png"
+  },
+  "quickHits": [
+    {
+      "headline": "AI Surgical Agent Cuts Documentation Time 70 Percent",
+      "category": "Research",
+      "source": "University of Miami",
+      "sourceUrl": "https://news.med.miami.edu/ai-surgical-reporting-reduces-documentation-time-aua-2026-khandekar/",
+      "summary": "A multimodal A.I. surgical agent developed at the University of Miami's Desai Sethi Urology Institute reduced operative documentation time by 70 percent in live clinical deployment. Dr. Archan Khandekar, assistant professor of urologic oncology, reported the findings at the American Urological Association's 2026 Annual Meeting.\n\nThe A.I. system cut operative note completion time from approximately 26 minutes to under 2 minutes per case by integrating computer vision, robotic operative video analysis, and electronic health record systems. Surgeons averaged only 6 edits per case, primarily correcting artery versus vein labeling.\n\nIn research applications, the A.I. agent reproduced a previously published peer-reviewed study on warm ischemia time across 61 robotic partial nephrectomy cases in 3 minutes and 26 seconds, achieving greater than 95 percent concordance with original findings that required weeks to complete.\n\nSafety testing showed grounded language models scored 24 to 25 of 25 on clinical guidelines compliance, while ungrounded models produced clinically dangerous errors. The technology currently operates in UHealth facilities.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-22-qh1.png"
+    },
+    {
+      "headline": "Louisville Deploys AI System That Decides Which Lab Experiments to Run",
+      "category": "Case Study",
+      "source": "UofL News",
+      "sourceUrl": "https://www.uoflnews.com/section/science-and-tech/uofls-new-high-performance-computing-system-accelerates-research-with-ai/",
+      "summary": "University of Louisville researchers are now running A.I. models that autonomously decide which laboratory experiments to conduct, shifting the traditional research workflow. Associate Professor Badri Narayanan from the J.B. Speed School of Engineering said the A.I. handles most of the heavy lifting in his materials science research, with autonomous experimentation capabilities that could compress commercial battery development from 10-15 years to just 3-4 years.\n\nThe Zurada computing system, operational since late 2025 and named after neural networks pioneer Professor Jacek M. Zurada, supports the autonomous research approach with 43 NVIDIA GPUs and over 1.6 petaflops of computing power. The $3.7 million investment serves researchers across engineering, medicine, and the sciences.\n\nMedical researchers on the platform are developing individualized treatment tools for chronic kidney disease and eating disorders. Materials scientists are studying metal-insulator transitions in complex oxides for energy storage applications.\n\nJon Klein, executive vice president for research and innovation, called the system a monumental leap forward for the university's research capabilities.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-22-qh2.png"
+    },
+    {
+      "headline": "AI CPR Coach Outperforms 911 Dispatchers in Guiding Bystanders",
+      "category": "Research",
+      "source": "UC San Diego Today / JAMA Internal Medicine",
+      "sourceUrl": "https://today.ucsd.edu/story/ai-powered-cpr-coach-outperforms-911-dispatchers-in-guiding-bystander-resuscitation",
+      "summary": "An A.I.-powered CPR coaching tool significantly outperformed 911 dispatchers in guiding bystanders through resuscitation steps, according to research published in JAMA Internal Medicine. University of California San Diego researchers developed ChatCPR and tested it against recordings of 12 real emergency calls.\n\nThe A.I. coach achieved perfect scores on basic CPR steps, while dispatchers scored 85 percent on the same measures. The performance gap widened for advanced techniques, with ChatCPR scoring 99 percent compared to dispatchers' 63 percent.\n\nLead author Nimit Desai, a medical student and research affiliate at UC San Diego's Qualcomm Institute, worked with teams from University of Pittsburgh School of Medicine and Johns Hopkins University. The researchers first benchmarked six major A.I. models on CPR instruction before developing their specialized tool.\n\nOnly 2 percent of Americans are CPR-certified while more than 350,000 suffer out-of-hospital cardiac arrest annually with survival rates around 9 percent. The ChatCPR tool is available open-source for public use.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-22-qh3.png"
+    },
+    {
+      "headline": "Survey Finds 57 Percent of Special Ed Teachers Now Use AI for IEPs",
+      "category": "Insights & Trends",
+      "source": "NPR",
+      "sourceUrl": "https://www.npr.org/2026/05/20/nx-s1-5810192/special-education-teachers-ai-ieps",
+      "summary": "More than half of special education teachers now use A.I. tools to develop individualized education plans, up from 39 percent just one year ago. The Center for Democracy and Technology survey documents the rapid adoption shift as 45 states report ongoing special education teacher shortages.\n\nMary Acebu at Riverview Middle School in Bay Point, California, previously spent 45 minutes developing three to four I.E.P. goals per student. Using district-vetted tools like MagicSchool A.I. and Google, she cut that time significantly. Her colleague Paul Stone, a 22-year teaching veteran who was initially skeptical, now calls the technology an amazing time-saver.\n\nTeachers report using A.I. for creating I.E.P. goals, generating worksheets, and synthesizing assessment data. The Center for Democracy and Technology warns that student privacy remains the primary concern, and potential A.I. bias against people with disabilities poses ethical challenges.\n\nResearch from the University of Virginia and University of Central Florida found A.I.-assisted I.E.P.s matched or exceeded teacher-only quality.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-22-qh4.png"
+    },
+    {
+      "headline": "Chicago Named Regional Lead for AWS Machine Learning University",
+      "category": "Investing in Innovation",
+      "source": "City Colleges of Chicago / AWS",
+      "sourceUrl": "https://colleges.ccc.edu/2026/03/13/city-colleges-of-chicago-establishes-the-midwest-ai-machine-learning-initiative-powered-by-aws/",
+      "summary": "City Colleges of Chicago is one of five institutions nationwide designated as regional leads for Amazon Web Services Machine Learning University, a designation that brings free cloud computing infrastructure and ready-to-teach A.I. curriculum to the seven-campus system.\n\nThe Midwest A.I. and Machine Learning Initiative provides students with no-cost access to the same database, A.I., and machine learning tools that A.W.S. professionals use. Faculty receive bootcamp training, lecture slides, coding exercises, and instructor handbooks designed for college-level, for-credit courses. Four inaugural faculty fellows will lead regional workshops extending the program to other Midwest community colleges and H.B.C.U.s.\n\nThe regional lead model is replicable. A.W.S. selected Howard University, Delaware State University, Alabama A. and M. University, and Oklahoma City Community College as the four other regional leads. Community college systems seeking similar designations can pursue the same pathway through A.W.S. Machine Learning University's educator consortium.\n\nThe initiative includes student business case competitions alongside the faculty development components.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-22-qh5.png"
+    },
+    {
+      "headline": "UC Berkeley Grades Rose 30% in AI-Heavy Courses Post-ChatGPT",
+      "category": "Research",
+      "source": "Igor Chirikov / UC Berkeley",
+      "sourceUrl": "https://escholarship.org/uc/item/4wp6g2r7",
+      "summary": "Students earned 30 percent more A grades in courses with writing and coding assignments after ChatGPT launched compared to students in the same courses before the tool became available. Researcher Igor Chirikov analyzed more than 300 courses across 84 departments from 2018 through 2025, examining more than 500,000 student enrollments. The grade increases were largest in courses where homework counted more heavily toward the final grade. Employers responded to the grade inflation by increasing GPA requirements.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-18-story3.png"
+    },
+    {
+      "headline": "AT&T Can't Find Enough Electricians as AI Hiring Slows for Grads",
+      "category": "AI Workforce",
+      "source": "CNBC",
+      "sourceUrl": "https://www.cnbc.com/2026/05/19/ai-hiring-slowdown-skilled-trade-workers.html",
+      "summary": "AT&T cannot find enough workers who know electricity and photonics to install and maintain the fiber optic networks carrying data across the country. CEO John Stankey told CNBC that the company needs electricians and fiber optic technicians for infrastructure that AI cannot install or maintain itself. Entry-level hiring at the telecommunications giant has slowed for college graduates in marketing, legal services, accounting, human resources, and IT departments.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-18-story2.png"
+    },
+    {
+      "headline": "AI Detection Tools Flag Human Writing While Missing AI Text",
+      "category": "Insights & Trends",
+      "source": "CNET",
+      "sourceUrl": "https://www.cnet.com/tech/ai-detectors-flag-human-work-miss-chatgpt-writing-investigation/",
+      "summary": "AI detection tools flagged human-written student work as machine-generated while missing actual AI-generated text in controlled testing, a CNET investigation found. The pattern of accuracy problems has prompted institutions to reconsider their verification methods. Students at multiple institutions faced misconduct charges based on incorrect detection scores. Several institutions have now stopped using detection software as primary evidence in academic integrity cases.",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-18-story4.png"
+    }
+  ],
+  "meta": {
+    "generatedAt": "2026-06-10T15:48:59.450Z",
+    "pipeline": "ihe-tools-server v3",
+    "cadence": "weekly",
+    "verificationStatus": "pass_with_override",
+    "overrideNote": "QH5 storyValue override - implementation details accepted per Rule 27"
+  }
+}
