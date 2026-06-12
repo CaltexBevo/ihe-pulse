@@ -9,6 +9,7 @@ interface NewsletterSignupProps {
 
 export default function NewsletterSignup({ variant = 'card', className = '' }: NewsletterSignupProps) {
   const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState(''); // Bot trap field
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -21,6 +22,14 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
       return;
     }
 
+    // Honeypot check - bots fill hidden fields, humans don't
+    if (honeypot) {
+      // Silently "succeed" to not tip off bots
+      setStatus('success');
+      setMessage('You\'re in! Check your inbox to confirm.');
+      return;
+    }
+
     setStatus('loading');
 
     try {
@@ -28,7 +37,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, _gotcha: honeypot }),
       });
 
       const data = await response.json();
@@ -58,6 +67,17 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
           <p className="text-[0.78rem] text-[var(--green)]" role="status">{message}</p>
         ) : (
           <form onSubmit={handleSubmit} className="flex gap-2">
+            {/* Honeypot field - hidden from humans, bots fill it */}
+            <input
+              type="text"
+              name="_gotcha"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+            />
             <input
               type="email"
               value={email}
@@ -98,6 +118,17 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
             <p className="text-[0.85rem] text-[var(--green)] font-medium" role="status">{message}</p>
           ) : (
             <form onSubmit={handleSubmit} className="flex gap-2">
+              {/* Honeypot field - hidden from humans, bots fill it */}
+              <input
+                type="text"
+                name="_gotcha"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+              />
               <input
                 type="email"
                 value={email}
@@ -149,6 +180,17 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
       ) : (
         <>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-[400px] mx-auto mb-2">
+            {/* Honeypot field - hidden from humans, bots fill it */}
+            <input
+              type="text"
+              name="_gotcha"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+            />
             <input
               type="email"
               value={email}

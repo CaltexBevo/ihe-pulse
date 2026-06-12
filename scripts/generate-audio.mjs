@@ -7,7 +7,13 @@ import fs from 'fs';
 import path from 'path';
 import https from 'https';
 
-const ELEVENLABS_API_KEY = '6167d3421afcb24bdaa8528beaa98ffb9eb65f5620b9fba4ebfe1c7afde8a44d';
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+
+if (!ELEVENLABS_API_KEY) {
+  console.error('Error: ELEVENLABS_API_KEY environment variable is required.');
+  console.error('Set it in your .env file or export it before running this script.');
+  process.exit(1);
+}
 const NORMA_VOICE_ID = '6kjO9NSV6LEGjLPRtTvo';
 const OUTPUT_DIR = path.join(process.cwd(), 'public/audio/innovation-pulse');
 

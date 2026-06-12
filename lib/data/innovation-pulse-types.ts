@@ -202,6 +202,9 @@ export interface InnovationPulseEpisode {
   closingThought: string;
   categories: StoryCategory[];
   themes: string[];
+  // Cadence fields (weekly episodes have these; daily/legacy episodes don't)
+  cadence?: 'daily' | 'weekly';
+  weekCovered?: string; // Format: "2026-05-23/2026-05-29"
 }
 
 // ── Date Formatting Utilities ────────────────────────────────────────────────
@@ -227,6 +230,75 @@ export function formatShortDate(dateStr: string): string {
 export function getDayOfWeek(dateStr: string): string {
   const d = new Date(dateStr + 'T12:00:00');
   return d.toLocaleDateString('en-US', { weekday: 'long' });
+}
+
+// ── Cadence-Aware Formatting Utilities ───────────────────────────────────────
+
+/**
+ * Check if an episode is weekly cadence
+ */
+export function isWeeklyEpisode(episode: InnovationPulseEpisode): boolean {
+  return episode.cadence === 'weekly';
+}
+
+/**
+ * Format weekCovered string "2026-05-23/2026-05-29" to "WEEK OF MAY 23–29"
+ * Falls back to single-date format for daily/missing weekCovered
+ */
+export function formatWeekCovered(episode: InnovationPulseEpisode): string {
+  if (!episode.weekCovered || episode.cadence !== 'weekly') {
+    // Daily or legacy episode: return day-based format
+    const d = new Date(episode.date + 'T12:00:00');
+    const dayAbbr = d.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase().slice(0, 3);
+    const month = d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+    const day = d.getDate();
+    return `${dayAbbr} · ${month} ${day}`;
+  }
+
+  // Weekly episode: parse weekCovered and format as "WEEK OF MAY 23–29"
+  const [startDate, endDate] = episode.weekCovered.split('/');
+  const start = new Date(startDate + 'T12:00:00');
+  const end = new Date(endDate + 'T12:00:00');
+
+  const startMonth = start.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+  const endMonth = end.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+  const startDay = start.getDate();
+  const endDay = end.getDate();
+
+  // Same month: "WEEK OF MAY 23–29"
+  // Different months: "WEEK OF MAY 30 – JUN 5"
+  if (startMonth === endMonth) {
+    return `WEEK OF ${startMonth} ${startDay}–${endDay}`;
+  } else {
+    return `WEEK OF ${startMonth} ${startDay} – ${endMonth} ${endDay}`;
+  }
+}
+
+/**
+ * Format weekCovered for episode page display: "Covering May 23–29, 2026"
+ */
+export function formatWeekCoveredLong(episode: InnovationPulseEpisode): string | null {
+  if (!episode.weekCovered || episode.cadence !== 'weekly') {
+    return null;
+  }
+
+  const [startDate, endDate] = episode.weekCovered.split('/');
+  const start = new Date(startDate + 'T12:00:00');
+  const end = new Date(endDate + 'T12:00:00');
+
+  const startMonth = start.toLocaleDateString('en-US', { month: 'long' });
+  const endMonth = end.toLocaleDateString('en-US', { month: 'long' });
+  const startDay = start.getDate();
+  const endDay = end.getDate();
+  const year = end.getFullYear();
+
+  // Same month: "Covering May 23–29, 2026"
+  // Different months: "Covering May 30 – June 5, 2026"
+  if (startMonth === endMonth) {
+    return `Covering ${startMonth} ${startDay}–${endDay}, ${year}`;
+  } else {
+    return `Covering ${startMonth} ${startDay} – ${endMonth} ${endDay}, ${year}`;
+  }
 }
 
 // ── Slug Utilities (Client-Safe) ──────────────────────────────────────────────

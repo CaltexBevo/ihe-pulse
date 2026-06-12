@@ -8,7 +8,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email, _gotcha } = await request.json();
+
+    // Honeypot check - if filled, it's a bot
+    if (_gotcha) {
+      // Return success to not tip off bots, but don't process
+      return NextResponse.json({
+        success: true,
+        message: 'Thank you for subscribing!',
+      });
+    }
 
     if (!email || !email.includes('@')) {
       return NextResponse.json(
@@ -21,13 +30,13 @@ export async function POST(request: NextRequest) {
     const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID;
     const SERVER_PREFIX = process.env.MAILCHIMP_SERVER_PREFIX;
 
-    // If Mailchimp is not configured, accept the submission gracefully
+    // If Mailchimp is not configured, return error - don't silently drop emails
     if (!API_KEY || !AUDIENCE_ID || !SERVER_PREFIX) {
-      console.log('Newsletter signup (Mailchimp not configured):', email);
-      return NextResponse.json({
-        success: true,
-        message: 'Thank you for subscribing!',
-      });
+      console.error('Newsletter signup failed: Mailchimp not configured. Email:', email);
+      return NextResponse.json(
+        { error: 'Newsletter service is temporarily unavailable. Please try again later.' },
+        { status: 503 }
+      );
     }
 
     const url = `https://${SERVER_PREFIX}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`;

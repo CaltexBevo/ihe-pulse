@@ -10,6 +10,8 @@ import {
   getEpisodeDates,
   formatPulseDate,
   formatShortDate,
+  formatWeekCoveredLong,
+  isWeeklyEpisode,
   mapToV4Category,
   V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
@@ -47,12 +49,6 @@ export async function generateMetadata({
 const DEFAULT_LEAD_IMAGE = "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop";
 const DEFAULT_STORY_IMAGE = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&fit=crop";
 
-// Related story placeholder images (for static placeholder content)
-const relatedImages = [
-  "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=280&fit=crop",
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=280&fit=crop",
-  "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=500&h=280&fit=crop",
-];
 
 // Page Component
 export default async function InnovationPulseDatePage({
@@ -143,6 +139,13 @@ export default async function InnovationPulseDatePage({
         <h1 className="font-sans text-[clamp(1.8rem,4vw,2.6rem)] font-extrabold leading-[1.15] mb-4 tracking-[-0.02em]">
           {episode.deepDive.title}
         </h1>
+
+        {/* Week coverage line for weekly episodes */}
+        {formatWeekCoveredLong(episode) && (
+          <p className="font-mono text-[0.72rem] text-[var(--text-muted)] tracking-[0.04em] mb-4">
+            {formatWeekCoveredLong(episode)}
+          </p>
+        )}
 
         {/* Subtitle */}
         <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8 font-normal">
@@ -274,12 +277,12 @@ export default async function InnovationPulseDatePage({
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          ALSO TODAY - QUICK HITS
+          ALSO TODAY/THIS WEEK - QUICK HITS (cadence-aware)
           ═══════════════════════════════════════════════════════ */}
       {episode.quickHits.length > 0 && (
         <div className="max-w-[1200px] mx-auto px-[var(--px)] py-10 border-t border-[var(--border)]">
           <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
-            Also Today
+            {isWeeklyEpisode(episode) ? 'Also This Week' : 'Also Today'}
           </div>
 
           <div className="grid-3">
@@ -304,54 +307,57 @@ export default async function InnovationPulseDatePage({
       )}
 
       {/* ═══════════════════════════════════════════════════════
-          RELATED STORIES
+          RECENT EPISODES (real episodes, not current one)
           ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[1200px] mx-auto px-[var(--px)] py-10 border-t border-[var(--border)]">
-        <div className="flex items-center justify-between mb-6">
-          <span className="font-sans text-[1.2rem] font-bold">Related Stories</span>
-          <Link
-            href="/innovation-pulse"
-            className="font-mono text-[0.68rem] text-[var(--cyan)] tracking-[0.06em] hover:text-[var(--text)] transition-colors"
-          >
-            Back to all stories &rarr;
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {[
-            { title: "How Georgia State Used AI Chatbots to Cut Summer Melt by 22%", source: "EDUCAUSE Review", cat: "Case Studies", date: "Feb 17" },
-            { title: "AI Tutors Most Effective for First-Gen Students", source: "Journal of Higher Ed", cat: "Research & Innovation", date: "Feb 15" },
-            { title: "Community College Consortium Open-Sources AI Advising System", source: "CC Daily", cat: "Case Studies", date: "Feb 12" },
-          ].map((story, i) => (
-            <div
-              key={i}
-              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)]"
-            >
-              <div className="relative h-[140px] overflow-hidden">
-                <Image
-                  src={relatedImages[i]}
-                  alt={story.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-4 pt-3">
-                <div className="font-mono text-[0.55rem] font-semibold tracking-[0.08em] uppercase mb-2 flex items-center gap-[0.35rem]">
-                  <span className="w-[4px] h-[4px] rounded-full bg-[var(--cyan)]" />
-                  <span className="text-[var(--cyan)]">{story.cat}</span>
-                </div>
-                <h3 className="font-sans text-[0.92rem] font-bold leading-[1.25] mb-3">
-                  {story.title}
-                </h3>
-                <div className="flex justify-between font-mono text-[0.58rem] text-[var(--text-muted)] pt-2 border-t border-[var(--border)]">
-                  <span className="text-[var(--cyan)]">{story.source}</span>
-                  <span>{story.date}</span>
-                </div>
-              </div>
+      {(() => {
+        const recentOther = allEpisodes.filter(ep => ep.date !== date).slice(0, 3);
+        if (recentOther.length === 0) return null;
+        return (
+          <div className="max-w-[1200px] mx-auto px-[var(--px)] py-10 border-t border-[var(--border)]">
+            <div className="flex items-center justify-between mb-6">
+              <span className="font-sans text-[1.2rem] font-bold">Recent Episodes</span>
+              <Link
+                href="/innovation-pulse"
+                className="font-mono text-[0.68rem] text-[var(--cyan)] tracking-[0.06em] hover:text-[var(--text)] transition-colors"
+              >
+                Back to all stories &rarr;
+              </Link>
             </div>
-          ))}
-        </div>
-      </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {recentOther.map((ep) => (
+                <Link
+                  key={ep.date}
+                  href={`/innovation-pulse/${ep.date}`}
+                  className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block"
+                >
+                  <div className="relative h-[140px] overflow-hidden">
+                    <Image
+                      src={ep.deepDive.image || DEFAULT_LEAD_IMAGE}
+                      alt={ep.deepDive.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-4 pt-3">
+                    <div className="font-mono text-[0.55rem] font-semibold tracking-[0.08em] uppercase mb-2 flex items-center gap-[0.35rem]">
+                      <span className="w-[4px] h-[4px] rounded-full bg-[var(--cyan)]" />
+                      <span className="text-[var(--cyan)]">{mapToV4Category(ep.deepDive.category)}</span>
+                    </div>
+                    <h3 className="font-sans text-[0.92rem] font-bold leading-[1.25] mb-3">
+                      {ep.deepDive.title}
+                    </h3>
+                    <div className="flex justify-between font-mono text-[0.58rem] text-[var(--text-muted)] pt-2 border-t border-[var(--border)]">
+                      <span className="text-[var(--cyan)]">{ep.deepDive.source}</span>
+                      <span>{formatShortDate(ep.date)}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ═══════════════════════════════════════════════════════
           EPISODE NAVIGATION

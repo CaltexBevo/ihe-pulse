@@ -10,6 +10,7 @@ import SectionHeader from "@/components/SectionHeader";
 import {
   formatPulseDate,
   formatShortDate,
+  isWeeklyEpisode,
   type InnovationPulseEpisode,
 } from "@/lib/data/innovation-pulse-types";
 
@@ -399,7 +400,9 @@ export default function InnovationPulseClient({
                 <div className="np-sub-copy">
                   <strong>Never miss an episode.</strong>{" "}
                   <span className="np-sub-muted">
-                    Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
+                    {isWeeklyEpisode(currentEpisode)
+                      ? 'Delivered to your inbox every Friday — listen on the drive in, at lunch, or the drive home.'
+                      : 'Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.'}
                   </span>
                 </div>
                 <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>

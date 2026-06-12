@@ -192,6 +192,10 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   const audioUrl = (episode?.audioUrl || raw.audioUrl) as string || '';
   const audioDuration = (episode?.audioDuration || raw.audioDuration) as string || '';
 
+  // Extract cadence fields (weekly episodes have these)
+  const cadence = (episode?.cadence || raw.cadence) as 'daily' | 'weekly' | undefined;
+  const weekCovered = (episode?.weekCovered || raw.weekCovered) as string | undefined;
+
   // Build the normalized episode with all required fields
   // Use pullQuote for editorialHook if available (V3), otherwise fall back to hook
   const normalizedEpisode: InnovationPulseEpisode = {
@@ -208,6 +212,9 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     categories: (raw.categories as InnovationPulseEpisode['categories']) ||
       [deepDive.category, ...quickHits.map(q => q.category)].filter((v, i, a) => a.indexOf(v) === i) as InnovationPulseEpisode['categories'],
     themes: ((raw.meta as Record<string, unknown>)?.themes || raw.themes) as string[] || [],
+    // Cadence fields for weekly episodes
+    cadence,
+    weekCovered,
   };
 
   return normalizedEpisode;

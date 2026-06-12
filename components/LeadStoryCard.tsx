@@ -53,8 +53,8 @@ export default function LeadStoryCard({ episode, imageUrl, v4Category, categoryC
       {/* Lead Story Card - Image Left, Content Right */}
       <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] overflow-hidden">
         <div className="grid lg:grid-cols-[40%_60%]">
-          {/* Image Side - Portrait on Desktop */}
-          <div className="relative aspect-[16/9] lg:aspect-[3/4] overflow-hidden bg-[var(--surface-1)]">
+          {/* Image Side - 3:2 aspect ratio to match TopStoriesSlider (source images are 3:2) */}
+          <div className="relative aspect-[3/2] overflow-hidden bg-[var(--surface-1)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrl}

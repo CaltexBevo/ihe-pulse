@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
+import { formatWeekCovered, isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
 
 function formatTime(seconds: number): string {
   if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
@@ -298,18 +299,18 @@ export default function HeroNowPlaying({
 
           {/* Kicker + Title — RIGHT side, right-aligned */}
           <div className="np-art-right-stack">
-            <div className="np-art-kicker">DAILY AI NEWS FOR ED ◂</div>
+            <div className="np-art-kicker">{isWeeklyEpisode(currentEpisode) ? 'WEEKLY AI NEWS FOR ED ◂' : 'DAILY AI NEWS FOR ED ◂'}</div>
             <div className="np-art-show-title">
               The<br />Innovation<br />Pulse
             </div>
           </div>
 
-          {/* Date band — full-width bottom */}
+          {/* Date band — full-width bottom (cadence-aware) */}
           <div className="np-art-date-band">
             <div className="np-art-date-row">
               <div className="np-art-date-year">{year}</div>
               <div className="np-art-date-main">
-                {dayAbbr}<span className="np-art-date-sep">·</span>{monthAbbr} {dayNum}
+                {formatWeekCovered(currentEpisode)}
               </div>
             </div>
             <div className="np-art-date-tag">— 5 MIN · COMMUTE · LUNCH · DRIVE HOME —</div>
@@ -336,7 +337,7 @@ export default function HeroNowPlaying({
         </div>
 
         <div className="np-player">
-          <div className="np-kicker">Today&apos;s AI News for Higher Ed</div>
+          <div className="np-kicker">{isWeeklyEpisode(currentEpisode) ? "This Week's AI News for Higher Ed" : "Today's AI News for Higher Ed"}</div>
           <h1 className="np-title">{headline}</h1>
           <div className="np-meta">
             <strong>Episode {episodeNumber}</strong>
@@ -440,13 +441,15 @@ export default function HeroNowPlaying({
         )}
       </div>
 
-      {/* Inline subscribe strip */}
+      {/* Inline subscribe strip (cadence-aware) */}
       {showExtras && (
         <div className="np-subscribe">
           <div className="np-sub-copy">
             <strong>Never miss an episode.</strong>{" "}
             <span className="np-sub-muted">
-              Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
+              {isWeeklyEpisode(currentEpisode)
+                ? 'Delivered to your inbox every Friday — listen on the drive in, at lunch, or the drive home.'
+                : 'Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.'}
             </span>
           </div>
           <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
