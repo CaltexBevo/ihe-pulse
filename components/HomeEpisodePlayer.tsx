@@ -4,7 +4,8 @@ import { useState, useMemo, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import HeroNowPlaying from '@/components/HeroNowPlaying';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
-import { isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
+// TEMP-DISABLED-NEWSLETTER (2026-06-12): re-enable with subscribe strip after ESP selection
+// import { isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
 
 interface HomeEpisodePlayerProps {
   latestEpisode: InnovationPulseEpisode;
@@ -79,7 +80,9 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
         />
       </div>
 
-      {/* Subscribe strip — matches Innovation Pulse page (cadence-aware) */}
+      {/* TEMP-DISABLED-NEWSLETTER (2026-06-12): Subscribe strip hidden until ESP
+          (email service provider) is selected and wired up. Restore the block below
+          and the isWeeklyEpisode import when re-enabling.
       <div className="np-subscribe" style={{ marginTop: '24px', marginBottom: '8px' }}>
         <div className="np-sub-copy">
           <strong>Never miss an episode.</strong>{" "}
@@ -94,6 +97,7 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
           <button type="submit">Subscribe</button>
         </form>
       </div>
+      */}
 
       {/* Recent Episodes grid — matches Innovation Pulse page */}
       {recentEpisodes && recentEpisodes.length > 1 && (

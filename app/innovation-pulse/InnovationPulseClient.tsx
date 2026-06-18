@@ -3,14 +3,16 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
-import NewsletterSignup from "@/components/NewsletterSignup";
+// TEMP-DISABLED-NEWSLETTER (2026-06-12): re-enable after ESP selection
+// import NewsletterSignup from "@/components/NewsletterSignup";
 import HeroNowPlaying from "@/components/HeroNowPlaying";
 import TopStoriesSlider from "@/components/TopStoriesSlider";
 import SectionHeader from "@/components/SectionHeader";
 import {
   formatPulseDate,
   formatShortDate,
-  isWeeklyEpisode,
+  // TEMP-DISABLED-NEWSLETTER (2026-06-12): re-enable isWeeklyEpisode after ESP selection
+  // isWeeklyEpisode,
   type InnovationPulseEpisode,
 } from "@/lib/data/innovation-pulse-types";
 
@@ -396,6 +398,8 @@ export default function InnovationPulseClient({
                 </div>
               )}
 
+              {/* TEMP-DISABLED-NEWSLETTER (2026-06-12): Subscribe strip hidden until ESP selected.
+                  Restore this block and the isWeeklyEpisode import when re-enabling.
               <div className="np-subscribe" style={{ marginTop: '20px', marginBottom: '8px' }}>
                 <div className="np-sub-copy">
                   <strong>Never miss an episode.</strong>{" "}
@@ -410,6 +414,7 @@ export default function InnovationPulseClient({
                   <button type="submit">Subscribe</button>
                 </form>
               </div>
+              */}
             </div>
           </section>
 
@@ -439,19 +444,17 @@ export default function InnovationPulseClient({
       {/* Section Divider */}
       <div className="section-divider" />
 
-      {/* ═══════════════════════════════════════════════════════
-          NEWSLETTER SIGNUP — Hidden on homepage (showHero=false)
-          ═══════════════════════════════════════════════════════ */}
+      {/* TEMP-DISABLED-NEWSLETTER (2026-06-12): Inline signup hidden until ESP selected.
+          Restore this block and the NewsletterSignup import when re-enabling.
       {showHero !== false && (
         <>
           <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-8">
             <NewsletterSignup variant="inline" />
           </div>
-
-          {/* Section Divider */}
           <div className="section-divider" />
         </>
       )}
+      */}
 
       {/* ═══════════════════════════════════════════════════════
           V4 CATEGORY FILTERS
@@ -713,10 +716,12 @@ export default function InnovationPulseClient({
             </div>
           )}
 
-          {/* Bottom Newsletter CTA */}
+          {/* TEMP-DISABLED-NEWSLETTER (2026-06-12): Bottom CTA hidden until ESP selected.
+              Restore this block and the NewsletterSignup import when re-enabling.
           <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
             <NewsletterSignup variant="card" />
           </div>
+          */}
         </>
       )}
 
