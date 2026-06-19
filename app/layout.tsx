@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.innovatinghighered.com'),
   title: "Innovating Higher Ed | AI Innovation for Education",
   description:
     "AI-powered intelligence for higher education. The Innovation Pulse, AI tools, prompts, and resources for educators navigating the AI revolution.",
@@ -20,6 +21,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Innovating Higher Ed",
     description: "AI-powered intelligence for higher education",
+    url: "https://www.innovatinghighered.com",
+    siteName: "Innovating Higher Ed",
     type: "website",
   },
 };

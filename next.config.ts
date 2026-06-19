@@ -45,6 +45,20 @@ const nextConfig: NextConfig = {
         destination: '/ai-directory/:slug',
         permanent: true,
       },
+      // Old WordPress URL redirects (post-migration)
+      { source: '/about-us', destination: '/about', permanent: true },
+      { source: '/about-us/', destination: '/about', permanent: true },
+      { source: '/prompt-navigator', destination: '/prompts', permanent: true },
+      { source: '/prompt-navigator/', destination: '/prompts', permanent: true },
+      { source: '/innovating-higher-ed-podcast-with-dr-norma-jones', destination: '/podcast', permanent: true },
+      { source: '/innovating-higher-ed-podcast-with-dr-norma-jones/', destination: '/podcast', permanent: true },
+      { source: '/innovating-higher-ed-podcast/:slug*', destination: '/podcast', permanent: true },
+      { source: '/category/:slug*', destination: '/innovation-pulse', permanent: true },
+      { source: '/be_out-guest', destination: '/about', permanent: true },
+      { source: '/be_out-guest/', destination: '/about', permanent: true },
+      { source: '/author/:slug*', destination: '/about', permanent: true },
+      { source: '/educator-tools/', destination: '/educator-tools', permanent: true },
+      { source: '/tinker-lab/:slug*', destination: '/tinker-lab', permanent: true },
     ];
   },
 };
