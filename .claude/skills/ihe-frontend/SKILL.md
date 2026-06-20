@@ -12,8 +12,8 @@ description: "Enforces all design, content, structural, and ADA compliance rules
 ## 1. BRAND RULES
 
 - Site name: "Innovating Higher Ed" — NEVER abbreviate to "IHE" in any user-facing text (nav, headings, meta tags, footer, about page). Internal code references (variable names, file names, repo name) are fine.
-- Product name: "The Innovation Pulse" — the daily AI briefing
-- Brand positioning: "The daily AI briefing built by educators, for educators"
+- Product name: "The Innovation Pulse" — the weekly AI briefing (Summer 2026; returns to daily Fall 2026)
+- Brand positioning: "The weekly AI briefing built by educators, for educators" (Summer 2026)
 - Do NOT use taglines that claim subscriber counts or metrics unless they are real, verified numbers
 
 ---
@@ -79,11 +79,12 @@ The nav must contain these items in this exact order. Do NOT add, remove, or reo
 
 ## 4. FOOTER — EXACT STRUCTURE
 
-### Content sections (4-column grid):
+### Content sections (3-column grid — TEMP STATE as of June 2026):
 1. **Brand Column**: Logo text, tagline, social links (X, LinkedIn, YouTube)
 2. **Platform Column**: Innovation Pulse, Prompt Navigator, AI Directory
 3. **Community Column**: Podcast, Tinker Lab, Be Our Guest, About
-4. **Newsletter Column**: "Never Miss a Pulse" with email input
+
+**TEMP-DISABLED (2026-06-12):** Newsletter Column ("Never Miss a Pulse" with email input) is hidden pending email platform selection. Grep for `TEMP-DISABLED-NEWSLETTER` across HomeEpisodePlayer.tsx, Footer.tsx, InnovationPulseClient.tsx to re-enable. When re-enabled, footer returns to 4-column grid.
 
 ### Legal links (bottom row, this exact order):
 1. About → /about
@@ -93,7 +94,6 @@ The nav must contain these items in this exact order. Do NOT add, remove, or reo
 5. AI Disclosure → /ai-disclosure
 
 ### Footer text:
-- "delivered daily" (NOT "delivered weekly")
 - Copyright: © 2026 Innovating Higher Ed. All rights reserved.
 
 **Implementation reference:** `components/Footer.tsx`
@@ -105,12 +105,14 @@ The nav must contain these items in this exact order. Do NOT add, remove, or reo
 Tools appear in this exact order (5 tools total):
 
 1. **Canvas Quiz Builder (QTI Export)**
-   - URL: https://innovatinghighered.com/QTI-quiz-builder.html
+   - URL: https://www.innovatinghighered.com/QTI-quiz-builder.html
    - Attribution: "A Cyber Doctor · Norma Jones Build"
+   - ⚠️ MIGRATION NOTE (Jun 2026): This HTML file was on the old WordPress host. Must be retrieved from cPanel (liquidflicks.com) and placed in ihe-pulse/public/ for Vercel to serve it. BROKEN until migrated.
 
 2. **COR Checker**
-   - URL: https://innovatinghighered.com/cor-checker.html
+   - URL: https://www.innovatinghighered.com/cor-checker.html
    - Attribution: "A Cyber Doctor · Norma Jones Build"
+   - ⚠️ MIGRATION NOTE (Jun 2026): Same — retrieve from cPanel and place in ihe-pulse/public/. BROKEN until migrated.
 
 3. **Syllabot**
    - URL: https://www.playlab.ai/project/cmcxiu07005zbm20uf1mawflg
@@ -183,7 +185,7 @@ Key facts that must remain:
 - If a metric appears on the site, it must be real and verifiable
 
 ### Newsletter language
-- "delivered daily" — NEVER "delivered weekly"
+- "delivered weekly" (Summer 2026; returns to "delivered daily" Fall 2026)
 - Do NOT add subscriber count claims unless verified
 
 ### Verified metrics (safe to use):
@@ -273,7 +275,7 @@ These rules CANNOT be changed by any CMA sprint. Only the founder can modify the
 1. **Dark mode is the unconditional default**
 2. **No fabricated metrics or social proof anywhere on the site**
 3. **No "IHE" abbreviation in user-facing text**
-4. **"delivered daily" — never "delivered weekly"**
+4. **Cadence language must match current mode** — "delivered weekly" (Summer 2026) or "delivered daily" (Fall 2026+)
 5. **Nav order is locked** (see Section 3)
 6. **Footer legal links are locked** (see Section 4)
 7. **Educator Tools order is locked** (see Section 5)
@@ -366,7 +368,7 @@ Before ANY CMA sprint modifies frontend files:
   - [ ] Footer links haven't changed
   - [ ] Theme default hasn't changed
   - [ ] No fabricated metrics were introduced
-  - [ ] "delivered daily" appears (not "weekly")
+  - [ ] Cadence language matches current mode (weekly Summer 2026, daily Fall 2026+)
   - [ ] All h1 headings are present (one per page)
   - [ ] No accessibility features removed
 - [ ] Verify build passes: `npm run build`
@@ -385,7 +387,7 @@ After pushing changes to Vercel:
 - [ ] About page has all required sections
 - [ ] Educator Tools shows 5 tools in correct order
 - [ ] No fabricated metrics visible anywhere
-- [ ] "delivered daily" appears (not "weekly")
+- [ ] Cadence language matches current mode
 - [ ] Skip navigation link works (Tab from fresh page load)
 - [ ] All interactive elements are keyboard accessible
 
@@ -401,6 +403,7 @@ After pushing changes to Vercel:
 | 2026-05-29 | Section 3: Nav updated (Innovation Pulse → All Episodes, hidden items noted) | Founder |
 | 2026-05-29 | Section 10: Homepage now renders Innovation Pulse content | Founder |
 | 2026-05-29 | Section 13: Added Innovation Pulse components and CSS conventions | System |
+| 2026-06-19 | Sections 1,4,5,8,11: Post-migration cadence/footer/educator tools updates | Founder |
 
 ---
 
