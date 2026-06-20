@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Quiz Builder — QTI Export</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --paper: #f7f5f2;
+  --warm: #f0ece6;
+  --card: #ffffff;
+  --accent: #b5342a;
+  --accent-hover: #d03e33;
+  --accent-bg: #fdf0ef;
+  --green: #1f8a4f;
+  --green-bg: #e8f8ef;
+  --blue: #2670a9;
+  --blue-bg: #eaf2f8;
+  --purple: #7c3aed;
+  --purple-bg: #f3effe;
+  --amber: #b45309;
+  --amber-bg: #fef3c7;
+  --orange: #c2410c;
+  --orange-bg: #fff7ed;
+  --border: #ddd8d0;
+  --border-light: #eae6df;
+  --muted: #7a7670;
+  --shadow-sm: 0 1px 3px rgba(26,26,46,0.05);
+  --shadow: 0 2px 10px rgba(26,26,46,0.07);
+  --shadow-lg: 0 8px 30px rgba(26,26,46,0.12);
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;min-height:100vh}
+
+.header{background:var(--ink);color:#fff;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:14px}
+.header-icon{width:38px;height:38px;background:var(--accent);border-radius:8px;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700}
+.header h1{font-family:'Fraunces',serif;font-size:20px;font-weight:700;letter-spacing:-.3px}
+.header p{font-size:12px;opacity:.5;margin-top:1px}
+.hdr-btn{padding:7px 16px;border:1.5px solid rgba(255,255,255,.18);border-radius:var(--radius-sm);background:0 0;color:#fff;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s}
+.hdr-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.35)}
+
+.app{max-width:940px;margin:0 auto;padding:28px 20px 110px}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-bottom:20px}
+.card-head{padding:16px 22px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:10px}
+.card-head h2{font-family:'Fraunces',serif;font-size:16px;font-weight:600}
+.card-body{padding:20px 22px}
+
+.row{display:grid;gap:14px}
+.row-2{grid-template-columns:1fr 1fr}
+.row-3{grid-template-columns:1fr 1fr 1fr}
+.field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:5px}
+.field input,.field select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:14px;background:var(--paper);transition:all .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);background:#fff}
+
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:20px;overflow-x:auto}
+.tab{padding:10px 16px;font-family:inherit;font-size:13px;font-weight:600;border:none;background:none;color:var(--muted);cursor:pointer;position:relative;transition:color .15s;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--accent)}
+.tab.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--accent)}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;font-size:10px;font-weight:700;margin-left:5px;background:var(--warm);color:var(--muted)}
+.tab.active .badge{background:var(--accent-bg);color:var(--accent)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.paste-area{width:100%;min-height:220px;padding:14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',monospace;font-size:13px;line-height:1.7;resize:vertical;background:var(--paper);tab-size:4}
+.paste-area:focus{outline:none;border-color:var(--accent);background:#fff}
+.paste-bar{display:flex;align-items:center;gap:12px;margin-top:14px}
+.parse-btn{padding:10px 24px;color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .12s}
+.parse-btn.mc{background:var(--blue)}.parse-btn.mc:hover{background:#1f6094}
+.parse-btn.tf{background:var(--green)}.parse-btn.tf:hover{background:#1a7a44}
+.parse-btn.ma{background:var(--purple)}.parse-btn.ma:hover{background:#6b21a8}
+.parse-btn.fib{background:var(--amber)}.parse-btn.fib:hover{background:#92400e}
+.parse-btn.essay{background:var(--orange)}.parse-btn.essay:hover{background:#9a3412}
+.parse-result{font-size:12px;color:var(--muted)}
+.format-guide{margin-top:14px;font-size:12px;color:var(--muted);line-height:1.8;background:var(--warm);padding:14px 16px;border-radius:var(--radius-sm)}
+.format-guide code{background:rgba(0,0,0,.06);padding:1px 5px;border-radius:3px;font-size:11px}
+.format-guide strong{color:var(--ink)}
+
+.review-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.review-header h2{font-family:'Fraunces',serif;font-size:18px;font-weight:600}
+.clear-all-btn{padding:6px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--accent);cursor:pointer;transition:all .12s}
+.clear-all-btn:hover{background:var(--accent-bg);border-color:var(--accent)}
+.review-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
+
+.q-review{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;overflow:hidden}
+.q-review-head{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--warm);font-size:13px;border-bottom:1px solid var(--border-light)}
+.q-review-num{width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;flex-shrink:0}
+.q-review-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:3px;flex-shrink:0}
+.q-review-type.mc{background:var(--blue-bg);color:var(--blue)}
+.q-review-type.tf{background:var(--green-bg);color:var(--green)}
+.q-review-type.ma{background:var(--purple-bg);color:var(--purple)}
+.q-review-type.fib{background:var(--amber-bg);color:var(--amber)}
+.q-review-type.essay{background:var(--orange-bg);color:var(--orange)}
+.q-review-prompt{flex:1;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.q-review-del{width:24px;height:24px;border:none;background:none;border-radius:5px;cursor:pointer;font-size:14px;color:var(--muted);display:grid;place-items:center;transition:all .12s;flex-shrink:0}
+.q-review-del:hover{background:var(--accent-bg);color:var(--accent)}
+.fib-tag-sm{display:inline-block;background:var(--green-bg);border:1px solid #b5e6c8;padding:1px 8px;border-radius:10px;font-size:12px;margin:2px 2px}
+.essay-note{font-style:italic;color:var(--muted)}
+
+.export-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 -3px 16px rgba(0,0,0,.06);z-index:100}
+.export-info{font-size:13px;color:var(--muted)}
+.export-info strong{color:var(--ink)}
+.export-counts{display:flex;gap:8px;margin-top:3px;flex-wrap:wrap}
+.ecc{font-size:11px;padding:1px 8px;border-radius:10px;font-weight:600}
+.ecc.mc{background:var(--blue-bg);color:var(--blue)}
+.ecc.tf{background:var(--green-bg);color:var(--green)}
+.ecc.ma{background:var(--purple-bg);color:var(--purple)}
+.ecc.fib{background:var(--amber-bg);color:var(--amber)}
+.ecc.essay{background:var(--orange-bg);color:var(--orange)}
+.export-btn{padding:11px 28px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:7px}
+.export-btn:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.export-btn:active{transform:translateY(0)}
+.export-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(16px);padding:10px 22px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;color:#fff;opacity:0;transition:all .3s;z-index:200;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--accent)}
+
+.about-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-bottom:24px;overflow:hidden}
+.about-top{padding:22px 24px;display:flex;gap:20px;align-items:flex-start}
+.about-icon{width:52px;height:52px;background:var(--accent);border-radius:12px;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#fff;flex-shrink:0}
+.about-title{font-family:'Fraunces',serif;font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:2px}
+.about-version{font-size:12px;color:var(--muted);margin-bottom:8px}
+.about-desc{font-size:13.5px;color:#555;line-height:1.7}
+.about-steps{padding:0 24px 20px 24px}
+.about-steps summary{font-size:13px;font-weight:700;color:var(--blue);cursor:pointer;padding:8px 0;user-select:none}
+.about-steps summary:hover{text-decoration:underline}
+.about-steps ol{padding:10px 0 4px 22px;font-size:13px;color:var(--muted);line-height:1.9}
+.about-steps ol strong{color:var(--ink)}
+.about-steps code{background:var(--warm);padding:1px 5px;border-radius:3px;font-size:12px}
+.about-steps .types-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin:10px 0 4px;padding:0;list-style:none}
+.about-steps .types-grid li{font-size:12.5px;color:#555;display:flex;align-items:center;gap:6px}
+.about-steps .types-grid .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.about-steps .types-grid .dot.mc{background:var(--blue)}
+.about-steps .types-grid .dot.tf{background:var(--green)}
+.about-steps .types-grid .dot.ma{background:var(--purple)}
+.about-steps .types-grid .dot.fib{background:var(--amber)}
+.about-steps .types-grid .dot.essay{background:var(--orange)}
+
+.footer{text-align:center;padding:20px 20px 24px;font-size:11.5px;color:var(--muted);line-height:1.7;border-top:1px solid var(--border-light);margin-top:20px}
+.footer a{color:var(--blue);text-decoration:none;font-weight:600}
+.footer a:hover{text-decoration:underline}
+.footer .footer-line{margin-bottom:2px}
+.footer .footer-disclaimer{font-size:10.5px;opacity:.7;margin-top:4px}
+
+/* ═══ EDITABLE REVIEW ═══ */
+.q-review-prompt-edit{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:13px;resize:vertical;min-height:38px;line-height:1.5;background:var(--paper)}
+.q-review-prompt-edit:focus{outline:none;border-color:var(--accent);background:#fff}
+.q-review-body{padding:12px 14px;font-size:13px;color:#555}
+.q-review-body .answer{padding:3px 0;display:flex;align-items:center;gap:6px}
+.q-review-body .answer .marker{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .12s;flex-shrink:0;user-select:none}
+.q-review-body .answer.correct .marker{background:var(--green);border-color:var(--green);color:#fff}
+.q-review-body .ans-edit{flex:1;padding:5px 8px;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:13px;background:var(--paper)}
+.q-review-body .ans-edit:focus{outline:none;border-color:var(--accent);background:#fff}
+.q-review-body .tf-toggle-row{display:flex;gap:8px}
+.q-review-body .tf-btn{flex:1;padding:8px;text-align:center;border:2px solid var(--border);border-radius:var(--radius-sm);font-weight:600;font-size:13px;cursor:pointer;transition:all .12s;user-select:none;background:#fff}
+.q-review-body .tf-btn:hover{border-color:#b0a89e}
+.q-review-body .tf-btn.sel-t{border-color:var(--green);background:var(--green-bg);color:var(--green)}
+.q-review-body .tf-btn.sel-f{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
+.fib-edit-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.fib-edit-input{flex:1;padding:5px 8px;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:13px;background:var(--paper)}
+.fib-edit-input:focus{outline:none;border-color:var(--accent);background:#fff}
+.fib-remove-btn{width:22px;height:22px;border:none;background:none;border-radius:4px;cursor:pointer;font-size:14px;color:var(--muted);display:grid;place-items:center;flex-shrink:0}
+.fib-remove-btn:hover{background:var(--accent-bg);color:var(--accent)}
+.fib-add-row{display:flex;gap:6px;margin-top:6px}
+.fib-add-row input{flex:1;padding:5px 8px;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:12px}
+.fib-add-row input:focus{outline:none;border-color:var(--accent)}
+.fib-add-row button{padding:5px 12px;border:none;background:var(--green);color:#fff;border-radius:4px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.fib-add-row button:hover{background:#1a7a44}
+.ans-add-btn{display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:4px 10px;border:1.5px dashed var(--border);border-radius:4px;background:none;font-family:inherit;font-size:11px;color:var(--muted);cursor:pointer}
+.ans-add-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
+
+/* ═══ PARSE ERRORS ═══ */
+.parse-errors{margin-top:12px;background:var(--accent-bg);border:1px solid #f5c6c2;border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;line-height:1.7}
+.parse-errors .err-title{font-weight:700;color:var(--accent);margin-bottom:4px}
+.parse-errors .err-item{color:#7a3530;padding:2px 0;display:flex;gap:6px}
+.parse-errors .err-item .err-q{font-weight:600;flex-shrink:0}
+.parse-errors .hint{margin-top:8px;padding-top:8px;border-top:1px solid #f0c0bc;color:var(--muted);font-style:italic}
+
+@media(max-width:640px){
+  .header{padding:0 16px}
+  .app{padding:20px 12px 110px}
+  .row-2,.row-3{grid-template-columns:1fr}
+  .export-bar{padding:12px 16px;flex-direction:column;gap:10px;align-items:stretch}
+  .export-btn{justify-content:center}
+  .tab{padding:10px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-icon">Q</div>
+    <div>
+      <h1>Canvas Quiz Builder</h1>
+      <p>v7.6.7 · Built by The Cyber Doctor – Norma Jones, PhD</p>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- About This Tool -->
+  <div class="about-box">
+    <div class="about-top">
+      <div class="about-icon">Q</div>
+      <div>
+        <div class="about-title">Canvas Quiz Builder</div>
+        <div class="about-version">Quiz Builder v7.5 · QTI 2.1 Export for Canvas New Quizzes</div>
+        <div class="about-desc">
+          This tool lets you quickly create quiz question packages that import directly into <strong>Canvas New Quizzes</strong>.
+          Paste your questions into the tabs below — each tab handles a different question type — then export a single QTI 2.1 ZIP file ready for Canvas import. No software to install, no account needed. Everything runs in your browser.
+        </div>
+      </div>
+    </div>
+    <div class="about-steps">
+      <details>
+        <summary>📖 Supported Question Types</summary>
+        <ul class="types-grid">
+          <li><span class="dot mc"></span><strong>Multiple Choice</strong> — single correct answer</li>
+          <li><span class="dot tf"></span><strong>True / False</strong> — binary choice</li>
+          <li><span class="dot ma"></span><strong>Multiple Answer</strong> — select all that apply</li>
+          <li><span class="dot fib"></span><strong>Fill in the Blank</strong> — typed response with accepted answers</li>
+          <li><span class="dot essay"></span><strong>Essay</strong> — open response, human graded</li>
+        </ul>
+      </details>
+      <details>
+        <summary>🚀 How to Use This Tool</summary>
+        <ol>
+          <li>Fill in your <strong>Quiz Settings</strong> below (title, chapter number, etc.).</li>
+          <li>Click a <strong>question type tab</strong> (Multiple Choice, True/False, etc.).</li>
+          <li>Paste your questions in the format shown, then click the <strong>Add</strong> button. Your pasted text stays in the box so you can reference or re-add it.</li>
+          <li>Repeat for other question types as needed — they all combine into one quiz.</li>
+          <li><strong>Set points per question type:</strong> Each tab has a <strong>PTS EACH</strong> field next to the Add button. Set this <em>before</em> clicking Add to assign points to that batch. You can set different values for each type (e.g. 2 pts for Multiple Choice, 5 pts for Essay). You can also adjust points for individual questions in the Review All tab.</li>
+          <li><strong>Formatting help:</strong> If any questions can't be parsed, you'll see specific suggestions explaining what went wrong — such as a missing <code>(correct)</code> marker, too few answer choices, or an answer line that doesn't match the expected format. Follow the hints to fix your text and re-add.</li>
+          <li>Use the <strong>Review All</strong> tab to check everything. You can <strong>edit question text, answers, correct answers, point values</strong>, and <strong>add or remove answer choices</strong> — all inline. Delete any question with the ✕ button.</li>
+          <li>Click <strong>Export QTI ZIP</strong> to download the file.</li>
+        </ol>
+      </details>
+      <details>
+        <summary>📥 How to Import into Canvas</summary>
+        <ol>
+          <li>In your Canvas course, go to <strong>Quizzes</strong> and click <strong>+ Quiz</strong>.</li>
+          <li>Select <strong>New Quiz</strong> and click <strong>Submit</strong>.</li>
+          <li>Title your quiz and click <strong>Build</strong>.</li>
+          <li>Click the <strong>⋯ Options</strong> icon (top-right) → <strong>Import Content</strong>.</li>
+          <li>Drag and drop the downloaded <code>.zip</code> file, then click <strong>Import</strong>.</li>
+          <li>Your questions appear in the quiz — ready to publish!</li>
+        </ol>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px">You can also import into <strong>Item Banks</strong>: go to Item Banks → create or select a bank → Import → upload the ZIP.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- Quiz Settings -->
+  <div class="card">
+    <div class="card-head"><h2>📋 Quiz Settings</h2></div>
+    <div class="card-body">
+      <div class="row row-3">
+        <div class="field">
+          <label>Quiz Title</label>
+          <input type="text" id="quizTitle" value="My Quiz" placeholder="e.g. Chapter 7 Quiz">
+        </div>
+        <div class="field">
+          <label>Chapter Number</label>
+          <input type="number" id="chapterNum" value="1" min="1" max="99">
+        </div>
+        <div class="field">
+          <label>ZIP Filename Prefix</label>
+          <input type="text" id="zipPrefix" value="quiz_ch" placeholder="e.g. fps_ch">
+        </div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <div class="field">
+          <label>Description (optional)</label>
+          <input type="text" id="quizDesc" placeholder="e.g. Organizing and Outlining Your Speech">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs" id="mainTabs">
+    <button class="tab active" data-tab="mc" onclick="switchTab('mc')">Multiple Choice <span class="badge" id="badge-mc">0</span></button>
+    <button class="tab" data-tab="tf" onclick="switchTab('tf')">True / False <span class="badge" id="badge-tf">0</span></button>
+    <button class="tab" data-tab="ma" onclick="switchTab('ma')">Multiple Answer <span class="badge" id="badge-ma">0</span></button>
+    <button class="tab" data-tab="fib" onclick="switchTab('fib')">Fill in Blank <span class="badge" id="badge-fib">0</span></button>
+    <button class="tab" data-tab="essay" onclick="switchTab('essay')">Essay <span class="badge" id="badge-essay">0</span></button>
+    <button class="tab" data-tab="review" onclick="switchTab('review')">Review All <span class="badge" id="badge-review">0</span></button>
+  </div>
+
+  <!-- MC -->
+  <div class="tab-panel active" id="tab-mc"><div class="card"><div class="card-body">
+    <textarea class="paste-area" id="paste-mc" placeholder="1. What is the capital of France?
+a) London
+b) Berlin
+c) Paris (correct)
+d) Madrid
+
+2. Which planet is closest to the sun?
+a) Earth
+b) Mercury (correct)
+c) Venus
+d) Mars"></textarea>
+    <div class="paste-bar">
+      <button class="parse-btn mc" onclick="parseMC()">Add Multiple Choice Questions</button>
+      <div class="q-pts" style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:600">
+        <span>PTS EACH</span>
+        <input type="number" id="pts-mc" value="1" min="0" step="0.5" style="width:52px;padding:4px 6px;text-align:center;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:12px;background:white">
+      </div>
+      <span class="parse-result" id="result-mc"></span>
+    </div>
+    <div class="format-guide">
+      <strong>Format:</strong> Number each question (<code>1.</code> or <code>1)</code>). List choices as <code>a)</code> <code>b)</code> <code>c)</code> <code>d)</code>.
+      Mark the <strong>single</strong> correct answer with <code>(correct)</code> after the text, or prefix the line with <code>*</code>.
+      Separate questions with a blank line.
+    </div>
+  </div></div></div>
+
+  <!-- TF -->
+  <div class="tab-panel" id="tab-tf"><div class="card"><div class="card-body">
+    <textarea class="paste-area" id="paste-tf" placeholder="1. The Earth revolves around the Sun.
+True
+
+2. Sound travels faster than light.
+False
+
+3. Water boils at 100°C at sea level.
+True"></textarea>
+    <div class="paste-bar">
+      <button class="parse-btn tf" onclick="parseTF()">Add True / False Questions</button>
+      <div class="q-pts" style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:600">
+        <span>PTS EACH</span>
+        <input type="number" id="pts-tf" value="1" min="0" step="0.5" style="width:52px;padding:4px 6px;text-align:center;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:12px;background:white">
+      </div>
+      <span class="parse-result" id="result-tf"></span>
+    </div>
+    <div class="format-guide">
+      <strong>Format:</strong> Number each question. On the next line, write <code>True</code> or <code>False</code> — this is the correct answer.
+      Separate questions with a blank line. You can also use the lettered format: <code>a) True (correct)</code> / <code>b) False</code>.
+    </div>
+  </div></div></div>
+
+  <!-- MA -->
+  <div class="tab-panel" id="tab-ma"><div class="card"><div class="card-body">
+    <textarea class="paste-area" id="paste-ma" placeholder="1. Which of the following are prime numbers?
+a) 2 (correct)
+b) 4
+c) 7 (correct)
+d) 9
+
+2. Select all warm colors:
+a) Red (correct)
+b) Blue
+c) Orange (correct)
+d) Yellow (correct)"></textarea>
+    <div class="paste-bar">
+      <button class="parse-btn ma" onclick="parseMA()">Add Multiple Answer Questions</button>
+      <div class="q-pts" style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:600">
+        <span>PTS EACH</span>
+        <input type="number" id="pts-ma" value="1" min="0" step="0.5" style="width:52px;padding:4px 6px;text-align:center;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:12px;background:white">
+      </div>
+      <span class="parse-result" id="result-ma"></span>
+    </div>
+    <div class="format-guide">
+      <strong>Format:</strong> Same as Multiple Choice, but mark <strong>two or more</strong> correct answers with <code>(correct)</code> or <code>*</code>.
+      Separate questions with a blank line.
+    </div>
+  </div></div></div>
+
+  <!-- FIB -->
+  <div class="tab-panel" id="tab-fib"><div class="card"><div class="card-body">
+    <textarea class="paste-area" id="paste-fib" placeholder="1. The inventor of the lightbulb was _____.
+* Thomas Edison
+* Edison
+
+2. The chemical symbol for water is _____.
+* H2O
+
+3. The largest planet in our solar system is _____.
+* Jupiter"></textarea>
+    <div class="paste-bar">
+      <button class="parse-btn fib" onclick="parseFIB()">Add Fill in the Blank Questions</button>
+      <div class="q-pts" style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:600">
+        <span>PTS EACH</span>
+        <input type="number" id="pts-fib" value="1" min="0" step="0.5" style="width:52px;padding:4px 6px;text-align:center;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:12px;background:white">
+      </div>
+      <span class="parse-result" id="result-fib"></span>
+    </div>
+    <div class="format-guide">
+      <strong>Format:</strong> Number each question. List each acceptable answer on its own line starting with <code>* </code> (asterisk + space).
+      You can list multiple acceptable spellings. Separate questions with a blank line.
+    </div>
+  </div></div></div>
+
+  <!-- Essay -->
+  <div class="tab-panel" id="tab-essay"><div class="card"><div class="card-body">
+    <textarea class="paste-area" id="paste-essay" placeholder="1. Explain the significance of the First Amendment.
+
+2. Describe the causes and effects of climate change.
+
+3. Compare and contrast classical and operant conditioning."></textarea>
+    <div class="paste-bar">
+      <button class="parse-btn essay" onclick="parseEssay()">Add Essay Questions</button>
+      <div class="q-pts" style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:600">
+        <span>PTS EACH</span>
+        <input type="number" id="pts-essay" value="1" min="0" step="0.5" style="width:52px;padding:4px 6px;text-align:center;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:12px;background:white">
+      </div>
+      <span class="parse-result" id="result-essay"></span>
+    </div>
+    <div class="format-guide">
+      <strong>Format:</strong> Number each question — just the prompt text, no answers needed.
+      Separate questions with a blank line. Each becomes an open-response (human-graded) item in Canvas.
+    </div>
+  </div></div></div>
+
+  <!-- Review -->
+  <div class="tab-panel" id="tab-review">
+    <div class="review-header">
+      <h2>All Questions</h2>
+      <button class="clear-all-btn" onclick="clearAll()">Clear All</button>
+    </div>
+    <div id="reviewList"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-line"><strong>Quiz Builder v7.6</strong> · Created by The Cyber Doctor – Norma Jones, PhD</div>
+    <div class="footer-line">Visit <a href="https://innovatinghighered.com/" target="_blank" rel="noopener">InnovatingHigherEd.com</a> – driving innovation in higher education</div>
+    <div class="footer-disclaimer">Not legal advice · For educational use only</div>
+  </div>
+
+</div>
+
+<!-- Export Bar -->
+<div class="export-bar">
+  <div>
+    <div class="export-info" id="exportInfo"><strong>0</strong> questions ready</div>
+    <div class="export-counts" id="exportCounts"></div>
+  </div>
+  <button class="export-btn" id="exportBtn" onclick="exportQTI()" disabled>
+    <span>⬇</span> Export QTI ZIP
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let questions = [];
+const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const TL = {mc:'Multiple Choice',tf:'True / False',ma:'Multiple Answer',fib:'Fill in Blank',essay:'Essay'};
+
+function switchTab(n){
+  document.querySelectorAll('#mainTabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===n));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+n));
+  if(n==='review') renderReview();
+}
+function typePts(type){const el=document.getElementById('pts-'+type);return el?parseFloat(el.value)||0:1}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function toast(m,t){const e=document.getElementById('toast');e.textContent=m;e.className='toast '+t;setTimeout(()=>e.classList.add('show'),10);setTimeout(()=>e.classList.remove('show'),3000)}
+
+function parseChoiceLines(lines){
+  const c=[];
+  for(const l of lines){
+    const m=l.match(/^[\*]?\s*[a-zA-Z][\.\)]\s*(.*)/);
+    if(!m) continue;
+    let t=m[1].trim(), correct=false;
+    if(/\(correct\)/i.test(t)){correct=true;t=t.replace(/\s*\(correct\)\s*/i,'').trim()}
+    if(/^\*/.test(l.trim())) correct=true;
+    c.push({text:t,correct});
+  }
+  return c;
+}
+
+// ───── SHOW RESULTS WITH ERRORS ─────
+function showResult(type, count, errors) {
+  const el = document.getElementById('result-'+type);
+  // Remove old error box if any
+  const oldErr = document.getElementById('errors-'+type);
+  if(oldErr) oldErr.remove();
+
+  if(count > 0 && errors.length === 0) {
+    el.textContent = `✓ Added ${count} question${count>1?'s':''}`;
+    toast(`Added ${count} ${TL[type]} question${count>1?'s':''}!`, 'success');
+  } else if(count > 0 && errors.length > 0) {
+    el.textContent = `✓ Added ${count}, but ${errors.length} skipped`;
+    toast(`Added ${count}, ${errors.length} had issues`, 'success');
+    showErrorBox(type, errors);
+  } else {
+    el.textContent = `No valid questions found`;
+    toast('Could not parse any questions', 'error');
+    showErrorBox(type, errors);
+  }
+  updateCounts();
+}
+
+function showErrorBox(type, errors) {
+  if(!errors.length) return;
+  const container = document.getElementById('paste-'+type).parentElement;
+  const div = document.createElement('div');
+  div.className = 'parse-errors';
+  div.id = 'errors-'+type;
+  let h = `<div class="err-title">⚠ ${errors.length} question${errors.length>1?'s':''} could not be parsed:</div>`;
+  errors.forEach(e => {
+    h += `<div class="err-item"><span class="err-q">${esc(e.label)}:</span> ${esc(e.msg)}</div>`;
+  });
+  // Add type-specific hints
+  const hints = getHints(type, errors);
+  if(hints) h += `<div class="hint">💡 ${hints}</div>`;
+  div.innerHTML = h;
+  container.appendChild(div);
+}
+
+function getHints(type, errors) {
+  const msgs = errors.map(e=>e.code);
+  if(type==='mc') {
+    if(msgs.includes('no_correct')) return 'Mark exactly one correct answer by adding (correct) after it, e.g. c) Paris (correct)';
+    if(msgs.includes('multi_correct')) return 'Multiple Choice allows only one correct answer. Use the "Multiple Answer" tab for select-all-that-apply questions.';
+    if(msgs.includes('few_choices')) return 'Each question needs at least 2 answer choices starting with a) b) c) etc.';
+    if(msgs.includes('no_answers')) return 'Make sure answers are on separate lines starting with a) b) c) d). Separate questions with a blank line.';
+  }
+  if(type==='tf') {
+    if(msgs.includes('no_tf')) return 'Put True or False on the line directly after the question text. Or use: a) True (correct) / b) False';
+  }
+  if(type==='ma') {
+    if(msgs.includes('no_correct')) return 'Mark at least one correct answer with (correct) or prefix the line with *';
+    if(msgs.includes('few_choices')) return 'Each question needs at least 2 answer choices starting with a) b) c) etc.';
+  }
+  if(type==='fib') {
+    if(msgs.includes('no_answers')) return 'List acceptable answers on lines starting with * (asterisk + space), e.g. * Thomas Edison';
+  }
+  return 'Check the format guide below and make sure questions are separated by blank lines.';
+}
+
+// ───── PARSERS ─────
+function parseMC(){
+  const raw=document.getElementById('paste-mc').value.trim();
+  if(!raw){toast('Paste some questions first','error');return}
+  let count=0; const errors=[];
+  const blocks=raw.split(/\n\s*\n/);
+  blocks.forEach((block,bi)=>{
+    const lines=block.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return;
+    const prompt=lines[0].replace(/^\d+[\.\)]\s*/,'');
+    const label = prompt.length>50 ? prompt.substring(0,50)+'…' : prompt;
+    if(lines.length<2){errors.push({label,msg:'No answer choices found',code:'no_answers'});return}
+    const choices=parseChoiceLines(lines.slice(1));
+    if(choices.length<2){errors.push({label,msg:`Only ${choices.length} choice(s) detected — need at least 2`,code:'few_choices'});return}
+    const cc=choices.filter(c=>c.correct).length;
+    if(cc===0){errors.push({label,msg:'No correct answer marked — add (correct) after one choice',code:'no_correct'});return}
+    if(cc>1){errors.push({label,msg:`${cc} correct answers marked — Multiple Choice needs exactly 1`,code:'multi_correct'});return}
+    questions.push({type:'mc',prompt,choices,points:typePts('mc')});
+    count++;
+  });
+  showResult('mc',count,errors);
+}
+
+function parseTF(){
+  const raw=document.getElementById('paste-tf').value.trim();
+  if(!raw){toast('Paste some questions first','error');return}
+  let count=0; const errors=[];
+  raw.split(/\n\s*\n/).forEach(block=>{
+    const lines=block.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return;
+    const prompt=lines[0].replace(/^\d+[\.\)]\s*/,'');
+    const label=prompt.length>50?prompt.substring(0,50)+'…':prompt;
+    if(lines.length<2){errors.push({label,msg:'Missing True/False answer on the next line',code:'no_tf'});return}
+    let tfAnswer;
+    if(/^\s*true\s*$/i.test(lines[1])) tfAnswer=true;
+    else if(/^\s*false\s*$/i.test(lines[1])) tfAnswer=false;
+    else{
+      const ch=parseChoiceLines(lines.slice(1));
+      const t=ch.find(c=>/^true$/i.test(c.text));
+      const f=ch.find(c=>/^false$/i.test(c.text));
+      if(t&&f) tfAnswer=t.correct;
+      else{errors.push({label,msg:`Answer "${lines[1]}" is not True or False`,code:'no_tf'});return}
+    }
+    questions.push({type:'tf',prompt,tfAnswer,choices:[],points:typePts('tf')});
+    count++;
+  });
+  showResult('tf',count,errors);
+}
+
+function parseMA(){
+  const raw=document.getElementById('paste-ma').value.trim();
+  if(!raw){toast('Paste some questions first','error');return}
+  let count=0; const errors=[];
+  raw.split(/\n\s*\n/).forEach(block=>{
+    const lines=block.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return;
+    const prompt=lines[0].replace(/^\d+[\.\)]\s*/,'');
+    const label=prompt.length>50?prompt.substring(0,50)+'…':prompt;
+    if(lines.length<2){errors.push({label,msg:'No answer choices found',code:'no_answers'});return}
+    const choices=parseChoiceLines(lines.slice(1));
+    if(choices.length<2){errors.push({label,msg:`Only ${choices.length} choice(s) — need at least 2`,code:'few_choices'});return}
+    if(!choices.some(c=>c.correct)){errors.push({label,msg:'No correct answers marked — add (correct) after each correct choice',code:'no_correct'});return}
+    questions.push({type:'ma',prompt,choices,points:typePts('ma')});
+    count++;
+  });
+  showResult('ma',count,errors);
+}
+
+function parseFIB(){
+  const raw=document.getElementById('paste-fib').value.trim();
+  if(!raw){toast('Paste some questions first','error');return}
+  let count=0; const errors=[];
+  raw.split(/\n\s*\n/).forEach(block=>{
+    const lines=block.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return;
+    const prompt=lines[0].replace(/^\d+[\.\)]\s*/,'');
+    const label=prompt.length>50?prompt.substring(0,50)+'…':prompt;
+    if(lines.length<2){errors.push({label,msg:'No acceptable answers found — add lines starting with * answer',code:'no_answers'});return}
+    const fibAnswers=[];
+    for(let i=1;i<lines.length;i++){
+      const m=lines[i].match(/^\*\s+(.*)/);
+      if(m&&m[1].trim()) fibAnswers.push(m[1].trim());
+      else errors.push({label,msg:`Line "${lines[i]}" doesn't start with * — skipped`,code:'bad_line'});
+    }
+    if(!fibAnswers.length){errors.push({label,msg:'No valid * answers found',code:'no_answers'});return}
+    questions.push({type:'fib',prompt,fibAnswers,choices:[],points:typePts('fib')});
+    count++;
+  });
+  showResult('fib',count,errors);
+}
+
+function parseEssay(){
+  const raw=document.getElementById('paste-essay').value.trim();
+  if(!raw){toast('Paste some questions first','error');return}
+  let count=0; const errors=[];
+  raw.split(/\n\s*\n/).forEach(block=>{
+    const lines=block.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return;
+    const prompt=lines.map(l=>l.replace(/^\d+[\.\)]\s*/,'')).join(' ').trim();
+    if(!prompt){errors.push({label:'(empty block)',msg:'No question text found',code:'empty'});return}
+    questions.push({type:'essay',prompt,choices:[],points:typePts('essay')});
+    count++;
+  });
+  showResult('essay',count,errors);
+}
+
+// ───── EDITABLE REVIEW ─────
+function renderReview(){
+  const el=document.getElementById('reviewList');
+  if(!questions.length){el.innerHTML='<div class="review-empty">No questions added yet. Use the tabs above to paste questions by type.</div>';return}
+  let h='';
+  questions.forEach((q,i)=>{
+    let body='';
+
+    // Editable prompt
+    body += `<div style="margin-bottom:10px"><textarea class="q-review-prompt-edit" oninput="questions[${i}].prompt=this.value">${esc(q.prompt)}</textarea></div>`;
+
+    if(q.type==='mc'||q.type==='ma'){
+      const isMA = q.type==='ma';
+      q.choices.forEach((c,ci)=>{
+        const letter = LETTERS[ci]||'?';
+        body += `<div class="answer ${c.correct?'correct':''}">
+          <div class="marker" onclick="toggleReviewCorrect(${i},${ci},'${q.type}')" title="Click to toggle correct">${c.correct?'✓':letter}</div>
+          <input class="ans-edit" value="${esc(c.text)}" oninput="questions[${i}].choices[${ci}].text=this.value">
+          ${q.choices.length>2?`<button class="fib-remove-btn" onclick="questions[${i}].choices.splice(${ci},1);renderReview()" title="Remove">×</button>`:''}
+        </div>`;
+      });
+      if(q.choices.length<10) body += `<button class="ans-add-btn" onclick="questions[${i}].choices.push({text:'',correct:false});renderReview()">＋ Add choice</button>`;
+    } else if(q.type==='tf'){
+      body += `<div class="tf-toggle-row">
+        <div class="tf-btn ${q.tfAnswer?'sel-t':''}" onclick="questions[${i}].tfAnswer=true;renderReview()">True</div>
+        <div class="tf-btn ${!q.tfAnswer?'sel-f':''}" onclick="questions[${i}].tfAnswer=false;renderReview()">False</div>
+      </div>`;
+    } else if(q.type==='fib'){
+      q.fibAnswers.forEach((a,ai)=>{
+        body += `<div class="fib-edit-row">
+          <span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span>
+          <input class="fib-edit-input" value="${esc(a)}" oninput="questions[${i}].fibAnswers[${ai}]=this.value">
+          ${q.fibAnswers.length>1?`<button class="fib-remove-btn" onclick="questions[${i}].fibAnswers.splice(${ai},1);renderReview()">×</button>`:''}
+        </div>`;
+      });
+      body += `<div class="fib-add-row">
+        <input id="fib-add-${i}" placeholder="Add another accepted answer…" onkeydown="if(event.key==='Enter'){event.preventDefault();addFibReview(${i})}">
+        <button onclick="addFibReview(${i})">Add</button>
+      </div>`;
+    } else {
+      body += '<span class="essay-note">Open response — human graded</span>';
+    }
+
+    h+=`<div class="q-review">
+      <div class="q-review-head">
+        <div class="q-review-num">${i+1}</div>
+        <span class="q-review-type ${q.type}">${TL[q.type]}</span>
+        <div class="q-pts" style="margin-left:auto;display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);font-weight:600">
+          <span>PTS</span>
+          <input type="number" value="${q.points}" min="0" step="0.5" style="width:44px;padding:3px 5px;text-align:center;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:12px;background:white" onchange="questions[${i}].points=parseFloat(this.value)||0">
+        </div>
+        <button class="q-review-del" onclick="removeQ(${i})" title="Remove">✕</button>
+      </div>
+      <div class="q-review-body">${body}</div>
+    </div>`;
+  });
+  el.innerHTML=h;
+}
+
+function toggleReviewCorrect(qi, ci, type) {
+  if(type==='mc') {
+    questions[qi].choices.forEach((c,i) => c.correct = (i===ci));
+  } else {
+    questions[qi].choices[ci].correct = !questions[qi].choices[ci].correct;
+  }
+  renderReview();
+}
+
+function addFibReview(qi) {
+  const input = document.getElementById('fib-add-'+qi);
+  if(input && input.value.trim()) {
+    questions[qi].fibAnswers.push(input.value.trim());
+    renderReview();
+  }
+}
+
+function removeQ(i){questions.splice(i,1);renderReview();updateCounts()}
+function clearAll(){if(!questions.length)return;if(!confirm('Remove all '+questions.length+' questions?'))return;questions=[];renderReview();updateCounts();toast('All questions cleared','success')}
+
+// ───── COUNTS ─────
+function updateCounts(){
+  const c={mc:0,tf:0,ma:0,fib:0,essay:0};
+  questions.forEach(q=>c[q.type]++);
+  const tot=questions.length;
+  ['mc','tf','ma','fib','essay'].forEach(t=>{document.getElementById('badge-'+t).textContent=c[t]});
+  document.getElementById('badge-review').textContent=tot;
+  document.getElementById('exportInfo').innerHTML=`<strong>${tot}</strong> question${tot!==1?'s':''} ready`;
+  document.getElementById('exportBtn').disabled=tot===0;
+  let chips='';
+  ['mc','tf','ma','fib','essay'].forEach(t=>{if(c[t]>0) chips+=`<span class="ecc ${t}">${c[t]} ${TL[t]}</span>`});
+  document.getElementById('exportCounts').innerHTML=chips;
+}
+
+// ───── EXPORT ─────
+async function exportQTI(){
+  if(!questions.length){toast('Add at least one question','error');return}
+  for(let i=0;i<questions.length;i++){
+    const q=questions[i];
+    if(!q.prompt.trim()){toast(`Q${i+1}: no text`,'error');return}
+    if((q.type==='mc'||q.type==='ma')&&!q.choices.some(c=>c.correct)){toast(`Q${i+1}: no correct answer`,'error');return}
+    if((q.type==='mc'||q.type==='ma')&&q.choices.some(c=>!c.text.trim())){toast(`Q${i+1}: blank option`,'error');return}
+    if(q.type==='fib'&&(!q.fibAnswers||!q.fibAnswers.length)){toast(`Q${i+1}: no answers`,'error');return}
+  }
+  const ch=String(document.getElementById('chapterNum').value).padStart(2,'0');
+  const title=document.getElementById('quizTitle').value.trim()||'Quiz';
+  const desc=document.getElementById('quizDesc').value.trim();
+  const pre=document.getElementById('zipPrefix').value.trim()||'quiz_ch';
+  const folder=`${pre}${parseInt(ch)}_quiz`;
+  const zip=new JSZip(),f=zip.folder(folder),items=f.folder('Items');
+  for(let i=0;i<questions.length;i++){
+    const n=i+1,p=String(n).padStart(3,'0');
+    const fn=`imsqti_v2p1_Q_1325271045866${ch}${p}_${n}_${n}.xml`;
+    items.folder(`Item_VE_IP_${n}`).file(fn,genXML(questions[i],n));
+  }
+  f.file('imsmanifest.xml',genManifest(questions.length,ch,title,desc));
+  const blob=await zip.generateAsync({type:'blob'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=folder+'.zip';a.click();URL.revokeObjectURL(a.href);
+  toast(`Exported ${questions.length} questions as ${folder}.zip`,'success');
+}
+
+// ───── XML ─────
+function X(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function scoreBlock(pts) {
+  return `\n  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">\n    <defaultValue>\n      <value>0</value>\n    </defaultValue>\n  </outcomeDeclaration>\n  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">\n    <defaultValue>\n      <value>${pts}</value>\n    </defaultValue>\n  </outcomeDeclaration>`;
+}
+
+function respProc() {
+  return `\n  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p1/rptemplates/match_correct"/>`;
+}
+
+function genXML(q,n){
+  const p=X(q.prompt);
+  const pts = q.points || 1;
+
+  if(q.type==='mc'){
+    const ci=q.choices.findIndex(c=>c.correct);
+    let ch='';q.choices.forEach((c,i)=>{ch+=`      <simpleChoice identifier="Choice${LETTERS[i]}">${X(c.text)}</simpleChoice>\n`});
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    identifier="Q${n}" title="Q${n}" adaptive="false" timeDependent="false">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>Choice${LETTERS[ci]}</value>
+    </correctResponse>
+  </responseDeclaration>${scoreBlock(pts)}
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+      <prompt>${p}</prompt>
+${ch}    </choiceInteraction>
+  </itemBody>${respProc()}
+</assessmentItem>`;
+  }
+
+  if(q.type==='tf'){
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    identifier="Q${n}" title="Q${n}" adaptive="false" timeDependent="false">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>${q.tfAnswer?'ChoiceA':'ChoiceB'}</value>
+    </correctResponse>
+  </responseDeclaration>${scoreBlock(pts)}
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+      <prompt>${p}</prompt>
+      <simpleChoice identifier="ChoiceA">True</simpleChoice>
+      <simpleChoice identifier="ChoiceB">False</simpleChoice>
+    </choiceInteraction>
+  </itemBody>${respProc()}
+</assessmentItem>`;
+  }
+
+  if(q.type==='ma'){
+    let cv='',ch='';
+    q.choices.forEach((c,i)=>{if(c.correct)cv+=`      <value>Choice${LETTERS[i]}</value>\n`;ch+=`      <simpleChoice identifier="Choice${LETTERS[i]}">${X(c.text)}</simpleChoice>\n`});
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    identifier="Q${n}" title="Q${n}" adaptive="false" timeDependent="false">
+  <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="identifier">
+    <correctResponse>
+${cv}    </correctResponse>
+  </responseDeclaration>${scoreBlock(pts)}
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="${q.choices.filter(c=>c.correct).length}">
+      <prompt>${p}</prompt>
+${ch}    </choiceInteraction>
+  </itemBody>${respProc()}
+</assessmentItem>`;
+  }
+
+  if(q.type==='fib'){
+    let mp='';q.fibAnswers.forEach(a=>{mp+=`      <mapEntry mapKey="${X(a)}" mappedValue="${pts}" caseSensitive="false"/>\n`});
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    identifier="Q${n}" title="Q${n}" adaptive="false" timeDependent="false">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string">
+    <correctResponse>
+      <value>${X(q.fibAnswers[0]||'')}</value>
+    </correctResponse>
+    <mapping defaultValue="0">
+${mp}    </mapping>
+  </responseDeclaration>${scoreBlock(pts)}
+  <itemBody>
+    <textEntryInteraction responseIdentifier="RESPONSE" expectedLength="20">
+      <prompt>${p}</prompt>
+    </textEntryInteraction>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p1/rptemplates/map_response"/>
+</assessmentItem>`;
+  }
+
+  if(q.type==='essay'){
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    identifier="Q${n}" title="Q${n}" adaptive="false" timeDependent="false">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" externalScored="human">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>${pts}</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <itemBody>
+    <extendedTextInteraction responseIdentifier="RESPONSE" expectedLines="6">
+      <prompt>${p}</prompt>
+    </extendedTextInteraction>
+  </itemBody>
+</assessmentItem>`;
+  }
+  return '';
+}
+function genManifest(count,ch,title,desc){
+  let r='';
+  for(let i=1;i<=count;i++){const p=String(i).padStart(3,'0'),fn=`imsqti_v2p1_Q_1325271045866${ch}${p}_${i}_${i}.xml`,h=`Items/Item_VE_IP_${i}/${fn}`;r+=`    <resource href="${h}"\n      identifier="Resource${i}" type="imsqti_item_xmlv2p1">\n      <file href="${h}"/>\n    </resource>\n`}
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"\n    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n    identifier="Manifest_qtiv2p1_Chapter${parseInt(ch)}"\n    xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1\n    http://www.imsglobal.org/xsd/qti/qtiv2p1/qtiv2p1_imscpv1p2_v1p0.xsd\n    http://ltsc.ieee.org/xsd/LOM\n    http://www.imsglobal.org/xsd/imsmd_loose_v1p3p2.xsd\n    http://www.imsglobal.org/xsd/imsqti_metadata_v2p1\n    http://www.imsglobal.org/xsd/qti/qtiv2p1/imsqti_metadata_v2p1p1.xsd">\n  <metadata>\n    <schema>QTIv2.1 Package</schema>\n    <schemaversion>1.0.0</schemaversion>\n    <lom xmlns="http://ltsc.ieee.org/xsd/LOM">\n      <general>\n        <identifier>\n          <entry>Manifest_IDENT_Q_Ch${parseInt(ch)}</entry>\n        </identifier>\n        <title>\n          <string>${X(title)}</string>\n        </title>\n      </general>\n      <lifeCycle>\n        <version>\n          <string>1.0</string>\n        </version>\n      </lifeCycle>${desc?`\n      <educational>\n        <description>\n          <string>${X(desc)}</string>\n        </description>\n      </educational>`:''}\n    </lom>\n  </metadata>\n  <organizations/>\n  <resources>\n${r}  </resources>\n</manifest>`;
+}
+
+updateCounts();
+</script>
+</body>
+</html>

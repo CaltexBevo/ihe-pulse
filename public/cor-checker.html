@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COR §55001.5(b) Compliance Checker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0c0f14;--surface:#141820;--surface2:#1a1f2a;--surface3:#222838;
+  --border:#2a3040;--border2:#353d50;
+  --text:#e8eaf0;--text2:#a0a8b8;--text3:#6a7388;
+  --accent:#4a9eff;--accent2:#3380d8;--accent-bg:rgba(74,158,255,.08);
+  --green:#34d399;--green-bg:rgba(52,211,153,.08);--green-border:rgba(52,211,153,.2);
+  --yellow:#fbbf24;--yellow-bg:rgba(251,191,36,.08);--yellow-border:rgba(251,191,36,.2);
+  --red:#f87171;--red-bg:rgba(248,113,113,.08);--red-border:rgba(248,113,113,.2);
+  --orange:#fb923c;--orange-bg:rgba(251,146,60,.08);--orange-border:rgba(251,146,60,.2);
+  --purple:#a78bfa;--purple-bg:rgba(167,139,250,.08);
+  --radius:10px;--radius-lg:14px;
+  --font:'DM Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--serif:'DM Serif Display',serif;
+}
+html{font-size:15px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+.container{max-width:920px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+/* Header */
+.header{text-align:center;margin-bottom:2.5rem;padding-top:1rem}
+.header-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent-bg);border:1px solid rgba(74,158,255,.15);color:var(--accent);font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.35rem .85rem;border-radius:99px;margin-bottom:1rem}
+.header h1{font-family:var(--serif);font-size:2rem;font-weight:400;letter-spacing:-.01em;margin-bottom:.4rem;color:var(--text)}
+.header p{color:var(--text2);font-size:.9rem;max-width:560px;margin:0 auto}
+
+/* Context Banner — Revision H */
+.context-banner{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.3rem;margin-bottom:1.8rem;font-size:.82rem;color:var(--text2);line-height:1.65}
+.context-banner strong{color:var(--yellow);font-weight:600}
+.context-banner .tag{display:inline-block;background:var(--yellow-bg);color:var(--yellow);font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:4px;margin-right:.4rem;vertical-align:middle}
+
+/* Stages */
+.stage{display:none}.stage.active{display:block}
+
+/* Upload */
+.dropzone{border:2px dashed var(--border2);border-radius:var(--radius-lg);padding:3rem 2rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--surface)}
+.dropzone:hover,.dropzone.dragover{border-color:var(--accent);background:var(--accent-bg)}
+.dropzone-icon{font-size:2.4rem;margin-bottom:.8rem;opacity:.5}
+.dropzone h3{font-size:1rem;font-weight:600;margin-bottom:.3rem}
+.dropzone p{font-size:.82rem;color:var(--text3)}
+.file-info{display:none;align-items:center;gap:1rem;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1.1rem;margin-top:1rem}
+.file-info.visible{display:flex}
+.file-info .icon{font-size:1.4rem}
+.file-info .meta{flex:1}
+.file-info .meta .name{font-weight:600;font-size:.88rem}
+.file-info .meta .size{font-size:.75rem;color:var(--text3)}
+.file-info .remove{background:none;border:none;color:var(--red);cursor:pointer;font-size:1.1rem;padding:.3rem}
+.analyze-btn{display:none;width:100%;margin-top:1rem;padding:.85rem;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-family:var(--font);font-size:.92rem;font-weight:600;cursor:pointer;transition:background .2s}
+.analyze-btn:hover{background:var(--accent2)}
+.analyze-btn.visible{display:block}
+
+/* Processing */
+.processing-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.8rem}
+.progress-bar{height:4px;background:var(--surface3);border-radius:99px;overflow:hidden;margin-bottom:1.5rem}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--purple));width:0%;transition:width .4s ease;border-radius:99px}
+.steps{list-style:none}
+.steps li{font-size:.85rem;color:var(--text3);padding:.35rem 0;display:flex;align-items:center;gap:.5rem;transition:color .3s}
+.steps li.done{color:var(--green)}
+.steps li.active{color:var(--text)}
+.steps li .check{opacity:0;transition:opacity .3s}.steps li.done .check{opacity:1}
+.steps li .spinner{display:none;width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite}
+.steps li.active .spinner{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Results */
+.results-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.results-header h2{font-family:var(--serif);font-size:1.5rem;font-weight:400}
+.score-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;border-radius:99px;font-size:.85rem;font-weight:600}
+.score-pill.high{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.score-pill.medium{background:var(--yellow-bg);color:var(--yellow);border:1px solid var(--yellow-border)}
+.score-pill.low{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+
+/* Summary Cards */
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;margin-bottom:2rem}
+.summary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem}
+.summary-card .label{font-size:.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+.summary-card .value{font-size:1.3rem;font-weight:700}
+.summary-card .value.critical{color:var(--red)}.summary-card .value.major{color:var(--orange)}
+.summary-card .value.moderate{color:var(--yellow)}.summary-card .value.strength{color:var(--green)}
+
+/* Discipline Note — Revision I */
+.discipline-note{background:var(--purple-bg);border:1px solid rgba(167,139,250,.15);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1.8rem;font-size:.82rem;color:var(--text2);line-height:1.65}
+.discipline-note strong{color:var(--purple)}
+
+/* Section groups */
+.section-group{margin-bottom:2rem}
+.section-group-title{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+
+/* Finding Cards */
+.finding{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:.75rem;overflow:hidden;transition:border-color .2s}
+.finding:hover{border-color:var(--border2)}
+.finding-header{display:flex;align-items:center;gap:.75rem;padding:1rem 1.2rem;cursor:pointer;user-select:none}
+.finding-severity{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.finding-severity.critical{background:var(--red)}.finding-severity.major{background:var(--orange)}
+.finding-severity.moderate{background:var(--yellow)}.finding-severity.strength{background:var(--green)}
+.finding-title{flex:1;font-size:.88rem;font-weight:500}
+.finding-badge{font-size:.68rem;font-weight:600;padding:.2rem .55rem;border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
+.finding-badge.critical{background:var(--red-bg);color:var(--red)}
+.finding-badge.major{background:var(--orange-bg);color:var(--orange)}
+.finding-badge.moderate{background:var(--yellow-bg);color:var(--yellow)}
+.finding-badge.strength{background:var(--green-bg);color:var(--green)}
+.finding-chevron{color:var(--text3);transition:transform .2s;font-size:.8rem}
+.finding.open .finding-chevron{transform:rotate(90deg)}
+.finding-body{display:none;padding:0 1.2rem 1.2rem;font-size:.84rem;line-height:1.7;color:var(--text2)}
+.finding.open .finding-body{display:block}
+.finding-body .label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-top:.9rem;margin-bottom:.25rem}
+.finding-body .current-lang{background:var(--red-bg);border-left:3px solid var(--red);padding:.6rem .9rem;border-radius:0 var(--radius) var(--radius) 0;font-family:var(--mono);font-size:.78rem;color:var(--text2);margin-top:.3rem}
+.finding-body .suggested-lang{background:var(--green-bg);border-left:3px solid var(--green);padding:.6rem .9rem;border-radius:0 var(--radius) var(--radius) 0;font-family:var(--mono);font-size:.78rem;color:var(--text2);margin-top:.3rem}
+.finding-body .rationale{margin-top:.6rem;padding:.6rem .9rem;background:var(--surface2);border-radius:var(--radius);font-size:.8rem;line-height:1.6}
+.finding-body .copy-btn{display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;padding:.35rem .7rem;background:var(--surface3);border:1px solid var(--border);border-radius:6px;font-family:var(--font);font-size:.72rem;color:var(--text2);cursor:pointer;transition:all .15s}
+.finding-body .copy-btn:hover{background:var(--accent-bg);color:var(--accent);border-color:rgba(74,158,255,.2)}
+
+/* Regulation ref */
+.reg-ref{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem 1.4rem;margin-top:2rem}
+.reg-ref h3{font-size:.88rem;font-weight:600;margin-bottom:.6rem}
+.reg-ref blockquote{font-size:.8rem;color:var(--text2);line-height:1.7;border-left:3px solid var(--accent);padding-left:1rem;font-style:italic}
+
+/* Actions */
+.actions-bar{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+.actions-bar button{padding:.7rem 1.2rem;border-radius:var(--radius);font-family:var(--font);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;border:1px solid var(--border)}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)!important}.btn-primary:hover{background:var(--accent2)}
+.btn-secondary{background:var(--surface2);color:var(--text2)}.btn-secondary:hover{background:var(--surface3);color:var(--text)}
+
+@media(max-width:640px){
+  .container{padding:1rem 1rem 3rem}
+  .header h1{font-size:1.5rem}
+  .summary-grid{grid-template-columns:repeat(2,1fr)}
+  .results-header{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="header-badge">⚖️ Title 5 Compliance</div>
+    <h1>COR §55001.5(b) Checker</h1>
+    <p>Upload a Course Outline of Record to check compliance with California's IDEAA requirements across all relevant COR sections.</p>
+  </div>
+
+  <!-- Revision H: Context Banner about CCN, honor system, audit risk -->
+  <div class="context-banner">
+    <span class="tag">⚠ Audit Risk</span>
+    <strong>§55001.5(b)</strong> requires CORs to include approaches for engaging diverse students, advancing equitable outcomes, and promoting inclusion. This is currently on an <strong>honor system</strong> basis but colleges may be audited at any time. The COR is a <strong>legally binding document</strong> that drives teaching strategies, guides all instructors, affects transfer articulation, and is visible to students. If your college has adopted <strong>CCN templates</strong>, IDEAA language is built into Part 1 — but Part 2 (descriptions, objectives, content, methods) is customizable and must also reflect IDEAA principles.
+  </div>
+
+  <!-- Stage: Upload -->
+  <div id="stageUpload" class="stage active">
+    <div class="dropzone" id="dropzone">
+      <div class="dropzone-icon">📄</div>
+      <h3>Drop your COR PDF here</h3>
+      <p>or click to browse — PDF format only</p>
+    </div>
+    <div class="file-info" id="fileInfo">
+      <span class="icon">📎</span>
+      <div class="meta">
+        <div class="name" id="fileName"></div>
+        <div class="size" id="fileSize"></div>
+      </div>
+      <button class="remove" id="removeFile">✕</button>
+    </div>
+    <button class="analyze-btn" id="analyzeBtn">Analyze Compliance</button>
+  </div>
+
+  <!-- Stage: Processing -->
+  <div id="stageProcessing" class="stage">
+    <div class="processing-box">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <ul class="steps">
+        <li id="step1"><span class="spinner"></span><span class="check">✓</span> Extracting text from PDF</li>
+        <li id="step2"><span class="spinner"></span><span class="check">✓</span> Identifying COR sections</li>
+        <li id="step3"><span class="spinner"></span><span class="check">✓</span> Checking Course Description &amp; Objectives</li>
+        <li id="step4"><span class="spinner"></span><span class="check">✓</span> Checking Methods of Instruction (IDEAA)</li>
+        <li id="step5"><span class="spinner"></span><span class="check">✓</span> Checking Evaluation, Assignments &amp; Content</li>
+        <li id="step6"><span class="spinner"></span><span class="check">✓</span> Checking Prerequisites &amp; DE Addendum</li>
+        <li id="step7"><span class="spinner"></span><span class="check">✓</span> Generating compliance report</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Stage: Results -->
+  <div id="stageResults" class="stage"></div>
+</div>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+let selectedFile=null,extractedText='';
+const $=id=>document.getElementById(id);
+const dropzone=$('dropzone'),fileInput=document.createElement('input');
+fileInput.type='file';fileInput.accept='.pdf';
+
+dropzone.addEventListener('click',()=>fileInput.click());
+dropzone.addEventListener('dragover',e=>{e.preventDefault();dropzone.classList.add('dragover')});
+dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('dragover'));
+dropzone.addEventListener('drop',e=>{e.preventDefault();dropzone.classList.remove('dragover');if(e.dataTransfer.files[0]?.type==='application/pdf')handleFile(e.dataTransfer.files[0])});
+fileInput.addEventListener('change',()=>{if(fileInput.files[0])handleFile(fileInput.files[0])});
+$('removeFile').addEventListener('click',()=>{selectedFile=null;fileInput.value='';$('fileInfo').classList.remove('visible');$('analyzeBtn').classList.remove('visible')});
+
+function handleFile(f){selectedFile=f;$('fileName').textContent=f.name;$('fileSize').textContent=(f.size/1024/1024).toFixed(2)+' MB';$('fileInfo').classList.add('visible');$('analyzeBtn').classList.add('visible')}
+
+$('analyzeBtn').addEventListener('click',startAnalysis);
+
+function showStage(id){document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
+
+async function startAnalysis(){
+  showStage('stageProcessing');
+  const steps=['step1','step2','step3','step4','step5','step6','step7'];
+  const fill=$('progressFill');
+  
+  async function doStep(i,fn){
+    steps.forEach((s,j)=>{const el=$(s);el.classList.remove('active','done');if(j<i)el.classList.add('done');if(j===i)el.classList.add('active')});
+    fill.style.width=((i+1)/steps.length*100)+'%';
+    if(fn)await fn();
+    await new Promise(r=>setTimeout(r,350));
+  }
+
+  // Step 1: Extract PDF text
+  await doStep(0,async()=>{
+    const buf=await selectedFile.arrayBuffer();
+    const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+    let txt='';
+    for(let i=1;i<=pdf.numPages;i++){const pg=await pdf.getPage(i);const tc=await pg.getTextContent();txt+=tc.items.map(x=>x.str).join(' ')+'\n';}
+    extractedText=txt;
+  });
+
+  // Step 2: Identify sections
+  let sections;
+  await doStep(1,()=>{sections=identifySections(extractedText)});
+
+  // Step 3: Check Description & Objectives
+  let findings=[];
+  await doStep(2,()=>{
+    findings.push(...checkCourseDescription(sections,extractedText));
+    findings.push(...checkObjectives(sections,extractedText));
+  });
+
+  // Step 4: Check Methods of Instruction
+  await doStep(3,()=>{findings.push(...checkMethodsOfInstruction(sections,extractedText))});
+
+  // Step 5: Check Evaluation, Assignments & Content
+  await doStep(4,()=>{
+    findings.push(...checkEvaluation(sections,extractedText));
+    findings.push(...checkAssignments(sections,extractedText));
+    findings.push(...checkCourseContent(sections,extractedText));
+  });
+
+  // Step 6: Check Prerequisites & DE Addendum
+  await doStep(5,()=>{
+    findings.push(...checkPrerequisites(sections,extractedText));
+    findings.push(...checkDEAddendum(sections,extractedText));
+  });
+
+  // Step 7: Generate report
+  await doStep(6);
+  steps.forEach(s=>$(s).classList.add('done'));
+
+  renderResults(findings);
+}
+
+/* ======= SECTION IDENTIFICATION ======= */
+function identifySections(text){
+  const t=text.toLowerCase();
+  const sec={};
+  const patterns=[
+    ['courseDescription',/(?:course\s*description|catalog\s*description|description\s*:)/i],
+    ['unitsHours',/(?:units?\s*(?:and|&)\s*hours?|lecture\s*hours?|lab\s*hours?|credit\s*hours?)/i],
+    ['prerequisites',/(?:prerequisites?|co-?requisites?|limitations?\s*on\s*enrollment|enrollment\s*limit|advisories?)/i],
+    ['courseContent',/(?:course\s*content|topics?\s*(?:and|&)?\s*scope|topics?\s*covered|topics?\s*include)/i],
+    ['objectives',/(?:(?:student\s*)?learning\s*(?:outcomes?|objectives?)|course\s*(?:outcomes?|objectives?)|slo|upon\s*(?:successful\s*)?completion)/i],
+    ['methodsInstruction',/(?:methods?\s*of\s*instruction|instructional?\s*(?:methods?|strategies?|techniques?|approaches?)|teaching\s*methods?)/i],
+    ['methodsEvaluation',/(?:methods?\s*of\s*evaluation|assessment\s*methods?|grading|evaluation\s*(?:methods?|criteria))/i],
+    ['assignments',/(?:(?:typical\s*)?assignments?|(?:out[- ]?of[- ]?class|homework)\s*assignments?|sample\s*assignments?)/i],
+    ['distanceEd',/(?:distance\s*(?:education|learning)|online\s*(?:instruction|learning|modality)|de\s*addendum|hybrid|asynchronous|synchronous\s*(?:instruction|modality))/i],
+    ['textbooks',/(?:textbooks?|required\s*(?:texts?|readings?|materials?)|oer|open\s*educational)/i]
+  ];
+  for(const[key,rx]of patterns){const m=t.search(rx);if(m>-1)sec[key]=m;}
+  return sec;
+}
+
+function getSectionText(sections,fullText,sectionKey,charLen=2500){
+  const pos=sections[sectionKey];
+  if(pos===undefined)return'';
+  return fullText.substring(pos,pos+charLen);
+}
+
+/* ======= IDEAA KEYWORD SYSTEM (Revision F) ======= */
+const IDEAA_KEYWORDS={
+  diverse_engagement:[
+    'diverse','diversity','varied backgrounds','cultural backgrounds','multicultural','culturally responsive',
+    'culturally relevant','culturally sustaining','inclusive','inclusion','belonging','identity','identities',
+    'lived experience','student perspective','multiple perspectives','diverse perspectives','underrepresented',
+    'marginalized','first.generation','global perspective','cross.cultural','intersectional','social justice',
+    'IDEAA','anti.racist','anti.racism','antiracist','asset.based','student.centered','funds of knowledge',
+    'community.based','place.based','multilingual','translanguaging'
+  ],
+  equitable_outcomes:[
+    'equitable','equity','equitable outcomes','achievement gap','opportunity gap','disproportionate impact',
+    'success rate','completion','retention','health disparities','disparities','accessible','accessibility',
+    'universal design','UDL','accommodat','assistive','adaptive','multiple means','differentiat','scaffold',
+    'support','low.cost','OER','open educational','zero.cost','free textbook','no.cost','affordable',
+    'removing barriers','barrier','food insecur','housing insecur','basic needs','wrap.around'
+  ],
+  inclusive_practices:[
+    'all students','each student','every student','all learners','collaborative','group work','peer',
+    'cooperative learning','think.pair.share','community','safe space','brave space','self.expression',
+    'student choice','student voice','agency','empowerment','representation','mirror','window',
+    'counter.narrative','indigenous','decolonial','ethnic studies','social determinants',
+    'restorative','trauma.informed','growth mindset','strengths.based','asset.based'
+  ]
+};
+
+function findKeywords(text,category){
+  const found=[];
+  const t=text.toLowerCase().replace(/[-–—]/g,'.').replace(/\s+/g,' ');
+  for(const kw of IDEAA_KEYWORDS[category]){
+    const rx=new RegExp(kw.replace(/\./g,'[\\s\\-]?'),'i');
+    if(rx.test(t))found.push(kw.replace(/\./g,' '));
+  }
+  return[...new Set(found)];
+}
+
+function hasKeywordsFromCategory(text,cat,minCount=1){
+  return findKeywords(text,cat).length>=minCount;
+}
+
+/* ======= PRONG DEFINITIONS ======= */
+const PRONGS={
+  A:{label:'Prong A: Diverse Engagement',desc:'Approaches to accommodate and engage diverse student bodies'},
+  B:{label:'Prong B: Equitable Outcomes',desc:'Approaches to advance equitable student outcomes'},
+  C:{label:'Prong C: Inclusion',desc:'Approaches to promote the inclusion of all students'}
+};
+
+/* ======= SECTION CHECKERS ======= */
+
+// REVISION A: Course Description
+function checkCourseDescription(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'courseDescription',2000);
+  if(!text){
+    findings.push({section:'Course Description',severity:'moderate',title:'Course Description section not detected',prongs:['A','C'],
+      current:'Could not locate a Course Description section in this COR.',
+      suggested:'If present, ensure your catalog description acknowledges the diverse contexts in which this discipline operates. For example: "Students will examine [topic] through multiple cultural, historical, and contemporary lenses, developing skills applicable across diverse communities and contexts."',
+      rationale:'Per the AP&P presentation (Dr. Compton), course descriptions are a key COR section where IDEAA language should be present. The Biology CCN example showed a before/after where the description was enriched to reference health disparities and diverse populations.'
+    });
+    return findings;
+  }
+  const kwA=findKeywords(text,'diverse_engagement');
+  const kwC=findKeywords(text,'inclusive_practices');
+  if(kwA.length===0&&kwC.length===0){
+    findings.push({section:'Course Description',severity:'major',title:'Course Description lacks diversity/inclusion language',prongs:['A','C'],
+      current:text.substring(0,300).trim()+'…',
+      suggested:'Consider enriching the description to acknowledge diverse student populations and how the discipline connects to varied communities. Example pattern from CCC: "…with attention to [discipline-specific diversity angle], including perspectives from historically underrepresented communities."',
+      rationale:'§55001.5(b) requires CORs to describe approaches for engaging diverse student bodies. The catalog description is often the first section students and articulation officers see. The AP&P presentation showed Biology descriptions were revised to include health disparities and culturally relevant contexts.'
+    });
+  } else {
+    findings.push({section:'Course Description',severity:'strength',title:'Course Description includes IDEAA language',prongs:kwA.length?['A']:['C'],
+      current:'Found terms: '+[...kwA,...kwC].join(', '),
+      suggested:'N/A — this is a strength.',
+      rationale:'The description references diversity or inclusion concepts, aligning with §55001.5(b).'
+    });
+  }
+  return findings;
+}
+
+// REVISION C: Objectives / SLOs
+function checkObjectives(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'objectives',3000);
+  if(!text){
+    findings.push({section:'Objectives / SLOs',severity:'moderate',title:'Objectives section not detected',prongs:['A','B','C'],
+      current:'Could not locate a Learning Outcomes/Objectives section.',
+      suggested:'If present, consider adding at least one SLO that references diverse perspectives, equitable skill development, or inclusive practices relevant to your discipline.',
+      rationale:'The AP&P presentation showed Earth Science and English CCN examples where SLOs were revised to include accessibility of scientific information and culturally relevant literature.'
+    });
+    return findings;
+  }
+  const kwA=findKeywords(text,'diverse_engagement');
+  const kwB=findKeywords(text,'equitable_outcomes');
+  const kwC=findKeywords(text,'inclusive_practices');
+  const total=kwA.length+kwB.length+kwC.length;
+  if(total===0){
+    findings.push({section:'Objectives / SLOs',severity:'major',title:'Objectives/SLOs lack IDEAA integration',prongs:['A','B','C'],
+      current:text.substring(0,300).trim()+'…',
+      suggested:'Add or revise at least one SLO to incorporate IDEAA principles. Discipline-specific examples:\n• Earth Science: "Evaluate the accessibility of scientific information across diverse communities"\n• English: "Analyze literature representing diverse cultural perspectives and historically marginalized voices"\n• General pattern: "Demonstrate understanding of [discipline topic] as it relates to diverse populations and equitable outcomes"',
+      rationale:'§55001.5(b) compliance extends to learning outcomes. The AP&P presentation (Slides 10–11) showed real CCN examples where objectives were revised to include accessibility, diverse perspectives, and culturally relevant content.'
+    });
+  } else if(total<3){
+    findings.push({section:'Objectives / SLOs',severity:'moderate',title:'Objectives have limited IDEAA integration',prongs:total>0?['A']:[],
+      current:'Found '+total+' IDEAA-related term(s): '+[...kwA,...kwB,...kwC].join(', '),
+      suggested:'Consider strengthening with additional SLOs that address equitable outcomes or inclusion. The AP&P examples show objectives should be discipline-specific rather than generic.',
+      rationale:'While some IDEAA language is present, fuller integration across multiple SLOs strengthens compliance.'
+    });
+  } else {
+    findings.push({section:'Objectives / SLOs',severity:'strength',title:'Objectives reflect IDEAA principles',prongs:['A','B','C'].filter((_,i)=>[kwA,kwB,kwC][i].length>0),
+      current:'Found IDEAA terms: '+[...kwA,...kwB,...kwC].join(', '),
+      suggested:'N/A — this is a strength.',
+      rationale:'Objectives include language addressing diverse engagement, equitable outcomes, or inclusion.'
+    });
+  }
+  return findings;
+}
+
+// EXISTING (enhanced): Methods of Instruction
+function checkMethodsOfInstruction(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'methodsInstruction',3000);
+  if(!text){
+    findings.push({section:'Methods of Instruction',severity:'critical',title:'Methods of Instruction section not detected',prongs:['A','B','C'],
+      current:'Could not locate a Methods of Instruction section in this COR.',
+      suggested:'This is the primary section where §55001.5(b) compliance is assessed. Ensure your COR includes instructional methods addressing all three prongs.',
+      rationale:'Methods of Instruction is explicitly targeted by §55001.5(b) as requiring "representative descriptions of approaches faculty may use."'
+    });
+    return findings;
+  }
+  // Check each prong
+  const prongChecks=[
+    {prong:'A',cat:'diverse_engagement',label:'diverse student engagement',
+     suggestion:'Add methods like: culturally responsive teaching, use of diverse examples and case studies from multiple cultural contexts, varied discussion formats (small group, Socratic, fishbowl), assignments allowing students to draw on personal/cultural experiences.'},
+    {prong:'B',cat:'equitable_outcomes',label:'equitable student outcomes',
+     suggestion:'Add methods like: scaffolded instruction, multiple means of representation (UDL), formative assessment with targeted feedback, OER/low-cost materials, early-alert interventions, flexible deadlines where appropriate.'},
+    {prong:'C',cat:'inclusive_practices',label:'inclusion of all students',
+     suggestion:'Add methods like: collaborative and cooperative learning structures, think-pair-share, community-building activities, student-choice in topics/formats, creating brave spaces for dialogue, trauma-informed pedagogy.'}
+  ];
+  for(const pc of prongChecks){
+    const kw=findKeywords(text,pc.cat);
+    if(kw.length===0){
+      findings.push({section:'Methods of Instruction',severity:'critical',title:'Missing: '+PRONGS[pc.prong].label,prongs:[pc.prong],
+        current:'No language addressing '+pc.label+' found in Methods of Instruction.',
+        suggested:pc.suggestion,
+        rationale:'§55001.5(b) explicitly requires "representative descriptions of approaches" for this prong. This is a critical compliance gap.'
+      });
+    } else if(kw.length<2){
+      findings.push({section:'Methods of Instruction',severity:'moderate',title:'Weak: '+PRONGS[pc.prong].label,prongs:[pc.prong],
+        current:'Found: '+kw.join(', ')+' (limited)',
+        suggested:'Consider strengthening with additional concrete methods. '+pc.suggestion,
+        rationale:'While some language exists, a single mention may not constitute a "representative description" per the regulation.'
+      });
+    } else {
+      findings.push({section:'Methods of Instruction',severity:'strength',title:'Strong: '+PRONGS[pc.prong].label,prongs:[pc.prong],
+        current:'Found: '+kw.join(', '),
+        suggested:'N/A — this is a strength.',
+        rationale:'Multiple methods address this prong of §55001.5(b).'
+      });
+    }
+  }
+  return findings;
+}
+
+// EXISTING (enhanced): Methods of Evaluation
+function checkEvaluation(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'methodsEvaluation',2500);
+  if(!text)return findings;
+  const kwA=findKeywords(text,'diverse_engagement');
+  const kwB=findKeywords(text,'equitable_outcomes');
+  const kwC=findKeywords(text,'inclusive_practices');
+  const total=kwA.length+kwB.length+kwC.length;
+  if(total===0){
+    findings.push({section:'Methods of Evaluation',severity:'major',title:'Evaluation methods lack IDEAA language',prongs:['B','C'],
+      current:text.substring(0,300).trim()+'…',
+      suggested:'Consider adding evaluation approaches that promote equity and inclusion:\n• Multiple assessment formats (written, oral, project-based, portfolio)\n• Rubrics that value diverse perspectives and approaches\n• Formative assessments with opportunities to revise\n• Authentic assessments connected to students\' communities',
+      rationale:'Evaluation methods can create or remove barriers to equitable outcomes. Varied assessment types accommodate diverse learners per §55001.5(b).'
+    });
+  } else {
+    findings.push({section:'Methods of Evaluation',severity:'strength',title:'Evaluation methods reflect IDEAA',prongs:['B','C'],
+      current:'Found: '+[...kwA,...kwB,...kwC].join(', '),
+      suggested:'N/A — this is a strength.',rationale:'Evaluation approaches include equity/inclusion language.'
+    });
+  }
+  return findings;
+}
+
+// EXISTING (enhanced): Assignments
+function checkAssignments(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'assignments',2500);
+  if(!text)return findings;
+  const kwA=findKeywords(text,'diverse_engagement');
+  const kwC=findKeywords(text,'inclusive_practices');
+  const total=kwA.length+kwC.length;
+  if(total===0){
+    findings.push({section:'Assignments',severity:'major',title:'Assignments lack IDEAA language',prongs:['A','C'],
+      current:text.substring(0,300).trim()+'…',
+      suggested:'Consider assignments that engage diverse perspectives and promote inclusion:\n• Research topics allowing student self-expression and cultural connection (e.g., Automotive: "opinion essays on environmental impacts… allowing student self-expression")\n• Projects exploring diverse contributors to the field (e.g., Computer Science: "research famous Computer Scientists… diverse voices")\n• Community-based or service-learning assignments\n• Collaborative projects with student-chosen roles',
+      rationale:'The AP&P presentation showed discipline-specific assignment examples from Automotive Tech and Computer Science that center student voice and diverse perspectives. Assignments should be concrete and discipline-adapted, not generic.'
+    });
+  } else {
+    findings.push({section:'Assignments',severity:'strength',title:'Assignments incorporate IDEAA',prongs:['A','C'],
+      current:'Found: '+[...kwA,...kwC].join(', '),
+      suggested:'N/A — this is a strength.',rationale:'Assignment descriptions include diversity/inclusion language.'
+    });
+  }
+  return findings;
+}
+
+// REVISION B: Course Content/Topics
+function checkCourseContent(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'courseContent',3000);
+  if(!text){
+    findings.push({section:'Course Content / Topics',severity:'moderate',title:'Course Content section not detected',prongs:['A','C'],
+      current:'Could not locate a Course Content/Topics section.',
+      suggested:'If present, review whether topic language centers collaboration, diverse perspectives, and student/family/community voice — as shown in the Child Development CCN example.',
+      rationale:'The AP&P presentation (Slide 9) showed how Child Development course content was revised to center collaboration and student perspectives in topic language.'
+    });
+    return findings;
+  }
+  const kwA=findKeywords(text,'diverse_engagement');
+  const kwC=findKeywords(text,'inclusive_practices');
+  const total=kwA.length+kwC.length;
+  if(total===0){
+    findings.push({section:'Course Content / Topics',severity:'major',title:'Course Content lacks IDEAA integration',prongs:['A','C'],
+      current:text.substring(0,300).trim()+'…',
+      suggested:'Review topic list for opportunities to incorporate IDEAA language. Example patterns from CCC:\n• Child Development: Topics revised to center "collaboration with families" and "student perspectives"\n• Biology: Topics include "health disparities across diverse populations"\n• General: Add topics like "historical and contemporary contributions from diverse communities" or "[discipline] in global/multicultural contexts"',
+      rationale:'§55001.5(b) applies to all relevant COR sections. Course content/topics set the scope of what is taught and should reflect diverse, equitable, and inclusive perspectives per the AP&P guidance (Slide 9).'
+    });
+  } else {
+    findings.push({section:'Course Content / Topics',severity:'strength',title:'Course Content reflects IDEAA',prongs:['A','C'],
+      current:'Found: '+[...kwA,...kwC].join(', '),
+      suggested:'N/A — this is a strength.',rationale:'Content topics include IDEAA-relevant language.'
+    });
+  }
+  return findings;
+}
+
+// REVISION D: Prerequisites / Limitations on Enrollment
+function checkPrerequisites(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'prerequisites',2000);
+  if(!text)return findings; // Many courses don't have prerequisites — not a finding
+  const t=text.toLowerCase();
+  const hasEquityReview=/(?:equit|barrier|access|disproportionate|impact|review|justif)/i.test(t);
+  const hasOER=findKeywords(text,'equitable_outcomes').filter(k=>/oer|open educational|low.cost|zero.cost|free|affordable|no.cost/.test(k));
+  
+  if(!hasEquityReview&&!hasOER.length){
+    findings.push({section:'Prerequisites & Enrollment',severity:'moderate',title:'Prerequisites lack equity review language',prongs:['B'],
+      current:text.substring(0,250).trim()+'…',
+      suggested:'Consider whether prerequisites create unnecessary barriers. If prerequisites or corequisites exist, add equity-focused language such as:\n• "Prerequisites have been reviewed for disproportionate impact on underrepresented students"\n• Reference to OER/low-cost materials to reduce financial barriers\n• Note any support structures (tutoring, corequisite models) available',
+      rationale:'The AP&P presentation (Slide 8, Physics example) showed how prerequisites should be reviewed for equity — whether they create unnecessary barriers, and whether textbook costs (OER) affect access. §55001.5(b) Prong B focuses on equitable outcomes.'
+    });
+  }
+  return findings;
+}
+
+// REVISION E: Distance Education Addendum
+function checkDEAddendum(sections,fullText){
+  const findings=[];
+  const text=getSectionText(sections,fullText,'distanceEd',2500);
+  if(!text)return findings; // Not all courses have DE — not a finding
+  const kwB=findKeywords(text,'equitable_outcomes');
+  const kwC=findKeywords(text,'inclusive_practices');
+  const total=kwB.length+kwC.length;
+  const hasEquityRationale=/(?:equit|rural|underserved|access|barrier|work.?life|caretak|parent|first.generation|commut|geographic)/i.test(text.toLowerCase());
+  
+  if(total===0&&!hasEquityRationale){
+    findings.push({section:'DE Addendum',severity:'major',title:'DE Addendum lacks equity rationale',prongs:['B','C'],
+      current:text.substring(0,300).trim()+'…',
+      suggested:'Add an equity rationale for the DE modality. Example from CCC (Business Management):\n• "Online/hybrid modality serves students in rural and underserved communities who may lack transportation access"\n• "Asynchronous options support students balancing work, family, and caregiving responsibilities"\n• "DE format reduces geographic and socioeconomic barriers to course access"',
+      rationale:'The AP&P presentation (Slide 14) showed a Business Management DE Addendum with explicit equity rationale for how online modalities serve rural and underserved communities. This is a key area for §55001.5(b) Prong B and C compliance.'
+    });
+  } else {
+    findings.push({section:'DE Addendum',severity:'strength',title:'DE Addendum includes equity rationale',prongs:['B','C'],
+      current:'Found equity/inclusion language: '+[...kwB,...kwC].join(', ')+(hasEquityRationale?' + equity rationale':''),
+      suggested:'N/A — this is a strength.',rationale:'The DE section includes rationale for how the modality serves diverse/underserved students.'
+    });
+  }
+  return findings;
+}
+
+/* ======= RENDER RESULTS ======= */
+function renderResults(findings){
+  showStage('stageResults');
+  const el=$('stageResults');
+  
+  const critical=findings.filter(f=>f.severity==='critical');
+  const major=findings.filter(f=>f.severity==='major');
+  const moderate=findings.filter(f=>f.severity==='moderate');
+  const strengths=findings.filter(f=>f.severity==='strength');
+  const issues=critical.length+major.length+moderate.length;
+  
+  // Score calculation
+  let score=100;
+  score-=critical.length*18;score-=major.length*10;score-=moderate.length*5;
+  score+=strengths.length*3;
+  score=Math.max(0,Math.min(100,score));
+  const scoreClass=score>=75?'high':score>=45?'medium':'low';
+  const scoreLabel=score>=75?'Good Compliance':score>=45?'Needs Improvement':'Significant Gaps';
+
+  // Section grouping
+  const sectionOrder=['Methods of Instruction','Course Description','Objectives / SLOs','Course Content / Topics','Methods of Evaluation','Assignments','Prerequisites & Enrollment','DE Addendum'];
+  const grouped={};
+  for(const f of findings){if(!grouped[f.section])grouped[f.section]=[];grouped[f.section].push(f)}
+
+  let html=`
+    <div class="results-header">
+      <div><h2>Compliance Report</h2><p style="color:var(--text3);font-size:.82rem;margin-top:.2rem">${selectedFile.name}</p></div>
+      <div class="score-pill ${scoreClass}">● ${score}/100 — ${scoreLabel}</div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-card"><div class="label">Critical</div><div class="value critical">${critical.length}</div></div>
+      <div class="summary-card"><div class="label">Major</div><div class="value major">${major.length}</div></div>
+      <div class="summary-card"><div class="label">Moderate</div><div class="value moderate">${moderate.length}</div></div>
+      <div class="summary-card"><div class="label">Strengths</div><div class="value strength">${strengths.length}</div></div>
+    </div>
+
+    <!-- Revision I: Discipline-specific adaptation note -->
+    <div class="discipline-note">
+      <strong>⚡ Important:</strong> The suggested language below uses real CCC patterns as models, but <strong>effective IDEAA revisions must be discipline-specific and concrete</strong> — not generic boilerplate. An Automotive COR should reference environmental impacts and student self-expression; a Computer Science COR should highlight diverse voices in the field; a Biology COR should address health disparities. Adapt all suggestions to your discipline.
+    </div>
+  `;
+
+  for(const sec of sectionOrder){
+    const items=grouped[sec];
+    if(!items)continue;
+    // Sort: critical first, then major, moderate, strength
+    const sevOrder={critical:0,major:1,moderate:2,strength:3};
+    items.sort((a,b)=>sevOrder[a.severity]-sevOrder[b.severity]);
+    
+    html+=`<div class="section-group"><div class="section-group-title">${sec}</div>`;
+    for(const f of items){
+      const prongTags=f.prongs.map(p=>`<span style="display:inline-block;font-size:.65rem;background:var(--accent-bg);color:var(--accent);padding:.1rem .4rem;border-radius:3px;margin-right:.25rem">${p}</span>`).join('');
+      html+=`
+        <div class="finding" onclick="this.classList.toggle('open')">
+          <div class="finding-header">
+            <div class="finding-severity ${f.severity}"></div>
+            <div class="finding-title">${f.title} ${prongTags}</div>
+            <span class="finding-badge ${f.severity}">${f.severity}</span>
+            <span class="finding-chevron">▸</span>
+          </div>
+          <div class="finding-body">
+            <div class="label">Current Language / Finding</div>
+            <div class="current-lang">${escHtml(f.current)}</div>
+            <div class="label">Suggested Language</div>
+            <div class="suggested-lang">${escHtml(f.suggested)}</div>
+            ${f.suggested!=='N/A — this is a strength.'?`<button class="copy-btn" onclick="event.stopPropagation();copyText(\`${escAttr(f.suggested)}\`)">📋 Copy suggestion</button>`:''}
+            <div class="label">Rationale</div>
+            <div class="rationale">${escHtml(f.rationale)}</div>
+          </div>
+        </div>`;
+    }
+    html+=`</div>`;
+  }
+
+  html+=`
+    <div class="reg-ref">
+      <h3>§55001.5(b) — Full Text</h3>
+      <blockquote>"Course outlines of record shall also include representative descriptions of approaches faculty may use to accommodate and engage diverse student bodies, advance equitable student outcomes, and promote the inclusion of all students consistent with the requirements of section 55002."</blockquote>
+    </div>
+    <div class="actions-bar">
+      <button class="btn-primary" onclick="window.print()">🖨 Print Report</button>
+      <button class="btn-secondary" onclick="expandAll()">Expand All</button>
+      <button class="btn-secondary" onclick="collapseAll()">Collapse All</button>
+      <button class="btn-secondary" onclick="location.reload()">↺ New Analysis</button>
+    </div>`;
+
+  el.innerHTML=html;
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+function escAttr(s){return s.replace(/`/g,'\\`').replace(/\$/g,'\\$')}
+function copyText(t){navigator.clipboard.writeText(t.replace(/<br>/g,'\n'));/* brief feedback */}
+function expandAll(){document.querySelectorAll('.finding').forEach(f=>f.classList.add('open'))}
+function collapseAll(){document.querySelectorAll('.finding').forEach(f=>f.classList.remove('open'))}
+</script>
+</body>
+</html>
