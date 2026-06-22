@@ -14,7 +14,7 @@
     "source": "Iowa State University News Service",
     "sourceUrl": "https://www.news.iastate.edu/news/writing-ai-demands-more-thought-students-not-less",
     "category": "Research",
-    "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story0.png"
+    "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/lead.png"
   },
   "quickHits": [
     {
@@ -23,7 +23,7 @@
       "source": "The 74",
       "sourceUrl": "https://www.the74million.org/article/study-giving-kids-access-to-ai-tutors-doesnt-mean-theyll-use-them/",
       "category": "Research",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story1.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/qh1.png"
     },
     {
       "headline": "Colleges From Dartmouth to Johns Hopkins Are Hiring A.I. Librarians as Demand for Literacy Instruction Surges",
@@ -31,7 +31,7 @@
       "source": "The Chronicle of Higher Education",
       "sourceUrl": "https://www.chronicle.com/article/does-your-college-need-an-ai-librarian",
       "category": "Insights & Trends",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story2.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/qh2.png"
     },
     {
       "headline": "University of Texas Law Dean Warns of 'Cognitive De-Skilling' in New A.I. Policy Memo",
@@ -39,7 +39,7 @@
       "source": "Bloomberg Law",
       "sourceUrl": "https://news.bloomberglaw.com/business-and-practice/university-of-texas-law-revamps-ai-policy-to-counter-de-skilling",
       "category": "Ethical AI",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story3.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/qh3.png"
     },
     {
       "headline": "High Point University Professor Restructured Physics Courses After Georgetown Trial Found A.I. Study Gains Vanished in a Week",
@@ -47,7 +47,7 @@
       "source": "Inside Higher Education",
       "sourceUrl": "https://www.insidehighered.com/opinion/career-advice/carpe-careers/2026/06/15/practical-framework-help-students-use-ai-opinion",
       "category": "Case Study",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story4.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/qh4.png"
     },
     {
       "headline": "Berkeley Law's A.I. Ban Draws Pushback From Student in Its Own A.I. Governance Program",
@@ -55,7 +55,7 @@
       "source": "Artificial Lawyer",
       "sourceUrl": "https://www.artificiallawyer.com/2026/06/15/a-students-response-to-berkeley-laws-ai-ban/",
       "category": "Ethical AI",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story5.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/qh5.png"
     },
     {
       "headline": "UNLV Law Built a Required First-Year A.I. Course That Teaches the Technology Through Contracts, Civil Procedure and Torts",
@@ -63,7 +63,7 @@
       "source": "The National Jurist",
       "sourceUrl": "https://nationaljurist.com/unlv-law-to-require-ai-course-for-all-first-year-students-beginning-fall-2026/",
       "category": "Case Study",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story6.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/qh6.png"
     },
     {
       "headline": "U.S. Export Control Directive Forces Anthropic to Suspend Access to Newest A.I. Models After Three Days",
@@ -71,7 +71,7 @@
       "source": "The Conversation",
       "sourceUrl": "https://theconversation.com/why-the-us-government-shut-down-anthropics-latest-claude-ai-model-285223",
       "category": "Beyond Ed",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story7.png"
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/qh7.png"
     }
   ],
   "meta": {
