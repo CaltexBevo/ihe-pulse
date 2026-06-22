@@ -13,7 +13,8 @@
     "summary": "Writing with A.I. can look deceptively simple, but a new study suggests the biggest hurdle is not the technology itself. It is the assumptions students bring to it. Researchers at Iowa State University followed 38 undergraduates from 22 majors across two semesters in an experimental A.I. and Writing course and identified three threshold concepts students must cross before they can write effectively with A.I., according to a study published in Computers and Composition.\n\nAt the start of the course, students carried assumptions including \"better tools should require less effort\" and \"AI will do the work for me,\" said associate professor Abram Anders. Reality quickly challenged those beliefs. One student reflected, \"I had to learn how to think about my thinking.\"\n\nThe first threshold the researchers identified: writing with A.I. is experimental. Students initially treated the tools like a search engine, entering vague prompts and accepting whatever came back. Over time, they learned that effective prompting required planning, clarity and rhetorical awareness. The second: writing with A.I. still requires human expertise. Anders called the risk of trusting polished but shallow output the \"fluency trap,\" noting that A.I. \"writes in confident sentences, uses the right tone and sounds smart\" even when it is wrong or shallow. The third: A.I. should augment human agency, not replace it. \"Generative A.I. can't decide what it's arguing, what matters or why the writing exists,\" Anders said.\n\nStudents who crossed all three thresholds reported becoming more reflective, more critical and more intentional, the researchers found. Rather than treating A.I. as a shortcut, they began using it to evaluate ideas and explore alternatives. Anders and co-author Emily Dux Speltz of Embry-Riddle Aeronautical University described the shift as moving from \"outsourcing work to orchestrating it.\"",
     "source": "Iowa State University News Service",
     "sourceUrl": "https://www.news.iastate.edu/news/writing-ai-demands-more-thought-students-not-less",
-    "category": "Research"
+    "category": "Research",
+    "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story0.png"
   },
   "quickHits": [
     {
@@ -21,49 +22,56 @@
       "summary": "Only about 60 percent of students in one district and 53 percent in another ever logged on to a major A.I. reading tutor platform at all, a Stanford University study published this week found. Among all students assigned to work independently with the A.I., average weekly usage came to just over two minutes in one district and just over five minutes in the other.\n\nResearchers followed about 350 elementary school students across two randomized controlled trials in which students were expected to log on for at least two 30-minute sessions weekly. Pairing students with a human tutor increased usage, but only modestly, by roughly one minute per week in one district and 4.4 minutes in the other. The number of stories students completed jumped 71 to 80 percent with a human partner, but neither district saw statistically significant improvement in reading scores.\n\n\"As we're talking about bringing A.I. tools into the classroom, the challenge isn't just building good A.I. tools,\" said lead author Carly Robinson. \"It's getting students to use them.\" Among students who used the platform independently, those who logged on tended to be higher-achieving, raising questions about treating A.I. tutoring as an equity solution.",
       "source": "The 74",
       "sourceUrl": "https://www.the74million.org/article/study-giving-kids-access-to-ai-tutors-doesnt-mean-theyll-use-them/",
-      "category": "Research"
+      "category": "Research",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story1.png"
     },
     {
       "headline": "Colleges From Dartmouth to Johns Hopkins Are Hiring A.I. Librarians as Demand for Literacy Instruction Surges",
       "summary": "Dartmouth College hired a \"critical artificial intelligence librarian\" focused on A.I. literacy. Rollins College created an A.I. librarian position after a reference librarian retired. The University of Wisconsin-Stout named its first A.I. literacy librarian in April. At Johns Hopkins, A.I. skills have been written into traditional library job descriptions alongside a new dedicated A.I. specialist hired in April with a Ph.D. in information science, The Chronicle of Higher Education reported.\n\nThe hires reflect broader demand. About a third of academic library deans and directors surveyed by Ithaka S+R said they planned to hire staff for A.I. and machine-learning roles. When asked about the most significant near-term impact, 83 percent cited increased demand for A.I. literacy instruction, and 74 percent pointed to the integration of A.I. tools in discovery systems. The previous survey, conducted three years earlier just as the first major chatbot hit the market, had not included any questions about A.I.\n\n\"We all know we have a really special responsibility at this moment,\" said Daniel Chamberlain, associate dean of libraries at Dartmouth. The A.I. librarian at Rollins, Terri Gotschall, predicted the role may eventually disappear. \"I think all librarians will be A.I. librarians,\" she said.",
       "source": "The Chronicle of Higher Education",
       "sourceUrl": "https://www.chronicle.com/article/does-your-college-need-an-ai-librarian",
-      "category": "Insights & Trends"
+      "category": "Insights & Trends",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story2.png"
     },
     {
       "headline": "University of Texas Law Dean Warns of 'Cognitive De-Skilling' in New A.I. Policy Memo",
       "summary": "The University of Texas School of Law is overhauling its approach to A.I. after its dean warned that the technology poses a sharper risk of eroding essential skills than any previous shortcut, Bloomberg Law reported. In a memo to staff, Dean Robert Chesney said A.I. is \"considerably more tempting\" than commercial study aids, given its \"comparative availability, confidentiality, and range.\"\n\nThe memo frames the school's response in three parts: deciding what A.I. skills to teach, protecting the integrity of graded assessments, and guarding against students using A.I. as a substitute for reading and reasoning through legal materials. UT Law has already nearly eliminated take-home exams in favor of in-class tests with software limiting what can be done. The school gave students licenses to A.I. platforms including Harvey and Legora and plans to provide all students, faculty and staff with enterprise-grade licenses from leading frontier labs this fall.\n\nChesney rejected the idea of \"irreconcilable tension\" between preserving traditional legal skills and teaching A.I. competency. \"These goals are not in a zero-sum relationship,\" he wrote.",
       "source": "Bloomberg Law",
       "sourceUrl": "https://news.bloomberglaw.com/business-and-practice/university-of-texas-law-revamps-ai-policy-to-counter-de-skilling",
-      "category": "Ethical AI"
+      "category": "Ethical AI",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story3.png"
     },
     {
       "headline": "High Point University Professor Restructured Physics Courses After Georgetown Trial Found A.I. Study Gains Vanished in a Week",
       "summary": "Medical students who used A.I. during study sessions scored higher on immediate assessments but lost that advantage within a week, a Georgetown University randomized controlled trial found. Jacob T. Brooks, interim chair and assistant professor of physics at High Point University, cited that finding in an opinion essay for Inside Higher Education and wrote that he restructured his undergraduate research and writing courses at High Point in response to what he called cognitive outsourcing.\n\nIn the redesigned courses, first-year students use A.I. tools to identify scientific papers and generate summaries, then go back to the original papers and analyze them directly. Students who completed the redesigned sequence began identifying gaps that the A.I. summaries had missed, Brooks wrote, including caveats in experimental design, limitations in data and entire threads of argument. In many cases, those gaps led students to ideas for their own original research.\n\nBrooks wrote that he frames the distinction for students by naming them the lead researcher on their project and the A.I. as a lab assistant. \"If AI is helping them execute something that isn't the central intellectual task, then that's likely an appropriate use,\" he wrote. \"But if it's doing the core thinking for them, then it undermines their learning.\"",
       "source": "Inside Higher Education",
       "sourceUrl": "https://www.insidehighered.com/opinion/career-advice/carpe-careers/2026/06/15/practical-framework-help-students-use-ai-opinion",
-      "category": "Case Study"
+      "category": "Case Study",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story4.png"
     },
     {
       "headline": "Berkeley Law's A.I. Ban Draws Pushback From Student in Its Own A.I. Governance Program",
       "summary": "Berkeley Law School banned A.I. use across many areas of study last month, a move that has drawn a public challenge from one of the school's own students. Lakshita Bhargava, a Master of Laws student focused on A.I. governance, told Artificial Lawyer that a permitted-but-disclosed model would create better accountability and generate data the school could use to improve future policy.\n\nBhargava, who most recently worked at leading Indian law firm Shardul Amarchand Mangaldas and Co., told Artificial Lawyer she favored limiting A.I. to low-risk learning support such as summarizing, outlining, editing and study preparation while requiring mandatory disclosure of all A.I. use. Disclosure, she argued, would \"uncover power users\" and give the school data on how students actually use the technology, information that could shape future policy. She also called for safeguards including a prohibition on entering confidential information into any tool, \"mandatory verification of citations and claims\" and \"full student accountability for the final work.\"\n\nThe same A.I. rules that apply to traditional LL.M. students also govern Bhargava's summer A.I. governance cohort. \"The policy was prepared by one of my professors from the Law Department,\" she told Artificial Lawyer.",
       "source": "Artificial Lawyer",
       "sourceUrl": "https://www.artificiallawyer.com/2026/06/15/a-students-response-to-berkeley-laws-ai-ban/",
-      "category": "Ethical AI"
+      "category": "Ethical AI",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story5.png"
     },
     {
       "headline": "UNLV Law Built a Required First-Year A.I. Course That Teaches the Technology Through Contracts, Civil Procedure and Torts",
       "summary": "The University of Nevada, Las Vegas William S. Boyd School of Law added A.I. literacy to its required first-year curriculum but structured the new course around a central constraint: students must learn to keep the human in the loop, The National Jurist reported. Professors Nancy Rapoport and Joe Regalia co-designed the course, Introduction to the Responsible Use of A.I., to train students to critically evaluate A.I.-generated content rather than relying on it as a substitute for legal analysis.\n\n\"Artificial intelligence is already changing how legal work gets done,\" Rapoport said. The curriculum addresses A.I. bias and predictive reasoning challenges alongside prompt engineering, ethical considerations in legal practice, and the strengths and weaknesses of various A.I. platforms. \"Lawyers still need to think critically, exercise judgment, and protect their clients' interests,\" Regalia said.\n\nStudents use A.I. as a study tool, a drafting tool and a research aid in the context of Contracts, Civil Procedure and Torts, the same subjects they study in their other first-year courses, according to The National Jurist.",
       "source": "The National Jurist",
       "sourceUrl": "https://nationaljurist.com/unlv-law-to-require-ai-course-for-all-first-year-students-beginning-fall-2026/",
-      "category": "Case Study"
+      "category": "Case Study",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story6.png"
     },
     {
       "headline": "U.S. Export Control Directive Forces Anthropic to Suspend Access to Newest A.I. Models After Three Days",
       "summary": "Anthropic suspended access to its newest A.I. models, Fable 5 and Mythos 5, on June 12 after an export control directive from the U.S. government prohibited their use by anyone who is not a U.S. national, The Conversation reported. The models had been publicly available for just three days.\n\nMythos 5, Anthropic's most powerful model, was initially withheld from public release because the company said it was too capable at cybersecurity tasks, according to The Conversation. Fable 5, the same base model with added safeguards, was released to the public instead. Anthropic said it believes the government acted after learning of a jailbreak method that could circumvent Fable 5's safeguards to extract information useful for cyberattacks. The company said the underlying research appears to have been produced by engineers at Amazon, which is both a rival and a significant investor in Anthropic.\n\nWithin 48 hours of Fable 5's public release, a researcher published what they identified as the model's full system prompt on social media and GitHub. Anthropic acknowledged that \"perfect jailbreak resistance is not achievable for any current model provider.\" The incident follows months of escalating conflict between Anthropic and the administration, which has accused the company of making \"woke AI,\" according to The Conversation.",
       "source": "The Conversation",
       "sourceUrl": "https://theconversation.com/why-the-us-government-shut-down-anthropics-latest-claude-ai-model-285223",
-      "category": "Beyond Ed"
+      "category": "Beyond Ed",
+      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-06-20/story7.png"
     }
   ],
   "meta": {
