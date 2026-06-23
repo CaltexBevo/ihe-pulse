@@ -31,8 +31,7 @@ type V4CategoryName =
   | "Week in Review"
   | "Research"
   | "AI Workforce & Careers"
-  | "Investing in Innovation"
-  | "Tool Spotlight";
+  | "Investing in Innovation";
 
 // Valid V4 category names for validation
 const VALID_V4_CATEGORIES: V4CategoryName[] = [
@@ -46,7 +45,6 @@ const VALID_V4_CATEGORIES: V4CategoryName[] = [
   "Research",
   "AI Workforce & Careers",
   "Investing in Innovation",
-  "Tool Spotlight",
 ];
 
 // UNIFIED category mapping: all input formats → V4 category names
@@ -76,11 +74,11 @@ const UNIFIED_TO_V4_MAP: Record<string, V4CategoryName> = {
   "Latest AI Products": "Latest AI Products",
   "Beyond Ed": "Beyond Ed",
   "Week in Review": "Week in Review",
-  // V5 categories pass through
+  // V5 categories pass through (Tool Spotlight merged into Practical Tips 2026-06-23)
   "Research": "Research",
   "AI Workforce & Careers": "AI Workforce & Careers",
   "Investing in Innovation": "Investing in Innovation",
-  "Tool Spotlight": "Tool Spotlight",
+  "Tool Spotlight": "Practical Tips",
 };
 
 // Map ANY category format directly to V4 category name
@@ -107,11 +105,11 @@ function mapCategory(cat: string): import('./innovation-pulse-types').StoryCateg
     "Latest AI Products": "Tools & Products",
     "Beyond Ed": "Student Experience",
     "Week in Review": "Leadership & Strategy",
-    // V5 categories pass through as-is (now valid StoryCategory values)
+    // V5 categories pass through as-is (Tool Spotlight merged into Practical Tips 2026-06-23)
     "Research": "Research",
     "AI Workforce & Careers": "AI Workforce & Careers",
     "Investing in Innovation": "Investing in Innovation",
-    "Tool Spotlight": "Tool Spotlight",
+    "Tool Spotlight": "Teaching & Learning",
   };
   return v4ToStoryMap[v4Category];
 }
@@ -510,8 +508,7 @@ export type V4Category =
   | "Week in Review"
   | "Research"
   | "AI Workforce & Careers"
-  | "Investing in Innovation"
-  | "Tool Spotlight";
+  | "Investing in Innovation";
 
 export const V4_CATEGORIES: V4Category[] = [
   "Insights & Trends",
@@ -524,7 +521,6 @@ export const V4_CATEGORIES: V4Category[] = [
   "Research",
   "AI Workforce & Careers",
   "Investing in Innovation",
-  "Tool Spotlight",
 ];
 
 export const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
@@ -538,7 +534,6 @@ export const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
   "Research": "research",
   "AI Workforce & Careers": "ai-workforce-and-careers",
   "Investing in Innovation": "investing-in-innovation",
-  "Tool Spotlight": "tool-spotlight",
 };
 
 // Palette-locked category colors — no green, teal, coral, orange, or blue
@@ -552,15 +547,14 @@ export const V4_CATEGORY_COLORS: Record<V4Category, string> = {
   "Beyond Ed": "var(--cyan)",
   "Week in Review": "var(--magenta)",
   "Research": "var(--purple)",
-  "AI Workforce & Careers": "var(--cyan)",
-  "Investing in Innovation": "var(--cyan)",
-  "Tool Spotlight": "var(--cyan)",
+  "AI Workforce & Careers": "var(--amber)",
+  "Investing in Innovation": "var(--magenta)",
 };
 
 export const V4_CATEGORY_DESCRIPTIONS: Record<V4Category, string> = {
   "Insights & Trends": "Research findings, emerging patterns, and thought leadership in A.I. for higher education.",
   "Case Study": "Real implementations and lessons learned from institutions using A.I. in practice.",
-  "Practical Tips": "Actionable strategies and techniques educators can use in their classrooms today.",
+  "Practical Tips": "Actionable strategies, techniques, and tool spotlights educators can use in their classrooms today.",
   "Ethical AI": "Policy debates, ethical considerations, and responsible A.I. use in education.",
   "Latest AI Products": "New tools, platforms, and technologies relevant to higher education.",
   "Beyond Ed": "A.I. developments outside education that still matter for the sector.",
@@ -568,7 +562,6 @@ export const V4_CATEGORY_DESCRIPTIONS: Record<V4Category, string> = {
   "Research": "Academic studies and scientific findings advancing A.I. in education.",
   "AI Workforce & Careers": "How A.I. is changing hiring, skills, and career pathways.",
   "Investing in Innovation": "Funding, partnerships, and strategic investments in educational A.I.",
-  "Tool Spotlight": "In-depth look at specific A.I. tools for educators.",
 };
 
 const OLD_TO_V4_MAP: Record<string, V4Category> = {
@@ -579,11 +572,11 @@ const OLD_TO_V4_MAP: Record<string, V4Category> = {
   "Tools & Products": "Latest AI Products",
   "Student Experience": "Beyond Ed",
   "Leadership & Strategy": "Insights & Trends",
-  // V5 categories pass through
+  // V5 categories pass through (Tool Spotlight merged into Practical Tips 2026-06-23)
   "Research": "Research",
   "AI Workforce & Careers": "AI Workforce & Careers",
   "Investing in Innovation": "Investing in Innovation",
-  "Tool Spotlight": "Tool Spotlight",
+  "Tool Spotlight": "Practical Tips",
 };
 
 export function mapToV4Category(oldCategory: string): V4Category {

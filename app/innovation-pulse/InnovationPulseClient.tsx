@@ -48,7 +48,10 @@ type V4Category =
   | "Ethical AI"
   | "Latest AI Products"
   | "Beyond Ed"
-  | "Week in Review";
+  | "Week in Review"
+  | "Research"
+  | "AI Workforce & Careers"
+  | "Investing in Innovation";
 
 const V4_CATEGORIES: V4Category[] = [
   "Insights & Trends",
@@ -58,6 +61,9 @@ const V4_CATEGORIES: V4Category[] = [
   "Latest AI Products",
   "Beyond Ed",
   "Week in Review",
+  "Research",
+  "AI Workforce & Careers",
+  "Investing in Innovation",
 ];
 
 // Palette-locked category colors — no green, teal, coral, orange, or blue
@@ -70,6 +76,9 @@ const V4_CATEGORY_COLORS: Record<V4Category, { hex: string; bg: string; text: st
   "Latest AI Products": { hex: "var(--purple)", bg: "var(--purple-soft)", text: "text-[var(--purple)]" },
   "Beyond Ed": { hex: "var(--cyan)", bg: "var(--cyan-soft)", text: "text-[var(--cyan)]" },
   "Week in Review": { hex: "var(--magenta)", bg: "var(--magenta-soft)", text: "text-[var(--magenta)]" },
+  "Research": { hex: "var(--purple)", bg: "var(--purple-soft)", text: "text-[var(--purple)]" },
+  "AI Workforce & Careers": { hex: "var(--amber)", bg: "var(--amber-soft)", text: "text-[var(--amber)]" },
+  "Investing in Innovation": { hex: "var(--magenta)", bg: "var(--magenta-soft)", text: "text-[var(--magenta)]" },
 };
 
 const V4_BADGE_TEXT: Record<V4Category, string> = {
@@ -80,6 +89,9 @@ const V4_BADGE_TEXT: Record<V4Category, string> = {
   "Latest AI Products": "PRODUCTS",
   "Beyond Ed": "BEYOND ED",
   "Week in Review": "WEEK REVIEW",
+  "Research": "RESEARCH",
+  "AI Workforce & Careers": "WORKFORCE",
+  "Investing in Innovation": "INVESTING",
 };
 
 const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
@@ -90,6 +102,9 @@ const V4_CATEGORY_SLUGS: Record<V4Category, string> = {
   "Latest AI Products": "latest-ai-products",
   "Beyond Ed": "beyond-ed",
   "Week in Review": "week-in-review",
+  "Research": "research",
+  "AI Workforce & Careers": "ai-workforce-and-careers",
+  "Investing in Innovation": "investing-in-innovation",
 };
 
 const OLD_TO_V4_MAP: Record<string, V4Category> = {
@@ -107,6 +122,11 @@ const OLD_TO_V4_MAP: Record<string, V4Category> = {
   "Latest AI Products": "Latest AI Products",
   "Beyond Ed": "Beyond Ed",
   "Week in Review": "Week in Review",
+  // V5 categories (Tool Spotlight merged into Practical Tips 2026-06-23)
+  "Research": "Research",
+  "AI Workforce & Careers": "AI Workforce & Careers",
+  "Investing in Innovation": "Investing in Innovation",
+  "Tool Spotlight": "Practical Tips",
 };
 
 function mapToV4Category(oldCategory: string): V4Category {
@@ -632,11 +652,14 @@ export default function InnovationPulseClient({
                   <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
                     {category === "Insights & Trends" && "Research, data, and emerging patterns"}
                     {category === "Case Study" && "Real-world implementations and outcomes"}
-                    {category === "Practical Tips" && "Actionable strategies for educators"}
+                    {category === "Practical Tips" && "Actionable strategies and tool spotlights for educators"}
                     {category === "Ethical AI" && "Policy, ethics, and responsible AI use"}
                     {category === "Latest AI Products" && "New tools and platform updates"}
                     {category === "Beyond Ed" && "AI trends from outside higher education"}
                     {category === "Week in Review" && "Weekly roundup and analysis"}
+                    {category === "Research" && "Academic studies and scientific findings"}
+                    {category === "AI Workforce & Careers" && "How A.I. is changing hiring, skills, and career pathways"}
+                    {category === "Investing in Innovation" && "Funding, partnerships, and strategic investments"}
                   </p>
                 </div>
                 <Link href={`/innovation-pulse/category/${catSlug}`} className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">

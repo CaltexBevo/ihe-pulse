@@ -324,8 +324,7 @@ export type V4Category =
   | "Week in Review"
   | "Research"
   | "AI Workforce & Careers"
-  | "Investing in Innovation"
-  | "Tool Spotlight";
+  | "Investing in Innovation";
 
 export const V4_CATEGORIES: V4Category[] = [
   "Insights & Trends",
@@ -338,7 +337,6 @@ export const V4_CATEGORIES: V4Category[] = [
   "Research",
   "AI Workforce & Careers",
   "Investing in Innovation",
-  "Tool Spotlight",
 ];
 
 export const V4_CATEGORY_COLORS: Record<V4Category, string> = {
@@ -350,9 +348,8 @@ export const V4_CATEGORY_COLORS: Record<V4Category, string> = {
   "Beyond Ed": "#00d4ff",
   "Week in Review": "#b040a8",
   "Research": "#a78bfa",
-  "AI Workforce & Careers": "#00d4ff",
-  "Investing in Innovation": "#00d4ff",
-  "Tool Spotlight": "#00d4ff",
+  "AI Workforce & Careers": "#f59e0b",
+  "Investing in Innovation": "#b040a8",
 };
 
 const OLD_TO_V4_MAP: Record<string, V4Category> = {
@@ -363,11 +360,11 @@ const OLD_TO_V4_MAP: Record<string, V4Category> = {
   "Tools & Products": "Latest AI Products",
   "Student Experience": "Beyond Ed",
   "Leadership & Strategy": "Insights & Trends",
-  // V5 categories pass through
+  // V5 categories pass through (Tool Spotlight merged into Practical Tips 2026-06-23)
   "Research": "Research",
   "AI Workforce & Careers": "AI Workforce & Careers",
   "Investing in Innovation": "Investing in Innovation",
-  "Tool Spotlight": "Tool Spotlight",
+  "Tool Spotlight": "Practical Tips",
 };
 
 export function mapToV4Category(oldCategory: string): V4Category {
