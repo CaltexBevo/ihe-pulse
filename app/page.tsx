@@ -1,6 +1,5 @@
 import Link from "next/link";
 import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
-import NewsletterSignup from "@/components/NewsletterSignup";
 import InnovationPulseClient from "@/app/innovation-pulse/InnovationPulseClient";
 import {
   getLatestEpisode,
@@ -31,23 +30,6 @@ export default function Home() {
               recentEpisodes={recentEpisodes}
             />
           )}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          NEWSLETTER SUBSCRIBE — Between Recent Stories & Top Stories
-          ═══════════════════════════════════════════════════════ */}
-      <section className="py-4">
-        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)]">
-          <div className="np-subscribe">
-            <div className="np-sub-copy">
-              <strong>Never miss an episode.</strong>{" "}
-              <span className="np-sub-muted">
-                Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.
-              </span>
-            </div>
-            <NewsletterSignup variant="inline-strip" />
-          </div>
         </div>
       </section>
 

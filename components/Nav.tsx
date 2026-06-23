@@ -9,7 +9,7 @@ import { ThemeToggle } from "./ThemeToggle";
 // Nav order updated 2026-06-23: "All Episodes" renamed to "Innovation Pulse"
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/innovation-pulse", label: "Innovation Pulse" },
+  { href: "/innovation-pulse/archive", label: "Innovation Pulse" },
   { href: "/prompts", label: "Prompts" },
   { href: "/ai-directory", label: "AI Directory" },
   { href: "/educator-tools", label: "Educator Tools" },
