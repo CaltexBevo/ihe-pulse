@@ -84,7 +84,7 @@ The nav must contain these items in this exact order. Do NOT add, remove, or reo
 2. **Platform Column**: Innovation Pulse, Prompt Navigator, AI Directory
 3. **Community Column**: Podcast, Tinker Lab, Be Our Guest, About
 
-**TEMP-DISABLED (2026-06-12):** Newsletter Column ("Never Miss a Pulse" with email input) is hidden pending email platform selection. Grep for `TEMP-DISABLED-NEWSLETTER` across HomeEpisodePlayer.tsx, Footer.tsx, InnovationPulseClient.tsx to re-enable. When re-enabled, footer returns to 4-column grid.
+**Newsletter Column** ("Never Miss a Pulse" with email input) is active and wired to Mailchimp via `/api/newsletter`. Footer uses 4-column grid with newsletter as the 4th column.
 
 ### Legal links (bottom row, this exact order):
 1. About → /about

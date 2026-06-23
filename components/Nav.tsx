@@ -6,10 +6,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 
-// Nav order updated 2026-05-29: Innovation Pulse removed (homepage IS the Innovation Pulse now), All Episodes added
+// Nav order updated 2026-06-23: "All Episodes" renamed to "Innovation Pulse"
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/innovation-pulse/archive", label: "All Episodes" },
+  { href: "/innovation-pulse", label: "Innovation Pulse" },
   { href: "/prompts", label: "Prompts" },
   { href: "/ai-directory", label: "AI Directory" },
   { href: "/educator-tools", label: "Educator Tools" },

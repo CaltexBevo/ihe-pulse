@@ -102,8 +102,8 @@ export default function AllEpisodesClient({ episode }: AllEpisodesClientProps) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/ihe-logo.png" alt="" className="ae-cover-logo" aria-hidden="true" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/mic03.png" alt="" className="ae-cover-mic" aria-hidden="true" />
-          <div className="ae-cover-title">The Innovation Pulse</div>
+          <img src="/images/mic03.webp" alt="" className="ae-cover-mic" aria-hidden="true" />
+          <div className="ae-cover-title">{"The"}<br />{"Innovation"}<br />{"Pulse"}</div>
           <div className="ae-cover-date">{monthDay}</div>
         </div>
 

@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         email_address: email,
-        status: 'pending', // Double opt-in
+        status: 'subscribed',
         tags: ['Innovation Pulse', 'Website Signup'],
       }),
     });
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     if (response.ok) {
       return NextResponse.json({
         success: true,
-        message: 'Check your inbox to confirm your subscription!',
+        message: "You're in! Check your inbox.",
       });
     }
 

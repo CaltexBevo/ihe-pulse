@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from 'react';
 
 interface NewsletterSignupProps {
-  variant?: 'card' | 'inline' | 'footer';
+  variant?: 'card' | 'inline' | 'inline-strip' | 'footer';
   className?: string;
 }
 
@@ -26,7 +26,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
     if (honeypot) {
       // Silently "succeed" to not tip off bots
       setStatus('success');
-      setMessage('You\'re in! Check your inbox to confirm.');
+      setMessage('You\'re in! Check your inbox.');
       return;
     }
 
@@ -44,7 +44,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
 
       if (response.ok) {
         setStatus('success');
-        setMessage('You\'re in! Check your inbox to confirm.');
+        setMessage('You\'re in! Check your inbox.');
         setEmail('');
       } else {
         setStatus('error');
@@ -56,12 +56,50 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
     }
   };
 
+  if (variant === 'inline-strip') {
+    return (
+      <div className={`${className}`} role="form" aria-label="Newsletter signup">
+        {status === 'success' ? (
+          <p className="text-[0.82rem] text-[var(--cyan)] font-medium np-sub-success" role="status">{message}</p>
+        ) : (
+          <form onSubmit={handleSubmit} className="np-sub-form">
+            {/* Honeypot field - hidden from humans, bots fill it */}
+            <input
+              type="text"
+              name="_gotcha"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.edu"
+              aria-label="Email address"
+              disabled={status === 'loading'}
+            />
+            <button type="submit" disabled={status === 'loading'} aria-label="Subscribe to newsletter">
+              {status === 'loading' ? '...' : 'Subscribe'}
+            </button>
+          </form>
+        )}
+        {status === 'error' && (
+          <p className="text-[0.68rem] text-[var(--red)] mt-1" role="alert">{message}</p>
+        )}
+      </div>
+    );
+  }
+
   if (variant === 'footer') {
     return (
       <div className={`${className}`} role="form" aria-label="Newsletter signup">
         <h4 className="font-sans text-[0.92rem] font-bold mb-3">Never Miss a Pulse</h4>
         <p className="text-[0.75rem] text-[var(--text-secondary)] mb-3">
-          A.I. news for higher ed, delivered daily.
+          A.I. news for higher ed, delivered weekly.
         </p>
         {status === 'success' ? (
           <p className="text-[0.78rem] text-[var(--green)]" role="status">{message}</p>
@@ -111,7 +149,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
           <div className="flex-1">
             <h3 className="font-sans text-[1.1rem] font-bold mb-1">Never Miss a Pulse</h3>
             <p className="text-[0.82rem] text-[var(--text-secondary)]">
-              A.I. news for higher ed — no fluff, no hype.
+              A.I. news for higher ed, delivered weekly — no fluff, no hype.
             </p>
           </div>
           {status === 'success' ? (

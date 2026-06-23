@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
 import { formatWeekCovered, isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
+import NewsletterSignup from '@/components/NewsletterSignup';
 
 function formatTime(seconds: number): string {
   if (!isFinite(seconds) || isNaN(seconds)) return "0:00";
@@ -291,7 +292,7 @@ export default function HeroNowPlaying({
 
           {/* Mic illustration — LEFT side, NOT flipped (nozzle points right toward title) */}
           <img
-            src="/images/mic03.png"
+            src="/images/mic03.webp"
             alt=""
             className="np-art-mic"
             aria-hidden="true"
@@ -452,10 +453,7 @@ export default function HeroNowPlaying({
                 : 'Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.'}
             </span>
           </div>
-          <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="your@email.edu" aria-label="Email address" />
-            <button type="submit">Subscribe</button>
-          </form>
+          <NewsletterSignup variant="inline-strip" />
         </div>
       )}
     </section>

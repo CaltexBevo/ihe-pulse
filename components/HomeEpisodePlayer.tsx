@@ -3,9 +3,9 @@
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import HeroNowPlaying from '@/components/HeroNowPlaying';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
-// TEMP-DISABLED-NEWSLETTER (2026-06-12): re-enable with subscribe strip after ESP selection
-// import { isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
+import { isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
 
 interface HomeEpisodePlayerProps {
   latestEpisode: InnovationPulseEpisode;
@@ -80,9 +80,6 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
         />
       </div>
 
-      {/* TEMP-DISABLED-NEWSLETTER (2026-06-12): Subscribe strip hidden until ESP
-          (email service provider) is selected and wired up. Restore the block below
-          and the isWeeklyEpisode import when re-enabling.
       <div className="np-subscribe" style={{ marginTop: '24px', marginBottom: '8px' }}>
         <div className="np-sub-copy">
           <strong>Never miss an episode.</strong>{" "}
@@ -92,12 +89,8 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
               : 'Delivered to your inbox every weekday — listen on the drive in, at lunch, or the drive home.'}
           </span>
         </div>
-        <form className="np-sub-form" onSubmit={(e) => e.preventDefault()}>
-          <input type="email" placeholder="your@email.edu" aria-label="Email address" />
-          <button type="submit">Subscribe</button>
-        </form>
+        <NewsletterSignup variant="inline-strip" />
       </div>
-      */}
 
       {/* Recent Episodes grid — matches Innovation Pulse page */}
       {recentEpisodes && recentEpisodes.length > 1 && (
@@ -130,8 +123,8 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
                     <div className="ip-recent-thumb-artwork">
                       <div className="ip-recent-thumb-accent" />
                       <img src="/images/ihe-logo.png" alt="" className="ip-recent-thumb-logo" aria-hidden="true" />
-                      <img src="/images/mic03.png" alt="" className="ip-recent-thumb-micimg" aria-hidden="true" />
-                      <div className="ip-recent-thumb-title">The Innovation Pulse</div>
+                      <img src="/images/mic03.webp" alt="" className="ip-recent-thumb-micimg" aria-hidden="true" />
+                      <div className="ip-recent-thumb-title">{"The"}<br />{"Innovation"}<br />{"Pulse"}</div>
                     </div>
                     <div className="ip-recent-thumb-date">{monthDay.toUpperCase()}</div>
                     {isSelected && (

@@ -1,6 +1,5 @@
 import Link from "next/link";
-// TEMP-DISABLED-NEWSLETTER (2026-06-12): re-enable with footer signup after ESP selection
-// import NewsletterSignup from "./NewsletterSignup";
+import NewsletterSignup from "./NewsletterSignup";
 
 const platformLinks = [
   { href: "/innovation-pulse", label: "Innovation Pulse" },
@@ -50,7 +49,7 @@ export default function Footer() {
     <footer className="bg-[var(--bg-elevated)] border-t border-[var(--border)]" role="contentinfo">
       {/* Main Footer - 4 Column Grid */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-8 lg:gap-12">
           {/* Brand Column */}
           <div>
             <div
@@ -123,13 +122,9 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* TEMP-DISABLED-NEWSLETTER (2026-06-12): Newsletter column hidden until ESP
-              is selected and wired up. When re-enabling: restore the import, restore
-              this column, and restore the lg grid template to [1.4fr_1fr_1fr_1.2fr].
           <div>
             <NewsletterSignup variant="footer" />
           </div>
-          */}
         </div>
       </div>
 
