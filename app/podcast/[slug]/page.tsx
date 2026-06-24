@@ -12,10 +12,11 @@ export function generateStaticParams() {
 }
 
 const platforms = [
-  { name: "Apple Podcasts", href: "#" },
-  { name: "Spotify", href: "#" },
-  { name: "YouTube", href: "#" },
-  { name: "Google Podcasts", href: "#" },
+  { name: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865" },
+  { name: "Spotify", href: "https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" },
+  { name: "YouTube", href: "https://www.youtube.com/@InnovatingHigherEd" },
+  { name: "Amazon Music", href: "https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" },
+  { name: "Podbean", href: "https://innovatinghighered.podbean.com/" },
 ];
 
 export default async function EpisodeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
