@@ -44,7 +44,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
 
       if (response.ok) {
         setStatus('success');
-        setMessage('You\'re in! Check your inbox.');
+        setMessage(data.message || 'Check your inbox to confirm your subscription!');
         setEmail('');
       } else {
         setStatus('error');
