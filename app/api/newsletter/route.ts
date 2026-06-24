@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, _gotcha } = await request.json();
+    const { email, firstName, lastName, _gotcha } = await request.json();
 
     // Honeypot check - if filled, it's a bot
     if (_gotcha) {
@@ -22,6 +22,23 @@ export async function POST(request: NextRequest) {
     if (!email || !email.includes('@')) {
       return NextResponse.json(
         { error: 'Please provide a valid email address.' },
+        { status: 400 }
+      );
+    }
+
+    // Require first and last name — spam bots skip these or fill garbage
+    if (!firstName || !lastName || firstName.trim().length < 2 || lastName.trim().length < 2) {
+      return NextResponse.json(
+        { error: 'Please provide your first and last name.' },
+        { status: 400 }
+      );
+    }
+
+    // Basic name validation — reject obvious bot spam (no letters = not a name)
+    const namePattern = /[a-zA-Z]/;
+    if (!namePattern.test(firstName) || !namePattern.test(lastName)) {
+      return NextResponse.json(
+        { error: 'Please provide a valid name.' },
         { status: 400 }
       );
     }
@@ -51,6 +68,10 @@ export async function POST(request: NextRequest) {
         email_address: email,
         status: 'pending', // Double opt-in: subscriber must confirm via email
         tags: ['Innovation Pulse', 'Website Signup'],
+        merge_fields: {
+          FNAME: firstName.trim(),
+          LNAME: lastName.trim(),
+        },
       }),
     });
 

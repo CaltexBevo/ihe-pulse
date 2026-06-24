@@ -9,12 +9,20 @@ interface NewsletterSignupProps {
 
 export default function NewsletterSignup({ variant = 'card', className = '' }: NewsletterSignupProps) {
   const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [honeypot, setHoneypot] = useState(''); // Bot trap field
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (!firstName.trim() || firstName.trim().length < 2 || !lastName.trim() || lastName.trim().length < 2) {
+      setStatus('error');
+      setMessage('Please enter your first and last name.');
+      return;
+    }
 
     if (!email || !email.includes('@')) {
       setStatus('error');
@@ -37,7 +45,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, _gotcha: honeypot }),
+        body: JSON.stringify({ email, firstName: firstName.trim(), lastName: lastName.trim(), _gotcha: honeypot }),
       });
 
       const data = await response.json();
@@ -46,6 +54,8 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
         setStatus('success');
         setMessage(data.message || 'Check your inbox to confirm your subscription!');
         setEmail('');
+        setFirstName('');
+        setLastName('');
       } else {
         setStatus('error');
         setMessage(data.error || 'Something went wrong. Please try again.');
@@ -74,6 +84,28 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
               aria-hidden="true"
               style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
             />
+            <div className="flex gap-2 mb-2">
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First Name"
+                aria-label="First name"
+                required
+                minLength={2}
+                disabled={status === 'loading'}
+              />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last Name"
+                aria-label="Last name"
+                required
+                minLength={2}
+                disabled={status === 'loading'}
+              />
+            </div>
             <input
               type="email"
               value={email}
@@ -104,7 +136,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
         {status === 'success' ? (
           <p className="text-[0.78rem] text-[var(--green)]" role="status">{message}</p>
         ) : (
-          <form onSubmit={handleSubmit} className="flex gap-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             {/* Honeypot field - hidden from humans, bots fill it */}
             <input
               type="text"
@@ -116,23 +148,49 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
               aria-hidden="true"
               style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
             />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@university.edu"
-              aria-label="Email address"
-              className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
-              disabled={status === 'loading'}
-            />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              aria-label="Subscribe to newsletter"
-              className="px-4 py-2 text-[0.72rem] font-semibold rounded-[8px] bg-[var(--cyan)] text-[var(--bg)] hover:opacity-90 transition-opacity disabled:opacity-50"
-            >
-              {status === 'loading' ? '...' : 'Go'}
-            </button>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First Name"
+                aria-label="First name"
+                required
+                minLength={2}
+                className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                disabled={status === 'loading'}
+              />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last Name"
+                aria-label="Last name"
+                required
+                minLength={2}
+                className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                disabled={status === 'loading'}
+              />
+            </div>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@university.edu"
+                aria-label="Email address"
+                className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                disabled={status === 'loading'}
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                aria-label="Subscribe to newsletter"
+                className="px-4 py-2 text-[0.72rem] font-semibold rounded-[8px] bg-[var(--cyan)] text-[var(--bg)] hover:opacity-90 transition-opacity disabled:opacity-50"
+              >
+                {status === 'loading' ? '...' : 'Go'}
+              </button>
+            </div>
           </form>
         )}
         {status === 'error' && (
@@ -155,7 +213,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
           {status === 'success' ? (
             <p className="text-[0.85rem] text-[var(--green)] font-medium" role="status">{message}</p>
           ) : (
-            <form onSubmit={handleSubmit} className="flex gap-2">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
               {/* Honeypot field - hidden from humans, bots fill it */}
               <input
                 type="text"
@@ -167,23 +225,49 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
                 aria-hidden="true"
                 style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
               />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@university.edu"
-                aria-label="Email address"
-                className="w-[220px] px-4 py-2.5 text-[0.82rem] rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
-                disabled={status === 'loading'}
-              />
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                aria-label="Subscribe to newsletter"
-                className="btn-primary"
-              >
-                {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
-              </button>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First Name"
+                  aria-label="First name"
+                  required
+                  minLength={2}
+                  className="w-[110px] px-4 py-2.5 text-[0.82rem] rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                  disabled={status === 'loading'}
+                />
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Last Name"
+                  aria-label="Last name"
+                  required
+                  minLength={2}
+                  className="w-[110px] px-4 py-2.5 text-[0.82rem] rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                  disabled={status === 'loading'}
+                />
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@university.edu"
+                  aria-label="Email address"
+                  className="w-[220px] px-4 py-2.5 text-[0.82rem] rounded-[10px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                  disabled={status === 'loading'}
+                />
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  aria-label="Subscribe to newsletter"
+                  className="btn-primary"
+                >
+                  {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </div>
             </form>
           )}
         </div>
@@ -217,7 +301,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
         </div>
       ) : (
         <>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-[400px] mx-auto mb-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-[400px] mx-auto mb-2">
             {/* Honeypot field - hidden from humans, bots fill it */}
             <input
               type="text"
@@ -229,23 +313,49 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
               aria-hidden="true"
               style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
             />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@university.edu"
-              aria-label="Email address"
-              className="input flex-1"
-              disabled={status === 'loading'}
-            />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              aria-label="Subscribe to newsletter"
-              className="btn-primary whitespace-nowrap disabled:opacity-50"
-            >
-              {status === 'loading' ? 'Subscribing...' : 'Subscribe Free'}
-            </button>
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First Name"
+                aria-label="First name"
+                required
+                minLength={2}
+                className="input flex-1"
+                disabled={status === 'loading'}
+              />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last Name"
+                aria-label="Last name"
+                required
+                minLength={2}
+                className="input flex-1"
+                disabled={status === 'loading'}
+              />
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@university.edu"
+                aria-label="Email address"
+                className="input flex-1"
+                disabled={status === 'loading'}
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                aria-label="Subscribe to newsletter"
+                className="btn-primary whitespace-nowrap disabled:opacity-50"
+              >
+                {status === 'loading' ? 'Subscribing...' : 'Subscribe Free'}
+              </button>
+            </div>
           </form>
 
           {status === 'error' && (
