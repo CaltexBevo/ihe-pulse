@@ -109,7 +109,6 @@ function mapCategory(cat: string): import('./innovation-pulse-types').StoryCateg
     "Research": "Research",
     "AI Workforce & Careers": "AI Workforce & Careers",
     "Investing in Innovation": "Investing in Innovation",
-    "Tool Spotlight": "Teaching & Learning",
   };
   return v4ToStoryMap[v4Category];
 }
