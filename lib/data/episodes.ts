@@ -13,6 +13,13 @@ export interface Episode {
   slug: string;
   podbeanId: string;
   thumbnail?: string;
+  episodeLinks?: {
+    apple?: string;
+    spotify?: string;
+    amazon?: string;
+    youtube?: string;
+    podbean?: string;
+  };
 }
 
 export const episodes: Episode[] = [
@@ -40,6 +47,11 @@ export const episodes: Episode[] = [
     podbeanId: 'yn932-18e5c5a-pb',
     thumbnail:
       '/images/podcast/Chesa-Caparas-thumb-1200x.jpg',
+    episodeLinks: {
+      apple: 'https://podcasts.apple.com/us/podcast/human-centered-ai-strategy-empathy-trust-access-professor/id1774879335?i=1000714248484',
+      spotify: 'https://open.spotify.com/episode/7srqvHE95Wiy2pAjPTjKoU',
+      podbean: 'https://innovatinghighered.podbean.com/e/human-centered-ai-strategy-empathy-trust-access-professor-chesa-caparas/',
+    },
   },
   {
     number: 46,
@@ -65,6 +77,11 @@ export const episodes: Episode[] = [
     podbeanId: 'fxjxj-1891ea5-pb',
     thumbnail:
       '/images/podcast/Prof-Scott-James-_thumb.02-585x390.jpg',
+    episodeLinks: {
+      apple: 'https://podcasts.apple.com/us/podcast/assistive-ai-tools-transform-course-design-assessment/id1774879335?i=1000705176100',
+      spotify: 'https://open.spotify.com/episode/216Ztjo77avDac6G1eNE6n',
+      podbean: 'https://innovatinghighered.podbean.com/e/assistive-ai-tools-transform-course-design-assessment-professor-scott-james-2/',
+    },
   },
   {
     number: 45,
@@ -90,6 +107,11 @@ export const episodes: Episode[] = [
     podbeanId: 'brbx3-18a6904-pb',
     thumbnail:
       '/images/podcast/DR.-SARAH-HARMON-_Thumb.02.-3.2-585x390.jpg',
+    episodeLinks: {
+      apple: 'https://podcasts.apple.com/us/podcast/oer-ztc-lightning-fast-ai-translation-dr-sarah-harmon/id1774879335?i=1000708011628',
+      spotify: 'https://open.spotify.com/episode/5kprFgfkg7tA7Hn36Lg7DI',
+      podbean: 'https://innovatinghighered.podbean.com/e/oer-ztc-lightning-fast-ai-translation-dr-sarah-harmon/',
+    },
   },
   {
     number: 44,
@@ -115,6 +137,11 @@ export const episodes: Episode[] = [
     podbeanId: 'h6ytf-1810356-pb',
     thumbnail:
       '/images/podcast/Dr.-Suha-Al-Juboori-Thumb.02-585x390.jpg',
+    episodeLinks: {
+      apple: 'https://podcasts.apple.com/us/podcast/equity-first-ai-curriculum-for-every-discipline-dr/id1774879335?i=1000694807020',
+      spotify: 'https://open.spotify.com/episode/7JSKe12WulpOuVmpcOkI3r',
+      podbean: 'https://innovatinghighered.podbean.com/e/equity-first-ai-curriculum-for-every-discipline-dr-suha-al-juboori-2/',
+    },
   },
   {
     number: 43,
@@ -140,6 +167,11 @@ export const episodes: Episode[] = [
     podbeanId: 'gxm6e-180f026-pb',
     thumbnail:
       '/images/podcast/Dr-Zeller-Thumb.02-585x390.jpg',
+    episodeLinks: {
+      apple: 'https://podcasts.apple.com/us/podcast/vr-rehearsals-building-confident-nurses-faster-dr-jenna/id1774879335?i=1000694562435',
+      spotify: 'https://open.spotify.com/episode/6O6B5ozzYdq7h5kyd8P78M',
+      podbean: 'https://innovatinghighered.podbean.com/e/vr-rehearsals-building-confident-nurses-faster-dr-jenna-zeller/',
+    },
   },
   {
     number: 42,
@@ -165,6 +197,11 @@ export const episodes: Episode[] = [
     podbeanId: '342ra-180ef9c-pb',
     thumbnail:
       '/images/podcast/Dr-Grace-Thumb-.02-585x390.jpg',
+    episodeLinks: {
+      apple: 'https://podcasts.apple.com/us/podcast/xr-learning-ai-engagement-hacks-dr-garrick-grace/id1774879335?i=1000694561008',
+      spotify: 'https://open.spotify.com/episode/6yglIuMEtkWkrfDN0lOUGB',
+      podbean: 'https://innovatinghighered.podbean.com/e/xr-learning-ai-engagement-hacks-dr-garrick-grace/',
+    },
   },
   {
     number: 41,
@@ -190,5 +227,10 @@ export const episodes: Episode[] = [
     podbeanId: 'jv858-1710904-pb',
     thumbnail:
       '/images/podcast/Lynn-Dickinson-thumb-.02-585x390.jpg',
+    episodeLinks: {
+      apple: 'https://podcasts.apple.com/us/podcast/chatgpt-teaching-assistant-lesson-plans-in-minutes/id1774879335?i=1000673650456',
+      spotify: 'https://open.spotify.com/episode/6uR3D5rZwOE8UXvTWiGLD3',
+      podbean: 'https://innovatinghighered.podbean.com/e/chatgpt-teaching-assistant-lesson-plans-in-minutes-lynn-dickinson-2/',
+    },
   },
 ];

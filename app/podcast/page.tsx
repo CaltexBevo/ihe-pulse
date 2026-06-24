@@ -9,10 +9,10 @@ export const metadata = {
 };
 
 const platforms = [
-  { name: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1768896865", icon: "🎧" },
-  { name: "Spotify", href: "https://open.spotify.com/show/1PaBkIvJQaN9FPqoflbJxI" },
+  { name: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335", icon: "🎧" },
+  { name: "Spotify", href: "https://open.spotify.com/show/4rMDJnlFbrLMr0hKAE3Oe6" },
   { name: "YouTube", href: "https://www.youtube.com/@InnovatingHigherEd" },
-  { name: "Amazon Music", href: "https://music.amazon.com/podcasts/4c006f36-a401-4a1a-b498-c7010e48b50e/innovating-higher-ed" },
+  { name: "Amazon Music", href: "https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/innovating-higher-ed" },
   { name: "Podbean", href: "https://innovatinghighered.podbean.com/" },
 ];
 
