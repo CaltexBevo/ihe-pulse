@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
 
     console.error('Mailchimp error:', data);
     return NextResponse.json(
-      { error: 'Unable to subscribe. Please try again later.' },
+      { error: data.detail || data.title || 'Unable to subscribe. Please try again later.' },
       { status: 500 }
     );
   } catch (error) {
