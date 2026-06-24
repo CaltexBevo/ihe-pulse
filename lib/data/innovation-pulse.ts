@@ -392,6 +392,10 @@ export function getStoriesByCategory(): Record<
     'Research & Innovation',
     'Student Experience',
     'Leadership & Strategy',
+    // V5 categories (2026-06-23)
+    'Research',
+    'AI Workforce & Careers',
+    'Investing in Innovation',
   ];
 
   const grouped = {} as Record<
