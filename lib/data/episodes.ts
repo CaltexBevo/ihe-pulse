@@ -39,7 +39,7 @@ export const episodes: Episode[] = [
     slug: 'chesa-caparas',
     podbeanId: 'yn932-18e5c5a-pb',
     thumbnail:
-      'https://innovatinghighered.com/wp-content/uploads/2025/06/Chesa-Caparas-thumb-1200x.jpg',
+      '/images/podcast/Chesa-Caparas-thumb-1200x.jpg',
   },
   {
     number: 46,
@@ -64,7 +64,7 @@ export const episodes: Episode[] = [
     slug: 'scott-james',
     podbeanId: 'fxjxj-1891ea5-pb',
     thumbnail:
-      'https://innovatinghighered.com/wp-content/uploads/2025/05/Prof-Scott-James-_thumb.02-585x390.jpg',
+      '/images/podcast/Prof-Scott-James-_thumb.02-585x390.jpg',
   },
   {
     number: 45,
@@ -89,7 +89,7 @@ export const episodes: Episode[] = [
     slug: 'sarah-harmon',
     podbeanId: 'brbx3-18a6904-pb',
     thumbnail:
-      'https://innovatinghighered.com/wp-content/uploads/2025/05/DR.-SARAH-HARMON-_Thumb.02.-3.2-585x390.jpg',
+      '/images/podcast/DR.-SARAH-HARMON-_Thumb.02.-3.2-585x390.jpg',
   },
   {
     number: 44,
@@ -114,7 +114,7 @@ export const episodes: Episode[] = [
     slug: 'suha-al-juboori',
     podbeanId: 'h6ytf-1810356-pb',
     thumbnail:
-      'https://innovatinghighered.com/wp-content/uploads/2025/02/Dr.-Suha-Al-Juboori-Thumb.02-585x390.jpg',
+      '/images/podcast/Dr.-Suha-Al-Juboori-Thumb.02-585x390.jpg',
   },
   {
     number: 43,
@@ -139,7 +139,7 @@ export const episodes: Episode[] = [
     slug: 'jenna-zeller',
     podbeanId: 'gxm6e-180f026-pb',
     thumbnail:
-      'https://innovatinghighered.com/wp-content/uploads/2025/05/Dr-Zeller-Thumb.02-585x390.jpg',
+      '/images/podcast/Dr-Zeller-Thumb.02-585x390.jpg',
   },
   {
     number: 42,
@@ -164,7 +164,7 @@ export const episodes: Episode[] = [
     slug: 'garrick-grace',
     podbeanId: '342ra-180ef9c-pb',
     thumbnail:
-      'https://innovatinghighered.com/wp-content/uploads/2025/02/Dr-Grace-Thumb-.02-585x390.jpg',
+      '/images/podcast/Dr-Grace-Thumb-.02-585x390.jpg',
   },
   {
     number: 41,
@@ -189,6 +189,6 @@ export const episodes: Episode[] = [
     slug: 'lynn-dickinson',
     podbeanId: 'jv858-1710904-pb',
     thumbnail:
-      'https://innovatinghighered.com/wp-content/uploads/2024/10/Lynn-Dickinson-thumb-.02-585x390.jpg',
+      '/images/podcast/Lynn-Dickinson-thumb-.02-585x390.jpg',
   },
 ];
