@@ -9,7 +9,7 @@
     "weekCovered": "2026-06-27/2026-07-03"
   },
   "leadStory": {
-    "headline": "Study of 21,559 Firms Finds Heaviest AI Adopters Grew Headcount 10.2 Percent",
+    "headline": "The Companies Betting Biggest on AI Are Hiring More, Not Less",
     "summary": "Companies that invested most heavily in A.I. hired more workers than those that invested little, according to new research from financial technology company Ramp and workforce intelligence firm Revelio Labs, USA Today reported. The researchers compared A.I. spending and employee data at 21,559 U.S. firms over a two-year period. 'Low-intensity' adopters, spending an average of $2.78 per employee on A.I., saw little change in headcount, while 'high-intensity' adopters spending an average of $33.67 per employee grew headcount by 10.2 percent — and entry-level headcount at those firms rose 12 percent, contradicting predictions that young or inexperienced workers face the greatest risk. The findings land amid anxiety: 53 percent of Americans worry A.I. could cost them or someone in their household a job, according to a Reuters/Ipsos poll released in June. Ramp Economics Lab lead economist Ara Kharazian cautioned that the sample skews toward tech-forward companies and white-collar roles, excluding drivers or manufacturing roles, and that headcounts could still change beyond the two-year window; the researchers stress the findings show correlation, not proof that A.I. spending causes hiring. Kharazian said the work matters because earlier research focused on A.I.-exposed industries and could not compare A.I. spending with staffing levels at the same firms. He noted that most firms using A.I. do not see results today; gains appear only after sustained, high-intensity use. Kory Kantenga, head of economics for the Americas at LinkedIn, said the hiring pattern makes sense: companies with money to spend on new technology also have money to spend on labor, growing A.I. startups need human resources, marketing, and sales staff, and new growth opportunities require more workers. Asked what he would tell a graduating job seeker, Kharazian said he would advise joining the company going all in on A.I. The research was also covered by NBC News.",
     "source": "USA Today",
     "sourceUrl": "https://www.usatoday.com/story/money/economy/2026/07/01/firms-heavily-invested-ai-hired-more/90753113007/",
@@ -88,7 +88,7 @@
     "version": "3.1",
     "format": "straight-news",
     "cadence": "weekly",
-    "publishedAt": "2026-07-07T18:28:10.227Z",
+    "publishedAt": "2026-07-07T22:08:17.201Z",
     "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
   }
 }
