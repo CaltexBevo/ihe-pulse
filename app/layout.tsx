@@ -18,12 +18,31 @@ export const metadata: Metadata = {
     "AI tools for educators",
     "teaching with AI",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "Innovating Higher Ed",
     description: "AI-powered intelligence for higher education",
     url: "https://www.innovatinghighered.com",
     siteName: "Innovating Higher Ed",
     type: "website",
+    images: [
+      {
+        url: "https://www.innovatinghighered.com/og-image.png",
+        width: 1024,
+        height: 1024,
+        alt: "Innovating Higher Ed",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    images: ["https://www.innovatinghighered.com/og-image.png"],
   },
 };
 
