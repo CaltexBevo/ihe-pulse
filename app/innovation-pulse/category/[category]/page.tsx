@@ -11,6 +11,7 @@ import {
   type V4Category,
 } from "@/lib/data/innovation-pulse";
 import CategoryStoriesGrid from "./CategoryStoriesGrid";
+import { pageMetadata } from "@/lib/og";
 
 export async function generateStaticParams() {
   return V4_CATEGORIES.map((cat) => ({
@@ -26,10 +27,11 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     return { title: "Category Not Found | Innovation Pulse" };
   }
 
-  return {
+  return pageMetadata({
     title: `${category} | Innovation Pulse`,
     description: V4_CATEGORY_DESCRIPTIONS[category],
-  };
+    path: `/innovation-pulse/category/${slug}`,
+  });
 }
 
 export default async function CategoryArchivePage({ params }: { params: Promise<{ category: string }> }) {

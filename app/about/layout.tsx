@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/og';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Educator Tools — Templates & Resources | Innovating Higher Ed',
+  title: 'About | Innovating Higher Ed',
   description:
-    'Download ready-to-use syllabus templates, assessment rubrics, AI policy guides, and workshop materials for higher education faculty.',
-  path: '/educator-tools',
+    'Built by educators, powered by AI, made for you. Meet the team behind Innovating Higher Ed and the daily briefing trusted by higher ed professionals across the country.',
+  path: '/about',
 });
 
 export default function Layout({ children }: { children: React.ReactNode }) {

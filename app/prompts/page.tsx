@@ -1,11 +1,13 @@
 import Link from "next/link";
 import PromptNavigatorSections from "@/components/PromptNavigatorSections";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Prompt Navigator | Innovating Higher Ed",
   description:
     "AI prompts built for higher education. Tested, refined, and rated by real faculty. Every prompt is designed for a specific teaching or administrative task.",
-};
+  path: "/prompts",
+});
 
 // Sample prompt data
 const featuredPrompt = {

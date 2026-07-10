@@ -8,11 +8,13 @@ import {
   generateSlug,
 } from "@/lib/data/innovation-pulse";
 import LeadStoriesClient from "./LeadStoriesClient";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Lead Stories — The Innovation Pulse | Innovating Higher Ed",
   description: "Archive of all lead stories from The Innovation Pulse daily AI briefing for higher education.",
-};
+  path: "/innovation-pulse/stories",
+});
 
 export default function LeadStoriesPage() {
   const allEpisodes = getAllEpisodes();

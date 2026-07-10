@@ -8,11 +8,13 @@ import {
   V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
 import AllEpisodesClient from "./AllEpisodesClient";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "All Episodes | Innovating Higher Ed",
   description: "Every episode, every story. Browse the complete archive of The Innovation Pulse daily A.I. briefings for higher education.",
-};
+  path: "/innovation-pulse/archive",
+});
 
 // Group episodes by week
 interface WeekGroup {

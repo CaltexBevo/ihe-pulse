@@ -15,6 +15,7 @@ import {
   mapToV4Category,
   V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
+import { pageMetadata } from "@/lib/og";
 
 // ISR: Revalidate every 60 seconds so new episodes appear quickly
 export const revalidate = 60;
@@ -39,10 +40,12 @@ export async function generateMetadata({
   if (!episode) {
     return { title: "Briefing Not Found | Innovation Pulse" };
   }
-  return {
+  return pageMetadata({
     title: `${formatPulseDate(date)} | Innovation Pulse`,
     description: episode.editorialHook,
-  };
+    path: `/innovation-pulse/${date}`,
+    type: "article",
+  });
 }
 
 // Default fallback images

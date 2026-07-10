@@ -10,6 +10,7 @@ import {
   generateSlug,
 } from "@/lib/data/innovation-pulse";
 import StoryPageClient from "./StoryPageClient";
+import { pageMetadata } from "@/lib/og";
 
 // V4 Category colors and slugs — palette-locked (no green, teal, coral, blue)
 const V4_CATEGORY_CONFIG: Record<string, { color: string; slug: string }> = {
@@ -59,10 +60,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!story) {
     return { title: "Story Not Found | Innovation Pulse" };
   }
-  return {
+  return pageMetadata({
     title: `${story.title} | Innovation Pulse`,
     description: story.summary,
-  };
+    path: `/innovation-pulse/story/${slug}`,
+    type: "article",
+  });
 }
 
 export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -1,9 +1,11 @@
 import { Metadata } from "next";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy | Innovating Higher Ed",
   description: "Privacy policy for Innovating Higher Ed website and services.",
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPolicyPage() {
   return (

@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { episodes } from "@/lib/data/episodes";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Podcast | Innovating Higher Ed",
   description:
     "Real talk with educators, administrators, and builders who are figuring out how AI actually works in higher education.",
-};
+  path: "/podcast",
+});
 
 const platforms = [
   { name: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335", icon: "🎧" },

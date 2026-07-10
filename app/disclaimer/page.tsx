@@ -1,9 +1,11 @@
 import { Metadata } from "next";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Disclaimer | Innovating Higher Ed",
   description: "Disclaimer for Innovating Higher Ed website and services.",
-};
+  path: "/disclaimer",
+});
 
 export default function DisclaimerPage() {
   return (

@@ -1,9 +1,11 @@
 import { Metadata } from "next";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "AI Disclosure | Innovating Higher Ed",
   description: "How Innovating Higher Ed uses artificial intelligence in content creation and curation.",
-};
+  path: "/ai-disclosure",
+});
 
 export default function AIDisclosurePage() {
   return (

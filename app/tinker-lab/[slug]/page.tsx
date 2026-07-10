@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Clock, FlaskConical, Lightbulb, User, Tag } from 'lucide-react';
 import { posts } from '@/lib/data/posts';
+import { pageMetadata } from '@/lib/og';
 
 function getPodbeanUrl(podbeanId: string) {
   return `https://www.podbean.com/player-v2/?i=${podbeanId}&from=pb6admin&share=1&download=1&rtl=0&fonts=Arial&skin=60a0c8&font-color=auto&logo_link=episode_page&btn-skin=1b1b1b`;
@@ -10,6 +11,22 @@ function getPodbeanUrl(podbeanId: string) {
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
+
+  if (!post) {
+    return { title: 'Post Not Found | Innovating Higher Ed' };
+  }
+
+  return pageMetadata({
+    title: `${post.title} | Innovating Higher Ed`,
+    description: post.excerpt,
+    path: `/tinker-lab/${slug}`,
+    type: 'article',
+  });
 }
 
 export default async function PostDetailPage({ params }: { params: Promise<{ slug: string }> }) {

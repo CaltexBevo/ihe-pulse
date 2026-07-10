@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { episodes } from '@/lib/data/episodes';
+import { pageMetadata } from '@/lib/og';
 
 function getPodbeanUrl(podbeanId: string) {
   return `https://www.podbean.com/player-v2/?i=${podbeanId}&from=pb6admin&share=1&download=1&rtl=0&fonts=Arial&skin=60a0c8&font-color=auto&logo_link=episode_page&btn-skin=1b1b1b`;
@@ -9,6 +10,22 @@ function getPodbeanUrl(podbeanId: string) {
 
 export function generateStaticParams() {
   return episodes.map((ep) => ({ slug: ep.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const episode = episodes.find((ep) => ep.slug === slug);
+
+  if (!episode) {
+    return { title: 'Episode Not Found | Innovating Higher Ed' };
+  }
+
+  return pageMetadata({
+    title: `${episode.title} | Innovating Higher Ed`,
+    description: episode.description,
+    path: `/podcast/${slug}`,
+    type: 'article',
+  });
 }
 
 const showPlatforms = [

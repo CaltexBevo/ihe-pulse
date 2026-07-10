@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
+import { pageMetadata } from '@/lib/og';
 import {
   ArrowLeft,
   ExternalLink,
@@ -83,10 +84,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const app = getAppBySlug(slug);
   if (!app) return {};
-  return {
+  return pageMetadata({
     title: `${app.name} — AI Directory | Innovating Higher Ed`,
     description: app.tagline,
-  };
+    path: `/ai-directory/${slug}`,
+  });
 }
 
 // ── Components ──────────────────────────────────────────────

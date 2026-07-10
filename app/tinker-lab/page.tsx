@@ -1,12 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { posts, postTags } from "@/lib/data/posts";
+import { pageMetadata } from "@/lib/og";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Tinker Lab | Innovating Higher Ed",
   description:
     "We test the tools so you don't have to. Every experiment shows real results — what worked, what didn't, and whether it's worth your time.",
-};
+  path: "/tinker-lab",
+});
 
 function getTypeColor(tag: string) {
   switch (tag) {
