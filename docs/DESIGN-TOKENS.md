@@ -25,7 +25,8 @@ Minimum target: WCAG 2.1 Level AA.
 | Token | Hex | Role | Contrast on #08080f |
 |-------|-----|------|--------------------|
 | --cyan | #00d4ff | Primary interactive / section labels / links / default pills | 13.6:1 AAA |
-| --magenta | #b040a8 | Premium / lead / rare | 5.2:1 AA |
+| --magenta | #b040a8 | Premium / lead / rare — backgrounds, fills, borders only | 5.2:1 AA |
+| --magenta-text | color-mix(in srgb, var(--magenta) 70%, white) ≈ #C879C2 | Magenta-accent TEXT (headings, labels, small text) | 6.3:1 AA |
 | --purple | #a78bfa | Taxonomy slot (Case Study, Experiment, Intermediate) | 8.3:1 AAA |
 | --amber | #f59e0b | Taxonomy slot (Advanced, Ethical AI) | 10.1:1 AAA |
 | --text | #f0ede8 | Primary text | 16.8:1 AAA |
@@ -40,6 +41,7 @@ Prepared but disabled until a light-mode logo asset exists.
 |-------|-----|--------------------|
 | --cyan | #0e7490 | 5.4:1 AA |
 | --magenta | #a21caf | 6.2:1 AA |
+| --magenta-text | var(--magenta) (#a21caf — already AA on white, no mix needed) | 6.2:1 AA |
 | --purple | #6d28d9 | 7.5:1 AAA |
 | --amber | #b45309 | 6.1:1 AA |
 | --text | #0f172a | 17.1:1 AAA |
@@ -65,6 +67,8 @@ Prepared but disabled until a light-mode logo asset exists.
 8. Contrast must be verified AA on both themes.
 9. Theme-aware imagery: logos, covers, gradients need light variants when dark version fails on white.
 10. Focus indicators visible in both themes — 2px `var(--cyan)` outline with 2px offset.
+11. **Magenta text uses `--magenta-text`, never raw `--magenta`.** Raw `--magenta` (#b040a8) is 5.2:1 on the page background but drops below AA on raised card surfaces. Any magenta-colored heading, label, or small text uses `var(--magenta-text)`. Raw `--magenta` remains correct for backgrounds, fills, borders, and gradients. Text ON a magenta background is white (`#ffffff` on #b040a8 = 6.3:1 AA). Reference: the `isMagenta`/`accentText` pattern in `app/ai-directory/[slug]/page.tsx`.
+12. **Feedback color convention: status feedback is cyan, never amber.** Amber is reserved exclusively for taxonomy (Advanced difficulty, Ethical AI lens). Transient UI status messages — "Copied!", "Copy failed", loading states — use cyan. Reference: `components/ShareBar.tsx`, `app/prompts/PromptTemplatesClient.tsx`.
 
 ## CSS Variable Export (Canonical)
 
@@ -77,6 +81,7 @@ Prepared but disabled until a light-mode logo asset exists.
   --cyan-strong: rgba(0, 212, 255, 0.30);
   --magenta: #b040a8;
   --magenta-soft: rgba(176, 64, 168, 0.12);
+  --magenta-text: color-mix(in srgb, var(--magenta) 70%, white);
   --purple: #a78bfa;
   --purple-soft: rgba(167, 139, 250, 0.15);
   --amber: #f59e0b;
@@ -103,6 +108,7 @@ Prepared but disabled until a light-mode logo asset exists.
   --cyan-strong: rgba(14, 116, 144, 0.25);
   --magenta: #a21caf;
   --magenta-soft: rgba(162, 28, 175, 0.08);
+  --magenta-text: var(--magenta);
   --purple: #6d28d9;
   --purple-soft: rgba(109, 40, 217, 0.10);
   --amber: #b45309;
@@ -128,3 +134,4 @@ Prepared but disabled until a light-mode logo asset exists.
 | Date | Change | By |
 |------|--------|-----|
 | 2026-04-17 | Initial palette system, WCAG AA verified, dark-only ship | CalTex + Claude |
+| 2026-07-16 | Added --magenta-text token (AA text-safe magenta, both themes), rule 11 (magenta text usage), rule 12 (cyan feedback / amber taxonomy-only convention) | Founder |

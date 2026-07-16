@@ -411,6 +411,7 @@ After pushing changes to Vercel:
 | 2026-07-15 | Section 5: HTML tools verified migrated (no longer "BROKEN"), back-links added | System (UX audit) |
 | 2026-07-15 | Section 10: Added /feed.xml RSS route + static tools; route annotations | System (UX audit) |
 | 2026-07-15 | Added Section 18: Recurring bug classes (dead server-component UI, CSS var alpha-concat, redirect self-loops, RSC payload, search convention) | System (UX audit) |
+| 2026-07-16 | Section 18: Added 18.6 (audio play() AbortError latch) and 18.7 (XSS escaping in static HTML tools) as PERMANENT RULES | Founder |
 
 ---
 
@@ -474,3 +475,23 @@ Next.js App Router pages are **server components by default**. `<button>`, `<inp
 
 ### 18.5 Search UI convention
 Client-side search boxes (archive, stories) share one look: card-style box, magnifier SVG, `aria-label`, `w-[220px]` input, mono match-count with `aria-live="polite"`, and an explicit empty state that echoes the query. Reuse it, don't invent variants.
+
+### 18.6 Audio play() error latch — PERMANENT RULE (added 2026-07-15 UX audit)
+`audio.play()` returns a promise that rejects with **AbortError** whenever a `pause()` call interrupts it (fast play/pause clicking, switching episodes, unmount). Treating that rejection as a fatal error permanently bricked FIVE players: the component latched an `audioError` state that never cleared, leaving a dead "Audio unavailable" UI until page reload.
+
+**Rules:**
+- Every `audio.play()` call MUST handle the returned promise: `.catch((err) => { ... })` or try/await/catch. An unhandled rejection is a console error and a potential crash.
+- In the catch, **`AbortError` MUST be ignored** — it is normal lifecycle noise, not a failure: `if (err.name === "AbortError") return;`
+- Only non-Abort errors (e.g., `NotSupportedError`, network failures) may set an error state, and any error state MUST be cleared on the next successful play attempt — never latch permanently.
+- Reference implementations: `components/HomeHeroClient.tsx`, `components/HeroNowPlaying.tsx`, `components/EpisodeAudioPlayer.tsx`, `app/innovation-pulse/archive/AllEpisodesClient.tsx`, `app/innovation-pulse/story/[slug]/StoryPageClient.tsx`.
+- Any NEW audio player component MUST copy this pattern. Review gate: grep for `\.play()` — every hit needs an AbortError-aware catch.
+
+### 18.7 XSS escaping in static HTML tools — PERMANENT RULE (added 2026-07-15 UX audit)
+The standalone tools in `public/` (`QTI-quiz-builder.html`, `cor-checker.html`) build DOM strings from **user-pasted content** (quiz questions, filenames, URLs). Unescaped interpolation shipped three XSS injection points: attribute breakout via unescaped quotes, filename injection into innerHTML, and user data interpolated into inline `onclick` handlers.
+
+**Rules:**
+- ALL user-supplied strings interpolated into HTML **element content** MUST pass through an `escHtml()`-style helper that escapes at minimum: `&`, `<`, `>`.
+- ALL user-supplied strings interpolated into HTML **attribute values** MUST additionally escape `"` and `'` (attribute breakout). Use a dedicated `escAttr()` helper — content-escaping alone is NOT sufficient.
+- NEVER interpolate user data into inline event handlers (`onclick="..."`). Attach listeners via `addEventListener` and pass data through dataset attributes or closures.
+- These files are static and outside React's auto-escaping — they get NO framework protection. Any new static HTML tool added to `public/` MUST follow these rules before it ships, and any edit to an existing tool MUST re-verify all interpolation sites.
+- Reference implementations: `esc()` in `public/QTI-quiz-builder.html`, `escHtml()`/`escAttr()` in `public/cor-checker.html`.
