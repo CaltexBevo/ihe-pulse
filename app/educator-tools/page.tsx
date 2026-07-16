@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import PageTransition from '@/components/PageTransition';
+import { paletteFor } from '@/lib/palette';
 import {
   BookOpen,
   ExternalLink,
@@ -28,7 +29,6 @@ interface EducatorTool {
   platformUrl: string;
   cta: string;
   icon: typeof FileText;
-  accent: string;
   attribution?: string;
 }
 
@@ -48,7 +48,6 @@ const educatorTools: EducatorTool[] = [
     platformUrl: 'https://innovatinghighered.com/QTI-quiz-builder.html',
     cta: 'Launch Quiz Builder',
     icon: ListChecks,
-    accent: '#a78bfa',
     attribution: 'A Cyber Doctor · Norma Jones Build',
   },
   {
@@ -64,7 +63,6 @@ const educatorTools: EducatorTool[] = [
     platformUrl: 'https://innovatinghighered.com/cor-checker.html',
     cta: 'Launch COR Checker',
     icon: FileText,
-    accent: '#f59e0b',
     attribution: 'A Cyber Doctor · Norma Jones Build',
   },
   // PlayLab tools
@@ -82,7 +80,6 @@ const educatorTools: EducatorTool[] = [
     platformUrl: 'https://www.playlab.ai/project/cmcxiu07005zbm20uf1mawflg',
     cta: 'Launch Syllabot',
     icon: Shield,
-    accent: '#00d4ff',
   },
   {
     title: 'AI Redesign',
@@ -98,7 +95,6 @@ const educatorTools: EducatorTool[] = [
     platformUrl: 'https://www.playlab.ai/project/cma2sos8l1wkbrgigtms5xuxh',
     cta: 'Launch AI Redesign',
     icon: ClipboardCheck,
-    accent: '#c850c0',
   },
   {
     title: 'EquiGrade Mentor',
@@ -114,32 +110,31 @@ const educatorTools: EducatorTool[] = [
     platformUrl: 'https://www.playlab.ai/project/cmb1835ju01w3opiglm8j6par',
     cta: 'Launch EquiGrade',
     icon: Scale,
-    accent: '#00d4ff',
   },
 ];
 
 /* ============================================
    Tool Card component
    ============================================ */
-function ToolCard({ tool }: { tool: EducatorTool }) {
+function ToolCard({ tool, accent }: { tool: EducatorTool; accent: string }) {
   const Icon = tool.icon;
 
   return (
     <div
       className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] overflow-hidden transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)] flex flex-col"
-      style={{ '--tool-accent': tool.accent } as React.CSSProperties}
+      style={{ '--tool-accent': accent } as React.CSSProperties}
     >
       {/* Accent strip at top */}
-      <div className="h-[3px]" style={{ background: tool.accent }} />
+      <div className="h-[3px]" style={{ background: accent }} />
 
       <div className="p-6 flex flex-col flex-1">
         {/* Header: icon + title + platform */}
         <div className="flex items-start gap-4 mb-4">
           <div
             className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ background: `${tool.accent}15` }}
+            style={{ background: `color-mix(in srgb, ${accent} 12%, transparent)` }}
           >
-            <Icon size={24} style={{ color: tool.accent }} />
+            <Icon size={24} style={{ color: accent }} />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-[1.2rem] font-bold text-[var(--text)] mb-1">
@@ -174,7 +169,7 @@ function ToolCard({ tool }: { tool: EducatorTool }) {
                 <CheckCircle
                   size={16}
                   className="flex-shrink-0 mt-0.5"
-                  style={{ color: tool.accent }}
+                  style={{ color: accent }}
                 />
                 {feature}
               </li>
@@ -187,11 +182,7 @@ function ToolCard({ tool }: { tool: EducatorTool }) {
           href={tool.platformUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 w-full py-3 px-5 rounded-[10px] font-semibold text-[0.88rem] transition-all duration-200 hover:opacity-90"
-          style={{
-            background: tool.accent,
-            color: tool.accent === '#f59e0b' ? '#000' : '#fff',
-          }}
+          className="inline-flex items-center justify-center gap-2 w-full py-3 px-5 rounded-[10px] font-semibold text-[0.88rem] text-white transition-all duration-200 hover:opacity-90 bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]"
         >
           {tool.cta}
           <ExternalLink size={16} />
@@ -238,7 +229,7 @@ export default function EducatorToolsPage() {
           <section className="mb-16">
             <div className="grid md:grid-cols-2 gap-6">
               {educatorTools.map((tool, i) => (
-                <ToolCard key={i} tool={tool} />
+                <ToolCard key={i} tool={tool} accent={paletteFor(i)} />
               ))}
             </div>
           </section>

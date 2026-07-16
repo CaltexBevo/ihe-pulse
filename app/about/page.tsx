@@ -50,7 +50,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="text-[1.1rem] text-[var(--text-secondary)] leading-relaxed max-w-2xl mx-auto">
-              Two people. One mission. A daily briefing trusted by higher ed professionals across the country.
+              Two people. One mission. An A.I. briefing trusted by higher ed professionals across the country.
             </p>
           </div>
         </div>

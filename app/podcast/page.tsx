@@ -36,8 +36,8 @@ export default function PodcastPage() {
     <div className="min-h-screen">
       {/* Page Header */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pt-10 pb-6 animate-[fadeUp_0.7s_ease-out_both]">
-        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--orange)] mb-2 flex items-center gap-2">
-          <span className="w-[5px] h-[5px] rounded-full bg-[var(--orange)]" />
+        <div className="font-mono text-[0.7rem] tracking-[0.12em] uppercase text-[var(--cyan)] mb-2 flex items-center gap-2">
+          <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
           PODCAST
         </div>
         <h1 className="page-title mb-3">
@@ -66,11 +66,11 @@ export default function PodcastPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[var(--orange)] to-[var(--magenta)]" />
+                <div className="w-full h-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)]" />
               )}
               <div className="absolute inset-0 bg-gradient-to-r from-[rgba(8,8,15,0.4)] to-[rgba(8,8,15,0.1)]" />
               <div className="absolute top-5 left-5 flex gap-2">
-                <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[rgba(251,146,60,0.85)] text-white">
+                <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[var(--cyan)] text-[var(--bg)]">
                   Latest Episode
                 </span>
                 <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[rgba(255,255,255,0.12)] text-[var(--text)] backdrop-blur-[8px]">
@@ -81,7 +81,7 @@ export default function PodcastPage() {
 
             {/* Right - Content */}
             <div className="p-8 flex flex-col justify-center">
-              <div className="font-mono text-[0.62rem] text-[var(--orange)] tracking-[0.08em] uppercase mb-2">
+              <div className="font-mono text-[0.62rem] text-[var(--cyan)] tracking-[0.08em] uppercase mb-2">
                 {featuredEpisode.date}
               </div>
               <h2 className="font-sans text-[1.45rem] font-bold leading-[1.22] mb-3 group-hover:text-[var(--cyan)] transition-colors">
@@ -153,7 +153,7 @@ export default function PodcastPage() {
                     className="object-contain p-2"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-[var(--orange)] to-[var(--magenta)]" />
+                  <div className="w-full h-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)]" />
                 )}
               </div>
 
@@ -209,14 +209,14 @@ export default function PodcastPage() {
       {/* Subscribe CTA */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-10 grid md:grid-cols-2 gap-8 items-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--orange)] to-[var(--magenta)]" />
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
 
           <div>
             <h2 className="font-sans text-[1.5rem] font-bold mb-2">
               Subscribe to the Podcast
             </h2>
             <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.6]">
-              New episodes every Monday. Available wherever you listen to podcasts, or right here on the site.
+              Available wherever you listen to podcasts, or right here on the site.
             </p>
           </div>
 
@@ -242,7 +242,7 @@ export default function PodcastPage() {
       {/* Be Our Guest CTA */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--orange)] to-[var(--magenta)]" />
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
 
           <h2 className="font-sans text-[1.4rem] font-bold mb-2">
             Be Our Guest

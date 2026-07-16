@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { posts, postTags } from "@/lib/data/posts";
+import { posts } from "@/lib/data/posts";
 import { pageMetadata } from "@/lib/og";
 
 export const metadata = pageMetadata({
@@ -10,37 +10,24 @@ export const metadata = pageMetadata({
   path: "/tinker-lab",
 });
 
+// Palette-locked type colors (Rule 17.3): solid badges over imagery use
+// cyan / purple / magenta only. Amber is reserved for taxonomy.
 function getTypeColor(tag: string) {
   switch (tag) {
     case "Walkthrough":
-      return { bg: "rgba(74,222,128,0.85)", text: "#fff" };
+      return { bg: "var(--purple)", text: "var(--bg)" };
     case "Experiment":
-      return { bg: "rgba(0,212,255,0.85)", text: "#08080f" };
+      return { bg: "var(--cyan)", text: "var(--bg)" };
     case "Comparison":
-      return { bg: "rgba(200,80,192,0.85)", text: "#fff" };
+      return { bg: "var(--magenta)", text: "white" };
     case "Challenge":
-      return { bg: "rgba(251,146,60,0.85)", text: "#fff" };
+      return { bg: "var(--cyan)", text: "var(--bg)" };
     case "Opinion":
-      return { bg: "rgba(167,139,250,0.85)", text: "#fff" };
+      return { bg: "var(--purple)", text: "var(--bg)" };
     default:
-      return { bg: "rgba(255,255,255,0.12)", text: "var(--text)" };
+      return { bg: "var(--surface)", text: "var(--text)" };
   }
 }
-
-function getDifficultyStyle(level: string) {
-  switch (level) {
-    case "Beginner":
-      return { bg: "var(--green-dim)", color: "var(--green)" };
-    case "Intermediate":
-      return { bg: "var(--amber-dim)", color: "var(--amber)" };
-    case "Advanced":
-      return { bg: "var(--red-dim)", color: "var(--red)" };
-    default:
-      return { bg: "var(--surface)", color: "var(--text-muted)" };
-  }
-}
-
-const filters = ["All", "Experiments", "Walkthroughs", "Comparisons", "Challenges"];
 
 export default function TinkerLabPage() {
   const featuredPost = posts.find((p) => p.featured) || posts[0];
@@ -85,11 +72,8 @@ export default function TinkerLabPage() {
 
               {/* Badges */}
               <div className="absolute top-5 left-5 flex gap-2">
-                <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[rgba(0,212,255,0.85)] text-[#08080f]">
+                <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[var(--cyan)] text-[var(--bg)]">
                   Latest Experiment
-                </span>
-                <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[rgba(255,255,255,0.12)] text-[var(--text)] backdrop-blur-[8px]">
-                  Beginner Friendly
                 </span>
               </div>
 
@@ -114,10 +98,6 @@ export default function TinkerLabPage() {
               </p>
               <div className="flex items-center gap-3 font-mono text-[0.65rem] text-[var(--text-muted)] mb-5 flex-wrap">
                 <span className="text-[var(--cyan)]">{featuredPost.readTime}</span>
-                <span>·</span>
-                <span>Beginner</span>
-                <span>·</span>
-                <span>AI Ethics & Creativity</span>
               </div>
 
               {/* Topics */}
@@ -147,33 +127,6 @@ export default function TinkerLabPage() {
           </Link>
         </div>
       )}
-
-      {/* Type Filter Pills */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-8 flex items-center gap-2 flex-wrap">
-        {filters.map((filter, i) => (
-          <button
-            key={filter}
-            className={`font-mono text-[0.65rem] font-medium px-3 py-1.5 rounded-full border transition-all duration-200 ${
-              i === 0
-                ? "bg-[rgba(255,255,255,0.08)] text-[var(--text)] border-[rgba(255,255,255,0.15)]"
-                : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text)]"
-            }`}
-          >
-            {filter}
-          </button>
-        ))}
-
-        {/* Difficulty pills */}
-        <span className="mx-2 text-[var(--border)]">|</span>
-        {["Beginner", "Intermediate", "Advanced"].map((level) => (
-          <button
-            key={level}
-            className="font-mono text-[0.65rem] font-medium px-3 py-1.5 rounded-full border transition-all duration-200 border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text)]"
-          >
-            {level}
-          </button>
-        ))}
-      </div>
 
       {/* Experiment Grid - 3 Columns with Type Badges */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
@@ -216,17 +169,16 @@ export default function TinkerLabPage() {
 
                 {/* Body */}
                 <div className="p-4">
-                  {/* Difficulty + Category tags */}
+                  {/* Topic tags (from real post data) */}
                   <div className="flex gap-2 mb-3 flex-wrap">
-                    <span
-                      className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px]"
-                      style={getDifficultyStyle("Beginner")}
-                    >
-                      Beginner
-                    </span>
-                    <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[rgba(14,165,160,0.12)] text-[var(--teal)]">
-                      Course Design
-                    </span>
+                    {post.topics?.slice(0, 2).map((topic) => (
+                      <span
+                        key={topic}
+                        className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--cyan-dim)] text-[var(--cyan)]"
+                      >
+                        {topic}
+                      </span>
+                    ))}
                   </div>
 
                   {/* Title - DM Sans Bold */}
@@ -250,15 +202,6 @@ export default function TinkerLabPage() {
           })}
         </div>
 
-        {/* Load More */}
-        <div className="text-center mt-8">
-          <button
-            aria-label="Load more experiments"
-            className="font-mono text-[0.72rem] text-[var(--cyan)] px-6 py-2.5 rounded-[8px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] hover:border-[rgba(0,212,255,0.3)] transition-all tracking-[0.04em]"
-          >
-            Load more experiments
-          </button>
-        </div>
       </div>
 
       {/* Suggest Experiment CTA */}
@@ -272,7 +215,12 @@ export default function TinkerLabPage() {
           <p className="text-[0.88rem] text-[var(--text-secondary)] max-w-[500px] mx-auto mb-6">
             Want us to test a specific AI tool, compare platforms, or try something wild? Tell us what you want to see in the lab.
           </p>
-          <button className="btn-primary">Suggest an Experiment</button>
+          <a
+            href="mailto:hello@innovatinghighered.com?subject=Experiment%20idea%20for%20the%20Tinker%20Lab"
+            className="btn-primary inline-block"
+          >
+            Suggest an Experiment
+          </a>
         </div>
       </div>
     </div>

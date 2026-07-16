@@ -1,11 +1,11 @@
-import Link from "next/link";
 import PromptNavigatorSections from "@/components/PromptNavigatorSections";
+import PromptTemplatesClient, { CopyPromptButton } from "./PromptTemplatesClient";
 import { pageMetadata } from "@/lib/og";
 
 export const metadata = pageMetadata({
   title: "Prompt Navigator | Innovating Higher Ed",
   description:
-    "AI prompts built for higher education. Tested, refined, and rated by real faculty. Every prompt is designed for a specific teaching or administrative task.",
+    "AI prompts built for higher education. Every prompt is designed for a specific teaching or administrative task — not generic templates.",
   path: "/prompts",
 });
 
@@ -13,7 +13,7 @@ export const metadata = pageMetadata({
 const featuredPrompt = {
   title: "Generate Discussion Questions That Actually Spark Debate",
   description:
-    "Creates tension-based discussion questions from any reading that students actually want to argue about — not just answer. Tested across 30 courses with consistently higher engagement than generic questions.",
+    "Creates tension-based discussion questions from any reading that students actually want to argue about — not just answer.",
   difficulty: "Beginner",
   category: "Discussion Design",
   prompt: `Read this [text/chapter/article]. Identify the central tension or most debatable claim the author makes. Then generate 5 discussion questions that force students to take a side on that tension. Each question should: (1) be arguable from at least two perspectives, (2) connect to students' lived experience, and (3) resist a simple "right answer." Format as numbered questions with a one-line note explaining what makes each one productive.`,
@@ -35,13 +35,12 @@ const prompts = [
       "Generates detailed, constructive student feedback aligned to your specific rubric. You review and personalize before sending.",
     difficulty: "Beginner",
     category: "Feedback",
-    trending: true,
     preview: `"Using this rubric [paste], generate detailed feedback for this student submission [paste]. Score each criterion and provide specific, constructive comments that explain what was done well and how to improve..."`,
   },
   {
     title: "Syllabus FAQ Bot Builder",
     description:
-      'Turns your syllabus into a Q&A knowledge base students can query. Reduces repetitive "Is this on the exam?" emails by 80%.',
+      'Turns your syllabus into a Q&A knowledge base students can query. Cuts down on repetitive "Is this on the exam?" emails.',
     difficulty: "Beginner",
     category: "Course Design",
     isNew: true,
@@ -61,7 +60,6 @@ const prompts = [
       "Creates structured peer review worksheets tailored to your specific assignment type and learning goals.",
     difficulty: "Beginner",
     category: "Writing",
-    trending: true,
     preview: `"For this assignment [paste description], create a peer review guide with 8-10 specific questions students should answer about their partner's work. Questions should focus on [argument quality / evidence / structure]..."`,
   },
   {
@@ -112,19 +110,6 @@ const categories = [
 
 const difficulties = ["All Levels", "Beginner", "Intermediate", "Advanced"];
 
-function getDifficultyColor(difficulty: string) {
-  switch (difficulty) {
-    case "Beginner":
-      return { bg: "var(--green-dim)", color: "var(--green)" };
-    case "Intermediate":
-      return { bg: "var(--amber-dim)", color: "var(--amber)" };
-    case "Advanced":
-      return { bg: "var(--red-dim)", color: "var(--red)" };
-    default:
-      return { bg: "var(--surface)", color: "var(--text-muted)" };
-  }
-}
-
 export default function PromptsPage() {
   return (
     <div className="min-h-screen">
@@ -138,8 +123,8 @@ export default function PromptsPage() {
           AI Prompts Built for Higher Education
         </h1>
         <p className="text-[0.92rem] text-[var(--text-secondary)] max-w-[620px] leading-[1.6]">
-          Tested, refined, and rated by real faculty. Every prompt is designed
-          for a specific teaching or administrative task — not generic templates.
+          Every prompt is designed for a specific teaching or administrative
+          task — not generic templates.
         </p>
       </div>
 
@@ -152,17 +137,14 @@ export default function PromptsPage() {
             {/* Left - Info */}
             <div>
               <div className="flex gap-2 mb-3 flex-wrap">
-                <span
-                  className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px]"
-                  style={getDifficultyColor(featuredPrompt.difficulty)}
-                >
+                <span className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
                   {featuredPrompt.difficulty}
                 </span>
                 <span className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--purple-dim)] text-[var(--purple)]">
                   {featuredPrompt.category}
                 </span>
                 <span className="font-mono text-[0.55rem] font-semibold px-2 py-[3px] rounded-[4px] bg-[var(--amber-dim)] text-[var(--amber)]">
-                  Most Used This Week
+                  Featured
                 </span>
               </div>
               <h2 className="font-sans text-[1.4rem] font-bold leading-[1.22] mb-3">
@@ -171,9 +153,6 @@ export default function PromptsPage() {
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.65] mb-4">
                 {featuredPrompt.description}
               </p>
-              <div className="font-mono text-[0.62rem] text-[var(--text-muted)] flex gap-4">
-                <span>Updated Feb 14</span>
-              </div>
             </div>
 
             {/* Right - Prompt Text in Cyan Code Box */}
@@ -193,16 +172,12 @@ export default function PromptsPage() {
                   );
                 })}
               </div>
-              <button
-                aria-label="Copy prompt to clipboard"
+              <CopyPromptButton
+                text={featuredPrompt.prompt}
+                label="Copy prompt"
+                ariaLabel="Copy prompt to clipboard"
                 className="inline-flex items-center gap-2 font-mono text-[0.68rem] text-[var(--cyan)] px-4 py-2 rounded-[8px] bg-[var(--cyan-dim)] border border-[rgba(0,212,255,0.2)] hover:bg-[rgba(0,212,255,0.2)] transition-colors font-medium"
-              >
-                <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] stroke-current" fill="none" strokeWidth="2" aria-hidden="true">
-                  <rect x="9" y="9" width="13" height="13" rx="2" />
-                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                </svg>
-                Copy prompt
-              </button>
+              />
               <div className="mt-4 text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] p-3 bg-[rgba(200,80,192,0.04)] border-l-2 border-[var(--magenta)] rounded-r-[6px]">
                 <strong className="text-[var(--magenta)] font-semibold text-[0.6rem] font-mono tracking-[0.06em] uppercase block mb-1">
                   Pro tip
@@ -233,145 +208,12 @@ export default function PromptsPage() {
         </p>
       </div>
 
-      {/* Filters - Two Rows: Difficulty + Category */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-6">
-        {/* Difficulty Row with colored pills */}
-        <div className="flex flex-wrap items-center gap-3 mb-3">
-          <span className="font-mono text-[0.58rem] text-[var(--text-muted)] tracking-[0.08em] uppercase min-w-[60px]">
-            Difficulty
-          </span>
-          {difficulties.map((d, i) => {
-            const colors = getDifficultyColor(d);
-            const isActive = i === 0;
-            return (
-              <button
-                key={d}
-                className={`font-mono text-[0.62rem] font-medium px-3 py-1 rounded-full border transition-all duration-200 ${
-                  isActive
-                    ? "bg-[rgba(255,255,255,0.08)] text-[var(--text)] border-[rgba(255,255,255,0.15)]"
-                    : "border-[var(--border)] hover:border-[var(--border-hover)]"
-                }`}
-                style={
-                  !isActive && d !== "All Levels"
-                    ? {
-                        color: colors.color,
-                        borderColor: `${colors.color}30`,
-                      }
-                    : undefined
-                }
-              >
-                {d}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Category Row */}
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-[0.58rem] text-[var(--text-muted)] tracking-[0.08em] uppercase min-w-[60px]">
-            Category
-          </span>
-          {categories.map((c, i) => (
-            <button
-              key={c}
-              className={`font-mono text-[0.62rem] font-medium px-3 py-1 rounded-full border transition-all duration-200 ${
-                i === 0
-                  ? "bg-[rgba(255,255,255,0.08)] text-[var(--text)] border-[rgba(255,255,255,0.15)]"
-                  : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text)]"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Search */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-8">
-        <div className="flex items-center gap-2 bg-[var(--bg-card)] border border-[var(--border)] rounded-[10px] px-4 py-3 max-w-[400px]">
-          <svg className="w-4 h-4 text-[var(--text-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <circle cx="11" cy="11" r="8" />
-            <path d="M21 21l-4.35-4.35" />
-          </svg>
-          <input
-            type="text"
-            placeholder="Search prompts by keyword or task..."
-            aria-label="Search prompts"
-            className="bg-transparent border-none outline-none text-[0.82rem] text-[var(--text)] placeholder:text-[var(--text-muted)] flex-1"
-          />
-        </div>
-      </div>
-
-      {/* Prompt Grid */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {prompts.map((prompt, i) => (
-            <div
-              key={i}
-              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] cursor-pointer relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--purple)] to-[var(--cyan)]" />
-
-              {/* Tags */}
-              <div className="flex gap-2 mb-3 flex-wrap">
-                <span
-                  className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px]"
-                  style={getDifficultyColor(prompt.difficulty)}
-                >
-                  {prompt.difficulty}
-                </span>
-                <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--purple-dim)] text-[var(--purple)]">
-                  {prompt.category}
-                </span>
-                {prompt.trending && (
-                  <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--amber-dim)] text-[var(--amber)]">
-                    Trending
-                  </span>
-                )}
-                {prompt.isNew && (
-                  <span className="font-mono text-[0.5rem] font-semibold px-[6px] py-[2px] rounded-[3px] bg-[var(--cyan-dim)] text-[var(--cyan)]">
-                    New
-                  </span>
-                )}
-              </div>
-
-              {/* Title - DM Sans Bold */}
-              <h3 className="font-sans text-[1rem] font-bold leading-[1.22] mb-2">
-                {prompt.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.55] mb-3">
-                {prompt.description}
-              </p>
-
-              {/* Preview in cyan box */}
-              <div className="font-mono text-[0.68rem] text-[var(--cyan)] bg-[rgba(0,212,255,0.04)] border border-[rgba(0,212,255,0.08)] rounded-[7px] px-3 py-2 leading-[1.5] mb-3 line-clamp-3">
-                {prompt.preview}
-              </div>
-
-              {/* Footer with copy button */}
-              <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)] font-mono text-[0.55rem] text-[var(--text-muted)]">
-                <button
-                  aria-label={`Copy ${prompt.title} prompt`}
-                  className="ml-auto text-[var(--cyan)] px-2 py-[3px] rounded-[4px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] transition-colors"
-                >
-                  Copy
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <button
-            aria-label="Load more prompts"
-            className="font-mono text-[0.72rem] text-[var(--cyan)] px-6 py-2.5 rounded-[8px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] hover:border-[rgba(0,212,255,0.3)] transition-all tracking-[0.04em]"
-          >
-            Load more prompts
-          </button>
-        </div>
-      </div>
+      {/* Filters + Search + Grid (interactive) */}
+      <PromptTemplatesClient
+        prompts={prompts}
+        categories={categories}
+        difficulties={difficulties}
+      />
 
       {/* Submit a Prompt CTA */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
@@ -385,7 +227,12 @@ export default function PromptsPage() {
             Built a prompt that works great in your classroom? Submit it to the
             Navigator and help other educators skip the trial and error.
           </p>
-          <button className="btn-primary">Submit a Prompt</button>
+          <a
+            href="mailto:hello@innovatinghighered.com?subject=Prompt%20submission%20for%20the%20Prompt%20Navigator"
+            className="btn-primary inline-block"
+          >
+            Submit a Prompt
+          </a>
         </div>
       </div>
     </div>

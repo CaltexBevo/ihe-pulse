@@ -107,12 +107,12 @@ Tools appear in this exact order (5 tools total):
 1. **Canvas Quiz Builder (QTI Export)**
    - URL: https://www.innovatinghighered.com/QTI-quiz-builder.html
    - Attribution: "A Cyber Doctor · Norma Jones Build"
-   - ⚠️ MIGRATION NOTE (Jun 2026): This HTML file was on the old WordPress host. Must be retrieved from cPanel (liquidflicks.com) and placed in ihe-pulse/public/ for Vercel to serve it. BROKEN until migrated.
+   - ✅ MIGRATED (verified 2026-07-15): file lives at `public/QTI-quiz-builder.html` and serves correctly. Has a "Back to Innovating Higher Ed" link injected after `<body>`. The tool keeps its own light "paper/ink" theme — do NOT retheme it to Electric Dusk without founder approval.
 
 2. **COR Checker**
    - URL: https://www.innovatinghighered.com/cor-checker.html
    - Attribution: "A Cyber Doctor · Norma Jones Build"
-   - ⚠️ MIGRATION NOTE (Jun 2026): Same — retrieve from cPanel and place in ihe-pulse/public/. BROKEN until migrated.
+   - ✅ MIGRATED (verified 2026-07-15): file lives at `public/cor-checker.html` and serves correctly. Has a "Back to Innovating Higher Ed" link injected after `<body>`. Keeps its own standalone theme.
 
 3. **Syllabot**
    - URL: https://www.playlab.ai/project/cmcxiu07005zbm20uf1mawflg
@@ -251,14 +251,18 @@ These accessibility features MUST be maintained:
 - `/be-our-guest` (podcast guest application)
 
 ### Dynamic Routes
-- `/innovation-pulse/[date]` (individual episodes)
-- `/innovation-pulse/stories` (lead story archive)
-- `/innovation-pulse/story/[slug]` (individual stories)
+- `/innovation-pulse/[date]` (individual episodes — includes collapsible transcript + ShareBar)
+- `/innovation-pulse/stories` (lead story archive — client search)
+- `/innovation-pulse/story/[slug]` (individual stories — includes ShareBar)
 - `/innovation-pulse/category/[category]` (category pages)
-- `/innovation-pulse/archive` (full archive)
+- `/innovation-pulse/archive` (full archive — client search via ArchiveListClient)
 - `/ai-directory/[slug]` (individual tool pages)
 - `/podcast/[slug]` (individual episodes)
 - `/tinker-lab/[slug]` (individual experiments)
+
+### Feeds & Static Tools
+- `/feed.xml` (RSS 2.0 feed of all episodes — `app/feed.xml/route.ts`, registered in `app/layout.tsx` alternates.types; force-static)
+- `/QTI-quiz-builder.html`, `/cor-checker.html` (standalone tools in `public/`, own themes, back-link headers)
 
 ### Legal Pages
 - `/privacy` (Privacy Policy)
@@ -404,6 +408,9 @@ After pushing changes to Vercel:
 | 2026-05-29 | Section 10: Homepage now renders Innovation Pulse content | Founder |
 | 2026-05-29 | Section 13: Added Innovation Pulse components and CSS conventions | System |
 | 2026-06-19 | Sections 1,4,5,8,11: Post-migration cadence/footer/educator tools updates | Founder |
+| 2026-07-15 | Section 5: HTML tools verified migrated (no longer "BROKEN"), back-links added | System (UX audit) |
+| 2026-07-15 | Section 10: Added /feed.xml RSS route + static tools; route annotations | System (UX audit) |
+| 2026-07-15 | Added Section 18: Recurring bug classes (dead server-component UI, CSS var alpha-concat, redirect self-loops, RSC payload, search convention) | System (UX audit) |
 
 ---
 
@@ -435,3 +442,35 @@ Use:
 Amber is reserved for taxonomy (Advanced difficulty, Ethical AI). Not for decorative rotation.
 
 If a new category appears that isn't in CATEGORY_PALETTE, add it with cyan as default and queue a decision via Decision Queue if it needs a different color.
+
+---
+
+## 18. RECURRING BUG CLASSES (added 2026-07-15 UX audit)
+
+These bug patterns each appeared 3+ times across the codebase. Check for them in every sprint.
+
+### 18.1 Dead server-component UI (App Router)
+Next.js App Router pages are **server components by default**. `<button>`, `<input>`, and `<select>` elements render fine in a server component but do NOTHING — no onClick, no onChange, no state. This shipped broken UI three separate times (story page share buttons, episode page share buttons, podcast page filters/search).
+
+**Rules:**
+- Any interactive element (button, input, select, toggle) MUST live in a `"use client"` component.
+- Never add decorative buttons "for later." If it looks clickable, it must work.
+- Pattern to follow: server page fetches data, passes plain-object props to a small client component (see `components/ShareBar.tsx`, `app/innovation-pulse/archive/ArchiveListClient.tsx`, `app/innovation-pulse/stories/LeadStoriesClient.tsx`).
+- Known remaining instance: `app/podcast/page.tsx` filter pills + search input are still dead (server component). Fix requires extracting a client component — queued, not yet approved.
+
+### 18.2 Invalid CSS: alpha-hex appended to CSS variables
+`` style={{ backgroundColor: `${someCssVarString}20` }} `` produces `var(--cyan)20` — **invalid CSS, silently no background**. Found and fixed 3 instances (story/[slug]/page.tsx, [date]/page.tsx, InnovationPulseClient.tsx).
+
+**Rules:**
+- NEVER concatenate alpha hex digits onto a color that may be a `var(...)` string.
+- Use `color-mix(in srgb, ${color} 12%, transparent)` (12% for badges, 8% for filter pills) or a palette helper from `lib/palette.ts`.
+- The design-token lint (`scripts/lint-design-tokens.js`) CANNOT catch this class (CSS vars aren't forbidden colors) — it must be caught in review.
+
+### 18.3 Redirect self-loops in next.config.ts
+`source: "/path/:slug*"` matches zero segments, so `/path` redirecting to `/` can loop or redirect the index page itself. Use `:slug+` (one or more segments) when the bare path must NOT match.
+
+### 18.4 RSC payload discipline
+`app/page.tsx` passes the full `allEpisodes` array into client components. Any large field added to `InnovationPulseEpisode` inflates every page's payload. `broadcastScript` (~5–10KB/episode) is therefore **stripped in `getAllEpisodes()`** and only present via `getEpisodeByDate()`. Follow this pattern for any future heavy field.
+
+### 18.5 Search UI convention
+Client-side search boxes (archive, stories) share one look: card-style box, magnifier SVG, `aria-label`, `w-[220px]` input, mono match-count with `aria-live="polite"`, and an explicit empty state that echoes the query. Reuse it, don't invent variants.

@@ -138,6 +138,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 </style>
 </head>
 <body>
+<!-- Site back-link (UX audit, item c5) — inherits page theme, no restyle -->
+<div style="max-width:920px;margin:0 auto;padding:1rem 1.5rem 0;font-size:.85rem">
+  <a href="/educator-tools" style="color:var(--text);text-decoration:none;opacity:.75">&larr; Back to Innovating Higher Ed &middot; Educator Tools</a>
+</div>
 <div class="container">
   <div class="header">
     <div class="header-badge">⚖️ Title 5 Compliance</div>
@@ -601,7 +605,7 @@ function renderResults(findings){
 
   let html=`
     <div class="results-header">
-      <div><h2>Compliance Report</h2><p style="color:var(--text3);font-size:.82rem;margin-top:.2rem">${selectedFile.name}</p></div>
+      <div><h2>Compliance Report</h2><p style="color:var(--text3);font-size:.82rem;margin-top:.2rem">${escHtml(selectedFile.name)}</p></div>
       <div class="score-pill ${scoreClass}">● ${score}/100 — ${scoreLabel}</div>
     </div>
     <div class="summary-grid">
@@ -640,7 +644,7 @@ function renderResults(findings){
             <div class="current-lang">${escHtml(f.current)}</div>
             <div class="label">Suggested Language</div>
             <div class="suggested-lang">${escHtml(f.suggested)}</div>
-            ${f.suggested!=='N/A — this is a strength.'?`<button class="copy-btn" onclick="event.stopPropagation();copyText(\`${escAttr(f.suggested)}\`)">📋 Copy suggestion</button>`:''}
+            ${f.suggested!=='N/A — this is a strength.'?`<button class="copy-btn" onclick="event.stopPropagation();copyText(this,\`${escAttr(f.suggested)}\`)">📋 Copy suggestion</button>`:''}
             <div class="label">Rationale</div>
             <div class="rationale">${escHtml(f.rationale)}</div>
           </div>
@@ -666,7 +670,15 @@ function renderResults(findings){
 
 function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
 function escAttr(s){return s.replace(/`/g,'\\`').replace(/\$/g,'\\$')}
-function copyText(t){navigator.clipboard.writeText(t.replace(/<br>/g,'\n'));/* brief feedback */}
+function copyText(btn,t){
+  const plain=t.replace(/<br>/g,'\n');
+  if(!navigator.clipboard){window.prompt('Copy the suggested language:',plain);return}
+  navigator.clipboard.writeText(plain).then(()=>{
+    btn.textContent='✓ Copied';setTimeout(()=>{btn.textContent='📋 Copy suggestion'},2000);
+  }).catch(()=>{
+    btn.textContent='Copy failed — select and copy manually';setTimeout(()=>{btn.textContent='📋 Copy suggestion'},2500);
+  });
+}
 function expandAll(){document.querySelectorAll('.finding').forEach(f=>f.classList.add('open'))}
 function collapseAll(){document.querySelectorAll('.finding').forEach(f=>f.classList.remove('open'))}
 </script>

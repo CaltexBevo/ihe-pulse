@@ -44,6 +44,7 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [audioError, setAudioError] = useState(false);
 
   const currentEpisode = recentEpisodes[selectedIndex] || latestEpisode;
   const lensColors = LENS_COLORS[currentEpisode.editorialLens] || LENS_COLORS["The Hard Question"];
@@ -70,14 +71,21 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
       setCurrentTime(0);
     };
 
+    const handleError = () => {
+      setAudioError(true);
+      setIsPlaying(false);
+    };
+
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
     };
   }, [currentEpisode]);
 
@@ -90,6 +98,7 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
       setAudioProgress(0);
       setDuration(0);
       setIsPlaying(false);
+      setAudioError(false);
     }
   }, [currentEpisode?.audioUrl]);
 
@@ -104,14 +113,22 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
 
   const togglePlay = () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || audioError) return;
 
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
-      audio.play();
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err: DOMException) => {
+          // AbortError = play interrupted by pause (fast double-click) —
+          // not a real failure, don't permanently disable the player.
+          if (err?.name !== "AbortError") setAudioError(true);
+          setIsPlaying(false);
+        });
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -291,7 +308,9 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
 
           {/* Time Display */}
           <span className="font-mono text-[0.7rem] text-[var(--text-muted)] shrink-0 min-w-[60px] text-right hidden sm:block">
-            {formatTime(currentTime)} / {duration > 0 ? formatTime(duration) : currentEpisode.audioDuration}
+            {audioError
+              ? "Audio unavailable"
+              : `${formatTime(currentTime)} / ${duration > 0 ? formatTime(duration) : currentEpisode.audioDuration}`}
           </span>
         </div>
       </div>

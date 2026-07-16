@@ -8,7 +8,6 @@ interface EpisodeData {
   audioUrl: string;
   audioDuration: string;
   deepDiveTitle: string;
-  deepDiveSlug: string;
   storyCount: number;
 }
 
@@ -27,6 +26,7 @@ export default function AllEpisodesClient({ episode }: AllEpisodesClientProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [audioError, setAudioError] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Parse episode date
@@ -51,42 +51,51 @@ export default function AllEpisodesClient({ episode }: AllEpisodesClientProps) {
       setCurrentTime(0);
     };
 
+    const handleError = () => {
+      setAudioError(true);
+      setIsPlaying(false);
+    };
+
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
     };
   }, []);
 
+  const togglePlayback = () => {
+    const audio = audioRef.current;
+    if (!audio || audioError) return;
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err: DOMException) => {
+          // AbortError = interrupted by a pause (fast double-click) — not a
+          // real failure, so don't permanently brick the player.
+          if (err?.name !== "AbortError") setAudioError(true);
+          setIsPlaying(false);
+        });
+    }
+  };
+
   const handlePlayClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-    setIsPlaying(!isPlaying);
+    togglePlayback();
   };
 
-  const handleRowClick = () => {
-    // Same as play button — clicking row plays/pauses
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
+  // Clicking the row plays/pauses, same as the button
+  const handleRowClick = togglePlayback;
 
   return (
     <div
@@ -111,7 +120,7 @@ export default function AllEpisodesClient({ episode }: AllEpisodesClientProps) {
         <button
           onClick={handlePlayClick}
           className="ae-play-btn"
-          aria-label={isPlaying ? "Pause episode" : "Play episode"}
+          aria-label={`${isPlaying ? "Pause" : "Play"} episode — ${episode.dayOfWeek}, ${monthDay}: ${episode.deepDiveTitle}`}
         >
           {isPlaying ? (
             <svg viewBox="0 0 24 24" className="ae-play-icon">
@@ -129,7 +138,7 @@ export default function AllEpisodesClient({ episode }: AllEpisodesClientProps) {
       {/* Info Container (right) */}
       <div className="ae-info">
         {/* Top line — kicker */}
-        <div className="ae-kicker">Daily AI News for Higher Ed</div>
+        <div className="ae-kicker">AI News for Higher Ed</div>
 
         {/* Headline */}
         <h3 className="ae-headline">{episode.deepDiveTitle}</h3>
@@ -140,7 +149,13 @@ export default function AllEpisodesClient({ episode }: AllEpisodesClientProps) {
           <span className="ae-meta-dot">●</span>
           <span>{episode.storyCount} stories</span>
           <span className="ae-meta-dot">●</span>
-          <span>{isPlaying ? formatTime(currentTime) : episode.audioDuration}</span>
+          <span>
+            {audioError
+              ? "Audio unavailable"
+              : isPlaying
+              ? formatTime(currentTime)
+              : episode.audioDuration}
+          </span>
         </div>
       </div>
     </div>

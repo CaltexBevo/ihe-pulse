@@ -19,6 +19,7 @@ export default function StoryPageClient({ audioUrl }: StoryPageClientProps) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [audioError, setAudioError] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -41,27 +42,42 @@ export default function StoryPageClient({ audioUrl }: StoryPageClientProps) {
       setCurrentTime(0);
     };
 
+    const handleError = () => {
+      setAudioError(true);
+      setIsPlaying(false);
+    };
+
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
     };
   }, []);
 
   const togglePlay = () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || audioError) return;
 
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
-      audio.play();
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err: DOMException) => {
+          // AbortError = play interrupted by pause (fast double-click) —
+          // not a real failure, don't permanently disable the player.
+          if (err?.name !== "AbortError") setAudioError(true);
+          setIsPlaying(false);
+        });
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -86,6 +102,7 @@ export default function StoryPageClient({ audioUrl }: StoryPageClientProps) {
         </div>
         <button
           onClick={togglePlay}
+          aria-label={isPlaying ? "Pause audio briefing" : "Play audio briefing"}
           className="w-[36px] h-[36px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 hover:scale-[1.08] transition-transform"
         >
           {isPlaying ? (
@@ -109,7 +126,9 @@ export default function StoryPageClient({ audioUrl }: StoryPageClientProps) {
           />
         </div>
         <span className="font-mono text-[0.65rem] text-[var(--text-muted)] shrink-0">
-          {formatTime(currentTime)} / {formatTime(duration)}
+          {audioError
+            ? "Audio unavailable"
+            : `${formatTime(currentTime)} / ${formatTime(duration)}`}
         </span>
       </div>
     </>

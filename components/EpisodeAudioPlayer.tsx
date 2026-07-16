@@ -23,6 +23,7 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [audioError, setAudioError] = useState(false);
 
   // Handle autoplay query param
   useEffect(() => {
@@ -72,12 +73,17 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
 
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
+    const handleError = () => {
+      setAudioError(true);
+      setIsPlaying(false);
+    };
 
     audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
     audio.addEventListener('ended', handleEnded);
     audio.addEventListener('play', handlePlay);
     audio.addEventListener('pause', handlePause);
+    audio.addEventListener('error', handleError);
 
     return () => {
       audio.removeEventListener('timeupdate', handleTimeUpdate);
@@ -85,17 +91,22 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
       audio.removeEventListener('ended', handleEnded);
       audio.removeEventListener('play', handlePlay);
       audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('error', handleError);
     };
   }, []);
 
   const togglePlay = () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || audioError) return;
 
     if (isPlaying) {
       audio.pause();
     } else {
-      audio.play();
+      // AbortError = play interrupted by pause (fast double-click) — not a
+      // real failure, don't permanently disable the player.
+      audio.play().catch((err: DOMException) => {
+        if (err?.name !== 'AbortError') setAudioError(true);
+      });
     }
   };
 
@@ -119,7 +130,7 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
 
       <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--cyan)] font-mono tracking-[0.06em]">
         <span className={`w-[5px] h-[5px] rounded-full ${isPlaying ? 'bg-[var(--cyan)] animate-[pulseDot_2s_infinite]' : 'bg-[var(--text-muted)]'}`} />
-        {isPlaying ? 'PLAYING' : 'LISTEN'}
+        {audioError ? 'UNAVAILABLE' : isPlaying ? 'PLAYING' : 'LISTEN'}
       </div>
 
       <button
@@ -156,7 +167,11 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
       </div>
 
       <span className="font-mono text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap">
-        {duration > 0 ? `${formatTime(currentTime)} / ${formatTime(duration)}` : audioDuration}
+        {audioError
+          ? 'Audio unavailable'
+          : duration > 0
+          ? `${formatTime(currentTime)} / ${formatTime(duration)}`
+          : audioDuration}
       </span>
     </div>
   );

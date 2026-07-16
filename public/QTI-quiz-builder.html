@@ -197,6 +197,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);l
 </head>
 <body>
 
+<!-- Site back-link (UX audit, item c5) — inherits page theme, no restyle -->
+<div style="padding:8px 40px;font-size:13px;border-bottom:1px solid rgba(26,26,46,0.08)">
+  <a href="/educator-tools" style="color:var(--ink);text-decoration:none;font-weight:600;opacity:.75">&larr; Back to Innovating Higher Ed &middot; Educator Tools</a>
+</div>
+
 <div class="header">
   <div class="header-left">
     <div class="header-icon">Q</div>
@@ -465,7 +470,7 @@ function switchTab(n){
   if(n==='review') renderReview();
 }
 function typePts(type){const el=document.getElementById('pts-'+type);return el?parseFloat(el.value)||0:1}
-function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML.replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function toast(m,t){const e=document.getElementById('toast');e.textContent=m;e.className='toast '+t;setTimeout(()=>e.classList.add('show'),10);setTimeout(()=>e.classList.remove('show'),3000)}
 
 function parseChoiceLines(lines){

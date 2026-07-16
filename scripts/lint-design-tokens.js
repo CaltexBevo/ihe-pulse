@@ -33,6 +33,15 @@ const FORBIDDEN = [
   { hex: '#3b82f6', name: 'blue',   reason: 'too close to cyan' },
 ];
 
+// rgb()/rgba() equivalents of the forbidden hexes (any spacing, any alpha)
+const FORBIDDEN_RGB = [
+  { pattern: /rgba?\(\s*74\s*,\s*222\s*,\s*128/g,  name: 'green rgb()',  reason: 'competes with cyan' },
+  { pattern: /rgba?\(\s*45\s*,\s*212\s*,\s*191/g,  name: 'teal rgb()',   reason: 'too close to cyan' },
+  { pattern: /rgba?\(\s*251\s*,\s*113\s*,\s*133/g, name: 'coral rgb()',  reason: 'clashes with magenta' },
+  { pattern: /rgba?\(\s*251\s*,\s*146\s*,\s*60/g,  name: 'orange rgb()', reason: 'too red, replaced by amber' },
+  { pattern: /rgba?\(\s*59\s*,\s*130\s*,\s*246/g,  name: 'blue rgb()',   reason: 'too close to cyan' },
+];
+
 // Also check common Tailwind utility classes that map to forbidden colors
 const FORBIDDEN_TAILWIND = [
   { pattern: /\btext-green-\d{3}\b/g, name: 'green Tailwind class' },
@@ -49,8 +58,8 @@ const FORBIDDEN_TAILWIND = [
 // File extensions to scan
 const SCAN_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.css', '.scss'];
 
-// Directories to skip
-const SKIP_DIRS = ['node_modules', '.next', '.git', 'dist', 'build', '.vercel'];
+// Directories to skip (.claude = vendored skills/tooling, not site code)
+const SKIP_DIRS = ['node_modules', '.next', '.git', 'dist', 'build', '.vercel', '.claude'];
 
 // ─── FILE DISCOVERY ───
 
@@ -113,6 +122,22 @@ function scanFile(filePath) {
           color: color.name,
           hex: color.hex,
           reason: color.reason,
+          text: line.trim().substring(0, 80),
+        });
+      }
+    }
+
+    // Check forbidden rgb()/rgba() equivalents
+    for (const rgb of FORBIDDEN_RGB) {
+      rgb.pattern.lastIndex = 0;
+      if (rgb.pattern.test(line)) {
+        if (line.includes('FORBIDDEN') || line.includes('forbidden') || line.includes('Retired') || line.includes('banned')) continue;
+        violations.push({
+          file: relPath,
+          line: lineNum,
+          color: rgb.name,
+          hex: '(rgb)',
+          reason: rgb.reason,
           text: line.trim().substring(0, 80),
         });
       }

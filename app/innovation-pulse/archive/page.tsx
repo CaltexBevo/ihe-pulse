@@ -1,18 +1,14 @@
 import Link from "next/link";
 import {
   getAllEpisodes,
-  formatPulseDate,
-  formatShortDate,
-  generateSlug,
   mapToV4Category,
-  V4_CATEGORY_COLORS,
 } from "@/lib/data/innovation-pulse";
-import AllEpisodesClient from "./AllEpisodesClient";
+import ArchiveListClient from "./ArchiveListClient";
 import { pageMetadata } from "@/lib/og";
 
 export const metadata = pageMetadata({
   title: "All Episodes | Innovating Higher Ed",
-  description: "Every episode, every story. Browse the complete archive of The Innovation Pulse daily A.I. briefings for higher education.",
+  description: "Every episode, every story. Browse the complete archive of The Innovation Pulse A.I. briefings for higher education.",
   path: "/innovation-pulse/archive",
 });
 
@@ -103,7 +99,7 @@ export default function AllEpisodesPage() {
         </h1>
 
         <p className="text-[1rem] text-[var(--text-secondary)] leading-[1.6] max-w-[640px] mb-6">
-          Every episode, every story — the daily A.I. briefing for higher education.
+          Every episode, every story — the A.I. briefing for higher education.
         </p>
 
         {/* Stats — mono style, cyan numbers */}
@@ -128,45 +124,35 @@ export default function AllEpisodesPage() {
       {/* Divider */}
       <div className="section-divider" />
 
-      {/* Episodes by Week */}
+      {/* Episodes by Week — searchable (client) */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
-        {weekGroups.map((week) => (
-          <div key={week.weekStart} className="mb-10">
-            {/* Week Header */}
-            <div className="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-[var(--text-muted)] mb-4">
-              {week.weekLabel}
-            </div>
-
-            {/* Episodes */}
-            <div className="space-y-3">
-              {week.episodes.map((episode) => {
-                const storyCount = 1 + episode.quickHits.length;
-                const leadSlug = generateSlug(episode.deepDive.title);
-
-                return (
-                  <AllEpisodesClient
-                    key={episode.date}
-                    episode={{
-                      date: episode.date,
-                      dayOfWeek: episode.dayOfWeek,
-                      audioUrl: episode.audioUrl,
-                      audioDuration: episode.audioDuration,
-                      deepDiveTitle: episode.deepDive.title,
-                      deepDiveSlug: leadSlug,
-                      storyCount,
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        ))}
-
-        {weekGroups.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-[var(--text-muted)]">No episodes yet.</p>
-          </div>
-        )}
+        <ArchiveListClient
+          weeks={weekGroups.map((week) => ({
+            weekStart: week.weekStart,
+            weekLabel: week.weekLabel,
+            episodes: week.episodes.map((episode) => ({
+              date: episode.date,
+              dayOfWeek: episode.dayOfWeek,
+              audioUrl: episode.audioUrl,
+              audioDuration: episode.audioDuration,
+              deepDiveTitle: episode.deepDive.title,
+              storyCount: 1 + episode.quickHits.length,
+              // Search haystack: lead + quick-hit titles, summary, source, categories, date
+              searchText: [
+                episode.deepDive.title,
+                episode.deepDive.summary,
+                episode.deepDive.source,
+                ...episode.quickHits.map((hit) => hit.title),
+                mapToV4Category(episode.deepDive.category),
+                ...episode.quickHits.map((hit) => mapToV4Category(hit.category)),
+                episode.date,
+                episode.dayOfWeek,
+              ]
+                .join(" ")
+                .toLowerCase(),
+            })),
+          }))}
+        />
       </div>
     </div>
   );

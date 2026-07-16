@@ -20,6 +20,7 @@
   --bg-card: #111120;
   --bg-card-hover: #16162a;
   --surface: #111120;
+  --surface-1: #111120; /* alias of --surface; widely referenced in components */
   --surface-2: #222240;
   --raised: #1a1a30;
 
@@ -43,6 +44,8 @@
   --magenta: #b040a8;
   --magenta-dim: rgba(176,64,168,0.15);
   --magenta-soft: rgba(176,64,168,0.12);
+  /* Text-safe magenta: lightened for 4.5:1 AA contrast on dark card backgrounds */
+  --magenta-text: color-mix(in srgb, var(--magenta) 70%, white);
   --purple: #a78bfa;
   --purple-dim: rgba(167,139,250,0.12);
   --purple-soft: rgba(167,139,250,0.15);
@@ -108,6 +111,7 @@
   --bg-card: #ffffff;
   --bg-card-hover: #f1f5f9;
   --surface: #f8fafc;
+  --surface-1: #f8fafc; /* alias of --surface; widely referenced in components */
   --surface-2: #e2e8f0;
   --raised: #f1f5f9;
 
@@ -131,6 +135,8 @@
   --magenta: #a21caf;
   --magenta-dim: rgba(162, 28, 175, 0.12);
   --magenta-soft: rgba(162, 28, 175, 0.08);
+  /* Light-mode magenta already passes AA on white (≈6.3:1) — no lightening */
+  --magenta-text: var(--magenta);
   --purple: #6d28d9;
   --purple-dim: rgba(109, 40, 217, 0.12);
   --purple-soft: rgba(109, 40, 217, 0.10);
@@ -215,6 +221,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
+summary:focus-visible,
 [tabindex]:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 2px;
@@ -226,6 +233,7 @@ textarea:focus-visible,
 [data-theme="light"] input:focus-visible,
 [data-theme="light"] select:focus-visible,
 [data-theme="light"] textarea:focus-visible,
+[data-theme="light"] summary:focus-visible,
 [data-theme="light"] [tabindex]:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 2px;
@@ -236,7 +244,8 @@ a:focus:not(:focus-visible),
 button:focus:not(:focus-visible),
 input:focus:not(:focus-visible),
 select:focus:not(:focus-visible),
-textarea:focus:not(:focus-visible) {
+textarea:focus:not(:focus-visible),
+summary:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -2278,12 +2287,34 @@ textarea:focus:not(:focus-visible) {
   .np-art-date-band { bottom: 18px; left: 20px; right: 20px; }
   .np-art-date-main { font-size: 19px; }
   .np-art-date-tag { font-size: 6.5px; }
+  /* Quick-hits strip: card padding is 32px here (not 40px), and content can
+     overflow. Left-align + horizontal scroll so the first story is never
+     clipped mid-word at the left edge (audit P2-5). */
+  .np-also-in-episode {
+    width: calc(100% + 64px);
+    margin-left: -32px;
+    margin-right: -32px;
+    padding: 14px 32px;
+    justify-content: flex-start;
+    text-align: left;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
 }
 
 /* Mobile: show artwork play overlay, hide transport controls and scrubber */
 @media (max-width: 767px) {
   .np-artwork-play-overlay {
     display: flex;
+    /* Anchor below the show title, above the date band, so the button
+       never occludes the artwork title text (audit P2-5). */
+    top: auto;
+    bottom: 84px;
+    transform: translateX(-50%);
+  }
+  .np-artwork-play-overlay:hover {
+    transform: translateX(-50%) scale(1.08);
   }
   .np-transport {
     display: none;

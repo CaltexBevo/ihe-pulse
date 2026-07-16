@@ -3,6 +3,7 @@ import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
 import { pageMetadata } from '@/lib/og';
+import { paletteFor } from '@/lib/palette';
 import {
   ArrowLeft,
   ExternalLink,
@@ -95,9 +96,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 function PricingBadge({ model }: { model: string }) {
   const styles: Record<string, string> = {
-    free: 'bg-green-500/10 text-green-400 border-green-500/20',
-    freemium: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
-    paid: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+    free: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
+    freemium: 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20',
+    paid: 'bg-[var(--amber)]/10 text-[var(--amber)] border-[var(--amber)]/20',
   };
   const labels: Record<string, string> = {
     free: 'Free',
@@ -115,9 +116,9 @@ function PricingBadge({ model }: { model: string }) {
 
 function ToolBadge({ badge }: { badge: string }) {
   const styles: Record<string, string> = {
-    new: 'bg-green-500/10 text-green-400 border-green-500/20',
-    trending: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    updated: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
+    new: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
+    trending: 'bg-[var(--amber)]/10 text-[var(--amber)] border-[var(--amber)]/20',
+    updated: 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20',
   };
   return (
     <span className={`px-2.5 py-1 rounded text-[0.7rem] font-semibold uppercase tracking-wider border font-mono ${styles[badge] ?? styles.new}`}>
@@ -142,6 +143,12 @@ export default async function AppDetailPage({
 
   const logoUrl = `https://www.google.com/s2/favicons?domain=${app.domain}&sz=128`;
   const hasDetailedReview = app.strengths && app.limitations && app.quickstart;
+  // Palette-locked accent (Rule 17.3): derived from slug, never from data-driven hex.
+  const accent = paletteFor(app.slug);
+  // WCAG AA: magenta fails 4.5:1 as small text on dark cards and as a bg for
+  // dark text. Use the text-safe token for headings and white text on CTAs.
+  const isMagenta = accent === "var(--magenta)";
+  const accentText = isMagenta ? "var(--magenta-text)" : accent;
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-12">
@@ -157,16 +164,16 @@ export default async function AppDetailPage({
         {/* ── Header with accent ─────────────────────────── */}
         <div
           className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[18px] overflow-hidden mb-6"
-          style={{ '--tool-accent': app.accent } as React.CSSProperties}
+          style={{ '--tool-accent': accent } as React.CSSProperties}
         >
           {/* Accent strip */}
-          <div className="h-1 rounded-t-[18px]" style={{ background: app.accent }} />
+          <div className="h-1 rounded-t-[18px]" style={{ background: accent }} />
 
           <div className="p-6 sm:p-8">
             <div className="flex items-start gap-4 mb-4">
               <div
                 className="shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden border border-[var(--border)]"
-                style={{ borderColor: `${app.accent}30` }}
+                style={{ borderColor: `color-mix(in srgb, ${accent} 30%, transparent)` }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -206,8 +213,8 @@ export default async function AppDetailPage({
                 href={app.platformUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-[0.9rem] transition-all hover:opacity-90 hover:-translate-y-[1px]"
-                style={{ background: app.accent, color: '#080810' }}
+                className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-[0.9rem] ${isMagenta ? "text-white" : "text-[var(--bg)]"} transition-all hover:opacity-90 hover:-translate-y-[1px]`}
+                style={{ background: accent }}
               >
                 Visit {app.name}
                 <ExternalLink size={15} />
@@ -229,7 +236,7 @@ export default async function AppDetailPage({
         <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6 sm:p-8 mb-6">
           <h2
             className="text-[0.82rem] font-semibold uppercase tracking-[1.5px] mb-3"
-            style={{ color: app.accent }}
+            style={{ color: accentText }}
           >
             What It Does
           </h2>
@@ -240,7 +247,7 @@ export default async function AppDetailPage({
         <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6 sm:p-8 mb-6">
           <h2
             className="text-[0.82rem] font-semibold uppercase tracking-[1.5px] mb-4"
-            style={{ color: app.accent }}
+            style={{ color: accentText }}
           >
             Why It Matters for Higher Ed
           </h2>
@@ -249,7 +256,7 @@ export default async function AppDetailPage({
               <li key={i} className="flex items-start gap-3 text-[0.92rem] text-[var(--text-muted)]">
                 <span
                   className="mt-[7px] w-[7px] h-[7px] rounded-sm shrink-0 opacity-70"
-                  style={{ background: app.accent }}
+                  style={{ background: accent }}
                 />
                 {value}
               </li>
@@ -262,7 +269,7 @@ export default async function AppDetailPage({
           <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6 sm:p-8 mb-6">
             <h2
               className="text-[0.82rem] font-semibold uppercase tracking-[1.5px] mb-4"
-              style={{ color: app.accent }}
+              style={{ color: accentText }}
             >
               Best For
             </h2>
@@ -276,14 +283,14 @@ export default async function AppDetailPage({
         {hasDetailedReview && (
           <div className="grid sm:grid-cols-2 gap-4 mb-6">
             <section className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[14px] p-5">
-              <h3 className="text-[0.88rem] font-semibold text-green-400 mb-3 flex items-center gap-2">
+              <h3 className="text-[0.88rem] font-semibold text-[var(--cyan)] mb-3 flex items-center gap-2">
                 <CheckCircle size={16} />
                 What It Does Well
               </h3>
               <ul className="space-y-2">
                 {app.strengths!.map((s, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-[0.86rem] text-[var(--text-muted)]">
-                    <span className="mt-2 w-[6px] h-[6px] rounded-full bg-green-400 shrink-0" />
+                    <span className="mt-2 w-[6px] h-[6px] rounded-full bg-[var(--cyan)] shrink-0" />
                     {s}
                   </li>
                 ))}
@@ -291,14 +298,14 @@ export default async function AppDetailPage({
             </section>
 
             <section className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[14px] p-5">
-              <h3 className="text-[0.88rem] font-semibold text-amber-400 mb-3 flex items-center gap-2">
+              <h3 className="text-[0.88rem] font-semibold text-[var(--amber)] mb-3 flex items-center gap-2">
                 <XCircle size={16} />
                 Where It Falls Short
               </h3>
               <ul className="space-y-2">
                 {app.limitations!.map((l, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-[0.86rem] text-[var(--text-muted)]">
-                    <span className="mt-2 w-[6px] h-[6px] rounded-full bg-amber-400 shrink-0" />
+                    <span className="mt-2 w-[6px] h-[6px] rounded-full bg-[var(--amber)] shrink-0" />
                     {l}
                   </li>
                 ))}
@@ -312,7 +319,7 @@ export default async function AppDetailPage({
           <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6 sm:p-8 mb-6">
             <h2
               className="text-[0.82rem] font-semibold uppercase tracking-[1.5px] mb-4"
-              style={{ color: app.accent }}
+              style={{ color: accentText }}
             >
               Key Features
             </h2>
@@ -321,7 +328,7 @@ export default async function AppDetailPage({
                 <li key={i} className="flex items-start gap-2.5">
                   <span
                     className="mt-1.5 h-2 w-2 rounded-full shrink-0"
-                    style={{ background: `linear-gradient(135deg, ${app.accent}, var(--magenta))` }}
+                    style={{ background: `linear-gradient(135deg, ${accent}, var(--magenta))` }}
                   />
                   <span className="text-[0.88rem] text-[var(--text-secondary)]">{feature}</span>
                 </li>
@@ -335,13 +342,13 @@ export default async function AppDetailPage({
           <div className="grid sm:grid-cols-2 gap-4 mb-6">
             <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
               <h3 className="text-[0.88rem] font-semibold text-[var(--text)] mb-3 flex items-center gap-2">
-                <CheckCircle size={16} className="text-green-400" />
+                <CheckCircle size={16} className="text-[var(--cyan)]" />
                 Pros
               </h3>
               <ul className="space-y-2">
                 {app.pros.map((pro, i) => (
                   <li key={i} className="flex items-start gap-2.5">
-                    <CheckCircle size={14} className="text-green-400 mt-0.5 shrink-0" />
+                    <CheckCircle size={14} className="text-[var(--cyan)] mt-0.5 shrink-0" />
                     <span className="text-[0.86rem] text-[var(--text-secondary)]">{pro}</span>
                   </li>
                 ))}
@@ -350,13 +357,13 @@ export default async function AppDetailPage({
 
             <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
               <h3 className="text-[0.88rem] font-semibold text-[var(--text)] mb-3 flex items-center gap-2">
-                <XCircle size={16} className="text-amber-400" />
+                <XCircle size={16} className="text-[var(--amber)]" />
                 Cons
               </h3>
               <ul className="space-y-2">
                 {app.cons.map((con, i) => (
                   <li key={i} className="flex items-start gap-2.5">
-                    <XCircle size={14} className="text-amber-400 mt-0.5 shrink-0" />
+                    <XCircle size={14} className="text-[var(--amber)] mt-0.5 shrink-0" />
                     <span className="text-[0.86rem] text-[var(--text-secondary)]">{con}</span>
                   </li>
                 ))}
@@ -368,7 +375,7 @@ export default async function AppDetailPage({
         {/* ── Pricing Breakdown ──────────────────────────── */}
         <section className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[14px] p-5 mb-6">
           <h3 className="text-[0.88rem] font-semibold text-[var(--text)] mb-2 flex items-center gap-2">
-            <DollarSign size={16} style={{ color: app.accent }} />
+            <DollarSign size={16} style={{ color: accent }} />
             Pricing Breakdown
           </h3>
           <p className="text-[0.88rem] text-[var(--text-muted)] leading-[1.6]">
@@ -408,7 +415,7 @@ export default async function AppDetailPage({
         {app.integrations && app.integrations.length > 0 && (
           <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 mb-6">
             <h3 className="text-[0.88rem] font-semibold text-[var(--text)] mb-3 flex items-center gap-2">
-              <Puzzle size={16} style={{ color: app.accent }} />
+              <Puzzle size={16} style={{ color: accent }} />
               Integrations
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -451,8 +458,8 @@ export default async function AppDetailPage({
             href={app.platformUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-[0.95rem] transition-all hover:opacity-90 hover:-translate-y-[1px]"
-            style={{ background: app.accent, color: '#080810' }}
+            className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-[0.95rem] ${isMagenta ? "text-white" : "text-[var(--bg)]"} transition-all hover:opacity-90 hover:-translate-y-[1px]`}
+            style={{ background: accent }}
           >
             Visit {app.name}
             <ExternalLink size={16} />

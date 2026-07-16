@@ -7,9 +7,9 @@ import {
   getAllStorySlugs,
   formatPulseDate,
   formatShortDate,
-  generateSlug,
 } from "@/lib/data/innovation-pulse";
 import StoryPageClient from "./StoryPageClient";
+import ShareBar from "@/components/ShareBar";
 import { pageMetadata } from "@/lib/og";
 
 // V4 Category colors and slugs — palette-locked (no green, teal, coral, blue)
@@ -134,7 +134,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           <Link
             href={`/innovation-pulse/category/${categoryConfig.slug}`}
             className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded-[5px]"
-            style={{ backgroundColor: `${categoryConfig.color}20`, color: categoryConfig.color }}
+            style={{
+              // color-mix, not `${var}20` — appending alpha hex to a CSS var string is invalid CSS
+              backgroundColor: `color-mix(in srgb, ${categoryConfig.color} 12%, transparent)`,
+              color: categoryConfig.color,
+            }}
           >
             {v4Category}
           </Link>
@@ -145,7 +149,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
             {formatShortDate(story.episodeDate)}
           </span>
           <span className="font-mono text-[0.68rem] text-[var(--text-muted)]">
-            · {Math.ceil(story.summary.length / 200)} min read
+            · {Math.max(1, Math.ceil(story.summary.trim().split(/\s+/).length / 200))} min read
           </span>
         </div>
 
@@ -231,36 +235,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           </div>
         )}
 
-        {/* Share Bar */}
-        <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-[0.65rem] text-[var(--text-muted)] tracking-[0.08em] uppercase">
-            Share
-          </span>
-          <button className="w-[38px] h-[38px] rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--cyan)] hover:bg-[var(--cyan-dim)] transition-all">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-              <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
-              <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
-            </svg>
-          </button>
-          <button className="w-[38px] h-[38px] rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--cyan)] hover:bg-[var(--cyan-dim)] transition-all">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-              <path d="M4 4l6.5 8L4 20h2l5.5-6.5L16 20h4l-6.8-8.5L19.5 4H18l-5 6L9 4H4z" />
-            </svg>
-          </button>
-          <button className="w-[38px] h-[38px] rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--cyan)] hover:bg-[var(--cyan-dim)] transition-all">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
-              <rect x="2" y="9" width="4" height="12" />
-              <circle cx="4" cy="4" r="2" />
-            </svg>
-          </button>
-          <button className="w-[38px] h-[38px] rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--cyan)] hover:bg-[var(--cyan-dim)] transition-all">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" strokeWidth="2" />
-            </svg>
-          </button>
-        </div>
+        {/* Share Bar — working links (copy, X, LinkedIn, email) */}
+        <ShareBar
+          url={`https://www.innovatinghighered.com/innovation-pulse/story/${slug}`}
+          title={story.title}
+        />
       </div>
 
       {/* Related Stories */}

@@ -16,6 +16,10 @@ export const metadata: Metadata = pageMetadata({
   path: "/innovation-pulse/stories",
 });
 
+// Revalidate hourly so the TODAY/LATEST label (computed from new Date())
+// doesn't freeze at build time on this statically generated page.
+export const revalidate = 3600;
+
 export default function LeadStoriesPage() {
   const allEpisodes = getAllEpisodes();
 
@@ -40,6 +44,13 @@ export default function LeadStoriesPage() {
 
   const todaysStory = leadStories[0];
   const previousStories = leadStories.slice(1);
+
+  // Only say "TODAY" when the newest episode is actually from today —
+  // otherwise label it "LATEST" (stale-date bug fixed 2026-07-15).
+  const todayISO = new Date().toLocaleDateString("en-CA", {
+    timeZone: "America/Chicago",
+  });
+  const latestLabel = todaysStory && todaysStory.date === todayISO ? "TODAY" : "LATEST";
 
   return (
     <div className="min-h-screen">
@@ -75,7 +86,7 @@ export default function LeadStoriesPage() {
       {todaysStory && (
         <section className="max-w-[var(--max-w)] mx-auto px-[var(--px)] py-10">
           <div className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6 flex items-center gap-2">
-            <span className="text-[var(--cyan)]">TODAY</span>
+            <span className="text-[var(--cyan)]">{latestLabel}</span>
             <span>—</span>
             <span>{formatPulseDate(todaysStory.date)}</span>
           </div>

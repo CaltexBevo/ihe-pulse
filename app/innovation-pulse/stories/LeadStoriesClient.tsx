@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { formatShortDate } from '@/lib/data/innovation-pulse-types';
 
@@ -24,10 +24,58 @@ interface LeadStoriesClientProps {
 
 export default function LeadStoriesClient({ stories }: LeadStoriesClientProps) {
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
+
+  const filteredStories = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return stories;
+    return stories.filter((story) =>
+      [story.title, story.summary, story.source, story.category, story.editorialLens]
+        .join(' ')
+        .toLowerCase()
+        .includes(q)
+    );
+  }, [stories, query]);
 
   return (
-    <div className="space-y-4">
-      {stories.map((story) => {
+    <div>
+      {/* Search (UX audit, item c4) */}
+      <div className="flex items-center gap-3 flex-wrap mb-6">
+        <div className="flex items-center gap-2 bg-[var(--bg-card)] border border-[var(--border)] rounded-[8px] px-3 py-2 focus-within:border-[var(--border-hover)] transition-colors">
+          <svg
+            className="w-[14px] h-[14px] stroke-[var(--text-muted)]"
+            viewBox="0 0 24 24"
+            fill="none"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search lead stories..."
+            aria-label="Search lead stories"
+            className="bg-transparent border-none outline-none text-[0.8rem] text-[var(--text)] placeholder:text-[var(--text-muted)] w-[220px]"
+          />
+        </div>
+        {query.trim() !== '' && (
+          <span className="font-mono text-[0.68rem] text-[var(--text-muted)]" aria-live="polite">
+            {filteredStories.length} {filteredStories.length === 1 ? 'story matches' : 'stories match'}
+          </span>
+        )}
+      </div>
+
+      {filteredStories.length === 0 && (
+        <div className="text-center py-10">
+          <p className="text-[var(--text-muted)]">No stories match &ldquo;{query.trim()}&rdquo;.</p>
+        </div>
+      )}
+
+      <div className="space-y-4">
+      {filteredStories.map((story) => {
         const isExpanded = expandedSlug === story.slug;
 
         return (
@@ -108,6 +156,7 @@ export default function LeadStoriesClient({ stories }: LeadStoriesClientProps) {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

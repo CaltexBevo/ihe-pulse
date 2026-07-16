@@ -2,7 +2,8 @@ import Link from "next/link";
 import NewsletterSignup from "./NewsletterSignup";
 
 const platformLinks = [
-  { href: "/innovation-pulse", label: "Innovation Pulse" },
+  // Match the nav — /innovation-pulse itself redirects to the homepage
+  { href: "/innovation-pulse/archive", label: "Innovation Pulse" },
   { href: "/prompts", label: "Prompt Navigator" },
   { href: "/ai-directory", label: "AI Directory" },
 ];

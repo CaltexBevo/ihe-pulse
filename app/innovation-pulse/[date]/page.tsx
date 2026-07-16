@@ -14,7 +14,9 @@ import {
   isWeeklyEpisode,
   mapToV4Category,
   V4_CATEGORY_COLORS,
+  cleanBroadcastScript,
 } from "@/lib/data/innovation-pulse";
+import ShareBar from "@/components/ShareBar";
 import { pageMetadata } from "@/lib/og";
 
 // ISR: Revalidate every 60 seconds so new episodes appear quickly
@@ -124,7 +126,8 @@ export default async function InnovationPulseDatePage({
           <span
             className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-[0.6rem] py-[0.2rem] rounded-[5px]"
             style={{
-              backgroundColor: `${V4_CATEGORY_COLORS[mapToV4Category(episode.deepDive.category)]}20`,
+              // color-mix, not `${var}20` — appending alpha hex to a CSS var string is invalid CSS
+              backgroundColor: `color-mix(in srgb, ${V4_CATEGORY_COLORS[mapToV4Category(episode.deepDive.category)]} 12%, transparent)`,
               color: V4_CATEGORY_COLORS[mapToV4Category(episode.deepDive.category)],
             }}
           >
@@ -134,7 +137,7 @@ export default async function InnovationPulseDatePage({
             {formatShortDate(date)}
           </span>
           <span className="font-mono text-[0.68rem] text-[var(--text-muted)]">
-            · 6 min read
+            · {Math.max(1, Math.ceil(episode.deepDive.summary.trim().split(/\s+/).length / 200))} min read
           </span>
         </div>
 
@@ -245,38 +248,54 @@ export default async function InnovationPulseDatePage({
       )}
 
       {/* ═══════════════════════════════════════════════════════
-          SHARE BAR
+          FULL TRANSCRIPT (collapsible, zero-JS <details>)
           ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[820px] mx-auto px-[var(--px)] pb-10 flex items-center gap-3">
-        <span className="font-mono text-[0.65rem] text-[var(--text-muted)] tracking-[0.08em] uppercase">Share</span>
-        {["link", "x", "linkedin", "email"].map((type) => (
-          <button
-            key={type}
-            className="w-[38px] h-[38px] rounded-[10px] bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--cyan)] hover:bg-[var(--cyan-dim)] transition-all"
-          >
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-              {type === "link" && (
-                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
-              )}
-              {type === "x" && (
-                <path d="M4 4l6.5 8L4 20h2l5.5-6.5L16 20h4l-6.8-8.5L19.5 4H18l-5 6L9 4H4z" />
-              )}
-              {type === "linkedin" && (
-                <>
-                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
-                  <rect x="2" y="9" width="4" height="12" />
-                  <circle cx="4" cy="4" r="2" />
-                </>
-              )}
-              {type === "email" && (
-                <>
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" strokeWidth="2" />
-                </>
-              )}
-            </svg>
-          </button>
-        ))}
+      {episode.broadcastScript && (
+        <div className="max-w-[820px] mx-auto px-[var(--px)] pb-10">
+          <details className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden">
+            <summary className="cursor-pointer list-none flex items-center justify-between p-5 hover:bg-[rgba(255,255,255,0.02)] transition-colors [&::-webkit-details-marker]:hidden">
+              <span className="flex flex-col gap-1">
+                <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase">
+                  Episode transcript
+                </span>
+                <span className="text-[0.9rem] font-semibold">
+                  Read the full broadcast script
+                </span>
+              </span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="w-4 h-4 text-[var(--cyan)] transition-transform group-open:rotate-180"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </summary>
+            <div className="px-5 pb-6 pt-1 border-t border-[var(--border)] space-y-4">
+              {cleanBroadcastScript(episode.broadcastScript).map((paragraph, idx) => (
+                <p key={idx} className="text-[0.95rem] text-[var(--text-secondary)] leading-[1.75]">
+                  {paragraph}
+                </p>
+              ))}
+              <p className="font-mono text-[0.62rem] text-[var(--text-muted)] pt-2">
+                Transcript of the audio briefing above. Produced with A.I. voice
+                technology and editorial oversight by the Innovating Higher Ed team.
+              </p>
+            </div>
+          </details>
+        </div>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
+          SHARE BAR — working links (copy, X, LinkedIn, email)
+          ═══════════════════════════════════════════════════════ */}
+      <div className="max-w-[820px] mx-auto px-[var(--px)]">
+        <ShareBar
+          url={`https://www.innovatinghighered.com/innovation-pulse/${date}`}
+          title={episode.deepDive.title}
+        />
       </div>
 
       {/* ═══════════════════════════════════════════════════════

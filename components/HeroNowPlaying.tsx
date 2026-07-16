@@ -48,6 +48,7 @@ export default function HeroNowPlaying({
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [showCopied, setShowCopied] = useState(false);
+  const [audioError, setAudioError] = useState(false);
   const prevIndexRef = useRef(selectedIndex);
 
   const currentEpisode = recentEpisodes[selectedIndex] || latestEpisode;
@@ -66,7 +67,11 @@ export default function HeroNowPlaying({
 
   // Story count and duration
   const storyCount = 1 + (currentEpisode.quickHits?.length || 0);
-  const durationDisplay = duration > 0 ? formatTime(duration) : currentEpisode.audioDuration;
+  const durationDisplay = audioError
+    ? "Audio unavailable"
+    : duration > 0
+    ? formatTime(duration)
+    : currentEpisode.audioDuration;
 
   // Episode number (count from oldest)
   const episodeNumber = recentEpisodes.length - selectedIndex;
@@ -125,12 +130,17 @@ export default function HeroNowPlaying({
 
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
+    const handleError = () => {
+      setAudioError(true);
+      setIsPlaying(false);
+    };
 
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
+    audio.addEventListener("error", handleError);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
@@ -138,6 +148,7 @@ export default function HeroNowPlaying({
       audio.removeEventListener("ended", handleEnded);
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("error", handleError);
     };
   }, [currentEpisode]);
 
@@ -149,6 +160,7 @@ export default function HeroNowPlaying({
       setCurrentTime(0);
       setDuration(0);
       setIsPlaying(false);
+      setAudioError(false);
 
       // Auto-play when episode changes (if controlled and autoPlay or if different from prev)
       if (prevIndexRef.current !== selectedIndex && autoPlay) {
@@ -165,12 +177,16 @@ export default function HeroNowPlaying({
 
   const togglePlay = () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || audioError) return;
 
     if (isPlaying) {
       audio.pause();
     } else {
-      audio.play();
+      // AbortError = play interrupted by pause (fast double-click) — not a
+      // real failure, don't permanently disable the player.
+      audio.play().catch((err: DOMException) => {
+        if (err?.name !== "AbortError") setAudioError(true);
+      });
     }
     // Don't call setIsPlaying — the event listeners handle it
   };

@@ -42,7 +42,7 @@ export default function DisclaimerPage() {
                 AI-Generated Content
               </h2>
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
-                Portions of this site use artificial intelligence in the content creation process. The Innovation Pulse daily briefing is produced using AI-assisted curation, writing, and audio generation with human editorial oversight. AI-generated content may contain errors, omissions, or inaccuracies. All content should be independently verified before being used for institutional decision-making.
+                Portions of this site use artificial intelligence in the content creation process. The Innovation Pulse briefing is produced using AI-assisted curation, writing, and audio generation with human editorial oversight. AI-generated content may contain errors, omissions, or inaccuracies. All content should be independently verified before being used for institutional decision-making.
               </p>
             </section>
 

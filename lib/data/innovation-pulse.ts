@@ -187,7 +187,12 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   const date = (episode?.date || raw.date) as string;
   const dayOfWeek = (episode?.dayOfWeek || raw.dayOfWeek) as string;
   const audioUrl = (episode?.audioUrl || raw.audioUrl) as string || '';
-  const audioDuration = (episode?.audioDuration || raw.audioDuration) as string || '';
+  // audioDuration may arrive as a display string ("12:34") or raw seconds (754) —
+  // normalize numbers to m:ss so the UI never renders "754".
+  const rawDuration = (episode?.audioDuration ?? raw.audioDuration) as string | number | undefined;
+  const audioDuration = typeof rawDuration === 'number'
+    ? `${Math.floor(rawDuration / 60)}:${String(Math.round(rawDuration % 60)).padStart(2, '0')}`
+    : rawDuration || '';
 
   // Extract cadence fields (weekly episodes have these)
   const cadence = (episode?.cadence || raw.cadence) as 'daily' | 'weekly' | undefined;
@@ -212,6 +217,8 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     // Cadence fields for weekly episodes
     cadence,
     weekCovered,
+    // Full script for on-page transcript (cleaned at render time)
+    broadcastScript: broadcastScript || undefined,
   };
 
   return normalizedEpisode;
@@ -266,8 +273,14 @@ export function getAllEpisodes(): InnovationPulseEpisode[] {
           // Avoid duplicates - prefer primary source
           if (!seenDates.has(episode.date)) {
             seenDates.add(episode.date);
-            // Assign images to all stories in the episode
-            episodes.push(assignImagesToEpisode(episode));
+            // Assign images to all stories in the episode.
+            // Strip broadcastScript in list contexts — several pages pass full
+            // episode arrays to client components, and the ~5-10KB script per
+            // episode would bloat those payloads. getEpisodeByDate() keeps it
+            // for the single-episode transcript view.
+            episodes.push(
+              assignImagesToEpisode({ ...episode, broadcastScript: undefined })
+            );
           }
         } catch {
           // Skip invalid JSON files

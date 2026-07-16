@@ -25,9 +25,10 @@ export const editorialLensColors: Record<
     border: 'border-amber-500/30',
   },
   'The Student Experience': {
-    bg: 'bg-green-500/20',
-    text: 'text-green-400',
-    border: 'border-green-500/30',
+    // Palette-locked (Rule 17.3): green retired → purple
+    bg: 'bg-[var(--purple-dim)]',
+    text: 'text-[var(--purple)]',
+    border: 'border-[rgba(167,139,250,0.3)]',
   },
   'Connecting the Dots': {
     bg: 'bg-synapse/20',
@@ -66,78 +67,8 @@ export type StoryCategory =
   | 'Investing in Innovation'
   | 'Tool Spotlight';
 
-export const categoryColors: Record<
-  StoryCategory,
-  { bg: string; text: string; border: string; hex: string }
-> = {
-  'Infrastructure & Operations': {
-    bg: 'bg-blue-500/15',
-    text: 'text-blue-400',
-    border: 'border-blue-500/30',
-    hex: '#3b82f6',
-  },
-  'Teaching & Learning': {
-    bg: 'bg-green-500/15',
-    text: 'text-green-400',
-    border: 'border-green-500/30',
-    hex: '#22c55e',
-  },
-  'Policy & Ethics': {
-    bg: 'bg-amber-500/15',
-    text: 'text-amber-400',
-    border: 'border-amber-500/30',
-    hex: '#f59e0b',
-  },
-  'Tools & Products': {
-    bg: 'bg-purple-500/15',
-    text: 'text-purple-400',
-    border: 'border-purple-500/30',
-    hex: '#a855f7',
-  },
-  'Research & Innovation': {
-    bg: 'bg-cyan-500/15',
-    text: 'text-cyan-400',
-    border: 'border-cyan-500/30',
-    hex: '#06b6d4',
-  },
-  'Student Experience': {
-    bg: 'bg-pink-500/15',
-    text: 'text-pink-400',
-    border: 'border-pink-500/30',
-    hex: '#ec4899',
-  },
-  'Leadership & Strategy': {
-    bg: 'bg-indigo-500/15',
-    text: 'text-indigo-400',
-    border: 'border-indigo-500/30',
-    hex: '#6366f1',
-  },
-  // V5 categories using locked palette colors
-  'Research': {
-    bg: 'bg-purple-500/15',
-    text: 'text-purple-400',
-    border: 'border-purple-500/30',
-    hex: '#a78bfa',
-  },
-  'AI Workforce & Careers': {
-    bg: 'bg-cyan-500/15',
-    text: 'text-cyan-400',
-    border: 'border-cyan-500/30',
-    hex: '#00d4ff',
-  },
-  'Investing in Innovation': {
-    bg: 'bg-cyan-500/15',
-    text: 'text-cyan-400',
-    border: 'border-cyan-500/30',
-    hex: '#00d4ff',
-  },
-  'Tool Spotlight': {
-    bg: 'bg-cyan-500/15',
-    text: 'text-cyan-400',
-    border: 'border-cyan-500/30',
-    hex: '#00d4ff',
-  },
-};
+// (categoryColors map removed 2026-07-15 — it was unused; V4_CATEGORY_COLORS
+// below is the live category → color source.)
 
 // ── DataViz Types ────────────────────────────────────────────────────────────
 
@@ -202,6 +133,9 @@ export interface InnovationPulseEpisode {
   closingThought: string;
   categories: StoryCategory[];
   themes: string[];
+  // Full broadcast script (raw, may contain SSML <break> tags and HTML
+  // comments) — render via cleanBroadcastScript() below.
+  broadcastScript?: string;
   // Cadence fields (weekly episodes have these; daily/legacy episodes don't)
   cadence?: 'daily' | 'weekly';
   weekCovered?: string; // Format: "2026-05-23/2026-05-29"
@@ -299,6 +233,22 @@ export function formatWeekCoveredLong(episode: InnovationPulseEpisode): string |
   } else {
     return `Covering ${startMonth} ${startDay} – ${endMonth} ${endDay}, ${year}`;
   }
+}
+
+// ── Transcript Utilities (Client-Safe) ───────────────────────────────────────
+
+/**
+ * Clean a raw broadcast script for on-page transcript display.
+ * Strips SSML <break> tags and HTML comments (pipeline signatures),
+ * then splits into trimmed paragraphs.
+ */
+export function cleanBroadcastScript(script: string): string[] {
+  return script
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<break\b[^>]*\/?>/gi, '')
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean);
 }
 
 // ── Slug Utilities (Client-Safe) ──────────────────────────────────────────────

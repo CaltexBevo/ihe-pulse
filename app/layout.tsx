@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     "AI tools for educators",
     "teaching with AI",
   ],
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "The Innovation Pulse — RSS" },
+      ],
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },

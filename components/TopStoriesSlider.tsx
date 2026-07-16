@@ -39,6 +39,7 @@ export default function TopStoriesSlider({ stories }: TopStoriesSliderProps) {
           <Link
             key={i}
             href={`/innovation-pulse/story/${slug}`}
+            aria-label={`Read story: ${story.title}`}
             className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] block group"
           >
             {/* Image - 3:2 aspect ratio to match 1536x1024 source images */}

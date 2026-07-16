@@ -506,7 +506,11 @@ export default function InnovationPulseClient({
                   style={{
                     borderColor: selectedCategory === cat ? catColor?.hex : undefined,
                     color: selectedCategory === cat ? catColor?.hex : undefined,
-                    backgroundColor: selectedCategory === cat ? `${catColor?.hex}15` : undefined,
+                    // color-mix, not `${var}15` — appending alpha hex to a CSS var string is invalid CSS
+                    backgroundColor:
+                      selectedCategory === cat && catColor
+                        ? `color-mix(in srgb, ${catColor.hex} 8%, transparent)`
+                        : undefined,
                   }}
                 >
                   {cat}

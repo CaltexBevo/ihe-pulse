@@ -15,7 +15,7 @@ interface EditorialLensBadgeProps {
 const lensDotColors: Record<EditorialLens, string> = {
   "The Practitioner's Playbook": "bg-[var(--cyan)]",
   "The Hard Question": "bg-amber-400",
-  "The Student Experience": "bg-green-400",
+  "The Student Experience": "bg-[var(--purple)]",
   "Connecting the Dots": "bg-[var(--magenta)]",
   "The Innovator's Edge": "", // Uses gradient
 };
