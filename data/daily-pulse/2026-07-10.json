@@ -3,7 +3,7 @@
     "date": "2026-07-10",
     "dayOfWeek": "Friday",
     "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-07-10.mp3",
-    "audioDuration": "7:59",
+    "audioDuration": "8:27",
     "broadcastScript": "This is The Innovation Pulse for the week ending Friday, July tenth, twenty-twenty-six. And here's who is innovating in higher education this week.\n\n<break time=\"1.0s\"/>\n\nOpenAI this week released the GPT-5.6 model family, spanning enterprise work, coding, and scientific research, TechCrunch reported Thursday. The family arrives in three variants. OpenAI described Sol as its workhorse model, alongside Terra and Luna. The company called GPT-5.6 its strongest cybersecurity model yet, citing support for defensive activities including threat modeling, code review and patching, and blue teaming. Blue teaming, for context, involves simulating an attack on an organization's own systems to identify weaknesses before real attackers can exploit them. Alongside the model family, OpenAI released a separate workplace tool called ChatGPT Work, designed as a companion for enterprise teams. The company described it as running across desktop, web, and mobile platforms, built to assist with daily clerical tasks such as drafting documents, spreadsheets, and presentations. The GPT-5.6 release follows similar model announcements this week from SpaceXAI and Meta. The Trump administration had previously sought to restrict the rollout over concerns about potential misuse, and the models are now available across ChatGPT, Codex, and the OpenAI A.P.I.\n\n<break time=\"1.0s\"/>\n\nIn Case Study this week, Stanford HAI reported on a biomedical A.I. agent called Biomni, built by a Stanford-led team drawing on expertise from the university's departments of Computer Science, Genetics, Pathology, Medicine, and Pediatrics, with contributions from Genentech, Arc Institute, the University of Washington, and the University of California, San Francisco. In its first nine months as an open-source project, Biomni was used by more than fifteen thousand scientists to automate one hundred thousand different scientific workflows. The platform combines large language models with more than one hundred fifty specialized bioinformatics tools and fifty-nine curated databases. Scientists interact through a chat interface, submitting open-ended research queries; the agent formulates a step-by-step plan, writes code, and executes tasks while allowing researchers to monitor and intervene at any point. In one documented case, Biomni autonomously generated and executed a ten-step analysis plan across more than four hundred fifty Excel files from thirty participants. The creators note the system still struggles with tasks requiring nuanced clinical judgment or novel experimental reasoning. In September twenty-twenty-five, the team spun the project into a commercial startup called Phylo, while keeping the codebase fully open source.\n\n<break time=\"1.0s\"/>\n\nFrom the research front, NYU Grossman School of Medicine and NYU's Center for Data Science published findings in Nature Communications on an A.I. test that predicts breast cancer recurrence from existing tumor slides and routine clinical data. In trials involving more than thirty-five hundred patients across fifteen populations in seven countries, the test matched or outperformed a widely used genomic test. Current genomic tests can take weeks to return results and require consuming tissue samples. The A.I. test uses pathology slides already examined by pathologists, combined with data such as tumor stage, patient age, and hormone-receptor status, and could deliver results in hours. Patients classified as high risk showed a two point eight-fold higher risk of recurrence than those classified as low risk. The test also showed performance in two breast cancer types that currently have no reliable genomic test. The researchers stated that evaluation in completed randomized clinical trials is still needed before the test could guide treatment decisions. Several paper authors hold equity in Ataraxis AI, and NYU maintains financial and intellectual property interests in the company.\n\n<break time=\"1.0s\"/>\n\nAlso in Case Study, Pace University's Psychiatric Mental Health Nurse Practitioner Program piloted A.I.-enabled patient simulations in Fall twenty-twenty-five, according to the university's Center for Excellence in Healthcare Simulation. Under faculty leads Laura Kelly and Gabrielle Ranger-Murdock, students used A.I. avatars to conduct independent interviews with multiple patients during a single clinic day, an activity the center's director says is not possible with traditional simulation modalities. Students practiced screening instruments for anxiety, depression, and trauma, and worked on consultation skills through unfolding patient cases. In the undergraduate nursing program, educators designed a pediatrics case featuring a nonverbal child, with the A.I. encounter built around interaction with the child's mother to develop guardian communication skills. The platforms evaluate student performance using faculty-developed rubrics assessing diagnostic accuracy and empathetic communication. Not every element has worked smoothly. The center's director recalled one A.I. avatar that repeatedly addressed everyone as \"honey.\" The center's standardized patient program continues alongside the A.I. simulations.\n\n<break time=\"1.0s\"/>\n\nIn Investing in Innovation, New America and the Association of Community College Trustees announced on July eighth the selection of six community colleges for a work-based learning capacity-building cohort, offered through a strategic initiative backed by the U.S. National Science Foundation. The participating institutions are City Colleges of Chicago, East Central College in Missouri, Forsyth Technical Community College in North Carolina, Santa Fe College in Florida, SUNY Broome Community College in New York, and West Valley College in California. Each cohort member will undertake a comprehensive institutional self-study and strategic planning process using a toolkit developed jointly by New America and the Association of Community College Trustees. Upon completing the process, cohort members will be recognized as pilot partners when the toolkit is published for use by community colleges nationwide. NSF Assistant Director Erwin Gianchandani cited apprenticeships, internships, and work-based learning as preparation for jobs in artificial intelligence, microelectronics, biotech, and quantum technology.\n\n<break time=\"1.0s\"/>\n\nTurning to Insights and Trends, Auburn University reported this week on a survey of one thousand nine hundred forty-seven educators, trainers, and consultants across thirty-six countries, administered by Singapore's Institute for Adult Learning. The findings appear in an open-access book co-edited by Leslie Cordie, associate professor of adult education at Auburn University, and published through Taylor and Francis. Respondents largely viewed A.I. as a tool capable of improving teaching, reducing repetitive tasks, and creating new learning opportunities. Their biggest concern was not adopting the technology but receiving adequate guidance and institutional support to use it effectively. Cordie said the technology frees time for student conversations, collaboration, and deeper learning. In her courses, she asks students to experiment with A.I., question its outputs, and examine what it can and cannot do.\n\n<break time=\"1.0s\"/>\n\nAlso in Insights and Trends, AZ Big Media reported that Grand Canyon University, the University of Arizona, and the University of Phoenix are each embedding A.I. ethics and critical thinking across existing coursework rather than launching standalone technical programs. GCU President Brian Mueller described the institution's position as using A.I. to supplement learning, not replace it. GCU operates four discipline-specific A.I. tutoring tools across more than ninety A.I.-integrated courses, and students are required to disclose A.I. use and are graded on how well they manage it. At the University of Arizona's College of Information Science, associate professor Diana Daly teaches students to identify bias by interacting directly with A.I. systems, for example using translation prompts to surface gender bias in outputs. The college is launching an A.I. and society minor this fall. The University of Arizona has also established an Office of Responsible Artificial Intelligence.\n\n<break time=\"1.0s\"/>\n\nThat's this week's Innovation Pulse. Full coverage and source links at innovating higher ed dot com.",
     "cadence": "weekly",
     "weekCovered": "2026-07-04/2026-07-10"
@@ -14,7 +14,8 @@
     "source": "TechCrunch",
     "sourceUrl": "https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/",
     "category": "Beyond Ed",
-    "image": "/images/stories/openai-releases-gpt-5-6-model-family-and-new-chatgpt-work-to.webp"
+    "image": "/images/stories/openai-releases-gpt-5-6-model-family-and-new-chatgpt-work-to.webp",
+    "imageUrl": "/images/stories/openai-releases-gpt-5-6-model-family-and-new-chatgpt-work-to.webp"
   },
   "quickHits": [
     {
@@ -23,7 +24,8 @@
       "source": "Stanford HAI",
       "sourceUrl": "https://hai.stanford.edu/news/stanford-scientists-build-an-ai-lab-partner",
       "category": "Case Study",
-      "image": "/images/stories/stanford-led-team-builds-biomedical-a-i-agent-that-has-autom.webp"
+      "image": "/images/stories/stanford-led-team-builds-biomedical-a-i-agent-that-has-autom.webp",
+      "imageUrl": "/images/stories/stanford-led-team-builds-biomedical-a-i-agent-that-has-autom.webp"
     },
     {
       "headline": "NYU Researchers Build A.I. Test That Predicts Breast Cancer Recurrence Faster and Cheaper Than Genomic Testing",
@@ -31,7 +33,8 @@
       "source": "NYU Grossman School of Medicine",
       "sourceUrl": "https://www.eurekalert.org/news-releases/1134931",
       "category": "Research",
-      "image": "/images/stories/nyu-researchers-build-a-i-test-that-predicts-breast-cancer-r.webp"
+      "image": "/images/stories/nyu-researchers-build-a-i-test-that-predicts-breast-cancer-r.webp",
+      "imageUrl": "/images/stories/nyu-researchers-build-a-i-test-that-predicts-breast-cancer-r.webp"
     },
     {
       "headline": "Pace University Nursing Students Conduct Independent Patient Interviews Using A.I. Avatars in Simulation Lab Pilot",
@@ -39,7 +42,8 @@
       "source": "Pace University",
       "sourceUrl": "https://www.pace.edu/news/reality-simulated-ai-healthcare-education",
       "category": "Case Study",
-      "image": "/images/stories/pace-university-nursing-students-conduct-independent-patient.webp"
+      "image": "/images/stories/pace-university-nursing-students-conduct-independent-patient.webp",
+      "imageUrl": "/images/stories/pace-university-nursing-students-conduct-independent-patient.webp"
     },
     {
       "headline": "New America and ACCT Select Six Community Colleges for NSF-Backed Work-Based Learning Cohort",
@@ -47,7 +51,8 @@
       "source": "New America",
       "sourceUrl": "https://www.newamerica.org/insights/announcing-the-new-america-acct-work-based-learning-capacity-building-cohort/",
       "category": "Investing in Innovation",
-      "image": "/images/stories/new-america-and-acct-select-six-community-colleges-for-nsf-b.webp"
+      "image": "/images/stories/new-america-and-acct-select-six-community-colleges-for-nsf-b.webp",
+      "imageUrl": "/images/stories/new-america-and-acct-select-six-community-colleges-for-nsf-b.webp"
     },
     {
       "headline": "Survey of 1,947 Educators Across 36 Countries Finds Optimism — Not Alarm — About A.I. in Adult Learning",
@@ -55,7 +60,8 @@
       "source": "Auburn University",
       "sourceUrl": "https://wire.auburn.edu/content/ocm/2026/07/091316-leslie-cordie-ai.php?utm_source=auburn-today&utm_medium=web",
       "category": "Insights & Trends",
-      "image": "/images/stories/survey-of-1-947-educators-across-36-countries-finds-optimism.webp"
+      "image": "/images/stories/survey-of-1-947-educators-across-36-countries-finds-optimism.webp",
+      "imageUrl": "/images/stories/survey-of-1-947-educators-across-36-countries-finds-optimism.webp"
     },
     {
       "headline": "Arizona Universities Build A.I. Curricula Around Judgment and Ethics Rather Than Technical Degrees",
@@ -63,7 +69,8 @@
       "source": "AZ Big Media",
       "sourceUrl": "https://azbigmedia.com/business/education-news/how-arizona-educators-are-teaching-ai-responsibility/",
       "category": "Insights & Trends",
-      "image": "/images/stories/arizona-universities-build-a-i-curricula-around-judgment-and.webp"
+      "image": "/images/stories/arizona-universities-build-a-i-curricula-around-judgment-and.webp",
+      "imageUrl": "/images/stories/arizona-universities-build-a-i-curricula-around-judgment-and.webp"
     }
   ],
   "meta": {
@@ -74,7 +81,7 @@
     "version": "3.1",
     "format": "straight-news",
     "founderDirected": true,
-    "publishedAt": "2026-07-21T03:56:04.226Z",
+    "publishedAt": "2026-07-21T17:13:12.989Z",
     "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
   }
 }
