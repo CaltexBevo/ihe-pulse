@@ -75,11 +75,11 @@
     }
   ],
   "meta": {
-    "publishedAt": "2026-08-02T22:20:43.247Z",
-    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones.",
     "date": "2026-07-31",
-    "dayOfWeek": "Thursday",
+    "dayOfWeek": "Friday",
     "version": "3.1",
-    "format": "straight-news"
+    "format": "straight-news",
+    "publishedAt": "2026-08-03T20:09:03.426Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
   }
 }
