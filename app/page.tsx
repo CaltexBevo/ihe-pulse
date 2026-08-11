@@ -10,7 +10,9 @@ import {
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
   const allEpisodes = getAllEpisodes();
-  const recentEpisodes = allEpisodes.slice(0, 16); // Last 16 episodes for thumbnail strip
+  // Pass the full ordered series so episode numbering remains stable. The
+  // player limits the visible thumbnail strip itself.
+  const recentEpisodes = allEpisodes;
   const storiesByCategory = getStoriesByCategory();
 
   return (

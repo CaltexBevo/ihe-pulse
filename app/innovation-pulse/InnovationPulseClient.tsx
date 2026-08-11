@@ -178,9 +178,10 @@ export default function InnovationPulseClient({
   const [selectedEpisodeIndex, setSelectedEpisodeIndex] = useState(0);
   const [shouldAutoPlay, setShouldAutoPlay] = useState(false);
 
-  // Last 6 episodes (sliding window) - used by HeroNowPlaying and sidebar (5 shown after skipping today)
+  // Keep the full ordered series for stable episode numbering. The visible
+  // recent-episode strip still limits itself to five prior episodes.
   const recentEpisodes = useMemo(() => {
-    return allEpisodes.slice(0, 6);
+    return allEpisodes;
   }, [allEpisodes]);
 
   // Current episode based on selection

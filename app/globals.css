@@ -2266,6 +2266,35 @@ summary:focus:not(:focus-visible) {
   align-items: center;
   gap: 8px;
 }
+
+.np-audio-pending {
+  min-height: 132px;
+  padding: 24px;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 20% 50%, var(--cyan-soft), transparent 58%),
+    var(--raised);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.np-audio-pending strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.np-audio-pending-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 16px var(--cyan-strong);
+  flex-shrink: 0;
+}
 .np-kbd {
   padding: 3px 7px;
   background: var(--raised);
@@ -2521,8 +2550,12 @@ summary:focus:not(:focus-visible) {
   box-shadow: 0 8px 24px rgba(0,212,255,0.3);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .np-subscribe { grid-template-columns: 1fr; }
+  .np-sub-copy { max-width: 720px; }
+}
+
+@media (max-width: 900px) {
   .np-sub-form { flex-wrap: wrap; }
   .np-sub-form input { width: 100%; }
 }

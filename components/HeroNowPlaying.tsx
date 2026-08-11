@@ -53,6 +53,7 @@ export default function HeroNowPlaying({
 
   const currentEpisode = recentEpisodes[selectedIndex] || latestEpisode;
   const paused = !isPlaying;
+  const hasAudio = Boolean(currentEpisode.audioUrl);
 
   // Compute date parts for artwork
   const publishDate = new Date(currentEpisode.date + 'T12:00:00');
@@ -67,19 +68,25 @@ export default function HeroNowPlaying({
 
   // Story count and duration
   const storyCount = 1 + (currentEpisode.quickHits?.length || 0);
-  const durationDisplay = audioError
+  const durationDisplay = !hasAudio
+    ? "Audio coming soon"
+    : audioError
     ? "Audio unavailable"
     : duration > 0
     ? formatTime(duration)
     : currentEpisode.audioDuration;
 
-  // Episode number (count from oldest)
-  const episodeNumber = recentEpisodes.length - selectedIndex;
+  // The numbered Innovation Pulse series began May 5, 2026. Derive the
+  // sequence from the full ordered episode list so adding a new release
+  // increments the number instead of leaving the newest card stuck at 16.
+  const episodeNumber = recentEpisodes.filter(
+    (episode) => episode.date >= '2026-05-05' && episode.date <= currentEpisode.date
+  ).length;
 
   // Dynamic waveform generation based on container width
   useEffect(() => {
     const container = waveformRef.current;
-    if (!container) return;
+    if (!container || !hasAudio) return;
 
     const generate = () => {
       container.innerHTML = "";
@@ -108,7 +115,7 @@ export default function HeroNowPlaying({
     const onResize = () => { clearTimeout(t); t = setTimeout(generate, 150); };
     window.addEventListener("resize", onResize);
     return () => { window.removeEventListener("resize", onResize); clearTimeout(t); };
-  }, []);
+  }, [hasAudio]);
 
   // Audio event handlers
   useEffect(() => {
@@ -235,7 +242,7 @@ export default function HeroNowPlaying({
     const shareUrl = `${window.location.origin}/innovation-pulse/${currentEpisode.date}`;
     const shareData = {
       title: currentEpisode.deepDive?.title || 'The Innovation Pulse',
-      text: `Listen to The Innovation Pulse: ${currentEpisode.deepDive?.title}`,
+      text: `${hasAudio ? 'Listen to' : 'Read'} The Innovation Pulse: ${currentEpisode.deepDive?.title}`,
       url: shareUrl,
     };
 
@@ -270,7 +277,7 @@ export default function HeroNowPlaying({
       heroRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     // Start playing
-    if (audioRef.current && !isPlaying) {
+    if (hasAudio && audioRef.current && !isPlaying) {
       audioRef.current.play()
         .then(() => setIsPlaying(true))
         .catch((err) => console.log('Autoplay blocked:', err));
@@ -292,7 +299,7 @@ export default function HeroNowPlaying({
           <div className="np-brand">The Innovation Pulse</div>
           <div className="np-now">
             <span className="np-dot" />
-            Now Playing · Today&apos;s Broadcast
+            {hasAudio ? 'Now Playing · Today’s Broadcast' : 'Latest Briefing · Audio Coming Soon'}
           </div>
         </div>
       )}
@@ -330,27 +337,33 @@ export default function HeroNowPlaying({
                 {formatWeekCovered(currentEpisode)}
               </div>
             </div>
-            <div className="np-art-date-tag">— 5 MIN · COMMUTE · LUNCH · DRIVE HOME —</div>
+            <div className="np-art-date-tag">
+              {hasAudio
+                ? '— 5 MIN · COMMUTE · LUNCH · DRIVE HOME —'
+                : '— AUDIO BRIEFING COMING SOON —'}
+            </div>
           </div>
 
           {/* Mobile play overlay — hidden on desktop */}
-          <button
-            className="np-artwork-play-overlay"
-            onClick={togglePlay}
-            aria-label={paused ? "Play episode" : "Pause episode"}
-            type="button"
-          >
-            {isPlaying ? (
-              <svg viewBox="0 0 24 24" width="32" height="32">
-                <rect x="6" y="4" width="4" height="16" fill="white" />
-                <rect x="14" y="4" width="4" height="16" fill="white" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" width="32" height="32" style={{ marginLeft: '3px' }}>
-                <polygon points="6,3 20,12 6,21" fill="white" />
-              </svg>
-            )}
-          </button>
+          {hasAudio && (
+            <button
+              className="np-artwork-play-overlay"
+              onClick={togglePlay}
+              aria-label={paused ? "Play episode" : "Pause episode"}
+              type="button"
+            >
+              {isPlaying ? (
+                <svg viewBox="0 0 24 24" width="32" height="32">
+                  <rect x="6" y="4" width="4" height="16" fill="white" />
+                  <rect x="14" y="4" width="4" height="16" fill="white" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" width="32" height="32" style={{ marginLeft: '3px' }}>
+                  <polygon points="6,3 20,12 6,21" fill="white" />
+                </svg>
+              )}
+            </button>
+          )}
         </div>
 
         <div className="np-player">
@@ -387,13 +400,15 @@ export default function HeroNowPlaying({
             </button>
           </div>
 
-          <div className="np-scrubber">
-            <span className="np-time np-time-current">{formatTime(currentTime)}</span>
-            <div className="np-waveform" ref={waveformRef} />
-            <span className="np-time np-time-total">{durationDisplay}</span>
-          </div>
+          {hasAudio ? (
+            <>
+              <div className="np-scrubber">
+                <span className="np-time np-time-current">{formatTime(currentTime)}</span>
+                <div className="np-waveform" ref={waveformRef} />
+                <span className="np-time np-time-total">{durationDisplay}</span>
+              </div>
 
-          <div className="np-transport">
+              <div className="np-transport">
             <button className="np-ctrl" aria-label="Skip back 15 seconds" type="button" onClick={handleSkipBack}>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 5V2L6 6l6 4V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8z"/>
@@ -432,7 +447,16 @@ export default function HeroNowPlaying({
               <span className="np-kbd">Space</span>
               <span>to play</span>
             </div>
-          </div>
+              </div>
+            </>
+          ) : (
+            <div className="np-audio-pending" role="status">
+              <span className="np-audio-pending-dot" />
+              <span>
+                <strong>Written briefing ready.</strong> Audio is still in final production.
+              </span>
+            </div>
+          )}
 
         </div>
 

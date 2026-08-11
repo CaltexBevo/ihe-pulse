@@ -72,6 +72,12 @@ export default async function InnovationPulseDatePage({
   const currentIndex = allEpisodes.findIndex((ep) => ep.date === date);
   const prevEpisode = allEpisodes[currentIndex + 1];
   const nextEpisode = allEpisodes[currentIndex - 1];
+  const leadParagraphs = episode.deepDive.summary
+    .split(/\n\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+  const leadDeck = leadParagraphs[0] || episode.deepDive.summary;
+  const leadBodyParagraphs = leadParagraphs.slice(1);
 
   return (
     <div className="min-h-screen">
@@ -155,30 +161,39 @@ export default async function InnovationPulseDatePage({
 
         {/* Subtitle */}
         <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8 font-normal">
-          {episode.deepDive.summary}
+          {leadDeck}
         </p>
 
-        {/* Audio Player with autoplay support */}
-        <Suspense fallback={
-          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3">
-            <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
-              <span className="w-[5px] h-[5px] rounded-full bg-[var(--text-muted)]" />
-              LOADING
+        {/* Never mount an audio element without a real source. */}
+        {episode.audioUrl ? (
+          <Suspense fallback={
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3">
+              <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--text-muted)]" />
+                LOADING
+              </div>
+              <div className="w-9 h-9 rounded-full bg-[var(--surface-2)]" />
+              <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px]" />
             </div>
-            <div className="w-9 h-9 rounded-full bg-[var(--surface-2)]" />
-            <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px]" />
+          }>
+            <EpisodeAudioPlayer
+              audioUrl={episode.audioUrl}
+              audioDuration={episode.audioDuration || '0:00'}
+            />
+          </Suspense>
+        ) : (
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10">
+            <div className="flex items-center gap-[0.45rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
+              <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
+              AUDIO BRIEFING COMING SOON
+            </div>
           </div>
-        }>
-          <EpisodeAudioPlayer
-            audioUrl={episode.audioUrl || ''}
-            audioDuration={episode.audioDuration || '0:00'}
-          />
-        </Suspense>
+        )}
 
         {/* Article Body */}
         <article className="mb-10 space-y-6">
           {/* Full editorial content - split into paragraphs */}
-          {episode.deepDive.summary.split('\n\n').map((paragraph, idx) => (
+          {leadBodyParagraphs.map((paragraph, idx) => (
             <p key={idx} className="text-[1.05rem] text-[var(--text-secondary)] leading-[1.8]">
               {paragraph}
             </p>
@@ -280,8 +295,9 @@ export default async function InnovationPulseDatePage({
                 </p>
               ))}
               <p className="font-mono text-[0.62rem] text-[var(--text-muted)] pt-2">
-                Transcript of the audio briefing above. Produced with A.I. voice
-                technology and editorial oversight by the Innovating Higher Ed team.
+                {episode.audioUrl
+                  ? 'Transcript of the audio briefing above. Produced with A.I. voice technology and editorial oversight by the Innovating Higher Ed team.'
+                  : 'Broadcast script prepared for the forthcoming audio briefing, with editorial oversight by the Innovating Higher Ed team.'}
               </p>
             </div>
           </details>
