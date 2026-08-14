@@ -92,16 +92,16 @@ export default function AboutPage() {
             {/* Bio text */}
             <div className="text-[0.85rem] text-[var(--text-secondary)] leading-[1.75] space-y-4 mb-6">
               <p>
-                Dr. Norma Jones is one of higher education&apos;s most active voices on AI integration in the classroom. A tenured faculty member in Communication Studies at Antelope Valley College, she founded and leads the college&apos;s AI Workgroup, co-leads its AI + OER/ZTC initiative, and has delivered more than 120 presentations on AI, education, communication, and media — including keynote addresses, conference panels, and faculty development sessions across California and nationwide.
+                Dr. Norma Jones is one of higher education&apos;s most active voices on AI integration in the classroom. A tenured faculty member in Communication Studies at Antelope Valley College, she founded and leads the college&apos;s AI Workgroup, co-leads its AI + OER/ZTC initiative, and has delivered more than 120 presentations on AI, education, communication, and media, including keynote addresses, conference panels, and faculty development sessions across California and nationwide.
               </p>
               <p>
                 Her podcast, <Link href="/podcast" className="text-[var(--cyan)] hover:underline">Innovating Higher Ed</Link>, is the only podcast featured on the California Community Colleges Chancellor&apos;s Office &ldquo;GenAI and the Future of Learning&rdquo; resource page. She was selected as a CCCCO AI ChangeMaker, providing expert guidance on the Chancellor&apos;s Office Vision 2030 generative AI strategy, and serves on multiple statewide AI faculty development and policy workgroups shaping how California&apos;s 116 community colleges approach artificial intelligence.
               </p>
               <p>
-                Dr. Jones is a published author and editor with Rowman & Littlefield, having co-edited and contributed to multiple volumes on popular culture and media. She created Fearless Public Speaking, an AI-enhanced multimedia OER textbook featuring integrated video, chatbot tutors, and follow-along practice sessions — a model for what next-generation open educational resources can look like.
+                Dr. Jones is a published author and editor with Rowman & Littlefield, having co-edited and contributed to multiple volumes on popular culture and media. She created Fearless Public Speaking, an AI-enhanced multimedia OER textbook featuring integrated video, chatbot tutors, and follow-along practice sessions. It is a model for what next-generation open educational resources can look like.
               </p>
               <p>
-                Before entering academia, Dr. Jones spent over a decade as a corporate executive in marketing, sales, and business development across telecommunications, international e-commerce, and multimedia industries — experience that gives her a practical, real-world lens on how technology transforms organizations. She holds a Ph.D. in Communication and Information from Kent State University, an M.S. from the University of North Texas, and a B.A. from UC Santa Barbara.
+                Before entering academia, Dr. Jones spent over a decade as a corporate executive in marketing, sales, and business development across telecommunications, international e-commerce, and multimedia industries. That experience gives her a practical, real-world lens on how technology transforms organizations. She holds a Ph.D. in Communication and Information from Kent State University, an M.S. from the University of North Texas, and a B.A. from UC Santa Barbara.
               </p>
             </div>
 
@@ -134,19 +134,22 @@ export default function AboutPage() {
 
             {/* Punchy tagline */}
             <p className="text-[0.95rem] font-semibold text-[var(--text)] mb-5 leading-snug">
-              100+ hours of TV. Warner Bros. to AI startups. Built this platform from scratch.
+              Hollywood-trained storyteller. Technology builder. Creating ambitious AI ventures for how people learn, work, and perform.
             </p>
 
             {/* Bio text */}
             <div className="text-[0.85rem] text-[var(--text-secondary)] leading-[1.75] space-y-4 mb-6">
               <p>
-                Brent Jones is a producer, editor, and AI product builder with over two decades of experience across Hollywood and the technology startup space. He began his career at Warner Bros. Television and went on to serve as Post Production Supervisor on ABC&apos;s Growing Pains and Just the Ten of Us, then produce and edit more than 100 episodes of television for Disney, Discovery Channel, History Channel, HGTV, and CBS. As Director of Operations at Matchframe Film and Video, he managed end-to-end post-production workflows — editing, audio mixing, color correction, and large-scale media archiving — delivering broadcast-quality content under relentless deadlines.
+                Brent Jones has spent his career at the intersection of creativity, technology, and execution. He began in television at Warner Bros., served as Post Production Supervisor on ABC&apos;s Growing Pains and Just the Ten of Us, and produced and edited more than 100 episodes for Disney, Discovery Channel, History Channel, HGTV, and CBS.
               </p>
               <p>
-                Now he builds AI products. Brent is the founder of <a href="https://smarteryoo.com" target="_blank" rel="noopener noreferrer" className="text-[var(--magenta)] hover:underline">SmarterYoo</a> (smarteryoo.com), an AI-powered mental performance platform that creates personalized audio training sessions using the same visualization and mental rehearsal techniques practiced by Navy SEALs, Olympic athletes, and surgeons — customized to each user&apos;s specific high-stakes moments and delivered as guided audio.
+                Television taught him more than how to tell a compelling story. It taught him how to transform an idea into an experience by uniting creative talent, sophisticated technology, complex operations, and immovable deadlines. Later, as Director of Operations at Matchframe Film and Video, Brent oversaw the complete post-production process, including editing, sound, color, finishing, and large-scale media systems.
               </p>
               <p>
-                He is also the technical architect behind Innovating Higher Ed, where he designed and built the entire platform from the ground up. Beyond these two ventures, Brent has additional AI products in active development — including an AI-powered OER platform for open educational resources and AI College Rankings, a data-driven approach to evaluating higher education institutions. Each one applies the same philosophy: use AI to solve real problems for real people, not to chase trends.
+                He now brings that creative and operational foundation to artificial intelligence. As Co-Founder and Chief Technology Officer of Innovating Higher Ed, Brent is helping build more than a publication or website. The vision is a modern AI media and product company that gives educators the intelligence, resources, and practical tools they need to lead through one of the most consequential technological shifts in education.
+              </p>
+              <p>
+                Innovating Higher Ed is only one part of that vision. With two additional AI products in development, Brent is building a portfolio of ventures designed around a common belief: the most powerful technology should feel useful, personal, and deeply human. His focus is not AI for its own sake, but AI capable of changing how people learn, develop, create, and perform.
               </p>
               <p>
                 Brent holds a Bachelor of Science in Radio-Television-Film from The University of Texas at Austin.
@@ -155,9 +158,9 @@ export default function AboutPage() {
 
             {/* Credential badges */}
             <div className="flex flex-wrap gap-2">
-              <span className="font-mono text-[0.6rem] px-3 py-1.5 rounded-full bg-[var(--magenta-dim)] text-[var(--magenta)] tracking-wide">Warner Bros.</span>
-              <span className="font-mono text-[0.6rem] px-3 py-1.5 rounded-full bg-[var(--magenta-dim)] text-[var(--magenta)] tracking-wide">Disney/Discovery/CBS</span>
-              <span className="font-mono text-[0.6rem] px-3 py-1.5 rounded-full bg-[var(--magenta-dim)] text-[var(--magenta)] tracking-wide">SmarterYoo Founder</span>
+              <span className="font-mono text-[0.6rem] px-3 py-1.5 rounded-full bg-[var(--magenta-dim)] text-[var(--magenta)] tracking-wide">Hollywood Storyteller</span>
+              <span className="font-mono text-[0.6rem] px-3 py-1.5 rounded-full bg-[var(--magenta-dim)] text-[var(--magenta)] tracking-wide">Creative Technologist</span>
+              <span className="font-mono text-[0.6rem] px-3 py-1.5 rounded-full bg-[var(--magenta-dim)] text-[var(--magenta)] tracking-wide">AI Venture Builder</span>
             </div>
           </div>
         </div>
@@ -181,7 +184,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-[0.95rem] text-[var(--text-secondary)] max-w-xl mx-auto mb-8 leading-relaxed">
               Have questions, feedback, or partnership inquiries? We&apos;d love to hear from you.
-              Or pitch yourself as a guest on the podcast — we&apos;re always looking for fresh perspectives.
+              Or pitch yourself as a guest on the podcast. We&apos;re always looking for fresh perspectives.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
