@@ -1,0 +1,122 @@
+{
+  "episode": {
+    "date": "2026-08-21",
+    "dayOfWeek": "Friday",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-08-21.mp3",
+    "audioDuration": "8:09",
+    "broadcastScript": "This is The Innovation Pulse for the week ending Friday, August twenty-first, twenty twenty-six. And here's who is innovating in higher education this week.\n<break time=\"1.0s\"/>\nMiami University, Ohio State University and the State University of New York system are embedding A.I. competencies in existing majors and courses, according to Inside Higher Ed. Northwestern University and Wentworth Institute of Technology are adding A.I.-specific majors. At Indiana University’s Kelley School of Business, incoming undergraduates will take introductory and advanced A.I. courses. The first course covers effective and ethical use, while the second focuses on business applications.\n\nPurdue University is requiring students to complete an approved A.I. course, which has required changes to plans of study. Faculty members designed some courses from scratch and added A.I. components to others, with syllabus guidance about permitted use. Coastal Carolina University is offering a research-process course that can satisfy a core requirement for students in every discipline.\n\nThe course examines how interaction with a language model affects research outcomes and aligns with information-literacy standards. Inside Higher Ed says Kelley plans regular “What’s New in A.I.” lessons, while Purdue will monitor its curriculum and begin measuring students’ thinking skills. The report also recommends involving libraries because they see research practices across disciplines.\n<break time=\"1.0s\"/>\nAt Virginia Commonwealth University, an A.I. Choice policy lets students limit or decline generative A.I. use and complete alternative assignments. VCU News reports that HUMS two-oh-four, A.I. Literacy, is open to students from every major and combines ideas from the humanities, sciences and social sciences.\n\nThe course covers algorithms, training data, chatbots, bias, inaccurate or fabricated information, privacy, intellectual property, ethics and ownership. Students examine A.I.-assisted advances in health and medicine, marketing, communications and research.\n\nThe course also introduces students to VCU’s own A.I. tools and guidelines. The university says the course is intended to prepare students for later technical, disciplinary or topic-specific study while developing careful evaluation and informed choice.\n<break time=\"1.0s\"/>\nHarvard researcher Christopher Dede is describing role-play simulations as a way for students to practice judgment. He told Fox News Digital that A.I. can simulate difficult real-world interactions before students face them outside the classroom. His examples include a landlord, a used-car dealer or a supervisor responding to a request for a raise.\n\nStudents could practice negotiation and apply course concepts in a simulated interaction. Dede distinguishes calculative prediction from human judgment and argues for developing skills that complement A.I. He also described active, collaborative and project-based learning as ways to develop judgment. The report says language-based A.I. could analyze what students say and do during those performances, providing information about what they retained.\n\nDede described A.I. tools as useful for processing large quantities of information. He said students need enough reasoning skill to distinguish reliable analysis from hallucinated output.\n<break time=\"1.0s\"/>\nAt George Fox University, the guidance keeps a person accountable for decisions involving student standing, financial aid, admission and academic integrity. EdTech Magazine describes the broader framework as a response to skepticism about responsible implementation.\n\nIt calls for explaining when and how A.I. is used to evaluate students, protecting academic work and personal information, addressing algorithmic bias, and preparing people to work with the technology. The article also emphasizes meaningful faculty participation in shaping policy.\n\nThe framework identifies transparency, participation and evidence as ways institutions can address concerns about A.I. adoption, while keeping people responsible for high-stakes decisions.\n<break time=\"1.0s\"/>\nCornell's staff training series combined four class sessions with a final capstone to apply A.I. to daily work. Cornell News reports that participants developed prompting skills, learned to analyze and visualize data, and created software programs without coding experience.\n\nSorin Lerner, dean of Cornell Bowers, led most sessions. Cornell describes the series as its first educational program to provide staff across an entire college with advanced A.I. training and time and support to experiment with A.I. for daily workflows.\n\nThe source says those skills are becoming increasingly valuable in many professions. The sessions took place while most students were away from campus, with staff using the classroom to learn new A.I. tools in the workplace.\n<break time=\"1.0s\"/>\nMarquette Business is spreading A.I. work across supply chain, real estate and accounting while adding an A.I. major and integrating the subject into its M.B.A. Marquette Today reports that the college plans an Applied Artificial Intelligence in Business major for fall twenty twenty-six. A.I. work is also embedded in supply chain, real estate and accounting programs. Students work with predictive analytics, A.I.-enabled real-estate valuation, automation and agentic coding tools.\n\nFaculty and staff receive targeted training. Executive education offers a thirty-day A.I. challenge and an applied A.I. certificate for professionals. An ethics course pairs hands-on work with ethical frameworks.\n\nA cross-campus A.I. Forge club brings together students from business, engineering and other disciplines for projects and hackathons. Marquette also describes a partnership focused on talent, research and community ventures, along with an A.I. Discovery Hub scheduled to open in fall twenty twenty-six. The account is an institutional description and does not report measured learning or employment outcomes.\n<break time=\"1.0s\"/>\nOutside higher education, Generalist A.I. says its GEN-one-point-five robot foundation model can attempt a new physical task after seeing a single demonstration lasting three to twelve seconds. The company’s report describes a multimodal model that processes video, sensor, language and proprioceptive inputs and produces action trajectories. Across ten short-horizon manipulation tasks, the pretrained model averaged fifty-nine percent success with one-shot in-context prompting.\n\nWith ten gradient steps on five minutes of data per task, the reported average rose to eighty-three percent. Demonstrations included opening a jar, folding paper, stacking cups and retrieving money from a purse. Generalist also reports that demonstrations from simulation could prompt a real robot, and that a human could sometimes demonstrate a task directly for the robot to reproduce.\n\nThe report says the tasks are simple, the one-shot success rates are modest, and in-context skills are more brittle than fine-tuned models. These are company-reported demonstrations, not an independent evaluation.\n<break time=\"1.0s\"/>\nOpenAI is introducing ChatGPT for Teens with guided study features, stronger default safeguards and additional parental controls. OpenAI says users estimated to be under eighteen, or users who state that they are thirteen to seventeen, are placed into the teen experience. Study Mode uses guiding questions and step-by-step support.\n\nHomework reminders can redirect an apparent attempt to shortcut an assignment toward collaborative problem solving. Quizzes, learning visualizations and scheduled Study Hours add practice and routine features.\n\nOpenAI says linked parents can manage selected settings, including Quiet Hours, and receive limited safety notifications in certain situations. The company also describes a partnership with CodeAI focused on helping students and educators understand, direct, question and create with A.I. The announcement describes product features and company evaluations, not independent evidence of educational outcomes.\n<break time=\"1.0s\"/>\nThat's this week's Innovation Pulse. Full coverage and source links at innovating higher ed dot com.",
+    "cadence": "weekly",
+    "weekCovered": "2026-08-15/2026-08-21"
+  },
+  "leadStory": {
+    "headline": "Colleges Build AI Fluency Into Degrees and General Education",
+    "summary": "Across higher education, AI fluency is appearing in degree requirements, new majors and general-education courses. Inside Higher Ed reports that Miami University, Ohio State University and the State University of New York system are embedding AI competencies in existing majors and courses.\n\nNorthwestern University and Wentworth Institute of Technology are adding AI-specific majors, while Indiana University’s Kelley School of Business is requiring introductory and advanced AI courses for incoming undergraduates. The first course covers effective and ethical use, and the second focuses on business applications.\n\nPurdue University is requiring students to complete an approved AI course, a change that required modifications to its plans of study. Faculty members designed some Purdue courses from scratch and upgraded others to add AI components, while syllabi are being updated with guidance about permitted use.\n\nCoastal Carolina University is offering a research-process course for students in every discipline that can satisfy a core requirement. That course focuses on how interaction with a language model affects research outcomes and is aligned with information-literacy standards.\n\nThe report says Kelley plans regular “What’s New in AI” lessons, while Purdue will monitor its curriculum and begin measuring students’ critical-thinking development. The report recommends involving libraries because they see research practices across disciplines.",
+    "source": "Inside Higher Ed",
+    "sourceUrl": "https://www.insidehighered.com/news/faculty/teaching/2026/08/20/ai-requirements-and-courses-colleges-eye-ai-fluency",
+    "category": "Insights & Trends",
+    "candidateNumber": 200,
+    "image": "/images/stories/colleges-build-ai-fluency-into-degrees-and-general-education.webp",
+    "imageUrl": "/images/stories/colleges-build-ai-fluency-into-degrees-and-general-education.webp",
+    "heroImage": "/images/stories/heroes/colleges-build-ai-fluency-into-degrees-and-general-education-hero.webp",
+    "heroImageUrl": "/images/stories/heroes/colleges-build-ai-fluency-into-degrees-and-general-education-hero.webp"
+  },
+  "quickHits": [
+    {
+      "headline": "VCU Course Teaches Students to Evaluate AI",
+      "summary": "At Virginia Commonwealth University, an AI Choice policy lets students limit or decline generative AI use and complete alternative versions of assignments. VCU News reports that HUMS 204: AI Literacy brings together ideas from the humanities, sciences and social sciences, and is open to students from every major.\n\nThe course covers algorithms, training data, chatbots, bias, inaccurate or fabricated information, privacy, intellectual property, ethics and ownership. Students also examine AI-assisted advances in health and medicine, marketing, communications and research.\n\nThe course also introduces students to VCU’s own AI tools and guidelines. It is part of VCU’s General Education curriculum.\n\nVCU says the course is designed to prepare students for later technical, disciplinary or topic-specific study while developing critical evaluation and informed choice.",
+      "source": "Virginia Commonwealth University",
+      "sourceUrl": "https://news.vcu.edu/article/new-ai-literacy-course-takes-vcu-students-behind-the-screen",
+      "category": "Case Study",
+      "candidateNumber": 212,
+      "shortByNecessity": true,
+      "image": "/images/stories/vcu-course-teaches-students-to-evaluate-ai.webp",
+      "imageUrl": "/images/stories/vcu-course-teaches-students-to-evaluate-ai.webp",
+      "heroImage": "/images/stories/heroes/vcu-course-teaches-students-to-evaluate-ai-hero.webp",
+      "heroImageUrl": "/images/stories/heroes/vcu-course-teaches-students-to-evaluate-ai-hero.webp"
+    },
+    {
+      "headline": "Harvard Researcher Promotes AI Role-Play for Judgment",
+      "summary": "Harvard researcher Christopher Dede is proposing AI role-play as a rehearsal space for decisions students may later face as tenants, buyers or employees, Fox News Digital reported. Dede distinguishes between reckoning, which he describes as calculative prediction, and human judgment. He argues for developing skills that complement AI rather than concentrating primarily on preventing improper use.\n\nHis examples include an AI that plays the role of a landlord, used-car dealer or supervisor when a student wants a raise. Students could practice negotiation and apply course concepts in a simulated interaction.\n\nDede also described active, collaborative and project-based learning as ways to develop judgment. He said language-based AI could analyze what students say and do during those performances, providing information about what they retained.\n\nThe article reports that Dede sees AI tools as useful for processing large quantities of information. He said students still need enough reasoning skill to distinguish reliable analysis from hallucinated output.",
+      "source": "Fox News",
+      "sourceUrl": "https://www.foxnews.com/media/harvard-research-fellow-says-higher-education-must-rethink-what-students-learn-ai-era",
+      "category": "Practical Tips",
+      "candidateNumber": 5,
+      "shortByNecessity": true,
+      "image": "/images/stories/harvard-researcher-promotes-ai-role-play-for-judgment.webp",
+      "imageUrl": "/images/stories/harvard-researcher-promotes-ai-role-play-for-judgment.webp",
+      "heroImage": "/images/stories/heroes/harvard-researcher-promotes-ai-role-play-for-judgment-hero.webp",
+      "heroImageUrl": "/images/stories/heroes/harvard-researcher-promotes-ai-role-play-for-judgment-hero.webp"
+    },
+    {
+      "headline": "Campus AI Guidance Starts With Transparency and Outcomes",
+      "summary": "At George Fox University, a person remains accountable when AI touches student standing, financial aid, admission, or academic integrity. EdTech Magazine describes a framework that treats skepticism as a signal of concerns responsible implementation needs to address.\n\nIt calls for transparency about when and how AI is used to evaluate students, human oversight of high-stakes decisions, control over academic work and personal information, protection from algorithmic bias, and preparation to work with the technology. The article also emphasizes meaningful faculty participation in shaping AI policy.\n\nThe guidance also calls for explaining where AI is permitted, where it is not, and how information is protected.\n\nThe guidance points to accountability, participation and clear limits as part of an AI implementation before choosing a tool.",
+      "source": "EdTech Magazine",
+      "sourceUrl": "https://edtechmagazine.com/higher/article/2026/08/how-campus-it-leaders-can-innovate-despite-ai-pushback",
+      "category": "Practical Tips",
+      "candidateNumber": 164,
+      "shortByNecessity": true,
+      "image": "/images/stories/campus-ai-guidance-starts-with-transparency-and-outcomes.webp",
+      "imageUrl": "/images/stories/campus-ai-guidance-starts-with-transparency-and-outcomes.webp",
+      "heroImage": "/images/stories/heroes/campus-ai-guidance-starts-with-transparency-and-outcomes-hero.webp",
+      "heroImageUrl": "/images/stories/heroes/campus-ai-guidance-starts-with-transparency-and-outcomes-hero.webp"
+    },
+    {
+      "headline": "Cornell Staff Learn AI Through a Four-Session Capstone",
+      "summary": "Cornell’s “We Do AI” series gave staff four class sessions followed by a final capstone for applying AI to daily work.\n\nCornell News reports that participants developed prompting skills, learned to analyze and visualize data, and created software programs without coding experience.\n\nSorin Lerner, dean of Cornell Bowers, led most of the sessions. Cornell describes “We Do AI” as its first educational series to provide staff across an entire college with advanced training in how to use AI effectively. Lerner said he wanted staff to have fun, build community and learn new AI skills.\n\nThe source says those skills are becoming increasingly valuable in many professions. It also describes the series as giving staff time and support to experiment with AI for their daily workflows. The sessions took place while most students were away from campus, with staff using the classroom to learn new AI tools in the workplace.",
+      "source": "Cornell University",
+      "sourceUrl": "https://news.cornell.edu/stories/2026/08/cornell-bowers-faculty-do-ai-and-now-staff-do-too",
+      "category": "Case Study",
+      "candidateNumber": 131,
+      "shortByNecessity": true,
+      "image": "/images/stories/cornell-staff-learn-ai-through-a-four-session-capstone.webp",
+      "imageUrl": "/images/stories/cornell-staff-learn-ai-through-a-four-session-capstone.webp",
+      "heroImage": "/images/stories/heroes/cornell-staff-learn-ai-through-a-four-session-capstone-hero.webp",
+      "heroImageUrl": "/images/stories/heroes/cornell-staff-learn-ai-through-a-four-session-capstone-hero.webp"
+    },
+    {
+      "headline": "Marquette Business Integrates AI Across Degrees and Training",
+      "summary": "Marquette Business is spreading AI work across supply chain, real estate, and accounting while adding an AI major and integrating the subject into its MBA. Marquette Today reports that the college plans an Applied Artificial Intelligence in Business major for fall 2026 and has embedded AI work in supply chain, real estate and accounting programs.\n\nStudents work with predictive analytics, AI-enabled real-estate valuation, automation and agentic coding tools. Faculty and staff receive targeted training, while executive education offers a 30-day AI challenge and an applied AI certificate to professionals.\n\nThe college also teaches ethical AI use through a course that pairs hands-on work with ethical frameworks. A cross-campus AI Forge club gives students from business, engineering and other disciplines opportunities to build and monetize AI through projects and hackathons.\n\nMarquette also describes a partnership focused on talent, research and community ventures, plus an AI Discovery Hub scheduled to open in fall 2026. The account is an institutional description and does not report measured learning or employment outcomes.",
+      "source": "Marquette Today",
+      "sourceUrl": "https://today.marquette.edu/2026/08/10-ways-marquette-business-is-leading-ai-integration/",
+      "category": "Case Study",
+      "candidateNumber": 77,
+      "image": "/images/stories/marquette-business-integrates-ai-across-degrees-and-training.webp",
+      "imageUrl": "/images/stories/marquette-business-integrates-ai-across-degrees-and-training.webp",
+      "heroImage": "/images/stories/heroes/marquette-business-integrates-ai-across-degrees-and-training-hero.webp",
+      "heroImageUrl": "/images/stories/heroes/marquette-business-integrates-ai-across-degrees-and-training-hero.webp"
+    },
+    {
+      "headline": "GEN-1.5 Robot Learns Tasks From Seconds of Demonstration",
+      "summary": "Generalist AI says its GEN-1.5 robot foundation model can attempt a new physical task after seeing a three- to twelve-second demonstration. The company’s report describes a multimodal model that processes video, sensor, language and proprioceptive inputs and produces action trajectories. Across 10 short-horizon manipulation tasks, the pretrained model averaged 59 percent success with one-shot in-context prompting.\n\nWith 10 gradient steps on five minutes of data per task, the reported average rose to 83 percent. The demonstrations included tasks such as opening a jar, folding paper, stacking cups and retrieving money from a purse.\n\nGeneralist also reports that demonstrations from simulation could prompt a real robot, and that a human could sometimes demonstrate a task directly for the robot to reproduce. The model improvised with unfamiliar tools in some tests.\n\nThe report says the tasks are simple, the one-shot success rates are modest, and in-context skills are more brittle than fine-tuned models. The results are company-reported demonstrations, not an independent evaluation.",
+      "source": "Generalist AI",
+      "sourceUrl": "https://generalistai.com/blog/gen-1.5",
+      "category": "Beyond Ed",
+      "candidateNumber": 235,
+      "image": "/images/stories/gen-1-5-robot-learns-tasks-from-seconds-of-demonstration.webp",
+      "imageUrl": "/images/stories/gen-1-5-robot-learns-tasks-from-seconds-of-demonstration.webp",
+      "heroImage": "/images/stories/heroes/gen-1-5-robot-learns-tasks-from-seconds-of-demonstration-hero.webp",
+      "heroImageUrl": "/images/stories/heroes/gen-1-5-robot-learns-tasks-from-seconds-of-demonstration-hero.webp"
+    },
+    {
+      "headline": "ChatGPT for Teens Adds Guided Study and Safeguards",
+      "summary": "ChatGPT for Teens pairs guided study features with stronger default safeguards and linked-parent controls, according to OpenAI. The company says users who are estimated to be under 18, or who state that they are 13 to 17, are placed into the teen experience.\n\nStudy Mode uses guiding questions and step-by-step support. Homework reminders can redirect an apparent attempt to shortcut an assignment toward collaborative problem solving, while quizzes, learning visualizations and scheduled Study Hours add practice and routine features.\n\nOpenAI says teen accounts receive age-appropriate protections in higher-risk areas and that linked parents can manage selected settings, including Quiet Hours, while receiving limited safety notifications in certain situations. The company also describes a partnership with CodeAI focused on helping students and educators understand, direct, question and create with AI.\n\nOpenAI presents the product as support for learning outside the classroom and says educators remain in control of classroom AI experiences. The announcement describes product features and company evaluations, not independent evidence of educational outcomes.",
+      "source": "OpenAI",
+      "sourceUrl": "https://openai.com/index/chatgpt-for-teens/",
+      "category": "Tool Spotlight",
+      "candidateNumber": 236,
+      "image": "/images/stories/chatgpt-for-teens-adds-guided-study-and-safeguards.webp",
+      "imageUrl": "/images/stories/chatgpt-for-teens-adds-guided-study-and-safeguards.webp",
+      "heroImage": "/images/stories/heroes/chatgpt-for-teens-adds-guided-study-and-safeguards-hero.webp",
+      "heroImageUrl": "/images/stories/heroes/chatgpt-for-teens-adds-guided-study-and-safeguards-hero.webp"
+    }
+  ],
+  "meta": {
+    "date": "2026-08-21",
+    "dayOfWeek": "Friday",
+    "version": "3.1",
+    "format": "straight-news",
+    "editorialRule": "Rule79",
+    "publishedAt": "2026-08-24T21:18:52.631Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}
