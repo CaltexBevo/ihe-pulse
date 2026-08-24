@@ -98,6 +98,7 @@ export interface DeepDive {
   category: StoryCategory;
   editorialCallout?: string;
   image?: string; // Assigned at data load time for consistency
+  heroImage?: string; // Reviewed wide 1200x420 derivative for story pages
   dataViz?: DataVizConfig; // Optional chart data
 }
 
@@ -110,6 +111,7 @@ export interface QuickHit {
   isCallback?: boolean;
   callbackDate?: string;
   image?: string; // Assigned at data load time for consistency
+  heroImage?: string; // Reviewed wide 1200x420 derivative for story pages
   dataViz?: DataVizConfig; // Optional chart data
 }
 

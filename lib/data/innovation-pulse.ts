@@ -154,6 +154,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     category: mapCategory((rawDeepDive.category) as string || ''),
     editorialCallout: (rawDeepDive.editorialCallout) as string | undefined,
     image: (rawDeepDive.image || rawDeepDive.imageUrl) as string | undefined,
+    heroImage: (rawDeepDive.heroImage || rawDeepDive.heroImageUrl) as string | undefined,
     dataViz: (rawDeepDive.dataViz) as InnovationPulseEpisode['deepDive']['dataViz'] | undefined,
   };
 
@@ -167,6 +168,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     category: mapCategory((hit.category) as string || ''),
     isCallback: hit.isCallback as boolean | undefined,
     image: (hit.image || hit.imageUrl) as string | undefined,
+    heroImage: (hit.heroImage || hit.heroImageUrl) as string | undefined,
     dataViz: (hit.dataViz) as InnovationPulseEpisode['quickHits'][number]['dataViz'] | undefined,
   }));
 
@@ -348,6 +350,7 @@ export interface AggregatedStory {
   type: 'deepDive' | 'quickHit';
   isCallback?: boolean;
   image?: string; // Pre-assigned at data load time
+  heroImage?: string; // Reviewed wide derivative when available
 }
 
 // ── Story Aggregation Utilities ─────────────────────────────────────────────
@@ -368,6 +371,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
       type: 'deepDive',
       isCallback: episode.deepDive.isCallback,
       image: episode.deepDive.image,
+      heroImage: episode.deepDive.heroImage,
     });
 
     // Add quick hits
@@ -381,6 +385,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
         date: episode.date,
         type: 'quickHit',
         image: hit.image,
+        heroImage: hit.heroImage,
       });
     }
   }
@@ -469,6 +474,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
         fullText: episode.deepDive.summary,
         editorialTake: episode.deepDive.editorialCallout,
         image: episode.deepDive.image,
+        heroImage: episode.deepDive.heroImage,
       };
     }
 
@@ -490,6 +496,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
           editorialLens: episode.editorialLens,
           audioUrl: episode.audioUrl,
           image: hit.image,
+          heroImage: hit.heroImage,
         };
       }
     }

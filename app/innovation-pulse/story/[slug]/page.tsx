@@ -80,7 +80,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
   const v4Category = mapToV4Category(story.category);
   const categoryConfig = V4_CATEGORY_CONFIG[story.category] || V4_CATEGORY_CONFIG["Insights & Trends"];
   // Use pre-assigned image from story data, or fall back to default
-  const storyImage = story.image || DEFAULT_STORY_IMAGE;
+  const storyImage = story.heroImage || story.image || DEFAULT_STORY_IMAGE;
 
   return (
     <div className="min-h-screen">

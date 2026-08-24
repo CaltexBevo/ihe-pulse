@@ -105,7 +105,7 @@ export default async function InnovationPulseDatePage({
           ═══════════════════════════════════════════════════════ */}
       <div className="max-w-[1200px] mx-auto relative overflow-hidden h-[420px]">
         <Image
-          src={episode.deepDive.image || DEFAULT_LEAD_IMAGE}
+          src={episode.deepDive.heroImage || episode.deepDive.image || DEFAULT_LEAD_IMAGE}
           alt="Story hero"
           fill
           className="object-cover"
