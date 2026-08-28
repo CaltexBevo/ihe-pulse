@@ -141,7 +141,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
         {status === 'success' ? (
           <p className="text-[0.78rem] text-[var(--green)]" role="status">{message}</p>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <form onSubmit={handleSubmit} className="flex min-w-0 flex-col gap-2">
             {/* Honeypot field - hidden from humans, bots fill it */}
             <input
               type="text"
@@ -153,7 +153,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
               aria-hidden="true"
               style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
             />
-            <div className="flex gap-2">
+            <div className="flex min-w-0 gap-2">
               <input
                 type="text"
                 value={firstName}
@@ -162,7 +162,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
                 aria-label="First name"
                 required
                 minLength={2}
-                className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                className="min-w-0 flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
                 disabled={status === 'loading'}
               />
               <input
@@ -173,18 +173,18 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
                 aria-label="Last name"
                 required
                 minLength={2}
-                className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                className="min-w-0 flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
                 disabled={status === 'loading'}
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex min-w-0 gap-2">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@university.edu"
                 aria-label="Email address"
-                className="flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
+                className="min-w-0 flex-1 px-3 py-2 text-[0.78rem] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-muted)]"
                 disabled={status === 'loading'}
               />
               <button
