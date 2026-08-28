@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import EngagementAnalytics from "@/components/EngagementAnalytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.innovatinghighered.com'),
@@ -97,7 +97,7 @@ export default function RootLayout({
           <main id="main-content" className="min-h-screen">{children}</main>
           <Footer />
         </ThemeProvider>
-        <Analytics />
+        <EngagementAnalytics />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import { trackEvent } from './EngagementAnalytics';
 
 interface NewsletterSignupProps {
   variant?: 'card' | 'inline' | 'inline-strip' | 'footer';
@@ -39,6 +40,7 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
     }
 
     setStatus('loading');
+    trackEvent('newsletter_signup_attempt', { placement: variant });
 
     try {
       // Mailchimp integration - uses API route to avoid CORS
@@ -51,16 +53,19 @@ export default function NewsletterSignup({ variant = 'card', className = '' }: N
       const data = await response.json();
 
       if (response.ok) {
+        trackEvent('newsletter_signup_success', { placement: variant });
         setStatus('success');
         setMessage(data.message || 'Check your inbox to confirm your subscription!');
         setEmail('');
         setFirstName('');
         setLastName('');
       } else {
+        trackEvent('newsletter_signup_error', { placement: variant, reason: 'service' });
         setStatus('error');
         setMessage(data.error || 'Something went wrong. Please try again.');
       }
     } catch {
+      trackEvent('newsletter_signup_error', { placement: variant, reason: 'network' });
       setStatus('error');
       setMessage('Network error. Please try again.');
     }

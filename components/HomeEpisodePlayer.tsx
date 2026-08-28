@@ -1,11 +1,14 @@
 'use client';
 
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import Image from 'next/image';
+import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
-import HeroNowPlaying from '@/components/HeroNowPlaying';
+import HomePulseHero from '@/components/HomePulseHero';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
-import { isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
+import { formatWeekCovered, isWeeklyEpisode } from '@/lib/data/innovation-pulse-types';
+import { getPulseEpisodeThumbnail } from '@/lib/home-pulse-artwork';
+import styles from './HomeEpisodePlayer.module.css';
 
 interface HomeEpisodePlayerProps {
   latestEpisode: InnovationPulseEpisode;
@@ -18,15 +21,6 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
 
   // Current episode based on selection
   const currentEpisode = recentEpisodes[selectedEpisodeIndex] || latestEpisode;
-
-  // "Also in this episode" data — uses currentEpisode
-  const heroOtherStories = useMemo(() => {
-    return currentEpisode?.quickHits?.slice(0, 3).map(hit => ({
-      source: hit.source,
-      tease: hit.title,
-      headline: hit.title,
-    })) || [];
-  }, [currentEpisode]);
 
   // Handle episode change from HeroNowPlaying or Recent Episodes grid
   const handleEpisodeChange = useCallback((index: number, ep: InnovationPulseEpisode) => {
@@ -66,21 +60,16 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
 
   return (
     <>
-      {/* Hero player with episode artwork and controls — matches Innovation Pulse page */}
+      {/* Homepage-only editorial hero with a standardized live player. */}
       <div className="animate-[fadeUp_0.7s_ease-out_both]">
-        <HeroNowPlaying
-          latestEpisode={currentEpisode}
-          recentEpisodes={recentEpisodes}
-          otherStories={heroOtherStories}
-          showExtras={false}
-          showHeader={false}
-          selectedEpisodeIndex={selectedEpisodeIndex}
-          onEpisodeChange={handleEpisodeChange}
+        <HomePulseHero
+          key={currentEpisode.date}
+          episode={currentEpisode}
           autoPlay={shouldAutoPlay}
         />
       </div>
 
-      <div className="np-subscribe" style={{ marginTop: '24px', marginBottom: '8px' }}>
+      <div className={`np-subscribe ${styles.newsletter}`}>
         <div className="np-sub-copy">
           <strong>Never miss an episode.</strong>{" "}
           <span className="np-sub-muted">
@@ -92,63 +81,71 @@ export default function HomeEpisodePlayer({ latestEpisode, recentEpisodes }: Hom
         <NewsletterSignup variant="inline-strip" />
       </div>
 
-      {/* Recent Episodes grid — matches Innovation Pulse page */}
+      {/* Homepage-only landscape rail using the approved episode-artwork system. */}
       {recentEpisodes && recentEpisodes.length > 1 && (
-        <div className="ip-recent-strip">
-          <div className="ip-recent-header">
-            <div className="ip-recent-header-title">
-              <span className="np-dot" />
-              <h3>Recent Episodes</h3>
+        <section className={styles.recent} aria-labelledby="home-recent-episodes">
+          <div className={styles.header}>
+            <div className={styles.headingGroup}>
+              <span className={styles.dot} aria-hidden="true" />
+              <div>
+                <h2 id="home-recent-episodes" className={styles.heading}>Recent Episodes</h2>
+                <p className={styles.subheading}>More of the weekly A.I. news shaping higher education</p>
+              </div>
             </div>
-            <Link href="/innovation-pulse/archive" className="ip-recent-all-btn">
+            <Link href="/innovation-pulse/archive" className={styles.allEpisodes}>
               All Episodes
             </Link>
           </div>
 
-          <div className="ip-recent-thumbs">
-            {recentEpisodes.slice(1, 16).map((ep, idx) => {
-              const epDate = new Date(ep.date + 'T12:00:00');
-              const monthDay = epDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          <div className={styles.rail}>
+            {recentEpisodes.slice(1, 9).map((ep, idx) => {
               const actualIndex = idx + 1;
               const isSelected = selectedEpisodeIndex === actualIndex;
+              const artwork = getPulseEpisodeThumbnail(ep.date);
+              const headline = ep.deepDive?.title || 'The Innovation Pulse';
 
               return (
                 <button
                   key={ep.date}
                   type="button"
                   onClick={() => handleRecentEpisodeClick(ep)}
-                  className={`ip-recent-thumb ${isSelected ? 'ip-recent-thumb-active' : ''}`}
+                  className={`${styles.card} ${isSelected ? styles.selected : ''}`}
+                  aria-label={`${isSelected ? 'Currently selected' : 'Listen to'} ${headline}`}
                 >
-                  <div className="ip-recent-thumb-img">
-                    <div className="ip-recent-thumb-artwork">
-                      <div className="ip-recent-thumb-accent" />
-                      <img src="/images/ihe-logo.png" alt="" className="ip-recent-thumb-logo" aria-hidden="true" />
-                      <img src="/images/mic03.webp" alt="" className="ip-recent-thumb-micimg" aria-hidden="true" />
-                      <div className="ip-recent-thumb-title">{"The"}<br />{"Innovation"}<br />{"Pulse"}</div>
-                    </div>
-                    <div className="ip-recent-thumb-date">{monthDay.toUpperCase()}</div>
-                    {isSelected && (
-                      <div className="ip-recent-thumb-now">
-                        <span className="ip-recent-thumb-now-dot" />
-                        NOW
-                      </div>
-                    )}
-                    {!isSelected && (
-                      <div className="ip-recent-thumb-play">
-                        <svg viewBox="0 0 24 24" width="16" height="16">
-                          <polygon points="6,3 20,12 6,21" fill="white" fillOpacity="0.7" />
-                        </svg>
+                  <div className={styles.artwork}>
+                    {artwork ? (
+                      <Image
+                        src={artwork}
+                        alt=""
+                        fill
+                        sizes="(max-width: 680px) 82vw, (max-width: 1000px) 31vw, 270px"
+                        className={styles.artworkImage}
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <div className={styles.legacyArtwork}>
+                        <span>Innovation Pulse</span>
+                        <strong>{headline}</strong>
                       </div>
                     )}
                   </div>
-                  <div className="ip-recent-thumb-side">
-                    <div className="ip-recent-thumb-side-title">{ep.deepDive?.title || ''}</div>
+
+                  <div className={styles.cardBody}>
+                    <div className={styles.week}>{formatWeekCovered(ep)}</div>
+                    <h3 className={styles.cardTitle}>{headline}</h3>
+                    <div className={styles.actionRow}>
+                      <span className={styles.listenAction}>
+                        <span className={styles.playGlyph} aria-hidden="true" />
+                        {isSelected ? 'Selected above' : 'Listen'}
+                      </span>
+                      <span className={styles.duration}>{ep.audioDuration}</span>
+                    </div>
                   </div>
                 </button>
               );
             })}
           </div>
-        </div>
+        </section>
       )}
     </>
   );
