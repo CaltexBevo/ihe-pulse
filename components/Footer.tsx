@@ -35,7 +35,7 @@ const socialLinks = [
     ),
   },
   {
-    href: "https://youtube.com/@innovatinghighered",
+    href: "https://www.youtube.com/@InnovatingHigherEd",
     label: "Subscribe on YouTube",
     icon: (
       <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="currentColor" aria-hidden="true">
