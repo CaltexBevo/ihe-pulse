@@ -218,7 +218,7 @@
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  background: var(--brand-grad);
+  background: linear-gradient(135deg, var(--cyan), var(--magenta-text));
   cursor: pointer;
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
@@ -231,7 +231,7 @@
 
 .primaryListen > span:last-child {
   padding-left: 4px;
-  opacity: 0.72;
+  opacity: 1;
 }
 
 .primaryListen:hover,
@@ -436,8 +436,7 @@
   min-height: 36px;
   padding: 8px 11px;
   border-radius: 8px;
-  color: var(--cyan);
-  background: transparent;
+  color: var(--bg);
 }
 
 .fallbackArtwork {
