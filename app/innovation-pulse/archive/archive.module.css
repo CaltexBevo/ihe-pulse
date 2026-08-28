@@ -211,14 +211,14 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
-  border: 1px solid var(--cyan);
-  color: #051015;
+  border: 1px solid transparent;
+  color: var(--bg);
   font-family: var(--font-mono);
   font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  background: var(--cyan);
+  background: var(--brand-grad);
   cursor: pointer;
   transition: transform 160ms ease, box-shadow 160ms ease;
 }

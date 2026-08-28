@@ -72,7 +72,7 @@
 }
 
 .allEpisodes:hover {
-  color: #051015;
+  color: var(--bg);
   background: var(--cyan);
 }
 
