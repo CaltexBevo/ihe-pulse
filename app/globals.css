@@ -2532,7 +2532,7 @@ summary:focus:not(:focus-visible) {
 }
 .np-sub-form input:focus { border-color: var(--cyan); }
 .np-sub-form input::placeholder { color: var(--text-dim); }
-.np-sub-form button {
+.np-sub-form > .np-sub-submit {
   background: var(--brand-grad);
   color: #08080f;
   padding: 12px 22px;
@@ -2545,7 +2545,7 @@ summary:focus:not(:focus-visible) {
   transition: all 0.2s;
   white-space: nowrap;
 }
-.np-sub-form button:hover {
+.np-sub-form > .np-sub-submit:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(0,212,255,0.3);
 }

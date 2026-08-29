@@ -245,12 +245,18 @@
   .newsletter :global(.np-sub-form) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 8px;
+    column-gap: 8px;
+    row-gap: 0;
   }
 
-  .newsletter :global(.np-sub-form) > div {
+  .newsletter :global(.np-sub-form) > :global(.np-sub-name-row),
+  .newsletter :global(.np-sub-form) > :global(.np-sub-security-row) {
     grid-column: 1 / -1;
     margin-bottom: 0;
+  }
+
+  .newsletter :global(.np-sub-form) > :global(.np-sub-security-row) {
+    min-width: 0;
   }
 
   .newsletter :global(.np-sub-form) input {
@@ -259,12 +265,16 @@
     padding: 10px 12px;
   }
 
-  .newsletter :global(.np-sub-form) > input[type='email'] {
+  .newsletter :global(.np-sub-form) > :global(.np-sub-email) {
+    grid-column: 1;
     width: 100%;
+    margin-top: 8px;
   }
 
-  .newsletter :global(.np-sub-form) button {
+  .newsletter :global(.np-sub-form) > :global(.np-sub-submit) {
+    grid-column: 2;
     min-height: 42px;
+    margin-top: 8px;
     padding: 10px 15px;
   }
 
