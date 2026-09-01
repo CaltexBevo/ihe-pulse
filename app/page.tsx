@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
+import FeaturedCoverage from "@/components/FeaturedCoverage";
 import InnovationPulseClient from "@/app/innovation-pulse/InnovationPulseClient";
 import {
   getLatestEpisode,
@@ -34,6 +35,8 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      <FeaturedCoverage />
 
       {/* ═══════════════════════════════════════════════════════
           INNOVATION PULSE CONTENT — Top Stories, Categories, Archive

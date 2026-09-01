@@ -4,6 +4,23 @@ const SITE_URL = "https://www.innovatinghighered.com";
 const SITE_NAME = "Innovating Higher Ed";
 const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
 
+type PageMetadataOptions = {
+  title: string;
+  description: string;
+  /** Route path starting with "/", e.g. "/podcast" or `/podcast/${slug}` */
+  path: string;
+  type?: "website" | "article";
+  /** Optional page-specific social image path. */
+  imagePath?: string;
+  /** Optional accessible description for the social image. */
+  imageAlt?: string;
+  /** Optional Twitter card variant. */
+  twitterCard?: "summary" | "summary_large_image";
+  /** Optional dimensions for a page-specific social image. */
+  imageWidth?: number;
+  imageHeight?: number;
+};
+
 /**
  * Builds complete per-page metadata so every route shares as itself
  * (own og:url + og:title) instead of the homepage.
@@ -18,14 +35,14 @@ export function pageMetadata({
   description,
   path,
   type = "website",
-}: {
-  title: string;
-  description: string;
-  /** Route path starting with "/", e.g. "/podcast" or `/podcast/${slug}` */
-  path: string;
-  type?: "website" | "article";
-}): Metadata {
+  imagePath,
+  imageAlt,
+  twitterCard = "summary",
+  imageWidth = 1024,
+  imageHeight = 1024,
+}: PageMetadataOptions): Metadata {
   const url = `${SITE_URL}${path}`;
+  const imageUrl = imagePath ? `${SITE_URL}${imagePath}` : OG_IMAGE_URL;
   return {
     title,
     description,
@@ -38,18 +55,18 @@ export function pageMetadata({
       type,
       images: [
         {
-          url: OG_IMAGE_URL,
-          width: 1024,
-          height: 1024,
-          alt: SITE_NAME,
+          url: imageUrl,
+          width: imageWidth,
+          height: imageHeight,
+          alt: imageAlt ?? SITE_NAME,
         },
       ],
     },
     twitter: {
-      card: "summary",
+      card: twitterCard,
       title,
       description,
-      images: [OG_IMAGE_URL],
+      images: [imageUrl],
     },
   };
 }
