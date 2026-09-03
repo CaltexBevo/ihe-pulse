@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## v2.1.1 — September 3, 2026 (Homepage Featured Artwork Correction)
+
+### Homepage
+- Restored the dedicated MIT article artwork in the homepage Featured Coverage card while preserving the approved Option A Innovation Pulse hero unchanged.
+
 ## v2.1.0 — September 3, 2026 (Homepage V2: Innovation Pulse Option A)
 
 ### Homepage V2

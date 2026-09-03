@@ -48,8 +48,6 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
   reportTitle: "MIT Report – AI and Education",
   category: "Insights & Trends",
   imagePath: "/images/feature-coverage/mit-ai-education-purpose.png",
-  homepageImagePath:
-    "/images/innovation-pulse/homepage/2026-08-28-option-a-master.png",
   imageAlt:
     "Illustrated university construction site showing purpose as the foundation before an AI guidelines beam is lowered.",
   sections: [
