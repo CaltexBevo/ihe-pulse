@@ -1,5 +1,18 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## v2.1.0 — September 3, 2026 (Homepage V2: Innovation Pulse Option A)
+
+### Homepage V2
+- Replaced the homepage lead with the founder-approved Option A weekly Innovation Pulse hero and its exact approved multi-story artwork.
+- Added the real-audio waveform player with synchronized cyan progress, direct listen-and-follow destinations, covered week, runtime, and Share in one action panel.
+- Moved Past Innovation Pulse Episodes directly below the hero with real audio-derived waveform cards and the larger episode-archive action.
+- Added the compact newsletter, shared-artwork Featured Coverage, More from the Innovation Pulse, Find More Stories, and larger More from Innovating Higher Ed modules in the approved page rhythm.
+- Kept `SEE ALL FEATURES` omitted and preserved responsive behavior through desktop, tablet, 390-pixel, and 320-pixel layouts.
+
+### Verification
+- Passed 21 focused tests, the design-token scan, scoped ESLint, TypeScript, the 296-page production build, responsive browser checks, and real-audio playback verification.
+- Reduced the homepage server-component payload to the approved seven-field hero view model and added the August 28 release to the finite engagement-tracking allowlist.
+
 ## v2.0.0 — May 26–29, 2026 (Homepage Restructure: Innovation Pulse as Homepage)
 
 ### Homepage Architecture Overhaul

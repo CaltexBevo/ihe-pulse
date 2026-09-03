@@ -1,4 +1,14 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+
+/*
+ * Tailwind v4 otherwise scans upward to the inferred workspace root. This
+ * repository keeps generated previews and historical source beside the live
+ * app, so constrain candidate discovery to code that can ship in this build.
+ */
+@source "../app";
+@source "../components";
+@source "../data";
+@source "../lib";
 
 /* ============================================
    IHE PULSE - Electric Dusk Design System

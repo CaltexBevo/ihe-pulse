@@ -54,6 +54,7 @@ const TRACKED_RELEASE_DATES = new Set([
   '2026-08-07',
   '2026-08-14',
   '2026-08-21',
+  '2026-08-28',
 ]);
 
 const MAILCHIMP_CONTENT = new Set([

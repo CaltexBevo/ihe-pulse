@@ -100,10 +100,16 @@ test('accepts only governed campaign combinations and registered release dates',
       channel: 'x:social:episode_post',
     },
   );
+  assert.deepEqual(
+    campaignEventProperties('?utm_source=mailchimp&utm_medium=email&utm_campaign=innovation-pulse-2026-08-28&utm_content=listen'),
+    {
+      campaign: 'innovation-pulse-2026-08-28',
+      channel: 'mailchimp:email:listen',
+    },
+  );
 
   const rejected = [
     '?utm_source=person%40example.com&utm_medium=email&utm_campaign=innovation-pulse-2026-08-14&utm_content=listen',
-    '?utm_source=mailchimp&utm_medium=email&utm_campaign=innovation-pulse-2026-08-28&utm_content=listen',
     '?utm_source=mailchimp&utm_medium=email&utm_campaign=customer-123456789&utm_content=listen',
     '?utm_source=mailchimp&utm_medium=email&utm_campaign=innovation-pulse-2026-08-14&utm_content=free-form-user-id',
     '?utm_source=x&utm_medium=email&utm_campaign=innovation-pulse-2026-08-14&utm_content=episode_post',
@@ -121,7 +127,10 @@ test('normalizes routes, bounds audio identities, and detects query-only SPA cha
     episodeFromAudioSource('https://storage.example/broadcast-2026-08-14.mp3?subscriber=person@example.com'),
     '2026-08-14',
   );
-  assert.equal(episodeFromAudioSource('https://storage.example/broadcast-2026-08-28.mp3'), null);
+  assert.equal(
+    episodeFromAudioSource('https://storage.example/broadcast-2026-08-28.mp3'),
+    '2026-08-28',
+  );
   assert.notEqual(
     analyticsNavigationKey('/innovation-pulse/2026-08-21', 'utm_source=x'),
     analyticsNavigationKey('/innovation-pulse/2026-08-21', 'utm_source=youtube'),
@@ -204,6 +213,21 @@ test('page handlers report visible-tab time and deduplicate scroll, audio, and r
   handlers.onClick(clickEvent);
   handlers.onClick(clickEvent);
   assert.equal(sent.filter(([name]) => name === 'share_click').length, 1);
+
+  const nativeShareElement = {
+    href: '',
+    getAttribute: (name: string) =>
+      name === 'aria-label' ? 'Share episode from Innovation Pulse' : null,
+  };
+  const nativeShareEvent = {
+    type: 'click',
+    target: { closest: () => nativeShareElement },
+  } as unknown as Event;
+  handlers.onClick(nativeShareEvent);
+  assert.deepEqual(sent.at(-1), [
+    'share_click',
+    { page: '/innovation-pulse/[date]', channel: 'native' },
+  ]);
 });
 
 class FakeListenerTarget implements ListenerTargetLike {
@@ -277,7 +301,10 @@ test('closed schemas enforce two properties and exclude raw PII-like fields', ()
     sanitizeEngagementEvent('newsletter_signup_attempt', { placement: 'footer', email: 'person@example.com' }),
     null,
   );
-  assert.equal(sanitizeEngagementEvent('audio_progress', { episode: '2026-08-28', percent: 50 }), null);
+  assert.deepEqual(
+    sanitizeEngagementEvent('audio_progress', { episode: '2026-08-28', percent: 50 }),
+    { episode: '2026-08-28', percent: 50 },
+  );
 });
 
 test('finite outbound classification and first-observation helper remain fail closed', () => {

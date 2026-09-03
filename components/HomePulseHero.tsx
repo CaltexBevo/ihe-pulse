@@ -1,52 +1,140 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+} from 'react';
 import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
 import { formatWeekCovered } from '@/lib/data/innovation-pulse-types';
-import { getHomePulseArtwork } from '@/lib/home-pulse-artwork';
+import {
+  getHomePulseArtwork,
+  getHomePulseSupportCopy,
+} from '@/lib/home-pulse-artwork';
+import { getHomePulseWaveform } from '@/lib/home-pulse-waveforms';
+import { getHomepageQuickHits } from '@/lib/homepagePulse';
 import styles from './HomePulseHero.module.css';
 
+export interface HomePulseHeroViewModel {
+  date: string;
+  audioUrl: string;
+  audioDuration: string;
+  headline: string;
+  fallbackArtwork: string;
+  storyCount: number;
+  weekLabel: string;
+}
+
+export type HomePulseHeroEpisode =
+  | HomePulseHeroViewModel
+  | InnovationPulseEpisode;
+
 interface HomePulseHeroProps {
-  episode: InnovationPulseEpisode;
+  episode: HomePulseHeroEpisode;
   autoPlay?: boolean;
 }
+
+type PlatformName = 'apple' | 'spotify' | 'amazon' | 'youtube' | 'x';
+
+const PLATFORM_LINKS: ReadonlyArray<{
+  name: PlatformName;
+  label: string;
+  href: string;
+}> = [
+  {
+    name: 'apple',
+    label: 'Apple Podcasts',
+    href: 'https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335',
+  },
+  {
+    name: 'spotify',
+    label: 'Spotify',
+    href: 'https://open.spotify.com/show/4rMDJnlFbrLMr0hKAE3Oe6',
+  },
+  {
+    name: 'amazon',
+    label: 'Amazon Music',
+    href: 'https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/innovating-higher-ed',
+  },
+  {
+    name: 'youtube',
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@InnovatingHigherEd',
+  },
+  {
+    name: 'x',
+    label: 'X',
+    href: 'https://x.com/InnovatingEd',
+  },
+];
 
 function formatTime(seconds: number): string {
   if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
   const minutes = Math.floor(seconds / 60);
   const remainder = Math.floor(seconds % 60);
-  return `${minutes}:${String(remainder).padStart(2, '0')}`;
+  return String(minutes) + ':' + String(remainder).padStart(2, '0');
 }
 
 function durationFromLabel(label: string): number {
-  const [minutes, seconds] = label.split(':').map(Number);
-  if (!Number.isFinite(minutes) || !Number.isFinite(seconds)) return 0;
-  return minutes * 60 + seconds;
+  const parts = label.split(':').map(Number);
+  if (parts.length === 0 || parts.some((part) => !Number.isFinite(part))) return 0;
+  return parts.reduce((total, part) => total * 60 + part, 0);
 }
 
-function seededWaveform(seedText: string, count = 88): number[] {
-  let seed = 2166136261;
-  for (let index = 0; index < seedText.length; index += 1) {
-    seed ^= seedText.charCodeAt(index);
-    seed = Math.imul(seed, 16777619);
+function PlatformIcon({ name }: { name: PlatformName }) {
+  if (name === 'apple') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="currentColor" opacity="0.18" />
+        <circle cx="12" cy="10.5" r="5.2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="12" cy="10.5" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.7" />
+        <circle cx="12" cy="10.5" r="0.95" fill="currentColor" />
+        <path d="M10.4 13.1h3.2l1.15 6.2H9.25Z" fill="currentColor" />
+      </svg>
+    );
   }
 
-  const next = () => {
-    seed += 0x6d2b79f5;
-    let value = seed;
-    value = Math.imul(value ^ (value >>> 15), value | 1);
-    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
-    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
-  };
+  if (name === 'spotify') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M7 9.2c3.7-1 7.6-.55 10.6 1.1M7.8 12.2c3-.75 6.35-.38 8.9.9M8.6 15.05c2.4-.55 5-.25 7 .72" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.55" />
+      </svg>
+    );
+  }
 
-  return Array.from({ length: count }, (_, index) => {
-    const envelope = 0.64 + 0.36 * Math.sin((index / Math.max(count - 1, 1)) * Math.PI);
-    return Math.round((24 + next() * 70 * envelope) * 10) / 10;
-  });
+  if (name === 'amazon') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 6.5v9.1a2.4 2.4 0 1 1-1.5-2.2V8.1l10-2v7.4a2.4 2.4 0 1 1-1.5-2.2V4.2Z" fill="currentColor" />
+        <path d="M6.5 20c3.2 1.55 7.6 1.45 11-.15" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.35" />
+      </svg>
+    );
+  }
+
+  if (name === 'youtube') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="currentColor" />
+        <path d="m10 9 5 3-5 3Z" fill="var(--bg)" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 4.5 18.8 19.5M18.4 4.5 5.2 19.5" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
 }
 
-export default function HomePulseHero({ episode, autoPlay = false }: HomePulseHeroProps) {
+export default function HomePulseHero({
+  episode,
+  autoPlay = false,
+}: HomePulseHeroProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -54,38 +142,48 @@ export default function HomePulseHero({ episode, autoPlay = false }: HomePulseHe
   const [audioError, setAudioError] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const headline = episode.deepDive?.title || 'The Innovation Pulse';
+  const usesPreparedViewModel = 'weekLabel' in episode;
+  const headline = usesPreparedViewModel
+    ? episode.headline
+    : episode.deepDive?.title || 'The Innovation Pulse';
   const styledArtwork = getHomePulseArtwork(episode.date);
-  const fallbackArtwork = episode.deepDive?.heroImage || episode.deepDive?.image || '';
-  const waveform = useMemo(
-    () => seededWaveform(`${episode.date}:${headline}`),
-    [episode.date, headline]
-  );
+  const fallbackArtwork = usesPreparedViewModel
+    ? episode.fallbackArtwork
+    : episode.deepDive?.heroImage || episode.deepDive?.image || '';
+  const waveform = getHomePulseWaveform(episode.date);
   const fallbackDuration = durationFromLabel(episode.audioDuration || '0:00');
   const totalDuration = duration || fallbackDuration;
-  const progress = totalDuration > 0 ? Math.min(currentTime / totalDuration, 1) : 0;
+  const progress =
+    totalDuration > 0 ? Math.min(currentTime / totalDuration, 1) : 0;
   const hasAudio = Boolean(episode.audioUrl);
+  const storyCount = usesPreparedViewModel
+    ? episode.storyCount
+    : 1 + getHomepageQuickHits(episode).length;
+  const weekLabel = usesPreparedViewModel
+    ? episode.weekLabel
+    : formatWeekCovered(episode);
+  const roundedMinutes = Math.max(1, Math.round(fallbackDuration / 60));
+  const supportCopy = getHomePulseSupportCopy(episode.date);
+  const usesApprovedCollage = episode.date === '2026-08-28';
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     const handleLoadedMetadata = () => {
-      setDuration(Number.isFinite(audio.duration) ? audio.duration : fallbackDuration);
+      setDuration(
+        Number.isFinite(audio.duration) ? audio.duration : fallbackDuration,
+      );
     };
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handlePlay = () => {
       setAudioError(false);
       setIsPlaying(true);
     };
-    const handlePause = () => {
-      setIsPlaying(false);
-    };
+    const handlePause = () => setIsPlaying(false);
     const handleEnded = () => {
       setIsPlaying(false);
-      setCurrentTime(audio.duration || totalDuration);
+      setCurrentTime(audio.duration || fallbackDuration);
     };
     const handleError = () => {
       setAudioError(true);
@@ -107,7 +205,7 @@ export default function HomePulseHero({ episode, autoPlay = false }: HomePulseHe
       audio.removeEventListener('ended', handleEnded);
       audio.removeEventListener('error', handleError);
     };
-  }, [episode.date, fallbackDuration, totalDuration]);
+  }, [fallbackDuration]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -117,7 +215,10 @@ export default function HomePulseHero({ episode, autoPlay = false }: HomePulseHe
 
     if (autoPlay) {
       audio.play().catch((error: DOMException) => {
-        if (error?.name !== 'AbortError' && error?.name !== 'NotAllowedError') {
+        if (
+          error?.name !== 'AbortError' &&
+          error?.name !== 'NotAllowedError'
+        ) {
           setAudioError(true);
         }
       });
@@ -125,6 +226,19 @@ export default function HomePulseHero({ episode, autoPlay = false }: HomePulseHe
 
     return () => audio.pause();
   }, [episode.audioUrl, autoPlay]);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    let frame = 0;
+
+    const updateProgress = () => {
+      if (audioRef.current) setCurrentTime(audioRef.current.currentTime);
+      frame = window.requestAnimationFrame(updateProgress);
+    };
+
+    frame = window.requestAnimationFrame(updateProgress);
+    return () => window.cancelAnimationFrame(frame);
+  }, [isPlaying]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -149,15 +263,38 @@ export default function HomePulseHero({ episode, autoPlay = false }: HomePulseHe
     setCurrentTime(boundedTime);
   };
 
+  const handleSeekKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    let nextTime: number | null = null;
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+      nextTime = currentTime + 5;
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+      nextTime = currentTime - 5;
+    } else if (event.key === 'Home') {
+      nextTime = 0;
+    } else if (event.key === 'End') {
+      nextTime = totalDuration;
+    }
+
+    if (nextTime !== null) {
+      event.preventDefault();
+      seekTo(nextTime);
+    }
+  };
+
   const handleShare = async () => {
-    const shareUrl = `${window.location.origin}/innovation-pulse/${episode.date}`;
+    const shareUrl =
+      window.location.origin + '/innovation-pulse/' + episode.date;
     const shareData = {
       title: headline,
-      text: `Listen to The Innovation Pulse: ${headline}`,
+      text: 'Listen to The Innovation Pulse: ' + headline,
       url: shareUrl,
     };
 
-    if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+    if (
+      navigator.share &&
+      (!navigator.canShare || navigator.canShare(shareData))
+    ) {
       try {
         await navigator.share(shareData);
         return;
@@ -175,116 +312,195 @@ export default function HomePulseHero({ episode, autoPlay = false }: HomePulseHe
     }
   };
 
-  const statusText = audioError
-    ? 'Audio unavailable'
-    : !hasAudio
-      ? 'Audio coming soon'
-      : isPlaying
-        ? `${formatTime(currentTime)} / ${formatTime(totalDuration)}`
-        : currentTime > 0
-          ? `Resume · ${formatTime(currentTime)} / ${formatTime(totalDuration)}`
-          : `Listen · ${episode.audioDuration}`;
-
   return (
     <section className={styles.hero} aria-labelledby="home-pulse-title">
-      <h1 id="home-pulse-title" className={styles.srOnly}>{headline}</h1>
-      {/* The governed engagement layer observes native audio and share events. */}
-      {hasAudio && <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />}
+      {hasAudio && (
+        <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
+      )}
 
-      <div className={styles.artwork}>
-        {styledArtwork ? (
-          <Image
-            src={styledArtwork}
-            alt={`Episode artwork for ${headline}`}
-            className={styles.artworkImage}
-            width={1672}
-            height={941}
-            priority
-          />
-        ) : (
-          <>
-            {fallbackArtwork && (
-              <Image src={fallbackArtwork} alt="" className={styles.artworkFallback} fill sizes="100vw" aria-hidden="true" />
-            )}
-            <div className={styles.artworkShade} />
-            <div className={styles.fallbackTitle}>{headline}</div>
-          </>
-        )}
+      <div className={styles.storyPanel}>
+        <div className={styles.valueCopy}>
+          <p className={styles.eyebrow}>This week’s Innovation Pulse</p>
+          <h1 id="home-pulse-title" className={styles.valueHeadline}>
+            <span className={styles.storyLine}>
+              {storyCount} {storyCount === 1 ? 'story.' : 'stories.'}
+            </span>
+            <span className={styles.minuteLine}>
+              {roundedMinutes} {roundedMinutes === 1 ? 'minute.' : 'minutes.'}
+            </span>
+            <span className={styles.valueLine}>Know what matters.</span>
+          </h1>
+          <p className={styles.supportCopy}>{supportCopy}</p>
+        </div>
+
+        <div className={styles.artwork}>
+          {(styledArtwork || fallbackArtwork) && (
+            <Image
+              src={styledArtwork || fallbackArtwork}
+              alt={
+                usesApprovedCollage
+                  ? 'Weekly Innovation Pulse collage connecting the MIT AI guidelines story with degree pathways, responsible AI, course tools, research, and teaching practice.'
+                  : 'Episode artwork for ' + headline
+              }
+              fill
+              priority
+              sizes="(max-width: 680px) 100vw, 70vw"
+              className={
+                usesApprovedCollage
+                  ? styles.approvedArtworkImage
+                  : styles.fallbackArtworkImage
+              }
+            />
+          )}
+          <div className={styles.artworkBlend} aria-hidden="true" />
+        </div>
       </div>
 
-      <div className={styles.footer}>
-        <button
-          type="button"
-          className={styles.playButton}
-          onClick={togglePlay}
-          disabled={!hasAudio}
-          aria-label={isPlaying ? 'Pause episode' : 'Play episode'}
-        >
-          {isPlaying ? (
-            <svg className={styles.pauseIcon} viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="5" y="3" width="5" height="18" rx="1" fill="currentColor" />
-              <rect x="14" y="3" width="5" height="18" rx="1" fill="currentColor" />
-            </svg>
-          ) : (
-            <svg className={styles.playIcon} viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 3.5 20 12 6 20.5Z" fill="currentColor" />
-            </svg>
-          )}
-        </button>
-
-        <div className={styles.waveColumn}>
-          <div className={styles.waveShell}>
-            <div className={styles.waveform} aria-hidden="true">
-              {waveform.map((height, index) => {
-                const isPlayed = index / Math.max(waveform.length - 1, 1) <= progress;
-                return (
-                  <span
-                    key={`${episode.date}-${index}`}
-                    className={[
-                      styles.bar,
-                      index < waveform.length * 0.68 ? styles.barWarm : styles.barCool,
-                      isPlayed ? styles.barPlayed : '',
-                    ].filter(Boolean).join(' ')}
-                    style={{ '--bar-height': `${height}%` } as CSSProperties}
-                  />
-                );
-              })}
-            </div>
-            <input
-              className={styles.seekRange}
-              type="range"
-              min="0"
-              max={Math.max(totalDuration, 1)}
-              step="1"
-              value={Math.min(currentTime, Math.max(totalDuration, 1))}
-              onChange={(event) => seekTo(Number(event.currentTarget.value))}
-              disabled={!hasAudio || !totalDuration}
-              aria-label="Seek through episode"
-              aria-valuetext={`${formatTime(currentTime)} of ${formatTime(totalDuration)}`}
-            />
-            <span className={styles.timeHint}>{formatTime(currentTime)} / {formatTime(totalDuration)}</span>
-          </div>
-        </div>
-
-        <div className={styles.info}>
-          <div className={styles.showName}>Innovation Pulse</div>
-          <div className={styles.listenStatus} aria-live="polite">
-            {!isPlaying && !audioError && hasAudio && <span className={styles.statusGlyph} aria-hidden="true" />}
-            <span>{statusText}</span>
-          </div>
-          <div className={styles.week}>{formatWeekCovered(episode)}</div>
-
-          <button type="button" className={styles.shareButton} onClick={handleShare} aria-label="Share episode">
-            <svg className={styles.shareIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-              <circle cx="18" cy="5" r="2.5" />
-              <circle cx="6" cy="12" r="2.5" />
-              <circle cx="18" cy="19" r="2.5" />
-              <path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5" />
-            </svg>
-            <span className={styles.shareLabel}>Share</span>
+      <div className={styles.playerPanel}>
+        <div className={styles.playerSection}>
+          <button
+            type="button"
+            className={styles.playButton}
+            onClick={togglePlay}
+            disabled={!hasAudio}
+            aria-label={isPlaying ? 'Pause episode' : 'Play episode'}
+          >
+            {isPlaying ? (
+              <svg className={styles.pauseIcon} viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="3" width="5" height="18" rx="1" fill="currentColor" />
+                <rect x="14" y="3" width="5" height="18" rx="1" fill="currentColor" />
+              </svg>
+            ) : (
+              <svg className={styles.playIcon} viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 3.5 20 12 6 20.5Z" fill="currentColor" />
+              </svg>
+            )}
           </button>
-          {copied && <span className={styles.shareNotice} role="status">Link copied</span>}
+
+          <div className={styles.playerContent}>
+            <p className={styles.playerLabel}>
+              Play the {roundedMinutes}-minute briefing
+            </p>
+            <div
+              className={styles.waveShell}
+              data-waveform-status={waveform ? 'verified' : 'unavailable'}
+              style={
+                {
+                  '--playhead': String(progress * 100) + '%',
+                } as CSSProperties
+              }
+            >
+              {waveform ? (
+                <div className={styles.waveform} aria-hidden="true">
+                  {waveform.map((height, index) => {
+                    const isPlayed =
+                      (index + 0.5) / waveform.length <= progress;
+                    return (
+                      <span
+                        key={episode.date + '-' + String(index)}
+                        className={
+                          isPlayed
+                            ? styles.waveBar + ' ' + styles.waveBarPlayed
+                            : styles.waveBar
+                        }
+                        style={
+                          {
+                            '--bar-height': String(height) + '%',
+                          } as CSSProperties
+                        }
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className={styles.seekTrack} aria-hidden="true">
+                  <span
+                    className={styles.seekTrackPlayed}
+                    style={{ width: String(progress * 100) + '%' }}
+                  />
+                </div>
+              )}
+              <span className={styles.playhead} aria-hidden="true" />
+              <input
+                className={styles.seekRange}
+                type="range"
+                min="0"
+                max={Math.max(totalDuration, 1)}
+                step="0.1"
+                value={Math.min(currentTime, Math.max(totalDuration, 1))}
+                onInput={(event) =>
+                  seekTo(Number(event.currentTarget.value))
+                }
+                onKeyDown={handleSeekKeyDown}
+                disabled={!hasAudio || !totalDuration}
+                aria-label="Seek through episode"
+                aria-valuetext={
+                  formatTime(currentTime) + ' of ' + formatTime(totalDuration)
+                }
+              />
+            </div>
+            <p className={styles.timeReadout}>
+              <span>{formatTime(currentTime)}</span>
+              <span aria-hidden="true"> / </span>
+              <span>{formatTime(totalDuration)}</span>
+            </p>
+            {audioError && (
+              <p className={styles.audioMessage} role="status">
+                Audio is temporarily unavailable.
+              </p>
+            )}
+          </div>
         </div>
+
+        <aside
+          className={styles.actionPanel}
+          aria-label="Innovation Pulse listening options"
+        >
+          <div className={styles.actionHeading}>
+            <p className={styles.showName}>Innovation Pulse</p>
+            <p className={styles.episodeMeta}>
+              <span>{weekLabel}</span>
+              <span className={styles.metaDivider} aria-hidden="true" />
+              <span>{episode.audioDuration}</span>
+            </p>
+          </div>
+          <p className={styles.listenFollow}>Listen &amp; follow</p>
+          <div className={styles.platformGrid}>
+            {PLATFORM_LINKS.map((platform) => (
+              <a
+                key={platform.name}
+                href={platform.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={
+                  styles.platformLink + ' ' + styles[platform.name]
+                }
+                aria-label={'Listen to Innovation Pulse on ' + platform.label}
+              >
+                <span className={styles.platformIcon}>
+                  <PlatformIcon name={platform.name} />
+                </span>
+                <span>{platform.label}</span>
+              </a>
+            ))}
+            <button
+              type="button"
+              className={styles.shareButton}
+              onClick={handleShare}
+              aria-label="Share episode from Innovation Pulse"
+            >
+              <span className={styles.platformIcon}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                  <circle cx="18" cy="5" r="2.5" />
+                  <circle cx="6" cy="12" r="2.5" />
+                  <circle cx="18" cy="19" r="2.5" />
+                  <path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5" />
+                </svg>
+              </span>
+              <span>{copied ? 'Copied' : 'Share'}</span>
+            </button>
+          </div>
+        </aside>
       </div>
     </section>
   );

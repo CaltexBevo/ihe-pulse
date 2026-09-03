@@ -1,115 +1,168 @@
 .hero {
-  --hero-footer: #0b1111;
-  --hero-footer-raised: #101918;
-  --hero-text: #f0ede8;
-  --hero-muted: rgba(240, 237, 232, 0.72);
-  --hero-start: #00d4ff;
-  --hero-end: var(--magenta);
-  --hero-end-text: color-mix(in srgb, var(--magenta) 70%, white);
+  --hero-slate: color-mix(in srgb, var(--cyan) 50%, var(--bg-card));
   container-type: inline-size;
   position: relative;
-  display: grid;
-  grid-template-rows: 72.05% 27.95%;
   width: 100%;
-  aspect-ratio: 1672 / 941;
   margin-top: 24px;
   overflow: hidden;
-  border: 1px solid rgba(240, 237, 232, 0.14);
+  border: 1px solid var(--border-strong);
   border-radius: 18px;
-  background: var(--hero-footer);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  background: var(--bg-card);
+  box-shadow: 0 24px 70px color-mix(in srgb, var(--bg) 74%, transparent);
+}
+
+.storyPanel {
+  display: grid;
+  grid-template-columns: minmax(330px, 31%) minmax(0, 1fr);
+  min-height: 500px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.valueCopy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 3.15cqw, 42px) clamp(22px, 2.7cqw, 36px);
+  background:
+    radial-gradient(circle at 12% 32%, var(--amber-soft), transparent 34%),
+    linear-gradient(90deg, var(--bg) 0%, var(--bg) 84%, transparent 100%);
+}
+
+.eyebrow {
+  width: fit-content;
+  margin: 0 0 clamp(18px, 2cqw, 26px);
+  padding-bottom: 9px;
+  border-bottom: 2px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 1.2cqw, 0.96rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.valueHeadline {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5.65cqw, 4.35rem);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 0.93;
+  text-transform: uppercase;
+}
+
+.valueHeadline span {
+  display: block;
+}
+
+.storyLine,
+.minuteLine {
+  white-space: nowrap;
+}
+
+.storyLine {
+  color: var(--amber);
+}
+
+.minuteLine {
+  color: var(--cyan);
+}
+
+.valueLine {
+  max-width: 8.1ch;
+  margin-top: 7px;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.supportCopy {
+  max-width: 32ch;
+  margin: clamp(18px, 2.3cqw, 28px) 0 0;
+  color: var(--text-secondary);
+  font-size: clamp(0.82rem, 1.4cqw, 1.05rem);
+  line-height: 1.45;
 }
 
 .artwork {
   position: relative;
+  min-width: 0;
   overflow: hidden;
-  background: #08130f;
+  background:
+    radial-gradient(circle at 58% 42%, var(--amber-dim), transparent 40%),
+    var(--bg);
 }
 
-.artworkImage {
-  position: absolute;
-  inset: 0 auto auto 0;
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.artworkFallback {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.approvedArtworkImage,
+.fallbackArtworkImage {
   object-fit: cover;
 }
 
-.artworkShade {
+.approvedArtworkImage {
+  object-position: right top;
+  transform: scale(1.38);
+  transform-origin: right top;
+}
+
+.fallbackArtworkImage {
+  object-position: center;
+}
+
+.artworkBlend {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(5, 12, 11, 0.82) 0%, rgba(5, 12, 11, 0.25) 54%, rgba(5, 12, 11, 0.06) 100%);
-}
-
-.fallbackTitle {
-  position: absolute;
-  left: 5.2%;
-  bottom: 11%;
-  width: min(72%, 760px);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-size: clamp(1.65rem, 4.2cqw, 4.4rem);
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  text-wrap: balance;
-}
-
-.footer {
-  position: relative;
-  display: grid;
-  grid-template-columns: 13.5% minmax(0, 1fr) 29%;
-  align-items: center;
-  column-gap: 1.35cqw;
-  min-height: 0;
-  padding: 1.15cqw 2.25cqw 1.2cqw 2.05cqw;
-  border-top: 1px solid rgba(240, 237, 232, 0.19);
   background:
-    radial-gradient(circle at 12% 50%, color-mix(in srgb, var(--hero-start) 9%, transparent), transparent 24%),
-    linear-gradient(102deg, var(--hero-footer-raised), var(--hero-footer) 58%);
+    linear-gradient(90deg, var(--bg) 0%, transparent 16%, transparent 92%, color-mix(in srgb, var(--bg) 28%, transparent) 100%),
+    linear-gradient(0deg, color-mix(in srgb, var(--bg) 72%, transparent) 0%, transparent 17%);
+  pointer-events: none;
+}
+
+.playerPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 61.5%) minmax(0, 38.5%);
+  min-height: 190px;
+  border-top: 1px solid var(--border-strong);
+  background:
+    radial-gradient(circle at 10% 50%, var(--cyan-glow), transparent 26%),
+    color-mix(in srgb, var(--bg-card) 78%, var(--bg));
+}
+
+.playerSection {
+  display: grid;
+  grid-template-columns: clamp(80px, 9.2cqw, 112px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(18px, 2.1cqw, 28px);
+  min-width: 0;
+  padding: clamp(20px, 2.1cqw, 28px);
 }
 
 .playButton {
-  position: relative;
   display: grid;
+  width: clamp(76px, 9.2cqw, 112px);
+  height: clamp(76px, 9.2cqw, 112px);
   place-items: center;
-  width: 10.15cqw;
-  height: 10.15cqw;
-  min-width: 58px;
-  min-height: 58px;
-  max-width: 128px;
-  max-height: 128px;
-  justify-self: center;
-  border: 2px solid var(--hero-start);
+  border: 2px solid var(--cyan);
   border-radius: 50%;
-  color: var(--hero-text);
-  background: color-mix(in srgb, var(--hero-footer) 92%, transparent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
   box-shadow:
-    0 0 0 7px color-mix(in srgb, var(--hero-start) 24%, transparent),
-    inset 0 0 32px rgba(0, 0, 0, 0.28);
+    0 0 0 7px var(--cyan-dim),
+    inset 0 0 28px color-mix(in srgb, var(--bg) 58%, transparent);
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .playButton:hover {
-  transform: scale(1.035);
-  background: color-mix(in srgb, var(--hero-start) 8%, var(--hero-footer));
+  background: color-mix(in srgb, var(--cyan) 8%, var(--bg));
   box-shadow:
-    0 0 0 8px color-mix(in srgb, var(--hero-start) 30%, transparent),
-    0 10px 28px rgba(0, 0, 0, 0.3);
-}
-
-.playButton:focus-visible,
-.shareButton:focus-visible {
-  outline: 2px solid var(--hero-start);
-  outline-offset: 4px;
+    0 0 0 8px var(--cyan-strong),
+    0 10px 28px color-mix(in srgb, var(--bg) 66%, transparent);
+  transform: scale(1.035);
 }
 
 .playButton:disabled {
@@ -118,65 +171,97 @@
 }
 
 .playIcon {
-  width: 35%;
-  height: 35%;
-  margin-left: 5%;
+  width: 37%;
+  height: 37%;
+  margin-left: 6%;
 }
 
 .pauseIcon {
-  width: 34%;
-  height: 34%;
+  width: 36%;
+  height: 36%;
 }
 
-.waveColumn {
+.playerContent {
   min-width: 0;
 }
 
+.playerLabel {
+  margin: 0 0 8px;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 1.35cqw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.065em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .waveShell {
+  --playhead: 0%;
   position: relative;
-  height: 10.4cqw;
-  min-height: 64px;
-  max-height: 126px;
-  border-radius: 10px;
+  height: clamp(62px, 7.2cqw, 88px);
+  border-radius: 8px;
 }
 
 .waveShell:focus-within {
-  outline: 2px solid var(--hero-start);
-  outline-offset: 3px;
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
 }
 
 .waveform {
   position: absolute;
-  inset: 8% 0;
+  inset: 3px 0 9px;
   display: flex;
   align-items: center;
-  gap: clamp(1px, 0.16cqw, 2px);
+  gap: clamp(1px, 0.15cqw, 2px);
   overflow: hidden;
   pointer-events: none;
 }
 
-.bar {
-  flex: 1 1 0;
+.waveBar {
   min-width: 1px;
   height: var(--bar-height);
+  flex: 1 1 0;
   border-radius: 999px;
-  opacity: 0.4;
-  transform: scaleY(0.88);
-  transition: opacity 130ms linear, transform 130ms linear;
-}
-
-.barWarm {
-  background: var(--hero-start);
-}
-
-.barCool {
-  background: var(--hero-end);
-}
-
-.barPlayed {
+  background: var(--hero-slate);
   opacity: 1;
-  transform: scaleY(1);
-  filter: saturate(1.05) brightness(1.08);
+  transition: background 90ms linear, opacity 90ms linear;
+}
+
+.seekTrack {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--hero-slate);
+  transform: translateY(-50%);
+}
+
+.seekTrackPlayed {
+  display: block;
+  height: 100%;
+  background: var(--cyan);
+}
+
+.waveBarPlayed {
+  background: var(--cyan);
+  opacity: 1;
+}
+
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 4px;
+  left: var(--playhead);
+  width: 2px;
+  border-radius: 999px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan-strong);
+  pointer-events: none;
+  transform: translateX(-1px);
 }
 
 .seekRange {
@@ -189,226 +274,340 @@
   opacity: 0;
 }
 
-.timeHint {
-  position: absolute;
-  right: 0;
-  bottom: -0.05cqw;
-  color: var(--hero-muted);
+.timeReadout {
+  margin: 1px 0 0;
+  color: var(--text);
   font-family: var(--font-mono);
-  font-size: clamp(0.58rem, 0.78cqw, 0.72rem);
+  font-size: clamp(0.68rem, 1.05cqw, 0.82rem);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-align: center;
 }
 
-.info {
-  position: relative;
+.timeReadout span:first-child {
+  color: var(--cyan);
+}
+
+.audioMessage {
+  margin: 6px 0 0;
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+}
+
+.actionPanel {
   display: flex;
   min-width: 0;
-  height: 100%;
   flex-direction: column;
   justify-content: center;
-  padding-left: 2.25cqw;
-  border-left: 1px solid rgba(240, 237, 232, 0.16);
+  padding: clamp(18px, 1.9cqw, 24px);
+  border-left: 1px solid var(--border-strong);
+}
+
+.actionHeading {
+  min-width: 0;
 }
 
 .showName {
-  overflow: hidden;
-  color: var(--hero-start);
+  margin: 0;
+  color: var(--cyan);
   font-family: var(--font-heading);
-  font-size: clamp(0.78rem, 1.72cqw, 1.55rem);
+  font-size: clamp(1.05rem, 1.85cqw, 1.48rem);
   font-weight: 800;
+  letter-spacing: 0.095em;
   line-height: 1.05;
-  letter-spacing: 0.13em;
-  text-overflow: ellipsis;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
-.listenStatus {
+.episodeMeta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.65cqw;
-  margin-top: 0.6cqw;
-  color: var(--hero-end-text);
-  font-family: var(--font-heading);
-  font-size: clamp(0.72rem, 1.22cqw, 1.12rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: 0.08em;
+  gap: 8px 14px;
+  margin: 7px 0 0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.98cqw, 0.77rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.045em;
+  line-height: 1.2;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
-.statusGlyph {
-  width: 0;
-  height: 0;
-  border-top: 0.42em solid transparent;
-  border-bottom: 0.42em solid transparent;
-  border-left: 0.68em solid currentColor;
+.episodeMeta span:last-child {
+  color: var(--cyan);
 }
 
-.week {
-  margin-top: 0.5cqw;
-  color: var(--hero-text);
-  font-family: var(--font-heading);
-  font-size: clamp(0.65rem, 1.06cqw, 0.98rem);
+.metaDivider {
+  width: 1px;
+  height: 16px;
+  background: var(--cyan);
+}
+
+.listenFollow {
+  margin: 13px 0 7px;
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: clamp(0.67rem, 1.02cqw, 0.8rem);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.075em;
+  line-height: 1.2;
   text-transform: uppercase;
-  white-space: nowrap;
+}
+
+.platformGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 5px;
+  align-items: start;
+}
+
+.platformLink,
+.shareButton {
+  display: flex;
+  min-width: 0;
+  min-height: 66px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  padding: 4px 1px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text);
+  background: transparent;
+  font-family: var(--font-heading);
+  font-size: clamp(0.52rem, 0.72cqw, 0.66rem);
+  line-height: 1.12;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.platformLink:hover,
+.shareButton:hover {
+  border-color: var(--border-hover);
+  background: var(--cyan-soft);
+  transform: translateY(-2px);
+}
+
+.platformIcon {
+  display: grid;
+  width: clamp(27px, 3.1cqw, 37px);
+  height: clamp(27px, 3.1cqw, 37px);
+  place-items: center;
+}
+
+.platformIcon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.platformLink > span:last-child {
+  color: var(--text-secondary);
+}
+
+.shareButton > span:last-child {
+  color: var(--cyan);
+}
+
+.apple {
+  color: var(--purple);
+}
+
+.spotify,
+.amazon {
+  color: var(--cyan);
+}
+
+.youtube {
+  color: var(--magenta-text);
+}
+
+.x {
+  color: var(--text);
 }
 
 .shareButton {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  width: 52px;
-  min-height: 48px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  color: rgba(240, 237, 232, 0.62);
-  background: transparent;
-  cursor: pointer;
-  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+  color: var(--cyan);
 }
 
-.shareButton:hover {
-  border-color: color-mix(in srgb, var(--hero-start) 34%, transparent);
-  color: var(--hero-start);
-  background: color-mix(in srgb, var(--hero-start) 8%, transparent);
+.playButton:focus-visible,
+.platformLink:focus-visible,
+.shareButton:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
 
-.shareIcon {
-  width: 18px;
-  height: 18px;
-}
+@media (max-width: 960px) {
+  .storyPanel {
+    grid-template-columns: minmax(290px, 35%) minmax(0, 1fr);
+    min-height: 420px;
+  }
 
-.shareLabel {
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  text-transform: uppercase;
-}
+  .valueHeadline {
+    font-size: clamp(2.45rem, 5.4cqw, 3.25rem);
+  }
 
-.shareNotice {
-  position: absolute;
-  right: 54px;
-  bottom: 12px;
-  color: var(--hero-start);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  white-space: nowrap;
-}
+  .playerPanel {
+    grid-template-columns: 1fr;
+  }
 
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  .actionPanel {
+    border-top: 1px solid var(--border-strong);
+    border-left: 0;
+  }
+
+  .platformGrid {
+    grid-template-columns: repeat(6, minmax(64px, 1fr));
+  }
 }
 
 @media (max-width: 680px) {
   .hero {
-    display: block;
-    aspect-ratio: auto;
     margin-top: 14px;
     border-radius: 13px;
   }
 
-  .artwork {
-    aspect-ratio: 1672 / 678;
+  .storyPanel {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 0;
   }
 
-  .footer {
-    grid-template-columns: 68px minmax(0, 1fr);
-    grid-template-areas:
-      "play wave"
-      "info info";
-    gap: 12px 14px;
-    padding: 16px;
+  .valueCopy {
+    padding: 25px 22px 28px;
+    background:
+      radial-gradient(circle at 12% 32%, var(--amber-soft), transparent 34%),
+      var(--bg);
+  }
+
+  .eyebrow {
+    margin-bottom: 19px;
+    font-size: 0.72rem;
+  }
+
+  .valueHeadline {
+    max-width: 100%;
+    font-size: clamp(2.75rem, 13.1vw, 3.65rem);
+  }
+
+  .supportCopy {
+    max-width: 36ch;
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+
+  .artwork {
+    aspect-ratio: 1.42 / 1;
+    border-top: 1px solid var(--border);
+  }
+
+  .approvedArtworkImage {
+    transform: scale(1.43);
+  }
+
+  .artworkBlend {
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--bg) 28%, transparent) 0%, transparent 18%),
+      linear-gradient(0deg, color-mix(in srgb, var(--bg) 58%, transparent) 0%, transparent 20%);
+  }
+
+  .playerPanel {
+    display: block;
+  }
+
+  .playerSection {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 15px;
+    padding: 20px 15px;
   }
 
   .playButton {
-    grid-area: play;
-    width: 58px;
-    height: 58px;
-    min-width: 58px;
-    min-height: 58px;
-    box-shadow: 0 0 0 5px color-mix(in srgb, var(--hero-start) 22%, transparent);
+    width: 66px;
+    height: 66px;
   }
 
-  .waveColumn {
-    grid-area: wave;
+  .playerLabel {
+    font-size: 0.72rem;
   }
 
   .waveShell {
-    height: 68px;
-    min-height: 68px;
+    height: 58px;
   }
 
   .waveform {
-    inset: 8% 0 15%;
+    gap: 1px;
   }
 
-  .timeHint {
-    bottom: 0;
-    font-size: 0.61rem;
-  }
-
-  .info {
-    grid-area: info;
-    min-height: 68px;
-    padding: 12px 0 2px 52px;
-    border-top: 1px solid rgba(240, 237, 232, 0.14);
-    border-left: 0;
-    text-align: right;
+  .actionPanel {
+    padding: 20px 15px 16px;
   }
 
   .showName {
-    font-size: 0.82rem;
+    font-size: 1.16rem;
   }
 
-  .listenStatus {
-    justify-content: flex-end;
-    gap: 8px;
-    margin-top: 5px;
-    font-size: 0.76rem;
+  .episodeMeta {
+    font-size: 0.67rem;
   }
 
-  .week {
-    margin-top: 5px;
-    font-size: 0.69rem;
+  .platformGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 8px;
   }
 
+  .platformLink,
   .shareButton {
-    right: auto;
-    bottom: 3px;
-    left: 0;
+    min-height: 70px;
+    font-size: 0.62rem;
   }
 
-  .shareNotice {
-    right: auto;
-    bottom: 15px;
-    left: 54px;
+  .platformIcon {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 390px) {
+  .valueCopy {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .valueHeadline {
+    font-size: clamp(2.35rem, 12.4vw, 3rem);
+  }
+
+  .playerSection {
+    grid-template-columns: 60px minmax(0, 1fr);
+    gap: 12px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .playButton {
+    width: 56px;
+    height: 56px;
+    box-shadow: 0 0 0 5px var(--cyan-dim);
+  }
+
+  .playerLabel {
+    font-size: 0.64rem;
+  }
+
+  .waveShell {
+    height: 52px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .playButton,
-  .bar,
+  .waveBar,
+  .platformLink,
   .shareButton {
     transition: none;
   }
