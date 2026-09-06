@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-05] Command Center Mailchimp security boundary
+
+- Added an authenticated, aggregate-only reporting endpoint for the private Command Center.
+- Restricted the endpoint to current subscriber totals and 30 days of subscriber activity, with no contact records or caller-controlled Mailchimp paths.
+- Kept the existing website newsletter integration and its Mailchimp credential server-side.
+
 ## v2.1.1 — September 3, 2026 (Homepage Featured Artwork Correction)
 
 ### Homepage
