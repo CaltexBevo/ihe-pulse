@@ -1,12 +1,35 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FeatureArtwork } from "@/components/FeaturedCoverage";
+import styles from "./page.module.css";
 import {
   FEATURED_COVERAGE,
   getFeaturedCoverageBySlug,
+  type FeaturedCoverage,
+  type FeaturedCoverageSection,
 } from "@/lib/data/featured-coverage";
 import { pageMetadata } from "@/lib/og";
+
+const SEQUENCE_STEPS = [
+  {
+    number: "01",
+    label: "Purpose",
+    description: "Start with what education is meant to achieve.",
+  },
+  {
+    number: "02",
+    label: "Practice",
+    description: "Design learning experiences that build knowledge, skills, and judgment.",
+  },
+  {
+    number: "03",
+    label: "Policy",
+    description: "Set AI guidelines that protect what matters and enable what’s possible.",
+  },
+] as const;
+
+const QUESTIONS_HEADING = "Questions worth carrying back to campus";
 
 export function generateStaticParams() {
   return FEATURED_COVERAGE.map((feature) => ({ slug: feature.slug }));
@@ -42,25 +65,157 @@ export async function generateMetadata({
   };
 }
 
+function sectionId(section: FeaturedCoverageSection, index: number) {
+  if (section.heading === QUESTIONS_HEADING) {
+    return "questions";
+  }
+
+  if (!section.heading) {
+    return index === 0 ? "feature-introduction" : `feature-section-${index + 1}`;
+  }
+
+  const headingSlug = section.heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  return `section-${index + 1}-${headingSlug}`;
+}
+
+function FeatureTitle({ title }: { title: string }) {
+  const emphasis = "What Education Is For";
+  const emphasisStart = title.indexOf(emphasis);
+
+  if (emphasisStart === -1) {
+    return title;
+  }
+
+  return (
+    <>
+      {title.slice(0, emphasisStart)}
+      <span className={styles.titleEmphasis}>{title.slice(emphasisStart)}</span>
+    </>
+  );
+}
+
 function ArticleParagraph({ text, sourceUrl }: { text: string; sourceUrl: string }) {
   const sourceLead = "Read the complete MIT report";
 
   if (text.startsWith(sourceLead)) {
     return (
-      <p className="text-[1.04rem] leading-[1.85] text-[var(--text-secondary)]">
+      <p className={styles.articleParagraph}>
         <a
           href={sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--cyan)] underline decoration-[var(--cyan)]/50 underline-offset-4 hover:text-[var(--text)]"
+          className={styles.articleLink}
         >
-          {text}
+          {text} <span aria-hidden="true">↗</span>
         </a>
       </p>
     );
   }
 
-  return <p className="text-[1.04rem] leading-[1.85] text-[var(--text-secondary)]">{text}</p>;
+  return <p className={styles.articleParagraph}>{text}</p>;
+}
+
+function SequenceRail() {
+  return (
+    <aside className={`${styles.sideRail} ${styles.sequenceRail}`} aria-labelledby="sequence-heading">
+      <p id="sequence-heading" className={styles.sectionLabel}>
+        The Sequence
+      </p>
+      <ol className={styles.sequenceList}>
+        {SEQUENCE_STEPS.map((step, index) => (
+          <li key={step.number} className={styles.sequenceStep}>
+            <span
+              className={`${styles.sequenceDot} ${index === 0 ? styles.sequenceDotActive : ""}`}
+              aria-hidden="true"
+            />
+            <span className={styles.sequenceNumber}>{step.number}</span>
+            <span className={styles.sequenceCopy}>
+              <strong>{step.label}</strong>
+              <span>{step.description}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </aside>
+  );
+}
+
+function QuestionsRail({ questions }: { questions: string[] }) {
+  return (
+    <aside className={`${styles.sideRail} ${styles.questionsRail}`} aria-labelledby="questions-nav-heading">
+      <p id="questions-nav-heading" className={styles.sectionLabel}>
+        Eight Questions
+      </p>
+      <ol className={styles.questionNav}>
+        {questions.slice(0, 3).map((question, index) => (
+          <li key={question}>
+            <a className={styles.questionNavLink} href={`#question-${index + 1}`}>
+              <span className={styles.questionNavNumber}>{String(index + 1).padStart(2, "0")}</span>
+              <span>{question}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <a className={styles.allQuestionsLink} href="#questions">
+        View all eight questions <span aria-hidden="true">↓</span>
+      </a>
+    </aside>
+  );
+}
+
+function ArticleSection({
+  feature,
+  section,
+  sectionIndex,
+}: {
+  feature: FeaturedCoverage;
+  section: FeaturedCoverageSection;
+  sectionIndex: number;
+}) {
+  const isQuestionSection = section.heading === QUESTIONS_HEADING;
+  const id = sectionId(section, sectionIndex);
+
+  return (
+    <section id={id} className={styles.articleSection}>
+      {section.heading && <h2 className={styles.articleHeading}>{section.heading}</h2>}
+      <div className={styles.paragraphStack}>
+        {section.paragraphs.map((paragraph, paragraphIndex) => (
+          <div
+            key={`${sectionIndex}-${paragraphIndex}`}
+            className={sectionIndex === 0 && paragraphIndex === 0 ? styles.leadParagraph : undefined}
+          >
+            <ArticleParagraph text={paragraph} sourceUrl={feature.sourceUrl} />
+          </div>
+        ))}
+      </div>
+      {section.bullets && section.bullets.length > 0 &&
+        (isQuestionSection ? (
+          <ol className={styles.questionList} aria-label="Eight questions for campus conversations">
+            {section.bullets.map((item, itemIndex) => (
+              <li
+                id={`question-${itemIndex + 1}`}
+                tabIndex={-1}
+                key={`${sectionIndex}-question-${itemIndex}`}
+                className={styles.questionItem}
+              >
+                <span className={styles.questionItemNumber}>{String(itemIndex + 1).padStart(2, "0")}</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <ul className={styles.articleList}>
+            {section.bullets.map((item, itemIndex) => (
+              <li key={`${sectionIndex}-bullet-${itemIndex}`}>{item}</li>
+            ))}
+          </ul>
+        ))}
+    </section>
+  );
 }
 
 export default async function FeaturedCoveragePage({
@@ -75,109 +230,79 @@ export default async function FeaturedCoveragePage({
     notFound();
   }
 
+  const questionSection = feature.sections.find((section) => section.heading === QUESTIONS_HEADING);
+  const questions = questionSection?.bullets ?? [];
+
   return (
-    <article className="min-h-screen">
-      <div className="mx-auto flex max-w-[1200px] items-center gap-4 border-b border-[var(--border)] px-[var(--px)] py-3">
-        <Link
-          href="/"
-          className="font-mono text-[0.72rem] text-[var(--cyan)] transition-colors hover:text-[var(--text)]"
-        >
-          <span aria-hidden="true">←</span> Back to Innovating Higher Ed
-        </Link>
-        <span className="ml-auto font-mono text-[0.65rem] uppercase tracking-[0.08em] text-[var(--text-muted)]">
-          {feature.category}
-        </span>
-      </div>
-
-      <div className="mx-auto max-w-[1200px] px-[var(--px)] py-10 md:py-14">
-        <header className="mx-auto mb-10 max-w-[900px]">
-          <p className="mb-4 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[var(--cyan)]">
-            {feature.eyebrow}
+    <article className={styles.page}>
+      <section className={styles.hero} aria-labelledby="feature-title">
+        <div className={styles.heroCopy}>
+          <p className={styles.featureLabel}>
+            <span aria-hidden="true" className={styles.featureLabelLine} />
+            <span>{feature.eyebrow}</span>
           </p>
-          <h1
-            className="max-w-[880px] text-[clamp(2.15rem,5vw,4.2rem)] font-bold leading-[1.03] tracking-[-0.03em] text-[var(--text)]"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            {feature.title}
+          <p className={styles.analysisLabel}>Original Analysis</p>
+          <h1 id="feature-title" className={styles.heroTitle}>
+            <FeatureTitle title={feature.title} />
           </h1>
-          <p className="mt-6 max-w-[800px] text-[1.12rem] leading-[1.7] text-[var(--text-secondary)]">
-            {feature.teaser}
-          </p>
-          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[var(--border)] pt-4">
-            <span className="text-[0.9rem] font-semibold text-[var(--text)]">{feature.byline}</span>
-            <span aria-hidden="true" className="text-[var(--text-dim)]">•</span>
-            <time
-              dateTime={feature.publishedAt}
-              className="font-mono text-[0.66rem] uppercase tracking-[0.08em] text-[var(--text-muted)]"
-            >
-              {feature.publishedLabel}
-            </time>
-          </div>
-        </header>
-
-        <div className="mx-auto mb-10 max-w-[1000px]">
-          <FeatureArtwork feature={feature} />
         </div>
 
-        <div className="mx-auto mb-10 flex max-w-[820px] flex-col gap-3 rounded-[14px] border border-[var(--border)] bg-[var(--bg-card)] p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="font-mono text-[0.6rem] uppercase tracking-[0.1em] text-[var(--text-muted)]">
-              Primary source
-            </p>
-            <p className="mt-1 text-[0.9rem] font-semibold text-[var(--text)]">{feature.sourceLabel}</p>
-          </div>
-          <a
-            href={feature.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center rounded-[8px] border border-[var(--cyan)] px-3 py-2 font-mono text-[0.68rem] text-[var(--cyan)] transition-colors hover:bg-[var(--cyan-soft)] hover:text-[var(--text)]"
-          >
-            Open MIT report <span aria-hidden="true" className="ml-2">↗</span>
-          </a>
+        <div className={styles.heroArt}>
+          {feature.imagePath && (
+            <Image
+              src={feature.imagePath}
+              alt={feature.imageAlt || feature.title}
+              fill
+              priority
+              sizes="(max-width: 767px) 100vw, 55vw"
+              className={styles.heroImage}
+            />
+          )}
         </div>
 
-        <div className="mx-auto max-w-[820px] space-y-10">
+        <div className={styles.heroMeta}>
+          <span>{feature.byline}</span>
+          <span aria-hidden="true" className={styles.metaDot}>•</span>
+          <time dateTime={feature.publishedAt}>{feature.publishedLabel}</time>
+        </div>
+      </section>
+
+      <section className={styles.editorialGrid} aria-label="Feature Coverage article">
+        <SequenceRail />
+
+        <div className={styles.articleBody}>
           {feature.sections.map((section, sectionIndex) => (
-            <section key={section.heading ?? `intro-${sectionIndex}`} className="space-y-4">
-              {section.heading && (
-                <h2
-                  className="border-l-2 border-[var(--magenta)] pl-4 text-[clamp(1.45rem,3vw,2rem)] font-bold leading-[1.15] text-[var(--text)]"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  {section.heading}
-                </h2>
+            <div key={section.heading ?? `intro-${sectionIndex}`}>
+              <ArticleSection
+                feature={feature}
+                section={section}
+                sectionIndex={sectionIndex}
+              />
+              {sectionIndex === 0 && (
+                <p className={styles.sourceNote}>
+                  <span className={styles.sourceNoteLabel}>Primary source</span>
+                  <a
+                    href={feature.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.articleLink}
+                  >
+                    {feature.sourceLabel} <span aria-hidden="true">↗</span>
+                  </a>
+                </p>
               )}
-              <div className="space-y-5">
-                {section.paragraphs.map((paragraph, paragraphIndex) => (
-                  <ArticleParagraph
-                    key={`${sectionIndex}-${paragraphIndex}`}
-                    text={paragraph}
-                    sourceUrl={feature.sourceUrl}
-                  />
-                ))}
-                {section.bullets && section.bullets.length > 0 && (
-                  <ul className="space-y-3 border-l border-[var(--border-strong)] pl-6 text-[1.02rem] leading-[1.75] text-[var(--text-secondary)]">
-                    {section.bullets.map((item, itemIndex) => (
-                      <li key={`${sectionIndex}-bullet-${itemIndex}`} className="relative pl-4 before:absolute before:left-0 before:text-[var(--cyan)] before:content-['•']">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </section>
+            </div>
           ))}
+
+          <div className={styles.articleFooter}>
+            <Link href="/" className={styles.backLink}>
+              <span aria-hidden="true">←</span> Return to the Innovation Pulse
+            </Link>
+          </div>
         </div>
 
-        <div className="mx-auto mt-12 max-w-[820px] border-t border-[var(--border)] pt-6">
-          <Link
-            href="/"
-            className="font-mono text-[0.72rem] tracking-[0.05em] text-[var(--cyan)] transition-colors hover:text-[var(--text)]"
-          >
-            <span aria-hidden="true">←</span> Return to the Innovation Pulse
-          </Link>
-        </div>
-      </div>
+        <QuestionsRail questions={questions} />
+      </section>
     </article>
   );
 }

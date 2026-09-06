@@ -47,9 +47,9 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
   sourceUrl: "https://aiandeducation.mit.edu/report/",
   reportTitle: "MIT Report – AI and Education",
   category: "Insights & Trends",
-  imagePath: "/images/feature-coverage/mit-ai-education-purpose.png",
+  imagePath: "/images/feature-coverage/mit-ai-education-purpose-lens-approved.png",
   imageAlt:
-    "Illustrated university construction site showing purpose as the foundation before an AI guidelines beam is lowered.",
+    "Editorial illustration of a magnifying lens over layered report pages with cyan and amber evidence paths, representing close examination of MIT's AI and education report.",
   sections: [
     {
       paragraphs: [
