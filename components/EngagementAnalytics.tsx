@@ -2,7 +2,7 @@
 
 import { Analytics, track } from '@vercel/analytics/react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useCallback, useEffect, useMemo } from 'react';
 import {
   analyticsNavigationKey,
   analyticsPagePath,
@@ -32,11 +32,6 @@ function isCurrentBrowserOptedOut() {
   } catch {
     return isInternalAnalyticsOptOut(window.location.hash);
   }
-}
-
-function beforeSend(event: AnalyticsUrlEvent) {
-  if (isCurrentBrowserOptedOut()) return null;
-  return redactAnalyticsEventUrl(event);
 }
 
 function trackEvent(name: EngagementEventName, properties: Record<string, AnalyticsValue> = {}) {
@@ -94,7 +89,13 @@ function CustomEngagementEvents() {
   return null;
 }
 
-export default function EngagementAnalytics() {
+export default function EngagementAnalytics({ publicPagePaths }: { publicPagePaths: string[] }) {
+  const publicPagePathSet = useMemo(() => new Set(publicPagePaths), [publicPagePaths]);
+  const beforeSend = useCallback((event: AnalyticsUrlEvent) => {
+    if (isCurrentBrowserOptedOut()) return null;
+    return redactAnalyticsEventUrl(event, publicPagePathSet);
+  }, [publicPagePathSet]);
+
   return (
     <>
       {/*

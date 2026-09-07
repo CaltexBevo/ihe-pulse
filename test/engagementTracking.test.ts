@@ -61,28 +61,83 @@ test('current-page opt-out survives unavailable browser storage', () => {
   assert.equal(isInternalAnalyticsOptOut('', unavailableStorage), false);
 });
 
-test('central beforeSend redacts queries, fragments, dynamic paths, and unexpected hosts', () => {
+test('central beforeSend retains only exact public page paths and strips queries and fragments', () => {
+  const publicPagePaths = new Set([
+    '/',
+    '/ai-directory',
+    '/prompts',
+    '/educator-tools',
+    '/ai-directory/chatgpt',
+    '/feature-coverage/mit-ai-education-purpose',
+    '/innovation-pulse/2026-08-28',
+    '/innovation-pulse/category/insights-and-trends',
+    '/innovation-pulse/story/before-setting-ai-guidelines-mit-asked-what-education-is-for',
+  ]);
+
   assert.deepEqual(
     redactAnalyticsEventUrl({
       type: 'pageview',
-      url: 'https://www.innovatinghighered.com/innovation-pulse/story/private-id?email=person@example.com#private',
-    }),
+      url: 'https://www.innovatinghighered.com/innovation-pulse/story/before-setting-ai-guidelines-mit-asked-what-education-is-for?email=person@example.com#private',
+    }, publicPagePaths),
     {
       type: 'pageview',
+      url: 'https://www.innovatinghighered.com/innovation-pulse/story/before-setting-ai-guidelines-mit-asked-what-education-is-for',
+    },
+  );
+
+  for (const path of [
+    '/ai-directory',
+    '/prompts',
+    '/educator-tools',
+    '/ai-directory/chatgpt',
+    '/feature-coverage/mit-ai-education-purpose',
+    '/innovation-pulse/2026-08-28',
+    '/innovation-pulse/category/insights-and-trends',
+  ]) {
+    assert.equal(
+      redactAnalyticsEventUrl({
+        type: 'pageview',
+        url: `https://innovatinghighered.com${path}?token=secret#private`,
+      }, publicPagePaths)?.url,
+      `https://www.innovatinghighered.com${path}`,
+    );
+  }
+});
+
+test('central beforeSend rejects private, API, unknown dynamic, foreign, and unsafe URLs', () => {
+  const publicPagePaths = new Set([
+    '/',
+    '/ai-directory/chatgpt',
+    '/feature-coverage/mit-ai-education-purpose',
+  ]);
+
+  const rejected = [
+    'https://www.innovatinghighered.com/account/private-user-id',
+    'https://www.innovatinghighered.com/api/newsletter?email=person@example.com',
+    'https://www.innovatinghighered.com/ai-directory/arbitrary-id',
+    'https://www.innovatinghighered.com/feature-coverage/arbitrary-id',
+    'https://www.innovatinghighered.com/innovation-pulse/story/private-id',
+    'https://attacker.example/ai-directory/chatgpt?token=secret',
+    'javascript:private-id',
+  ];
+
+  for (const url of rejected) {
+    assert.equal(redactAnalyticsEventUrl({ type: 'pageview', url }, publicPagePaths), null);
+  }
+});
+
+test('custom-event URLs keep the existing grouped page taxonomy', () => {
+  const publicPagePaths = new Set<string>();
+  assert.deepEqual(
+    redactAnalyticsEventUrl({
+      type: 'event',
+      url: 'https://www.innovatinghighered.com/innovation-pulse/story/before-setting-ai-guidelines-mit-asked-what-education-is-for?token=secret#private',
+    }, publicPagePaths),
+    {
+      type: 'event',
       url: 'https://www.innovatinghighered.com/innovation-pulse/story/[slug]',
     },
   );
-  assert.deepEqual(
-    redactAnalyticsEventUrl({
-      type: 'event',
-      url: 'https://attacker.example/private-user-id?token=secret',
-    }),
-    {
-      type: 'event',
-      url: 'https://www.innovatinghighered.com/other',
-    },
-  );
-  assert.equal(redactAnalyticsEventUrl({ type: 'pageview', url: 'javascript:private-id' }), null);
 });
 
 test('accepts only governed campaign combinations and registered release dates', () => {

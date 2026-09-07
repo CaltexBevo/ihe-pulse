@@ -78,7 +78,7 @@ const SOCIAL_CONTENT = new Map([
   ['linkedin', new Set(['episode_post'])],
 ]);
 
-const STATIC_PAGE_PATHS = new Set([
+export const PUBLIC_ANALYTICS_STATIC_PATHS = [
   '/',
   '/about',
   '/ai-directory',
@@ -94,7 +94,9 @@ const STATIC_PAGE_PATHS = new Set([
   '/prompts',
   '/terms',
   '/tinker-lab',
-]);
+] as const;
+
+const STATIC_PAGE_PATHS = new Set<string>(PUBLIC_ANALYTICS_STATIC_PATHS);
 
 const ANALYTICS_PAGE_PATHS = new Set([
   ...STATIC_PAGE_PATHS,
@@ -224,13 +226,26 @@ export interface AnalyticsUrlEvent {
   url: string;
 }
 
-export function redactAnalyticsEventUrl<T extends AnalyticsUrlEvent>(event: T): T | null {
+export function redactAnalyticsEventUrl<T extends AnalyticsUrlEvent>(
+  event: T,
+  publicPagePaths: ReadonlySet<string>,
+): T | null {
   try {
     const parsed = new URL(event.url, ANALYTICS_ORIGIN);
     if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return null;
+    if (parsed.hostname !== 'www.innovatinghighered.com' && parsed.hostname !== 'innovatinghighered.com') {
+      return null;
+    }
+
+    const path = parsed.pathname.replace(/\/+$/, '') || '/';
+    const redactedPath = event.type === 'event'
+      ? analyticsPagePath(path)
+      : publicPagePaths.has(path) ? path : null;
+
+    if (!redactedPath) return null;
     return {
       ...event,
-      url: `${ANALYTICS_ORIGIN}${analyticsPagePath(parsed.pathname)}`,
+      url: `${ANALYTICS_ORIGIN}${redactedPath}`,
     };
   } catch {
     return null;

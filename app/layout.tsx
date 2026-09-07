@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import EngagementAnalytics from "@/components/EngagementAnalytics";
+import { getPublicAnalyticsPagePaths } from "@/lib/publicAnalyticsPaths";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.innovatinghighered.com'),
@@ -58,6 +59,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const publicAnalyticsPagePaths = getPublicAnalyticsPagePaths();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -97,7 +100,7 @@ export default function RootLayout({
           <main id="main-content" className="min-h-screen">{children}</main>
           <Footer />
         </ThemeProvider>
-        <EngagementAnalytics />
+        <EngagementAnalytics publicPagePaths={publicAnalyticsPagePaths} />
       </body>
     </html>
   );
