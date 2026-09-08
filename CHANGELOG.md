@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-08] Grant Portal v17 production integration
+
+- Added the approved R2 Grant Portal experience at `/innovation-grants` and the interactive directory at `/innovation-grants/directory`, using the server-only cleared public projection of the verified inventory.
+- Added the Grant Portal navigation entry, canonical metadata/OG image routes, and both intended public URLs to the sitemap; the existing global header, footer, theme provider, and analytics boundaries remain in place.
+- Preserved date-only Pacific lifecycle recalculation, exact launch-held inventory boundary, official-source/application links, filters, sorting, pagination, share recovery, and empty-state recovery. This entry records implementation for launch review; it does not claim publication or deployment.
+
 ## [2026-09-05] Command Center Mailchimp security boundary
 
 - Added an authenticated, aggregate-only reporting endpoint for the private Command Center.

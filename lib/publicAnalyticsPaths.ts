@@ -16,6 +16,14 @@ type AiAppsData = {
   tools?: Array<{ slug?: unknown }>;
 };
 
+// Exact pageview-only registration for the founder-approved Grant Portal.
+// Keep this separate from PUBLIC_ANALYTICS_STATIC_PATHS so the existing custom
+// event taxonomy, schemas, and collection behavior do not change.
+const INNOVATION_GRANTS_PUBLIC_PAGE_PATHS = [
+  '/innovation-grants',
+  '/innovation-grants/directory',
+] as const;
+
 function addSlugPaths(paths: Set<string>, prefix: string, slugs: readonly unknown[]) {
   for (const slug of slugs) {
     if (typeof slug !== 'string' || !/^[a-z0-9-]+$/.test(slug)) continue;
@@ -29,7 +37,10 @@ function addSlugPaths(paths: Set<string>, prefix: string, slugs: readonly unknow
  * are part of a real published route in this checkout.
  */
 export function getPublicAnalyticsPagePaths(): string[] {
-  const paths = new Set<string>(PUBLIC_ANALYTICS_STATIC_PATHS);
+  const paths = new Set<string>([
+    ...PUBLIC_ANALYTICS_STATIC_PATHS,
+    ...INNOVATION_GRANTS_PUBLIC_PAGE_PATHS,
+  ]);
 
   addSlugPaths(paths, '/innovation-pulse', getEpisodeDates());
   addSlugPaths(paths, '/innovation-pulse/story', getAllStorySlugs());

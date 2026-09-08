@@ -5,11 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
+import styles from "./Nav.module.css";
 
 // Nav order updated 2026-06-23: "All Episodes" renamed to "Innovation Pulse"
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/innovation-pulse/archive", label: "Innovation Pulse" },
+  { href: "/innovation-grants", label: "Grant Portal" },
   { href: "/prompts", label: "Prompts" },
   { href: "/ai-directory", label: "AI Directory" },
   { href: "/educator-tools", label: "Educator Tools" },
@@ -37,30 +39,41 @@ export default function Nav() {
         {/* Brand Logo with hover glow */}
         <Link
           href="/"
-          className="flex items-center shrink-0 transition-all duration-200 hover:scale-[1.02]"
-          style={{
-            filter: 'none',
-            transition: 'transform 0.2s ease, filter 0.2s ease'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.filter = 'drop-shadow(0 0 12px rgba(0,212,255,0.35))'}
-          onMouseLeave={(e) => e.currentTarget.style.filter = 'none'}
+          aria-label="Innovating Higher Ed home"
+          className={`${styles.logoLink} flex items-center shrink-0 transition-transform duration-200 hover:scale-[1.02]`}
         >
-          <Image
-            src="/images/ihe-logo.png"
-            alt="Innovating Higher Ed"
-            width={180}
-            height={56}
-            className="h-14 w-auto object-contain max-[1100px]:h-12 max-[900px]:h-11"
-            priority
-          />
+          <span className={styles.logoFrame} aria-hidden="true">
+            <Image
+              src="/images/ihe-logo.png"
+              alt=""
+              width={180}
+              height={56}
+              className={`${styles.logo} ${styles.logoDark}`}
+              aria-hidden="true"
+              priority
+            />
+            <Image
+              src="/images/ihe-logo-light.png"
+              alt=""
+              width={180}
+              height={56}
+              className={`${styles.logo} ${styles.logoLight}`}
+              aria-hidden="true"
+              priority
+            />
+          </span>
           <span
             className="w-[6px] h-[6px] bg-[var(--cyan)] rounded-full ml-2"
             style={{ animation: "pulseDot 2s infinite" }}
+            aria-hidden="true"
           />
         </Link>
 
         {/* Nav Links - Desktop */}
-        <div className="hidden md:flex items-center gap-[0.15rem] ml-auto">
+        <div
+          className="hidden lg:flex items-center gap-[0.15rem] ml-auto"
+          data-theme-slot="desktop"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -79,18 +92,17 @@ export default function Nav() {
             </Link>
           ))}
 
-          {/* Theme Toggle — hidden until light-mode logo ships */}
-          {/* TODO: re-enable when light-mode logo ships */}
-          {false && (
-            <div className="ml-2 pl-2 border-l border-[var(--border)]">
-              <ThemeToggle />
-            </div>
-          )}
+          <div className="ml-2 pl-2 border-l border-[var(--border)]">
+            <ThemeToggle />
+          </div>
         </div>
 
-        {/* Mobile: Menu Button (Theme toggle hidden until light-mode logo ships) */}
-        <div className="md:hidden ml-auto flex items-center gap-1">
-          {/* TODO: re-enable ThemeToggle when light-mode logo ships */}
+        {/* Mobile: Theme Toggle + Menu Button */}
+        <div
+          className="lg:hidden ml-auto flex items-center gap-1"
+          data-theme-slot="mobile"
+        >
+          <ThemeToggle />
           <button
             className="p-2 text-[var(--text-secondary)]"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -126,7 +138,7 @@ export default function Nav() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[var(--border)] glass">
+        <div className="lg:hidden border-t border-[var(--border)] glass">
           <div className="px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
