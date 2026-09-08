@@ -193,9 +193,9 @@ export default function InnovationGrantsPage() {
             </div>
             <div className="page-kicker">Grant Portal</div>
             <h1>
-              Every kind of change, <span className="grad">funded.</span>
+              Your innovation. <span className="grad">Our grant radar.</span>
             </h1>
-            <p>Find higher-education grant opportunities by who can apply, what they fund, and when they close.</p>
+            <p>We keep searching for higher-education grant opportunities so you don’t have to start from scratch. Explore what’s open. Return for what we uncover next.</p>
             <div className="metrics" id="metrics" aria-label="Current grant directory totals">
               <div className="funding">
                 <PortalFundingTally amount={snapshot.publishedProgramPoolUsd} />
