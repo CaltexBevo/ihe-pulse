@@ -4,6 +4,10 @@
 
 - Replaced the Grant Portal hero headline and subtitle with the founder-approved copy while preserving the existing gradient treatment, layout, and grant data.
 
+## [2026-09-09] Grant Portal data recovery
+
+- Restored four reverified opportunities to the local public projection and updated the directional total to $40,007,403 across nine counted pools, with two approximate pools and source caveats retained.
+
 ## [2026-09-08] Grant Portal v17 production integration
 
 - Added the approved R2 Grant Portal experience at `/innovation-grants` and the interactive directory at `/innovation-grants/directory`, using the server-only cleared public projection of the verified inventory.

@@ -15,7 +15,7 @@ import type { InnovationGrantOpportunity } from "../innovation-grants-shared";
  * receive its already-filtered return value as their narrow route prop.
  */
 export const INNOVATION_GRANTS_LAUNCH_HELD_IDS = [
-  48, 53, 56, 57, 58, 61, 70, 78, 79, 80, 74, 84,
+  48, 53, 56, 57, 58, 70, 74, 84,
 ] as const;
 
 const launchHeldIds = new Set<number>(INNOVATION_GRANTS_LAUNCH_HELD_IDS);
