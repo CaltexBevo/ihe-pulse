@@ -85,6 +85,11 @@ export interface DataVizConfig {
   source?: string;
 }
 
+export interface StorySourceLink {
+  label: string;
+  url: string;
+}
+
 // ── Data Interfaces ──────────────────────────────────────────────────────────
 
 export interface DeepDive {
@@ -92,6 +97,7 @@ export interface DeepDive {
   summary: string;
   source: string;
   sourceUrl: string;
+  sourceLinks?: StorySourceLink[];
   isCallback: boolean;
   callbackThreadId?: string;
   callbackFirstCovered?: string;
@@ -107,6 +113,7 @@ export interface QuickHit {
   summary: string;
   source: string;
   sourceUrl: string;
+  sourceLinks?: StorySourceLink[];
   category: StoryCategory;
   isCallback?: boolean;
   callbackDate?: string;

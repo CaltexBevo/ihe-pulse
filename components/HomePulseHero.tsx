@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import ApprovedSeptemberHeroArtwork from './ApprovedSeptemberHeroArtwork';
 import {
   useEffect,
   useRef,
@@ -165,6 +166,7 @@ export default function HomePulseHero({
   const roundedMinutes = Math.max(1, Math.round(fallbackDuration / 60));
   const supportCopy = getHomePulseSupportCopy(episode.date);
   const usesApprovedCollage = episode.date === '2026-08-28';
+  const usesSeptember04Hero = episode.date === '2026-09-04';
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -318,6 +320,7 @@ export default function HomePulseHero({
         <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
       )}
 
+      {usesSeptember04Hero ? <ApprovedSeptemberHeroArtwork /> : (
       <div className={styles.storyPanel}>
         <div className={styles.valueCopy}>
           <p className={styles.eyebrow}>This week’s Innovation Pulse</p>
@@ -356,6 +359,8 @@ export default function HomePulseHero({
         </div>
       </div>
 
+      )}
+
       <div className={styles.playerPanel}>
         <div className={styles.playerSection}>
           <button
@@ -379,7 +384,9 @@ export default function HomePulseHero({
 
           <div className={styles.playerContent}>
             <p className={styles.playerLabel}>
-              Play the {roundedMinutes}-minute briefing
+              {usesSeptember04Hero
+                ? 'Play this week’s episode'
+                : `Play the ${roundedMinutes}-minute briefing`}
             </p>
             <div
               className={styles.waveShell}

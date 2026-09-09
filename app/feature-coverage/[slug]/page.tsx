@@ -56,11 +56,11 @@ export async function generateMetadata({
       imagePath: feature.imagePath ?? undefined,
       imageAlt: feature.imageAlt || feature.title,
       twitterCard: feature.imagePath ? "summary_large_image" : "summary",
-      imageWidth: feature.imagePath ? 2752 : undefined,
-      imageHeight: feature.imagePath ? 1536 : undefined,
+      imageWidth: feature.imagePath ? feature.imageWidth : undefined,
+      imageHeight: feature.imagePath ? feature.imageHeight : undefined,
     }),
-    authors: [{ name: "Dr. Norma Jones" }],
-    creator: "Dr. Norma Jones",
+    authors: [{ name: feature.authorName ?? "Dr. Norma Jones" }],
+    creator: feature.authorName ?? "Dr. Norma Jones",
     publisher: "Innovating Higher Ed",
   };
 }
@@ -167,6 +167,47 @@ function QuestionsRail({ questions }: { questions: string[] }) {
   );
 }
 
+function SectionsRail({ sections }: { sections: FeaturedCoverageSection[] }) {
+  const namedSections = sections
+    .map((section, index) => ({ section, index }))
+    .filter(({ section }) => Boolean(section.heading));
+
+  return (
+    <aside className={`${styles.sideRail} ${styles.sequenceRail}`} aria-labelledby="feature-contents-heading">
+      <p id="feature-contents-heading" className={styles.sectionLabel}>In this analysis</p>
+      <ol className={styles.questionNav}>
+        {namedSections.map(({ section, index }, railIndex) => (
+          <li key={section.heading}>
+            <a className={styles.questionNavLink} href={`#${sectionId(section, index)}`}>
+              <span className={styles.questionNavNumber}>{String(railIndex + 1).padStart(2, "0")}</span>
+              <span>{section.heading}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </aside>
+  );
+}
+
+function SourcesRail({ feature }: { feature: FeaturedCoverage }) {
+  const sources = feature.sources ?? [{ label: feature.sourceLabel, url: feature.sourceUrl }];
+
+  return (
+    <aside className={`${styles.sideRail} ${styles.questionsRail} ${styles.sourcesRail}`} aria-labelledby="feature-sources-heading">
+      <p id="feature-sources-heading" className={styles.sectionLabel}>Sources</p>
+      <ul className={styles.sourceRailList}>
+        {sources.map((source) => (
+          <li key={source.url}>
+            <a href={source.url} target="_blank" rel="noopener noreferrer" className={styles.articleLink}>
+              {source.label} <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
 function ArticleSection({
   feature,
   section,
@@ -232,6 +273,7 @@ export default async function FeaturedCoveragePage({
 
   const questionSection = feature.sections.find((section) => section.heading === QUESTIONS_HEADING);
   const questions = questionSection?.bullets ?? [];
+  const usesMitLayout = feature.slug === "mit-ai-education-purpose";
 
   return (
     <article className={styles.page}>
@@ -268,7 +310,7 @@ export default async function FeaturedCoveragePage({
       </section>
 
       <section className={styles.editorialGrid} aria-label="Feature Coverage article">
-        <SequenceRail />
+        {usesMitLayout ? <SequenceRail /> : <SectionsRail sections={feature.sections} />}
 
         <div className={styles.articleBody}>
           {feature.sections.map((section, sectionIndex) => (
@@ -278,18 +320,19 @@ export default async function FeaturedCoveragePage({
                 section={section}
                 sectionIndex={sectionIndex}
               />
-              {sectionIndex === 0 && (
-                <p className={styles.sourceNote}>
-                  <span className={styles.sourceNoteLabel}>Primary source</span>
-                  <a
-                    href={feature.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.articleLink}
-                  >
-                    {feature.sourceLabel} <span aria-hidden="true">↗</span>
-                  </a>
-                </p>
+              {usesMitLayout && sectionIndex === 0 && (
+                <div className={styles.sourceNote}>
+                  <span className={styles.sourceNoteLabel}>{feature.sources ? "Sources" : "Primary source"}</span>
+                  <ul className={styles.sourceNoteList}>
+                    {(feature.sources ?? [{ label: feature.sourceLabel, url: feature.sourceUrl }]).map((source) => (
+                      <li key={source.url}>
+                        <a href={source.url} target="_blank" rel="noopener noreferrer" className={styles.articleLink}>
+                          {source.label} <span aria-hidden="true">↗</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
           ))}
@@ -301,7 +344,7 @@ export default async function FeaturedCoveragePage({
           </div>
         </div>
 
-        <QuestionsRail questions={questions} />
+        {usesMitLayout ? <QuestionsRail questions={questions} /> : <SourcesRail feature={feature} />}
       </section>
     </article>
   );

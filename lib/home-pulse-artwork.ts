@@ -4,6 +4,8 @@ const HOME_PULSE_ARTWORK: Record<string, string> = {
 };
 
 const HOME_PULSE_SUPPORT_COPY: Record<string, string> = {
+  '2026-09-04':
+    'Build useful projects. Rethink assignments. Find support.',
   '2026-08-28':
     'AI policy, new programs, classroom tools, and research, distilled for higher ed leaders.',
 };

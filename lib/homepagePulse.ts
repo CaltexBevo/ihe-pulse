@@ -49,9 +49,9 @@ export function selectPriorEpisodes(
   allEpisodes: InnovationPulseEpisode[],
   count = 3,
 ): InnovationPulseEpisode[] {
-  // The approved August 22–28 homepage lookback begins at August 8–14,
-  // leaving the immediately preceding release out of this compact rail.
-  const startIndex = 2;
+  // The September 4 edition restores the immediately preceding weekly release.
+  // Preserve the approved August 22–28 lookback behavior for older home states.
+  const startIndex = allEpisodes[0]?.date === '2026-09-04' ? 1 : 2;
   return allEpisodes.slice(startIndex, startIndex + Math.max(0, count));
 }
 

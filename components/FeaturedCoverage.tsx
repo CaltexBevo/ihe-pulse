@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  MIT_FEATURED_COVERAGE,
+  LATEST_FEATURED_COVERAGE,
   type FeaturedCoverage as FeaturedCoverageRecord,
 } from "@/lib/data/featured-coverage";
 
@@ -85,7 +85,7 @@ export function FeatureArtwork({
 }
 
 export default function FeaturedCoverage({
-  feature = MIT_FEATURED_COVERAGE,
+  feature = LATEST_FEATURED_COVERAGE,
   variant = "default",
 }: FeaturedCoverageProps) {
   const isHomepage = variant === "homepage";

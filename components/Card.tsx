@@ -24,6 +24,7 @@ interface CardProps {
   isCallback?: boolean;
   callbackDate?: string;
   dataViz?: DataVizConfig;
+  preserveParagraphs?: boolean;
 }
 
 export default function Card({
@@ -44,6 +45,7 @@ export default function Card({
   isCallback = false,
   callbackDate,
   dataViz,
+  preserveParagraphs = false,
 }: CardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -166,14 +168,26 @@ export default function Card({
           }`}
         >
           {/* Full Content - DM Sans Regular */}
-          {fullContent && (
+          {fullContent && (preserveParagraphs ? (
+            <div className="space-y-[0.65rem] mb-[0.65rem]">
+              {fullContent.split(/\n\n+/).map((paragraph, index) => (
+                <p
+                  key={index}
+                  className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.65]"
+                  style={{ fontFamily: "var(--font-sans)", fontWeight: 400 }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ) : (
             <p
               className="text-[0.8rem] text-[var(--text-secondary)] leading-[1.65] mb-[0.65rem]"
               style={{ fontFamily: "var(--font-sans)", fontWeight: 400 }}
             >
               {fullContent}
             </p>
-          )}
+          ))}
           {/* Editorial Callout */}
           {editorialCallout && (
             <div className="text-[0.76rem] leading-[1.6] p-[0.5rem_0.7rem] bg-[rgba(0,212,255,0.04)] border-l-2 border-[var(--cyan)] rounded-r-[5px] mb-[0.6rem]">

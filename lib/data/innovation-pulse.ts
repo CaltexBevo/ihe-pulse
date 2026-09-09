@@ -93,7 +93,13 @@ function mapCategoryToV4(cat: string): V4CategoryName {
 
 // Map category for the internal StoryCategory type
 // V5 categories pass through directly; legacy/pipeline categories map to V4 first
-function mapCategory(cat: string): import('./innovation-pulse-types').StoryCategory {
+function mapCategory(
+  cat: string,
+  editionDate?: string,
+): import('./innovation-pulse-types').StoryCategory {
+  if (editionDate === '2026-09-04' && cat === 'Tool Spotlight') {
+    return 'Tool Spotlight';
+  }
   const v4Category = mapCategoryToV4(cat);
   // V5 categories (Research, AI Workforce & Careers, etc.) are now valid StoryCategory values
   // so we can return them directly. Legacy V4 categories map to their closest StoryCategory.
@@ -122,6 +128,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   const leadStory = raw.leadStory as Record<string, unknown> | undefined;
   const topStory = raw.topStory as Record<string, unknown> | undefined; // V3.1 format
   const segments = raw.segments as Record<string, unknown> | undefined;
+  const date = (episode?.date || raw.date) as string;
 
   // Determine deep dive source (V3.1: topStory, V3: leadStory, old: segments.deepDive or raw.deepDive)
   const rawDeepDive = topStory || leadStory || segments?.deepDive as Record<string, unknown> | undefined || raw.deepDive as Record<string, unknown> | undefined;
@@ -150,8 +157,9 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     summary: (leadStory?.editorialTake || rawDeepDive.summary || hook || broadcastScript.slice(0, 500)) as string || 'Read the full story for details.',
     source: (rawDeepDive.source) as string || '',
     sourceUrl: (rawDeepDive.sourceUrl) as string || '',
+    sourceLinks: (rawDeepDive.sourceLinks) as InnovationPulseEpisode['deepDive']['sourceLinks'],
     isCallback: (rawDeepDive.isCallback as boolean) ?? false,
-    category: mapCategory((rawDeepDive.category) as string || ''),
+    category: mapCategory((rawDeepDive.category) as string || '', date),
     editorialCallout: (rawDeepDive.editorialCallout) as string | undefined,
     image: (rawDeepDive.image || rawDeepDive.imageUrl) as string | undefined,
     heroImage: (rawDeepDive.heroImage || rawDeepDive.heroImageUrl) as string | undefined,
@@ -165,7 +173,8 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     summary: (hit.summary) as string || 'Read the full story for details.',
     source: (hit.source) as string || '',
     sourceUrl: (hit.sourceUrl) as string || '',
-    category: mapCategory((hit.category) as string || ''),
+    sourceLinks: (hit.sourceLinks) as InnovationPulseEpisode['quickHits'][number]['sourceLinks'],
+    category: mapCategory((hit.category) as string || '', date),
     isCallback: hit.isCallback as boolean | undefined,
     image: (hit.image || hit.imageUrl) as string | undefined,
     heroImage: (hit.heroImage || hit.heroImageUrl) as string | undefined,
@@ -186,7 +195,6 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   }
 
   // Get date/dayOfWeek - V3 has these in episode.*, old format at top level
-  const date = (episode?.date || raw.date) as string;
   const dayOfWeek = (episode?.dayOfWeek || raw.dayOfWeek) as string;
   const audioUrl = (episode?.audioUrl || raw.audioUrl) as string || '';
   // audioDuration may arrive as a display string ("12:34") or raw seconds (754) —
@@ -345,6 +353,7 @@ export interface AggregatedStory {
   summary: string;
   source: string;
   sourceUrl: string;
+  sourceLinks?: import('./innovation-pulse-types').StorySourceLink[];
   category: import('./innovation-pulse-types').StoryCategory;
   date: string;
   type: 'deepDive' | 'quickHit';
@@ -366,6 +375,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
       summary: episode.deepDive.summary,
       source: episode.deepDive.source,
       sourceUrl: episode.deepDive.sourceUrl,
+      sourceLinks: episode.deepDive.sourceLinks,
       category: episode.deepDive.category,
       date: episode.date,
       type: 'deepDive',
@@ -381,6 +391,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
         summary: hit.summary,
         source: hit.source,
         sourceUrl: hit.sourceUrl,
+        sourceLinks: hit.sourceLinks,
         category: hit.category,
         date: episode.date,
         type: 'quickHit',
@@ -462,6 +473,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
         summary: episode.deepDive.summary,
         source: episode.deepDive.source,
         sourceUrl: episode.deepDive.sourceUrl,
+        sourceLinks: episode.deepDive.sourceLinks,
         category: episode.deepDive.category,
         date: episode.date,
         type: 'deepDive',
@@ -487,6 +499,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
           summary: hit.summary,
           source: hit.source,
           sourceUrl: hit.sourceUrl,
+          sourceLinks: hit.sourceLinks,
           category: hit.category,
           date: episode.date,
           type: 'quickHit',

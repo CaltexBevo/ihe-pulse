@@ -21,6 +21,7 @@ const V4_CATEGORY_CONFIG: Record<string, { color: string; slug: string }> = {
   "Latest AI Products": { color: "var(--purple)", slug: "latest-ai-products" },
   "Beyond Ed": { color: "var(--cyan)", slug: "beyond-ed" },
   "Week in Review": { color: "var(--magenta)", slug: "week-in-review" },
+  "Tool Spotlight": { color: "var(--cyan)", slug: "practical-tips" },
   // Old categories mapping
   "Research & Innovation": { color: "var(--cyan)", slug: "insights-and-trends" },
   "Infrastructure & Operations": { color: "var(--purple)", slug: "case-study" },
@@ -81,6 +82,15 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
   const categoryConfig = V4_CATEGORY_CONFIG[story.category] || V4_CATEGORY_CONFIG["Insights & Trends"];
   // Use pre-assigned image from story data, or fall back to default
   const storyImage = story.heroImage || story.image || DEFAULT_STORY_IMAGE;
+  const usesSeptember04Card = story.episodeDate === "2026-09-04";
+  const summaryParagraphs = story.summary.split(/\n\n+/).filter((paragraph) => paragraph.trim());
+  const storySourceLinks = [
+    ...(story.sourceLinks ?? []),
+    { label: story.source, url: story.sourceUrl },
+  ].filter(
+    (source, index, sources) =>
+      Boolean(source.url) && sources.findIndex((candidate) => candidate.url === source.url) === index,
+  );
 
   return (
     <div className="min-h-screen">
@@ -102,17 +112,25 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       </div>
 
       {/* Hero Image */}
-      <div className="max-w-[1200px] mx-auto relative h-[420px] overflow-hidden">
+      <div
+        className={
+          usesSeptember04Card
+            ? "max-w-[1200px] mx-auto relative aspect-[1672/941] overflow-hidden bg-[#e7f2ff]"
+            : "max-w-[1200px] mx-auto relative h-[420px] overflow-hidden"
+        }
+      >
         <Image
           src={storyImage}
           alt={story.title}
           fill
-          className="object-cover"
+          className={usesSeptember04Card ? "object-contain" : "object-cover"}
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[rgba(8,8,15,0.3)] to-[rgba(8,8,15,0.1)]" />
+        {!usesSeptember04Card && (
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[rgba(8,8,15,0.3)] to-[rgba(8,8,15,0.1)]" />
+        )}
         {/* Badges */}
-        <div className="absolute top-6 left-6 flex gap-2">
+        {!usesSeptember04Card && <div className="absolute top-6 left-6 flex gap-2">
           {story.type === "deepDive" && (
             <span className="font-mono text-[0.65rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[rgba(0,212,255,0.85)] text-[#08080f]">
               LEAD STORY
@@ -124,11 +142,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           >
             {v4Category}
           </span>
-        </div>
+        </div>}
       </div>
 
       {/* Article Content */}
-      <div className="max-w-[820px] mx-auto px-[var(--px)] -mt-12 relative z-10">
+      <div className={`max-w-[820px] mx-auto px-[var(--px)] relative z-10 ${usesSeptember04Card ? "pt-8" : "-mt-12"}`}>
         {/* Meta */}
         <div className="flex items-center gap-3 flex-wrap mb-4">
           <Link
@@ -159,9 +177,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
         </h1>
 
         {/* Subtitle/Hook */}
-        <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8">
-          {story.summary.split('.').slice(0, 2).join('.')}...
-        </p>
+        {!usesSeptember04Card && (
+          <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8">
+            {story.summary.split('.').slice(0, 2).join('.')}...
+          </p>
+        )}
 
         {/* Story Audio Clip (if lead story) */}
         {story.type === "deepDive" && story.audioUrl && (
@@ -170,9 +190,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
 
         {/* Article Body */}
         <div className="prose prose-invert max-w-none mb-8">
-          <p className="text-[1.05rem] leading-[1.8] text-[var(--text-secondary)] mb-6">
-            {story.summary}
-          </p>
+          {summaryParagraphs.map((paragraph, index) => (
+            <p key={`summary-${index}`} className="text-[1.05rem] leading-[1.8] text-[var(--text-secondary)] mb-6">
+              {paragraph}
+            </p>
+          ))}
 
           {/* Pull quote for lead stories */}
           {story.type === "deepDive" && story.editorialCallout && (
@@ -183,33 +205,43 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
 
           {/* Full content for lead stories */}
           {story.fullText && story.fullText !== story.summary && (
-            <p className="text-[1.05rem] leading-[1.8] text-[var(--text-secondary)] mb-6">
-              {story.fullText}
-            </p>
+            <div>
+              {story.fullText.split(/\n\n+/).filter((paragraph) => paragraph.trim()).map((paragraph, index) => (
+                <p key={`full-${index}`} className="text-[1.05rem] leading-[1.8] text-[var(--text-secondary)] mb-6">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           )}
         </div>
 
         {/* Source Block */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 flex items-center justify-between mb-8">
+        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 mb-8">
           <div>
             <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase block mb-1">
-              Original reporting
+              {storySourceLinks.length === 1 ? "Original reporting" : "Sources and further reading"}
             </span>
             <span className="text-[0.9rem] font-semibold">{story.source}</span>
           </div>
-          <a
-            href={story.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-[0.72rem] text-[var(--cyan)] px-3 py-2 rounded-[8px] bg-[var(--cyan-dim)] hover:bg-[rgba(0,212,255,0.2)] transition-colors"
-          >
-            Read original article
-            <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2">
-              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-          </a>
+          <ul className="mt-4 grid gap-2 list-none p-0">
+            {storySourceLinks.map((source) => (
+              <li key={source.url}>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-mono text-[0.72rem] text-[var(--cyan)] px-3 py-2 rounded-[8px] bg-[var(--cyan-dim)] hover:bg-[rgba(0,212,255,0.2)] transition-colors"
+                >
+                  {source.label}
+                  <svg viewBox="0 0 24 24" className="w-3 h-3 fill-none stroke-current" strokeWidth="2" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Our Take Section (for lead stories) */}

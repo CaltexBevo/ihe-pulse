@@ -1,0 +1,165 @@
+{
+  "episode": {
+    "date": "2026-09-04",
+    "dayOfWeek": "Friday",
+    "audioUrl": "https://storage.googleapis.com/ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-09-04.mp3",
+    "audioDuration": "6:07",
+    "broadcastScript": "This is The Innovation Pulse for the week ending Friday, September fourth, twenty twenty-six. And here's who is innovating in higher education this week.\n\n<break time=\"1.0s\"/>\n\nIs there a teaching tool you’ve wanted to build, or research data you haven’t had time to revisit? In Beyond Ed, OpenAI, Anthropic, Google and Meta released four new A.I. models this week. Their promised improvements could help with the technical work that has kept a good idea waiting.\n\nOpenAI’s G.P.T. six Astra is its new flagship, described by the company as its most capable model yet. OpenAI reports stronger performance than five point six Sol in coding and computer work, along with better continuity on long projects. The promise is help with more of the job: working across code, web research and professional software. Through Codex, OpenAI’s coding agent, that could mean helping build a teaching tool or carry a research analysis from data through code to a report. Astra is also designed to absorb corrections without losing track of the larger project.\n\nAnthropic’s evaluations show Claude Fable five point one making gains over Fable five on coding and scientific problems. Its release describes Fable producing a more detailed elevation map of part of Venus from decades-old radar data. That raises an interesting possibility for researchers: finding new value in material they already have.\n\nGoogle’s Gemini three point eight Flash brings company-reported gains in coding and reasoning over three point seven Flash. Its launch demonstration used a development tool to turn public scientific data into an interactive terrain map.\n\nMeta’s Muse Spark one point three emphasizes more reliable instruction-following, with company-reported improvements in keeping track of requirements through longer projects.\n\nThere is a cost tradeoff in the independent testing. In Artificial Analysis’s September third coding-agent test, Fable five point one earned the higher score. Astra’s average processing cost per task was about forty-nine percent lower than Fable five point one’s. The test used Codex for Astra and Claude Code for Fable, both at maximum reasoning effort, with a fallback setting for Fable.\n\nIn the accompanying Feature, Innovating Higher Ed’s chief technology officer and contributing editor, Brent Jones, gives Astra the edge for his own work. Alongside performance and cost, he values its follow-through. He finds Fable five point one too prone to raising objections during routine, authorized tasks.\n\n<break time=\"1.0s\"/>\n\nNext, in Practical Tips: “What a Writing Conference Can Reveal Beyond Polished Prose.” At Santa Clara University, that lesson begins with a conversation. Professor Cruz Medina requires individual meetings about students' writing, according to a university interview.\n\nHe describes a student's account of language barriers and belonging. That gives the discussion a different focus from whether the prose is polished. What experience is the student trying to express?\n\nMedina wants students to question A.I. sources and retain their own expression. This is a teaching practice to consider, not a measured finding about preventing misuse.\n\n<break time=\"1.0s\"/>\n\nIn Insights and Trends, our next story is “When A.I. Can Solve the Exam, Let Students Write the Questions.” That is one approach in Georgia Tech's new Academic A.I. Playbook. In an online data analytics course, students create problems, solutions and assessment criteria around a dataset.\n\nThe authors describe a practical repair to the design. A vague initial assignment became a structured task with a template and explicit rubric. They also report slower grading. The approach is intended to show depth of understanding, not coverage of the whole syllabus.\n\nAnother example in that same Georgia Tech playbook: an accounting exercise has students check A.I. answers against authoritative standards. Together, the examples offer starting points for assignment design, with the limitations visible. The written story links the exact pages, so finding the useful part does not mean reading the whole collection.\n\n<break time=\"1.0s\"/>\n\nIn our Case Study from Penn State, using A.I. is part of an assignment, but it does not finish it. WPSU reports that Sam Bonsall requires independent work, A.I. use and reflection in his research course.\n\nStudents encountered useful feedback and fabricated sources. The reflection asks them to examine both. The design makes their judgment part of the work being discussed.\n\nBonsall says students need subject knowledge to evaluate the output. This is one course's experience, not a comparison proving that A.I. improved learning.\n\n<break time=\"1.0s\"/>\n\nAnd here’s a fresh update for your next big idea. Innovating Higher Ed has launched its new Grant Portal. It’s live now, helping educators discover funding opportunities for teaching, student success and research.\n\nDoctor Norma Jones, Innovating Higher Ed’s co-founder and editor-in-chief, championed the new Grant Portal to help educators bring new ideas to life. Her goal is to make funding easier to find so promising approaches to teaching, learning and research have a chance to take shape.\n\nThe portal brings opportunities together and connects you with the organizations offering them. You do not need a finished proposal to begin exploring where an idea might fit.\n\nDiscover funding opportunities for your next idea at innovating higher ed dot com, slash innovation grants.\n\n<break time=\"1.0s\"/>\n\nThat's this week's most relevant A.I. and innovation news for higher ed, covering the week ending September fourth, twenty twenty-six. Thanks for listening.",
+    "cadence": "weekly",
+    "weekCovered": "2026-08-29/2026-09-04"
+  },
+  "leadStory": {
+    "canonicalStoryId": "IHE-STORY-2026-09-04-141",
+    "candidateIndex": 142,
+    "headline": "Four New AI Models Could Get Your Next Project Moving",
+    "summary": "A good teaching idea can stall because no one has time to build it. This week’s releases from OpenAI, Anthropic, Google and Meta promise stronger help with coding and following a project through successive changes.\n\nGoogle makes the possibility tangible. It used Gemini 3.8 Flash in its Antigravity development tool to build an interactive topographic map from U.S. Geological Survey data, with cross-sections and scientific explanations. Google reports better coding and multi-step reasoning than Gemini 3.7 Flash. An instructor could adapt the map idea around a location students are studying.\n\nOpenAI describes GPT-6 Astra as better than GPT-5.6 Sol at coding, computer work and managing changing instructions. In supported sessions with Codex, OpenAI’s coding agent, Astra can ask for a decision while continuing work that does not depend on the answer.\n\nAnthropic’s evaluations show Claude Fable 5.1 improving on Fable 5 in coding and scientific problem solving. Its release describes Fable producing a more detailed elevation map of part of Venus from decades-old radar data. Stronger help with analysis could give researchers another reason to revisit material they already have.\n\nKeeping a long project on track is Meta’s emphasis with Muse Spark 1.3. The company reports more reliable instruction-following than earlier versions, including tracking which task a new message belongs to. The aim is to preserve requirements through successive revisions.\n\nIndependent testing reveals a cost tradeoff. Artificial Analysis’s September 3 coding-agent test gave Fable 5.1 the higher score, but Astra’s average processing cost per task was about 49% lower than Fable 5.1’s. The test used Codex for Astra and Claude Code for Fable, both at maximum reasoning effort, with a fallback setting for Fable.\n\nIn the accompanying Feature, Innovating Higher Ed’s CTO and Contributing Editor Brent Jones gives Astra the edge for his own work. Alongside performance and cost, he values its follow-through. He finds Fable 5.1 too prone to raising objections during routine, authorized tasks.\n\nThe software around the model matters too. Google built its map in a development tool, and the independent coding test used agents that can work with files and tools. An instructional designer or research computing colleague can help establish whether an institution-approved service offers what your project needs. The next useful step may be putting an existing tool to work on an idea you had set aside.",
+    "source": "OpenAI, Anthropic, Google, Meta and Artificial Analysis",
+    "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+    "category": "Beyond Ed",
+    "sourceLinks": [
+      {
+        "label": "OpenAI model guidance",
+        "url": "https://developers.openai.com/api/docs/guides/latest-model"
+      },
+      {
+        "label": "ChatGPT and Codex changelog",
+        "url": "https://learn.chatgpt.com/docs/changelog"
+      },
+      {
+        "label": "Anthropic Fable 5.1 release and customer accounts",
+        "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      },
+      {
+        "label": "Artificial Analysis September 3 evaluation",
+        "url": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra"
+      },
+      {
+        "label": "Artificial Analysis coding cost chart",
+        "url": "https://cdn.sanity.io/images/6vfeftx9/articles/5030dcb45684d0ac4ce33e799be92d7481aac40b-4653x4089.png?auto=format&w=1200"
+      },
+      {
+        "label": "Google Gemini 3.8 Flash release and demonstrations",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/"
+      },
+      {
+        "label": "Meta Muse Spark 1.3 release",
+        "url": "https://research.meta.ai/blog/introducing-muse-spark-1-3"
+      }
+    ],
+    "image": "/images/feature-coverage/four-new-ai-models-next-project.png",
+    "imageUrl": "/images/feature-coverage/four-new-ai-models-next-project.png"
+  },
+  "quickHits": [
+    {
+      "canonicalStoryId": "IHE-STORY-2026-09-04-074",
+      "candidateIndex": 75,
+      "headline": "What a Writing Conference Can Reveal Beyond Polished Prose",
+      "summary": "A student's account of entering an English-language museum conveyed the fear of not understanding the language around her. Writing professor Cruz Medina recalls that example in a Santa Clara University interview, connecting the student's writing with her experience of belonging.\n\nMedina requires individual writing conferences and asks students to question where AI-generated information comes from. He wants students to retain their own expression and do the thinking involved in writing.\n\nThe useful distinction is between improving a draft and understanding its author. A conference creates a place to discuss meaning that a polished final submission alone cannot explain.\n\nThis is an account of teaching practice and Medina's perspective, not evidence that conferences prevent AI misuse or produce measured learning gains.",
+      "source": "Santa Clara University",
+      "sourceUrl": "https://www.scu.edu/news-and-events/feature-stories/2026/stories/empowering-students-to-find-their-distinct-voice-as-generative-ai-reshapes-the-way-we-learn.html",
+      "category": "Practical Tips",
+      "modelDisclosure": "Source discusses language models without identifying tested model versions. Classroom practices, not version-specific capability findings.",
+      "shortByNecessity": true,
+      "shortReason": "A short faculty interview supports one concrete teaching practice, not a longer outcome story. Keep the source summary concise rather than pad it.",
+      "sourceLinks": [
+        {
+          "label": "Santa Clara interview",
+          "url": "https://www.scu.edu/news-and-events/feature-stories/2026/stories/empowering-students-to-find-their-distinct-voice-as-generative-ai-reshapes-the-way-we-learn.html"
+        }
+      ],
+      "image": "/images/innovation-pulse/2026-09-04/writing-conference.png",
+      "imageUrl": "/images/innovation-pulse/2026-09-04/writing-conference.png"
+    },
+    {
+      "canonicalStoryId": "IHE-STORY-2026-09-04-003",
+      "candidateIndex": 4,
+      "headline": "When AI Can Solve the Exam, Let Students Write the Questions",
+      "summary": "Georgia Tech's new Academic AI Playbook contains an assignment reversal worth opening: students design the questions, worked solutions and assessment criteria instead of answering an instructor's exam. A.J. Medford and colleagues describe the approach in an online chemical-engineering data analytics course.\n\nStudents choose a dataset not previously used in the course and build problems requiring calculation, interpretation and open-ended reasoning. AI assistance is allowed, but students are responsible for correctness. After an initially vague pilot, the instructors supplied a template and explicit rubric. They report slower grading, offset roughly by time no longer spent writing exams. The exercise assesses depth rather than coverage of every course topic.\n\nA second example, from accounting instructor Kathy Wang, asks students to check AI answers against authoritative accounting standards. One student reported that asking how a company should report an event, rather than whether it should, steered the response toward a mistaken assumption.\n\nThe practical value is in these assignment details, not the size of the collection. The playbook offers classroom accounts to adapt, with limitations, rather than proof that any one approach works across disciplines. Start with pages 241–244 and 134–136.",
+      "source": "Georgia Tech",
+      "sourceUrl": "https://news.research.gatech.edu/2026/08/31/academic-ai-strategy-establishes-shared-vision-teaching-and-learning-georgia-tech",
+      "category": "Insights & Trends",
+      "modelDisclosure": "Selected full playbook chapters read, printed pp. 241–244 and 134–136. Classroom accounts, not cross-disciplinary causal evidence. Exact model versions/settings are unspecified.",
+      "sourceLinks": [
+        {
+          "label": "Georgia Tech announcement",
+          "url": "https://news.research.gatech.edu/2026/08/31/academic-ai-strategy-establishes-shared-vision-teaching-and-learning-georgia-tech"
+        },
+        {
+          "label": "Playbook student-written exam chapter",
+          "url": "https://c14750.wpmucdn.com/5843/files/2026/08/Georgia-Tech-Academic-AI-Playbook-2026-Edition.pdf#page=242"
+        },
+        {
+          "label": "Playbook accounting chapter",
+          "url": "https://c14750.wpmucdn.com/5843/files/2026/08/Georgia-Tech-Academic-AI-Playbook-2026-Edition.pdf#page=135"
+        }
+      ],
+      "image": "/images/innovation-pulse/2026-09-04/student-written-exams.png",
+      "imageUrl": "/images/innovation-pulse/2026-09-04/student-written-exams.png"
+    },
+    {
+      "canonicalStoryId": "IHE-STORY-2026-09-04-033",
+      "candidateIndex": 34,
+      "headline": "Use AI. Then Explain What It Got Right and Wrong.",
+      "summary": "Using AI does not finish an assignment in Sam Bonsall's Penn State research course. Students must also work independently and reflect on the technology's strengths and mistakes, WPSU reports.\n\nOne student used Claude to critique a thesis proposal. Another encountered invented articles and incorrect source details. Those experiences give the reflection something specific to examine, beyond whether the output sounded convincing.\n\nThe assignment separates a student's own work, the AI contribution and the student's judgment. For a faculty member considering a similar design, that separation makes the process easier to discuss than a finished answer alone.\n\nBonsall says the approach depends on students already knowing enough about their field to evaluate the output. The report describes one course, without a measured comparison of learning outcomes.",
+      "source": "WPSU",
+      "sourceUrl": "https://radio.wpsu.org/2026-09-04/ai-has-arrived-at-penn-state-how-one-professor-is-teaching-it-as-a-superpower",
+      "category": "Case Study",
+      "modelDisclosure": "WPSU names ChatGPT, Claude and Perplexity through BoodleBox, but does not identify exact model versions or settings.",
+      "shortByNecessity": true,
+      "shortReason": "The value is a compact assignment design and its boundary, not an expanded account of one course's participant impressions.",
+      "sourceLinks": [
+        {
+          "label": "WPSU course report",
+          "url": "https://radio.wpsu.org/2026-09-04/ai-has-arrived-at-penn-state-how-one-professor-is-teaching-it-as-a-superpower"
+        }
+      ],
+      "image": "/images/innovation-pulse/2026-09-04/ai-judgment.png",
+      "imageUrl": "/images/innovation-pulse/2026-09-04/ai-judgment.png"
+    },
+    {
+      "canonicalStoryId": "IHE-STORY-2026-09-04-157",
+      "candidateIndex": 158,
+      "headline": "Have a Campus Idea? Our New Grant Portal Can Help You Find Support.",
+      "summary": "Innovating Higher Ed’s new Grant Portal is live, giving educators a place to discover funding opportunities for ideas in teaching, student success and research.\n\nDr. Norma Jones, Innovating Higher Ed’s Co-Founder and Editor-in-Chief, championed the new Grant Portal to help educators bring new ideas to life. Her goal is to make funding easier to find so promising approaches to teaching, learning and research have a chance to take shape.\n\nThe portal brings opportunities together and connects readers with the organizations offering them. It is a starting point for exploring what might fit an idea, whether the project is taking shape or ready for its next step.\n\nDiscover funding opportunities for your next idea at InnovatingHigherEd.com/innovation-grants.",
+      "source": "Innovating Higher Ed",
+      "sourceUrl": "https://www.innovatinghighered.com/innovation-grants",
+      "category": "Tool Spotlight",
+      "editorialNotes": [
+        "Founder-requested original launch coverage; institutional our is authorized, not invented personal experience.",
+        "Live finder verified September 9, outside the episode news window; introduced as a launch update. No date-sensitive totals used."
+      ],
+      "sourceLinks": [
+        {
+          "label": "Grant Portal",
+          "url": "https://www.innovatinghighered.com/innovation-grants"
+        },
+        {
+          "label": "About the founders",
+          "url": "https://www.innovatinghighered.com/about"
+        }
+      ],
+      "shortByNecessity": true,
+      "shortReason": "Founder explicitly requests a short purpose-led launch overview rather than a feature list. Launch update is September 8–9, outside original August 29–September 4 news window.",
+      "image": "/images/innovation-pulse/2026-09-04/grant-portal.png",
+      "imageUrl": "/images/innovation-pulse/2026-09-04/grant-portal.png"
+    }
+  ],
+  "meta": {
+    "date": "2026-09-04",
+    "dayOfWeek": "Friday",
+    "version": "3.1",
+    "format": "straight-news",
+    "cadence": "weekly",
+    "founderSelectionRevision": 18,
+    "publicationAuthorized": true,
+    "editorialRevision": "2026-09-09-models-feature-v18-and-broadcast-v17",
+    "releaseStatus": "APPROVED_FOR_PUBLICATION",
+    "shortLineupOverride": {
+      "reason": "Founder explicitly removed the Sanders story and selected five stories in the approved order; do not add filler.",
+      "actualQuickHits": 4,
+      "requiredQuickHits": 7
+    },
+    "publishedAt": "2026-09-09T23:27:34Z",
+    "voiceDisclosure": "The Innovation Pulse is produced using AI voice technology based on Dr. Norma Jones' voice, with editorial oversight by Dr. Jones."
+  }
+}

@@ -54,6 +54,18 @@ export async function generateMetadata({
 const DEFAULT_LEAD_IMAGE = "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&h=600&fit=crop";
 const DEFAULT_STORY_IMAGE = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&fit=crop";
 
+function displayCategoryForEpisode(category: string, date: string): string {
+  return date === "2026-09-04" && category === "Tool Spotlight"
+    ? category
+    : mapToV4Category(category);
+}
+
+function categoryColorForEpisode(category: string, date: string): string {
+  return displayCategoryForEpisode(category, date) === "Tool Spotlight"
+    ? "var(--magenta-text)"
+    : V4_CATEGORY_COLORS[mapToV4Category(category)];
+}
+
 
 // Page Component
 export default async function InnovationPulseDatePage({
@@ -330,14 +342,16 @@ export default async function InnovationPulseDatePage({
                 title={hit.title}
                 teaser={hit.summary}
                 fullContent={hit.summary}
-                category={mapToV4Category(hit.category)}
-                categoryColor={V4_CATEGORY_COLORS[mapToV4Category(hit.category)]}
+                category={displayCategoryForEpisode(hit.category, episode.date)}
+                categoryColor={categoryColorForEpisode(hit.category, episode.date)}
                 source={hit.source}
+                sourceUrl={hit.sourceUrl}
                 date={formatShortDate(episode.date)}
                 imageUrl={hit.image || DEFAULT_STORY_IMAGE}
                 badgeText="Story"
                 badgeColor="rgba(200,80,192,0.85)"
                 expandable={true}
+                preserveParagraphs={episode.date === "2026-09-04"}
               />
             ))}
           </div>

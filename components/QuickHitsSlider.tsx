@@ -105,7 +105,9 @@ export default function QuickHitsSlider({ stories }: QuickHitsSliderProps) {
         aria-label="This week's quick reads"
       >
         {stories.map((story) => {
-          const category = mapToV4Category(story.category);
+          const category = story.category === 'Tool Spotlight'
+            ? story.category
+            : mapToV4Category(story.category);
           const pill = pillColorsFor(category);
           const image = getStoryImage(story);
 

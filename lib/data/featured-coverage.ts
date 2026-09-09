@@ -1,7 +1,10 @@
+import { MODELS_FEATURED_COVERAGE } from './featured-coverage-models';
+
 export type FeaturedCoverageSection = {
   heading?: string;
   paragraphs: string[];
   bullets?: string[];
+  sourceIds?: string[];
 };
 
 export type FeaturedCoverage = {
@@ -10,17 +13,23 @@ export type FeaturedCoverage = {
   title: string;
   teaser: string;
   byline: string;
+  authorName?: string;
   publishedAt: string;
   publishedLabel: string;
   sourceLabel: string;
   sourceUrl: string;
+  sources?: Array<{ id?: string; label: string; url: string }>;
   reportTitle: string;
   category: string;
   imagePath: string | null;
+  imageWidth?: number;
+  imageHeight?: number;
   homepageImagePath?: string | null;
   imageAlt: string;
   sections: FeaturedCoverageSection[];
 };
+
+export { MODELS_FEATURED_COVERAGE } from './featured-coverage-models';
 
 /**
  * The homepage feature and its long-form page intentionally live outside the
@@ -48,6 +57,8 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
   reportTitle: "MIT Report – AI and Education",
   category: "Insights & Trends",
   imagePath: "/images/feature-coverage/mit-ai-education-purpose-lens-approved.png",
+  imageWidth: 2752,
+  imageHeight: 1536,
   imageAlt:
     "Editorial illustration of a magnifying lens over layered report pages with cyan and amber evidence paths, representing close examination of MIT's AI and education report.",
   sections: [
@@ -152,7 +163,9 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
   ],
 };
 
-export const FEATURED_COVERAGE = [MIT_FEATURED_COVERAGE] as const;
+export const FEATURED_COVERAGE = [MODELS_FEATURED_COVERAGE, MIT_FEATURED_COVERAGE] as const;
+
+export const LATEST_FEATURED_COVERAGE = FEATURED_COVERAGE[0];
 
 export function getFeaturedCoverageBySlug(slug: string): FeaturedCoverage | undefined {
   return FEATURED_COVERAGE.find((feature) => feature.slug === slug);
