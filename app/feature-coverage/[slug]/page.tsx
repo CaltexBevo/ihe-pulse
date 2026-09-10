@@ -10,6 +10,7 @@ import {
   type FeaturedCoverageSection,
 } from "@/lib/data/featured-coverage";
 import { pageMetadata } from "@/lib/og";
+import FeatureLaunchArticle from "@/components/FeatureLaunchArticle";
 
 const SEQUENCE_STEPS = [
   {
@@ -62,6 +63,7 @@ export async function generateMetadata({
     authors: [{ name: feature.authorName ?? "Dr. Norma Jones" }],
     creator: feature.authorName ?? "Dr. Norma Jones",
     publisher: "Innovating Higher Ed",
+    ...(feature.presentation === "launch" ? { other: { "twitter:image:alt": feature.imageAlt } } : {}),
   };
 }
 
@@ -269,6 +271,10 @@ export default async function FeaturedCoveragePage({
 
   if (!feature) {
     notFound();
+  }
+
+  if (feature.presentation === "launch") {
+    return <FeatureLaunchArticle feature={feature} />;
   }
 
   const questionSection = feature.sections.find((section) => section.heading === QUESTIONS_HEADING);

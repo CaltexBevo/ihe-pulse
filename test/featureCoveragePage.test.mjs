@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { resolve } from "node:path";
 import test from "node:test";
@@ -27,14 +27,27 @@ function loadCommonJs(source, filename, requireOverrides = {}) {
     fileName: filename,
   }).outputText;
   const loadedModule = { exports: {} };
-  const localRequire = (specifier) => requireOverrides[specifier] ?? require(specifier);
+  const localRequire = (specifier) => {
+    if (specifier in requireOverrides) return requireOverrides[specifier];
+    if (specifier.endsWith(".module.css")) {
+      return { __esModule: true, default: new Proxy({}, { get: (_target, property) => String(property) }) };
+    }
+    if (specifier.startsWith(".") || specifier.startsWith("@/")) {
+      const base = specifier.startsWith("@/")
+        ? resolve(root, specifier.slice(2))
+        : resolve(filename, "..", specifier);
+      const target = [base, `${base}.ts`, `${base}.tsx`].find((path) => existsSync(path));
+      if (target) return loadCommonJs(readFileSync(target, "utf8"), target, requireOverrides);
+    }
+    return createRequire(filename)(specifier);
+  };
   const evaluate = new Function("require", "module", "exports", "__filename", "__dirname", output);
 
   evaluate(localRequire, loadedModule, loadedModule.exports, filename, resolve(filename, ".."));
   return loadedModule.exports;
 }
 
-function renderFeaturePage() {
+function renderFeaturePage(slug = "mit-ai-education-purpose") {
   const dataModule = loadCommonJs(dataSource, resolve(root, "lib/data/featured-coverage.ts"));
   const cssClasses = new Proxy({}, { get: (_target, property) => String(property) });
   const pageModule = loadCommonJs(pageSource, resolve(root, "app/feature-coverage/[slug]/page.tsx"), {
@@ -53,7 +66,7 @@ function renderFeaturePage() {
   });
 
   return pageModule.default({
-    params: Promise.resolve({ slug: dataModule.MIT_FEATURED_COVERAGE.slug }),
+    params: Promise.resolve({ slug }),
   }).then((page) => renderToStaticMarkup(page));
 }
 
@@ -97,4 +110,21 @@ test("rendered article IDs are unique and question targets receive keyboard focu
   assert.match(markup, /href="#question-1"/);
   assert.match(markup, /id="question-1" tabindex="-1"/);
   assert.match(cssSource, /\.questionItem:focus[\s\S]*outline: 2px solid var\(--cyan\)/);
+});
+
+test("the launch renders the complete approved story while existing feature routes keep their content", async () => {
+  const launch = await renderFeaturePage("grant-portal-launch");
+  const episode = JSON.parse(readFileSync(resolve(root, "data/daily-pulse/2026-09-04.json"), "utf8"));
+  const grant = episode.quickHits.find((story) => story.canonicalStoryId === "IHE-STORY-2026-09-04-157");
+  assert.ok(grant);
+  for (const paragraph of grant.summary.split("\n\n")) {
+    assert.ok(launch.includes(renderToStaticMarkup(React.createElement("p", {}, paragraph))));
+  }
+  assert.equal((launch.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(launch, /href="\/innovation-grants"[^>]*>Explore the Grant Portal/);
+  assert.doesNotMatch(launch, /Original Analysis|In this analysis|The Sequence|question-1/);
+  const models = await renderFeaturePage("four-new-ai-models-next-project");
+  assert.match(models, /Four New AI Models Could Get Your Next Project Moving/);
+  assert.match(models, /A reason to revisit the project you put aside/);
+  assert.doesNotMatch(models, /FEATURE LAUNCH|Explore the Grant Portal/);
 });

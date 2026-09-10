@@ -1,4 +1,5 @@
 import { MODELS_FEATURED_COVERAGE } from './featured-coverage-models';
+import { GRANT_PORTAL_FEATURED_LAUNCH } from './featured-coverage-grant';
 
 export type FeaturedCoverageSection = {
   heading?: string;
@@ -8,6 +9,7 @@ export type FeaturedCoverageSection = {
 };
 
 export type FeaturedCoverage = {
+  presentation?: 'launch';
   slug: string;
   eyebrow: string;
   title: string;
@@ -163,7 +165,7 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
   ],
 };
 
-export const FEATURED_COVERAGE = [MODELS_FEATURED_COVERAGE, MIT_FEATURED_COVERAGE] as const;
+export const FEATURED_COVERAGE = [GRANT_PORTAL_FEATURED_LAUNCH, MODELS_FEATURED_COVERAGE, MIT_FEATURED_COVERAGE] as const;
 
 export const LATEST_FEATURED_COVERAGE = FEATURED_COVERAGE[0];
 

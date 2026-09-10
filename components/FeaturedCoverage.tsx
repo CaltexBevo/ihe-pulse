@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   LATEST_FEATURED_COVERAGE,
+  MODELS_FEATURED_COVERAGE,
   type FeaturedCoverage as FeaturedCoverageRecord,
 } from "@/lib/data/featured-coverage";
 
@@ -89,6 +90,8 @@ export default function FeaturedCoverage({
   variant = "default",
 }: FeaturedCoverageProps) {
   const isHomepage = variant === "homepage";
+  const isLaunch = feature.presentation === "launch";
+  const readingLabel = isLaunch ? "Read launch story" : "Read full coverage";
 
   return (
     <section
@@ -107,14 +110,14 @@ export default function FeaturedCoverage({
             />
             <div className={`min-w-0 border-l border-[var(--border-strong)] ${isHomepage ? "pl-3" : "pl-4"}`}>
               <p className={`${isHomepage ? "mb-1" : "mb-2"} font-mono text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-[var(--cyan)]`}>
-                Original analysis
+                {isLaunch ? "Grant Portal" : "Original analysis"}
               </p>
               <h2
                 id="featured-coverage-heading"
                 className={`${isHomepage ? "text-[clamp(1.25rem,2.5vw,1.8rem)]" : "text-[clamp(1.35rem,3vw,2.1rem)]"} font-bold leading-[1.15] text-[var(--text)]`}
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                Featured Coverage
+                {isLaunch ? "Feature Launch" : "Featured Coverage"}
               </h2>
             </div>
           </div>
@@ -122,7 +125,7 @@ export default function FeaturedCoverage({
             href={`/feature-coverage/${feature.slug}`}
             className="hidden shrink-0 font-mono text-[0.7rem] tracking-[0.05em] text-[var(--cyan)] transition-colors hover:text-[var(--text)] sm:inline-flex"
           >
-            Read full coverage <span aria-hidden="true">→</span>
+            {readingLabel} <span aria-hidden="true">→</span>
           </Link>
         </div>
 
@@ -158,10 +161,21 @@ export default function FeaturedCoverage({
               </time>
             </div>
             <span className={`${isHomepage ? "mt-3" : "mt-5"} inline-flex font-mono text-[0.7rem] tracking-[0.05em] text-[var(--cyan)] sm:hidden`}>
-              Read full coverage <span aria-hidden="true">→</span>
+              {readingLabel} <span aria-hidden="true">→</span>
             </span>
           </div>
         </Link>
+        {isHomepage && isLaunch && (
+          <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">
+            Also read:{" "}
+            <Link
+              href={`/feature-coverage/${MODELS_FEATURED_COVERAGE.slug}`}
+              className="text-[var(--cyan)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cyan)]"
+            >
+              {MODELS_FEATURED_COVERAGE.title}
+            </Link>
+          </p>
+        )}
       </div>
     </section>
   );

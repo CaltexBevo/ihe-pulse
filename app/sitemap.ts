@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/innovation-grants`, lastModified: new Date('2026-09-08T12:00:00Z'), changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${baseUrl}/innovation-grants/directory`, lastModified: new Date('2026-09-08T12:00:00Z'), changeFrequency: 'daily' as const, priority: 0.8 },
     { url: `${baseUrl}/feature-coverage/mit-ai-education-purpose`, lastModified: new Date('2026-08-28T12:00:00Z'), changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${baseUrl}/feature-coverage/grant-portal-launch`, lastModified: new Date('2026-09-10T18:00:00Z'), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${baseUrl}/podcast`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${baseUrl}/ai-directory`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${baseUrl}/prompts`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 },
