@@ -112,14 +112,18 @@ test("rendered article IDs are unique and question targets receive keyboard focu
   assert.match(cssSource, /\.questionItem:focus[\s\S]*outline: 2px solid var\(--cyan\)/);
 });
 
-test("the launch renders the complete approved story while existing feature routes keep their content", async () => {
+test("the launch renders the refreshed portal story while existing feature routes keep their content", async () => {
   const launch = await renderFeaturePage("grant-portal-launch");
   const episode = JSON.parse(readFileSync(resolve(root, "data/daily-pulse/2026-09-04.json"), "utf8"));
   const grant = episode.quickHits.find((story) => story.canonicalStoryId === "IHE-STORY-2026-09-04-157");
   assert.ok(grant);
-  for (const paragraph of grant.summary.split("\n\n")) {
-    assert.ok(launch.includes(renderToStaticMarkup(React.createElement("p", {}, paragraph))));
-  }
+  assert.match(launch, /Step into Innovating Higher Ed’s Grant Portal to explore funding opportunities for teaching, student success and research/);
+  assert.match(launch, /Dr\. Norma Jones, Innovating Higher Ed’s Co-Founder and Editor-in-Chief, championed the new Grant Portal/);
+  assert.match(launch, /Start exploring funding opportunities for your next idea at InnovatingHigherEd\.com\/innovation-grants\./);
+  assert.match(launch, /src="\/images\/feature-coverage\/grant-portal-no-url\.png"/);
+  assert.match(launch, /href="https:\/\/www\.innovatinghighered\.com\/innovation-grants">Grant Portal/);
+  assert.match(grant.summary, /Innovating Higher Ed’s new Grant Portal is live/);
+  assert.doesNotMatch(launch, /Innovating Higher Ed’s new Grant Portal is live, giving educators/);
   assert.equal((launch.match(/<h1\b/g) ?? []).length, 1);
   assert.match(launch, /href="\/innovation-grants"[^>]*>Explore the Grant Portal/);
   assert.doesNotMatch(launch, /Original Analysis|In this analysis|The Sequence|question-1/);
