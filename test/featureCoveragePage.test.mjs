@@ -117,9 +117,10 @@ test("the launch renders the refreshed portal story while existing feature route
   const episode = JSON.parse(readFileSync(resolve(root, "data/daily-pulse/2026-09-04.json"), "utf8"));
   const grant = episode.quickHits.find((story) => story.canonicalStoryId === "IHE-STORY-2026-09-04-157");
   assert.ok(grant);
-  assert.match(launch, /Step into Innovating Higher Ed’s Grant Portal to explore funding opportunities for teaching, student success and research/);
+  assert.match(launch, /Need Funding\? Indeed, There’s a Portal for That\./);
+  assert.match(launch, /Step through to unlock your innovation\. Explore higher education grants for teaching innovation, student success and research in the Innovating Higher Ed Grant Portal\./);
   assert.match(launch, /Dr\. Norma Jones, Innovating Higher Ed’s Co-Founder and Editor-in-Chief, championed the new Grant Portal/);
-  assert.match(launch, /Start exploring funding opportunities for your next idea at InnovatingHigherEd\.com\/innovation-grants\./);
+  assert.match(launch, /Your innovation\. Our grant portal\. Start exploring at InnovatingHigherEd\.com\/innovation-grants\./);
   assert.match(launch, /src="\/images\/feature-coverage\/grant-portal-no-url\.png"/);
   assert.match(launch, /href="https:\/\/www\.innovatinghighered\.com\/innovation-grants">Grant Portal/);
   assert.match(grant.summary, /Innovating Higher Ed’s new Grant Portal is live/);

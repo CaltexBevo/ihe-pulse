@@ -5,8 +5,8 @@ export const GRANT_PORTAL_FEATURED_LAUNCH: FeaturedCoverage = {
   "presentation": "launch",
   "slug": "grant-portal-launch",
   "eyebrow": "Feature Launch",
-  "title": "Have a Campus Idea? Our New Grant Portal Can Help You Find Support.",
-  "teaser": "Step into Innovating Higher Ed’s Grant Portal to explore funding opportunities for teaching, student success and research, then follow the links to the organizations offering them.",
+  "title": "Need Funding? Indeed, There’s a Portal for That.",
+  "teaser": "Step through to unlock your innovation. Explore higher education grants for teaching innovation, student success and research in the Innovating Higher Ed Grant Portal.",
   "byline": "Innovating Higher Ed",
   "authorName": "Innovating Higher Ed",
   "publishedAt": "2026-09-10",
@@ -32,10 +32,10 @@ export const GRANT_PORTAL_FEATURED_LAUNCH: FeaturedCoverage = {
   "sections": [
     {
       "paragraphs": [
-        "Step into Innovating Higher Ed’s Grant Portal to explore funding opportunities for teaching, student success and research, then follow the links to the organizations offering them.",
+        "Step through to unlock your innovation. Explore higher education grants for teaching innovation, student success and research in the Innovating Higher Ed Grant Portal.",
         "Dr. Norma Jones, Innovating Higher Ed’s Co-Founder and Editor-in-Chief, championed the new Grant Portal to help educators bring new ideas to life. Her goal is to make funding easier to find so promising approaches to teaching, learning and research have a chance to take shape.",
         "The portal brings opportunities together and connects readers with the organizations offering them. It is a starting point for exploring what might fit an idea, whether the project is taking shape or ready for its next step.",
-        "Start exploring funding opportunities for your next idea at InnovatingHigherEd.com/innovation-grants."
+        "Your innovation. Our grant portal. Start exploring at InnovatingHigherEd.com/innovation-grants."
       ]
     }
   ]
