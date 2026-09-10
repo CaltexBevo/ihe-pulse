@@ -24,6 +24,13 @@ const HOME_PULSE_WAVEFORMS: Record<string, readonly number[]> = {
     83, 100, 14,
   ],
   // 44 equal-duration RMS windows from the verified canonical MP3.
+  // Source SHA-256: 9cb9ac59fea699c3e96186aa5cf9fa3ab15527dec9646675869be16ac79b7e7a
+  "2026-08-21": [
+    67, 68, 77, 46, 52, 52, 80, 56, 93, 57, 61, 86, 39, 84, 81, 62, 42,
+    14, 78, 64, 56, 50, 48, 86, 68, 55, 55, 100, 89, 40, 21, 16, 47, 100,
+    72, 64, 54, 26, 55, 87, 79, 65, 38, 51,
+  ],
+  // 44 equal-duration RMS windows from the verified canonical MP3.
   // Source SHA-256: 0db82b44cf883c118dd013f4c4841a781d708d4ada301485205566b2ffa1a126
   "2026-08-14": [
     67, 64, 60, 72, 78, 77, 52, 85, 86, 81, 41, 35, 75, 81, 66, 43, 60,

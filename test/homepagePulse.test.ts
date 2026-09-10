@@ -143,3 +143,33 @@ test('uses verified audio envelopes for every homepage past episode', () => {
     assert.ok(Math.max(...waveform) <= 100);
   }
 });
+
+test('uses the measured August 21 audio envelope instead of a flat fallback line', () => {
+  const waveform = getHomePulseWaveform('2026-08-21');
+  assert.ok(waveform);
+  assert.equal(waveform.length, 44);
+  assert.equal(Math.min(...waveform), 14);
+  assert.equal(Math.max(...waveform), 100);
+  assert.ok(new Set(waveform).size > 1);
+  assert.equal(getHomePulseWaveform('2099-01-01'), null);
+});
+
+test('provides measured waveforms for the current homepage three-week lookback', () => {
+  const episodes = [
+    episode({ date: '2026-09-04' }),
+    episode({ date: '2026-08-28' }),
+    episode({ date: '2026-08-21' }),
+    episode({ date: '2026-08-14' }),
+    episode({ date: '2026-08-07' }),
+  ];
+  const priorEpisodes = selectPriorEpisodes(episodes);
+
+  assert.deepEqual(priorEpisodes.map((item) => item.date), [
+    '2026-08-28',
+    '2026-08-21',
+    '2026-08-14',
+  ]);
+  for (const priorEpisode of priorEpisodes) {
+    assert.ok(getHomePulseWaveform(priorEpisode.date));
+  }
+});
