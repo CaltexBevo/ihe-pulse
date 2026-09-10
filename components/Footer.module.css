@@ -1,0 +1,157 @@
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 58px;
+}
+
+.logoFrame {
+  position: relative;
+  display: block;
+  width: 168px;
+  height: 58px;
+}
+
+.logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.logoLight {
+  display: none;
+}
+
+:global([data-theme='light']) .logoDark {
+  display: none;
+}
+
+:global([data-theme='light']) .logoLight {
+  display: block;
+}
+
+.socialLinks {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  align-items: start;
+}
+
+.socialLink {
+  display: flex;
+  min-width: 0;
+  min-height: 64px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 4px;
+  padding: 4px 1px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.12;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.socialIcon {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+}
+
+.socialIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.socialLabel {
+  min-width: 0;
+  overflow-wrap: normal;
+}
+
+.shareButton {
+  color: var(--cyan);
+  cursor: pointer;
+}
+
+.shareButton .socialLabel {
+  color: var(--cyan);
+}
+
+.shareButton > span:last-child {
+  color: var(--cyan);
+}
+
+.shareButton > span:first-child {
+  width: 26px;
+  height: 26px;
+}
+
+.shareButton > span:first-child svg {
+  width: 26px;
+  height: 26px;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  border-color: var(--cyan);
+  background: var(--cyan-dim);
+  transform: translateY(-3.3px);
+}
+
+.socialLink:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.socialLink.x .socialIcon {
+  color: var(--text);
+}
+
+.socialLink.instagram .socialIcon {
+  color: #fd1d1d;
+}
+
+.socialLink.youtube .socialIcon {
+  color: #ff0000;
+}
+
+.socialLink.apple .socialIcon {
+  color: var(--purple);
+}
+
+.socialLink.spotify .socialIcon {
+  color: #1db954;
+}
+
+.socialLink.audible .socialIcon {
+  color: #f59e0b;
+}
+
+@media (max-width: 680px) {
+  .socialLinks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socialLink {
+    transition: none;
+  }
+
+  .socialLink:hover,
+  .socialLink:focus-visible {
+    transform: none;
+  }
+}

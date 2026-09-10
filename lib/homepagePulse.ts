@@ -2,10 +2,20 @@ import type {
   DeepDive,
   InnovationPulseEpisode,
   QuickHit,
+  StoryCategory,
 } from './data/innovation-pulse-types';
+import { generateSlug } from './data/innovation-pulse-types';
 
-export type HomepageStory = QuickHit & {
+export type HomepageStory = (DeepDive | QuickHit) & {
   date: string;
+  isLead?: boolean;
+  feature?: HomepageFeatureLink;
+};
+
+export type HomepageFeatureLink = {
+  slug: string;
+  imagePath: string | null;
+  category: StoryCategory | string;
 };
 
 type StoryIdentityInput = Pick<DeepDive | QuickHit, 'title' | 'sourceUrl'>;
@@ -43,6 +53,33 @@ export function getHomepageQuickHits(episode: InnovationPulseEpisode): HomepageS
   return dedupeStories(quickHits).filter(
     (story) => storyIdentity(story, story.date) !== leadIdentity,
   );
+}
+
+/**
+ * Return the complete current-episode story line-up in editorial order.
+ *
+ * The lead belongs in the homepage carousel alongside the quick hits. The
+ * stable story identity keeps a malformed feed from showing one story twice.
+ */
+export function getHomepageEpisodeStories(episode: InnovationPulseEpisode): HomepageStory[] {
+  const stories: HomepageStory[] = [
+    { ...episode.deepDive, date: episode.date, isLead: true },
+    ...episode.quickHits.map((story) => ({ ...story, date: episode.date })),
+  ];
+
+  return dedupeStories(stories);
+}
+
+/** Prefer the canonical Feature artwork for stories that are original coverage. */
+export function getHomepageStoryImage(story: HomepageStory): string | null {
+  return story.feature?.imagePath ?? getStoryImage(story);
+}
+
+/** Link original coverage to its Feature page and other stories to their story page. */
+export function getHomepageStoryHref(story: HomepageStory): string {
+  return story.feature
+    ? `/feature-coverage/${story.feature.slug}`
+    : `/innovation-pulse/story/${generateSlug(story.title)}`;
 }
 
 export function selectPriorEpisodes(

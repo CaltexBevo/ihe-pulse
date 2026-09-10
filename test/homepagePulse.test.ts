@@ -4,7 +4,9 @@ import test from 'node:test';
 import {
   dedupeStories,
   formatEpisodeDateRange,
+  getHomepageEpisodeStories,
   getHomepageQuickHits,
+  getHomepageStoryHref,
   getStoryImage,
   selectPriorEpisodes,
   storyIdentity,
@@ -80,6 +82,52 @@ test('retains every dynamic quick hit count and excludes a repeated lead', () =>
   assert.equal(getHomepageQuickHits(five).length, 5);
   assert.equal(getHomepageQuickHits(seven).length, 7);
   assert.equal(getHomepageQuickHits(seven).some((story) => story.title === 'Lead story'), false);
+});
+
+test('keeps the lead first in the complete five-story episode carousel', () => {
+  const currentEpisode = episode({
+    date: '2026-09-04',
+    deepDive: {
+      ...episode().deepDive,
+      title: 'Four New AI Models Could Get Your Next Project Moving',
+      sourceUrl: 'https://example.com/lead',
+    },
+    quickHits: [
+      quickHit('Four New AI Models Could Get Your Next Project Moving', 'https://example.com/lead'),
+      quickHit('What a Writing Conference Can Reveal Beyond Polished Prose', 'https://example.com/writing'),
+      quickHit('When AI Can Solve the Exam, Let Students Write the Questions', 'https://example.com/exam'),
+      quickHit('Use AI. Then Explain What It Got Right and Wrong.', 'https://example.com/judgment'),
+      quickHit('Have a Campus Idea? Our New Grant Portal Can Help You Find Support.', 'https://example.com/grants'),
+    ],
+  });
+
+  const stories = getHomepageEpisodeStories(currentEpisode);
+  assert.equal(stories.length, 5);
+  assert.equal(stories[0]?.title, 'Four New AI Models Could Get Your Next Project Moving');
+  assert.equal(stories[0]?.isLead, true);
+  assert.deepEqual(stories.slice(1).map((story) => story.title), [
+    'What a Writing Conference Can Reveal Beyond Polished Prose',
+    'When AI Can Solve the Exam, Let Students Write the Questions',
+    'Use AI. Then Explain What It Got Right and Wrong.',
+    'Have a Campus Idea? Our New Grant Portal Can Help You Find Support.',
+  ]);
+});
+
+test('uses the canonical Feature route for enriched original coverage', () => {
+  const story = {
+    ...quickHit('Four New AI Models Could Get Your Next Project Moving'),
+    date: '2026-09-04',
+    feature: {
+      slug: 'four-new-ai-models-next-project',
+      imagePath: '/images/feature-coverage/four-new-ai-models-next-project.png',
+      category: 'Beyond Ed',
+    },
+  };
+
+  assert.equal(
+    getHomepageStoryHref(story),
+    '/feature-coverage/four-new-ai-models-next-project',
+  );
 });
 
 test('selects the approved three-week homepage lookback after the current lead and prior release', () => {

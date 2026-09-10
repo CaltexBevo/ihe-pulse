@@ -358,7 +358,7 @@
 
 .platformGrid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 5px;
   align-items: start;
 }
@@ -418,13 +418,21 @@
   color: var(--purple);
 }
 
-.spotify,
-.amazon {
-  color: var(--cyan);
+.instagram {
+  /* Platform marks keep their recognizable brand color. */
+  color: #fd1d1d;
 }
 
 .youtube {
-  color: var(--magenta-text);
+  color: #ff0000;
+}
+
+.spotify {
+  color: #1db954;
+}
+
+.audible {
+  color: #f59e0b;
 }
 
 .x {
@@ -462,7 +470,7 @@
   }
 
   .platformGrid {
-    grid-template-columns: repeat(6, minmax(64px, 1fr));
+    grid-template-columns: repeat(7, minmax(64px, 1fr));
   }
 }
 

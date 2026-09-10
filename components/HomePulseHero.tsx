@@ -17,6 +17,7 @@ import {
 } from '@/lib/home-pulse-artwork';
 import { getHomePulseWaveform } from '@/lib/home-pulse-waveforms';
 import { getHomepageQuickHits } from '@/lib/homepagePulse';
+import { PLATFORM_LINKS, PlatformIcon, ShareGlyph } from '@/components/PlatformLinks';
 import styles from './HomePulseHero.module.css';
 
 export interface HomePulseHeroViewModel {
@@ -38,40 +39,6 @@ interface HomePulseHeroProps {
   autoPlay?: boolean;
 }
 
-type PlatformName = 'apple' | 'spotify' | 'amazon' | 'youtube' | 'x';
-
-const PLATFORM_LINKS: ReadonlyArray<{
-  name: PlatformName;
-  label: string;
-  href: string;
-}> = [
-  {
-    name: 'apple',
-    label: 'Apple Podcasts',
-    href: 'https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335',
-  },
-  {
-    name: 'spotify',
-    label: 'Spotify',
-    href: 'https://open.spotify.com/show/4rMDJnlFbrLMr0hKAE3Oe6',
-  },
-  {
-    name: 'amazon',
-    label: 'Amazon Music',
-    href: 'https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/innovating-higher-ed',
-  },
-  {
-    name: 'youtube',
-    label: 'YouTube',
-    href: 'https://www.youtube.com/@InnovatingHigherEd',
-  },
-  {
-    name: 'x',
-    label: 'X',
-    href: 'https://x.com/InnovatingEd',
-  },
-];
-
 function formatTime(seconds: number): string {
   if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
   const minutes = Math.floor(seconds / 60);
@@ -83,53 +50,6 @@ function durationFromLabel(label: string): number {
   const parts = label.split(':').map(Number);
   if (parts.length === 0 || parts.some((part) => !Number.isFinite(part))) return 0;
   return parts.reduce((total, part) => total * 60 + part, 0);
-}
-
-function PlatformIcon({ name }: { name: PlatformName }) {
-  if (name === 'apple') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="currentColor" opacity="0.18" />
-        <circle cx="12" cy="10.5" r="5.2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="12" cy="10.5" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.7" />
-        <circle cx="12" cy="10.5" r="0.95" fill="currentColor" />
-        <path d="M10.4 13.1h3.2l1.15 6.2H9.25Z" fill="currentColor" />
-      </svg>
-    );
-  }
-
-  if (name === 'spotify') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.6" />
-        <path d="M7 9.2c3.7-1 7.6-.55 10.6 1.1M7.8 12.2c3-.75 6.35-.38 8.9.9M8.6 15.05c2.4-.55 5-.25 7 .72" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.55" />
-      </svg>
-    );
-  }
-
-  if (name === 'amazon') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M8 6.5v9.1a2.4 2.4 0 1 1-1.5-2.2V8.1l10-2v7.4a2.4 2.4 0 1 1-1.5-2.2V4.2Z" fill="currentColor" />
-        <path d="M6.5 20c3.2 1.55 7.6 1.45 11-.15" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.35" />
-      </svg>
-    );
-  }
-
-  if (name === 'youtube') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="currentColor" />
-        <path d="m10 9 5 3-5 3Z" fill="var(--bg)" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 4.5 18.8 19.5M18.4 4.5 5.2 19.5" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  );
 }
 
 export default function HomePulseHero({
@@ -482,7 +402,7 @@ export default function HomePulseHero({
                 className={
                   styles.platformLink + ' ' + styles[platform.name]
                 }
-                aria-label={'Listen to Innovation Pulse on ' + platform.label}
+                aria-label={platform.accessibleLabel}
               >
                 <span className={styles.platformIcon}>
                   <PlatformIcon name={platform.name} />
@@ -497,12 +417,7 @@ export default function HomePulseHero({
               aria-label="Share episode from Innovation Pulse"
             >
               <span className={styles.platformIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-                  <circle cx="18" cy="5" r="2.5" />
-                  <circle cx="6" cy="12" r="2.5" />
-                  <circle cx="18" cy="19" r="2.5" />
-                  <path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5" />
-                </svg>
+                <ShareGlyph />
               </span>
               <span>{copied ? 'Copied' : 'Share'}</span>
             </button>

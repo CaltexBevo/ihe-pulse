@@ -5,6 +5,7 @@ import {
   MODELS_FEATURED_COVERAGE,
   type FeaturedCoverage as FeaturedCoverageRecord,
 } from "@/lib/data/featured-coverage";
+import styles from "./FeaturedCoverage.module.css";
 
 type FeaturedCoverageProps = {
   feature?: FeaturedCoverageRecord;
@@ -101,13 +102,22 @@ export default function FeaturedCoverage({
       <div className={`mx-auto max-w-[var(--max-w)] px-[var(--px)] ${isHomepage ? "" : "py-10 md:py-12"}`}>
         <div className={`${isHomepage ? "mb-2" : "mb-7"} flex items-end justify-between gap-3 sm:gap-4`}>
           <div className={`flex min-w-0 items-center ${isHomepage ? "gap-3" : "gap-4"}`}>
-            <Image
-              src="/images/ihe-logo.png"
-              alt="Innovating Higher Ed"
-              width={168}
-              height={72}
-              className={`${isHomepage ? "h-9 sm:h-11" : "h-12 sm:h-14"} w-auto shrink-0 object-contain`}
-            />
+            <span className={`${styles.logoFrame} ${isHomepage ? styles.logoFrameHomepage : styles.logoFrameFull}`}>
+              <Image
+                src="/images/ihe-logo.png"
+                alt="Innovating Higher Ed"
+                fill
+                sizes="(max-width: 639px) 84px, 131px"
+                className={`${styles.logo} ${styles.logoDark}`}
+              />
+              <Image
+                src="/images/ihe-logo-light.png"
+                alt=""
+                fill
+                sizes="(max-width: 639px) 84px, 131px"
+                className={`${styles.logo} ${styles.logoLight}`}
+              />
+            </span>
             <div className={`min-w-0 border-l border-[var(--border-strong)] ${isHomepage ? "pl-3" : "pl-4"}`}>
               <p className={`${isHomepage ? "mb-1" : "mb-2"} font-mono text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-[var(--cyan)]`}>
                 {isLaunch ? "Grant Portal" : "Original analysis"}
@@ -122,12 +132,18 @@ export default function FeaturedCoverage({
             </div>
           </div>
           <Link
-            href={`/feature-coverage/${feature.slug}`}
+            href="/feature-coverage"
             className="hidden shrink-0 font-mono text-[0.7rem] tracking-[0.05em] text-[var(--cyan)] transition-colors hover:text-[var(--text)] sm:inline-flex"
           >
-            {readingLabel} <span aria-hidden="true">→</span>
+            Browse All Original Features <span aria-hidden="true">→</span>
           </Link>
         </div>
+        <Link
+          href="/feature-coverage"
+          className="mb-2 inline-flex font-mono text-[0.68rem] tracking-[0.05em] text-[var(--cyan)] transition-colors hover:text-[var(--text)] sm:hidden"
+        >
+          Browse All Original Features <span aria-hidden="true">→</span>
+        </Link>
 
         <Link
           href={`/feature-coverage/${feature.slug}`}
@@ -160,7 +176,7 @@ export default function FeaturedCoverage({
                 {feature.publishedLabel}
               </time>
             </div>
-            <span className={`${isHomepage ? "mt-3" : "mt-5"} inline-flex font-mono text-[0.7rem] tracking-[0.05em] text-[var(--cyan)] sm:hidden`}>
+            <span className={`${isHomepage ? "mt-3" : "mt-5"} inline-flex font-mono text-[0.7rem] tracking-[0.05em] text-[var(--cyan)]`}>
               {readingLabel} <span aria-hidden="true">→</span>
             </span>
           </div>

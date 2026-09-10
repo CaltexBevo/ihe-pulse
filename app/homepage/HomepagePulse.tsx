@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import {
   BriefcaseBusiness,
+  FileSearch,
   Globe2,
   Lightbulb,
   MessageCircle,
@@ -15,6 +16,7 @@ import {
 import FeaturedCoverage from '@/components/FeaturedCoverage';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import QuickHitsSlider from '@/components/QuickHitsSlider';
+import { FEATURED_COVERAGE } from '@/lib/data/featured-coverage';
 import {
   formatPulseDate,
   isWeeklyEpisode,
@@ -22,7 +24,7 @@ import {
   type InnovationPulseEpisode,
   type V4Category,
 } from '@/lib/data/innovation-pulse';
-import { getHomepageQuickHits } from '@/lib/homepagePulse';
+import { getHomepageEpisodeStories } from '@/lib/homepagePulse';
 import { pillColorsFor } from '@/lib/categoryPalette';
 import styles from './HomepagePulse.module.css';
 
@@ -43,10 +45,10 @@ const TOPICS: Array<{ category: V4Category; icon: LucideIcon }> = [
 
 const EXPLORE_LINKS: Array<{ label: string; description: string; href: string; icon: LucideIcon }> = [
   {
-    label: 'Podcast',
-    description: 'Weekly conversations with higher ed leaders and innovators.',
-    href: '/podcast',
-    icon: Mic2,
+    label: 'Grant Portal',
+    description: 'Explore grant opportunities for higher education.',
+    href: '/innovation-grants',
+    icon: FileSearch,
   },
   {
     label: 'AI Directory',
@@ -65,6 +67,12 @@ const EXPLORE_LINKS: Array<{ label: string; description: string; href: string; i
     description: 'Practical guides and resources to save you time.',
     href: '/educator-tools',
     icon: Wrench,
+  },
+  {
+    label: 'Podcast',
+    description: 'Weekly conversations with higher ed leaders and innovators.',
+    href: '/podcast',
+    icon: Mic2,
   },
 ];
 
@@ -94,7 +102,26 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
     );
   }
 
-  const quickHits = getHomepageQuickHits(episode);
+  const episodeStories = getHomepageEpisodeStories(episode).map((story) => {
+    const sourceUrl = story.sourceUrl.trim().toLowerCase();
+    const feature = FEATURED_COVERAGE.find((record) => {
+      return (
+        (sourceUrl.length > 0 && record.sourceUrl.trim().toLowerCase() === sourceUrl) ||
+        record.title.trim() === story.title.trim()
+      );
+    });
+
+    return feature
+      ? {
+          ...story,
+          feature: {
+            slug: feature.slug,
+            imagePath: feature.imagePath,
+            category: feature.category,
+          },
+        }
+      : story;
+  });
   const cadenceLabel = isWeeklyEpisode(episode) ? 'delivered weekly' : 'delivered every weekday';
 
   return (
@@ -120,16 +147,16 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
           <div className={styles.module}>
             <div className={styles.sectionHeadingWithAction}>
               <div className={styles.sectionHeading}>
-                <h2 id="quick-hits-heading">More from the Innovation Pulse</h2>
+                <h2 id="quick-hits-heading">In This Week’s Innovation Pulse</h2>
                 <p>
-                  {quickHits.length} quick {quickHits.length === 1 ? 'read' : 'reads'} from the {formatCoverageRange(episode)} Innovation Pulse.
+                  {episodeStories.length} {episodeStories.length === 1 ? 'story' : 'stories'} from the {formatCoverageRange(episode)} Innovation Pulse.
                 </p>
               </div>
               <Link href={`/innovation-pulse/${episode.date}`} className={styles.sectionAction}>
-                View all {quickHits.length} stories <span aria-hidden="true">→</span>
+                View all {episodeStories.length} stories <span aria-hidden="true">→</span>
               </Link>
             </div>
-            <QuickHitsSlider stories={quickHits} />
+            <QuickHitsSlider stories={episodeStories} />
           </div>
         </div>
       </section>
@@ -138,7 +165,7 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
         <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)]">
           <div className={styles.module}>
             <div className={styles.sectionHeading}>
-              <h2 id="topics-heading">Find More Stories</h2>
+              <h2 id="topics-heading">Explore Stories by Topic</h2>
               <p>Explore all coverage across the topics that matter to your work.</p>
             </div>
 
@@ -150,10 +177,7 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
                     key={category}
                     href={`/innovation-pulse/category/${V4_CATEGORY_SLUGS[category]}`}
                     className={styles.topicLink}
-                    style={{
-                      color: colors.text,
-                      borderColor: `color-mix(in srgb, ${colors.text} 34%, var(--border))`,
-                    }}
+                    style={{ color: colors.text }}
                   >
                     <Icon className={styles.topicIcon} strokeWidth={1.5} aria-hidden="true" />
                     <span>{category}</span>
@@ -162,16 +186,21 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
               })}
             </nav>
 
-            <Link href="/innovation-pulse/archive" className={styles.centerLink}>
-              Browse the full archive <span aria-hidden="true">→</span>
-            </Link>
+            <div className={styles.topicActions}>
+              <Link href="/feature-coverage" className={styles.centerLink}>
+                Browse All Original Features <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/innovation-pulse/archive" className={styles.centerLink}>
+                Browse the Episode Archive <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       <section className={styles.exploreSection} aria-labelledby="explore-more-heading">
         <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)]">
-          <div className={styles.module}>
+          <div className={styles.resourceModule}>
             <h2 id="explore-more-heading">More from Innovating Higher Ed</h2>
             <p className={styles.exploreIntro}>Tools, directories, and practical resources for your work.</p>
             <nav className={styles.exploreNav} aria-label="More Innovating Higher Ed resources">
@@ -183,7 +212,6 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
                   <span className={styles.exploreCopy}>
                     <span className={styles.exploreLabel}>{label}</span>
                     <span className={styles.exploreDescription}>{description}</span>
-                    <span className={styles.exploreArrow} aria-hidden="true">→</span>
                   </span>
                 </Link>
               ))}
