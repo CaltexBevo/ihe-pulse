@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-14] Grant Portal verified inventory refresh
+
+- Added three source-verified opportunities and updated reported current program funding to $46,782,403 across twelve pools, five approximate.
+- Refreshed daily verification and Monday discovery dates, recovered ACS PrepareCTP with its October 7 deadline, and withheld ECMC while its public application access remains unresolved.
+- Preserved the approved portal headline, existing design, historical records and original portal-added dates.
+
 ## [2026-09-08] Grant Portal hero copy correction
 
 - Replaced the Grant Portal hero headline and subtitle with the founder-approved copy while preserving the existing gradient treatment, layout, and grant data.
