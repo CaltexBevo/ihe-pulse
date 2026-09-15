@@ -49,6 +49,36 @@ export type InnovationGrantSort =
 
 export type InnovationGrantScopeDisposition = "included" | "evidence-only";
 
+export type InnovationGrantJurisdictionCode =
+  | "AL" | "AK" | "AZ" | "AR" | "CA" | "CO" | "CT" | "DE" | "DC"
+  | "FL" | "GA" | "HI" | "ID" | "IL" | "IN" | "IA" | "KS" | "KY"
+  | "LA" | "ME" | "MD" | "MA" | "MI" | "MN" | "MS" | "MO" | "MT"
+  | "NE" | "NV" | "NH" | "NJ" | "NM" | "NY" | "NC" | "ND" | "OH"
+  | "OK" | "OR" | "PA" | "RI" | "SC" | "SD" | "TN" | "TX" | "UT"
+  | "VT" | "VA" | "WA" | "WV" | "WI" | "WY"
+  | "AS" | "GU" | "MP" | "PR" | "VI";
+
+export type InnovationGrantLocationEligibility =
+  | {
+      scope: "nationwide";
+      /** True only when the verified source expressly includes U.S. territories. */
+      includesTerritories: boolean;
+    }
+  | {
+      scope: "state-or-territory";
+      jurisdictions: InnovationGrantJurisdictionCode[];
+    }
+  | {
+      scope: "regional";
+      jurisdictions: InnovationGrantJurisdictionCode[];
+    }
+  | {
+      scope: "institution-only";
+    }
+  | {
+      scope: "unresolved";
+    };
+
 export interface InnovationGrantOpportunity {
   id: number;
   title: string;
@@ -60,6 +90,8 @@ export interface InnovationGrantOpportunity {
   announcedDateIso?: string;
   /** The date this record was added to the public directory, not its funder announcement date. */
   portalAddedDate: string;
+  /** In-kind credits and donations are never part of the cash-pool tally. Legacy cash records omit this field. */
+  fundingType?: "cash" | "in-kind";
   /** Published current-call cash pool used for the directory's directional total. */
   publishedProgramPoolUsd?: number;
   /** True when the official source describes the program-level pool as approximate. */
@@ -69,6 +101,8 @@ export interface InnovationGrantOpportunity {
   eligibility: string;
   whatItFunds: string;
   geography: string;
+  /** Structured public-filter metadata. Missing metadata fails closed for a selected location. */
+  locationEligibility?: InnovationGrantLocationEligibility;
   costShareRequirement: string;
   applicationAccess: string;
   deadline: string;
@@ -91,8 +125,8 @@ export interface InnovationGrantOpportunity {
   sourceNotes?: string;
 }
 
-export const INNOVATION_GRANTS_VERIFIED_ON = "Sep 14, 2026";
-export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-09-14";
+export const INNOVATION_GRANTS_VERIFIED_ON = "Sep 15, 2026";
+export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-09-15";
 export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Sep 14, 2026";
 export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-09-14";
 export const INNOVATION_GRANTS_TIME_ZONE = "America/Los_Angeles";
@@ -361,7 +395,7 @@ export function getInnovationGrantFundingSnapshot(
     }
 
     if (lifecycle !== "open-now" && lifecycle !== "closing-soon") continue;
-    if (opportunity.publishedProgramPoolUsd === undefined) {
+    if (opportunity.fundingType === "in-kind" || opportunity.publishedProgramPoolUsd === undefined) {
       snapshot.currentCallsWithoutPublishedPool += 1;
       continue;
     }

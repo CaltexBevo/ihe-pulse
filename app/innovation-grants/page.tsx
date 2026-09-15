@@ -1,9 +1,9 @@
 import Link from "next/link";
+import GrantFinder from "./GrantFinder";
 import PortalFundingTally from "./PortalFundingTally";
 import PortalDayRefresh from "./PortalDayRefresh";
 import {
   INNOVATION_GRANTS_AREA_FILTERS,
-  INNOVATION_GRANTS_AUDIENCE_FILTERS,
   INNOVATION_GRANTS_FULL_SEARCH_DATE,
   INNOVATION_GRANTS_VERIFIED_ON,
   getInnovationGrantDaysUntilDeadline,
@@ -33,15 +33,6 @@ export const metadata = pageMetadata({
 });
 
 export const dynamic = "force-dynamic";
-
-const finderDeadlines = [
-  ["any", "Any deadline"],
-  ["closing-14", "Closing in 14 days"],
-  ["30-plus", "At least 30 days to prepare"],
-  ["60-plus", "At least 60 days to prepare"],
-  ["90-plus", "At least 90 days to prepare"],
-  ["rolling", "Rolling or no fixed deadline"],
-] as const;
 
 const folderDescriptions: Record<InnovationGrantArea, string> = {
   "ai-emerging-technology": "AI literacy, responsible adoption, and new learning tools.",
@@ -92,31 +83,6 @@ function tileTone(area: InnovationGrantArea): string {
     return "var(--amber)";
   }
   return "var(--cyan)";
-}
-
-function FinderSelect({
-  id,
-  name,
-  label,
-  className,
-  children,
-}: {
-  id: string;
-  name: string;
-  label: string;
-  className: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <>
-      <label htmlFor={id} className="sr-only">
-        {label}
-      </label>
-      <select id={id} name={name} className={`slot ${className}`} defaultValue={name === "deadline" ? "any" : "all"}>
-        {children}
-      </select>
-    </>
-  );
 }
 
 function OpportunityLine({
@@ -225,43 +191,7 @@ export default function InnovationGrantsPage() {
           <section className="finder reveal" style={{ "--d": "0.12s" } as React.CSSProperties} aria-labelledby="finder-heading">
             <h2 id="finder-heading">Tell us what you&apos;re working on</h2>
             <p className="sub">Choose the broadest fit that feels right. You can refine every field in the full directory.</p>
-            <form id="finder" action="/innovation-grants/directory" method="get" className="finder-form">
-              <div className="sentence">
-                <div className="finder-line">
-                  <span>I work with</span>
-                  <FinderSelect id="fWho" name="audience" label="Institution or role" className="q1">
-                    {INNOVATION_GRANTS_AUDIENCE_FILTERS.map((option) => (
-                      <option key={option.id} value={option.id}>
-                        {option.id === "all" ? "All institutions and roles" : option.label}
-                      </option>
-                    ))}
-                  </FinderSelect>
-                </div>
-                <div className="finder-line">
-                  <span>seeking funding for</span>
-                  <FinderSelect id="fWhat" name="area" label="Innovation area" className="q2">
-                    {INNOVATION_GRANTS_AREA_FILTERS.map((option) => (
-                      <option key={option.id} value={option.id}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </FinderSelect>
-                </div>
-                <div className="finder-line">
-                  <span>with</span>
-                  <FinderSelect id="fWhen" name="deadline" label="Deadline window" className="q3">
-                    {finderDeadlines.map(([value, label]) => (
-                      <option key={value} value={value}>
-                        {label}
-                      </option>
-                    ))}
-                  </FinderSelect>
-                  <span>.</span>
-                </div>
-              </div>
-              <button className="go" type="submit">Show my opportunities</button>
-              <Link className="alt" href="/innovation-grants/directory">Browse everything instead</Link>
-            </form>
+            <GrantFinder />
             <p className="fine">Matches are potential matches. Confirm eligibility, deadlines, and application access with the official funder.</p>
           </section>
         </header>

@@ -6,7 +6,9 @@ import {
   countInnovationGrantActiveFilters,
   DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS,
   filterInnovationGrantOpportunities,
-  getInnovationGrantGeographyOptions,
+  getInnovationGrantLocationBadge,
+  INNOVATION_GRANT_JURISDICTIONS,
+  isInnovationGrantJurisdictionCode,
   isInnovationGrantRolling,
 } from "../lib/innovation-grants-directory.ts";
 import type {
@@ -36,6 +38,7 @@ function grant(overrides: Partial<InnovationGrantOpportunity> = {}): InnovationG
     eligibility: "U.S. colleges and universities",
     whatItFunds: "Teaching and learning innovation",
     geography: "United States",
+    locationEligibility: { scope: "nationwide", includesTerritories: false },
     costShareRequirement: "Not stated",
     applicationAccess: "Apply through the official source",
     deadline: "Application due Oct. 1, 2026",
@@ -119,12 +122,13 @@ test("status filters use lifecycle semantics and always exclude evidence-only ro
   );
 });
 
-test("keyword, audience, area, and exact geography combine as AND filters", () => {
+test("keyword, audience, area, and inclusive location eligibility combine as AND filters", () => {
   const match = grant({
     title: "Retention Lab",
     source: "Campus Innovation Fund",
     whatItFunds: "Evidence-based student retention pilots",
     geography: "Oregon",
+    locationEligibility: { scope: "state-or-territory", jurisdictions: ["OR"] },
     audiences: ["community-colleges", "faculty-teaching-centers"],
     innovationAreas: ["student-success"],
   });
@@ -132,6 +136,7 @@ test("keyword, audience, area, and exact geography combine as AND filters", () =
     title: "Retention Lab for Universities",
     whatItFunds: "Evidence-based student retention pilots",
     geography: "Oregon",
+    locationEligibility: { scope: "state-or-territory", jurisdictions: ["OR"] },
     audiences: ["four-year-colleges-universities"],
     innovationAreas: ["student-success"],
   });
@@ -139,6 +144,7 @@ test("keyword, audience, area, and exact geography combine as AND filters", () =
     title: "Retention Lab elsewhere",
     whatItFunds: "Evidence-based student retention pilots",
     geography: "California",
+    locationEligibility: { scope: "state-or-territory", jurisdictions: ["CA"] },
     audiences: ["community-colleges", "faculty-teaching-centers"],
     innovationAreas: ["student-success"],
   });
@@ -146,6 +152,7 @@ test("keyword, audience, area, and exact geography combine as AND filters", () =
     title: "Retention Lab evidence-only",
     whatItFunds: "Evidence-based student retention pilots",
     geography: "Oregon",
+    locationEligibility: { scope: "state-or-territory", jurisdictions: ["OR"] },
     audiences: ["community-colleges", "faculty-teaching-centers"],
     innovationAreas: ["student-success"],
     scopeDisposition: "evidence-only",
@@ -156,7 +163,7 @@ test("keyword, audience, area, and exact geography combine as AND filters", () =
     keyword: "EVIDENCE-BASED",
     audience: "community-colleges",
     area: "student-success",
-    geography: "Oregon",
+    location: "OR",
   });
   assert.deepEqual(
     filterInnovationGrantOpportunities(records, filters, AS_OF).map((record) => record.id),
@@ -165,7 +172,7 @@ test("keyword, audience, area, and exact geography combine as AND filters", () =
   assert.deepEqual(
     filterInnovationGrantOpportunities(
       [match],
-      withFilters({ geography: "oregon" }),
+      withFilters({ location: "CA" }),
       AS_OF,
     ),
     [],
@@ -317,7 +324,7 @@ test("active-filter count ignores the empty keyword and default values", () => {
       audience: "community-colleges",
       area: "student-success",
       status: "all",
-      geography: "Oregon",
+      location: "OR",
       deadline: "rolling",
       costShare: "required",
       freshness: "recently-added",
@@ -326,19 +333,81 @@ test("active-filter count ignores the empty keyword and default values", () => {
   );
 });
 
-test("geography options are unique, exact, sorted, and public-only", () => {
-  const records = [
-    grant({ geography: "United States" }),
-    grant({ geography: "Oregon" }),
-    grant({ geography: "United States" }),
-    grant({ geography: "united states" }),
-    grant({ geography: "   " }),
-    grant({ geography: "California", scopeDisposition: "evidence-only" }),
-  ];
+test("state and territory options are unique and query codes validate fail closed", () => {
+  const codes = INNOVATION_GRANT_JURISDICTIONS.map(({ code }) => code);
+  assert.equal(codes.length, 56);
+  assert.equal(new Set(codes).size, codes.length);
+  assert.equal(isInnovationGrantJurisdictionCode("CA"), true);
+  assert.equal(isInnovationGrantJurisdictionCode("PR"), true);
+  assert.equal(isInnovationGrantJurisdictionCode("California"), false);
+  assert.equal(isInnovationGrantJurisdictionCode("ca"), false);
+});
 
-  assert.deepEqual(getInnovationGrantGeographyOptions(records), [
-    "Oregon",
-    "United States",
-    "united states",
-  ]);
+test("California includes nationwide and California records but excludes other, institution-only, and unresolved records", () => {
+  const nationwide = grant({ title: "Nationwide" });
+  const california = grant({
+    title: "California",
+    geography: "California",
+    locationEligibility: { scope: "state-or-territory", jurisdictions: ["CA"] },
+  });
+  const regional = grant({
+    title: "Regional",
+    geography: "Western member states",
+    locationEligibility: { scope: "regional", jurisdictions: ["CA", "OR", "WA"] },
+  });
+  const texas = grant({
+    title: "Texas",
+    geography: "Texas",
+    locationEligibility: { scope: "state-or-territory", jurisdictions: ["TX"] },
+  });
+  const institutionOnly = grant({
+    title: "Stanford only",
+    geography: "Stanford University only",
+    locationEligibility: { scope: "institution-only" },
+  });
+  const unresolved = grant({
+    title: "Unresolved states",
+    locationEligibility: { scope: "unresolved" },
+  });
+  const missing = grant({ title: "Missing metadata", locationEligibility: undefined });
+  const records = [nationwide, california, regional, texas, institutionOnly, unresolved, missing];
+
+  assert.deepEqual(
+    filterInnovationGrantOpportunities(records, withFilters({ location: "CA" }), AS_OF).map(
+      (record) => record.id,
+    ),
+    [nationwide.id, california.id, regional.id],
+  );
+  assert.deepEqual(
+    filterInnovationGrantOpportunities(records, withFilters({ location: "all" }), AS_OF).map(
+      (record) => record.id,
+    ),
+    records.map((record) => record.id),
+  );
+  assert.equal(getInnovationGrantLocationBadge(nationwide, "CA"), "Nationwide");
+  assert.equal(getInnovationGrantLocationBadge(california, "CA"), "California only");
+  assert.equal(getInnovationGrantLocationBadge(regional, "CA"), "Regional · Includes California");
+  assert.equal(getInnovationGrantLocationBadge(institutionOnly, "all"), "Institution-specific");
+  assert.equal(getInnovationGrantLocationBadge(unresolved, "all"), "Location review needed");
+});
+
+test("territories match only opportunities whose verified scope explicitly includes territories", () => {
+  const statesOnly = grant({ title: "States only" });
+  const territories = grant({
+    title: "States and territories",
+    locationEligibility: { scope: "nationwide", includesTerritories: true },
+  });
+  const puertoRicoOnly = grant({
+    title: "Puerto Rico only",
+    locationEligibility: { scope: "state-or-territory", jurisdictions: ["PR"] },
+  });
+
+  assert.deepEqual(
+    filterInnovationGrantOpportunities(
+      [statesOnly, territories, puertoRicoOnly],
+      withFilters({ location: "PR" }),
+      AS_OF,
+    ).map((record) => record.id),
+    [territories.id, puertoRicoOnly.id],
+  );
 });

@@ -14,6 +14,7 @@ import {
   sortInnovationGrantOpportunities,
   type InnovationGrantArea,
   type InnovationGrantAudience,
+  type InnovationGrantJurisdictionCode,
   type InnovationGrantLifecycle,
   type InnovationGrantOpportunity,
   type InnovationGrantSort,
@@ -21,7 +22,10 @@ import {
 import {
   classifyInnovationGrantCostShare,
   filterInnovationGrantOpportunities,
-  getInnovationGrantGeographyOptions,
+  getInnovationGrantJurisdictionLabel,
+  getInnovationGrantLocationBadge,
+  INNOVATION_GRANT_JURISDICTIONS,
+  isInnovationGrantJurisdictionCode,
   type InnovationGrantCostShareFilter,
   type InnovationGrantDeadlineFilter,
   type InnovationGrantFreshnessFilter,
@@ -35,7 +39,7 @@ interface DirectoryState {
   area: "all" | InnovationGrantArea;
   funder: FunderType;
   deadline: InnovationGrantDeadlineFilter;
-  geography: string;
+  location: "all" | InnovationGrantJurisdictionCode;
   freshness: InnovationGrantFreshnessFilter;
   costShare: InnovationGrantCostShareFilter;
   sort: InnovationGrantSort;
@@ -54,7 +58,7 @@ const DEFAULT_STATE: DirectoryState = {
   area: "all",
   funder: "all",
   deadline: "any",
-  geography: "all",
+  location: "all",
   freshness: "all",
   costShare: "all",
   sort: "recommended",
@@ -103,11 +107,12 @@ const FUNDER_TYPES: Array<[FunderType, string]> = [
   ["corporate", "Corporate"],
 ];
 
-const FUNDER_ID_MAP: Record<Exclude<FunderType, "all" | "corporate" | "other">, readonly number[]> = {
+const FUNDER_ID_MAP: Record<Exclude<FunderType, "all" | "other">, readonly number[]> = {
   federal: [44, 61, 62, 63, 64, 65, 66, 67, 71, 72, 73, 74, 78, 79, 80, 81, 82, 84, 87, 88],
   state: [43, 52, 54, 55, 56, 57, 58, 59, 68, 70],
   nonprofit: [42, 51, 53, 60, 69, 75, 76, 77, 83, 86],
   institution: [38, 48, 85],
+  corporate: [92, 93, 94, 95, 96, 97, 98, 99, 100],
 };
 
 const AREA_COLORS: Record<InnovationGrantArea, string> = {
@@ -136,7 +141,18 @@ function parseQuery(params: { get(name: string): string | null; has(name: string
   state.area = readParam(params, "area", "all") as DirectoryState["area"];
   state.funder = readParam(params, "funder", "all") as FunderType;
   state.deadline = readParam(params, "deadline", "any") as InnovationGrantDeadlineFilter;
-  state.geography = readParam(params, "geography", "all");
+  const location = readParam(params, "location", "all");
+  if (location === "all" || isInnovationGrantJurisdictionCode(location)) {
+    state.location = location;
+  } else {
+    state.location = "all";
+  }
+  if (state.location === "all" && params.has("geography")) {
+    const legacyGeography = params.get("geography");
+    state.location = INNOVATION_GRANT_JURISDICTIONS.find(
+      ({ label }) => label === legacyGeography,
+    )?.code ?? "all";
+  }
   state.freshness = readParam(params, "freshness", "all") as InnovationGrantFreshnessFilter;
   state.costShare = readParam(params, "costShare", "all") as InnovationGrantCostShareFilter;
   state.sort = readParam(params, "sort", "recommended") as InnovationGrantSort;
@@ -186,7 +202,7 @@ function lifecycleMatches(opportunity: InnovationGrantOpportunity, states: Direc
 }
 
 function funderType(id: number): FunderType {
-  for (const [type, ids] of Object.entries(FUNDER_ID_MAP) as Array<[Exclude<FunderType, "all" | "corporate" | "other">, readonly number[]]>) {
+  for (const [type, ids] of Object.entries(FUNDER_ID_MAP) as Array<[Exclude<FunderType, "all" | "other">, readonly number[]]>) {
     if (ids.includes(id)) return type;
   }
   return "other";
@@ -229,7 +245,17 @@ function DetailField({ label, value, wide = false }: { label: string; value: str
   return <div className={wide ? "span-all" : undefined}><dt>{label}</dt><dd>{value?.trim() || "Not stated"}</dd></div>;
 }
 
-function OpportunityCard({ opportunity, asOf, openById }: { opportunity: InnovationGrantOpportunity; asOf: Date; openById: boolean }) {
+function OpportunityCard({
+  opportunity,
+  asOf,
+  openById,
+  selectedLocation,
+}: {
+  opportunity: InnovationGrantOpportunity;
+  asOf: Date;
+  openById: boolean;
+  selectedLocation: "all" | InnovationGrantJurisdictionCode;
+}) {
   const lifecycle = getInnovationGrantLifecycle(opportunity, asOf);
   const badge = lifecycle === "closing-soon" ? "due" : lifecycle === "open-now" ? "open" : lifecycle === "closed" ? "closed" : "watch";
   const officialUrl = safeUrl(opportunity.officialUrl);
@@ -241,6 +267,7 @@ function OpportunityCard({ opportunity, asOf, openById }: { opportunity: Innovat
       <div className="gright">
         <span className={`chip ${badge}`}>{({ "open-now": "Open Now", "closing-soon": "Closing Soon", "opening-soon": "Opening Soon", "recurring-watchlist": "Planning Watchlist", closed: "Closed / Past" } as Record<InnovationGrantLifecycle, string>)[lifecycle]}</span>
         {isInnovationGrantNewThisWeek(opportunity, asOf) && <span className="chip new">New this week</span>}
+        <span className="chip location-badge">{getInnovationGrantLocationBadge(opportunity, selectedLocation)}</span>
       </div>
       <div className="gtop"><span className="gtag">{areaLabel(firstArea)}</span><span className="gfunder">{opportunity.source}</span></div>
       <h3>{opportunity.title}</h3>
@@ -283,7 +310,9 @@ export default function InnovationGrantsDirectory({ opportunities, asOfDate }: {
   const searchParams = useSearchParams();
   const [state, setState] = useState<DirectoryState>(() => parseQuery(searchParams));
   const asOf = useMemo(() => new Date(`${asOfDate}T00:00:00.000Z`), [asOfDate]);
-  const geographyOptions = useMemo(() => getInnovationGrantGeographyOptions(opportunities), [opportunities]);
+  const selectedLocationLabel = state.location === "all"
+    ? null
+    : getInnovationGrantJurisdictionLabel(state.location);
 
   const found = useMemo(() => {
     const filters = {
@@ -291,7 +320,7 @@ export default function InnovationGrantsDirectory({ opportunities, asOfDate }: {
       audience: state.audience,
       area: state.area,
       status: "all" as const,
-      geography: state.geography,
+      location: state.location,
       deadline: state.deadline,
       costShare: state.costShare,
       freshness: state.freshness,
@@ -319,7 +348,7 @@ export default function InnovationGrantsDirectory({ opportunities, asOfDate }: {
     if (state.area !== "all") params.set("area", state.area);
     if (state.funder !== "all") params.set("funder", state.funder);
     if (state.deadline !== "any") params.set("deadline", state.deadline);
-    if (state.geography !== "all") params.set("geography", state.geography);
+    if (state.location !== "all") params.set("location", state.location);
     if (state.freshness !== "all") params.set("freshness", state.freshness);
     if (state.costShare !== "all") params.set("costShare", state.costShare);
     if (state.sort !== "recommended") params.set("sort", state.sort);
@@ -393,13 +422,13 @@ export default function InnovationGrantsDirectory({ opportunities, asOfDate }: {
               <label className="opt"><input type="checkbox" name="lifecycle" value="closed" checked={state.states.includes("closed")} onChange={() => toggleState("closed")} />Closed / Past</label>
             </div><p className="filter-notice">Active includes Open Now and Closing Soon. Watchlist items are not open applications.</p></div>
             <div className="showrow"><h3>Do not show:</h3><div className="checks"><label className="opt"><input type="checkbox" id="noMatch" name="noMatch" checked={state.noMatch} onChange={(event) => setState((current) => ({ ...current, noMatch: event.target.checked, page: 1 }))} />Opportunities requiring matched funding</label></div><p className="filter-notice">Unknown matching requirements remain visible and are labeled.</p></div>
-            <details className="advanced" open={state.geography !== "all" || state.freshness !== "all" || state.costShare !== "all"}><summary>More filters</summary><div className="selgrid">
-              <div className="selblock"><label htmlFor="geography">Location or institution</label><select className="bigsel b1" id="geography" name="geography" value={state.geography} onChange={(event) => setState((current) => ({ ...current, geography: event.target.value, page: 1 }))}><option value="all">Any location or institution</option>{geographyOptions.map((value) => <option key={value} value={value}>{value}</option>)}</select></div>
+            <details className="advanced" open={state.freshness !== "all" || state.costShare !== "all"}><summary>More filters</summary><div className="selgrid">
               <div className="selblock"><label htmlFor="freshness">Added to portal</label><select className="bigsel b2" id="freshness" name="freshness" value={state.freshness} onChange={(event) => setState((current) => ({ ...current, freshness: event.target.value as InnovationGrantFreshnessFilter, page: 1 }))}>{FRESHNESS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></div>
               <div className="selblock"><label htmlFor="costShare">Matching requirement</label><select className="bigsel b3" id="costShare" name="costShare" value={state.costShare} onChange={(event) => setState((current) => ({ ...current, costShare: event.target.value as InnovationGrantCostShareFilter, page: 1 }))}>{COST_SHARES.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></div>
             </div></details>
           </div>
           <div className="filterby"><h3>Filter grant opportunities by</h3><div className="selgrid">
+            <div className="selblock location-filter-block"><label htmlFor="location">Your institution&apos;s state or territory</label><select className="bigsel b-location" id="location" name="location" value={state.location} onChange={(event) => setState((current) => ({ ...current, location: event.target.value as DirectoryState["location"], page: 1 }))}><option value="all">All states and territories</option><optgroup label="States and District of Columbia">{INNOVATION_GRANT_JURISDICTIONS.filter(({ kind }) => kind === "state-or-dc").map(({ code, label }) => <option key={code} value={code}>{label}</option>)}</optgroup><optgroup label="U.S. territories">{INNOVATION_GRANT_JURISDICTIONS.filter(({ kind }) => kind === "territory").map(({ code, label }) => <option key={code} value={code}>{label}</option>)}</optgroup></select><p className="location-filter-hint">Includes national opportunities available in your selected location.</p></div>
             <div className="selblock"><label htmlFor="audience">I work with</label><select className="bigsel b1" id="audience" name="audience" value={state.audience} onChange={(event) => setState((current) => ({ ...current, audience: event.target.value as DirectoryState["audience"], page: 1 }))}>{INNOVATION_GRANTS_AUDIENCE_FILTERS.map(({ id, label }) => <option key={id} value={id}>{id === "all" ? "All institutions and roles" : label}</option>)}</select></div>
             <div className="selblock"><label htmlFor="area">Innovation area</label><select className="bigsel b2" id="area" name="area" value={state.area} onChange={(event) => setState((current) => ({ ...current, area: event.target.value as DirectoryState["area"], page: 1 }))}>{INNOVATION_GRANTS_AREA_FILTERS.map(({ id, label }) => <option key={id} value={id}>{label}</option>)}</select></div>
             <div className="selblock"><label htmlFor="funder">Funder type</label><select className="bigsel b3" id="funder" name="funder" value={state.funder} onChange={(event) => setState((current) => ({ ...current, funder: event.target.value as FunderType, page: 1 }))}>{FUNDER_TYPES.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></div>
@@ -408,8 +437,14 @@ export default function InnovationGrantsDirectory({ opportunities, asOfDate }: {
         </div>
       </form>
 
-      <section aria-labelledby="resultsHeading"><div className="rhead"><h2 id="resultsHeading"><b role="status" aria-live="polite">{found.length} {found.length === 1 ? "opportunity" : "opportunities"} match{found.length === 1 ? "es" : ""} your search</b></h2><p id="querySummary">{[state.audience !== "all" ? INNOVATION_GRANTS_AUDIENCE_FILTERS.find(({ id }) => id === state.audience)?.label : null, state.area !== "all" ? areaLabel(state.area) : null, state.deadline !== "any" ? optionLabel(DEADLINES, state.deadline) : null, state.id !== null ? "One linked opportunity" : null].filter(Boolean).join(" · ")}</p><label className="sort" htmlFor="sort">Sort by <select className="sortsel" id="sort" value={state.sort} onChange={(event) => setState((current) => ({ ...current, sort: event.target.value as InnovationGrantSort, page: 1 }))}>{SORTS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label></div>
-        <div id="grantResults">{found.length > 0 ? pageItems.map((opportunity) => <OpportunityCard key={opportunity.id} opportunity={opportunity} asOf={asOf} openById={state.id === opportunity.id} />) : <div className="empty"><h3>No grant opportunities match every filter.</h3><p>Try a broader audience, another category, or more time before the deadline. Unknown eligibility still needs an official-source check.</p><button type="button" id="widenDeadline" onClick={() => setState((current) => ({ ...current, deadline: "any", page: 1 }))}>Widen to any deadline</button><button type="button" id="resetEmpty" onClick={reset}>Clear all filters</button></div>}</div>
+      {selectedLocationLabel && (
+        <p className="location-confirmation" role="status">
+          Showing grants available in {selectedLocationLabel}, including nationwide opportunities.
+        </p>
+      )}
+
+      <section aria-labelledby="resultsHeading"><div className="rhead"><h2 id="resultsHeading"><b role="status" aria-live="polite">{found.length} {found.length === 1 ? "opportunity" : "opportunities"} match{found.length === 1 ? "es" : ""} your search</b></h2><p id="querySummary" className="query-summary">{[state.audience !== "all" ? INNOVATION_GRANTS_AUDIENCE_FILTERS.find(({ id }) => id === state.audience)?.label : null, state.area !== "all" ? areaLabel(state.area) : null, state.deadline !== "any" ? optionLabel(DEADLINES, state.deadline) : null, state.id !== null ? "One linked opportunity" : null].filter(Boolean).join(" · ")}{selectedLocationLabel && <span className="eligibility-chip">{selectedLocationLabel} eligible</span>}</p><label className="sort" htmlFor="sort">Sort by <select className="sortsel" id="sort" value={state.sort} onChange={(event) => setState((current) => ({ ...current, sort: event.target.value as InnovationGrantSort, page: 1 }))}>{SORTS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label></div>
+        <div id="grantResults">{found.length > 0 ? pageItems.map((opportunity) => <OpportunityCard key={opportunity.id} opportunity={opportunity} asOf={asOf} openById={state.id === opportunity.id} selectedLocation={state.location} />) : <div className="empty"><h3>No grant opportunities match every filter.</h3><p>Try a broader audience, another category, location, or more time before the deadline. Unknown eligibility still needs an official-source check.</p><button type="button" id="widenDeadline" onClick={() => setState((current) => ({ ...current, deadline: "any", page: 1 }))}>Widen to any deadline</button><button type="button" id="resetEmpty" onClick={reset}>Clear all filters</button></div>}</div>
         <div className="pager" aria-label="Result pages"><span className="range" id="resultRange">{found.length > 0 ? `Displaying ${(page - 1) * state.perPage + 1}–${Math.min(page * state.perPage, found.length)} of ${found.length}` : "No matching opportunities"}</span><label htmlFor="perPage">Per page</label><select className="persel" id="perPage" value={state.perPage} onChange={(event) => setState((current) => ({ ...current, perPage: Number(event.target.value) as DirectoryState["perPage"], page: 1 }))}><option value="10">10</option><option value="20">20</option><option value="50">50</option></select><button className="pgbtn" id="prevPage" type="button" aria-label="Previous page" disabled={page <= 1} onClick={() => setState((current) => ({ ...current, page: page - 1 }))}>←</button><span id="pageStatus">Page {page} of {pageCount}</span><button className="pgbtn primary" id="nextPage" type="button" aria-label="Next page" disabled={page >= pageCount} onClick={() => setState((current) => ({ ...current, page: page + 1 }))}>→</button></div>
       </section>
       <div className="trust" id="how-we-verify"><div className="trust-in"><details><summary>How we verify</summary><p>Every public record starts with an official source and shows a last-verified date. Individual records retain their actual verification dates. Always read the official source before applying.</p><p>The funding total includes reported current program-level cash amounts, not money guaranteed to remain available. Per-award-only caps, in-kind credits, and mixed-purpose budgets are excluded. Awards are competitive and not guaranteed.</p><p>Unresolved source conflicts and unavailable application paths are held for review and do not appear in this launch. Planning-watchlist and closed opportunities are separated from active opportunities. Evidence-only research checks are retained outside the public directory.</p><p id="trustDates">Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE} · Status calculated for {asOfLabel} (Pacific).</p></details></div></div>

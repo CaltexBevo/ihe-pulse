@@ -4,6 +4,7 @@ import {
   isInnovationGrantNewThisWeek,
   type InnovationGrantArea,
   type InnovationGrantAudience,
+  type InnovationGrantJurisdictionCode,
   type InnovationGrantOpportunity,
 } from "./innovation-grants-shared";
 
@@ -44,8 +45,8 @@ export interface InnovationGrantDirectoryFilters {
   audience: "all" | InnovationGrantAudience;
   area: "all" | InnovationGrantArea;
   status: InnovationGrantStatusFilter;
-  /** The exact verified geography string, or "all". */
-  geography: string;
+  /** Inclusive institution location, or "all". */
+  location: "all" | InnovationGrantJurisdictionCode;
   deadline: InnovationGrantDeadlineFilter;
   costShare: InnovationGrantCostShareFilter;
   freshness: InnovationGrantFreshnessFilter;
@@ -56,7 +57,7 @@ export const DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS: InnovationGrantDirector
   audience: "all",
   area: "all",
   status: "active",
-  geography: "all",
+  location: "all",
   deadline: "any",
   costShare: "all",
   freshness: "all",
@@ -66,6 +67,121 @@ type CostShareRecord = Pick<InnovationGrantOpportunity, "costShareRequirement">;
 
 function normalizeSearchText(value: string): string {
   return value.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+export const INNOVATION_GRANT_JURISDICTIONS: ReadonlyArray<{
+  code: InnovationGrantJurisdictionCode;
+  label: string;
+  kind: "state-or-dc" | "territory";
+}> = [
+  { code: "AL", label: "Alabama", kind: "state-or-dc" },
+  { code: "AK", label: "Alaska", kind: "state-or-dc" },
+  { code: "AZ", label: "Arizona", kind: "state-or-dc" },
+  { code: "AR", label: "Arkansas", kind: "state-or-dc" },
+  { code: "CA", label: "California", kind: "state-or-dc" },
+  { code: "CO", label: "Colorado", kind: "state-or-dc" },
+  { code: "CT", label: "Connecticut", kind: "state-or-dc" },
+  { code: "DE", label: "Delaware", kind: "state-or-dc" },
+  { code: "DC", label: "District of Columbia", kind: "state-or-dc" },
+  { code: "FL", label: "Florida", kind: "state-or-dc" },
+  { code: "GA", label: "Georgia", kind: "state-or-dc" },
+  { code: "HI", label: "Hawaii", kind: "state-or-dc" },
+  { code: "ID", label: "Idaho", kind: "state-or-dc" },
+  { code: "IL", label: "Illinois", kind: "state-or-dc" },
+  { code: "IN", label: "Indiana", kind: "state-or-dc" },
+  { code: "IA", label: "Iowa", kind: "state-or-dc" },
+  { code: "KS", label: "Kansas", kind: "state-or-dc" },
+  { code: "KY", label: "Kentucky", kind: "state-or-dc" },
+  { code: "LA", label: "Louisiana", kind: "state-or-dc" },
+  { code: "ME", label: "Maine", kind: "state-or-dc" },
+  { code: "MD", label: "Maryland", kind: "state-or-dc" },
+  { code: "MA", label: "Massachusetts", kind: "state-or-dc" },
+  { code: "MI", label: "Michigan", kind: "state-or-dc" },
+  { code: "MN", label: "Minnesota", kind: "state-or-dc" },
+  { code: "MS", label: "Mississippi", kind: "state-or-dc" },
+  { code: "MO", label: "Missouri", kind: "state-or-dc" },
+  { code: "MT", label: "Montana", kind: "state-or-dc" },
+  { code: "NE", label: "Nebraska", kind: "state-or-dc" },
+  { code: "NV", label: "Nevada", kind: "state-or-dc" },
+  { code: "NH", label: "New Hampshire", kind: "state-or-dc" },
+  { code: "NJ", label: "New Jersey", kind: "state-or-dc" },
+  { code: "NM", label: "New Mexico", kind: "state-or-dc" },
+  { code: "NY", label: "New York", kind: "state-or-dc" },
+  { code: "NC", label: "North Carolina", kind: "state-or-dc" },
+  { code: "ND", label: "North Dakota", kind: "state-or-dc" },
+  { code: "OH", label: "Ohio", kind: "state-or-dc" },
+  { code: "OK", label: "Oklahoma", kind: "state-or-dc" },
+  { code: "OR", label: "Oregon", kind: "state-or-dc" },
+  { code: "PA", label: "Pennsylvania", kind: "state-or-dc" },
+  { code: "RI", label: "Rhode Island", kind: "state-or-dc" },
+  { code: "SC", label: "South Carolina", kind: "state-or-dc" },
+  { code: "SD", label: "South Dakota", kind: "state-or-dc" },
+  { code: "TN", label: "Tennessee", kind: "state-or-dc" },
+  { code: "TX", label: "Texas", kind: "state-or-dc" },
+  { code: "UT", label: "Utah", kind: "state-or-dc" },
+  { code: "VT", label: "Vermont", kind: "state-or-dc" },
+  { code: "VA", label: "Virginia", kind: "state-or-dc" },
+  { code: "WA", label: "Washington", kind: "state-or-dc" },
+  { code: "WV", label: "West Virginia", kind: "state-or-dc" },
+  { code: "WI", label: "Wisconsin", kind: "state-or-dc" },
+  { code: "WY", label: "Wyoming", kind: "state-or-dc" },
+  { code: "AS", label: "American Samoa", kind: "territory" },
+  { code: "GU", label: "Guam", kind: "territory" },
+  { code: "MP", label: "Northern Mariana Islands", kind: "territory" },
+  { code: "PR", label: "Puerto Rico", kind: "territory" },
+  { code: "VI", label: "U.S. Virgin Islands", kind: "territory" },
+];
+
+const jurisdictionByCode = new Map(
+  INNOVATION_GRANT_JURISDICTIONS.map((jurisdiction) => [jurisdiction.code, jurisdiction]),
+);
+
+export function isInnovationGrantJurisdictionCode(
+  value: string,
+): value is InnovationGrantJurisdictionCode {
+  return jurisdictionByCode.has(value as InnovationGrantJurisdictionCode);
+}
+
+export function getInnovationGrantJurisdictionLabel(
+  code: InnovationGrantJurisdictionCode,
+): string {
+  return jurisdictionByCode.get(code)?.label ?? code;
+}
+
+export function matchesInnovationGrantLocation(
+  opportunity: InnovationGrantOpportunity,
+  location: "all" | InnovationGrantJurisdictionCode,
+): boolean {
+  if (location === "all") return true;
+  const eligibility = opportunity.locationEligibility;
+  if (!eligibility || eligibility.scope === "institution-only" || eligibility.scope === "unresolved") {
+    return false;
+  }
+  if (eligibility.scope === "nationwide") {
+    const jurisdiction = jurisdictionByCode.get(location);
+    return jurisdiction?.kind === "state-or-dc" || eligibility.includesTerritories;
+  }
+  return eligibility.jurisdictions.includes(location);
+}
+
+export function getInnovationGrantLocationBadge(
+  opportunity: InnovationGrantOpportunity,
+  selectedLocation: "all" | InnovationGrantJurisdictionCode = "all",
+): string {
+  const eligibility = opportunity.locationEligibility;
+  if (!eligibility || eligibility.scope === "unresolved") return "Location review needed";
+  if (eligibility.scope === "institution-only") return "Institution-specific";
+  if (eligibility.scope === "nationwide") {
+    return eligibility.includesTerritories ? "Nationwide + territories" : "Nationwide";
+  }
+  if (eligibility.scope === "state-or-territory") {
+    const only = eligibility.jurisdictions[0];
+    return `${only ? getInnovationGrantJurisdictionLabel(only) : "Location"} only`;
+  }
+  if (selectedLocation !== "all" && eligibility.jurisdictions.includes(selectedLocation)) {
+    return `Regional · Includes ${getInnovationGrantJurisdictionLabel(selectedLocation)}`;
+  }
+  return "Regional eligibility";
 }
 
 /**
@@ -287,9 +403,7 @@ export function filterInnovationGrantOpportunities(
     if (filters.area !== "all" && !opportunity.innovationAreas.includes(filters.area)) {
       return false;
     }
-    if (filters.geography !== "all" && opportunity.geography !== filters.geography) {
-      return false;
-    }
+    if (!matchesInnovationGrantLocation(opportunity, filters.location)) return false;
     return true;
   });
 }
@@ -301,20 +415,9 @@ export function countInnovationGrantActiveFilters(
   if (filters.audience !== "all") count += 1;
   if (filters.area !== "all") count += 1;
   if (filters.status !== DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS.status) count += 1;
-  if (filters.geography !== "all") count += 1;
+  if (filters.location !== "all") count += 1;
   if (filters.deadline !== "any") count += 1;
   if (filters.costShare !== "all") count += 1;
   if (filters.freshness !== "all") count += 1;
   return count;
-}
-
-export function getInnovationGrantGeographyOptions(
-  opportunities: readonly InnovationGrantOpportunity[],
-): string[] {
-  const geographies = new Set<string>();
-  for (const opportunity of opportunities) {
-    if (opportunity.scopeDisposition !== "included") continue;
-    if (opportunity.geography.trim()) geographies.add(opportunity.geography);
-  }
-  return [...geographies].sort();
 }

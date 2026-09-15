@@ -438,6 +438,30 @@
 }
 
 
+/* Founder-approved inclusive state-or-territory eligibility controls. */
+.portal :global(.q-location){background-color:var(--t-magenta)}
+.portal :global(.finder-line .q-location){width:266px}
+.portal :global(.location-helper){font-size:12px;line-height:1.5;color:var(--ink2);margin:-2px 0 9px;padding-left:84px;max-width:390px}
+.portal :global(.location-filter-block){grid-column:1/-1}
+.portal :global(.location-filter-block label){color:var(--cyan)}
+.portal :global(.bigsel.b-location){background-color:var(--t-cyan);color:var(--tile-dark-ink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%2308080f' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+.portal :global(.location-filter-hint){font-size:12px;line-height:1.45;color:var(--ink2);margin-top:7px}
+.portal :global(.location-confirmation){display:flex;align-items:center;gap:9px;margin:18px 2px 0;color:var(--ink2);font-size:13px;line-height:1.5}
+.portal :global(.location-confirmation::before){content:"";width:8px;height:8px;flex:none;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px var(--chip-new-bg)}
+.portal :global(.query-summary){display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.portal :global(.eligibility-chip){display:inline-flex;align-items:center;border:1px solid color-mix(in srgb,var(--cyan) 44%,transparent);background:var(--chip-new-bg);color:var(--cyan);border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;white-space:nowrap}
+.portal :global(.chip.location-badge){color:var(--ink2);background:var(--well);border:1px solid var(--hair2)}
+@media(max-width:580px){
+ .portal :global(.finder-line){align-items:flex-start}
+ .portal :global(.finder-line>span){padding-top:7px}
+ .portal :global(.finder-line .slot){width:100%;flex:1 1 100%}
+ .portal :global(.finder-line .sentence-period){display:none}
+ .portal :global(.location-helper){padding-left:0;margin:0 0 10px}
+ .portal :global(.location-filter-block){grid-column:auto}
+ .portal :global(.location-confirmation){margin-top:16px;align-items:flex-start}
+}
+
+
 /* Integration-only containment: existing root layout owns navigation and footer. */
 
 .portal{position:relative;isolation:isolate;overflow-x:clip;min-width:0;}

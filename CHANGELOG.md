@@ -1,5 +1,19 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-15] Approved Grant Portal location and corporate-funding release
+
+- Added inclusive state and territory eligibility controls to the approved homepage finder and directory. Selected locations include verified nationwide, local, and applicable regional programs.
+- Added two Anthropic cash research programs, six explicitly non-cash credit/software-support opportunities, and an IBM future-call watchlist. Corporate filtering includes all eight active additions in California.
+- Kept in-kind support outside the reported cash total, now $51,782,403 across thirteen current program pools, six approximate. Preserved all source holds and the September 14 full-discovery date.
+- Reconciled the September 15 daily verification below. The public projection contains 46 records: 34 open, five watchlist and seven closed.
+
+## [2026-09-15] Grant Portal daily verification
+
+- Reverified 26 existing listings, recorded Panorama's closure, and clarified that the BJA ballistics application continues only for applicants who completed its required first step.
+- Kept Wake Forest's announced opening on the planning watchlist until its application entry is verified; retained source-specific dates and the September 14 full-search date.
+- Preserved the approved headline and $46,782,403 across twelve current program pools, five approximate.
+- Removed an unnecessary regular-expression flag from the existing homepage artwork test for ES2017 type-check compatibility.
+
 ## [2026-09-14] Grant Portal verified inventory refresh
 
 - Added three source-verified opportunities and updated reported current program funding to $46,782,403 across twelve pools, five approximate.
