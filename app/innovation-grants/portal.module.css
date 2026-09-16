@@ -380,6 +380,11 @@
  .portal :global(.statement .metrics .funding b){background:none;color:CanvasText}
 }
 .portal :global(.statement .metrics small){font-size:12.5px;line-height:1.4}
+.portal :global(.statement .metrics .metric-detail){display:block;margin-top:5px}
+.portal :global(.statement .metrics .program-total b),.portal :global(.statement .metrics .program-total .metric-detail){color:var(--cyan)}
+.portal :global(.statement .metrics .latest-additions b){color:var(--purple)}
+.portal :global(.statement .metrics .latest-additions .metric-detail){color:var(--magenta-text)}
+.portal :global(.statement .metrics small){overflow-wrap:anywhere}
 .portal :global(.statement .funding-note),.portal :global(.statement .checkpoint){font-size:12px;line-height:1.5;margin-top:12px;max-width:none}
 .portal :global(.finder .sub){font-size:13.5px}
 .portal :global(.sentence){font-size:19px;line-height:2.5}

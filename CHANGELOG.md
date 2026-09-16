@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-16] Grant Portal summary alignment
+
+- Match the homepage's dynamic program total, currently-open count, and latest additions with their status breakdown on the Grant Portal. Retain closing-soon totals.
+
 ## [2026-09-15] Story slider 4.5-second interval
 
 - Set the alternating left/right switch interval to 4.5 seconds.

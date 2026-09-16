@@ -7,7 +7,6 @@ import {
   INNOVATION_GRANTS_FULL_SEARCH_DATE,
   INNOVATION_GRANTS_VERIFIED_ON,
   getInnovationGrantDaysUntilDeadline,
-  getInnovationGrantFundingSnapshot,
   getInnovationGrantLifecycle,
   getInnovationGrantPacificAsOfDate,
   getInnovationGrantPacificCalendarDate,
@@ -17,6 +16,7 @@ import {
   type InnovationGrantOpportunity,
 } from "@/lib/innovation-grants-shared";
 import { getPublicInnovationGrants } from "@/lib/data/innovation-grants-public";
+import { getHomepageGrantSummary } from "@/lib/innovation-grants-homepage";
 import { pageMetadata } from "@/lib/og";
 import styles from "./portal.module.css";
 
@@ -123,7 +123,18 @@ export default function InnovationGrantsPage() {
   const asOf = getInnovationGrantPacificAsOfDate(now);
   const asOfDate = getInnovationGrantPacificCalendarDate(now);
   const opportunities = getPublicInnovationGrants();
-  const snapshot = getInnovationGrantFundingSnapshot(opportunities, asOf);
+  const summary = getHomepageGrantSummary(opportunities, now);
+  const snapshot = summary.funding;
+  const cohortLabel = summary.latestDate ? new Date(`${summary.latestDate}T12:00:00Z`).toLocaleDateString("en-US", {
+    month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
+  }) : null;
+  const { breakdown } = summary;
+  const statusLabel = [
+    breakdown.open && `${breakdown.open} open`,
+    breakdown.watchlist && `${breakdown.watchlist} watchlist`,
+    breakdown.openingSoon && `${breakdown.openingSoon} opening soon`,
+    breakdown.closed && `${breakdown.closed} closed`,
+  ].filter(Boolean).join(" + ");
   const active = opportunities.filter((opportunity) => {
     const lifecycle = getInnovationGrantLifecycle(opportunity, asOf);
     return lifecycle === "open-now" || lifecycle === "closing-soon" || lifecycle === "opening-soon";
@@ -167,17 +178,19 @@ export default function InnovationGrantsPage() {
                 <PortalFundingTally amount={snapshot.publishedProgramPoolUsd} />
                 <small>reported current program funding</small>
               </div>
-              <div>
-                <b>{snapshot.openOpportunityCount}</b>
-                <small>open opportunities</small>
+              <div className="program-total">
+                <b>{summary.totalCount}</b>
+                <small>grants &amp; support programs</small>
+                <small className="metric-detail">{snapshot.openOpportunityCount} currently open</small>
+              </div>
+              <div className="latest-additions">
+                <b>{summary.latestCount}</b>
+                <small>{cohortLabel ? <>added <time dateTime={summary.latestDate!}>{cohortLabel}</time></> : "No dated additions yet"}</small>
+                {statusLabel && <small className="metric-detail">{statusLabel}</small>}
               </div>
               <div>
                 <b>{snapshot.closingSoonCount}</b>
                 <small>closing soon</small>
-              </div>
-              <div>
-                <b>{snapshot.openingSoonCount}</b>
-                <small>opening soon</small>
               </div>
             </div>
             <p className="funding-note" id="fundingNote">
