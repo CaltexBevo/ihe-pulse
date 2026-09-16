@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-16] Navigation order
+
+- Place Grant Portal before Innovation Pulse in both desktop and mobile menus.
+
 ## [2026-09-16] Browse All Stories library
 
 - Expand the lead-story archive into the approved visual library of edition stories and original Features, with existing artwork and canonical article links.
