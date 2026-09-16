@@ -1,0 +1,30 @@
+.wrapper { width:100%; max-width:var(--max-w); margin:24px auto 0; padding:0 var(--px); }
+.card { position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:22px 30px; padding:28px 32px 18px; border:1px solid transparent; border-radius:18px; background:linear-gradient(var(--surface),var(--surface)) padding-box,linear-gradient(95deg,var(--cyan),var(--purple) 50%,var(--magenta) 85%) border-box; color:var(--text); }
+.card::after { content:""; pointer-events:none; position:absolute; top:0; left:-25%; width:20%; height:2px; background:linear-gradient(90deg,transparent,var(--text),transparent); animation:grant-sheen 1200ms ease-out 1 both; }
+@keyframes grant-sheen { from { left:-25%; } to { left:110%; } }
+.kicker { color:var(--cyan); font-family:var(--font-mono); font-size:15px; font-weight:700; letter-spacing:.12em; margin:0 0 6px; }
+.funding h2 { font-size:clamp(24px,2.5vw,36px); line-height:1.12; letter-spacing:-.045em; font-weight:750; margin:0 0 14px; }
+.gradient,.amount b { color:var(--text); }
+@supports ((background-clip:text) or (-webkit-background-clip:text)) {
+  .gradient,.amount b { background:linear-gradient(95deg,var(--cyan),var(--purple) 50%,var(--magenta) 85%); background-clip:text; -webkit-background-clip:text; color:transparent; }
+}
+.amount { font-size:clamp(38px,6.8vw,94px); line-height:1.05; letter-spacing:-.065em; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.amount b { display:inline-block; padding-inline-end:.08em; font-weight:800; }
+.amountLabel { margin:7px 0 0; color:var(--text-muted); font-size:18px; }
+.details { border-left:1px solid var(--border-strong); padding-left:30px; display:flex; flex-direction:column; justify-content:center; gap:24px; }
+.stats { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.stats strong { color:var(--cyan); font-size:56px; line-height:1; letter-spacing:-.04em; }
+.stats p { margin:4px 0 0; font-size:14px; font-weight:600; line-height:1.4; }
+.stats .open { color:var(--cyan); }
+.cohort { border-left:1px solid var(--border-strong); padding-left:20px; }
+.cohort strong { color:var(--purple); }
+.stats .breakdown { color:var(--magenta-text); }
+/* Solid cyan is scoped to the founder-selected Funding Spotlight design. */
+.action { display:flex; align-items:center; justify-content:center; gap:15px; padding:14px 16px; min-height:48px; border-radius:8px; background:var(--cyan); color:var(--bg); font-size:17px; font-weight:750; text-decoration:none; transition:transform 160ms ease; }
+.action:hover,.action:focus-visible { transform:translateY(-2px); }
+.action:focus-visible { outline:2px solid var(--cyan); outline-offset:4px; }
+.action span { font-size:25px; line-height:1; }
+@media(max-width:1050px) { .card { grid-template-columns:1fr; padding:24px; } .amount { font-size:clamp(38px,9vw,90px); } .details { border-left:0; padding-left:0; border-top:1px solid var(--border-strong); padding-top:22px; } }
+@media(max-width:480px) { .card { padding:20px 16px 16px; gap:20px; } .kicker { font-size:13px; } .funding h2 { font-size:26px; } .amount { font-size:clamp(30px,10vw,46px); letter-spacing:-.055em; } .amountLabel { font-size:15px; } .stats { gap:12px; } .stats strong { font-size:44px; } .stats p { font-size:14px; } .cohort { padding-left:12px; } .action { font-size:16px; } }
+@media(prefers-reduced-motion:reduce) { .card::after { animation:none; display:none; } .action { transition:none; } .action:hover,.action:focus-visible { transform:none; } }
+@media(forced-colors:active) { .card { background:Canvas; border-color:CanvasText; } .gradient,.amount b { background:none; color:CanvasText; } .card::after { display:none; } .action { border:1px solid LinkText; color:LinkText; background:Canvas; } .action:focus-visible { outline-color:Highlight; } }

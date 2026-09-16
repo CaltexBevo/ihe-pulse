@@ -1,9 +1,13 @@
 import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
+import HomeGrantSpotlight from "@/components/HomeGrantSpotlight";
 import PastEpisodesStrip from "@/components/PastEpisodesStrip";
 import HomepagePulse from "@/app/homepage/HomepagePulse";
 import { getLatestEpisode, getAllEpisodes } from "@/lib/data/innovation-pulse";
 import { formatWeekCovered } from "@/lib/data/innovation-pulse-types";
 import { getHomepageQuickHits } from "@/lib/homepagePulse";
+
+// Keep Pacific lifecycle labels fresh, matching the grant portal route.
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
@@ -23,6 +27,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
+      <HomeGrantSpotlight />
       <section className="relative" aria-label="Latest Innovation Pulse">
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />

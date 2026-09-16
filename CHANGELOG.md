@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-15] Approved homepage Grant Portal spotlight and waveform correction
+
+- Added the selected Funding Spotlight above the current weekly episode, using the portal's shared cleared funding, listing and latest-cohort data with matching Pacific-day refresh behavior.
+- Applied the approved disclaimer removal and complete final-digit rendering, and enlarged the portal funding total with its existing cyan/purple/magenta gradient.
+- Restored the measured 104-bar September 11 audio waveform, checked the actual latest episode in regression coverage, and kept the complete waveform visible on narrow screens.
+
 ## [2026-09-15] Approved Grant Portal location and corporate-funding release
 
 - Added inclusive state and territory eligibility controls to the approved homepage finder and directory. Selected locations include verified nationwide, local, and applicable regional programs.

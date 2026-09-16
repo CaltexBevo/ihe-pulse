@@ -368,9 +368,17 @@
 .portal :global(.finder){padding:42px 40px 36px}
 .portal :global(.statement h1){font-size:clamp(38px,4.7vw,60px)}
 .portal :global(.page-kicker){font-size:12px;margin-bottom:12px}
-.portal :global(.statement .metrics){display:grid;grid-template-columns:minmax(0,1.8fr) repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.portal :global(.statement .metrics){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
 .portal :global(.statement .metrics div){min-width:0;padding-top:18px}
-.portal :global(.statement .metrics b),.portal :global(.statement .metrics .funding b){font-size:21px;letter-spacing:-.02em}
+.portal :global(.statement .metrics b){font-size:21px;letter-spacing:-.02em}
+.portal :global(.statement .metrics .funding){grid-column:1/-1}
+.portal :global(.statement .metrics .funding b){display:block;width:fit-content;font-size:clamp(32px,3.4vw,44px);font-weight:900;line-height:1.12;letter-spacing:-.035em;white-space:nowrap;color:var(--ink)}
+@supports ((background-clip:text) or (-webkit-background-clip:text)){
+ .portal :global(.statement .metrics .funding b){background:linear-gradient(95deg,var(--cyan),var(--purple) 50%,var(--magenta) 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
+}
+@media(forced-colors:active){
+ .portal :global(.statement .metrics .funding b){background:none;color:CanvasText}
+}
 .portal :global(.statement .metrics small){font-size:12.5px;line-height:1.4}
 .portal :global(.statement .funding-note),.portal :global(.statement .checkpoint){font-size:12px;line-height:1.5;margin-top:12px;max-width:none}
 .portal :global(.finder .sub){font-size:13.5px}
@@ -427,7 +435,6 @@
  .portal :global(.hero){margin-top:28px}.portal :global(.statement),.portal :global(.finder){padding:30px 24px}.portal :global(.statement h1){font-size:38px}
  .portal :global(.statement .metrics){grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:24px}
  .portal :global(.statement .metrics .funding){grid-column:1/-1}
- .portal :global(.statement .metrics .funding b){font-size:21px}
  .portal :global(.statement .metrics div){padding-top:10px}.portal :global(.statement .metrics small){font-size:12px}
  .portal :global(.slot){max-width:100%;margin:3px 0}.portal :global(.sentence){line-height:2.5}
  .portal :global(.section){margin-top:40px}.portal :global(.tiles){grid-template-columns:1fr}.portal :global(.tile){padding:22px}

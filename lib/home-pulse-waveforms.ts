@@ -3,6 +3,20 @@
  * Values are RMS amplitudes normalized to a 14-100 display range.
  */
 const HOME_PULSE_WAVEFORMS: Record<string, readonly number[]> = {
+  // Canonical ihe-daily-news-audio/broadcasts/ihe-daily-news-2026-09-11.mp3.
+  // Verified against the September 15 distribution source-lock recovery receipt.
+  // Source SHA-256: e36e3b706010c73357af3b5e5563bb578691c3850bf40f9028512c28ea294c3e
+  // Decoded mono 8 kHz float32: 4,954,880 samples / 619.36 seconds.
+  // 104 equal-duration RMS windows, linearly normalized from min/max to 14-100.
+  "2026-09-11": [
+    58, 50, 68, 53, 74, 79, 53, 49, 63, 75, 62, 73, 64, 41, 62, 83,
+    52, 56, 36, 52, 37, 72, 47, 62, 43, 83, 70, 40, 70, 42, 89, 60,
+    39, 63, 53, 25, 45, 56, 80, 14, 87, 42, 80, 33, 81, 42, 75, 55,
+    35, 71, 47, 72, 52, 58, 69, 61, 77, 66, 25, 62, 91, 52, 81, 38,
+    65, 34, 63, 57, 58, 58, 23, 59, 88, 43, 49, 65, 50, 17, 80, 54,
+    49, 53, 63, 50, 68, 45, 66, 69, 69, 70, 57, 16, 100, 63, 90, 90,
+    62, 49, 44, 61, 53, 59, 56, 40,
+  ],
   // 104 equal-duration RMS windows from the founder-approved local master.
   // Source SHA-256: 66698ed21b0acaefdd159a940fb350bde161d62e98710588c3a902c370b2e236
   "2026-09-04": [

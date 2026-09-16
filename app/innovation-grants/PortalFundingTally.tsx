@@ -19,7 +19,7 @@ export default function PortalFundingTally({ amount }: { amount: number }) {
     const startedAt = performance.now();
     let frame = 0;
     const tally = (now: number) => {
-      const progress = Math.min((now - startedAt) / 850, 1);
+      const progress = Math.max(0, Math.min((now - startedAt) / 850, 1));
       const value = Math.round(amount * (1 - Math.pow(1 - progress, 3)));
       node.textContent = `$${value.toLocaleString("en-US")}`;
       if (progress < 1) frame = requestAnimationFrame(tally);
@@ -28,5 +28,5 @@ export default function PortalFundingTally({ amount }: { amount: number }) {
     return () => cancelAnimationFrame(frame);
   }, [amount]);
 
-  return <b id="fundingTotal" ref={valueRef}>{`$${amount.toLocaleString("en-US")}`}</b>;
+  return <b id="fundingTotal" aria-label={`$${amount.toLocaleString("en-US")}`} ref={valueRef}>{`$${amount.toLocaleString("en-US")}`}</b>;
 }

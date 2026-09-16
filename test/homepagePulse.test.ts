@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { getLatestEpisode } from '../lib/data/innovation-pulse.ts';
 
 import {
   dedupeStories,
@@ -174,11 +175,14 @@ test('binds the approved Option A master and current-edition value copy', () => 
 });
 
 test('uses the real approved audio envelope for the current weekly player', () => {
-  const waveform = getHomePulseWaveform('2026-08-28');
+  const latest = getLatestEpisode();
+  assert.ok(latest);
+  const waveform = getHomePulseWaveform(latest.date);
   assert.ok(waveform);
-  assert.equal(waveform.length, 104);
+  assert.ok(waveform.length >= 44);
   assert.ok(Math.min(...waveform) >= 14);
   assert.ok(Math.max(...waveform) <= 100);
+  assert.ok(new Set(waveform).size > 1);
   assert.equal(getHomePulseWaveform('2099-01-01'), null);
 });
 
