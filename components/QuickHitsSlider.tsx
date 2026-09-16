@@ -23,7 +23,7 @@ interface QuickHitsSliderProps {
   stories: HomepageStory[];
 }
 
-const ROTATION_DELAY_MS = 5000;
+const ROTATION_DELAY_MS = 2000;
 
 function visibleCountForViewport(): number {
   if (typeof window === 'undefined') return 3;
@@ -40,6 +40,7 @@ export default function QuickHitsSlider({ stories }: QuickHitsSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
   const currentIndexRef = useRef(0);
+  const automaticDirectionRef = useRef<1 | -1>(1);
   const [visibleCount, setVisibleCount] = useState(3);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [manualPaused, setManualPaused] = useState(false);
@@ -131,11 +132,17 @@ export default function QuickHitsSlider({ stories }: QuickHitsSliderProps) {
   );
 
   useEffect(() => {
-    if (automaticPaused || !canGoForward) return;
+    if (automaticPaused || maxIndex === 0) return;
 
-    const timeout = window.setTimeout(() => moveTrack(1), ROTATION_DELAY_MS);
-    return () => window.clearTimeout(timeout);
-  }, [automaticPaused, canGoForward, moveTrack]);
+    const interval = window.setInterval(() => {
+      const index = clamp(currentIndexRef.current, 0, maxIndex);
+      if (index === 0) automaticDirectionRef.current = 1;
+      if (index === maxIndex) automaticDirectionRef.current = -1;
+      scrollToIndex(automaticDirectionRef.current === 1 ? maxIndex : 0);
+      automaticDirectionRef.current = automaticDirectionRef.current === 1 ? -1 : 1;
+    }, ROTATION_DELAY_MS);
+    return () => window.clearInterval(interval);
+  }, [automaticPaused, maxIndex, scrollToIndex]);
 
   const updateIndexFromScroll = useCallback(() => {
     const track = trackRef.current;

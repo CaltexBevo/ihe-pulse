@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-15] Story slider timing correction
+
+- Alternate automatically between the left and right ends every two seconds, preserving manual controls and accessibility pause behavior.
+
 ## [2026-09-15] Approved homepage Grant Portal spotlight and waveform correction
 
 - Added the selected Funding Spotlight above the current weekly episode, using the portal's shared cleared funding, listing and latest-cohort data with matching Pacific-day refresh behavior.
