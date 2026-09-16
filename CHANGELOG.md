@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-15] Story slider 4.5-second interval
+
+- Set the alternating left/right switch interval to 4.5 seconds.
+
 ## [2026-09-15] Story slider interval refinement
 
 - Set the alternating left/right switch interval to 3.5 seconds.

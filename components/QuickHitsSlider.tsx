@@ -23,7 +23,7 @@ interface QuickHitsSliderProps {
   stories: HomepageStory[];
 }
 
-const ROTATION_DELAY_MS = 3500;
+const ROTATION_DELAY_MS = 4500;
 
 function visibleCountForViewport(): number {
   if (typeof window === 'undefined') return 3;
