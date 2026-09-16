@@ -232,15 +232,15 @@
 }
 
 .topicActions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-top: 10px;
 }
 
 .topicActions .centerLink {
-  width: min(100%, 400px);
+  width: 100%;
+  text-align: center;
   margin: 0;
 }
 
@@ -379,6 +379,10 @@
 }
 
 @media (max-width: 759px) {
+  .topicActions {
+    grid-template-columns: 1fr;
+  }
+
   .topicGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

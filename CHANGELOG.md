@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-16] Browse All Stories library
+
+- Expand the lead-story archive into the approved visual library of edition stories and original Features, with existing artwork and canonical article links.
+- Add search, category filters, newest/oldest/title sorting, and incremental loading in a responsive card grid.
+- Add Browse All Stories between the homepage Original Features and Edition Archive buttons.
+
 ## [2026-09-16] Past edition cards and site terminology
 
 - Replace the past-edition waveform strip with compact text cards showing headlines, dates, runtimes, and listening links.
