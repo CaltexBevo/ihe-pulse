@@ -136,6 +136,7 @@ export interface InnovationPulseEpisode {
   editorialHook: string;
   audioUrl: string;
   audioDuration: string;
+  weeklyHeroImageUrl?: string; // Approved complete weekly PNG/JPEG, never a cropped story image
   deepDive: DeepDive;
   quickHits: QuickHit[];
   storiesWatching: StoryWatching[];

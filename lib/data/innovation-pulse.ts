@@ -217,6 +217,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     editorialHook: pullQuote || hook || '',
     audioUrl,
     audioDuration,
+    weeklyHeroImageUrl: typeof episode?.weeklyHeroImageUrl === 'string' ? episode.weeklyHeroImageUrl : undefined,
     deepDive,
     quickHits,
     storiesWatching: (raw.storiesWatching as InnovationPulseEpisode['storiesWatching']) || [],

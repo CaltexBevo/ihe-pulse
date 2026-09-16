@@ -25,6 +25,15 @@ export function getHomePulseArtwork(date: string): string | null {
   return HOME_PULSE_ARTWORK[date] ?? null;
 }
 
+// Complete approved weekly masters, without the homepage's interactive crop.
+export function getEpisodeHeroArtwork(date: string): string | null {
+  const approved: Record<string, string> = {
+    '2026-09-04': '/images/innovation-pulse/homepage/2026-09-04-approved-hero-v4-a-blue.png',
+    '2026-09-11': '/images/innovation-pulse/homepage/2026-09-11-approved-bans-or-better-assignments-orange.png',
+  };
+  return approved[date] ?? getHomePulseArtwork(date);
+}
+
 export function getHomePulseSupportCopy(date: string): string {
   return (
     HOME_PULSE_SUPPORT_COPY[date] ??

@@ -17,6 +17,7 @@ import {
   cleanBroadcastScript,
 } from "@/lib/data/innovation-pulse";
 import ShareBar from "@/components/ShareBar";
+import { getEpisodeHeroArtwork } from "@/lib/home-pulse-artwork";
 import { pageMetadata } from "@/lib/og";
 
 // ISR: Revalidate every 60 seconds so new episodes appear quickly
@@ -90,6 +91,7 @@ export default async function InnovationPulseDatePage({
     .filter(Boolean);
   const leadDeck = leadParagraphs[0] || episode.deepDive.summary;
   const leadBodyParagraphs = leadParagraphs.slice(1);
+  const episodeHero = episode.weeklyHeroImageUrl || getEpisodeHeroArtwork(date);
 
   return (
     <div className="min-h-screen">
@@ -112,33 +114,49 @@ export default async function InnovationPulseDatePage({
         </span>
       </div>
 
-      {/* ═══════════════════════════════════════════════════════
-          FULL-WIDTH HERO IMAGE
-          ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[1200px] mx-auto relative overflow-hidden h-[420px]">
-        <Image
-          src={episode.deepDive.heroImage || episode.deepDive.image || DEFAULT_LEAD_IMAGE}
-          alt="Story hero"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[rgba(8,8,15,0.3)] to-[rgba(8,8,15,0.1)]" />
-        {/* Badges */}
-        <div className="absolute top-6 left-6 flex gap-2">
-          <span className="font-mono text-[0.65rem] font-semibold tracking-[0.05em] px-3 py-[0.3rem] rounded-[6px] bg-[rgba(0,212,255,0.85)] text-[#08080f]">
-            LEAD STORY
-          </span>
-          <span className="font-mono text-[0.65rem] font-semibold tracking-[0.05em] px-3 py-[0.3rem] rounded-[6px] bg-[rgba(255,255,255,0.12)] text-[var(--text)] backdrop-blur-[8px]">
-            {episode.deepDive.category}
-          </span>
-        </div>
-      </div>
+      <section className="max-w-[1100px] mx-auto px-[var(--px)] pt-8 pb-2" aria-labelledby="episode-title">
+        <header className="text-center mb-6">
+          <h1 id="episode-title" className="text-[clamp(2rem,5vw,3.5rem)] font-extrabold tracking-tight">Innovation Pulse</h1>
+          <p className="text-[var(--text-secondary)] mt-2">{formatWeekCoveredLong(episode) || formatPulseDate(date)}</p>
+          <p className="text-[var(--text-secondary)] mt-1">{1 + episode.quickHits.length} stories · {isWeeklyEpisode(episode) ? 'Full weekly episode' : 'Full episode'}</p>
+        </header>
+        {episodeHero && (
+          <div className="mb-5">
+            <Image src={episodeHero} alt={'Innovation Pulse artwork for ' + formatPulseDate(date)} width={1672} height={941} sizes="(max-width: 1100px) 100vw, 1100px" className="block w-full h-auto rounded-md" priority />
+          </div>
+        )}
+        {/* Never mount an audio element without a real source. */}
+        {episode.audioUrl ? (
+          <Suspense fallback={
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3">
+              <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
+                <span className="w-[5px] h-[5px] rounded-full bg-[var(--text-muted)]" />
+                LOADING
+              </div>
+              <div className="w-9 h-9 rounded-full bg-[var(--surface-2)]" />
+              <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px]" />
+            </div>
+          }>
+            <EpisodeAudioPlayer
+              key={episode.audioUrl}
+              audioUrl={episode.audioUrl}
+              audioDuration={episode.audioDuration || '0:00'}
+            />
+          </Suspense>
+        ) : (
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10">
+            <div className="flex items-center gap-[0.45rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
+              <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
+              AUDIO COMING SOON
+            </div>
+          </div>
+        )}
 
-      {/* ═══════════════════════════════════════════════════════
-          ARTICLE CONTENT
-          ═══════════════════════════════════════════════════════ */}
-      <div className="max-w-[820px] mx-auto px-[var(--px)] -mt-12 relative z-10">
+
+      </section>
+      <div className="max-w-[820px] mx-auto px-[var(--px)] relative">
+        <h2 className="text-2xl font-bold mb-6">Inside {isWeeklyEpisode(episode) ? 'this week’s episode' : 'this episode'}</h2>
+        <p className="font-mono text-xs text-[var(--cyan)] uppercase mb-3">This {isWeeklyEpisode(episode) ? 'week’s' : 'episode’s'} top story</p>
         {/* Meta Badges */}
         <div className="flex items-center gap-3 mb-4 flex-wrap">
           <span
@@ -160,9 +178,9 @@ export default async function InnovationPulseDatePage({
         </div>
 
         {/* Title - DM Sans Bold */}
-        <h1 className="font-sans text-[clamp(1.8rem,4vw,2.6rem)] font-extrabold leading-[1.15] mb-4 tracking-[-0.02em]">
+        <h3 className="font-sans text-[clamp(1.8rem,4vw,2.6rem)] font-extrabold leading-[1.15] mb-4 tracking-[-0.02em]">
           {episode.deepDive.title}
-        </h1>
+        </h3>
 
         {/* Week coverage line for weekly episodes */}
         {formatWeekCoveredLong(episode) && (
@@ -175,32 +193,6 @@ export default async function InnovationPulseDatePage({
         <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8 font-normal">
           {leadDeck}
         </p>
-
-        {/* Never mount an audio element without a real source. */}
-        {episode.audioUrl ? (
-          <Suspense fallback={
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3">
-              <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
-                <span className="w-[5px] h-[5px] rounded-full bg-[var(--text-muted)]" />
-                LOADING
-              </div>
-              <div className="w-9 h-9 rounded-full bg-[var(--surface-2)]" />
-              <div className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px]" />
-            </div>
-          }>
-            <EpisodeAudioPlayer
-              audioUrl={episode.audioUrl}
-              audioDuration={episode.audioDuration || '0:00'}
-            />
-          </Suspense>
-        ) : (
-          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10">
-            <div className="flex items-center gap-[0.45rem] text-[0.65rem] font-semibold text-[var(--text-muted)] font-mono tracking-[0.06em]">
-              <span className="w-[5px] h-[5px] rounded-full bg-[var(--cyan)]" />
-              AUDIO BRIEFING COMING SOON
-            </div>
-          </div>
-        )}
 
         {/* Article Body */}
         <article className="mb-10 space-y-6">

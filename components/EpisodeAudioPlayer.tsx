@@ -24,6 +24,7 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
   const [audioError, setAudioError] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
   // Handle autoplay query param
   useEffect(() => {
@@ -40,14 +41,16 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
             .then(() => setIsPlaying(true))
             .catch((err) => {
               // Autoplay may be blocked by browser policy
-              console.log('Autoplay blocked:', err);
+              if (err?.name === 'AbortError') return;
+              if (err?.name === 'NotAllowedError') setAutoplayBlocked(true);
+              else setAudioError(true);
             });
         }
       }, 500);
 
       return () => clearTimeout(playTimer);
     }
-  }, [searchParams]);
+  }, [searchParams, audioUrl]);
 
   // Audio event handlers
   useEffect(() => {
@@ -71,7 +74,11 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
       setCurrentTime(0);
     };
 
-    const handlePlay = () => setIsPlaying(true);
+    const handlePlay = () => {
+      setIsPlaying(true);
+      setAudioError(false);
+      setAutoplayBlocked(false);
+    };
     const handlePause = () => setIsPlaying(false);
     const handleError = () => {
       setAudioError(true);
@@ -97,11 +104,13 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
 
   const togglePlay = () => {
     const audio = audioRef.current;
-    if (!audio || audioError) return;
+    if (!audio) return;
 
     if (isPlaying) {
       audio.pause();
     } else {
+      if (audioError) audio.load();
+      setAudioError(false);
       // AbortError = play interrupted by pause (fast double-click) — not a
       // real failure, don't permanently disable the player.
       audio.play().catch((err: DOMException) => {
@@ -117,18 +126,20 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const percentage = clickX / rect.width;
-    audio.currentTime = percentage * duration;
+    audio.currentTime = Math.max(0, Math.min(1, percentage)) * duration;
   };
 
   return (
     <div
       ref={containerRef}
       id="audio-player"
-      className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-4 mb-10 flex items-center gap-3"
+      className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 sm:p-6 mb-8 scroll-mt-24"
     >
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
+      <h2 className="text-lg sm:text-xl font-bold mb-4">Listen to the full episode</h2>
+      <div className="flex items-center gap-4">
 
-      <div className="flex items-center gap-[0.35rem] text-[0.65rem] font-semibold text-[var(--cyan)] font-mono tracking-[0.06em]">
+      <div className="sr-only" aria-live="polite">
         <span className={`w-[5px] h-[5px] rounded-full ${isPlaying ? 'bg-[var(--cyan)] animate-[pulseDot_2s_infinite]' : 'bg-[var(--text-muted)]'}`} />
         {audioError ? 'UNAVAILABLE' : isPlaying ? 'PLAYING' : 'LISTEN'}
       </div>
@@ -136,28 +147,42 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
       <button
         onClick={togglePlay}
         aria-label={isPlaying ? 'Pause episode' : 'Play episode'}
-        className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 transition-transform hover:scale-105"
+        className="w-14 h-14 rounded-full bg-[var(--cyan)] text-[var(--bg)] flex items-center justify-center shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--cyan)]"
       >
         {isPlaying ? (
-          <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white">
+          <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current" aria-hidden="true">
             <rect x="6" y="4" width="4" height="16" />
             <rect x="14" y="4" width="4" height="16" />
           </svg>
         ) : (
-          <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] fill-white ml-[1px]">
+          <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current ml-[1px]" aria-hidden="true">
             <polygon points="6,3 20,12 6,21" />
           </svg>
         )}
       </button>
 
       <div
-        className="flex-1 h-1 bg-[var(--surface-2)] rounded-[2px] relative cursor-pointer group"
+        className="flex-1 h-3 bg-[var(--surface-2)] rounded-md relative cursor-pointer group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--cyan)]"
         onClick={handleProgressClick}
+        onKeyDown={(event) => {
+          const audio = audioRef.current;
+          if (!audio || !duration) return;
+          const targets: Record<string, number> = {
+            ArrowRight: audio.currentTime + 5, ArrowUp: audio.currentTime + 5,
+            ArrowLeft: audio.currentTime - 5, ArrowDown: audio.currentTime - 5,
+            Home: 0, End: duration,
+          };
+          if (event.key in targets) {
+            event.preventDefault();
+            audio.currentTime = Math.max(0, Math.min(duration, targets[event.key]));
+          }
+        }}
         role="slider"
         aria-label="Audio progress"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(progress)}
+        aria-valuetext={formatTime(currentTime) + ' of ' + (duration ? formatTime(duration) : audioDuration)}
         tabIndex={0}
       >
         <div
@@ -166,13 +191,19 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
         />
       </div>
 
-      <span className="font-mono text-[0.65rem] text-[var(--text-muted)] whitespace-nowrap">
+      <span className="font-mono text-xs text-[var(--text-secondary)] whitespace-nowrap">
         {audioError
           ? 'Audio unavailable'
           : duration > 0
           ? `${formatTime(currentTime)} / ${formatTime(duration)}`
-          : audioDuration}
+          : '0:00 / ' + audioDuration}
       </span>
+      </div>
+      <p className="text-sm text-[var(--text-secondary)] mt-3" role="status">
+        {audioError ? 'Audio could not load. Press Play to retry.' : autoplayBlocked
+          ? 'Your browser paused automatic playback. Press Play to listen.'
+          : isPlaying ? 'Playing the full episode.' : 'Press Play if audio does not start automatically.'}
+      </p>
     </div>
   );
 }
