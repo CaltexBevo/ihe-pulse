@@ -47,7 +47,7 @@ const processSteps = [
     step: "2",
     title: "Initial Conversation",
     description:
-      "If there's a fit, we'll schedule a 15-minute call to discuss your story and episode format.",
+      "If there's a fit, we'll schedule a 15-minute call to discuss your story and edition format.",
   },
   {
     step: "3",
@@ -59,7 +59,7 @@ const processSteps = [
     step: "4",
     title: "Record & Publish",
     description:
-      "We record remotely (about 30-45 minutes). Episodes are edited and published within 2-4 weeks.",
+      "We record remotely (about 30-45 minutes). Editions are edited and published within 2-4 weeks.",
   },
 ];
 
@@ -147,7 +147,7 @@ export default function BeOurGuestPage() {
             A Conversation, Not an Interview
           </h3>
           <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
-            Our podcast episodes are conversations between colleagues. The host
+            Our podcast editions are conversations between colleagues. The host
             guides the discussion, but the goal is to surface your
             authentic experience and insights — not to put you on the spot.
           </p>
@@ -176,7 +176,7 @@ export default function BeOurGuestPage() {
             <li className="flex items-start gap-3">
               <span className="w-[6px] h-[6px] rounded-full bg-[var(--green)] mt-2 shrink-0" />
               <span>
-                <strong className="text-[var(--text)]">Promotion:</strong> We&apos;ll promote your episode across our
+                <strong className="text-[var(--text)]">Promotion:</strong> We&apos;ll promote your edition across our
                 channels
               </span>
             </li>
@@ -343,7 +343,7 @@ export default function BeOurGuestPage() {
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)]">
-            Recent Episodes
+            Recent Editions
           </h2>
           <Link
             href="/podcast"
@@ -353,7 +353,7 @@ export default function BeOurGuestPage() {
           </Link>
         </div>
         <p className="text-[0.88rem] text-[var(--text-secondary)]">
-          Listen to past episodes to get a feel for the show&apos;s style and format.
+          Listen to past editions to get a feel for the show&apos;s style and format.
         </p>
       </div>
     </div>

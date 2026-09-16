@@ -347,7 +347,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
             className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] transition-all text-right"
           >
             <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase block mb-2">
-              Full episode →
+              Full edition →
             </span>
             <span className="text-[0.9rem] font-semibold">{formatShortDate(story.episodeDate)} Briefing</span>
           </Link>

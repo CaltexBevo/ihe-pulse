@@ -42,7 +42,7 @@ export default function TermsOfUsePage() {
                 Use of Content
               </h2>
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7] mb-4">
-                All content on this website, including but not limited to articles, podcast episodes, AI prompts, and tools directory information, is provided for educational and informational purposes only.
+                All content on this website, including but not limited to articles, podcast editions, AI prompts, and tools directory information, is provided for educational and informational purposes only.
               </p>
               <ul className="space-y-2 text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
                 <li className="flex items-start gap-3">

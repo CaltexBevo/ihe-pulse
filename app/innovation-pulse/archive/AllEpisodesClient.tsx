@@ -120,7 +120,7 @@ export default function AllEpisodesClient({ episode }: AllEpisodesClientProps) {
         <button
           onClick={handlePlayClick}
           className="ae-play-btn"
-          aria-label={`${isPlaying ? "Pause" : "Play"} episode — ${episode.dayOfWeek}, ${monthDay}: ${episode.deepDiveTitle}`}
+          aria-label={`${isPlaying ? "Pause" : "Play"} edition — ${episode.dayOfWeek}, ${monthDay}: ${episode.deepDiveTitle}`}
         >
           {isPlaying ? (
             <svg viewBox="0 0 24 24" className="ae-play-icon">

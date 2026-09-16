@@ -269,20 +269,23 @@ test('page handlers report visible-tab time and deduplicate scroll, audio, and r
   handlers.onClick(clickEvent);
   assert.equal(sent.filter(([name]) => name === 'share_click').length, 1);
 
-  const nativeShareElement = {
-    href: '',
-    getAttribute: (name: string) =>
-      name === 'aria-label' ? 'Share episode from Innovation Pulse' : null,
-  };
-  const nativeShareEvent = {
-    type: 'click',
-    target: { closest: () => nativeShareElement },
-  } as unknown as Event;
-  handlers.onClick(nativeShareEvent);
-  assert.deepEqual(sent.at(-1), [
-    'share_click',
-    { page: '/innovation-pulse/[date]', channel: 'native' },
-  ]);
+  for (const label of ['Share edition from Innovation Pulse', 'Share episode from Innovation Pulse']) {
+    const nativeShareElement = {
+      href: '',
+      getAttribute: (name: string) => name === 'aria-label' ? label : null,
+    };
+    const nativeShareEvent = {
+      type: 'click',
+      target: { closest: () => nativeShareElement },
+    } as unknown as Event;
+    const eventCount = sent.length;
+    handlers.onClick(nativeShareEvent);
+    assert.equal(sent.length, eventCount + 1, label);
+    assert.deepEqual(sent.at(-1), [
+      'share_click',
+      { page: '/innovation-pulse/[date]', channel: 'native' },
+    ]);
+  }
 });
 
 class FakeListenerTarget implements ListenerTargetLike {

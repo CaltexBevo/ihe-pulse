@@ -7,8 +7,8 @@ import ArchiveListClient, { type ArchiveEpisodeData } from './ArchiveListClient'
 import styles from './archive.module.css';
 
 export const metadata = pageMetadata({
-  title: 'Innovation Pulse Episodes | Innovating Higher Ed',
-  description: 'Listen to every Innovation Pulse episode and explore the weekly A.I. stories shaping higher education.',
+  title: 'Innovation Pulse Editions | Innovating Higher Ed',
+  description: 'Listen to every Innovation Pulse edition and explore the weekly A.I. stories shaping higher education.',
   path: '/innovation-pulse/archive',
 });
 
@@ -58,14 +58,14 @@ export default function AllEpisodesPage() {
         <div className={styles.introGrid}>
           <div>
             <div className={styles.eyebrow}>Innovation Pulse</div>
-            <h1>Every episode. The stories behind the week.</h1>
+            <h1>Every edition. The stories behind the week.</h1>
             <p>
-              Listen to the weekly A.I. news shaping higher education, then open any episode to explore every story and source.
+              Listen to the weekly A.I. news shaping higher education, then open any edition to explore every story and source.
             </p>
           </div>
 
           <dl className={styles.stats} aria-label="Archive totals">
-            <div><dt>Episodes</dt><dd>{allEpisodes.length}</dd></div>
+            <div><dt>Editions</dt><dd>{allEpisodes.length}</dd></div>
             <div><dt>Stories</dt><dd>{totalStories}</dd></div>
             <div><dt>Weeks</dt><dd>{weekCount}</dd></div>
           </dl>

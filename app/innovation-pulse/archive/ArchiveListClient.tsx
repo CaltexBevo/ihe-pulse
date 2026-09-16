@@ -36,7 +36,7 @@ function Artwork({ episode, priority = false }: { episode: ArchiveEpisodeData; p
     return (
       <Image
         src={episode.thumbnailUrl}
-        alt={`Episode artwork for ${episode.headline}`}
+        alt={`Edition artwork for ${episode.headline}`}
         fill
         sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 570px"
         className={styles.artworkImage}
@@ -210,13 +210,13 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
         </div>
 
         <div className={styles.featuredCopy}>
-          <div className={styles.kicker}>Latest Episode · {featuredEpisode.weekLabel}</div>
+          <div className={styles.kicker}>Latest Edition · {featuredEpisode.weekLabel}</div>
           <h2 id="featured-episode-title">{featuredEpisode.headline}</h2>
           <p>{featuredEpisode.summary}</p>
 
           {featuredEpisode.relatedTitles.length > 0 && (
             <div className={styles.insideList}>
-              <span>Also inside this episode</span>
+              <span>Also inside this edition</span>
               <ul>
                 {featuredEpisode.relatedTitles.map((title) => <li key={title}>{title}</li>)}
               </ul>
@@ -250,7 +250,7 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
                 step="1"
                 value={Math.min(currentTime, duration)}
                 onChange={(event) => seekActiveEpisode(Number(event.currentTarget.value))}
-                aria-label="Seek through featured episode"
+                aria-label="Seek through featured edition"
                 aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
                 style={{ '--progress': `${(currentTime / duration) * 100}%` } as CSSProperties}
               />
@@ -268,7 +268,7 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
           </div>
 
           <label className={styles.search}>
-            <span className={styles.srOnly}>Search episodes</span>
+            <span className={styles.srOnly}>Search editions</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="11" cy="11" r="7" />
               <path d="m16.5 16.5 4 4" />
@@ -284,7 +284,7 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
 
         {query.trim() && (
           <p className={styles.matchCount} aria-live="polite">
-            {matchCount} {matchCount === 1 ? 'episode matches' : 'episodes match'} “{query.trim()}”
+            {matchCount} {matchCount === 1 ? 'edition matches' : 'editions match'} “{query.trim()}”
           </p>
         )}
 
@@ -315,7 +315,7 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
                     {playLabel(episode)} · {timeLabel(episode)}
                   </button>
                   <Link href={`/innovation-pulse/${episode.date}`} className={styles.cardLink}>
-                    Episode <span aria-hidden="true">→</span>
+                    Edition <span aria-hidden="true">→</span>
                   </Link>
                 </div>
 
@@ -341,7 +341,7 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
         </div>
 
         {matchCount === 0 && (
-          <div className={styles.emptyState}>No episodes match “{query.trim()}”.</div>
+          <div className={styles.emptyState}>No editions match “{query.trim()}”.</div>
         )}
       </section>
     </>

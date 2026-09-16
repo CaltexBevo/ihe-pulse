@@ -131,7 +131,7 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
           <div className={styles.subscribe}>
             <div className="np-sub-copy">
               <h2 id="homepage-subscribe-heading" className={styles.subscribeHeading}>
-                Never miss an episode.
+                Never miss an edition.
               </h2>
               <p className="np-sub-muted">The Innovation Pulse, {cadenceLabel}.</p>
             </div>
@@ -191,7 +191,7 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
                 Browse All Original Features <span aria-hidden="true">→</span>
               </Link>
               <Link href="/innovation-pulse/archive" className={styles.centerLink}>
-                Browse the Episode Archive <span aria-hidden="true">→</span>
+                Browse the Edition Archive <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>

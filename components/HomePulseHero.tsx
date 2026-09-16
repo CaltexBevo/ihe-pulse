@@ -268,7 +268,7 @@ export default function HomePulseHero({
               alt={
                 usesApprovedCollage
                   ? 'Weekly Innovation Pulse collage connecting the MIT AI guidelines story with degree pathways, responsible AI, course tools, research, and teaching practice.'
-                  : 'Episode artwork for ' + headline
+                  : 'Edition artwork for ' + headline
               }
               fill
               priority
@@ -293,7 +293,7 @@ export default function HomePulseHero({
             className={styles.playButton}
             onClick={togglePlay}
             disabled={!hasAudio}
-            aria-label={isPlaying ? 'Pause episode' : 'Play episode'}
+            aria-label={isPlaying ? 'Pause edition' : 'Play edition'}
           >
             {isPlaying ? (
               <svg className={styles.pauseIcon} viewBox="0 0 24 24" aria-hidden="true">
@@ -310,7 +310,7 @@ export default function HomePulseHero({
           <div className={styles.playerContent}>
             <p className={styles.playerLabel}>
               {usesApprovedFullHero
-                ? 'Play this week’s episode'
+                ? 'Play this week’s edition'
                 : `Play the ${roundedMinutes}-minute briefing`}
             </p>
             <div
@@ -365,7 +365,7 @@ export default function HomePulseHero({
                 }
                 onKeyDown={handleSeekKeyDown}
                 disabled={!hasAudio || !totalDuration}
-                aria-label="Seek through episode"
+                aria-label="Seek through edition"
                 aria-valuetext={
                   formatTime(currentTime) + ' of ' + formatTime(totalDuration)
                 }
@@ -419,7 +419,7 @@ export default function HomePulseHero({
               type="button"
               className={styles.shareButton}
               onClick={handleShare}
-              aria-label="Share episode from Innovation Pulse"
+              aria-label="Share edition from Innovation Pulse"
             >
               <span className={styles.platformIcon}>
                 <ShareGlyph />

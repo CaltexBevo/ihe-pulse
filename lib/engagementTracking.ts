@@ -519,7 +519,7 @@ export function createPageEngagementHandlers(options: EngagementHandlerOptions) 
     else if (/Share on LinkedIn/i.test(label) || /linkedin\.com\/sharing/i.test(href)) channel = 'linkedin';
     else if (/Share via email/i.test(label)) channel = 'email';
     else if (/Copy link/i.test(label)) channel = 'copy';
-    else if (/Share episode/i.test(label)) channel = 'native';
+    else if (/Share (?:episode|edition)/i.test(label)) channel = 'native';
     if (channel) {
       options.dispatch('share_click', { page: options.page, channel });
       return;

@@ -19,7 +19,7 @@ const platforms = [
 ];
 
 const filters = [
-  "All Episodes",
+  "All Editions",
   "Interviews",
   "Panels",
   "Teaching & Pedagogy",
@@ -71,7 +71,7 @@ export default function PodcastPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-[rgba(8,8,15,0.4)] to-[rgba(8,8,15,0.1)]" />
               <div className="absolute top-5 left-5 flex gap-2">
                 <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[var(--cyan)] text-[var(--bg)]">
-                  Latest Episode
+                  Latest Edition
                 </span>
                 <span className="font-mono text-[0.6rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[rgba(255,255,255,0.12)] text-[var(--text)] backdrop-blur-[8px]">
                   Leadership & Strategy
@@ -127,8 +127,8 @@ export default function PodcastPage() {
           </svg>
           <input
             type="text"
-            placeholder="Search episodes..."
-            aria-label="Search episodes"
+            placeholder="Search editions..."
+            aria-label="Search editions"
             className="bg-transparent border-none outline-none text-[0.78rem] text-[var(--text)] placeholder:text-[var(--text-muted)] w-[160px]"
           />
         </div>
@@ -183,7 +183,7 @@ export default function PodcastPage() {
                   <span>{ep.duration}</span>
                   <button
                     className="ml-auto w-[26px] h-[26px] rounded-full bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center hover:scale-110 transition-transform"
-                    aria-label={`Play episode: ${ep.title}`}
+                    aria-label={`Play edition: ${ep.title}`}
                   >
                     <svg viewBox="0 0 24 24" className="w-[10px] h-[10px] fill-white ml-[1px]" aria-hidden="true">
                       <polygon points="6,3 20,12 6,21" />
@@ -198,10 +198,10 @@ export default function PodcastPage() {
         {/* Load More */}
         <div className="text-center mt-8">
           <button
-            aria-label="Load more episodes"
+            aria-label="Load more editions"
             className="font-mono text-[0.72rem] text-[var(--cyan)] px-6 py-2.5 rounded-[8px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] hover:border-[rgba(0,212,255,0.3)] transition-all tracking-[0.04em]"
           >
-            Load more episodes
+            Load more editions
           </button>
         </div>
       </div>

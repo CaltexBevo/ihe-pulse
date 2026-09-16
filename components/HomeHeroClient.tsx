@@ -236,7 +236,7 @@ export default function HomeHeroClient({ latestEpisode, recentEpisodes }: HomeHe
           {/* Play Button */}
           <button
             onClick={togglePlay}
-            aria-label={isPlaying ? "Pause episode" : "Play episode"}
+            aria-label={isPlaying ? "Pause edition" : "Play edition"}
             className="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--magenta)] flex items-center justify-center shrink-0 shadow-[0_4px_20px_rgba(0,212,255,0.2)] transition-all hover:scale-[1.06]"
           >
             {isPlaying ? (

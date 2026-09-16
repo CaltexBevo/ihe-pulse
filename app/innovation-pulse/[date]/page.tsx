@@ -118,7 +118,7 @@ export default async function InnovationPulseDatePage({
         <header className="text-center mb-6">
           <h1 id="episode-title" className="text-[clamp(2rem,5vw,3.5rem)] font-extrabold tracking-tight">Innovation Pulse</h1>
           <p className="text-[var(--text-secondary)] mt-2">{formatWeekCoveredLong(episode) || formatPulseDate(date)}</p>
-          <p className="text-[var(--text-secondary)] mt-1">{1 + episode.quickHits.length} stories · {isWeeklyEpisode(episode) ? 'Full weekly episode' : 'Full episode'}</p>
+          <p className="text-[var(--text-secondary)] mt-1">{1 + episode.quickHits.length} stories · {isWeeklyEpisode(episode) ? 'Full weekly edition' : 'Full edition'}</p>
         </header>
         {episodeHero && (
           <div className="mb-5">
@@ -155,8 +155,8 @@ export default async function InnovationPulseDatePage({
 
       </section>
       <div className="max-w-[820px] mx-auto px-[var(--px)] relative">
-        <h2 className="text-2xl font-bold mb-6">Inside {isWeeklyEpisode(episode) ? 'this week’s episode' : 'this episode'}</h2>
-        <p className="font-mono text-xs text-[var(--cyan)] uppercase mb-3">This {isWeeklyEpisode(episode) ? 'week’s' : 'episode’s'} top story</p>
+        <h2 className="text-2xl font-bold mb-6">Inside {isWeeklyEpisode(episode) ? 'this week’s edition' : 'this edition'}</h2>
+        <p className="font-mono text-xs text-[var(--cyan)] uppercase mb-3">This {isWeeklyEpisode(episode) ? 'week’s' : 'edition’s'} top story</p>
         {/* Meta Badges */}
         <div className="flex items-center gap-3 mb-4 flex-wrap">
           <span
@@ -275,7 +275,7 @@ export default async function InnovationPulseDatePage({
             <summary className="cursor-pointer list-none flex items-center justify-between p-5 hover:bg-[rgba(255,255,255,0.02)] transition-colors [&::-webkit-details-marker]:hidden">
               <span className="flex flex-col gap-1">
                 <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase">
-                  Episode transcript
+                  Edition transcript
                 </span>
                 <span className="text-[0.9rem] font-semibold">
                   Read the full broadcast script
@@ -359,7 +359,7 @@ export default async function InnovationPulseDatePage({
         return (
           <div className="max-w-[1200px] mx-auto px-[var(--px)] py-10 border-t border-[var(--border)]">
             <div className="flex items-center justify-between mb-6">
-              <span className="font-sans text-[1.2rem] font-bold">Recent Episodes</span>
+              <span className="font-sans text-[1.2rem] font-bold">Recent Editions</span>
               <Link
                 href="/innovation-pulse"
                 className="font-mono text-[0.68rem] text-[var(--cyan)] tracking-[0.06em] hover:text-[var(--text)] transition-colors"

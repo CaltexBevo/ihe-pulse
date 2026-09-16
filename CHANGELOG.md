@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-16] Past edition cards and site terminology
+
+- Replace the past-edition waveform strip with compact text cards showing headlines, dates, runtimes, and listening links.
+- Show the three editions immediately preceding the featured edition, restoring the August 29–September 4 card.
+- Use Edition/Editions throughout visitor-facing site copy and accessibility labels while preserving existing URLs, data identifiers, and historical transcripts. Keep native-share tracking compatible with both labels.
+
 ## [2026-09-16] Grant Portal summary alignment
 
 - Match the homepage's dynamic program total, currently-open count, and latest additions with their status breakdown on the Grant Portal. Retain closing-soon totals.

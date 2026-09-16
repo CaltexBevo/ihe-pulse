@@ -14,7 +14,7 @@ export default function ApprovedSeptemberHeroArtwork() {
         <p>Build useful projects. Rethink assignments. Find support.</p>
         <h2>4 new AI models</h2>
         <p>What could you build?</p>
-        <ul aria-label="Other stories in this week’s episode">
+        <ul aria-label="Other stories in this week’s edition">
           <li>Writing conferences</li>
           <li>Student-written exams</li>
           <li>AI + your judgment</li>

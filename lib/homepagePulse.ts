@@ -86,10 +86,8 @@ export function selectPriorEpisodes(
   allEpisodes: InnovationPulseEpisode[],
   count = 3,
 ): InnovationPulseEpisode[] {
-  // The September 4 edition restores the immediately preceding weekly release.
-  // Preserve the approved August 22–28 lookback behavior for older home states.
-  const startIndex = allEpisodes[0]?.date === '2026-09-04' ? 1 : 2;
-  return allEpisodes.slice(startIndex, startIndex + Math.max(0, count));
+  // The newest edition is featured above; show the immediately preceding editions.
+  return allEpisodes.slice(1, 1 + Math.max(0, count));
 }
 
 export function formatEpisodeDateRange(episode: InnovationPulseEpisode): string {

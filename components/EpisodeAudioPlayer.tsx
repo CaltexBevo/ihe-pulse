@@ -136,7 +136,7 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
       className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 sm:p-6 mb-8 scroll-mt-24"
     >
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
-      <h2 className="text-lg sm:text-xl font-bold mb-4">Listen to the full episode</h2>
+      <h2 className="text-lg sm:text-xl font-bold mb-4">Listen to the full edition</h2>
       <div className="flex items-center gap-4">
 
       <div className="sr-only" aria-live="polite">
@@ -146,7 +146,7 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
 
       <button
         onClick={togglePlay}
-        aria-label={isPlaying ? 'Pause episode' : 'Play episode'}
+        aria-label={isPlaying ? 'Pause edition' : 'Play edition'}
         className="w-14 h-14 rounded-full bg-[var(--cyan)] text-[var(--bg)] flex items-center justify-center shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--cyan)]"
       >
         {isPlaying ? (
@@ -202,7 +202,7 @@ export default function EpisodeAudioPlayer({ audioUrl, audioDuration }: EpisodeA
       <p className="text-sm text-[var(--text-secondary)] mt-3" role="status">
         {audioError ? 'Audio could not load. Press Play to retry.' : autoplayBlocked
           ? 'Your browser paused automatic playback. Press Play to listen.'
-          : isPlaying ? 'Playing the full episode.' : 'Press Play if audio does not start automatically.'}
+          : isPlaying ? 'Playing the full edition.' : 'Press Play if audio does not start automatically.'}
       </p>
     </div>
   );

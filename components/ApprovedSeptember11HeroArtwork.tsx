@@ -12,7 +12,7 @@ export default function ApprovedSeptember11HeroArtwork() {
         <p>Innovating Higher Ed. This week’s AI news for higher ed.</p>
         <h1 id="home-pulse-title">Bans or better assignments?</h1>
         <p>7 stories. One quick listen. Know what matters.</p>
-        <ul aria-label="Other stories in this week’s episode">
+        <ul aria-label="Other stories in this week’s edition">
           <li>AI role-play and assignment rules</li>
           <li>Student alerts and real client work</li>
           <li>MIT teaching and a Moon AI model</li>
@@ -24,7 +24,7 @@ export default function ApprovedSeptember11HeroArtwork() {
       >
         <Image
           src={APPROVED_SEPTEMBER_11_HERO}
-          alt="Episode artwork contrasting an AI ban symbol with a sequence of better assignment designs."
+          alt="Edition artwork contrasting an AI ban symbol with a sequence of better assignment designs."
           width={1672}
           height={941}
           className={styles.image}

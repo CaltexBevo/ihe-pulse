@@ -349,7 +349,7 @@ export default function HeroNowPlaying({
             <button
               className="np-artwork-play-overlay"
               onClick={togglePlay}
-              aria-label={paused ? "Play episode" : "Pause episode"}
+              aria-label={paused ? "Play edition" : "Pause edition"}
               type="button"
             >
               {isPlaying ? (
@@ -370,14 +370,14 @@ export default function HeroNowPlaying({
           <div className="np-kicker">{isWeeklyEpisode(currentEpisode) ? "This Week's AI News for Higher Ed" : "Today's AI News for Higher Ed"}</div>
           <h1 className="np-title">{headline}</h1>
           <div className="np-meta">
-            <strong>Episode {episodeNumber}</strong>
+            <strong>Edition {episodeNumber}</strong>
             <span className="np-meta-dot">●</span>
             <span>{storyCount} Stories</span>
             <span className="np-meta-dot">●</span>
             <span>{durationDisplay}</span>
             <button
               className="np-share-btn"
-              aria-label="Share episode"
+              aria-label="Share edition"
               onClick={handleShare}
               type="button"
             >
@@ -463,7 +463,7 @@ export default function HeroNowPlaying({
         {/* Also in this episode — full-width footer bar inside card */}
         {otherStories && otherStories.length > 0 && (
           <div className="np-also-in-episode">
-            <span className="np-also-label">Also in this episode</span>
+            <span className="np-also-label">Also in this edition</span>
             <span className="np-also-stories">
               {otherStories.map((s, i) => (
                 <span key={i}>
@@ -486,7 +486,7 @@ export default function HeroNowPlaying({
       {showExtras && (
         <div className="np-subscribe">
           <div className="np-sub-copy">
-            <strong>Never miss an episode.</strong>{" "}
+            <strong>Never miss an edition.</strong>{" "}
             <span className="np-sub-muted">
               {isWeeklyEpisode(currentEpisode)
                 ? 'Delivered to your inbox every Friday — listen on the drive in, at lunch, or the drive home.'

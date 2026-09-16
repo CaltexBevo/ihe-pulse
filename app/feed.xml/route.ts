@@ -7,7 +7,7 @@ import { getAllEpisodes } from "@/lib/data/innovation-pulse";
 const SITE_URL = "https://www.innovatinghighered.com";
 const FEED_TITLE = "The Innovation Pulse — Innovating Higher Ed";
 const FEED_DESCRIPTION =
-  "AI news and analysis for higher education. Each episode covers the stories shaping how colleges and universities adopt AI — with practical takeaways for educators.";
+  "AI news and analysis for higher education. Each edition covers the stories shaping how colleges and universities adopt AI — with practical takeaways for educators.";
 
 // Generated at build time (data comes from JSON on disk, same as the pages).
 export const dynamic = "force-static";

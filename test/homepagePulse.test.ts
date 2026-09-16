@@ -131,8 +131,10 @@ test('uses the canonical Feature route for enriched original coverage', () => {
   );
 });
 
-test('selects the approved three-week homepage lookback after the current lead and prior release', () => {
+test('selects the three editions immediately before the current featured edition', () => {
   const episodes = [
+    episode({ date: '2026-09-11' }),
+    episode({ date: '2026-09-04' }),
     episode({ date: '2026-08-28' }),
     episode({ date: '2026-08-21' }),
     episode({ date: '2026-08-14' }),
@@ -140,9 +142,9 @@ test('selects the approved three-week homepage lookback after the current lead a
     episode({ date: '2026-07-31' }),
   ];
   assert.deepEqual(selectPriorEpisodes(episodes).map((item) => item.date), [
-    '2026-08-14',
-    '2026-08-07',
-    '2026-07-31',
+    '2026-09-04',
+    '2026-08-28',
+    '2026-08-21',
   ]);
 });
 

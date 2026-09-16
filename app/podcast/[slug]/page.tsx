@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const episode = episodes.find((ep) => ep.slug === slug);
 
   if (!episode) {
-    return { title: 'Episode Not Found | Innovating Higher Ed' };
+    return { title: 'Edition Not Found | Innovating Higher Ed' };
   }
 
   return pageMetadata({
@@ -60,7 +60,7 @@ export default async function EpisodeDetailPage({ params }: { params: Promise<{ 
           <svg viewBox="0 0 24 24" className="w-4 h-4 stroke-current" fill="none" strokeWidth="2">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-          Back to all episodes
+          Back to all editions
         </Link>
       </div>
 
@@ -148,7 +148,7 @@ export default async function EpisodeDetailPage({ params }: { params: Promise<{ 
 
         {/* Show Notes */}
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[16px] p-6 mb-6 max-w-[800px]">
-          <h2 className="font-sans text-[1rem] font-bold mb-3">About This Episode</h2>
+          <h2 className="font-sans text-[1rem] font-bold mb-3">About This Edition</h2>
           <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
             {episode.fullDescription}
           </p>
@@ -216,7 +216,7 @@ export default async function EpisodeDetailPage({ params }: { params: Promise<{ 
       {/* Related Episodes */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
         <div className="font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[var(--text-muted)] mb-6">
-          Related Episodes
+          Related Editions
         </div>
         <div className="grid md:grid-cols-3 gap-5">
           {relatedEpisodes.map((ep) => (

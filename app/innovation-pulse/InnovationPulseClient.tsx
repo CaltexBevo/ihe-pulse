@@ -377,10 +377,10 @@ export default function InnovationPulseClient({
                   <div className="ip-recent-header">
                     <div className="ip-recent-header-title">
                       <span className="np-dot" />
-                      <h3>Recent Episodes</h3>
+                      <h3>Recent Editions</h3>
                     </div>
                     <Link href="/innovation-pulse/archive" className="ip-recent-all-btn">
-                      All Episodes
+                      All Editions
                     </Link>
                   </div>
 
@@ -419,7 +419,7 @@ export default function InnovationPulseClient({
 
               <div className="np-subscribe" style={{ marginTop: '20px', marginBottom: '8px' }}>
                 <div className="np-sub-copy">
-                  <strong>Never miss an episode.</strong>{" "}
+                  <strong>Never miss an edition.</strong>{" "}
                   <span className="np-sub-muted">
                     {isWeeklyEpisode(currentEpisode)
                       ? 'Delivered to your inbox every Friday — listen on the drive in, at lunch, or the drive home.'
@@ -539,7 +539,7 @@ export default function InnovationPulseClient({
                   Previous Lead Stories
                 </h3>
                 <p className="text-[0.78rem] text-[var(--text-muted)] mt-0.5">
-                  Deep dives from recent episodes
+                  Deep dives from recent editions
                 </p>
               </div>
               <Link href="/innovation-pulse/stories" className="font-mono text-[0.72rem] text-[var(--cyan)] hover:text-[var(--text)] transition-colors">

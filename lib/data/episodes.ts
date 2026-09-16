@@ -28,9 +28,9 @@ export const episodes: Episode[] = [
     title: 'Human-Centered AI Strategy: Empathy, Trust, Access',
     guest: 'Chesa Caparas',
     description:
-      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. This episode explores a people-first path to AI adoption in higher education with Professor Chesa Caparas.',
+      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. This edition explores a people-first path to AI adoption in higher education with Professor Chesa Caparas.',
     fullDescription:
-      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. This episode explores a people-first path to AI adoption in higher education with Professor Chesa Caparas. They explore how empathy-driven strategies can bridge the gap between institutional mandates and real classroom needs, while keeping equity and access at the center of every decision.',
+      'Fifty percent of faculty feel overwhelmed by new tech, yet student AI use is soaring. This edition explores a people-first path to AI adoption in higher education with Professor Chesa Caparas. They explore how empathy-driven strategies can bridge the gap between institutional mandates and real classroom needs, while keeping equity and access at the center of every decision.',
     takeaways: [
       'Ready-to-use survey that maps student comfort with AI',
       'Tactics that keep feedback human while trimming workload',
@@ -60,7 +60,7 @@ export const episodes: Episode[] = [
     description:
       'Can a chatbot rewrite your toughest assignments in under five minutes? Scott James explains how his PlayLab custom-bot lets instructors quarantine course materials and surface crystal-clear rubrics.',
     fullDescription:
-      'Can a chatbot rewrite your toughest assignments in under five minutes? Scott James explains how his PlayLab custom-bot lets instructors quarantine course materials and surface crystal-clear rubrics. From sandboxing sensitive sources to injecting personality into assessments, this episode is packed with actionable strategies for any instructor ready to rethink course design with AI.',
+      'Can a chatbot rewrite your toughest assignments in under five minutes? Scott James explains how his PlayLab custom-bot lets instructors quarantine course materials and surface crystal-clear rubrics. From sandboxing sensitive sources to injecting personality into assessments, this edition is packed with actionable strategies for any instructor ready to rethink course design with AI.',
     takeaways: [
       'Step-by-step prompt flow to generate AI-resilient assignments',
       'Tactics to sandbox sources and avoid copyright headaches',
@@ -180,7 +180,7 @@ export const episodes: Episode[] = [
     description:
       'Dr. Garrick Grace reveals how extended-reality simulations and adaptive AI tools are reshaping classrooms across California community colleges.',
     fullDescription:
-      'Dr. Garrick Grace reveals how extended-reality simulations and adaptive AI tools are reshaping classrooms across California community colleges. From immersive ladders that guide reflection to belonging boosters for multilingual cohorts, this episode is a masterclass in scaling innovation without draining budgets.',
+      'Dr. Garrick Grace reveals how extended-reality simulations and adaptive AI tools are reshaping classrooms across California community colleges. From immersive ladders that guide reflection to belonging boosters for multilingual cohorts, this edition is a masterclass in scaling innovation without draining budgets.',
     takeaways: [
       'Immersive ladder: live demo → XR scenario → guided reflection',
       'Belonging boosters: AI-leveled content for multilingual cohorts',
