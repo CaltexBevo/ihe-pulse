@@ -538,3 +538,5 @@
 :global([data-theme='light'] body:has([data-site-light-background])) .page {
   background: transparent;
 }
+
+.weeklyMaster { display: flex; align-items: center; width: 100%; height: 100%; }

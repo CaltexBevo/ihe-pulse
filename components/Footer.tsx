@@ -6,8 +6,7 @@ import { PLATFORM_LINKS, PlatformIcon } from './PlatformLinks';
 import styles from './Footer.module.css';
 
 const platformLinks = [
-  // Match the nav — /innovation-pulse itself redirects to the homepage
-  { href: '/innovation-pulse/archive', label: 'Innovation Pulse' },
+  { href: '/innovation-pulse', label: 'Innovation Pulse' },
   { href: '/prompts', label: 'Prompt Navigator' },
   { href: '/ai-directory', label: 'AI Directory' },
 ];

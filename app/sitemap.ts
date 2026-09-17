@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static pages
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 1.0 },
+    { url: `${baseUrl}/innovation-pulse/stories`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${baseUrl}/innovation-pulse`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
     { url: `${baseUrl}/innovation-grants`, lastModified: new Date('2026-09-08T12:00:00Z'), changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${baseUrl}/innovation-grants/directory`, lastModified: new Date('2026-09-08T12:00:00Z'), changeFrequency: 'daily' as const, priority: 0.8 },

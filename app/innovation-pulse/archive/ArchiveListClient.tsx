@@ -4,6 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import styles from './archive.module.css';
+import { APPROVED_SEPTEMBER_11_HERO } from '@/components/ApprovedSeptember11HeroArtwork';
+import approvedArtworkStyles from '@/components/ApprovedSeptember11HeroArtwork.module.css';
+import september04Styles from '@/components/ApprovedSeptemberHeroArtwork.module.css';
 
 export interface ArchiveEpisodeData {
   date: string;
@@ -20,7 +23,6 @@ export interface ArchiveEpisodeData {
 }
 
 interface ArchiveListClientProps {
-  featuredEpisode: ArchiveEpisodeData;
   episodes: ArchiveEpisodeData[];
 }
 
@@ -33,6 +35,16 @@ function formatTime(seconds: number): string {
 
 function Artwork({ episode, priority = false }: { episode: ArchiveEpisodeData; priority?: boolean }) {
   const imageUrl = episode.thumbnailUrl || episode.fallbackImage;
+  if (imageUrl === APPROVED_SEPTEMBER_11_HERO) {
+    return <div className={styles.weeklyMaster}><div className={approvedArtworkStyles.artwork}>
+      <Image src={imageUrl} alt={`Edition artwork for ${episode.headline}`} width={1681} height={936} className={approvedArtworkStyles.image} />
+    </div></div>;
+  }
+  if (episode.date === '2026-09-04' && imageUrl?.includes('approved-hero-v4-a-blue')) {
+    return <div className={styles.weeklyMaster}><div className={september04Styles.artwork}>
+      <Image src={imageUrl} alt={`Edition artwork for ${episode.headline}`} width={1671} height={941} className={september04Styles.image} />
+    </div></div>;
+  }
   if (imageUrl) {
     return (
       <Image
@@ -55,7 +67,7 @@ function Artwork({ episode, priority = false }: { episode: ArchiveEpisodeData; p
   );
 }
 
-export default function ArchiveListClient({ featuredEpisode, episodes }: ArchiveListClientProps) {
+export default function ArchiveListClient({ episodes }: ArchiveListClientProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const activeEpisodeRef = useRef<ArchiveEpisodeData | null>(null);
   const [query, setQuery] = useState('');
@@ -70,11 +82,6 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
     if (!normalizedQuery) return episodes;
     return episodes.filter((episode) => episode.searchText.includes(normalizedQuery));
   }, [episodes, query]);
-
-  const featuredMatchesQuery = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-    return !normalizedQuery || featuredEpisode.searchText.includes(normalizedQuery);
-  }, [featuredEpisode.searchText, query]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -130,7 +137,7 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
 
   const handleSearchChange = (nextQuery: string) => {
     const normalizedQuery = nextQuery.trim().toLowerCase();
-    if (normalizedQuery && activeDate && activeDate !== featuredEpisode.date) {
+    if (normalizedQuery && activeDate) {
       const activeEpisode = episodes.find((episode) => episode.date === activeDate);
       if (activeEpisode && !activeEpisode.searchText.includes(normalizedQuery)) {
         stopActiveAudio();
@@ -191,77 +198,17 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
     activeDate === episode.date && currentTime > 0 ? formatTime(currentTime) : episode.audioDuration
   );
 
-  const matchCount = filteredEpisodes.length + (featuredMatchesQuery && query.trim() ? 1 : 0);
+  const matchCount = filteredEpisodes.length;
 
   return (
     <>
       {/* One audio element guarantees that only one archive episode plays at a time. */}
       <audio ref={audioRef} preload="metadata" />
 
-      <section className={styles.featured} aria-labelledby="featured-episode-title">
-        <div className={styles.featuredArtwork}>
-          <Artwork episode={featuredEpisode} priority />
-        </div>
-
-        <div className={styles.featuredCopy}>
-          <div className={styles.kicker}>Latest Edition · {featuredEpisode.weekLabel}</div>
-          <h2 id="featured-episode-title">{featuredEpisode.headline}</h2>
-          <p>{featuredEpisode.summary}</p>
-
-        </div>
-
-        <div className={styles.featuredStrip}>
-          <div className={styles.featuredActions}>
-            <button
-              type="button"
-              className={styles.primaryListen}
-              onClick={() => toggleEpisode(featuredEpisode)}
-              disabled={!featuredEpisode.audioUrl}
-              aria-label={`${playLabel(featuredEpisode)} ${featuredEpisode.headline}`}
-            >
-              <span className={activeDate === featuredEpisode.date && isPlaying ? styles.pauseGlyph : styles.playGlyph} aria-hidden="true" />
-              {playLabel(featuredEpisode)}
-              <span className={styles.listenRuntime}>{timeLabel(featuredEpisode)}</span>
-            </button>
-            <Link href={`/innovation-pulse/${featuredEpisode.date}`} className={styles.episodeLink}>
-              Explore all {featuredEpisode.storyCount} stories
-              <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-
-          {featuredEpisode.relatedTitles.length > 0 && (
-            <div className={styles.insideList}>
-              <span>Also inside this edition</span>
-              <ul>
-                {featuredEpisode.relatedTitles.map((title) => <li key={title}>{title}</li>)}
-              </ul>
-            </div>
-          )}
-
-          {activeDate === featuredEpisode.date && duration > 0 && (
-            <div className={styles.progressRow}>
-              <input
-                type="range"
-                min="0"
-                max={duration}
-                step="1"
-                value={Math.min(currentTime, duration)}
-                onChange={(event) => seekActiveEpisode(Number(event.currentTarget.value))}
-                aria-label="Seek through featured edition"
-                aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
-                style={{ '--progress': `${(currentTime / duration) * 100}%` } as CSSProperties}
-              />
-              <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
-            </div>
-          )}
-        </div>
-      </section>
-
       <section className={styles.library} aria-labelledby="episode-library-title">
         <div className={styles.libraryHeader}>
           <div>
-            <div className={styles.kicker}>The full archive</div>
-            <h2 id="episode-library-title">More weeks worth hearing</h2>
+            <h2 id="episode-library-title">Weekly Editions</h2>
           </div>
 
           <label className={styles.search}>

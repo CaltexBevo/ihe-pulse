@@ -38,3 +38,13 @@
 @media (max-width: 1150px) { .headingRow { align-items: flex-start; flex-direction: column; gap: 20px; } .controls { align-self: flex-end; } }
 @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card h2 { font-size: 1.3rem; } }
 @media (max-width: 600px) { .page { padding-top: 22px; } .controls { align-self: stretch; flex-wrap: wrap; } .search { flex: 1; } .search input { width: 100%; } .sort, .sort select { width: 100%; } .grid { grid-template-columns: 1fr; } .filters { gap: 8px; } .filters button { padding: 9px 12px; } .card h2 { font-size: 1.35rem; } }
+
+.embedded { margin-top: 28px; }
+.embedded .headingRow { justify-content: flex-end; }
+.tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.tabs a { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 22px; color: var(--text); background: var(--bg-card); border: 1px solid var(--text-dim); border-radius: 13px; font-weight: 700; text-decoration: none; }
+.tabs a[aria-current="page"] { color: var(--bg); background: var(--cyan); border-color: var(--cyan); }
+.tabs a:hover { border-color: var(--cyan); }
+.currentStories { margin-top: 36px; }
+.currentStories h2 { font-family: var(--font-heading), sans-serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.15; }
+.currentLinks { display: flex; flex-wrap: wrap; gap: 16px 28px; margin: 24px 0; color: var(--cyan); }

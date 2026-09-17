@@ -11,7 +11,7 @@ import styles from "./Nav.module.css";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/innovation-grants", label: "Grant Portal" },
-  { href: "/innovation-pulse/archive", label: "Innovation Pulse" },
+  { href: "/innovation-pulse", label: "Innovation Pulse" },
   { href: "/prompts", label: "Prompts" },
   { href: "/ai-directory", label: "AI Directory" },
   { href: "/educator-tools", label: "Educator Tools" },

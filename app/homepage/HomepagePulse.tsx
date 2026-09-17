@@ -168,14 +168,14 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
             </nav>
 
             <div className={styles.topicActions}>
-              <Link href="/feature-coverage" className={styles.centerLink}>
-                Browse All Original Features <span aria-hidden="true">→</span>
+              <Link href="/innovation-pulse/stories?tab=features" className={styles.centerLink}>
+                Original Features <span aria-hidden="true">→</span>
               </Link>
               <Link href="/innovation-pulse/stories" className={styles.centerLink}>
-                Browse All Stories <span aria-hidden="true">→</span>
+                All Stories <span aria-hidden="true">→</span>
               </Link>
-              <Link href="/innovation-pulse/archive" className={styles.centerLink}>
-                Browse the Edition Archive <span aria-hidden="true">→</span>
+              <Link href="/innovation-pulse/stories?tab=editions" className={styles.centerLink}>
+                Weekly Editions <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
