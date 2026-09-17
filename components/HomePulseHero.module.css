@@ -620,3 +620,5 @@
     transition: none;
   }
 }
+
+:global([data-homepage]) .hero { margin-top: 16px; background: var(--home-tray); box-shadow: var(--home-shadow); }

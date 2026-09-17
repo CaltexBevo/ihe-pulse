@@ -219,3 +219,7 @@
     transform: none;
   }
 }
+
+:global([data-theme='light'] body:has([data-site-light-background])) .page {
+  background: transparent;
+}

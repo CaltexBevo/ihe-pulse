@@ -3292,3 +3292,28 @@ summary:focus:not(:focus-visible) {
     flex-wrap: wrap;
   }
 }
+
+/*
+ * Founder-approved September 16 light canvas, reusing the Grant Portal's
+ * exact pastel palette. Route marker excludes the portal and all descendants.
+ * Keep opaque reading cards and theme tokens unchanged.
+ */
+[data-theme="light"] body:has([data-site-light-background]) {
+  /* Preserve text contrast where the pastel canvas is darker than white. */
+  --cyan: color-mix(in srgb, #0e7490 85%, black);
+  --text-dim: color-mix(in srgb, #64748b 80%, black);
+  background-color: #f2f5f9;
+  background-image:
+    radial-gradient(ellipse 560px 560px at 8% 0%, color-mix(in srgb, #9fd4ea 45%, transparent), transparent 78%),
+    radial-gradient(ellipse 520px 520px at 100% 5%, color-mix(in srgb, #e5b6da 45%, transparent), transparent 78%),
+    radial-gradient(ellipse 480px 480px at 45% 100%, color-mix(in srgb, #c6b8f0 45%, transparent), transparent 78%),
+    radial-gradient(ellipse 380px 380px at 88% 45%, color-mix(in srgb, #f0dcae 45%, transparent), transparent 78%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+@media (forced-colors: active) {
+  [data-theme="light"] body:has([data-site-light-background]) {
+    background: Canvas;
+  }
+}

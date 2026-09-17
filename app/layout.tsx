@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import SiteLightBackground from "@/components/SiteLightBackground";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import EngagementAnalytics from "@/components/EngagementAnalytics";
 import { getPublicAnalyticsPagePaths } from "@/lib/publicAnalyticsPaths";
@@ -90,6 +91,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <ThemeProvider>
+          <SiteLightBackground />
           {/* Skip navigation link for keyboard users */}
           <a href="#main-content" className="skip-nav">
             Skip to main content

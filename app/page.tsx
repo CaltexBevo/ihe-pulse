@@ -1,3 +1,4 @@
+import styles from './homepage/HomepageShell.module.css';
 import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
 import HomeGrantSpotlight from "@/components/HomeGrantSpotlight";
 import PastEpisodesStrip from "@/components/PastEpisodesStrip";
@@ -26,7 +27,7 @@ export default function Home() {
     : null;
 
   return (
-    <div className="flex flex-col">
+    <div className={styles.homepage} data-homepage>
       <HomeGrantSpotlight />
       <section className="relative" aria-label="Latest Innovation Pulse">
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />

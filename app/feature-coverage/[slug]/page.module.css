@@ -569,3 +569,8 @@
     transition: none;
   }
 }
+
+:global([data-theme='light'] body:has([data-site-light-background])) .page,
+:global([data-theme='light'] body:has([data-site-light-background])) .hero {
+  background: transparent;
+}

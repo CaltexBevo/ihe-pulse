@@ -21,7 +21,7 @@ const communityLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--bg-elevated)]" role="contentinfo">
+    <footer className={`${styles.footer} border-t border-[var(--border)] bg-[var(--bg-elevated)]`} role="contentinfo">
       <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)] py-10">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-[minmax(340px,1.5fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(240px,1.2fr)] lg:gap-12">
           <div>

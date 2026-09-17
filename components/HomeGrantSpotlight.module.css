@@ -28,3 +28,5 @@
 @media(max-width:480px) { .card { padding:20px 16px 16px; gap:20px; } .kicker { font-size:13px; } .funding h2 { font-size:26px; } .amount { font-size:clamp(30px,10vw,46px); letter-spacing:-.055em; } .amountLabel { font-size:15px; } .stats { gap:12px; } .stats strong { font-size:44px; } .stats p { font-size:14px; } .cohort { padding-left:12px; } .action { font-size:16px; } }
 @media(prefers-reduced-motion:reduce) { .card::after { animation:none; display:none; } .action { transition:none; } .action:hover,.action:focus-visible { transform:none; } }
 @media(forced-colors:active) { .card { background:Canvas; border-color:CanvasText; } .gradient,.amount b { background:none; color:CanvasText; } .card::after { display:none; } .action { border:1px solid LinkText; color:LinkText; background:Canvas; } .action:focus-visible { outline-color:Highlight; } }
+
+:global([data-homepage]) .card { box-shadow: var(--home-shadow); }

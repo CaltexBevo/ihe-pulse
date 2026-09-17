@@ -1,3 +1,11 @@
+:global(body:has([data-homepage])) .footer {
+  border-color: var(--border-strong);
+}
+
+:global([data-theme='light'] body:has([data-site-light-background])) .footer {
+  background: color-mix(in srgb, var(--bg-card) 45%, transparent);
+}
+
 .logoLink {
   display: inline-flex;
   align-items: center;

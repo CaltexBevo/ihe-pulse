@@ -1,0 +1,31 @@
+.homepage {
+  --home-canvas: var(--bg);
+  --home-tray: var(--bg-elevated);
+  --home-card: var(--bg-card);
+  --home-shadow: 0 3px 12px color-mix(in srgb, var(--bg) 18%, transparent);
+  display: flex;
+  flex-direction: column;
+  background: var(--home-canvas);
+}
+
+:global([data-theme='light']) .homepage {
+  --home-canvas: transparent;
+  --home-tray: color-mix(in srgb, var(--bg-card) 65%, transparent);
+  --home-card: var(--bg-card);
+  --home-shadow: 0 3px 12px color-mix(in srgb, var(--cyan) 12%, transparent);
+}
+
+.homepage > :global(section[aria-label='Latest Innovation Pulse']) > :global(.absolute) {
+  display: none;
+}
+
+.homepage > :global(section[aria-labelledby='featured-coverage-heading']) > div {
+  width: calc(100% - 2 * var(--px));
+  max-width: calc(var(--max-w) - 2 * var(--px));
+  margin-top: 8px;
+  padding: 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: var(--home-tray);
+  box-shadow: var(--home-shadow);
+}

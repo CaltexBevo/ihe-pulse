@@ -19,3 +19,9 @@
   .episodeCard:last-child { padding-bottom: 0; }
   .title { margin: 6px 0 8px; }
 }
+
+:global([data-homepage]) .module { background: var(--home-tray); box-shadow: var(--home-shadow); }
+:global([data-homepage]) .episodeGrid { gap: 12px; }
+:global([data-homepage]) .episodeCard,
+:global([data-homepage]) .episodeCard:first-child,
+:global([data-homepage]) .episodeCard:last-child { padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--home-card); }
