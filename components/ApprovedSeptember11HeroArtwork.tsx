@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from './ApprovedSeptember11HeroArtwork.module.css';
 
 export const APPROVED_SEPTEMBER_11_HERO =
-  '/images/innovation-pulse/homepage/2026-09-11-approved-bans-or-better-assignments-orange.png';
+  '/images/innovation-pulse/homepage/2026-09-11-approved-bold-diagonal.png';
 
 /** Founder-selected master, displayed without cropping its editorial content or retypesetting it. */
 export default function ApprovedSeptember11HeroArtwork() {
@@ -20,13 +20,13 @@ export default function ApprovedSeptember11HeroArtwork() {
       </div>
       <div
         className={styles.artwork}
-        data-approved-master="2026-09-11-bans-or-better-assignments-orange"
+        data-approved-master="2026-09-11-bold-diagonal"
       >
         <Image
           src={APPROVED_SEPTEMBER_11_HERO}
           alt="Edition artwork contrasting an AI ban symbol with a sequence of better assignment designs."
-          width={1672}
-          height={941}
+          width={1681}
+          height={936}
           className={styles.image}
           priority
           unoptimized

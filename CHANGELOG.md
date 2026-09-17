@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-16] September 11 homepage hero artwork
+
+- Replace the current edition's upper hero with the founder-approved Bold diagonal artwork, preserving the working audio player, measured waveform, edition details and listening links.
+
 ## [2026-09-16] Navigation order
 
 - Place Grant Portal before Innovation Pulse in both desktop and mobile menus.

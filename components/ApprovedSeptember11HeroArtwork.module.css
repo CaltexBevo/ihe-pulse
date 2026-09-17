@@ -1,17 +1,19 @@
-/* The approved master is 1672 × 941. Its printed audio footer starts at
-   source row 731. Clip only that footer because the live player renders below. */
+/* Exact 1681 × 936 master. Retain x20–1660, y26–647 (1641 × 622).
+   Hide exterior margin and pictured footer; the real player renders below. */
 .artwork {
   position: relative;
   width: 100%;
-  aspect-ratio: 1672 / 731;
+  aspect-ratio: 1641 / 622;
   overflow: hidden;
 }
 
 .image {
   display: block;
-  width: 100%;
+  width: calc(100% * 1681 / 1641);
   height: auto;
   max-width: none;
+  margin-left: calc(-100% * 20 / 1641);
+  margin-top: calc(-100% * 26 / 1641);
 }
 
 .accessibleCopy {
