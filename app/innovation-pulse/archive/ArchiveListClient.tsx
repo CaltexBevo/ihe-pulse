@@ -32,13 +32,14 @@ function formatTime(seconds: number): string {
 }
 
 function Artwork({ episode, priority = false }: { episode: ArchiveEpisodeData; priority?: boolean }) {
-  if (episode.thumbnailUrl) {
+  const imageUrl = episode.thumbnailUrl || episode.fallbackImage;
+  if (imageUrl) {
     return (
       <Image
-        src={episode.thumbnailUrl}
+        src={imageUrl}
         alt={`Edition artwork for ${episode.headline}`}
         fill
-        sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 570px"
+        sizes={priority ? "(max-width: 760px) 100vw, 50vw" : "(max-width: 540px) 100vw, 180px"}
         className={styles.artworkImage}
         priority={priority}
       />
@@ -48,16 +49,9 @@ function Artwork({ episode, priority = false }: { episode: ArchiveEpisodeData; p
   return (
     <div
       className={styles.fallbackArtwork}
-      style={{
-        '--fallback-image': episode.fallbackImage
-          ? `url(${episode.fallbackImage})`
-          : 'linear-gradient(145deg, #102b3d, #25142f)',
-      } as CSSProperties}
-    >
-      <span>Innovation Pulse</span>
-      <strong>{episode.headline}</strong>
-      <small>{episode.weekLabel}</small>
-    </div>
+      role="img"
+      aria-label={`No artwork available for ${episode.headline}`}
+    />
   );
 }
 
@@ -214,15 +208,9 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
           <h2 id="featured-episode-title">{featuredEpisode.headline}</h2>
           <p>{featuredEpisode.summary}</p>
 
-          {featuredEpisode.relatedTitles.length > 0 && (
-            <div className={styles.insideList}>
-              <span>Also inside this edition</span>
-              <ul>
-                {featuredEpisode.relatedTitles.map((title) => <li key={title}>{title}</li>)}
-              </ul>
-            </div>
-          )}
+        </div>
 
+        <div className={styles.featuredStrip}>
           <div className={styles.featuredActions}>
             <button
               type="button"
@@ -233,13 +221,22 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
             >
               <span className={activeDate === featuredEpisode.date && isPlaying ? styles.pauseGlyph : styles.playGlyph} aria-hidden="true" />
               {playLabel(featuredEpisode)}
-              <span>{timeLabel(featuredEpisode)}</span>
+              <span className={styles.listenRuntime}>{timeLabel(featuredEpisode)}</span>
             </button>
             <Link href={`/innovation-pulse/${featuredEpisode.date}`} className={styles.episodeLink}>
               Explore all {featuredEpisode.storyCount} stories
               <span aria-hidden="true">→</span>
             </Link>
           </div>
+
+          {featuredEpisode.relatedTitles.length > 0 && (
+            <div className={styles.insideList}>
+              <span>Also inside this edition</span>
+              <ul>
+                {featuredEpisode.relatedTitles.map((title) => <li key={title}>{title}</li>)}
+              </ul>
+            </div>
+          )}
 
           {activeDate === featuredEpisode.date && duration > 0 && (
             <div className={styles.progressRow}>
@@ -301,7 +298,9 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
                   <span>{episode.storyCount} stories</span>
                 </div>
                 <h3>{episode.headline}</h3>
-                <p>{episode.summary}</p>
+              </div>
+
+              <p className={styles.cardSummary}>{episode.summary}</p>
 
                 <div className={styles.cardActions}>
                   <button
@@ -312,7 +311,8 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
                     aria-label={`${playLabel(episode)} ${episode.headline}`}
                   >
                     <span className={activeDate === episode.date && isPlaying ? styles.pauseGlyph : styles.playGlyph} aria-hidden="true" />
-                    {playLabel(episode)} · {timeLabel(episode)}
+                    {playLabel(episode)}
+                    <span className={styles.listenRuntime}>{timeLabel(episode)}</span>
                   </button>
                   <Link href={`/innovation-pulse/${episode.date}`} className={styles.cardLink}>
                     Edition <span aria-hidden="true">→</span>
@@ -335,7 +335,6 @@ export default function ArchiveListClient({ featuredEpisode, episodes }: Archive
                     <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
                   </div>
                 )}
-              </div>
             </article>
           ))}
         </div>
