@@ -1,5 +1,12 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-17] Grant Portal daily verification
+
+- Rechecked all 33 current opportunities and the newly closed New Jersey program; advanced 32 fully verified record dates and retained earlier dates for unresolved source questions.
+- Kept the supported $49,982,403 current total, 33 open opportunities and nine closing soon. New Jersey remains in the archive after its September 16 deadline; no record was deleted.
+- Clarified Wake Forest community-registration and proposal-composition requirements, documented New Jersey's deadline and pool sources, and retained explicit DOE, NLGCA and Wake Forest watchlist review notes.
+- Preserved the approved headline, existing design, public holds, portal-added dates and September 14 full-discovery date.
+
 ## [2026-09-16] September 11 homepage hero artwork
 
 - Replace the current edition's upper hero with the founder-approved Bold diagonal artwork, preserving the working audio player, measured waveform, edition details and listening links.

@@ -18,11 +18,39 @@ const { innovationGrants, INNOVATION_GRANTS_VERIFIED_ON, INNOVATION_GRANTS_FULL_
 
 const AS_OF = new Date("2026-09-15T00:00:00.000Z");
 
+test("September 17 archives expired funding without deleting records or refreshing uncertain sources", () => {
+  const records = getPublicInnovationGrants();
+  const today = new Date("2026-09-17T00:00:00.000Z");
+  const snapshot = getPublicInnovationGrantFundingSnapshot(today);
+  assert.equal(snapshot.publishedProgramPoolUsd, 49_982_403);
+  assert.equal(snapshot.publishedProgramPoolCount, 12);
+  assert.equal(snapshot.approximatePoolCount, 6);
+  assert.equal(snapshot.openOpportunityCount, 33);
+  assert.equal(snapshot.closingSoonCount, 9);
+  assert.equal(snapshot.openingSoonCount, 0);
+  assert.equal(records.length, 46);
+  assert.equal(records.filter((record) => getInnovationGrantLifecycle(record, today) === "closed").length, 8);
+  const nj = records.find((record) => record.id === 68);
+  assert.equal(getInnovationGrantLifecycle(nj, new Date("2026-09-16T00:00:00.000Z")), "closing-soon");
+  assert.equal(getInnovationGrantLifecycle(nj, today), "closed");
+  assert.equal(nj.deadlineTimeZone, "Eastern Time");
+  assert.match(nj.sourceNotes, /official grants index explicitly supplies Eastern Time/);
+  assert.equal(records.find((record) => record.id === 67).lastVerified, "Sep 15, 2026");
+  assert.match(records.find((record) => record.id === 67).sourceNotes, /federal-institution eligibility pending/);
+  assert.match(records.find((record) => record.id === 67).eligibility, /Eligibility for federal institutions remains under DOE review and must be confirmed before applying/);
+  assert.equal(records.find((record) => record.id === 79).lastVerified, "Sep 9, 2026");
+  assert.equal(records.find((record) => record.id === 83).lastVerified, "Sep 14, 2026");
+  const coi = records.find((record) => record.id === 77);
+  assert.match(coi.eligibility, /free ECI community registration/);
+  assert.match(coi.applicationAccess, /does not allow generative or assistive AI/);
+  assert.match(coi.deadline, /September 2026 through June 2028/);
+});
+
 test("daily verification preserves source dates and holds the conflicted EPA record outside public payloads", () => {
-  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Sep 15, 2026");
+  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Sep 17, 2026");
   assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 14, 2026");
-  const verifiedIds = [38, 43, 44, 51, 53, 54, 55, 59, 61, 62, 64, 65, 67, 68, 69, 71, 76, 77, 78, 80, 81, 87, 88, 89, 90, 91];
-  assert.deepEqual(innovationGrants.filter((record) => record.id < 92 && record.lastVerified === "Sep 15, 2026").map((record) => record.id), verifiedIds);
+  const verifiedIds = [38, 43, 44, 53, 54, 55, 59, 61, 62, 64, 65, 68, 69, 71, 76, 77, 78, 80, 81, 87, 88, 89, 90, 91];
+  assert.deepEqual(innovationGrants.filter((record) => record.id < 92 && record.lastVerified === "Sep 17, 2026").map((record) => record.id), verifiedIds);
   assert.equal(innovationGrants.find((record) => record.id === 79).lastVerified, "Sep 9, 2026");
   const epa = innovationGrants.find((record) => record.id === 66);
   assert.equal(epa.lastVerified, "Sep 8, 2026");
@@ -136,8 +164,9 @@ test("focused corporate additions preserve whole-inventory freshness and inclusi
   assert.equal(new Set(innovationGrants.map((record) => record.id)).size, 63);
   assert.equal(records.length, 46);
   assert.deepEqual(additions.map((record) => record.id), [92, 93, 94, 95, 96, 97, 98, 99, 100]);
-  assert.ok(additions.every((record) => record.portalAddedDate === "2026-09-15" && record.lastVerified === "Sep 15, 2026"));
-  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Sep 15, 2026");
+  assert.ok(additions.every((record) => record.portalAddedDate === "2026-09-15"));
+  assert.ok(additions.every((record) => record.lastVerified === (record.id === 99 ? "Sep 15, 2026" : "Sep 17, 2026")));
+  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Sep 17, 2026");
   assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 14, 2026");
   const californiaIds = filterInnovationGrantOpportunities(records, {
     ...DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS, location: "CA", status: "all",
@@ -187,7 +216,7 @@ test("recovered records retain evidence and exclude scope-mixed pools", () => {
   assert.equal(hec.publishedProgramPoolApproximate, true);
   assert.equal(nlgca.publishedProgramPoolUsd, 5_700_000);
   assert.equal(nlgca.publishedProgramPoolApproximate, true);
-  assert.match(tcup.lastVerified, /Sep 15, 2026/);
+  assert.match(tcup.lastVerified, /Sep 17, 2026/);
   assert.match(tcup.deadline, /submitting-organization local time/);
   assert.match(tcup.applicationAccess, /Research\.gov/);
   assert.doesNotMatch(tcup.awardAmount, /10\.3 million/);
