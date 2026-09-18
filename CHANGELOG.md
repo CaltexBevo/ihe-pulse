@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-18] Homepage story card reveal
+
+- Replace horizontal slider movement with stationary cards that reveal the next story downward, one card at a time from left to right.
+- Use a three-second dwell and 600ms reveal; retain manual navigation, interaction pauses, and reduced-motion support across responsive layouts.
+
 ## [2026-09-17] Grant Portal daily verification
 
 - Rechecked all 33 current opportunities and the newly closed New Jersey program; advanced 32 fully verified record dates and retained earlier dates for unresolved source questions.

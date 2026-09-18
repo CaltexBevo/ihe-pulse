@@ -77,27 +77,24 @@
 }
 
 .track {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(var(--story-slots, 3), minmax(0, 1fr));
   gap: 10px;
   min-width: 0;
   margin: 0;
   padding: 0 2px 6px;
-  overflow-x: auto;
+  overflow: visible;
   list-style: none;
-  scroll-behavior: smooth;
-  scroll-snap-type: x proximity;
-  scrollbar-color: var(--border-hover) transparent;
-  scrollbar-width: thin;
 }
 
 .item {
   display: flex;
   min-width: 0;
-  flex: 0 0 calc((100% - 20px) / 3);
-  scroll-snap-align: start;
 }
 
 .card {
+  position: relative;
+  height: 310px;
   display: flex;
   width: 100%;
   min-width: 0;
@@ -108,31 +105,30 @@
   color: var(--text);
   background: var(--bg-card);
   text-decoration: none;
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  transition: border-color 180ms ease;
 }
 
 .card:hover,
 .card:focus-visible {
-  transform: translateY(-3.3px);
   border-color: var(--border-hover);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.231);
 }
 
 .imageFrame {
   position: relative;
-  aspect-ratio: 16 / 9;
+  height: 180px;
+  flex: 0 0 180px;
   overflow: hidden;
   background: var(--surface);
 }
 
 .image {
   object-fit: cover;
-  transition: transform 220ms ease;
 }
 
 .card:hover .image,
 .card:focus-visible .image {
-  transform: scale(1.025);
+  transform: none;
 }
 
 .imageFallback {
@@ -165,6 +161,10 @@
   font-size: clamp(0.86rem, 1.35vw, 1rem);
   font-weight: 700;
   line-height: 1.22;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card:hover .title,
@@ -192,9 +192,8 @@
 }
 
 @media (max-width: 1024px) {
-  .item {
-    flex-basis: calc((100% - 10px) / 2);
-  }
+  .card { height: 330px; }
+  .imageFrame { height: 200px; flex-basis: 200px; }
 }
 
 @media (max-width: 680px) {
@@ -202,14 +201,20 @@
     justify-content: space-between;
   }
 
-  .item {
-    flex-basis: 100%;
-  }
+  .card { height: 360px; }
+  .imageFrame { height: 230px; flex-basis: 230px; }
 
   .body {
     min-height: 82px;
   }
 }
+
+.stationary, .outgoing { position: absolute; inset: 0; pointer-events: none; }
+.face { display: flex; flex-direction: column; height: 100%; background: var(--bg-card); }
+.outgoing { z-index: 1; animation: revealDown 600ms cubic-bezier(.4, 0, .2, 1) forwards; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@keyframes revealDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
+@media (prefers-reduced-motion: reduce) { .outgoing { animation: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   .arrow,
