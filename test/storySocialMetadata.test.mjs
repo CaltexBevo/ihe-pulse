@@ -6,6 +6,21 @@ import { STORY_SOCIAL_IMAGES } from "../lib/story-social-images.ts";
 
 const base = { title: "Story title", description: "Story summary", path: "/innovation-pulse/story/example" };
 
+test("USD social card uses measured wide artwork and preserves the article image", () => {
+  const slug = "a-five-level-ai-scale-starts-with-the-assignments-purpose";
+  const card = STORY_SOCIAL_IMAGES[slug];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/usd-purpose-first-card.png"]);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("A Five-Level AI Scale"));
+  assert.equal(story.image, "/images/stories/a-five-level-ai-scale-starts-with-the-assignment-s-purpose.webp");
+  assert.notEqual(story.image, card.imagePath);
+});
+
 test("Texas A&M card override uses measured artwork without changing its story hero", () => {
   const card = STORY_SOCIAL_IMAGES["texas-am-finds-the-instructional-design-behind-better-ai-rol"];
   const bytes = fs.readFileSync(`public${card.imagePath}`);
