@@ -15,12 +15,24 @@ jobs:
       BASE_REVISION: ${{ github.event.pull_request.base.sha }}
 
     steps:
-      - name: Check out proposed revision without stored credentials
-        # actions/checkout v7.0.1
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          fetch-depth: 0
-          persist-credentials: false
+      - name: Check out exact public revision without credentials
+        # Anonymous checkout avoids submodule traversal during action auth cleanup.
+        # Preserve the repository's orphan gitlink and all tracked source files.
+        env:
+          GIT_CONFIG_NOSYSTEM: '1'
+          GIT_CONFIG_GLOBAL: /dev/null
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_HEAD" =~ ^[a-f0-9]{40}$ ]] || exit 1
+          [[ "$BASE_REVISION" =~ ^[a-f0-9]{40}$ ]] || exit 1
+          test -z "$(ls -A)" || exit 1
+          git init --quiet .
+          git remote add origin https://github.com/CaltexBevo/ihe-pulse.git
+          git -c credential.helper= fetch --no-tags --no-recurse-submodules origin "$EXPECTED_HEAD" "$BASE_REVISION"
+          git -c submodule.recurse=false checkout --detach "$EXPECTED_HEAD"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git cat-file -e "$BASE_REVISION^{commit}"
 
       - name: Set up Node.js
         # actions/setup-node v7.0.0

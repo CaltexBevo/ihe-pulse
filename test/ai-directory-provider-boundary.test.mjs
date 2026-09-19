@@ -446,8 +446,12 @@ test('workflow is read-only, full-scope, runtime-bound, and runs independent gat
   ]) assert.equal(pattern.test(workflow), false, `forbidden workflow pattern: ${pattern}`);
   assert.match(workflow, /pull_request:\s*\n\s*\npermissions:/);
   assert.match(workflow, /contents:\s*read/);
-  assert.match(workflow, /persist-credentials:\s*false/);
-  assert.match(workflow, /actions\/checkout v7\.0\.1\s*\n\s*uses: actions\/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1/);
+  assert.doesNotMatch(workflow, /actions\/checkout@|github\.token|persist-credentials:\s*true|--depth/);
+  assert.match(workflow, /GIT_CONFIG_GLOBAL:\s*\/dev\/null/);
+  assert.match(workflow, /GIT_CONFIG_NOSYSTEM:\s*'1'/);
+  assert.match(workflow, /GIT_TERMINAL_PROMPT:\s*'0'/);
+  assert.match(workflow, /git -c credential\.helper= fetch --no-tags --no-recurse-submodules origin "\$EXPECTED_HEAD" "\$BASE_REVISION"/);
+  assert.match(workflow, /git -c submodule\.recurse=false checkout --detach "\$EXPECTED_HEAD"/);
   assert.match(workflow, /actions\/setup-node v7\.0\.0\s*\n\s*uses: actions\/setup-node@820762786026740c76f36085b0efc47a31fe5020/);
   assert.match(workflow, /node-version:\s*'20'/);
   assert.match(workflow, /process\.versions\.node\.split\('\.'\)\[0\] !== '20'/);
@@ -475,6 +479,35 @@ test('workflow is read-only, full-scope, runtime-bound, and runs independent gat
   assert.match(legacyReachability.stdout, /stale locks fail closed/i);
   assert.match(legacyReachability.stdout, /extended attributes or ACLs/i);
   assert.doesNotMatch(harness, /InnovatingHigherEd\.com HQ/);
+});
+
+test('anonymous exact checkout preserves orphan gitlinks, complete ancestry and tracked bytes', () => {
+  const state = fixture();
+  const blockedModel = String.fromCharCode(99, 108, 97, 117, 100, 101);
+  const orphanPath = `.${blockedModel}/skills/gstack`;
+  git(state.repo, ['update-index', '--add', '--cacheinfo', `160000,${state.head},${orphanPath}`]);
+  git(state.repo, ['-c', 'user.name=Boundary Test', '-c', 'user.email=boundary@example.invalid', 'commit', '-qm', 'orphan fixture']);
+  const proposed = git(state.repo, ['rev-parse', 'HEAD']);
+  const workflow = readFileSync(workflowPath, 'utf8');
+  const block = workflow.split('        run: |\n')[1].split('\n      - name: Set up Node.js')[0];
+  const localRemote = `'${state.repo.replaceAll("'", "'\\''")}'`;
+  const script = block.split('\n').map((line) => line.replace(/^          /, '')).join('\n').replace('https://github.com/CaltexBevo/ihe-pulse.git', localRemote);
+  const destination = resolve(state.root, 'anonymous-checkout');
+  mkdirSync(destination);
+  const invoke = (head = proposed) => spawnSync('bash', ['-c', script], { cwd: destination, encoding: 'utf8', env: { PATH: process.env.PATH, GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: '/dev/null', GIT_TERMINAL_PROMPT: '0', EXPECTED_HEAD: head, BASE_REVISION: state.head } });
+  const invalid = invoke('invalid');
+  assert.notEqual(invalid.status, 0);
+  assert.equal(existsSync(resolve(destination, '.git')), false, invalid.stderr);
+  const outcome = invoke();
+  assert.equal(outcome.status, 0, outcome.stderr);
+  assert.equal(git(destination, ['rev-parse', 'HEAD']), proposed);
+  git(destination, ['merge-base', '--is-ancestor', state.head, proposed]);
+  assert.equal(git(destination, ['ls-tree', '-r', 'HEAD']), git(state.repo, ['ls-tree', '-r', 'HEAD']));
+  assert.deepEqual(readFileSync(resolve(destination, 'public/data/ai-apps.json')), state.baselineBytes);
+  assert.match(git(destination, ['ls-files', '--stage', orphanPath]), /^160000 /);
+  assert.equal(existsSync(resolve(destination, '.gitmodules')), false);
+  assert.doesNotMatch(readFileSync(resolve(destination, '.git/config'), 'utf8'), /extraheader|includeIf|credential/i);
+  assert.notEqual(invoke().status, 0, 'checkout must refuse a nonempty workspace');
 });
 
 test('active-scope scanner preserves allowlisted editorial content and blocks an executable path', () => {
