@@ -10,59 +10,31 @@ import {
   BadgeCheck,
   CheckCircle,
   XCircle,
-  Target,
   Puzzle,
   DollarSign,
   Calendar,
-  Zap,
   Lightbulb,
 } from 'lucide-react';
+import {
+  assertValidAiDirectoryData,
+  formatAiDirectoryDate,
+  getAiDirectoryReviewLabel,
+  type AiDirectoryData,
+  type AiDirectoryTool,
+  type AiDirectoryReview,
+} from '@/lib/data/ai-directory-schema';
 
-// ── Types ───────────────────────────────────────────────────
-
-interface AiTool {
-  slug: string;
-  name: string;
-  tagline: string;
-  description: string;
-  category: string;
-  accent: string;
-  badge: string | null;
-  values: string[];
-  tasks: string[];
-  roles: string[];
-  pricing: {
-    model: string;
-    startingPrice?: string;
-    details: string;
-  };
-  keyFeatures?: string[];
-  pros?: string[];
-  cons?: string[];
-  bestFor?: string[];
-  strengths?: string[] | null;
-  limitations?: string[] | null;
-  quickstart?: string | null;
-  integrations?: string[];
-  domain: string;
-  platformUrl: string;
-  lastUpdated: string;
-  verified: boolean;
-  staffPick: boolean;
-}
-
-interface AiAppsData {
-  tools: AiTool[];
-  categories: string[];
-  lastUpdated: string;
-}
+type AiTool = AiDirectoryTool;
+type AiAppsData = AiDirectoryData;
 
 // ── Data loading ────────────────────────────────────────────
 
 function getAppsData(): AiAppsData {
   const filePath = path.join(process.cwd(), 'public', 'data', 'ai-apps.json');
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(fileContents);
+  const data: unknown = JSON.parse(fileContents);
+  assertValidAiDirectoryData(data);
+  return data;
 }
 
 function getAppBySlug(slug: string): AiTool | undefined {
@@ -104,6 +76,8 @@ function PricingBadge({ model }: { model: string }) {
     free: 'Free',
     freemium: 'Freemium',
     paid: 'Paid',
+    'institutional-quote': 'Institutional quote',
+    unknown: 'Check pricing',
   };
   return (
     <span
@@ -114,16 +88,52 @@ function PricingBadge({ model }: { model: string }) {
   );
 }
 
-function ToolBadge({ badge }: { badge: string }) {
+function ToolBadge({ badge }: { badge: NonNullable<AiTool['badge']> }) {
   const styles: Record<string, string> = {
     new: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
-    trending: 'bg-[var(--amber)]/10 text-[var(--amber)] border-[var(--amber)]/20',
     updated: 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20',
   };
   return (
     <span className={`px-2.5 py-1 rounded text-[0.7rem] font-semibold uppercase tracking-wider border font-mono ${styles[badge] ?? styles.new}`}>
       {badge}
     </span>
+  );
+}
+
+function ReviewStatusBadge({ review }: { review: AiDirectoryReview }) {
+  const isCurrent = review.status === 'current' && Boolean(review.reviewedAt);
+  const className = isCurrent
+    ? 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20'
+    : review.status === 'limited'
+      ? 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20'
+      : 'bg-[var(--surface)] text-[var(--text-muted)] border-[var(--border)]';
+
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border ${className}`}
+      title={review.status === 'blocked' ? review.unresolvedClaims.join(' ') : undefined}
+    >
+      {isCurrent && <BadgeCheck size={14} aria-hidden="true" />}
+      {getAiDirectoryReviewLabel(review)}
+    </span>
+  );
+}
+
+function ToolLogo({ app }: { app: AiTool }) {
+  const accent = paletteFor(app.slug);
+  const initial = app.name.trim().charAt(0).toUpperCase() || '?';
+
+  return (
+    <div
+      role="img"
+      aria-label={`${app.name} initial`}
+      className="w-11 h-11 flex items-center justify-center rounded-lg overflow-hidden text-[1.1rem] font-bold"
+      style={{
+        color: accent,
+      }}
+    >
+      <span aria-hidden="true">{initial}</span>
+    </div>
   );
 }
 
@@ -141,8 +151,11 @@ export default async function AppDetailPage({
     notFound();
   }
 
-  const logoUrl = `https://www.google.com/s2/favicons?domain=${app.domain}&sz=128`;
-  const hasDetailedReview = app.strengths && app.limitations && app.quickstart;
+  const hasDetailedReview = app.strengths.length > 0 || app.limitations.length > 0;
+  const officialSources = getAppsData().sources.filter((source) => app.review.evidenceIds.includes(source.id));
+  const visitUrl = app.review.status === 'retire-candidate'
+    ? officialSources.find((source) => source.sourceType === 'official-status')?.url ?? app.platformUrl
+    : app.platformUrl;
   // Palette-locked accent (Rule 17.3): derived from slug, never from data-driven hex.
   const accent = paletteFor(app.slug);
   // WCAG AA: magenta fails 4.5:1 as small text on dark cards and as a bg for
@@ -175,12 +188,7 @@ export default async function AppDetailPage({
                 className="shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden border border-[var(--border)]"
                 style={{ borderColor: `color-mix(in srgb, ${accent} 30%, transparent)` }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={logoUrl}
-                  alt={`${app.name} logo`}
-                  className="w-11 h-11 object-contain"
-                />
+                <ToolLogo app={app} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-3 mb-1 flex-wrap">
@@ -191,13 +199,8 @@ export default async function AppDetailPage({
                 </div>
                 <p className="text-[0.84rem] text-[var(--text-muted)]">{app.category}</p>
                 <div className="flex items-center gap-3 mt-3 flex-wrap">
-                  <PricingBadge model={app.pricing.model} />
-                  {app.verified && (
-                    <span className="flex items-center gap-1 text-[var(--cyan)] text-sm font-medium">
-                      <BadgeCheck size={16} />
-                      Verified
-                    </span>
-                  )}
+                  {app.review.status !== 'retire-candidate' && <PricingBadge model={app.pricing.model} />}
+                  <ReviewStatusBadge review={app.review} />
                   {app.pricing.startingPrice && (
                     <span className="text-xs text-[var(--text-muted)]">
                       From {app.pricing.startingPrice}
@@ -210,25 +213,26 @@ export default async function AppDetailPage({
             {/* ── CTA ────────────────────────────────────────── */}
             <div className="flex flex-wrap gap-3 mt-6">
               <a
-                href={app.platformUrl}
+                href={visitUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-[0.9rem] ${isMagenta ? "text-white" : "text-[var(--bg)]"} transition-all hover:opacity-90 hover:-translate-y-[1px]`}
-                style={{ background: accent }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-[0.9rem] text-white transition-all hover:opacity-90 hover:-translate-y-[1px]"
+                style={{ background: 'linear-gradient(135deg, color-mix(in srgb, var(--purple) 65%, black), color-mix(in srgb, var(--magenta) 65%, black))' }}
               >
-                Visit {app.name}
+                {app.review.status === 'retire-candidate' ? 'Read service notice' : `Visit ${app.name}`}
                 <ExternalLink size={15} />
               </a>
               <div className="flex items-center gap-2 px-4 py-3 text-xs text-[var(--text-muted)]">
                 <Calendar size={13} />
-                Last updated{' '}
-                {new Date(app.lastUpdated).toLocaleDateString('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
+                Content updated{' '}
+                {formatAiDirectoryDate(app.review.contentUpdatedAt)}
               </div>
             </div>
+            {app.review.status !== 'current' && (
+              <p className="mt-4 rounded-lg border border-[var(--cyan)]/20 bg-[var(--cyan)]/[0.04] px-3 py-2 text-xs leading-5 text-[var(--text-muted)]" role="note">
+                {app.review.unresolvedClaims.join(' ')}
+              </p>
+            )}
           </div>
         </div>
 
@@ -238,7 +242,7 @@ export default async function AppDetailPage({
             className="text-[0.82rem] font-semibold uppercase tracking-[1.5px] mb-3"
             style={{ color: accentText }}
           >
-            What It Does
+            {app.review.status === 'retire-candidate' ? 'Service Status' : 'What It Does'}
           </h2>
           <p className="text-[0.94rem] text-[var(--text-muted)] leading-[1.7]">{app.description}</p>
         </section>
@@ -265,7 +269,7 @@ export default async function AppDetailPage({
         </section>
 
         {/* ── Best For (if available) ────────────────────── */}
-        {app.bestFor && app.bestFor.length > 0 && (
+        {app.review.status !== 'retire-candidate' && app.bestFor.length > 0 && (
           <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-6 sm:p-8 mb-6">
             <h2
               className="text-[0.82rem] font-semibold uppercase tracking-[1.5px] mb-4"
@@ -282,6 +286,7 @@ export default async function AppDetailPage({
         {/* ── Strengths & Limitations (detailed review) ──── */}
         {hasDetailedReview && (
           <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {app.strengths.length > 0 && (
             <section className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[14px] p-5">
               <h3 className="text-[0.88rem] font-semibold text-[var(--cyan)] mb-3 flex items-center gap-2">
                 <CheckCircle size={16} />
@@ -296,11 +301,12 @@ export default async function AppDetailPage({
                 ))}
               </ul>
             </section>
-
+            )}
+            {app.limitations.length > 0 && (
             <section className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[14px] p-5">
               <h3 className="text-[0.88rem] font-semibold text-[var(--amber)] mb-3 flex items-center gap-2">
                 <XCircle size={16} />
-                Where It Falls Short
+                Limitations to Check
               </h3>
               <ul className="space-y-2">
                 {app.limitations!.map((l, i) => (
@@ -311,6 +317,7 @@ export default async function AppDetailPage({
                 ))}
               </ul>
             </section>
+            )}
           </div>
         )}
 
@@ -338,7 +345,7 @@ export default async function AppDetailPage({
         )}
 
         {/* ── Pros & Cons (if available) ─────────────────── */}
-        {app.pros && app.cons && (
+        {app.pros.length > 0 && app.cons.length > 0 && (
           <div className="grid sm:grid-cols-2 gap-4 mb-6">
             <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5">
               <h3 className="text-[0.88rem] font-semibold text-[var(--text)] mb-3 flex items-center gap-2">
@@ -374,13 +381,14 @@ export default async function AppDetailPage({
 
         {/* ── Pricing Breakdown ──────────────────────────── */}
         <section className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[14px] p-5 mb-6">
-          <h3 className="text-[0.88rem] font-semibold text-[var(--text)] mb-2 flex items-center gap-2">
+          <h2 className="text-[0.88rem] font-semibold text-[var(--text)] mb-2 flex items-center gap-2">
             <DollarSign size={16} style={{ color: accent }} />
             Pricing Breakdown
-          </h3>
+          </h2>
           <p className="text-[0.88rem] text-[var(--text-muted)] leading-[1.6]">
             {app.pricing.details}
           </p>
+          <p className="mt-2 text-xs text-[var(--text-muted)]">Access information checked {formatAiDirectoryDate(app.pricing.checkedAt)}. {app.review.status === 'retire-candidate' ? 'Read the official notice for the service timeline.' : 'Confirm the current plan before subscribing.'}</p>
         </section>
 
         {/* ── Getting Started (quickstart) ───────────────── */}
@@ -400,16 +408,17 @@ export default async function AppDetailPage({
               {app.quickstart}
             </p>
           </section>
-        ) : (
-          <section className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-[14px] p-5 mb-6">
-            <h3 className="text-[0.88rem] font-semibold text-[var(--text-muted)] mb-2">
-              Full Review Coming Soon
-            </h3>
-            <p className="text-[0.88rem] text-[var(--text-muted)] leading-[1.6]">
-              Our editorial team is preparing an in-depth review of {app.name} with strengths, limitations, and getting-started guidance for higher ed use.
-            </p>
-          </section>
-        )}
+        ) : null}
+
+        <section className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 mb-6">
+          <h2 className="font-semibold text-[var(--cyan)] mb-2">Sources and review</h2>
+          <p className="text-sm text-[var(--text-muted)] mb-3">Official information checked {formatAiDirectoryDate(app.review.reviewedAt)}. Practical uses are editorial suggestions. This is not a hands-on product test or an institutional endorsement.</p>
+          <ul className="space-y-2 text-sm">
+            {officialSources.filter((source, index, all) => all.findIndex(item => item.url === source.url) === index).map(source => (
+              <li key={source.id}><a href={source.url} target="_blank" rel="noopener noreferrer" className="text-[var(--cyan)] underline underline-offset-4">{source.title}</a></li>
+            ))}
+          </ul>
+        </section>
 
         {/* ── Integrations ───────────────────────────────── */}
         {app.integrations && app.integrations.length > 0 && (
@@ -455,13 +464,13 @@ export default async function AppDetailPage({
         {/* ── Visit CTA ──────────────────────────────────── */}
         <div className="text-center mb-8">
           <a
-            href={app.platformUrl}
+            href={visitUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-[0.95rem] ${isMagenta ? "text-white" : "text-[var(--bg)]"} transition-all hover:opacity-90 hover:-translate-y-[1px]`}
-            style={{ background: accent }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-[0.95rem] text-white transition-all hover:opacity-90 hover:-translate-y-[1px]"
+            style={{ background: 'linear-gradient(135deg, color-mix(in srgb, var(--purple) 65%, black), color-mix(in srgb, var(--magenta) 65%, black))' }}
           >
-            Visit {app.name}
+            {app.review.status === 'retire-candidate' ? 'Read service notice' : `Visit ${app.name}`}
             <ExternalLink size={16} />
           </a>
         </div>

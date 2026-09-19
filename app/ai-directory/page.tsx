@@ -17,46 +17,32 @@ import {
   StickyNote,
   Target,
   BadgeCheck,
+  AlertCircle,
   ArrowRight,
   type LucideIcon,
 } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
 import { paletteFor } from '@/lib/palette';
+import {
+  AI_DIRECTORY_TASKS,
+  assertValidAiDirectoryData,
+  compareAiDirectoryContentDates,
+  compareAiDirectoryReviewDates,
+  formatAiDirectoryDate,
+  getAiDirectoryReviewLabel,
+  type AiDirectoryData,
+  type AiDirectoryBadge,
+  type AiDirectoryReview,
+  type AiDirectoryTool,
+  type AiDirectoryTask,
+  type AiDirectoryRole,
+} from '@/lib/data/ai-directory-schema';
 
-// ── Types ───────────────────────────────────────────────────
-
-interface AiTool {
-  slug: string;
-  name: string;
-  tagline: string;
-  description: string;
-  category: string;
-  accent: string;
-  badge: string | null;
-  values: string[];
-  tasks: string[];
-  roles: string[];
-  pricing: {
-    model: string;
-    startingPrice?: string;
-    details: string;
-  };
-  domain: string;
-  platformUrl: string;
-  lastUpdated: string;
-  verified: boolean;
-  staffPick: boolean;
-}
-
-interface AiAppsData {
-  tools: AiTool[];
-  categories: string[];
-  lastUpdated: string;
-}
-
-type Role = 'faculty' | 'administrator' | 'student';
-type TaskTag = string;
-type SortOption = 'all' | 'recent' | 'trending' | 'updated';
+type Role = AiDirectoryRole;
+type TaskTag = AiDirectoryTask;
+type SortOption = 'all' | 'reviewed' | 'updated';
+type AiTool = AiDirectoryTool;
+type AiAppsData = AiDirectoryData;
 
 // ── Constants ───────────────────────────────────────────────
 
@@ -96,18 +82,7 @@ const taskLabels: Record<string, string> = {
   Assessment: 'Assessment',
 };
 
-const taskKeys: TaskTag[] = [
-  'General LLM',
-  'Lesson Planning',
-  'Grading',
-  'Research',
-  'Writing Feedback',
-  'Presentations',
-  'Content Creation',
-  'Student Engagement',
-  'Video & Media',
-  'Administration',
-];
+const taskKeys: TaskTag[] = [...AI_DIRECTORY_TASKS];
 
 // ── Pricing badge ───────────────────────────────────────────
 
@@ -116,11 +91,15 @@ function PricingBadge({ model }: { model: string }) {
     free: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
     freemium: 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20',
     paid: 'bg-[var(--amber)]/10 text-[var(--amber)] border-[var(--amber)]/20',
+    'institutional-quote': 'bg-[var(--magenta)]/10 text-[var(--magenta-text)] border-[var(--magenta)]/20',
+    unknown: 'bg-[var(--surface)] text-[var(--text-muted)] border-[var(--border)]',
   };
   const labels: Record<string, string> = {
     free: 'Free',
     freemium: 'Freemium',
     paid: 'Paid',
+    'institutional-quote': 'Institutional quote',
+    unknown: 'Pricing unknown',
   };
   return (
     <span
@@ -144,10 +123,9 @@ function RoleTag({ role }: { role: string }) {
 
 // ── Badge component ─────────────────────────────────────────
 
-function ToolBadge({ badge }: { badge: string }) {
+function ToolBadge({ badge }: { badge: AiDirectoryBadge }) {
   const styles: Record<string, string> = {
     new: 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20',
-    trending: 'bg-[var(--amber)]/10 text-[var(--amber)] border-[var(--amber)]/20',
     updated: 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20',
   };
   return (
@@ -157,10 +135,55 @@ function ToolBadge({ badge }: { badge: string }) {
   );
 }
 
+function ReviewStatusBadge({ review }: { review: AiDirectoryReview }) {
+  const isCurrent = review.status === 'current' && Boolean(review.reviewedAt);
+  const className = isCurrent
+    ? 'bg-[var(--cyan)]/10 text-[var(--cyan)] border-[var(--cyan)]/20'
+    : review.status === 'limited'
+      ? 'bg-[var(--purple)]/10 text-[var(--purple)] border-[var(--purple)]/20'
+      : 'bg-[var(--surface)] text-[var(--text-muted)] border-[var(--border)]';
+
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[0.65rem] font-semibold tracking-wide border ${className}`}
+      title={review.status === 'blocked' ? review.unresolvedClaims.join(' ') : undefined}
+    >
+      {isCurrent && <BadgeCheck size={12} aria-hidden="true" />}
+      {getAiDirectoryReviewLabel(review)}
+    </span>
+  );
+}
+
+function ToolLogo({ tool, size = 'card' }: { tool: AiTool; size?: 'card' | 'detail' }) {
+  const dimensions = size === 'detail' ? 'w-11 h-11' : 'w-8 h-8';
+  const initial = tool.name.trim().charAt(0).toUpperCase() || '?';
+  const accentColor = paletteFor(tool.slug);
+
+  return (
+    <div
+      role="img"
+      aria-label={`${tool.name} logo`}
+      className={`${dimensions} flex items-center justify-center rounded-lg overflow-hidden font-bold text-[1.1rem]`}
+      style={{ color: accentColor }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`https://www.google.com/s2/favicons?domain=${tool.domain}&sz=64`}
+        alt=""
+        className={`${dimensions} object-contain`}
+        onError={(event) => {
+          event.currentTarget.hidden = true;
+          event.currentTarget.nextElementSibling?.removeAttribute('hidden');
+        }}
+      />
+      <span hidden aria-hidden="true">{initial}</span>
+    </div>
+  );
+}
+
 // ── Tool Card (new design) ──────────────────────────────────
 
 function ToolCard({ tool }: { tool: AiTool }) {
-  const logoUrl = `https://www.google.com/s2/favicons?domain=${tool.domain}&sz=64`;
   const accentColor = paletteFor(tool.slug);
 
   return (
@@ -179,17 +202,7 @@ function ToolCard({ tool }: { tool: AiTool }) {
         {/* Top row: logo + name + badges */}
         <div className="flex items-center gap-3.5 mb-3.5">
           <div className="w-[46px] h-[46px] rounded-xl overflow-hidden flex-shrink-0 bg-[var(--bg-elevated)] flex items-center justify-center border border-[var(--border)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={logoUrl}
-              alt={tool.name}
-              className="w-8 h-8 object-contain"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.parentElement!.innerHTML = `<span class="text-[1.1rem] font-bold" style="color: ${accentColor}">${tool.name[0]}</span>`;
-              }}
-            />
+            <ToolLogo tool={tool} />
           </div>
           <div className="flex-1 min-w-0">
             <div className="text-[1.1rem] font-bold tracking-tight text-[var(--text)]">{tool.name}</div>
@@ -226,6 +239,7 @@ function ToolCard({ tool }: { tool: AiTool }) {
         {/* Footer: pricing + roles + learn more */}
         <div className="flex items-center gap-2.5 pt-3.5 border-t border-[var(--border)] flex-wrap">
           <PricingBadge model={tool.pricing.model} />
+          <ReviewStatusBadge review={tool.review} />
           <div className="flex gap-1.5 flex-1">
             {tool.roles.slice(0, 3).map((role) => (
               <RoleTag key={role} role={role} />
@@ -249,7 +263,9 @@ function ToolCard({ tool }: { tool: AiTool }) {
 export default function AIDirectoryPage() {
   const [tools, setTools] = useState<AiTool[]>([]);
   const [categories, setCategories] = useState<string[]>(['All']);
+  const [directoryReview, setDirectoryReview] = useState<AiAppsData['directoryReview'] | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [activeRole, setActiveRole] = useState<Role | null>(null);
   const [activeTask, setActiveTask] = useState<TaskTag | null>(null);
@@ -259,14 +275,21 @@ export default function AIDirectoryPage() {
   // Load data from JSON
   useEffect(() => {
     fetch('/data/ai-apps.json')
-      .then((res) => res.json())
-      .then((data: AiAppsData) => {
-        setTools(data.tools);
-        setCategories(data.categories);
+      .then((res) => {
+        if (!res.ok) throw new Error(`Directory data request failed (${res.status})`);
+        return res.json() as Promise<unknown>;
+      })
+      .then((data) => {
+        assertValidAiDirectoryData(data);
+        const typedData = data as AiAppsData;
+        setTools(typedData.tools);
+        setCategories(typedData.categories);
+        setDirectoryReview(typedData.directoryReview);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch((err: unknown) => {
         console.error('Failed to load AI apps data:', err);
+        setError(err instanceof Error ? err.message : 'The directory data could not be loaded.');
         setLoading(false);
       });
   }, []);
@@ -291,25 +314,10 @@ export default function AIDirectoryPage() {
     });
 
     // Apply sorting
-    if (sortBy === 'recent') {
-      // Sort by lastUpdated descending (most recent first)
-      result = [...result].sort((a, b) =>
-        new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
-      );
-    } else if (sortBy === 'trending') {
-      // Show trending items first
-      result = [...result].sort((a, b) => {
-        if (a.badge === 'trending' && b.badge !== 'trending') return -1;
-        if (b.badge === 'trending' && a.badge !== 'trending') return 1;
-        return 0;
-      });
+    if (sortBy === 'reviewed') {
+      result = [...result].sort(compareAiDirectoryReviewDates);
     } else if (sortBy === 'updated') {
-      // Show updated items first, then by date
-      result = [...result].sort((a, b) => {
-        if (a.badge === 'updated' && b.badge !== 'updated') return -1;
-        if (b.badge === 'updated' && a.badge !== 'updated') return 1;
-        return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
-      });
+      result = [...result].sort(compareAiDirectoryContentDates);
     }
 
     return result;
@@ -324,15 +332,37 @@ export default function AIDirectoryPage() {
   };
 
   const hasFilters = search || activeRole || activeTask || activeCategory !== 'All' || sortBy !== 'all';
+  const directoryDate = directoryReview ? formatAiDirectoryDate(directoryReview.contentUpdatedAt) : null;
+  const directoryStatusCopy = directoryReview?.status === 'current'
+    ? `All ${directoryReview.visibleToolCount} records completed an official-source review${directoryReview.fullReviewCompletedAt ? ` on ${formatAiDirectoryDate(directoryReview.fullReviewCompletedAt)}` : ''}.`
+    : directoryReview?.status === 'partial'
+      ? `This directory has a partial official-source review. Confirm details with the vendor before relying on them.`
+      : `This directory is a legacy snapshot${directoryDate ? ` last updated ${directoryDate}` : ''} and is awaiting a current official-source review. Confirm details with the vendor.`;
 
   if (loading) {
     return (
       <PageTransition>
         <div className="px-4 sm:px-6 lg:px-8 py-12">
           <div className="mx-auto max-w-7xl">
-            <div className="flex items-center justify-center py-20">
+            <h1 className="sr-only">AI App Directory</h1>
+            <div className="flex items-center justify-center gap-3 py-20 text-[var(--text-muted)]" role="status" aria-live="polite">
               <div className="w-8 h-8 border-2 border-[var(--cyan)] border-t-transparent rounded-full animate-spin" />
+              <span>Loading the AI directory…</span>
             </div>
+          </div>
+        </div>
+      </PageTransition>
+    );
+  }
+
+  if (error) {
+    return (
+      <PageTransition>
+        <div className="px-4 sm:px-6 lg:px-8 py-12">
+          <div className="mx-auto max-w-3xl text-center py-16" role="alert">
+            <AlertCircle size={28} className="mx-auto mb-4 text-[var(--cyan)]" aria-hidden="true" />
+            <h1 className="text-2xl font-bold text-[var(--text)] mb-3">AI App Directory</h1>
+            <p className="text-[var(--text-muted)]">The directory is temporarily unavailable. Please try again later.</p>
           </div>
         </div>
       </PageTransition>
@@ -359,8 +389,19 @@ export default function AIDirectoryPage() {
               for Higher Ed
             </h1>
             <p className="text-[1.08rem] text-[var(--text-muted)] max-w-[580px] mx-auto mb-7">
-              AI tools vetted by educators, for educators. Honest reviews, not marketing fluff.
+              AI tools for higher education, with transparent review status and practical use cases.
             </p>
+
+            <div
+              className="max-w-[760px] mx-auto mb-7 rounded-xl border border-[var(--cyan)]/25 bg-[var(--cyan)]/[0.05] px-4 py-3 text-left text-sm text-[var(--text-muted)]"
+              role="status"
+              aria-live="polite"
+            >
+              <span className="font-semibold text-[var(--text)]">
+                {directoryReview?.status === 'current' ? 'Current review' : directoryReview?.status === 'partial' ? 'Partial review' : 'Review pending'}
+              </span>{' '}
+              {directoryStatusCopy}
+            </div>
 
             {/* Search bar */}
             <div className="relative max-w-[600px] mx-auto mb-5">
@@ -387,13 +428,14 @@ export default function AIDirectoryPage() {
                   <button
                     key={r.value}
                     onClick={() => setActiveRole(isActive ? null : r.value)}
+                    aria-pressed={isActive}
                     className={`px-4 py-[7px] rounded-full text-[0.82rem] font-medium transition-all border ${
                       isActive
                         ? 'bg-[var(--cyan)]/10 border-[var(--cyan)]/40 text-[var(--cyan)]'
                         : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--cyan)]/35'
                     }`}
                   >
-                    {r.label.replace("I'm ", '').replace('a ', '').replace('an ', '')}
+                {r.label.replace("I'm ", '').replace('a ', '').replace('an ', '')}
                   </button>
                 );
               })}
@@ -409,6 +451,7 @@ export default function AIDirectoryPage() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
+                  aria-pressed={isActive}
                   className={`px-4 py-[7px] rounded-full text-[0.82rem] font-medium transition-all border whitespace-nowrap ${
                     isActive
                       ? 'bg-[var(--cyan)]/10 border-[var(--cyan)]/40 text-[var(--cyan)]'
@@ -431,6 +474,7 @@ export default function AIDirectoryPage() {
                 <button
                   key={task}
                   onClick={() => setActiveTask(isActive ? null : task)}
+                  aria-pressed={isActive}
                   className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium transition-all border ${
                     isActive
                       ? 'bg-[var(--bg-elevated)] border-[var(--border)] text-[var(--text)]'
@@ -448,15 +492,15 @@ export default function AIDirectoryPage() {
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {([
               { value: 'all', label: 'All' },
-              { value: 'recent', label: 'Recently Added' },
-              { value: 'trending', label: 'Trending' },
-              { value: 'updated', label: 'Updated' },
+              { value: 'reviewed', label: 'Recently Reviewed' },
+              { value: 'updated', label: 'Recently Updated' },
             ] as { value: SortOption; label: string }[]).map((opt) => {
               const isActive = sortBy === opt.value;
               return (
                 <button
                   key={opt.value}
                   onClick={() => setSortBy(opt.value)}
+                  aria-pressed={isActive}
                   className={`px-4 py-[7px] rounded-full text-[0.82rem] font-medium transition-all border ${
                     isActive
                       ? 'bg-[var(--magenta)]/10 border-[var(--magenta)]/40 text-[var(--magenta)]'
@@ -489,7 +533,10 @@ export default function AIDirectoryPage() {
             <section className="mb-12">
               <div className="flex items-center gap-3 mb-6">
                 <BadgeCheck size={20} className="text-[var(--cyan)]" />
-                <h2 className="text-xl font-bold text-[var(--text)]">Staff Picks</h2>
+                <div>
+                  <h2 className="text-xl font-bold text-[var(--text)]">Staff Picks</h2>
+                  <p className="text-xs text-[var(--text-muted)] mt-1">Editorial selections, not a factual verification badge.</p>
+                </div>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
                 {staffPicks.slice(0, 3).map((tool) => (
