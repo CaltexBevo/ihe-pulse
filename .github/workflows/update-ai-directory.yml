@@ -1,47 +1,93 @@
-# Monthly AI Directory Update
-# Runs on the 1st of every month at 9 AM UTC, or manually via workflow_dispatch.
-#
-# SETUP REQUIRED:
-# 1. Go to GitHub repo → Settings → Secrets and variables → Actions
-# 2. Add a new repository secret named ANTHROPIC_API_KEY
-# 3. Paste your Anthropic API key as the value
-#
-# The script uses Claude claude-sonnet-4-5-20250929 to check for pricing/feature changes
-# and suggest new tools. Estimated cost: ~$3-5 per run.
-
-name: Monthly AI Directory Update
+name: Validate AI Directory
 
 on:
-  schedule:
-    - cron: '0 9 1 * *' # 1st of every month at 9 AM UTC
-  workflow_dispatch: # Allow manual trigger from GitHub Actions UI
+  pull_request:
+
+permissions:
+  contents: read
 
 jobs:
-  update-directory:
+  validate-directory:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 10
+    env:
+      EXPECTED_HEAD: ${{ github.sha }}
+      BASE_REVISION: ${{ github.event.pull_request.base.sha }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Check out exact public revision without credentials
+        # Anonymous checkout avoids submodule traversal during action auth cleanup.
+        # Preserve the repository's orphan gitlink and all tracked source files.
+        env:
+          GIT_CONFIG_NOSYSTEM: '1'
+          GIT_CONFIG_GLOBAL: /dev/null
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_HEAD" =~ ^[a-f0-9]{40}$ ]] || exit 1
+          [[ "$BASE_REVISION" =~ ^[a-f0-9]{40}$ ]] || exit 1
+          test -z "$(ls -A)" || exit 1
+          git init --quiet .
+          git remote add origin https://github.com/CaltexBevo/ihe-pulse.git
+          git -c credential.helper= fetch --no-tags --no-recurse-submodules origin "$EXPECTED_HEAD" "$BASE_REVISION"
+          git -c submodule.recurse=false checkout --detach "$EXPECTED_HEAD"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          git cat-file -e "$BASE_REVISION^{commit}"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        # actions/setup-node v7.0.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Verify pinned Node.js major
+        run: node -e "if (process.versions.node.split('.')[0] !== '20') process.exit(1)"
 
-      - name: Run AI directory update script
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/update-ai-directory.mjs
+      - name: Install locked validation dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts
 
-      - name: Commit and push if changed
+      - name: Bind candidate bytes and Pacific validation date
+        id: bind
+        run: node -e "const fs=require('fs'),c=require('crypto');const b=fs.readFileSync('public/data/ai-apps.json');const h=c.createHash('sha256').update(b).digest('hex');const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const v=Object.fromEntries(p.map(x=>[x.type,x.value]));const d=v.year+'-'+v.month+'-'+v.day;fs.appendFileSync(process.env.GITHUB_OUTPUT,'sha256='+h+'\nas_of='+d+'\n')"
+
+      - name: Check maintenance harness syntax
+        run: node --check scripts/update-ai-directory.mjs
+
+      - name: Run provider-boundary and directory schema/UI tests
+        run: node --loader ./scripts/update-ai-directory.mjs --test test/ai-directory-provider-boundary.test.mjs test/ai-directory/ai-directory-schema.test.ts
+
+      - name: Scan active provider scope
+        run: node scripts/update-ai-directory.mjs scan --repo-root . --expected-head "$EXPECTED_HEAD" --allowed-dirty-paths '[]'
+
+      - name: Validate schema independently
+        run: node scripts/update-ai-directory.mjs schema --repo-root . --expected-head "$EXPECTED_HEAD" --allowed-dirty-paths '[]' --input public/data/ai-apps.json --expected-input-sha256 "${{ steps.bind.outputs.sha256 }}" --as-of "${{ steps.bind.outputs.as_of }}"
+
+      - name: Validate source evidence independently
+        run: node scripts/update-ai-directory.mjs evidence --repo-root . --expected-head "$EXPECTED_HEAD" --allowed-dirty-paths '[]' --input public/data/ai-apps.json --expected-input-sha256 "${{ steps.bind.outputs.sha256 }}" --as-of "${{ steps.bind.outputs.as_of }}"
+
+      - name: Validate freshness independently
+        run: node scripts/update-ai-directory.mjs staleness --repo-root . --expected-head "$EXPECTED_HEAD" --allowed-dirty-paths '[]' --input public/data/ai-apps.json --expected-input-sha256 "${{ steps.bind.outputs.sha256 }}" --as-of "${{ steps.bind.outputs.as_of }}" --base-revision "$BASE_REVISION"
+
+      - name: Validate delta independently
         run: |
-          git config user.name "IHE Bot"
-          git config user.email "bot@innovatinghighered.com"
-          git add -A
-          git diff --cached --quiet || (git commit -m "chore: monthly AI directory update [$(date +%Y-%m)]" && git push)
+          approval_args=()
+          if ! git diff --quiet "$BASE_REVISION" "$EXPECTED_HEAD" -- public/data/ai-apps.json && test -f data/ai-directory-approved-delta.json; then
+            approval_hash="$(node -e "const fs=require('fs'),c=require('crypto');process.stdout.write(c.createHash('sha256').update(fs.readFileSync('data/ai-directory-approved-delta.json')).digest('hex'))")"
+            approval_args=(--approved-delta data/ai-directory-approved-delta.json --expected-approved-delta-sha256 "$approval_hash")
+          fi
+          node scripts/update-ai-directory.mjs delta --repo-root . --expected-head "$EXPECTED_HEAD" --allowed-dirty-paths '[]' --input public/data/ai-apps.json --expected-input-sha256 "${{ steps.bind.outputs.sha256 }}" --as-of "${{ steps.bind.outputs.as_of }}" --base-revision "$BASE_REVISION" "${approval_args[@]}"
+
+      - name: Lint the maintenance and active directory scope
+        run: npx eslint scripts/update-ai-directory.mjs test/ai-directory-provider-boundary.test.mjs lib/data/ai-directory-schema.ts test/ai-directory/ai-directory-schema.test.ts test/ai-directory/fixtures.ts app/ai-directory/page.tsx 'app/ai-directory/[slug]/page.tsx' app/ai-directory/layout.tsx
+
+      - name: Validate design tokens in the active frontend scope
+        run: node scripts/lint-design-tokens.js
+
+      - name: Run supported TypeScript validation including TypeScript test imports
+        run: npx tsc --noEmit --allowImportingTsExtensions
+
+      - name: Check patch whitespace
+        run: git diff --check "$BASE_REVISION" "$EXPECTED_HEAD" --
+
+      - name: Build the deterministic production bundle
+        run: npx next build --webpack

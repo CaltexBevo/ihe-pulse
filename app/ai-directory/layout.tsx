@@ -4,7 +4,7 @@ import { pageMetadata } from '@/lib/og';
 export const metadata: Metadata = pageMetadata({
   title: 'AI Tools Directory — Curated for Higher Ed | Innovating Higher Ed',
   description:
-    'Discover vetted and reviewed AI tools for higher education. Filter by use case to find the right tools for teaching, research, and administration.',
+    'Explore AI tool records for higher education with transparent review status. Filter by use case to compare teaching, research, and administration tools.',
   path: '/ai-directory',
 });
 

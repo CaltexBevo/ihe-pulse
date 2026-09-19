@@ -1,0 +1,81 @@
+{
+  "schema": "ai-directory-approved-delta-v1",
+  "baselineSha256": "9af1033c92ae6224b8f1560e08fb99d1e95bfc42ad065a6ba31b9750fcace130",
+  "candidateSha256": "a09b86ea06e7ee6d7bad8a3eb8e53bbb1a0aad8fcbdff770e44abdc49b5e44f3",
+  "mode": "evidence-refresh",
+  "approval": {
+    "identity": "Brent Jones",
+    "reference": "September 19, 2026: after Prompt Navigator publication, Brent instructed: great now let us do the AI directory. Reviewed existing 44-tool candidate accepted for the same release workflow; DEC-2026-09-19-002."
+  },
+  "added": [],
+  "removed": [],
+  "staffPickChanges": [],
+  "categoryChanges": [],
+  "badgeChanges": [
+    {
+      "slug": "chatgpt",
+      "prior": "trending",
+      "proposed": null
+    },
+    {
+      "slug": "claude",
+      "prior": "trending",
+      "proposed": null
+    },
+    {
+      "slug": "gemini",
+      "prior": "updated",
+      "proposed": null
+    },
+    {
+      "slug": "perplexity",
+      "prior": "trending",
+      "proposed": null
+    },
+    {
+      "slug": "eduaide",
+      "prior": "trending",
+      "proposed": null
+    },
+    {
+      "slug": "brisk-teaching",
+      "prior": "new",
+      "proposed": null
+    },
+    {
+      "slug": "curipod",
+      "prior": "new",
+      "proposed": null
+    },
+    {
+      "slug": "turnitin",
+      "prior": "updated",
+      "proposed": null
+    },
+    {
+      "slug": "gamma",
+      "prior": "trending",
+      "proposed": null
+    },
+    {
+      "slug": "synthesia",
+      "prior": "updated",
+      "proposed": null
+    },
+    {
+      "slug": "sora",
+      "prior": "new",
+      "proposed": null
+    },
+    {
+      "slug": "copilot",
+      "prior": "updated",
+      "proposed": null
+    },
+    {
+      "slug": "knowt",
+      "prior": "new",
+      "proposed": null
+    }
+  ]
+}
