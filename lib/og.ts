@@ -10,7 +10,7 @@ type PageMetadataOptions = {
   /** Route path starting with "/", e.g. "/podcast" or `/podcast/${slug}` */
   path: string;
   type?: "website" | "article";
-  /** Optional page-specific social image path. */
+  /** Optional page-specific social image path or absolute URL. */
   imagePath?: string;
   /** Optional accessible description for the social image. */
   imageAlt?: string;
@@ -38,11 +38,11 @@ export function pageMetadata({
   imagePath,
   imageAlt,
   twitterCard = "summary",
-  imageWidth = 1024,
-  imageHeight = 1024,
+  imageWidth,
+  imageHeight,
 }: PageMetadataOptions): Metadata {
   const url = `${SITE_URL}${path}`;
-  const imageUrl = imagePath ? `${SITE_URL}${imagePath}` : OG_IMAGE_URL;
+  const imageUrl = imagePath ? new URL(imagePath, SITE_URL).href : OG_IMAGE_URL;
   return {
     title,
     description,
@@ -56,8 +56,8 @@ export function pageMetadata({
       images: [
         {
           url: imageUrl,
-          width: imageWidth,
-          height: imageHeight,
+          width: imageWidth ?? (imagePath ? undefined : 1024),
+          height: imageHeight ?? (imagePath ? undefined : 1024),
           alt: imageAlt ?? SITE_NAME,
         },
       ],

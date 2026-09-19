@@ -66,6 +66,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: story.summary,
     path: `/innovation-pulse/story/${slug}`,
     type: "article",
+    imagePath: story.image || DEFAULT_STORY_IMAGE,
+    imageAlt: story.title,
+    twitterCard: "summary_large_image",
   });
 }
 
