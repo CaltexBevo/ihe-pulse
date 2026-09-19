@@ -1,5 +1,10 @@
 // Social card crops are independent of the artwork displayed on the story page.
 export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number }>> = {
+  "austin-community-college-wants-student-alerts-to-lead-somewh": {
+    imagePath: "/images/stories/social/acc-alert-support-card.png",
+    imageWidth: 1733,
+    imageHeight: 907,
+  },
   "a-five-level-ai-scale-starts-with-the-assignments-purpose": {
     imagePath: "/images/stories/social/usd-purpose-first-card-v2.png",
     imageWidth: 1734,
