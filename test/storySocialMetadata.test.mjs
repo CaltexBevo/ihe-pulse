@@ -1,8 +1,25 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { pageMetadata } from "../lib/og.ts";
+import fs from "node:fs";
+import { STORY_SOCIAL_IMAGES } from "../lib/story-social-images.ts";
 
 const base = { title: "Story title", description: "Story summary", path: "/innovation-pulse/story/example" };
+
+test("Texas A&M card override uses measured artwork without changing its story hero", () => {
+  const card = STORY_SOCIAL_IMAGES["texas-am-finds-the-instructional-design-behind-better-ai-rol"];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("Texas A&M"));
+  assert.equal(story.image, "/images/stories/texas-a-m-finds-the-instructional-design-behind-better-ai-ro.webp");
+  assert.notEqual(story.image, card.imagePath);
+  const source = fs.readFileSync("app/innovation-pulse/story/[slug]/page.tsx", "utf8");
+  assert.match(source, /const storyImage = story.heroImage \|\| story.image \|\| DEFAULT_STORY_IMAGE/);
+  assert.equal(source.match(/\.\.\.STORY_SOCIAL_IMAGES\[slug\]/g)?.length, 1);
+});
 
 test("local story artwork produces a large card with its exact canonical destination", () => {
   const metadata = pageMetadata({ ...base, type: "article", imagePath: "/images/stories/example.webp", imageAlt: base.title, twitterCard: "summary_large_image" });

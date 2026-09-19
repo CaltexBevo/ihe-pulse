@@ -11,6 +11,7 @@ import {
 import StoryPageClient from "./StoryPageClient";
 import ShareBar from "@/components/ShareBar";
 import { pageMetadata } from "@/lib/og";
+import { STORY_SOCIAL_IMAGES } from "@/lib/story-social-images";
 
 // V4 Category colors and slugs — palette-locked (no green, teal, coral, blue)
 const V4_CATEGORY_CONFIG: Record<string, { color: string; slug: string }> = {
@@ -67,6 +68,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/innovation-pulse/story/${slug}`,
     type: "article",
     imagePath: story.image || DEFAULT_STORY_IMAGE,
+    ...STORY_SOCIAL_IMAGES[slug],
     imageAlt: story.title,
     twitterCard: "summary_large_image",
   });
