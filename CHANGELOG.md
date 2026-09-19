@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-19] Preserve story artwork framing
+
+- Display homepage, category and related-story artwork in uncropped 3:2 frames, with category badges below the image and no image zoom.
+- Center article artwork at a moderate width using its original proportions; place metadata and headlines below it.
+- Reuse existing image files and preserve the special September 4 artwork treatment and weekly homepage hero.
+
 ## [2026-09-18] Homepage story card reveal
 
 - Replace horizontal slider movement with stationary cards that reveal the next story downward, one card at a time from left to right.

@@ -54,6 +54,7 @@ export default function CategoryStoriesGrid({ stories, category, categoryColor }
           imageUrl={story.image}
           badgeText={story.type === "deepDive" ? "LEAD" : V4_BADGE_TEXT[category]}
           badgeColor={story.type === "deepDive" ? "rgba(0,212,255,0.85)" : categoryColor}
+          preserveArtwork
           expandable={true}
         />
       ))}

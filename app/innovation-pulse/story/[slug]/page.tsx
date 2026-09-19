@@ -120,40 +120,32 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       <div
         className={
           usesSeptember04Card
-            ? "max-w-[1200px] mx-auto relative aspect-[1672/941] overflow-hidden bg-[#e7f2ff]"
-            : "max-w-[1200px] mx-auto relative h-[420px] overflow-hidden"
+            ? "max-w-[820px] mx-auto relative aspect-[1672/941] overflow-hidden bg-[#e7f2ff]"
+            : "max-w-[820px] mx-auto px-[var(--px)]"
         }
       >
         <Image
           src={storyImage}
           alt={story.title}
-          fill
-          className={usesSeptember04Card ? "object-contain" : "object-cover"}
+          fill={usesSeptember04Card}
+          width={usesSeptember04Card ? undefined : 1200}
+          height={usesSeptember04Card ? undefined : 800}
+          className={usesSeptember04Card ? "object-contain" : "block w-full h-auto"}
+          sizes="(max-width: 820px) 100vw, 820px"
           priority
         />
-        {!usesSeptember04Card && (
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[rgba(8,8,15,0.3)] to-[rgba(8,8,15,0.1)]" />
-        )}
-        {/* Badges */}
-        {!usesSeptember04Card && <div className="absolute top-6 left-6 flex gap-2">
-          {story.type === "deepDive" && (
-            <span className="font-mono text-[0.65rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] bg-[rgba(0,212,255,0.85)] text-[#08080f]">
-              LEAD STORY
-            </span>
-          )}
-          <span
-            className="font-mono text-[0.65rem] font-semibold tracking-[0.05em] px-3 py-1 rounded-[6px] text-[#08080f]"
-            style={{ backgroundColor: categoryConfig.color }}
-          >
-            {v4Category}
-          </span>
-        </div>}
+
       </div>
 
       {/* Article Content */}
-      <div className={`max-w-[820px] mx-auto px-[var(--px)] relative z-10 ${usesSeptember04Card ? "pt-8" : "-mt-12"}`}>
+      <div className="max-w-[820px] mx-auto px-[var(--px)] relative z-10 pt-8">
         {/* Meta */}
         <div className="flex items-center gap-3 flex-wrap mb-4">
+          {story.type === "deepDive" && !usesSeptember04Card && (
+            <span className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] px-2 py-1 rounded-[5px] bg-[var(--cyan-soft)] text-[var(--cyan)]">
+              LEAD STORY
+            </span>
+          )}
           <Link
             href={`/innovation-pulse/category/${categoryConfig.slug}`}
             className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded-[5px]"
@@ -304,12 +296,13 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
                   href={`/innovation-pulse/story/${related.slug}`}
                   className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] transition-all"
                 >
-                  <div className="relative h-[140px] overflow-hidden">
+                  <div className="relative aspect-[3/2] overflow-hidden bg-[var(--surface)]">
                     <Image
                       src={relatedImage}
                       alt={related.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                      className="object-contain"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
                   <div className="p-4">

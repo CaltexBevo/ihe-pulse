@@ -25,6 +25,7 @@ interface CardProps {
   callbackDate?: string;
   dataViz?: DataVizConfig;
   preserveParagraphs?: boolean;
+  preserveArtwork?: boolean;
 }
 
 export default function Card({
@@ -46,6 +47,7 @@ export default function Card({
   callbackDate,
   dataViz,
   preserveParagraphs = false,
+  preserveArtwork = false,
 }: CardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -57,11 +59,11 @@ export default function Card({
 
   const CardContent = (
     <>
-      {/* Image Section - 180px height standard, ALWAYS show for cards */}
+      {/* Story artwork can opt into an uncropped frame. */}
       <div className="relative overflow-hidden">
         <div
           className={`relative w-full transition-all duration-400 ${
-            isExpanded ? "h-[190px]" : "h-[180px]"
+            preserveArtwork ? "aspect-[3/2] bg-[var(--surface)]" : isExpanded ? "h-[190px]" : "h-[180px]"
           }`}
         >
           {imageUrl ? (
@@ -69,7 +71,7 @@ export default function Card({
               src={imageUrl}
               alt={title}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+              className={preserveArtwork ? "object-contain" : "object-cover transition-transform duration-500 group-hover:scale-[1.06]"}
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
@@ -77,11 +79,11 @@ export default function Card({
             <div className="w-full h-full bg-gradient-to-br from-[rgba(0,212,255,0.15)] via-[var(--surface)] to-[rgba(200,80,192,0.15)]" />
           )}
           {/* Subtle gradient overlay at bottom for badge readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(8,8,15,0.4)] via-transparent to-transparent pointer-events-none" />
+          {!preserveArtwork && <div className="absolute inset-0 bg-gradient-to-t from-[rgba(8,8,15,0.4)] via-transparent to-transparent pointer-events-none" />}
         </div>
         {/* Badge Overlay - JetBrains Mono */}
         {badgeText && (
-          <div className="absolute top-[10px] left-[10px] flex flex-col gap-1">
+          <div className={preserveArtwork ? "px-4 pt-3 flex flex-col gap-1" : "absolute top-[10px] left-[10px] flex flex-col gap-1"}>
             <span
               className="text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] backdrop-blur-[8px] w-fit"
               style={{
