@@ -14,7 +14,7 @@ test("USD social card uses measured wide artwork and preserves the article image
   assert.equal(bytes.readUInt32BE(16), card.imageWidth);
   assert.equal(bytes.readUInt32BE(20), card.imageHeight);
   const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
-  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/usd-purpose-first-card.png"]);
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/usd-purpose-first-card-v2.png"]);
   const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
   const story = episode.quickHits.find(story => story.headline.startsWith("A Five-Level AI Scale"));
   assert.equal(story.image, "/images/stories/a-five-level-ai-scale-starts-with-the-assignment-s-purpose.webp");
