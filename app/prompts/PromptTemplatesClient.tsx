@@ -8,7 +8,11 @@ interface PromptTemplate {
   difficulty: string;
   category: string;
   isNew?: boolean;
-  preview: string;
+  prompt: string;
+  bring: string;
+  get: string;
+  check: string;
+  examples: { input: string; output: string }[];
 }
 
 interface PromptTemplatesClientProps {
@@ -57,7 +61,7 @@ export function CopyPromptButton({
   };
 
   return (
-    <button onClick={handleCopy} aria-label={ariaLabel} className={className}>
+    <button type="button" aria-live="polite" onClick={handleCopy} aria-label={ariaLabel} className={className}>
       {copyState === "copied" ? "Copied!" : copyState === "failed" ? "Copy failed" : label}
     </button>
   );
@@ -84,7 +88,7 @@ export default function PromptTemplatesClient({
         return false;
       }
       if (q) {
-        const haystack = `${p.title} ${p.description} ${p.category} ${p.preview}`.toLowerCase();
+        const haystack = `${p.title} ${p.description} ${p.category} ${p.prompt}`.toLowerCase();
         if (!haystack.includes(q)) return false;
       }
       return true;
@@ -107,6 +111,7 @@ export default function PromptTemplatesClient({
               <button
                 key={d}
                 onClick={() => setSelectedDifficulty(d)}
+                aria-label={`Filter by ${d}`}
                 aria-pressed={isActive}
                 className={`font-mono text-[0.62rem] font-medium px-3 py-1 rounded-full border transition-all duration-200 ${
                   isActive
@@ -139,6 +144,7 @@ export default function PromptTemplatesClient({
               <button
                 key={c}
                 onClick={() => setSelectedCategory(c)}
+                aria-label={`Filter by ${c}`}
                 aria-pressed={isActive}
                 className={`font-mono text-[0.62rem] font-medium px-3 py-1 rounded-full border transition-all duration-200 ${
                   isActive
@@ -173,6 +179,9 @@ export default function PromptTemplatesClient({
 
       {/* Prompt Grid */}
       <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
+        <p className="font-mono text-[0.7rem] text-[var(--text-secondary)] mb-4" aria-live="polite">
+          {filtered.length} prompts{query.trim() ? ` matching “${query.trim()}”` : ""}
+        </p>
         {filtered.length === 0 ? (
           <p className="text-[0.85rem] text-[var(--text-muted)] py-8">
             No prompts match those filters yet. Try a different category or clear the search.
@@ -217,15 +226,17 @@ export default function PromptTemplatesClient({
                   {prompt.description}
                 </p>
 
-                {/* Preview in cyan box */}
-                <div className="font-mono text-[0.68rem] text-[var(--cyan)] bg-[rgba(0,212,255,0.04)] border border-[rgba(0,212,255,0.08)] rounded-[7px] px-3 py-2 leading-[1.5] mb-3 line-clamp-3">
-                  {prompt.preview}
-                </div>
+                <PromptGuidance prompt={prompt} />
+                <details className="mb-3 text-[0.78rem]">
+                  <summary className="cursor-pointer text-[var(--cyan)] py-2">Read full prompt</summary>
+                  <p className="font-mono text-[0.68rem] text-[var(--text-secondary)] bg-[var(--surface)] rounded-[7px] p-3 leading-[1.6] whitespace-pre-wrap break-words">{prompt.prompt}</p>
+                </details>
+                <PromptExamples examples={prompt.examples} />
 
                 {/* Footer with copy button */}
                 <div className="flex items-center gap-3 pt-3 border-t border-[var(--border)] font-mono text-[0.55rem] text-[var(--text-muted)]">
                   <CopyPromptButton
-                    text={prompt.preview.replace(/^"|"$/g, "")}
+                    text={prompt.prompt}
                     label="Copy"
                     ariaLabel={`Copy ${prompt.title} prompt`}
                     className="ml-auto text-[var(--cyan)] px-2 py-[3px] rounded-[4px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.12)] transition-colors"
@@ -238,4 +249,24 @@ export default function PromptTemplatesClient({
       </div>
     </>
   );
+}
+
+export function PromptGuidance({ prompt }: { prompt: Pick<PromptTemplate, "bring" | "get" | "check"> }) {
+  return <dl className="text-[0.78rem] text-[var(--text-secondary)] leading-[1.6] space-y-2 mb-3">
+    {([['Bring', prompt.bring], ['Get', prompt.get], ['Check', prompt.check]]).map(([label, value]) => <div key={label}><dt className="inline font-semibold text-[var(--text)]">{label}: </dt><dd className="inline">{value}</dd></div>)}
+  </dl>;
+}
+
+export function PromptExamples({ examples }: { examples: PromptTemplate["examples"] }) {
+  if (!examples.length) return null;
+  return <details className="mb-3 text-[0.78rem] text-[var(--text-secondary)]">
+    <summary className="cursor-pointer text-[var(--cyan)] py-2">Synthetic worked examples</summary>
+    <p className="mb-3">Recorded sample outputs from September 6, 2026. These illustrate review checks, not classroom validation or a guarantee of future results.</p>
+    {examples.map((example, index) => <div key={index} className="border-t border-[var(--border)] py-3">
+      <p className="font-semibold mb-2">Example {index + 1}: synthetic input</p>
+      <p className="whitespace-pre-wrap break-words mb-3">{example.input}</p>
+      <p className="font-semibold mb-2">Recorded output</p>
+      <p className="whitespace-pre-wrap break-words">{example.output}</p>
+    </div>)}
+  </details>;
 }
