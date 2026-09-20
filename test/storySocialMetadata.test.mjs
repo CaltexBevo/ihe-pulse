@@ -6,6 +6,21 @@ import { STORY_SOCIAL_IMAGES } from "../lib/story-social-images.ts";
 
 const base = { title: "Story title", description: "Story summary", path: "/innovation-pulse/story/example" };
 
+test("MIT social card uses measured wide artwork and preserves the article image", () => {
+  const slug = "mit-builds-ai-teaching-around-a-shared-core-and-discipline-s";
+  const card = STORY_SOCIAL_IMAGES[slug];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/mit-shared-core-card.png"]);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("MIT Builds"));
+  assert.equal(story.image, "/images/stories/mit-builds-ai-teaching-around-a-shared-core-and-discipline-s.webp");
+  assert.notEqual(story.image, card.imagePath);
+});
+
 test("Dartmouth social card uses measured wide artwork and preserves the article image", () => {
   const slug = "dartmouth-pairs-permission-to-use-ai-with-work-others-can-ch";
   const card = STORY_SOCIAL_IMAGES[slug];

@@ -1,5 +1,10 @@
 // Social card crops are independent of the artwork displayed on the story page.
 export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number }>> = {
+  "mit-builds-ai-teaching-around-a-shared-core-and-discipline-s": {
+    imagePath: "/images/stories/social/mit-shared-core-card.png",
+    imageWidth: 1733,
+    imageHeight: 907,
+  },
   "dartmouth-pairs-permission-to-use-ai-with-work-others-can-ch": {
     imagePath: "/images/stories/social/dartmouth-real-clients-card.png",
     imageWidth: 1733,
