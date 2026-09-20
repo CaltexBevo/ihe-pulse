@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-20] Contact email correction
+
+- Replace nonexistent hello and privacy addresses with info@innovatinghighered.com across all seven contact-bearing pages, preserving subject lines and other content.
+
 ## [2026-09-18] Homepage story card reveal
 
 - Replace horizontal slider movement with stationary cards that reveal the next story downward, one card at a time from left to right.

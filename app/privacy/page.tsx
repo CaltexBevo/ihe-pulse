@@ -107,8 +107,8 @@ export default function PrivacyPolicyPage() {
               </h2>
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
                 You have the right to access, correct, or delete your personal information at any time. To unsubscribe from our newsletter, use the unsubscribe link in any email. For other requests, contact us at{" "}
-                <a href="mailto:privacy@innovatinghighered.com" className="text-[var(--cyan)] hover:underline">
-                  privacy@innovatinghighered.com
+                <a href="mailto:info@innovatinghighered.com" className="text-[var(--cyan)] hover:underline">
+                  info@innovatinghighered.com
                 </a>.
               </p>
             </section>
@@ -128,8 +128,8 @@ export default function PrivacyPolicyPage() {
               </h2>
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
                 If you have questions about this Privacy Policy, please contact us at{" "}
-                <a href="mailto:hello@innovatinghighered.com" className="text-[var(--cyan)] hover:underline">
-                  hello@innovatinghighered.com
+                <a href="mailto:info@innovatinghighered.com" className="text-[var(--cyan)] hover:underline">
+                  info@innovatinghighered.com
                 </a>.
               </p>
             </section>
