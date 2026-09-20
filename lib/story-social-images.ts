@@ -1,5 +1,10 @@
 // Social card crops are independent of the artwork displayed on the story page.
 export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number }>> = {
+  "nasa-and-ibm-turn-moon-data-into-open-ai-research-infrastruc": {
+    imagePath: "/images/stories/social/nasa-ibm-moon-data-card.png",
+    imageWidth: 1733,
+    imageHeight: 907,
+  },
   "mit-builds-ai-teaching-around-a-shared-core-and-discipline-s": {
     imagePath: "/images/stories/social/mit-shared-core-card.png",
     imageWidth: 1733,
