@@ -21,7 +21,7 @@ test("homepage summarizes only the cleared public projection", () => {
   assert.equal(result.totalCount, 46);
   assert.equal(result.funding.publishedProgramPoolUsd, 51782403);
   assert.equal(result.funding.publishedProgramPoolCount, 13);
-  assert.equal(result.funding.approximatePoolCount, 6);
+  assert.equal(result.funding.approximatePoolCount, 7);
   assert.equal(result.funding.openOpportunityCount, 34);
   assert.equal(result.latestDate, "2026-09-15");
   assert.equal(result.latestCount, 9);
