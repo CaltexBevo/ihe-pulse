@@ -1,0 +1,164 @@
+{
+  "episode": {
+    "date": "2026-09-18",
+    "dayOfWeek": "Friday",
+    "cadence": "weekly",
+    "weekCovered": "2026-09-12/2026-09-18",
+    "audioUrl": "/audio/2026-09-18.mp3",
+    "audioDuration": "7:39",
+    "broadcastScript": "This is The Innovation Pulse for the week ending Friday, September eighteenth, twenty twenty-six. And here's who is innovating in higher education this week.\n\nLeading off this week, what if you could ask a research paper to help you put its methods to work? Stanford researchers have developed Paper2Agent, a system that turns papers, code and data into interactive A.I. agents.\n\nIn a study published in Nature on September sixteenth, the team demonstrated agents that reproduce computational analyses and apply methods to new questions. A researcher can ask for an analysis in ordinary language, and the agent uses tools built from the paper\u2019s own code. Those tools are tested against the original results.\n\nThe agents can also work together. In one demonstration, they combined research resources to prioritize a gene associated with psoriasis. Published methods become something another researcher can use in a new investigation.\n\nFor higher education, that opens an exciting possibility: making the steps behind a discovery easier to explore. Faculty and graduate students could examine how an analysis works, change an input and discuss what the result means. The useful shift is from reading about a method to working with it, with the original research close at hand.\n\nTurning to teaching, what helps a faculty member move from trying an A.I. tool to redesigning part of a course? Teaching leaders at Northeastern University and Ithaca College describe two approaches in a new Educause interview.\n\nAt Northeastern, college representatives bring the conversation into their disciplines and are moving toward leading faculty cohorts. At Ithaca, the path runs from small grants to a largely asynchronous faculty institute and curriculum redesign. These approaches give instructors colleagues to think with and a structure for developing their ideas.\n\nOne detail is especially useful: the syllabus can explain the instructor's own A.I. use alongside expectations for students. That includes being clear about whether A.I. plays a role in grading. Students then have a fuller picture of how the course works, and responsibility becomes a conversation that includes everyone.\n\nFor a teaching center, the next step could be one assignment with a clear learning purpose. Bring a few colleagues together to examine where A.I. fits and what students need to practice. The examples from these two institutions offer ways to keep that work moving beyond the first demonstration.\n\nOver in academic libraries, an A.I. conversation can be the beginning of a research journey that continues with scholarly sources. Harvard Library researchers Amy Deschenes and Meg McMahon describe that pattern in an Educause interview, alongside continuing library catalog use.\n\nTheir examples put students in an active role. One undergraduate tested a chatbot with questions whose answers she already knew. Another student asked it for external references to inspect. Students also recognized that knowing more about a topic helped them judge the responses they received.\n\nThat creates a useful opening for librarians and faculty. When a student arrives with an interesting lead, help them follow it to the original publication. What does the source actually say? Which part supports the claim they want to make?\n\nThe handoff from exploration to evidence is where the library's expertise can become especially valuable. It connects the speed of finding an idea with the care required to build an argument. And it gives students a process they can carry into their next research question.\n\nA student survey adds another distinction: similar levels of A.I. use can come with different experiences. In a research preprint, a Rensselaer Polytechnic Institute team examines what one hundred eighteen students reported about their experiences in twelve A.I.-related courses at the university.\n\nThe researchers separate turning to A.I. early in a task from using it to organize, evaluate and combine information. Their analysis found two moderate-use groups reporting different levels of benefit. That gives us a reason to look more closely at what happens during an exchange.\n\nFor an instructor, a question such as, 'How did that response change your next step?' may open a more useful conversation than asking only how often a student used A.I. The answer could show how the student selected an idea, checked it or decided to take the work in another direction.\n\nThat approach leaves room for different tools and forms of support. It focuses the conversation on the student's work with the material and the feedback that could help them move forward.\n\nAt UT Austin, students moving between courses should find their instructor\u2019s A.I. expectations in the syllabus. A new fall requirement asks faculty to identify generative A.I. use as permitted, partially permitted or prohibited, and explain the conditions.\n\nWhen A.I. is allowed, instructors must provide written guidance on acceptable uses and how students should disclose them. The university also asks faculty to connect those choices to the course\u2019s learning outcomes. That makes the syllabus a place to explain what students are learning and how A.I. fits.\n\nThe useful detail is the explanation behind the label. Partially permitted can mean many things. Can students use A.I. to brainstorm? To revise a draft? Which parts of an assignment should show their own thinking? Specific examples help students understand what the instructor expects before they begin.\n\nFor faculty and teaching centers, UT\u2019s sample statements offer a starting point. Connect the policy to an actual assignment, explain the reason for each boundary, and make expectations easy to find. Students then have clearer guidance for deciding how to approach their work.\n\nFinally, beyond education, a scouting drone finds a new scientific lead and calls in another robot, while keeping its original task in view. NASA tested that coordination in July at the Virginia Tech Transportation Institute.\n\nThe fleet includes a drone and two rovers with different jobs. One rover maps the surroundings; the other can collect samples with a robotic arm. Human experts set the science goals, and the system weighs the value and risk of tasks, chooses a robot and updates its plan as information arrives.\n\nThe team is testing on Earth how this approach could support exploration where immediate human direction is difficult. The machines' different capabilities give the fleet several ways to pursue a new observation.\n\nFor university research and robotics teams, that's an interesting coordination problem. Exploration needs a plan, but it also needs room for an unexpected observation. This fleet offers a concrete example of how different machines can share that work while staying connected to a human scientific purpose.\n\nOther stories we\u2019re covering this week include a fifteen-minute exercise for trying an A.I. tutor, Cornell\u2019s planned study of A.I. conversations for student reflection, and a review of fifty-three research articles connecting teaching, access and campus readiness.\n\nFor more practical ideas you can put to work, visit Innovating Higher Ed dot com. Thanks for listening.\n",
+    "weeklyHeroImageUrl": "/images/innovation-pulse/2026-09-18/weekly-hero-original.png",
+    "editorialLens": "The Innovator's Edge"
+  },
+  "leadStory": {
+    "headline": "Stanford Turns Research Papers Into AI Agents You Can Put to Work",
+    "summary": "Reading a promising research paper is one thing. Putting its methods to work can mean tracking down code, configuring software and learning how to prepare the data. Stanford researchers have developed Paper2Agent to make that transition easier, turning papers and their supporting materials into interactive AI agents.\n\nPublished in Nature on September 16, the study describes agents that answer questions and run computational workflows through ordinary language. In demonstrations involving genomics and cell analysis, the agents reproduced original results and carried out new queries. The system tests its tools against the original code before making them available.\n\nThe possibilities extend across papers. The researchers also demonstrated agents working together to prioritize a gene associated with psoriasis. That connects a paper\u2019s methods with another research question and shows how published work can become a resource others actively use.\n\nFor faculty and graduate students, the value could be a shorter path from understanding a method to examining what it does. A research seminar might explore an analysis, change an input and discuss the resulting interpretation. For research teams, it offers a model for sharing work with the methods ready to run alongside the explanation.",
+    "source": "Nature / Stanford Medicine",
+    "sourceUrl": "https://www.nature.com/articles/s41586-026-11044-y",
+    "category": "Research",
+    "imageUrl": "/images/innovation-pulse/2026-09-18/story-36.png",
+    "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-36.png",
+    "sourceStoryIndex": 36,
+    "storyId": "IHE-LOCAL-2026-09-18-PAPER2AGENT",
+    "publishedDate": "2026-09-16",
+    "reviewOnlyImage": false
+  },
+  "quickHits": [
+    {
+      "headline": "Helping Faculty Move From AI Experiments to Course Redesign",
+      "summary": "Trying an AI tool is one step. Deciding where it belongs in a course takes a different kind of support. Teaching leaders at Northeastern University and Ithaca College describe how they are helping faculty make that transition, with room for different disciplines and starting points.\n\nIn an EDUCAUSE interview, Northeastern's Lance Eaton describes college representatives who convene conversations within their disciplines and are moving toward leading faculty cohorts. At Ithaca, Jenna Linskens traces a path from minigrants to a largely asynchronous faculty institute and work on curriculum redesign. Both accounts put faculty conversation close to the work of teaching.\n\nOne especially useful detail concerns the syllabus. Alongside expectations for students, instructors can explain their own AI use, including whether they use it for tasks such as grading. That gives students a clearer view of how the course operates and opens a more reciprocal conversation about responsibility.\n\nFor teaching centers, these approaches offer ways to connect an initial experiment with sustained course work. A disciplinary group provides colleagues to think with; an institute provides a structure for development. The next step can be a specific assignment, with a clear purpose for any AI use and enough time to work through the design.",
+      "source": "EDUCAUSE / Northeastern and Ithaca",
+      "sourceUrl": "https://er.educause.edu/podcasts/educause-and-the-integrative-cio/2026/from-fear-to-fluency-helping-faculty-navigate-ai",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-3.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-3.png",
+      "sourceStoryIndex": 3,
+      "storyId": "IHE-STORY-2026-09-18-003",
+      "publishedDate": "2026-09-17",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Students Start With AI, Then Turn to the Library to Check Their Leads",
+      "summary": "A student's research journey can begin with an AI conversation and continue in the library. Harvard Library researchers Amy Deschenes and Meg McMahon describe students using AI to explore topics while still turning to scholarly resources for material they can trust.\n\nIn an EDUCAUSE interview, they discuss surveys and observations of student research, including stable library catalog use. Their examples show students taking an active role in checking AI: one undergraduate tested responses with questions whose answers she already knew; another student asked for external references to inspect.\n\nStudents also recognized that their knowledge of a topic shaped how well they could judge a response. That is a useful opening for librarians and faculty, especially when students are beginning research in unfamiliar territory.\n\nThe opportunity is to support the handoff from an interesting idea to dependable evidence. Helping a student locate the original publication, check what it actually says and explain how it supports a claim brings the library's expertise directly into the AI-assisted research process.",
+      "source": "EDUCAUSE / Harvard Library researchers",
+      "sourceUrl": "https://er.educause.edu/podcasts/the-cni-interviews-podcast/2026/from-search-to-strategy",
+      "category": "Case Study",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-2.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-2.png",
+      "sourceStoryIndex": 2,
+      "storyId": "IHE-STORY-2026-09-18-002",
+      "publishedDate": "2026-09-15",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Similar AI Use, Different Student Experiences",
+      "summary": "Students with similar levels of AI use can report different benefits. A research preprint from Rensselaer Polytechnic Institute brings that distinction into focus through a spring 2026 survey of 118 students' experiences in 12 AI-related courses at the university.\n\nThe researchers distinguish turning to AI early in a task from using it to organize, evaluate and combine information. Their analysis identified two moderate-use groups with different levels of reported benefit, showing why overall use offers an incomplete picture of students' experiences.\n\nThe contrast gives educators a starting point for conversation: when AI enters the work, what the student asks it to do and how the student uses its response.\n\nA question such as 'How did that response change your next step?' could reveal more about the process than a count of AI visits. It also leaves room for students who use different tools or forms of support. The aim is to understand how they are working with the material and where feedback could help.",
+      "source": "Rensselaer Polytechnic Institute / arXiv",
+      "sourceUrl": "https://arxiv.org/abs/2609.18676",
+      "category": "Insights & Trends",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-9.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-9.png",
+      "sourceStoryIndex": 9,
+      "storyId": "IHE-STORY-2026-09-18-009",
+      "publishedDate": "2026-09-16",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "NASA's Robot Fleet Can Follow a New Lead and Keep Its Mission Moving",
+      "summary": "A scouting drone spots something worth a closer look. Instead of giving up its assigned task, it brings another robot into the investigation. NASA demonstrated that kind of coordination during a July field test at the Virginia Tech Transportation Institute.\n\nThe fleet pairs one drone with two rovers. One rover maps the surroundings with lidar; the other collects samples using a robotic arm. Human experts supply the science goals, and the system weighs the value and risk of tasks, assigns a suitable robot and adjusts its plan as new information arrives.\n\nNASA's Adaptive Sensing Technology for Responsive Autonomy team is testing on Earth how such a fleet could support exploration where immediate human direction is difficult. The robots' different capabilities give the system several ways to pursue an observation.\n\nFor university robotics and research teams, the interesting work is in coordinating those choices. Exploration requires both a plan and a way to respond when something unexpected deserves attention. This test offers a concrete example of robots sharing that work while staying connected to a human-defined scientific purpose.",
+      "source": "NASA",
+      "sourceUrl": "https://science.nasa.gov/blogs/planetary-expeditions/2026/09/15/nasa-field-tests-ai-fleet-capability-for-science-exploration/",
+      "category": "Beyond Ed",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-15.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-15.png",
+      "sourceStoryIndex": 15,
+      "storyId": "IHE-STORY-2026-09-18-015",
+      "publishedDate": "2026-09-15",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Try an AI Tutoring Exchange, Then Ask How It Taught You",
+      "summary": "You can get a closer look at AI tutoring by becoming the learner for a short assignment. In EDUCAUSE Review, Peter Cornillon and Xavier Prochaska offer an exercise that ends with an unusual request: ask the model to explain its teaching approach.\n\nFirst, share your background and ask the model to choose an unfamiliar topic and a fifteen-minute assignment. Respond to the task, work through follow-up questions and then ask about the teaching decisions behind the exchange. That final step turns the interaction itself into something you can examine.\n\nThe exercise sits within the authors' proposed 'Agentic Professor,' a longer-term vision of personalized instruction. The immediate invitation is simpler: experience one exchange and consider what helped you think.\n\nIf you try it, compare the explanation with a trusted source and notice the follow-up questions. Did they help you find a gap, connect ideas or revise an answer? Those details give a discussion of AI tutoring something concrete to work with.",
+      "source": "EDUCAUSE Review",
+      "sourceUrl": "https://er.educause.edu/articles/2026/9/the-agentic-professor-exploring-genai-supported-futures-in-higher-education",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-1.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-1.png",
+      "sourceStoryIndex": 1,
+      "storyId": "IHE-STORY-2026-09-18-001",
+      "publishedDate": "2026-09-14",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "UT Austin Makes Classroom AI Expectations Part of Every Syllabus",
+      "summary": "Students moving between courses can encounter very different expectations for AI. UT Austin is making those expectations an explicit part of every syllabus, with a new Fall 2026 requirement that leaves teaching decisions with faculty.\n\nInstructors must identify generative AI use as permitted, partially permitted or prohibited and explain the conditions. When AI is allowed, they must provide written instructions about acceptable uses and how students should disclose them. UT's official guidance also calls on instructors to explain which AI tasks support or interfere with the course's learning outcomes.\n\nThat connection to learning is where the approach becomes useful. A label such as \u201cpartially permitted\u201d leaves questions open. Can students brainstorm with AI? Use it to revise a draft? Which parts of an assignment need to demonstrate their own thinking? Explaining those choices gives students a way to understand the purpose behind the policy.\n\nFor faculty and teaching centers, UT's sample statements offer a starting point for that conversation. The opportunity is to make AI expectations part of assignment design, so students can see how the tools they use connect to what they are there to learn.",
+      "source": "UT Austin Office of the Provost",
+      "sourceUrl": "https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-35.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-35.png",
+      "sourceStoryIndex": 35,
+      "storyId": "IHE-LOCAL-2026-09-18-UT-AUSTIN",
+      "publishedDate": null,
+      "reviewOnlyImage": false,
+      "imageSelectionStatus": "FOUNDER_SELECTED"
+    },
+    {
+      "headline": "Cornell Will Test Whether AI Conversations Help Students Reflect",
+      "summary": "A reflection question can become more useful when it follows what a student actually experienced. Cornell researchers will study that possibility with an AI tool that tailors follow-up questions to students and their class sessions.\n\nThe National Science Foundation-funded project spans biology, physics and engineering. Alexandra Werth's research group developed the Automated Critical Thinking Reflection tool, or ACTR, in Qualtrics. It is designed to turn reflection on lectures and labs into a personalized exchange.\n\nResearchers plan to compare what students say in those conversations with critical-thinking survey scores. That gives the project a way to examine the relationship between the dialogue and students' thinking as the tool moves into courses.\n\nCornell also plans to share tools and results through resources and collaborations beyond the university. For educators following the work, the question is an appealing one: can a well-timed follow-up help a student look more carefully at a decision, an explanation or a team experience?",
+      "source": "Cornell Chronicle",
+      "sourceUrl": "https://news.cornell.edu/stories/2026/09/nsf-grant-explore-whether-ai-can-support-students-critical-thinking",
+      "category": "Insights & Trends",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-13.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-13.png",
+      "sourceStoryIndex": 13,
+      "storyId": "IHE-STORY-2026-09-18-013",
+      "publishedDate": "2026-09-14",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Connecting AI Access, Teaching and Campus Readiness",
+      "summary": "An AI tool's place in higher education reaches beyond the purchase decision. A review in Discover Education brings teaching, assessment, access and institutional preparedness into the same conversation, drawing together themes from 53 peer-reviewed articles.\n\nThe review covers literature from December 2023 through January 2026. Its international synthesis highlights continuing faculty development, clear expectations for AI use and the emerging role of agentic systems, which can carry out several steps toward a goal.\n\nThe value of a thematic review is in making connections across those issues. A campus exploring a new tool can consider who will have access, how instructors will use it and what evidence will help them judge its contribution to learning.\n\nThose questions can bring technology, teaching and student-support colleagues into a shared planning conversation. The review offers a broader frame for that work, with educational purpose at the center of decisions about systems and access.",
+      "source": "Discover Education / original review authors",
+      "sourceUrl": "https://link.springer.com/article/10.1007/s44217-026-02175-5",
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-12.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-12.png",
+      "sourceStoryIndex": 12,
+      "storyId": "IHE-STORY-2026-09-18-012",
+      "publishedDate": "2026-09-17",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Workers Are Returning to AI Tasks Beyond Their Occupational Boundaries",
+      "summary": "Some workers are making AI assistance from outside their usual occupational field a recurring part of their routine. OpenAI's Work at the Frontier report follows that pattern across more than 1.5 million work-related messages from April through July 2026.\n\nAmong about 6,200 workers observed throughout the period, previously used cross-occupation tasks rose from an average 13.1% to 25.9% of sampled occupation-specific AI activity. Those percentages describe classified AI use, rather than all work performed.\n\nThe return visit is what makes the pattern interesting. A first attempt might be an experiment; coming back can bring that assistance into a routine. OpenAI interprets the pattern as consistent with workers incorporating cross-occupation assistance into their ongoing workflows.\n\nFor higher education, that pattern raises a timely question about preparation for work. Graduates may need to recognize when a task reaches into another field, use its tools thoughtfully and know when to bring in a specialist. Familiarity across disciplines could become an increasingly practical part of professional judgment.",
+      "source": "OpenAI Economic Research",
+      "sourceUrl": "https://openai.com/index/unlocking-new-ways-of-working/",
+      "category": "AI Workforce & Careers",
+      "imageUrl": "/images/innovation-pulse/2026-09-18/story-4.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-18/story-4.png",
+      "sourceStoryIndex": 4,
+      "storyId": "IHE-STORY-2026-09-18-004",
+      "publishedDate": "2026-09-16",
+      "reviewOnlyImage": false
+    }
+  ],
+  "previewOnly": true,
+  "publicationAuthorized": false,
+  "fullAudioStoryIds": [
+    36,
+    3,
+    2,
+    9,
+    35,
+    15
+  ],
+  "teaserStoryIds": [
+    1,
+    13,
+    12
+  ],
+  "websiteOnlyStoryIds": [
+    4
+  ]
+}

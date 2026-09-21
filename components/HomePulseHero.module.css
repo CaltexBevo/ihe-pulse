@@ -622,3 +622,10 @@
 }
 
 :global([data-homepage]) .hero { margin-top: 16px; background: var(--home-tray); box-shadow: var(--home-shadow); }
+
+/* Preserve selected 1672x941 source, reveal rows0–800 only.
+   The generated wordmark is covered by the canonical brand asset. */
+.september18Artwork { position: relative; width: 100%; aspect-ratio: 1672 / 800; overflow: hidden; }
+.september18Image { position: absolute; inset: 0; width: 100%; height: auto; max-width: none; }
+.september18LogoPanel { position: absolute; left: 2%; top: 2%; width: 29%; height: 11.5%; background: #08080f; display: flex; align-items: center; justify-content: center; }
+.september18LogoPanel img { height: 90%; width: auto; max-width: 94%; object-fit: contain; }

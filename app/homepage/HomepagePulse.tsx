@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import ResourceIcon, { type ResourceIconName } from './ResourceIcon';
-import FeaturedCoverage from '@/components/FeaturedCoverage';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import QuickHitsSlider from '@/components/QuickHitsSlider';
 import { FEATURED_COVERAGE } from '@/lib/data/featured-coverage';
@@ -121,14 +120,13 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
         </div>
       </section>
 
-      <FeaturedCoverage variant="homepage" />
 
       <section className={styles.section} aria-labelledby="quick-hits-heading">
         <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)]">
           <div className={styles.module}>
             <div className={styles.sectionHeadingWithAction}>
               <div className={styles.sectionHeading}>
-                <h2 id="quick-hits-heading">In This Week’s Innovation Pulse</h2>
+                <h2 id="quick-hits-heading">This Week&apos;s Stories</h2>
                 <p>
                   {episodeStories.length} {episodeStories.length === 1 ? 'story' : 'stories'} from the {formatCoverageRange(episode)} Innovation Pulse.
                 </p>

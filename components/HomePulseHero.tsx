@@ -20,6 +20,7 @@ import { getHomePulseWaveform } from '@/lib/home-pulse-waveforms';
 import { getHomepageQuickHits } from '@/lib/homepagePulse';
 import { PLATFORM_LINKS, PlatformIcon, ShareGlyph } from '@/components/PlatformLinks';
 import styles from './HomePulseHero.module.css';
+import September18Artwork from './September18Artwork';
 
 export interface HomePulseHeroViewModel {
   date: string;
@@ -27,6 +28,7 @@ export interface HomePulseHeroViewModel {
   audioDuration: string;
   headline: string;
   fallbackArtwork: string;
+  weeklyHeroImageUrl?: string;
   storyCount: number;
   weekLabel: string;
 }
@@ -89,7 +91,8 @@ export default function HomePulseHero({
   const usesApprovedCollage = episode.date === '2026-08-28';
   const usesSeptember04Hero = episode.date === '2026-09-04';
   const usesSeptember11Hero = episode.date === '2026-09-11';
-  const usesApprovedFullHero = usesSeptember04Hero || usesSeptember11Hero;
+  const usesSeptember18Hero = episode.date === '2026-09-18' && Boolean(episode.weeklyHeroImageUrl);
+  const usesApprovedFullHero = usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero;
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -243,7 +246,12 @@ export default function HomePulseHero({
         <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
       )}
 
-      {usesSeptember04Hero ? <ApprovedSeptemberHeroArtwork /> : usesSeptember11Hero ? (
+       {usesSeptember18Hero ? (
+        <>
+          <h1 id="home-pulse-title" className="sr-only">Turn papers into research assistants. This week’s Innovation Pulse.</h1>
+          <September18Artwork src={episode.weeklyHeroImageUrl!} />
+        </>
+      ) : usesSeptember04Hero ? <ApprovedSeptemberHeroArtwork /> : usesSeptember11Hero ? (
         <ApprovedSeptember11HeroArtwork />
       ) : (
       <div className={styles.storyPanel}>
@@ -309,7 +317,7 @@ export default function HomePulseHero({
 
           <div className={styles.playerContent}>
             <p className={styles.playerLabel}>
-              {usesApprovedFullHero
+              {!hasAudio ? 'Audio in production' : usesApprovedFullHero
                 ? 'Play this week’s edition'
                 : `Play the ${roundedMinutes}-minute briefing`}
             </p>
