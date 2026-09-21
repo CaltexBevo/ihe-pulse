@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const SITE_URL = "https://www.innovatinghighered.com";
 const SITE_NAME = "Innovating Higher Ed";
-const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
+const OG_IMAGE_URL = `${SITE_URL}/og-image-v3.png`;
 
 type PageMetadataOptions = {
   title: string;
@@ -56,8 +56,8 @@ export function pageMetadata({
       images: [
         {
           url: imageUrl,
-          width: imageWidth ?? (imagePath ? undefined : 1024),
-          height: imageHeight ?? (imagePath ? undefined : 1024),
+          width: imageWidth ?? (imagePath ? undefined : 1254),
+          height: imageHeight ?? (imagePath ? undefined : 1254),
           alt: imageAlt ?? SITE_NAME,
         },
       ],

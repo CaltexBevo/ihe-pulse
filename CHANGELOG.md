@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-21] Square share-logo correction
+
+- Replace the obsolete plain “Ed” Open Graph image with the founder-supplied orange square, white “Ed,” and blue orbit mark.
+- Use a new versioned image URL across default page metadata and the Innovation Pulse RSS artwork so Messages and other clients can fetch the corrected asset instead of a cached predecessor.
+
 ## [2026-09-20] September 12–18 Innovation Pulse edition
 
 - Add ten approved stories, selected artwork and the final seven-minute, 39-second audio with its measured waveform.
