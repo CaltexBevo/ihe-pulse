@@ -112,7 +112,7 @@ test("remote story artwork preserves its absolute URL and query parameters", () 
 
 test("generic pages retain the brand image and existing card defaults", () => {
   const metadata = pageMetadata(base);
-  assert.deepEqual(metadata.openGraph?.images, [{ url: "https://www.innovatinghighered.com/og-image-v3.png", width: 1254, height: 1254, alt: "Innovating Higher Ed" }]);
+  assert.deepEqual(metadata.openGraph?.images, [{ url: "https://www.innovatinghighered.com/og-image-white-tile-v4.png", width: 1254, height: 1254, alt: "Innovating Higher Ed" }]);
   assert.equal(metadata.twitter.card, "summary");
 });
 

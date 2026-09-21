@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const SITE_URL = "https://www.innovatinghighered.com";
 const SITE_NAME = "Innovating Higher Ed";
-const OG_IMAGE_URL = `${SITE_URL}/og-image-v3.png`;
+const OG_IMAGE_URL = `${SITE_URL}/og-image-white-tile-v4.png`;
 
 type PageMetadataOptions = {
   title: string;

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.innovatinghighered.com/og-image-v3.png",
+        url: "https://www.innovatinghighered.com/og-image-white-tile-v4.png",
         width: 1254,
         height: 1254,
         alt: "Innovating Higher Ed",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    images: ["https://www.innovatinghighered.com/og-image-v3.png"],
+    images: ["https://www.innovatinghighered.com/og-image-white-tile-v4.png"],
   },
 };
 
