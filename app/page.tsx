@@ -16,6 +16,7 @@ export default function Home() {
   const heroEpisode = pulseEpisode
     ? {
         date: pulseEpisode.date,
+        weeklyHeroImageUrl: pulseEpisode.weeklyHeroImageUrl,
         audioUrl: pulseEpisode.audioUrl,
         audioDuration: pulseEpisode.audioDuration,
         headline: pulseEpisode.deepDive?.title || 'The Innovation Pulse',

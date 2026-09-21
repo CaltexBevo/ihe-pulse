@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-20] September 12–18 Innovation Pulse edition
+
+- Add ten approved stories, selected artwork and the final seven-minute, 39-second audio with its measured waveform.
+- Present the selected weekly hero with canonical branding and one working player, preserving current native article and 3:2 card framing.
+- Remove the homepage Feature Launch placement for later reuse while preserving its article and assets; rename the weekly section to “This Week's Stories.”
+
 ## [2026-09-20] Contact email correction
 
 - Replace nonexistent hello and privacy addresses with info@innovatinghighered.com across all seven contact-bearing pages, preserving subject lines and other content.

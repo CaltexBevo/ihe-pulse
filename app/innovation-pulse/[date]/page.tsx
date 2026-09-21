@@ -1,3 +1,4 @@
+import September18Artwork from '@/components/September18Artwork';
 import Link from "next/link";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -122,7 +123,7 @@ export default async function InnovationPulseDatePage({
         </header>
         {episodeHero && (
           <div className="mb-5">
-            <Image src={episodeHero} alt={'Innovation Pulse artwork for ' + formatPulseDate(date)} width={1672} height={941} sizes="(max-width: 1100px) 100vw, 1100px" className="block w-full h-auto rounded-md" priority />
+            {date === "2026-09-18" ? <September18Artwork src={episodeHero} /> : (<Image src={episodeHero} alt={'Innovation Pulse artwork for ' + formatPulseDate(date)} width={1672} height={941} sizes="(max-width: 1100px) 100vw, 1100px" className="block w-full h-auto rounded-md" priority />)}
           </div>
         )}
         {/* Never mount an audio element without a real source. */}
@@ -343,7 +344,7 @@ export default async function InnovationPulseDatePage({
                 badgeText="Story"
                 badgeColor="rgba(200,80,192,0.85)"
                 expandable={true}
-                preserveParagraphs={episode.date === "2026-09-04"}
+                preserveParagraphs={["2026-09-04", "2026-09-18"].includes(episode.date)}
               />
             ))}
           </div>
