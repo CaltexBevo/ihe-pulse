@@ -132,7 +132,7 @@ export default function PromptsPage() {
             Navigator with an example and the limitations you found.
           </p>
           <a
-            href="mailto:hello@innovatinghighered.com?subject=Prompt%20submission%20for%20the%20Prompt%20Navigator"
+            href="mailto:info@innovatinghighered.com?subject=Prompt%20submission%20for%20the%20Prompt%20Navigator"
             className="btn-primary inline-block"
           >
             Submit a Prompt

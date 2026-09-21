@@ -135,8 +135,8 @@ export default function AIDisclosurePage() {
               </h2>
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
                 We welcome questions about our AI practices. Contact us at{" "}
-                <a href="mailto:hello@innovatinghighered.com" className="text-[var(--cyan)] hover:underline">
-                  hello@innovatinghighered.com
+                <a href="mailto:info@innovatinghighered.com" className="text-[var(--cyan)] hover:underline">
+                  info@innovatinghighered.com
                 </a>.
               </p>
             </section>

@@ -6,6 +6,81 @@ import { STORY_SOCIAL_IMAGES } from "../lib/story-social-images.ts";
 
 const base = { title: "Story title", description: "Story summary", path: "/innovation-pulse/story/example" };
 
+test("NASA/IBM social card uses measured wide artwork and preserves the article image", () => {
+  const slug = "nasa-and-ibm-turn-moon-data-into-open-ai-research-infrastruc";
+  const card = STORY_SOCIAL_IMAGES[slug];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/nasa-ibm-moon-data-card.png"]);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("NASA and IBM"));
+  assert.equal(story.image, "/images/stories/nasa-and-ibm-turn-moon-data-into-open-ai-research-infrastruc.webp");
+  assert.notEqual(story.image, card.imagePath);
+});
+
+test("MIT social card uses measured wide artwork and preserves the article image", () => {
+  const slug = "mit-builds-ai-teaching-around-a-shared-core-and-discipline-s";
+  const card = STORY_SOCIAL_IMAGES[slug];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/mit-shared-core-card.png"]);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("MIT Builds"));
+  assert.equal(story.image, "/images/stories/mit-builds-ai-teaching-around-a-shared-core-and-discipline-s.webp");
+  assert.notEqual(story.image, card.imagePath);
+});
+
+test("Dartmouth social card uses measured wide artwork and preserves the article image", () => {
+  const slug = "dartmouth-pairs-permission-to-use-ai-with-work-others-can-ch";
+  const card = STORY_SOCIAL_IMAGES[slug];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/dartmouth-real-clients-card.png"]);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("Dartmouth"));
+  assert.equal(story.image, "/images/stories/dartmouth-pairs-permission-to-use-ai-with-work-others-can-ch.webp");
+  assert.notEqual(story.image, card.imagePath);
+});
+
+test("ACC social card uses measured wide artwork and preserves the article image", () => {
+  const slug = "austin-community-college-wants-student-alerts-to-lead-somewh";
+  const card = STORY_SOCIAL_IMAGES[slug];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/acc-alert-support-card.png"]);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("Austin Community College"));
+  assert.equal(story.image, "/images/stories/austin-community-college-wants-student-alerts-to-lead-somewh.webp");
+  assert.notEqual(story.image, card.imagePath);
+});
+
+test("USD social card uses measured wide artwork and preserves the article image", () => {
+  const slug = "a-five-level-ai-scale-starts-with-the-assignments-purpose";
+  const card = STORY_SOCIAL_IMAGES[slug];
+  const bytes = fs.readFileSync(`public${card.imagePath}`);
+  assert.equal(bytes.subarray(1, 4).toString(), "PNG");
+  assert.equal(bytes.readUInt32BE(16), card.imageWidth);
+  assert.equal(bytes.readUInt32BE(20), card.imageHeight);
+  const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card, twitterCard: "summary_large_image" });
+  assert.deepEqual(metadata.twitter.images, ["https://www.innovatinghighered.com/images/stories/social/usd-purpose-first-card-v2.png"]);
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-09-11.json", "utf8"));
+  const story = episode.quickHits.find(story => story.headline.startsWith("A Five-Level AI Scale"));
+  assert.equal(story.image, "/images/stories/a-five-level-ai-scale-starts-with-the-assignment-s-purpose.webp");
+  assert.notEqual(story.image, card.imagePath);
+});
+
 test("Texas A&M card override uses measured artwork without changing its story hero", () => {
   const card = STORY_SOCIAL_IMAGES["texas-am-finds-the-instructional-design-behind-better-ai-rol"];
   const bytes = fs.readFileSync(`public${card.imagePath}`);

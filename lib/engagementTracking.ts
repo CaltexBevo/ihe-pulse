@@ -55,6 +55,9 @@ const TRACKED_RELEASE_DATES = new Set([
   '2026-08-14',
   '2026-08-21',
   '2026-08-28',
+  '2026-09-04',
+  '2026-09-11',
+  '2026-09-18',
 ]);
 
 const MAILCHIMP_CONTENT = new Set([
@@ -73,7 +76,8 @@ const MAILCHIMP_CONTENT = new Set([
 ]);
 
 const SOCIAL_CONTENT = new Map([
-  ['x', new Set(['episode_post'])],
+  ['x', new Set(['episode_post', 'story_post'])],
+  ['instagram', new Set(['instagram', 'story_link', 'bio_link'])],
   ['youtube', new Set(['video_description'])],
   ['linkedin', new Set(['episode_post'])],
 ]);
@@ -183,6 +187,8 @@ export function analyticsDeliveryState(customEventFlag: string | undefined, inte
 
 export function campaignEventProperties(search: string) {
   const params = new URLSearchParams(search);
+  // Reject ambiguous tags rather than choosing one of multiple values.
+  if (['utm_campaign', 'utm_source', 'utm_medium', 'utm_content'].some((key) => params.getAll(key).length !== 1)) return null;
   const campaign = params.get('utm_campaign') || '';
   const source = params.get('utm_source') || '';
   const medium = params.get('utm_medium') || '';
@@ -192,8 +198,13 @@ export function campaignEventProperties(search: string) {
 
   if (source === 'mailchimp') {
     if (medium !== 'email' || !MAILCHIMP_CONTENT.has(content)) return null;
+  } else if (source === 'email') {
+    if (medium !== 'email' || content !== 'subscriberEmail') return null;
   } else if (source === 'forwarded_email') {
     if (medium !== 'email' || content !== 'forward') return null;
+  } else if (source === 'podcast_feed' || source === 'podbean') {
+    // Syndicated show notes identify their shared feed, not a listening app.
+    if (medium !== 'podcast' || content !== 'show_notes') return null;
   } else {
     const allowedContent = SOCIAL_CONTENT.get(source);
     if (medium !== 'social' || !allowedContent?.has(content)) return null;
@@ -243,9 +254,20 @@ export function redactAnalyticsEventUrl<T extends AnalyticsUrlEvent>(
       : publicPagePaths.has(path) ? path : null;
 
     if (!redactedPath) return null;
+    // Rebuild only the finite, governed attribution tags. All other query
+    // fields and fragments stay excluded; custom-event URLs remain grouped.
+    const campaign = event.type === 'pageview' ? campaignEventProperties(parsed.search) : null;
+    const attribution = new URLSearchParams();
+    if (campaign) {
+      const [source, medium, content] = campaign.channel.split(':');
+      attribution.set('utm_source', source);
+      attribution.set('utm_medium', medium);
+      attribution.set('utm_campaign', campaign.campaign);
+      attribution.set('utm_content', content);
+    }
     return {
       ...event,
-      url: `${ANALYTICS_ORIGIN}${redactedPath}`,
+      url: `${ANALYTICS_ORIGIN}${redactedPath}${campaign ? `?${attribution}` : ''}`,
     };
   } catch {
     return null;

@@ -216,7 +216,7 @@ export default function TinkerLabPage() {
             Want us to test a specific AI tool, compare platforms, or try something wild? Tell us what you want to see in the lab.
           </p>
           <a
-            href="mailto:hello@innovatinghighered.com?subject=Experiment%20idea%20for%20the%20Tinker%20Lab"
+            href="mailto:info@innovatinghighered.com?subject=Experiment%20idea%20for%20the%20Tinker%20Lab"
             className="btn-primary inline-block"
           >
             Suggest an Experiment

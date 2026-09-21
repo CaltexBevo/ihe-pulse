@@ -255,7 +255,7 @@ export default function InnovationGrantsPage() {
               <summary>How we verify</summary>
               <p>Every public record starts with an official source and shows a last-verified date. Individual records retain their actual verification dates. Always read the official source before applying.</p>
               <p>The funding total includes reported current program-level cash amounts, not money guaranteed to remain available. Per-award-only caps, in-kind credits, and mixed-purpose budgets are excluded. Awards are competitive and not guaranteed.</p>
-              <p>Unresolved source conflicts and unavailable application paths are held for review and do not appear in this launch. Planning-watchlist and closed opportunities are separated from active opportunities. Evidence-only research checks are retained outside the public directory.</p>
+              <p>Temporary access problems and unresolved source discrepancies are flagged in listing details, without advancing the last full-verification date. Some records remain withheld until their release checks are resolved. Planning-watchlist and closed opportunities are separated from active opportunities. Evidence-only research checks are retained outside the public directory.</p>
               <p id="trustDates">Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE} · Status calculated for {dateLabel(asOfDate)} (Pacific).</p>
             </details>
           </div>
