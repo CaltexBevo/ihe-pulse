@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-21] White-tile share-logo refinement
+
+- Change the default link-preview treatment to a white rounded tile with orange `Ed` lettering and the existing blue orbit mark.
+- Preserve the approved mark geometry, page-specific social artwork, and existing browser, touch, and install icons.
+- Use a new versioned image URL so Messages and other clients can request the updated treatment.
+
 ## [2026-09-21] Square share-logo correction
 
 - Replace the obsolete plain “Ed” Open Graph image with the founder-supplied orange square, white “Ed,” and blue orbit mark.
