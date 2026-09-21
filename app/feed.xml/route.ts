@@ -70,7 +70,7 @@ export async function GET() {
     <language>en-us</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <image>
-      <url>${SITE_URL}/og-image.png</url>
+      <url>${SITE_URL}/og-image-v3.png</url>
       <title>${escapeXml(FEED_TITLE)}</title>
       <link>${SITE_URL}/innovation-pulse</link>
     </image>
