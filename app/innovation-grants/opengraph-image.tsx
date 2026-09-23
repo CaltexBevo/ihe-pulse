@@ -1,42 +1,39 @@
 import { ImageResponse } from "next/og";
+import { getPublicInnovationGrants } from "@/lib/data/innovation-grants-public";
+import { getHomepageGrantSummary } from "@/lib/innovation-grants-homepage";
 
 export const runtime = "edge";
-export const alt = "Grant Portal from Innovating Higher Ed";
+export const dynamic = "force-dynamic";
+export const alt = "Your innovation. Our grant portal. Reported current program funding from Innovating Higher Ed.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
+  // Same cleared records, Pacific date and funding exclusions as the live hero.
+  const { funding, asOfDate } = getHomepageGrantSummary(getPublicInnovationGrants());
+  const amount = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(funding.publishedProgramPoolUsd);
+  const gradient = { backgroundImage: "linear-gradient(100deg, #00d4ff, #a78bfa, #b040a8)", backgroundClip: "text" as const, color: "transparent" };
+
   return new ImageResponse(
-    (
-      <div
-        style={{
-          background: "#08080f",
-          color: "#f0ede8",
-          display: "flex",
-          flexDirection: "column",
-          fontFamily: "Arial, sans-serif",
-          height: "100%",
-          justifyContent: "space-between",
-          padding: "72px 84px",
-          position: "relative",
-          width: "100%",
-        }}
-      >
-        <div style={{ color: "#a8a4b8", display: "flex", fontSize: 28, fontWeight: 700 }}>
-          INNOVATING HIGHER ED <span style={{ color: "#00d4ff", marginLeft: 18 }}>·</span> GRANT PORTAL
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-          <div style={{ color: "#a8a4b8", fontSize: 26 }}>Higher-education innovation funding</div>
-          <div style={{ display: "flex", fontSize: 76, fontWeight: 800, letterSpacing: -3, lineHeight: 1.03 }}>
-            Every kind of change, <span style={{ color: "#b040a8" }}>funded.</span>
+    <div style={{ display: "flex", width: "100%", height: "100%", padding: 24, background: "#08080f", color: "#f0ede8", fontFamily: "sans-serif" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", padding: "36px 52px", borderRadius: 32, border: "2px solid #383840", backgroundImage: "linear-gradient(125deg, #24343a 0%, #18181e 40%, #18181e 100%)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", gap: 8 }}>
+            {["#00d4ff", "#a78bfa", "#b040a8", "#f59e0b"].map(color => <div key={color} style={{ background: color, width: 40, height: 6, borderRadius: 3 }} />)}
           </div>
-          <div style={{ color: "#a8a4b8", fontSize: 28 }}>Find opportunities by who can apply, what they fund, and when they close.</div>
+          <div style={{ fontSize: 22, color: "#f0ede8" }}>Innovating Higher Ed</div>
         </div>
-        <div style={{ display: "flex", gap: 14 }}>
-          {["#00d4ff", "#a78bfa", "#b040a8", "#f59e0b"].map((color) => <div key={color} style={{ background: color, borderRadius: 6, height: 10, width: 82 }} />)}
+        <div style={{ display: "flex", marginTop: 22, color: "#00d4ff", fontSize: 19, fontWeight: 700, letterSpacing: 3 }}>GRANT PORTAL</div>
+        <div style={{ display: "flex", flexDirection: "column", marginTop: 12, fontSize: 76, lineHeight: 1.04, fontWeight: 700, letterSpacing: -3 }}>
+          <div>Your innovation.</div>
+          <div style={gradient}>Our grant portal.</div>
         </div>
+        <div style={{ display: "flex", marginTop: 22, paddingTop: 18, borderTop: "1px solid #383840", fontSize: 68, lineHeight: 1.1, fontWeight: 700, letterSpacing: -2, ...gradient }}>{amount}</div>
+        <div style={{ display: "flex", fontSize: 23, color: "#a8a4b8", marginTop: 4 }}>reported current program funding</div>
+        <div style={{ display: "flex", marginTop: 22, fontSize: 22, color: "#f0ede8" }}>{funding.openOpportunityCount} currently open · {funding.closingSoonCount} closing soon</div>
+        <div style={{ display: "flex", marginTop: 14, fontSize: 17, color: "#a8a4b8" }}>As of {asOfDate} · Includes approximate program totals. Awards are competitive.</div>
       </div>
-    ),
-    { ...size },
+    </div>,
+    { ...size, headers: { "Cache-Control": "public, max-age=0, must-revalidate" } },
   );
 }

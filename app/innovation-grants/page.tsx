@@ -20,17 +20,20 @@ import { getHomepageGrantSummary } from "@/lib/innovation-grants-homepage";
 import { pageMetadata } from "@/lib/og";
 import styles from "./portal.module.css";
 
-export const metadata = pageMetadata({
+export function generateMetadata() {
+  const summary = getHomepageGrantSummary(getPublicInnovationGrants());
+  return pageMetadata({
   title: "Grant Portal | Innovating Higher Ed",
   description:
     "Find current higher-education innovation grant opportunities by who can apply, what they fund, and when they close.",
   path: "/innovation-grants",
-  imagePath: "/innovation-grants/opengraph-image",
-  imageAlt: "Grant Portal from Innovating Higher Ed",
+  imagePath: `/innovation-grants/opengraph-image?v=hero-total-v2-${summary.asOfDate}-${summary.funding.publishedProgramPoolUsd}`,
+  imageAlt: "Your innovation. Our grant portal. Reported current program funding from Innovating Higher Ed.",
   imageWidth: 1200,
   imageHeight: 630,
   twitterCard: "summary_large_image",
 });
+}
 
 export const dynamic = "force-dynamic";
 
