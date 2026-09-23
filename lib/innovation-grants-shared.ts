@@ -125,8 +125,8 @@ export interface InnovationGrantOpportunity {
   sourceNotes?: string;
 }
 
-export const INNOVATION_GRANTS_VERIFIED_ON = "Sep 22, 2026";
-export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-09-22";
+export const INNOVATION_GRANTS_VERIFIED_ON = "Sep 23, 2026";
+export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-09-23";
 export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Sep 21, 2026";
 export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-09-21";
 export const INNOVATION_GRANTS_TIME_ZONE = "America/Los_Angeles";
