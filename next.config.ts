@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    "/innovation-grants/opengraph-image": ["./public/fonts/inter-bold.ttf"],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
