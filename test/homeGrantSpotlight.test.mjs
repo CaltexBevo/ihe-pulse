@@ -15,14 +15,14 @@ test("homepage banner omits the disclaimer and reserves end space for the dollar
   assert.match(component, /reported current program funding/);
   assert.match(css, /\.amount b \{ display:inline-block; padding-inline-end:\.08em; font-weight:800; \}/);
 });
-test("homepage summarizes only the cleared public projection", () => {
+test("homepage summarizes the current cleared projection at the September 15 cutoff", () => {
   assert.ok(records.every(record => !INNOVATION_GRANTS_LAUNCH_HELD_IDS.includes(record.id)));
-  const result = getHomepageGrantSummary(records, now);
-  assert.equal(result.totalCount, 46);
+  const result = getHomepageGrantSummary(records.filter((record) => record.id < 101), now);
+  assert.equal(result.totalCount, 47);
   assert.equal(result.funding.publishedProgramPoolUsd, 51782403);
   assert.equal(result.funding.publishedProgramPoolCount, 13);
   assert.equal(result.funding.approximatePoolCount, 7);
-  assert.equal(result.funding.openOpportunityCount, 34);
+  assert.equal(result.funding.openOpportunityCount, 37);
   assert.equal(result.latestDate, "2026-09-15");
   assert.equal(result.latestCount, 9);
   assert.deepEqual(result.breakdown, { open:8, watchlist:1, openingSoon:0, closed:0 });
@@ -46,6 +46,17 @@ test("invalid, missing and future cohort dates are excluded; empty is honest", (
   assert.equal(empty.latestDate,null);
   assert.equal(empty.latestCount,0);
   assert.equal(empty.funding.publishedProgramPoolUsd,0);
+});
+test("September 22 homepage and portal agree after three deadline expirations", () => {
+  const result = getHomepageGrantSummary(records, new Date("2026-09-22T18:00:00Z"));
+  assert.equal(result.funding.publishedProgramPoolUsd, 101_574_990);
+  assert.equal(result.funding.openOpportunityCount, 40);
+  assert.equal(result.funding.closingSoonCount, 10);
+  assert.equal(result.totalCount, 54);
+  assert.equal(result.latestDate, "2026-09-22");
+  assert.equal(result.latestCount, 8);
+  assert.deepEqual(records.filter((record) => record.portalAddedDate === result.latestDate).map((record) => record.id), [84, 101, 102, 103, 104, 105, 106, 107]);
+  assert.deepEqual(result.breakdown, { open:8, watchlist:0, openingSoon:0, closed:0 });
 });
 test("amount motion clamps early frames, settles and immediately respects reduced motion", () => {
   const source = readFileSync(new URL("../app/innovation-grants/PortalFundingTally.tsx",import.meta.url),"utf8");

@@ -18,7 +18,7 @@ import type {
  * receive its already-filtered return value as their narrow route prop.
  */
 export const INNOVATION_GRANTS_LAUNCH_HELD_IDS = [
-  48, 56, 57, 58, 60, 66, 70, 74, 84,
+  48, 56, 57, 58, 60, 66, 70, 74,
 ] as const;
 
 const launchHeldIds = new Set<number>(INNOVATION_GRANTS_LAUNCH_HELD_IDS);
@@ -67,6 +67,7 @@ const LOCATION_ELIGIBILITY_BY_ID: Readonly<Record<number, InnovationGrantLocatio
   81: nationwide(),
   82: { scope: "unresolved" },
   83: nationwide(),
+  84: { scope: "state-or-territory", jurisdictions: ["AK"] },
   85: { scope: "institution-only" },
   86: nationwide(),
   87: nationwide(),
@@ -84,6 +85,13 @@ const LOCATION_ELIGIBILITY_BY_ID: Readonly<Record<number, InnovationGrantLocatio
   // Future IBM call geography is unannounced, not inherited from the 2026 call.
   99: { scope: "unresolved" },
   100: nationwide(),
+  101: nationwide(true),
+  102: nationwide(true),
+  103: nationwide(),
+  104: { scope: "institution-only" },
+  105: { scope: "institution-only" },
+  106: { scope: "state-or-territory", jurisdictions: ["CA"] },
+  107: { scope: "unresolved" },
 };
 
 export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {
