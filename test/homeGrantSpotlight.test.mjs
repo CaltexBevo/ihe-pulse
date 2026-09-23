@@ -58,6 +58,18 @@ test("September 22 homepage and portal agree after three deadline expirations", 
   assert.deepEqual(records.filter((record) => record.portalAddedDate === result.latestDate).map((record) => record.id), [84, 101, 102, 103, 104, 105, 106, 107]);
   assert.deepEqual(result.breakdown, { open:8, watchlist:0, openingSoon:0, closed:0 });
 });
+test("September 23 homepage reflects closing-soon progression without changing the addition cohort", () => {
+  const result = getHomepageGrantSummary(records, new Date("2026-09-23T18:00:00Z"));
+  assert.equal(result.totalCount, 54);
+  assert.equal(result.funding.openOpportunityCount, 40);
+  assert.equal(result.funding.closingSoonCount, 12);
+  assert.equal(result.funding.publishedProgramPoolUsd, 101_574_990);
+  assert.equal(result.funding.publishedProgramPoolCount, 11);
+  assert.equal(result.funding.approximatePoolCount, 7);
+  assert.equal(result.latestDate, "2026-09-22");
+  assert.equal(result.latestCount, 8);
+});
+
 test("amount motion clamps early frames, settles and immediately respects reduced motion", () => {
   const source = readFileSync(new URL("../app/innovation-grants/PortalFundingTally.tsx",import.meta.url),"utf8");
   assert.match(source,/Math.max\(0, Math.min\(\(now - startedAt\) \/ 850, 1\)\)/);
