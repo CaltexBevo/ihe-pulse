@@ -81,6 +81,17 @@ test("September 25 homepage removes the passed NSAW pool but retains its archive
   assert.ok(records.some((record) => record.id === 54));
 });
 
+test("September 26 homepage removes the passed Rev Up EV pool and retains its archive record", () => {
+  const result = getHomepageGrantSummary(records, new Date("2026-09-26T18:00:00Z"));
+  assert.equal(result.totalCount, 54);
+  assert.equal(result.funding.openOpportunityCount, 38);
+  assert.equal(result.funding.closingSoonCount, 11);
+  assert.equal(result.funding.publishedProgramPoolUsd, 94_224_990);
+  assert.equal(result.funding.publishedProgramPoolCount, 9);
+  assert.equal(result.funding.approximatePoolCount, 5);
+  assert.ok(records.some((record) => record.id === 55));
+});
+
 test("amount motion clamps early frames, settles and immediately respects reduced motion", () => {
   const source = readFileSync(new URL("../app/innovation-grants/PortalFundingTally.tsx",import.meta.url),"utf8");
   assert.match(source,/Math.max\(0, Math.min\(\(now - startedAt\) \/ 850, 1\)\)/);
