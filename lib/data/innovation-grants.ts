@@ -2287,7 +2287,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     announcedDate: "FY2026 cycle; current deadline posted",
     fundingType: "cash",
     awardAmount: "Up to $75,000 per year per institution; approximately $300,000 anticipated annual program funding",
-    eligibility: "Public and private West Virginia baccalaureate institutions; an application must be submitted by the president, provost, or another senior academic official, or endorsed by the provost.",
+    eligibility: "Regionally accredited public and private West Virginia baccalaureate institutions; an application must be submitted by the president, provost, or another senior academic official, or endorsed by the provost.",
     whatItFunds: "Institutional programs that give undergraduate students paid summer or semester research experiences in science, technology, engineering, and mathematics.",
     geography: "West Virginia",
     costShareRequirement: "No cost share required",
@@ -2302,7 +2302,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     eligibilityBadge: "West Virginia baccalaureate institutions",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, Sep. 28, 2026",
-    sourceNotes: "The current STaR opportunities page lists Oct. 16, 2026 and the program page lists approximately $300,000 in anticipated annual funding, five to six awards, up to $75,000 each, and no match. Funding depends on state Research Challenge Fund availability and Council approval. Time of day and timezone are not stated. Applicants must request a GO! invitation; no account or application was created."
+    sourceNotes: "The current STaR opportunities page and STaR.SURE.2026 RFP support Oct. 16, 2026, regional accreditation, approximately $300,000 in anticipated annual funding for this call, five to six awards, up to $75,000 each, and no match. Current RFP: https://wvresearch.org/wp-content/uploads/2026/06/SUREGrantRFP6126.pdf . Funding depends on state Research Challenge Fund availability and Council approval. Time of day and timezone are not stated. Applicants must request a GO! invitation; no account or application was created."
   }),
 ];
 

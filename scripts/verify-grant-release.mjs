@@ -10,6 +10,8 @@ export function verifyGrantHtml(html, expected, route) {
   const updated = times.find(([, attrs]) => /\bdata-grant-updated(?:\s|=|$)/.test(attrs));
   const failures = [];
   if (!updated || !new RegExp(`\\bdatetime=["']${expected.date}["']`, "i").test(updated[1])) failures.push("Published update date does not match expected release");
+  const updateLabel = new Date(`${expected.date}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+  if (!updated || updated[2].replace(/<!--.*?-->/gs, "").replace(/<[^>]*>/g, "").trim() !== updateLabel) failures.push("Visible update date does not match expected release");
   if (!text.includes("Last updated")) failures.push("Visible Last updated label missing");
   if (route !== "/innovation-grants/directory") {
     if (!text.includes(`$${Number(expected.funding).toLocaleString("en-US")}`)) failures.push("Funding total mismatch");
@@ -32,6 +34,9 @@ export async function verifyGrantRelease(expected, fetchPage = fetch) {
     try {
       const response = await fetchPage(url, { cache: "no-store", signal: AbortSignal.timeout(20000) });
       const failures = response.ok ? verifyGrantHtml(await response.text(), expected, route) : [`HTTP ${response.status}`];
+      const finalUrl = new URL(response.url);
+      const sameHost = finalUrl.hostname.replace(/^www\./, "") === url.hostname.replace(/^www\./, "");
+      if (!sameHost || finalUrl.protocol !== url.protocol || finalUrl.port !== url.port || finalUrl.pathname !== url.pathname || finalUrl.search !== url.search) failures.push("Unexpected final destination after redirect");
       results.push({ route, url: url.href, status: response.status, failures });
     } catch (error) {
       results.push({ route, url: url.href, failures: [`Request failed: ${error.message}`] });
