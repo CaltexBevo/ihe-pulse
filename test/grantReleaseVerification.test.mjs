@@ -41,3 +41,20 @@ test("a redirect to the wrong page fails even when its content matches", async (
   assert.ok(result.results[0].failures.includes("Unexpected final destination after redirect"));
   assert.ok(result.results[2].failures.includes("Unexpected final destination after redirect"));
 });
+test("recent rendered browser evidence verifies client-rendered pages, with live HTTP checks", async () => {
+  const receipt = { pages: ["/", "/innovation-grants", "/innovation-grants/directory"].map(route => ({ route, url: new URL(route, "https://www.innovatinghighered.com").href, capturedAt: new Date().toISOString(), visible: true, html })) };
+  const shell = url => Object.defineProperty(new Response("<html><body></body></html>"), "url", { value: String(url) });
+  assert.equal((await verifyGrantRelease(expected, shell, receipt)).success, true);
+  receipt.pages[1].capturedAt = "2026-01-01T00:00:00Z";
+  assert.equal((await verifyGrantRelease(expected, shell, receipt)).success, false);
+});
+test("browser evidence cannot substitute another host, missing page, or hidden dates", async () => {
+  for (const change of [p => { p.url = "https://preview.example.com/"; }, p => { p.visible = false; }]) {
+    const receipt = { pages: ["/", "/innovation-grants", "/innovation-grants/directory"].map(route => ({ route, url: new URL(route, "https://www.innovatinghighered.com").href, capturedAt: new Date().toISOString(), visible: true, html })) };
+    change(receipt.pages[0]);
+    const result = await verifyGrantRelease(expected, async url => page(url), receipt);
+    assert.equal(result.success, false);
+    assert.ok(result.results[0].failures.includes("Missing, stale, hidden, or wrong-destination browser evidence"));
+  }
+  assert.equal((await verifyGrantRelease(expected, async url => page(url), { pages: [] })).success, false);
+});
