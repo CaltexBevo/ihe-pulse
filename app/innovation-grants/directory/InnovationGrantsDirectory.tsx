@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import GrantUpdatedDate from "@/components/GrantUpdatedDate";
 import { useSearchParams } from "next/navigation";
 import {
   getInnovationGrantDaysUntilDeadline,
@@ -108,10 +109,10 @@ const FUNDER_TYPES: Array<[FunderType, string]> = [
 ];
 
 const FUNDER_ID_MAP: Record<Exclude<FunderType, "all" | "other">, readonly number[]> = {
-  federal: [44, 61, 62, 63, 64, 65, 66, 67, 71, 72, 73, 74, 78, 79, 80, 81, 82, 84, 87, 88],
-  state: [43, 52, 54, 55, 56, 57, 58, 59, 68, 70],
-  nonprofit: [42, 51, 53, 60, 69, 75, 76, 77, 83, 86],
-  institution: [38, 48, 85],
+  federal: [44, 61, 62, 63, 64, 65, 66, 67, 71, 72, 73, 74, 78, 79, 80, 81, 82, 84, 87, 88, 91, 101, 102, 103, 108],
+  state: [43, 52, 54, 55, 56, 57, 58, 59, 68, 70, 89, 90, 106, 110],
+  nonprofit: [42, 51, 53, 60, 69, 75, 76, 77, 83, 86, 107],
+  institution: [38, 48, 85, 104, 105],
   corporate: [92, 93, 94, 95, 96, 97, 98, 99, 100],
 };
 
@@ -406,7 +407,7 @@ export default function InnovationGrantsDirectory({ opportunities, asOfDate }: {
       <div className="status-line" id="copyStatus" role="status">{shareStatus}</div>
       <input className="share-fallback" id="shareFallback" aria-label="Search link to copy" readOnly hidden />
       <p className="page-intro">Compare likely fit, deadlines, amounts, and official sources. Use the filters to build a practical shortlist, then confirm eligibility with the funder.</p>
-      <p className="checkpoint" id="checkpoint">Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE}. Status calculated for {asOfLabel} (Pacific). Individual records retain their own dates.</p>
+      <p className="checkpoint" id="checkpoint"><GrantUpdatedDate /> · Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE}. Status calculated for {asOfLabel} (Pacific). Individual records retain their own dates.</p>
 
       <form className="refine" id="refineForm" onSubmit={applyFilters}>
         <h2 className="legend">Refine results</h2>

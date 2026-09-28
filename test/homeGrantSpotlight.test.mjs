@@ -48,7 +48,7 @@ test("invalid, missing and future cohort dates are excluded; empty is honest", (
   assert.equal(empty.funding.publishedProgramPoolUsd,0);
 });
 test("September 22 homepage and portal agree after three deadline expirations", () => {
-  const result = getHomepageGrantSummary(records, new Date("2026-09-22T18:00:00Z"));
+  const result = getHomepageGrantSummary(records.filter((record) => record.portalAddedDate <= "2026-09-22"), new Date("2026-09-22T18:00:00Z"));
   assert.equal(result.funding.publishedProgramPoolUsd, 101_574_990);
   assert.equal(result.funding.openOpportunityCount, 40);
   assert.equal(result.funding.closingSoonCount, 10);
@@ -59,7 +59,7 @@ test("September 22 homepage and portal agree after three deadline expirations", 
   assert.deepEqual(result.breakdown, { open:8, watchlist:0, openingSoon:0, closed:0 });
 });
 test("September 23 homepage reflects closing-soon progression without changing the addition cohort", () => {
-  const result = getHomepageGrantSummary(records, new Date("2026-09-23T18:00:00Z"));
+  const result = getHomepageGrantSummary(records.filter((record) => record.portalAddedDate <= "2026-09-23"), new Date("2026-09-23T18:00:00Z"));
   assert.equal(result.totalCount, 54);
   assert.equal(result.funding.openOpportunityCount, 40);
   assert.equal(result.funding.closingSoonCount, 12);
@@ -71,7 +71,7 @@ test("September 23 homepage reflects closing-soon progression without changing t
 });
 
 test("September 25 homepage removes the passed NSAW pool but retains its archive record", () => {
-  const result = getHomepageGrantSummary(records, new Date("2026-09-25T18:00:00Z"));
+  const result = getHomepageGrantSummary(records.filter((record) => record.portalAddedDate <= "2026-09-25"), new Date("2026-09-25T18:00:00Z"));
   assert.equal(result.totalCount, 54);
   assert.equal(result.funding.openOpportunityCount, 39);
   assert.equal(result.funding.closingSoonCount, 12);
@@ -82,7 +82,7 @@ test("September 25 homepage removes the passed NSAW pool but retains its archive
 });
 
 test("September 26 homepage removes the passed Rev Up EV pool and retains its archive record", () => {
-  const result = getHomepageGrantSummary(records, new Date("2026-09-26T18:00:00Z"));
+  const result = getHomepageGrantSummary(records.filter((record) => record.portalAddedDate <= "2026-09-26"), new Date("2026-09-26T18:00:00Z"));
   assert.equal(result.totalCount, 54);
   assert.equal(result.funding.openOpportunityCount, 38);
   assert.equal(result.funding.closingSoonCount, 11);
@@ -90,6 +90,19 @@ test("September 26 homepage removes the passed Rev Up EV pool and retains its ar
   assert.equal(result.funding.publishedProgramPoolCount, 9);
   assert.equal(result.funding.approximatePoolCount, 5);
   assert.ok(records.some((record) => record.id === 55));
+});
+
+test("September 28 homepage reflects the Monday additions and current verified total", () => {
+  const result = getHomepageGrantSummary(records, new Date("2026-09-28T18:00:00Z"));
+  assert.equal(result.totalCount, 56);
+  assert.equal(result.funding.openOpportunityCount, 40);
+  assert.equal(result.funding.closingSoonCount, 12);
+  assert.equal(result.funding.publishedProgramPoolUsd, 125_124_990);
+  assert.equal(result.funding.publishedProgramPoolCount, 11);
+  assert.equal(result.funding.approximatePoolCount, 7);
+  assert.equal(result.latestDate, "2026-09-28");
+  assert.equal(result.latestCount, 2);
+  assert.deepEqual(result.breakdown, { open: 2, watchlist: 0, openingSoon: 0, closed: 0 });
 });
 
 test("amount motion clamps early frames, settles and immediately respects reduced motion", () => {
@@ -100,7 +113,7 @@ test("amount motion clamps early frames, settles and immediately respects reduce
   assert.match(source,/if \(progress < 1\)/);
   for (const elapsed of [-50,0,425,850,1000]) {
     const progress = Math.max(0,Math.min(elapsed/850,1));
-    const value = Math.round(51782403*(1-Math.pow(1-progress,3)));
-    assert.ok(value >= 0 && value <= 51782403);
+    const value = Math.round(125124990*(1-Math.pow(1-progress,3)));
+    assert.ok(value >= 0 && value <= 125124990);
   }
 });

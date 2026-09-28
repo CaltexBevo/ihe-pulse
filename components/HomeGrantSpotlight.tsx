@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GrantUpdatedDate from "@/components/GrantUpdatedDate";
 import PortalDayRefresh from "@/app/innovation-grants/PortalDayRefresh";
 import PortalFundingTally from "@/app/innovation-grants/PortalFundingTally";
 import { getPublicInnovationGrants } from "@/lib/data/innovation-grants-public";
@@ -27,6 +28,7 @@ export default function HomeGrantSpotlight() {
           <h2 id="grant-spotlight-title">Your innovation. <span className={styles.gradient}>Our grant portal.</span></h2>
           <div className={styles.amount}><PortalFundingTally amount={funding.publishedProgramPoolUsd} /></div>
           <p className={styles.amountLabel}>reported current program funding</p>
+          <p className={styles.amountLabel}><GrantUpdatedDate /></p>
         </div>
         <div className={styles.details}>
           <div className={styles.stats}>

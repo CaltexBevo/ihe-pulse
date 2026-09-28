@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GrantUpdatedDate from "@/components/GrantUpdatedDate";
 import GrantFinder from "./GrantFinder";
 import PortalFundingTally from "./PortalFundingTally";
 import PortalDayRefresh from "./PortalDayRefresh";
@@ -200,7 +201,7 @@ export default function InnovationGrantsPage() {
               Across {snapshot.publishedProgramPoolCount} program pools, including {snapshot.approximatePoolCount} approximate totals. Not a promise of remaining funds. Awards are competitive.
             </p>
             <p className="checkpoint" id="checkpoint">
-              Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE}. Status calculated for {dateLabel(asOfDate)} (Pacific). Individual records retain their own dates.
+              <GrantUpdatedDate /> · Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE}. Status calculated for {dateLabel(asOfDate)} (Pacific). Individual records retain their own dates.
             </p>
           </section>
 
