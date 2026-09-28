@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import GrantUpdatedDate from "@/components/GrantUpdatedDate";
 import { useSearchParams } from "next/navigation";
 import {
   getInnovationGrantDaysUntilDeadline,
@@ -406,7 +407,7 @@ export default function InnovationGrantsDirectory({ opportunities, asOfDate }: {
       <div className="status-line" id="copyStatus" role="status">{shareStatus}</div>
       <input className="share-fallback" id="shareFallback" aria-label="Search link to copy" readOnly hidden />
       <p className="page-intro">Compare likely fit, deadlines, amounts, and official sources. Use the filters to build a practical shortlist, then confirm eligibility with the funder.</p>
-      <p className="checkpoint" id="checkpoint">Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE}. Status calculated for {asOfLabel} (Pacific). Individual records retain their own dates.</p>
+      <p className="checkpoint" id="checkpoint"><GrantUpdatedDate /> · Latest inventory check {INNOVATION_GRANTS_VERIFIED_ON} · Full discovery search {INNOVATION_GRANTS_FULL_SEARCH_DATE}. Status calculated for {asOfLabel} (Pacific). Individual records retain their own dates.</p>
 
       <form className="refine" id="refineForm" onSubmit={applyFilters}>
         <h2 className="legend">Refine results</h2>
