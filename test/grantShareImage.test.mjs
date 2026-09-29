@@ -17,8 +17,8 @@ test("grant sharing image uses the current headline and public funding calculati
 
 test("share metadata versions the image by design, Pacific day and total", () => {
   const page = readFileSync(new URL("../app/innovation-grants/page.tsx", import.meta.url), "utf8");
-  assert.match(page, /export function generateMetadata/);
+  assert.match(page, /export async function generateMetadata/);
   assert.match(page, /hero-total-v2-\$\{summary.asOfDate\}-\$\{summary.funding.publishedProgramPoolUsd\}/);
-  assert.match(page, /imageWidth: 1200/);
-  assert.match(page, /imageHeight: 630/);
+  assert.match(page, /imageWidth: campaign \? 1672 : 1200/);
+  assert.match(page, /imageHeight: campaign \? 941 : 630/);
 });
