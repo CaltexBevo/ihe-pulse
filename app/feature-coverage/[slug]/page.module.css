@@ -574,3 +574,52 @@
 :global([data-theme='light'] body:has([data-site-light-background])) .hero {
   background: transparent;
 }
+
+/* The Teaching Superpower source is a complete editorial card. Give it the
+   full hero width so its embedded title and byline remain visible together. */
+.teachingSuperpowerHero {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  min-height: 0;
+}
+
+.teachingSuperpowerHero .heroCopy {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: stretch;
+  padding: 1.25rem var(--px) 1rem;
+}
+
+.teachingSuperpowerHero .heroTitle {
+  max-width: 56rem;
+  font-size: clamp(1.45rem, 2.7vw, 2.25rem);
+  line-height: 1.08;
+}
+
+.teachingSuperpowerHeroArt {
+  grid-column: 1;
+  grid-row: 2;
+  min-height: 0;
+  aspect-ratio: 1671 / 941;
+  border-top: 1px solid var(--border-strong);
+  border-right: 0;
+  border-bottom: 1px solid var(--border-strong);
+  border-left: 0;
+  background: var(--surface);
+}
+
+.teachingSuperpowerHeroArt::after {
+  display: none;
+}
+
+.teachingSuperpowerHeroImage {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
+.teachingSuperpowerHero .heroMeta {
+  grid-column: 1;
+  grid-row: 3;
+  padding-inline: var(--px);
+}

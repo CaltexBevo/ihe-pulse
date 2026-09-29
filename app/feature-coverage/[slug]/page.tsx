@@ -280,32 +280,41 @@ export default async function FeaturedCoveragePage({
   const questionSection = feature.sections.find((section) => section.heading === QUESTIONS_HEADING);
   const questions = questionSection?.bullets ?? [];
   const usesMitLayout = feature.slug === "mit-ai-education-purpose";
+  const usesTeachingSuperpowerLayout = feature.slug === "could-ai-become-our-teaching-superpower";
 
   return (
     <article className={styles.page}>
-      <section className={styles.hero} aria-labelledby="feature-title">
+      <section
+        className={`${styles.hero} ${usesTeachingSuperpowerLayout ? styles.teachingSuperpowerHero : ""}`}
+        aria-labelledby="feature-title"
+      >
         <div className={styles.heroCopy}>
-          <p className={styles.featureLabel}>
-            <span aria-hidden="true" className={styles.featureLabelLine} />
-            <span>{feature.eyebrow}</span>
-          </p>
-          <p className={styles.analysisLabel}>
-            {feature.eyebrow === "Original Feature" ? "Original Feature" : "Original Analysis"}
-          </p>
+          {!usesTeachingSuperpowerLayout && (
+            <>
+              <p className={styles.featureLabel}>
+                <span aria-hidden="true" className={styles.featureLabelLine} />
+                <span>{feature.eyebrow}</span>
+              </p>
+              <p className={styles.analysisLabel}>
+                {feature.eyebrow === "Original Feature" ? "Original Feature" : "Original Analysis"}
+              </p>
+            </>
+          )}
           <h1 id="feature-title" className={styles.heroTitle}>
             <FeatureTitle title={feature.title} />
           </h1>
         </div>
 
-        <div className={styles.heroArt}>
+        <div className={`${styles.heroArt} ${usesTeachingSuperpowerLayout ? styles.teachingSuperpowerHeroArt : ""}`}>
           {feature.imagePath && (
             <Image
               src={feature.imagePath}
               alt={feature.imageAlt || feature.title}
               fill
               priority
-              sizes="(max-width: 767px) 100vw, 55vw"
-              className={styles.heroImage}
+              unoptimized={usesTeachingSuperpowerLayout}
+              sizes={usesTeachingSuperpowerLayout ? "(max-width: 1400px) 100vw, 1400px" : "(max-width: 767px) 100vw, 55vw"}
+              className={`${styles.heroImage} ${usesTeachingSuperpowerLayout ? styles.teachingSuperpowerHeroImage : ""}`}
             />
           )}
         </div>

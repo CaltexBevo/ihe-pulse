@@ -23,6 +23,7 @@ export function FeatureArtwork({
     compact && feature.homepageImagePath
       ? feature.homepageImagePath
       : feature.imagePath;
+  const usesTeachingSuperpowerArtwork = feature.slug === "could-ai-become-our-teaching-superpower";
   const usesHomepageHeroCrop =
     compact && Boolean(feature.homepageImagePath);
 
@@ -36,6 +37,7 @@ export function FeatureArtwork({
           alt={feature.imageAlt || feature.title}
           fill
           priority
+          unoptimized={usesTeachingSuperpowerArtwork}
           className={
             usesHomepageHeroCrop
               ? "origin-[70%_25%] scale-[1.65] object-cover"
@@ -92,6 +94,8 @@ export default function FeaturedCoverage({
 }: FeaturedCoverageProps) {
   const isHomepage = variant === "homepage";
   const isLaunch = feature.presentation === "launch";
+  const sectionLabel = isLaunch ? "Grant Portal" : isHomepage ? feature.eyebrow : "Original analysis";
+  const sectionTitle = isLaunch ? "Feature Launch" : isHomepage ? feature.reportTitle : "Featured Coverage";
   const readingLabel = isLaunch ? "Read launch story" : "Read full coverage";
 
   return (
@@ -120,14 +124,14 @@ export default function FeaturedCoverage({
             </span>
             <div className={`min-w-0 border-l border-[var(--border-strong)] ${isHomepage ? "pl-3" : "pl-4"}`}>
               <p className={`${isHomepage ? "mb-1" : "mb-2"} font-mono text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-[var(--cyan)]`}>
-                {isLaunch ? "Grant Portal" : "Original analysis"}
+                {sectionLabel}
               </p>
               <h2
                 id="featured-coverage-heading"
                 className={`${isHomepage ? "text-[clamp(1.25rem,2.5vw,1.8rem)]" : "text-[clamp(1.35rem,3vw,2.1rem)]"} font-bold leading-[1.15] text-[var(--text)]`}
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                {isLaunch ? "Feature Launch" : "Featured Coverage"}
+                {sectionTitle}
               </h2>
             </div>
           </div>
