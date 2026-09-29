@@ -169,14 +169,14 @@ function QuestionsRail({ questions }: { questions: string[] }) {
   );
 }
 
-function SectionsRail({ sections }: { sections: FeaturedCoverageSection[] }) {
+function SectionsRail({ sections, label }: { sections: FeaturedCoverageSection[]; label: string }) {
   const namedSections = sections
     .map((section, index) => ({ section, index }))
     .filter(({ section }) => Boolean(section.heading));
 
   return (
     <aside className={`${styles.sideRail} ${styles.sequenceRail}`} aria-labelledby="feature-contents-heading">
-      <p id="feature-contents-heading" className={styles.sectionLabel}>In this analysis</p>
+      <p id="feature-contents-heading" className={styles.sectionLabel}>{label}</p>
       <ol className={styles.questionNav}>
         {namedSections.map(({ section, index }, railIndex) => (
           <li key={section.heading}>
@@ -289,7 +289,9 @@ export default async function FeaturedCoveragePage({
             <span aria-hidden="true" className={styles.featureLabelLine} />
             <span>{feature.eyebrow}</span>
           </p>
-          <p className={styles.analysisLabel}>Original Analysis</p>
+          <p className={styles.analysisLabel}>
+            {feature.eyebrow === "Original Feature" ? "Original Feature" : "Original Analysis"}
+          </p>
           <h1 id="feature-title" className={styles.heroTitle}>
             <FeatureTitle title={feature.title} />
           </h1>
@@ -316,7 +318,14 @@ export default async function FeaturedCoveragePage({
       </section>
 
       <section className={styles.editorialGrid} aria-label="Feature Coverage article">
-        {usesMitLayout ? <SequenceRail /> : <SectionsRail sections={feature.sections} />}
+        {usesMitLayout ? (
+          <SequenceRail />
+        ) : (
+          <SectionsRail
+            sections={feature.sections}
+            label={feature.eyebrow === "Original Feature" ? "In this feature" : "In this analysis"}
+          />
+        )}
 
         <div className={styles.articleBody}>
           {feature.sections.map((section, sectionIndex) => (
