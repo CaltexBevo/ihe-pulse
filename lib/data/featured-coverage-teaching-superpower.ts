@@ -35,10 +35,10 @@ export const TEACHING_SUPERPOWER_FEATURED_COVERAGE: FeaturedCoverage = {
   ],
   "reportTitle": "Teaching Superpower",
   "category": "Practical Tips",
-  "imagePath": "/images/feature-coverage/teaching-superpower.png",
-  "imageWidth": 1672,
+  "imagePath": "/images/innovation-pulse/2026-09-25/teaching-superpower-feature-lab.png",
+  "imageWidth": 1671,
   "imageHeight": 941,
-  "imageAlt": "Illustrated open book sending questions, ideas, and learning upward beneath the title Could AI Be Your Teaching Superpower?",
+  "imageAlt": "Illustrated AI learning lab where educators and students turn one teaching challenge into a shared learning breakthrough beneath the title Could AI Be Your Teaching Superpower?",
   "sections": [
     {
       "paragraphs": [

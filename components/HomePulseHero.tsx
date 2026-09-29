@@ -21,6 +21,7 @@ import { getHomepageQuickHits } from '@/lib/homepagePulse';
 import { PLATFORM_LINKS, PlatformIcon, ShareGlyph } from '@/components/PlatformLinks';
 import styles from './HomePulseHero.module.css';
 import September18Artwork from './September18Artwork';
+import September25Artwork from './September25Artwork';
 
 export interface HomePulseHeroViewModel {
   date: string;
@@ -92,7 +93,8 @@ export default function HomePulseHero({
   const usesSeptember04Hero = episode.date === '2026-09-04';
   const usesSeptember11Hero = episode.date === '2026-09-11';
   const usesSeptember18Hero = episode.date === '2026-09-18' && Boolean(episode.weeklyHeroImageUrl);
-  const usesApprovedFullHero = usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero;
+  const usesSeptember25Hero = episode.date === '2026-09-25' && Boolean(episode.weeklyHeroImageUrl);
+  const usesApprovedFullHero = usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -246,7 +248,9 @@ export default function HomePulseHero({
         <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
       )}
 
-       {usesSeptember18Hero ? (
+      {usesSeptember25Hero ? (
+        <September25Artwork src={episode.weeklyHeroImageUrl!} />
+      ) : usesSeptember18Hero ? (
         <>
           <h1 id="home-pulse-title" className="sr-only">Turn papers into research assistants. This week’s Innovation Pulse.</h1>
           <September18Artwork src={episode.weeklyHeroImageUrl!} />
