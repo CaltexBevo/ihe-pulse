@@ -345,7 +345,7 @@ export default async function InnovationPulseDatePage({
                 badgeColor="rgba(200,80,192,0.85)"
                 expandable={true}
                 preserveArtwork
-                preserveParagraphs={["2026-09-04", "2026-09-18"].includes(episode.date)}
+                preserveParagraphs={["2026-09-04", "2026-09-18", "2026-09-25"].includes(episode.date)}
               />
             ))}
           </div>

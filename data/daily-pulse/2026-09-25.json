@@ -1,0 +1,246 @@
+{
+  "episode": {
+    "date": "2026-09-25",
+    "dayOfWeek": "Friday",
+    "cadence": "weekly",
+    "weekCovered": "2026-09-19/2026-09-25",
+    "audioUrl": "/audio/2026-09-25.mp3",
+    "audioDuration": "7:06",
+    "broadcastScript": "This is The Innovation Pulse, the September twenty-fifth, twenty twenty-six edition. Here's who we found innovating in higher education, and what you can learn from their work.\n\nFirst, a question for every educator trying to make sense of A.I.: What could you do for students if you had more room to explore and learn yourself? In our original Feature, Dr. Norma Jones proposes a faculty learning lab: bring one teaching challenge, explore it with colleagues, and return with an approach to try. She also invites us to consider bringing students and workforce partners into selected sessions so everyone can learn from real community needs. Read her Teaching Superpower Feature for a practical way to start that shared learning at your own institution.\n\nIn our Case Study category, Georgia Tech provides two concrete examples of giving A.I. a specific teaching job. In large courses, a pilot called Socratic Mind prompts students to explain their reasoning, apply knowledge and identify gaps. Georgia Tech says more than seven hundred students have participated across online and in-person settings. The useful move is to ask another question before giving another answer, so students have to show how they are thinking.\n\nA separate Georgia Tech project gives nursing students and other health-professions learners more chances to practice healthcare communication. It uses A.I.-generated clinical cases, pronunciation feedback and vocabulary exercises. That is a different learning objective from the Socratic Mind pilot, and the seven-hundred-student figure does not describe this second project.\n\nTogether, the examples offer a practical design test. Start with the skill students need: explaining a decision, recognizing a gap, or rehearsing field-specific language. Then decide what A.I. should prompt or generate, and what student work you will examine afterward. The technology becomes more useful when its role follows the learning goal.\n\nFor Practical Tips, another classroom design makes a skill visible without depending on A.I. In a University of Nevada, Reno humanities course, Sean O'Neil has students practice discussion in rotating pairs and write reflections on the readings. Each class includes a spotlight discussion in which one group of about seven, from a class of roughly thirty, speaks for up to fifteen minutes. Twice a semester, the groups return for a separate graded discussion. O'Neil assesses professionalism, understanding of the material and critical engagement.\n\nThe preparation matters as much as the spotlight. A student can test an idea with a partner, return to the text and then enter a larger conversation with something to say and a clearer sense of what a good contribution looks like. For an instructor, the transferable idea is to define the discussion skill, give students a rehearsal space and show the rubric before the graded exchange. Participation can become a practice students improve, rather than a tally of who speaks most often.\n\nTurning to Insights and Trends at the institutional level, Cornell has released a report on the future of the American university. An eighteen-member committee organized it around five commitments: rigorous deliberation and human-centered A.I.; strong public ties; resilient research; a civic campus community; and an integrated learning ecosystem. Cornell says the committee engaged more than six thousand stakeholders over the preceding year.\n\nThose commitments bring questions often handled separately into one discussion. A campus may have an A.I. plan, a research plan and a student-experience plan. Cornell's framework asks how they fit together in the university's public and educational purpose. Leaders elsewhere could take the five commitments into one meeting and ask, for each: What are we already doing, who owns the next decision, and what evidence would show progress? The report gives that meeting a stronger agenda.\n\nIn A.I. Workforce and Careers, one earlier September article earns a place in this edition because it gives the A.I. workforce conversation a concrete program. Generations College Chancellor Grace Alexis describes a Business plus A.I. associate degree that brings prompt engineering, workflow automation, ethics and business applications together. She also describes a planned fall use of A.I. avatars or tutors.\n\nFor another college, the question is not simply whether to add an A.I. course. It is which work students will practice in a particular career pathway, where human judgment matters, and how faculty will know students can use the tools responsibly. A program team could start by asking employers and faculty for authentic tasks, then build feedback and evidence of learning around those tasks. Generations College's example makes the curriculum conversation more specific.\n\nOur final story takes us Beyond Ed, where a university research team is bringing the sense of touch into everyday life. In the University of Utah's first home trial of a nerve-connected bionic arm, Alexander, or Avi, Davidson can control the prosthesis with his thoughts and receive a sense of touch. Within days at home, the university reports, he was writing, playing cards, making a sandwich and holding his wife's hand.\n\nThe nerve interface carries signals in both directions. It lets Davidson move the arm and receive sensory feedback from it. Utah says improvements to the software and A.I. have made that control more intuitive and the sensation more lifelike, helping the technology move into unsupervised everyday use. Researchers will follow this first home participant for a year.\n\nThe home trial brings a practical question into focus: how does the technology fit into the life of the person using it? Feeling how firmly you are holding an object, or another person's hand, makes that question about more than movement. Utah's team is exploring what becomes possible when control and touch work together beyond the lab.\n\nAlongside the stories you've heard, this edition includes more ideas to explore on our website. In Practical Tips, use University of Chicago President Paul Alivisatos's three-part framework to rethink an A.I. assignment, help student entrepreneurs test customer demand with advice from MIT Sloan, and use Syracuse's workshop questions to clarify the thinking an assignment should reveal. You can also compare OpenAI Academy's learning paths with your teaching goals. In Research, explore why voice conversations may be worth trying in student advising. And in Beyond Ed, discover the role Fei-Fei Li sees for universities in evaluating world models.\n\nJoin us as we discover new ways to innovate in higher education. Visit and subscribe at Innovating Higher Ed dot com. Thanks for listening.\n",
+    "weeklyHeroImageUrl": "/images/innovation-pulse/2026-09-25/weekly-hero-original.png",
+    "editorialLens": "The Innovator's Edge"
+  },
+  "leadStory": {
+    "headline": "Could AI Become Our Teaching Superpower?",
+    "summary": "What could we help our students discover if educators had more opportunities to explore, practice and learn themselves? In her new original Feature, Dr. Norma Jones proposes a faculty learning lab built around one teaching question and supported time to investigate it.\n\nOne version brings educators together with colleagues and a teaching specialist. They could compare explanations, develop questions or scenarios, test an idea with students and return with student work to decide what to adjust. A second version brings the course professor and the class into a shared AI lab session, where an AI teaching specialist helps them explore a lesson tied to a clear course goal.\n\nThe proposal draws on current examples and research. Cornell has announced discipline-specific AI Integration Pilots with sustained educational and technical support. In the Tutor CoPilot randomized study involving 900 tutors and 1,800 K–12 students, students whose tutors had access to AI assistance were four percentage points more likely to master lesson topics. The University of Virginia's AI Literacy and Action Lab offers another model of faculty expertise paired with librarian-led AI instruction.\n\nSelected sessions could also invite employers or workforce organizations to bring a real challenge, so faculty, students and workplace partners can learn together. The full Feature explains how a college could begin with one question, one colleague and one lab day, then examine what students learned before building a continuing practice.",
+    "source": "Original Feature by Dr. Norma Jones",
+    "sourceUrl": "https://www.innovatinghighered.com/feature-coverage/could-ai-become-our-teaching-superpower",
+    "category": "Practical Tips",
+    "imageUrl": "/images/innovation-pulse/2026-09-25/feature-teaching-superpower.png",
+    "heroImageUrl": "/images/innovation-pulse/2026-09-25/feature-teaching-superpower.png",
+    "sourceStoryIndex": "feature",
+    "storyId": "IHE-FEATURE-2026-09-25-TEACHING-SUPERPOWER",
+    "publishedDate": "2026-09-25",
+    "reviewOnlyImage": false,
+    "sourceLinks": [
+      {
+        "id": "huberman",
+        "label": "Huberman Lab interview with Dr. Fei-Fei Li",
+        "url": "https://www.hubermanlab.com/episode/using-ai-to-increase-your-intelligence-and-enrich-humanity-fei-fei-li"
+      },
+      {
+        "id": "cornell",
+        "label": "Cornell AI Integration Pilots announcement",
+        "url": "https://news.cornell.edu/stories/2026/09/ai-education-initiatives-emphasize-experimentation-balanced-use"
+      },
+      {
+        "id": "tutor",
+        "label": "Tutor CoPilot randomized study",
+        "url": "https://arxiv.org/abs/2410.03017"
+      },
+      {
+        "id": "uva",
+        "label": "University of Virginia AI Literacy and Action Lab",
+        "url": "https://library.virginia.edu/ai/lab"
+      }
+    ]
+  },
+  "quickHits": [
+    {
+      "headline": "Georgia Tech Shows Two Ways to Make AI Practice Count",
+      "summary": "AI can ask a student another question, or it can give that student another chance to rehearse. Georgia Tech faculty are testing both approaches, and the difference offers a useful starting point for instructors deciding where an AI activity belongs in a course.\n\nIn one project, Socratic Mind supports large classes by prompting students to explain their reasoning, apply knowledge and identify gaps. Georgia Tech's September 23 report says the pilot involved more than 700 students across online and in-person settings. The scale matters because a large course can have limited time for individual follow-up. A prompt that asks students why they chose an answer gives them another opportunity to make their thinking visible rather than simply move to the next item.\n\nA separate project addresses healthcare communication. Faculty use AI-generated clinical cases, pronunciation feedback and vocabulary exercises so nursing students and other health-professions learners can practice language tied to their field. The more-than-700 figure belongs to the Socratic Mind pilot; Georgia Tech does not attach it to this healthcare activity. What the second example adds is a different instructional role for AI: repeated, focused rehearsal of a skill students need to use.\n\nNeither design requires an instructor to treat AI as the lesson. In the first, the target is reasoning: can a student explain a step, recognize uncertainty and revisit a misconception? In the second, the target is communication: can the learner practice the words, sounds and scenarios relevant to a healthcare setting? Those questions help determine what the tool should ask or generate and what the instructor should examine afterward.\n\nAn instructor adapting the idea could begin with one learning objective. If students struggle to explain a concept, try a short AI-guided exchange that asks them to defend a choice and identify what they still need to check. If students need more practice with specialized language, build a small set of scenarios and invite feedback on which terms or exchanges need another pass. Review the resulting student work and learner experience before widening the activity.\n\nGeorgia Tech's two projects make a useful design contrast: choose the thinking or practice students need, then give AI a specific role in helping them do more of it.",
+      "source": "Georgia Tech Center for 21st Century Universities",
+      "sourceUrl": "https://c21u.gatech.edu/news/2026/09/georgia-tech-faculty-explore-new-approaches-learning-ai",
+      "category": "Case Study",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-24.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-24.png",
+      "sourceStoryIndex": 24,
+      "storyId": "IHE-EXP-2026-09-25-IHE-PRACTICE-2026-09-25-011",
+      "publishedDate": "2026-09-23",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Make Discussion a Skill Students Can Practice",
+      "summary": "Many courses say discussion matters, but students may not know how to prepare for it or what counts as a strong contribution. In a University of Nevada, Reno humanities course, instructor Sean O'Neil treats discussion as a skill students practice repeatedly and then demonstrate in a structured assessment.\n\nAccording to a September 24 Chronicle of Higher Education report, students prepare through rotating paired conversations and written reflections on course readings. In each class, one group of about seven from a class of roughly 30 takes part in a spotlight discussion lasting up to 15 minutes, while classmates observe and take notes. Twice a semester, each group returns for a separate graded discussion. O'Neil assesses professionalism, understanding of the material and critical engagement. The format gives students a more specific task than accumulating participation points, while the paired work and recurring spotlight give them room to try ideas before the graded exchange.\n\nThe sequence is the useful part for other instructors. A student who has rehearsed an interpretation with a partner may be better prepared to explain it, listen to a challenge and connect it to the text in a graded conversation. The report includes instructor and student accounts of stronger discussion skills and preparation for written exams.\n\nAn instructor need not copy the exact class size or schedule to apply the design. Start by identifying what students should demonstrate when they speak: a supported claim, a useful question, a response to another person's idea, or a link between two course readings. Put those expectations in a short rubric. Give students a chance to rehearse in pairs and observe a small group before the graded discussion. Ask students afterward what they changed in their preparation or thinking.\n\nDiscussion becomes more accessible when students can see the task, practice it and receive feedback on it. The aim is to help more learners develop the habits of speaking, listening and reasoning that the course says it values.",
+      "source": "The Chronicle of Higher Education",
+      "sourceUrl": "https://www.chronicle.com/newsletter/teaching/2026-09-24",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-7.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-7.png",
+      "sourceStoryIndex": 7,
+      "storyId": "IHE-STORY-2026-09-25-007",
+      "publishedDate": "2026-09-24",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Use Cornell's Five Commitments to Test Your University Strategy",
+      "summary": "A university can have a plan for AI, another for research, a separate effort to rebuild public trust and still struggle to explain how they serve one educational purpose. Cornell's new Future of the American University report gives leaders a way to put those conversations on the same table.\n\nCornell released the report on September 22 after work by an 18-member committee. The university says the committee engaged more than 6,000 stakeholders over the preceding year through town halls, webinars and meetings.\n\nThe report organizes its agenda around five commitments: rigorous deliberation and human-centered AI; strong ties with the public; resilient research; a civic campus community; and an integrated learning ecosystem. Each is substantial on its own. Their combined value is the reminder that a new technology policy can affect learning and research, that research capacity depends partly on public relationships, and that campus life helps shape whether students can participate in the institution's intellectual work.\n\nFor leaders elsewhere, the report is most useful as a discussion framework rather than a template to adopt whole. A president's cabinet, faculty senate or trustee group could take the five commitments into a planning session and ask three questions of each: What are we already doing? Who owns the next decision? What evidence would tell us whether the work is moving? The answers may show where an initiative has a name but no coordinated support, or where two offices are solving connected problems separately.\n\nThat exercise can also reveal what is missing from a local agenda. A regional university, community college or research institution will make different choices because its students, mission and resources differ. The point is to connect those choices clearly enough that faculty, staff and students can see how they fit together.\n\nThe report's invitation to other campuses is immediate: test whether the institution's major priorities add up to one coherent account of what its university is for.",
+      "source": "Cornell Chronicle",
+      "sourceUrl": "https://news.cornell.edu/stories/2026/09/future-american-university-report-charts-bold-path-forward",
+      "category": "Insights & Trends",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-3.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-3.png",
+      "sourceStoryIndex": 3,
+      "storyId": "IHE-STORY-2026-09-25-003",
+      "publishedDate": "2026-09-22",
+      "reviewOnlyImage": false,
+      "sourceLinks": [
+        {
+          "label": "Cornell committee report",
+          "url": "https://provost.cornell.edu/_files/initiatives/future-of-the-american-university-full-report.pdf"
+        }
+      ]
+    },
+    {
+      "headline": "Put AI Workforce Skills Inside Real Program Work",
+      "summary": "An AI course can teach students how a tool works. A career program has to ask what they can do with that knowledge in the work they hope to enter. Generations College offers one example of how a college is trying to bring those questions together.\n\nIn a September 9 EdTech Magazine article, Chancellor Grace Alexis describes the college's Business + AI associate degree. She says the program includes prompt engineering, workflow automation, ethics and business applications. She also discusses a planned fall use of AI avatars or tutors.\n\nThe useful design question is not whether a program contains an AI course. It is which tasks students rehearse and how those tasks connect to their field. In business, students might need to compare market information, design a workflow, communicate a recommendation and check the assumptions in an AI-generated draft. Ethics belongs inside that work, because choices about accuracy, privacy and fairness arise while a task is being done, not only in a separate lecture.\n\nFor another college, the starting point could be a program audit. Ask faculty and employers which entry-level activities now involve AI and which still require strong human judgment. Then identify where students practice those activities, what feedback they receive and what evidence would show they can make sound choices. A capstone, workplace project or structured demonstration may reveal more than a checklist of tools covered.\n\nThe program offers a useful prompt for other colleges: organize AI study around a career pathway, then define the tasks, ethical choices and learning evidence their own students need.",
+      "source": "EdTech Magazine / Grace Alexis",
+      "sourceUrl": "https://edtechmagazine.com/higher/article/2026/09/are-colleges-ready-support-ai-workforce",
+      "category": "AI Workforce & Careers",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-105.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-105.png",
+      "sourceStoryIndex": 105,
+      "storyId": "IHE-EXP-2026-09-25-ROOT-8",
+      "publishedDate": "2026-09-09",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "The Return of Touch: Utah's Bionic Arm Reaches the Home",
+      "summary": "A research breakthrough changes when it leaves the controlled setting of a laboratory and enters a person's daily life. The University of Utah's nerve-connected bionic arm has reached that point in its first home trial, giving researchers a chance to learn whether thought control and a sense of touch remain useful in ordinary routines.\n\nAlexander “Avi” Davidson is the inaugural participant to bring the university's LUKE Arm home. A direct nerve interface called the BIOS Controller carries information in both directions: signals from Davidson help control the arm, while information from the prosthesis restores a sense of touch. Within days at home, the university reports, he was writing, playing cards, making a tuna sandwich and holding his wife's hand.\n\nThe distinction matters because movement alone does not tell someone how firmly an object is being held. Sensory feedback can help a user adjust grip and interact with objects and people more naturally. Davidson described recognizing the pressure he was placing on his wife's hand and feeling her hand in return.\n\nUniversity researchers have studied the interface with earlier participants on campus. Utah says the latest software and AI contribute to more lifelike sensation, greater dexterity and more intuitive control, making unsupervised everyday use feasible for the first time. The AI is one part of a larger neuroprosthetic system; the direct nerve interface is what enables the two-way connection between the person and the arm.\n\nResearchers will follow Davidson's home use for one year, with a possible extension. The study asks a practical question that laboratory performance alone cannot answer: is the system useful and intuitive enough that a participant wants to keep using it over time?\n\nFor university research teams, the home trial is also a reminder that innovation depends on more than a device. Engineering, medicine, rehabilitation and the participant's lived experience all shape whether a technology fits into daily life. The return of touch turns that collaboration into something a person can feel.",
+      "source": "University of Utah Health",
+      "sourceUrl": "https://healthcare.utah.edu/press-releases/2026/09/lab-living-room-revolutionary-utah-bionic-arm-enters-first-home-trial",
+      "category": "Beyond Ed",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-utah.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-utah.png",
+      "sourceStoryIndex": "utah",
+      "storyId": "IHE-LOCAL-2026-09-25-UTAH-HOME-TRIAL",
+      "publishedDate": "2026-09-18",
+      "reviewOnlyImage": false,
+      "sourceLinks": [
+        {
+          "label": "University of Utah campus feature",
+          "url": "https://attheu.utah.edu/feature/from-lab-to-living-room-revolutionary-utah-bionic-arm-enters-first-home-trial/"
+        }
+      ]
+    },
+    {
+      "headline": "Teach Students to Think With, Without and About AI",
+      "summary": "When a course team discusses artificial intelligence, the first question is often where a tool belongs. University of Chicago President Paul Alivisatos offers a useful way to start one step earlier: what should students learn to do without AI, what might they do with it, and how should they think about its role?\n\nIn a September 20 opinion piece, Alivisatos argues that students should learn to think with, without and about AI. The University of Chicago's post summarizing his argument says students should become ethical, skeptical and ambitious about AI in their education and lives. His framework brings three useful assignment questions into view.\n\nThinking without AI asks which reasoning or communication a student must demonstrate directly. In a writing course, that might mean explaining an interpretation of a text before asking a tool to suggest counterarguments. Thinking with AI asks where a tool can extend the work, such as generating alternative examples for students to evaluate. Thinking about AI asks students to examine how a response was produced, what evidence supports it and where its assumptions matter.\n\nThese stages can help make an assignment's learning goal clearer. An instructor might ask students to form an initial position from assigned sources, use an AI tool in a later stage to test or expand that position, then explain which suggestions they accepted, revised or rejected. Students using accommodations or assistive technology should have an accessible way to meet the same learning outcome.\n\nThe sequence matters because an assignment can invite students to use a tool while still asking them to supply the judgment the course is designed to teach. Begin with the learning outcome, then decide where AI can help students reach it.",
+      "source": "Paul Alivisatos / The Wall Street Journal",
+      "sourceUrl": "https://www.wsj.com/opinion/teach-students-to-think-with-without-and-about-ai-55bcf34b",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-128.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-128.png",
+      "sourceStoryIndex": 128,
+      "storyId": "IHE-EXP-2026-09-25-FOUNDER-3",
+      "publishedDate": "2026-09-20",
+      "reviewOnlyImage": false,
+      "sourceLinks": [
+        {
+          "label": "University of Chicago news index",
+          "url": "https://news.uchicago.edu/lateststories?page=0"
+        }
+      ]
+    },
+    {
+      "headline": "AI Can Speed Prototyping. Customer Discovery Still Takes Work",
+      "summary": "A team can build a polished prototype before it knows whether anyone needs the product. Artificial intelligence may help students move faster from idea to mockup, but speed alone does not show that a problem matters to a customer.\n\nMIT Sloan's August 24 article by Kara Baskin draws on entrepreneurship advice from Bill Aulet and Jenny Larios Berlin. The September 21 social share resurfaced the earlier article. Aulet and Berlin argue that AI can make research, prototyping and hypothesis testing less costly and time-consuming, which makes customer discovery even more important. They warn that a stream of quick experiments can look like progress while leaving the central question unanswered: who will use the product, and why?\n\nTheir advice also expands the question beyond whether a product works. A venture must learn how it will reach and retain customers. AI may help teams analyze market information, notice emerging patterns and monitor signals such as customer acquisition costs. The experts still place human judgment, relationships and adaptation at the center of deciding what to build and how to respond.\n\nThat distinction can shape an entrepreneurship assignment. Before a team polishes its prototype, ask it to identify a specific user and the problem being addressed. Students can gather interviews or another defensible signal, explain what the evidence changed in their thinking, and select the smallest next test that could resolve an important uncertainty. If they use AI to organize research or generate alternatives, they should verify its output against their sources and their own observations.\n\nA rubric can reward the quality of the question, the care taken with evidence and the team's willingness to revise its plan. The prototype still matters, but it becomes one part of a learning cycle rather than proof of demand. AI can make those cycles faster; students still have to discover whether they are asking the right people the right questions.",
+      "source": "MIT Sloan",
+      "sourceUrl": "https://mitsloan.mit.edu/ideas-made-to-matter/4-ways-to-navigate-entrepreneurship-age-ai",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-130.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-130.png",
+      "sourceStoryIndex": 130,
+      "storyId": "IHE-EXP-2026-09-25-FOUNDER-5",
+      "publishedDate": "2026-08-24",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Syracuse Workshop Questions Make Student Thinking Visible",
+      "summary": "An assignment can allow AI assistance and still leave instructors unsure what a student learned. That tension is the starting point for a Syracuse University workshop announcement aimed at graduate teaching assistants: how can a course make student thinking visible when AI is available everywhere?\n\nThe university announced Teaching When AI Is Everywhere: A Practical Workshop for Graduate TAs for September 25. Its public event description said the interactive session would work with real questions and dilemmas raised by TAs. The announced agenda gives other teaching teams three useful tensions to examine.\n\nFirst, where is the line between using AI and showing evidence of learning? A TA might examine one assignment and identify the reasoning, choices or explanations students should demonstrate themselves. Second, when does AI improve efficiency, and when does it replace professional judgment? That question matters in fields where evaluating an answer is part of the skill being taught. Third, which barriers should an instructor reduce, and which forms of cognitive effort help students learn? The same activity can contain both, so the learning objective should guide the decision.\n\nSyracuse says the workshop's emphasis is on thoughtful teaching decisions and visible student thinking rather than AI detection. A teaching center could adapt that framing by asking TAs to bring an upcoming assignment, mark where students must explain their choices and discuss where AI could support practice without doing the central thinking for them. One concrete assignment often produces a better conversation than a general rule. The payoff is a clearer connection between what students may use and what they still need to show.",
+      "source": "Syracuse University",
+      "sourceUrl": "https://events.syracuse.edu/event/teaching-when-ai-is-everywhere-a-practical-workshop-for-graduate-tas",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-122.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-122.png",
+      "sourceStoryIndex": 122,
+      "storyId": "IHE-EXP-2026-09-25-ROOT-28",
+      "publishedDate": "2026-09-25",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "OpenAI Academy Adds Role-Based Learning Paths for Educators and Students",
+      "summary": "AI training becomes more useful when learners practice on work they actually do. OpenAI's September 21 expansion of OpenAI Academy describes new paths for educators and college students, with activities tied to teaching, study planning and career preparation.\n\nIn the educator path, learners use materials they have permission to use to plan a class, create an activity or assessment, and adapt communications. They are asked to review ChatGPT's responses against learning objectives, source materials and requirements. OpenAI says the educator decides what belongs in their teaching.\n\nThe student path covers organizing readings and deadlines into a study plan, assigning group-project roles, reviewing a draft against assignment requirements, and preparing for applications or interviews. The examples connect AI use to familiar decisions: Is this plan workable? Does the draft answer the actual assignment? What should be changed before the student submits or shares the work?\n\nThat detail gives campus teams a practical point of comparison. A teaching center might map one activity to a course objective and ask whether students are learning the intended skill, not merely using a tool. A student-support team could compare the study-planning examples with the strategies it already teaches. Faculty could adapt the idea by asking students to check an AI-generated explanation against assigned readings and explain any corrections.\n\nOpenAI says learners who pass course assessments receive an Academy course badge. Campuses considering the resource can begin by comparing its activities with their own learning goals.\n\nThe useful question for an institution is straightforward: do these activities help its learners practice the judgment and task-specific skills its courses require? The listed paths offer a concrete place to begin that comparison.",
+      "source": "OpenAI",
+      "sourceUrl": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths/",
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-13.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-13.png",
+      "sourceStoryIndex": 13,
+      "storyId": "IHE-STORY-2026-09-25-013",
+      "publishedDate": "2026-09-21",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Could a Voice Option Improve the First Student Conversation?",
+      "summary": "People may choose text because they expect a call to feel awkward, then find that hearing another person's voice creates a stronger connection. Research by Amit Kumar and Nicholas Epley examined that difference between expectation and experience in conversations with friends and strangers.\n\nThe study appeared online in September 2020 and in the March 2021 issue of Journal of Experimental Psychology: General. In one field experiment, 200 people predicted what it would be like to reconnect with an old friend by phone or email, then were assigned one of those ways to make contact. In a laboratory study, strangers spoke by video, voice or text. Across the experiments, voice interactions produced stronger reported social bonds than text-based interactions, without increasing reported awkwardness.\n\nFor higher education, the finding raises a practical design question: when a student needs to talk with an adviser or mentor, does the institution offer a voice option alongside text and email? The study examined social conversations among adults, so a campus team would need to test the idea in its own setting.\n\nA small test could focus on one defined interaction, such as an invitation to a mentoring conversation. Staff could offer a brief call as one option, explain what the conversation will cover and allow students to choose text or email instead. The team could then ask whether the format felt comfortable and helped the conversation accomplish its purpose. Accessible alternatives and learner preferences remain part of the design.\n\nText lets people respond in writing, and some learners may prefer that option; voice carries tone and can make an exchange feel more personal. Offering both lets the learner choose the channel that works for the moment, while giving the institution a concrete way to improve how its first conversations begin.",
+      "source": "Journal of Experimental Psychology: General / PubMed",
+      "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/32915017/",
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-134.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-134.png",
+      "sourceStoryIndex": 134,
+      "storyId": "IHE-EXP-2026-09-25-FOUNDER-9",
+      "publishedDate": "2020-09-10",
+      "reviewOnlyImage": false,
+      "sourceLinks": [
+        {
+          "label": "University of Texas report",
+          "url": "https://news.utexas.edu/2020/09/11/phone-calls-create-stronger-bonds-than-text-based-communications/"
+        }
+      ]
+    },
+    {
+      "headline": "Fei-Fei Li on World Models and Human Responsibility for AI",
+      "summary": "If an AI system generates a three-dimensional place rather than a paragraph, what should count as a good answer? In a September 22 Bloomberg Tech interview, Fei-Fei Li used that distinction to explain why world models and their evaluation may matter well beyond the companies building them.\n\nLi, the CEO of World Labs, described its Atlas model as a way to generate visual environments with geometric structure and control over a virtual camera. She discussed possible uses in design, robotics and laboratory settings, where a model might help create training or evaluation environments.\n\nThe more consequential question for higher education may be who evaluates systems like these. Li said her company conducts internal technical benchmarking, but argued that broader evaluation should involve independent bodies, academia, government and industry. She also emphasized human control and responsibility as AI systems become more capable.\n\nThat gives universities a role beyond observing the next product launch. Researchers can help define tests that ask whether generated spaces remain consistent, whether a model supports the control its developers describe and where it fails under conditions relevant to a proposed use. Faculty can help students distinguish a striking demonstration from evidence that a system is ready for a specific task.\n\nWorld models may extend AI work from language into simulated physical spaces. Li's interview offers a timely reason for academic researchers to help decide how the field measures progress, before impressive images become the only measure readers see.",
+      "source": "Bloomberg Tech",
+      "sourceUrl": "https://www.bloomberg.com/news/videos/2026-09-22/fei-fei-li-ai-s-future-is-about-humans-video",
+      "category": "Beyond Ed",
+      "imageUrl": "/images/innovation-pulse/2026-09-25/story-129.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-09-25/story-129.png",
+      "sourceStoryIndex": 129,
+      "storyId": "IHE-EXP-2026-09-25-FOUNDER-4",
+      "publishedDate": "2026-09-22",
+      "reviewOnlyImage": false,
+      "sourceLinks": [
+        {
+          "label": "Timestamped interview transcript",
+          "url": "https://ceointerviews.ai/interview/2918454/"
+        },
+        {
+          "label": "Original Bloomberg Tech video",
+          "url": "https://www.youtube.com/watch?v=h2qhvgcp4g8"
+        }
+      ]
+    }
+  ],
+  "previewOnly": false,
+  "publicationAuthorized": true,
+  "fullAudioStoryIds": [
+    "feature",
+    24,
+    7,
+    3,
+    105,
+    "utah"
+  ],
+  "teaserStoryIds": [
+    128,
+    130,
+    122,
+    13,
+    134,
+    129
+  ],
+  "websiteOnlyStoryIds": []
+}
