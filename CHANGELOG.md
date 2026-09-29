@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-09-29] September 25 narration correction
+
+- Replace the September 25 episode audio with the approved first-person introduction and Feature proposal.
+- Match the visible transcript, duration and waveform to the versioned corrected audio while retaining the prior master for rollback.
+
 ## [2026-09-21] White-tile share-logo refinement
 
 - Change the default link-preview treatment to a white rounded tile with orange `Ed` lettering and the existing blue orbit mark.
