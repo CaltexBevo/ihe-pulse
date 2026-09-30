@@ -629,3 +629,7 @@
 .september18Image { position: absolute; inset: 0; width: 100%; height: auto; max-width: none; }
 .september18LogoPanel { position: absolute; left: 2%; top: 2%; width: 29%; height: 11.5%; background: #08080f; display: flex; align-items: center; justify-content: center; }
 .september18LogoPanel img { height: 90%; width: auto; max-width: 94%; object-fit: contain; }
+
+.editionArtwork { background: var(--bg-card); }
+.editionTitle { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 750; padding: 24px; margin: 0; }
+.completeArtwork { display: block; width: 100%; height: auto; object-fit: contain; }

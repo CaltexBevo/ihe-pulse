@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import EditionLink from '@/components/EditionLink';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import styles from './archive.module.css';
@@ -261,9 +261,7 @@ export default function ArchiveListClient({ episodes }: ArchiveListClientProps) 
                     {playLabel(episode)}
                     <span className={styles.listenRuntime}>{timeLabel(episode)}</span>
                   </button>
-                  <Link href={`/innovation-pulse/${episode.date}`} className={styles.cardLink}>
-                    Edition <span aria-hidden="true">→</span>
-                  </Link>
+                  <EditionLink date={episode.date} />
                 </div>
 
                 {activeDate === episode.date && duration > 0 && (
