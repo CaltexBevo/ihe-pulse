@@ -28,4 +28,3 @@ export function getWeeklyEditionContent(episode: InnovationPulseEpisode) {
     }),
   };
 }
-

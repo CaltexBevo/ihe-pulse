@@ -20,4 +20,3 @@
 .previous { display:flex; flex-wrap:wrap; gap:16px 32px; margin-top:40px; }
 .previous a { color:var(--cyan); padding:12px 0; }
 @media(max-width:480px) { .editionLink { width:100%; } .body { padding:0 16px 20px; } .disclosure summary { padding:16px; } }
-
