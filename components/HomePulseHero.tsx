@@ -14,6 +14,7 @@ import type { InnovationPulseEpisode } from '@/lib/data/innovation-pulse-types';
 import { formatWeekCovered } from '@/lib/data/innovation-pulse-types';
 import {
   getHomePulseArtwork,
+  getPulseEpisodeThumbnail,
   getHomePulseSupportCopy,
 } from '@/lib/home-pulse-artwork';
 import { getHomePulseWaveform } from '@/lib/home-pulse-waveforms';
@@ -41,6 +42,7 @@ export type HomePulseHeroEpisode =
 interface HomePulseHeroProps {
   episode: HomePulseHeroEpisode;
   autoPlay?: boolean;
+  editionLayout?: boolean;
 }
 
 function formatTime(seconds: number): string {
@@ -59,6 +61,7 @@ function durationFromLabel(label: string): number {
 export default function HomePulseHero({
   episode,
   autoPlay = false,
+  editionLayout = false,
 }: HomePulseHeroProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -257,6 +260,13 @@ export default function HomePulseHero({
         </>
       ) : usesSeptember04Hero ? <ApprovedSeptemberHeroArtwork /> : usesSeptember11Hero ? (
         <ApprovedSeptember11HeroArtwork />
+      ) : editionLayout ? (
+        <div className={styles.editionArtwork}>
+          <h1 id="home-pulse-title" className={styles.editionTitle}>Innovation Pulse</h1>
+          {(episode.weeklyHeroImageUrl || styledArtwork || getPulseEpisodeThumbnail(episode.date) || fallbackArtwork) && (
+            <Image src={episode.weeklyHeroImageUrl || styledArtwork || getPulseEpisodeThumbnail(episode.date) || fallbackArtwork} alt={'Edition artwork for ' + headline} width={1672} height={941} priority sizes="(max-width: 1440px) 100vw, 1440px" className={styles.completeArtwork} />
+          )}
+        </div>
       ) : (
       <div className={styles.storyPanel}>
         <div className={styles.valueCopy}>
@@ -321,7 +331,7 @@ export default function HomePulseHero({
 
           <div className={styles.playerContent}>
             <p className={styles.playerLabel}>
-              {!hasAudio ? 'Audio in production' : usesApprovedFullHero
+              {!hasAudio ? 'Audio in production' : editionLayout ? 'Play this edition' : usesApprovedFullHero
                 ? 'Play this week’s edition'
                 : `Play the ${roundedMinutes}-minute briefing`}
             </p>
