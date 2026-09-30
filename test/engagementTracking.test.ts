@@ -141,7 +141,7 @@ test('custom-event URLs keep the existing grouped page taxonomy', () => {
 });
 
 test('governed acquisition survives pageview redaction and agrees with custom campaign events', () => {
-  const path = '/innovation-pulse/2026-09-18';
+  const path = '/innovation-pulse/2026-09-25';
   const publicPagePaths = new Set([path]);
   const channels = [
     ['email', 'email', 'subscriberEmail'],
@@ -159,12 +159,12 @@ test('governed acquisition survives pageview redaction and agrees with custom ca
   for (const [source, medium, content] of channels) {
     const query = new URLSearchParams({
       utm_source: source, utm_medium: medium,
-      utm_campaign: 'innovation-pulse-2026-09-18', utm_content: content,
+      utm_campaign: 'innovation-pulse-2026-09-25', utm_content: content,
     }).toString();
     const url = `https://innovatinghighered.com${path}?${query}&email=person%40example.com&mc_eid=private&token=secret&utm_term=private#private`;
     assert.equal(redactAnalyticsEventUrl({ type: 'pageview', url }, publicPagePaths)?.url,
       `https://www.innovatinghighered.com${path}?${query}`);
-    const properties = { campaign: 'innovation-pulse-2026-09-18', channel: `${source}:${medium}:${content}` };
+    const properties = { campaign: 'innovation-pulse-2026-09-25', channel: `${source}:${medium}:${content}` };
     assert.deepEqual(campaignEventProperties(`?${query}`), properties);
     assert.deepEqual(sanitizeEngagementEvent('campaign_landing', properties), properties);
     assert.equal(redactAnalyticsEventUrl({ type: 'event', url }, publicPagePaths)?.url,
@@ -176,7 +176,7 @@ test('malformed, ambiguous, unregistered, and personal attribution fails closed'
   const base = 'https://www.innovatinghighered.com/';
   const valid = 'utm_source=x&utm_medium=social&utm_campaign=innovation-pulse-2026-09-18&utm_content=story_post';
   const rejected = [
-    valid.replace('2026-09-18', '2026-09-25'),
+    valid.replace('2026-09-18', '2026-10-02'),
     valid.replace('2026-09-18', '2026-09-99'),
     valid.replace('2026-09-18', '2026-09-18-private'),
     valid.replace('utm_source=x', 'utm_source=person%40example.com'),
@@ -196,12 +196,12 @@ test('malformed, ambiguous, unregistered, and personal attribution fails closed'
 });
 
 test('approved weekly releases share a finite campaign and audio registry', () => {
-  for (const date of ['2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18']) {
+  for (const date of ['2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25']) {
     assert.equal(campaignEventProperties(`utm_source=mailchimp&utm_medium=email&utm_content=listen&utm_campaign=innovation-pulse-${date}`)?.campaign, `innovation-pulse-${date}`);
     assert.equal(episodeFromAudioSource(`https://storage.example/broadcast-${date}.mp3`), date);
     assert.deepEqual(sanitizeEngagementEvent('audio_progress', { episode: date, percent: 50 }), { episode: date, percent: 50 });
   }
-  assert.equal(episodeFromAudioSource('https://storage.example/broadcast-2026-09-25.mp3'), null);
+  assert.equal(episodeFromAudioSource('https://storage.example/broadcast-2026-10-02.mp3'), null);
 });
 
 test('accepts only governed campaign combinations and registered release dates', () => {
