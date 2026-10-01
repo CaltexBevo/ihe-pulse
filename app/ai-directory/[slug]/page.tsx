@@ -49,6 +49,9 @@ function getAllSlugs(): string[] {
 
 // ── Static params & metadata ────────────────────────────────
 
+// Only the current curated inventory has public detail routes.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
