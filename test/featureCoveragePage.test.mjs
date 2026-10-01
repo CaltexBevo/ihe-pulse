@@ -15,6 +15,8 @@ const pageSource = readFileSync(resolve(root, "app/feature-coverage/[slug]/page.
 const cssSource = readFileSync(resolve(root, "app/feature-coverage/[slug]/page.module.css"), "utf8");
 const dataSource = readFileSync(resolve(root, "lib/data/featured-coverage.ts"), "utf8");
 const imagePath = resolve(root, "public/images/feature-coverage/mit-ai-education-purpose-lens-approved.png");
+const teachingImagePath = resolve(root, "public/images/innovation-pulse/2026-09-25/teaching-superpower-feature-lab.png");
+const teachingDataSource = readFileSync(resolve(root, "lib/data/featured-coverage-teaching-superpower.ts"), "utf8");
 
 function loadCommonJs(source, filename, requireOverrides = {}) {
   const output = ts.transpileModule(source, {
@@ -47,8 +49,15 @@ function loadCommonJs(source, filename, requireOverrides = {}) {
   return loadedModule.exports;
 }
 
-function renderFeaturePage(slug = "mit-ai-education-purpose") {
+function renderFeaturePage(slug = "mit-ai-education-purpose", transformFeature) {
   const dataModule = loadCommonJs(dataSource, resolve(root, "lib/data/featured-coverage.ts"));
+  if (transformFeature) {
+    const getFeature = dataModule.getFeaturedCoverageBySlug;
+    dataModule.getFeaturedCoverageBySlug = (requestedSlug) => {
+      const feature = getFeature(requestedSlug);
+      return requestedSlug === slug && feature ? transformFeature(feature) : feature;
+    };
+  }
   const cssClasses = new Proxy({}, { get: (_target, property) => String(property) });
   const pageModule = loadCommonJs(pageSource, resolve(root, "app/feature-coverage/[slug]/page.tsx"), {
     "./page.module.css": { __esModule: true, default: cssClasses },
@@ -56,7 +65,7 @@ function renderFeaturePage(slug = "mit-ai-education-purpose") {
     "@/lib/og": { pageMetadata: (metadata) => metadata },
     "next/image": {
       __esModule: true,
-      default: ({ alt, className, src }) => React.createElement("img", { alt, className, src }),
+      default: ({ alt, className, height, src, width }) => React.createElement("img", { alt, className, height, src, width }),
     },
     "next/link": {
       __esModule: true,
@@ -78,6 +87,15 @@ test("MIT Feature Coverage binds the approved analytical-lens asset", () => {
   assert.match(dataSource, /imageAlt:[\s\S]*magnifying lens/);
 });
 
+test("Teaching Superpower retains the approved complete artwork byte-for-byte", () => {
+  const hash = createHash("sha256").update(readFileSync(teachingImagePath)).digest("hex");
+
+  assert.equal(hash, "d036eb2cc7dff0d5248b36c8d315df3adf722b085fa21d935ed5e9d937a01c9f");
+  assert.match(teachingDataSource, /imagePath": "\/images\/innovation-pulse\/2026-09-25\/teaching-superpower-feature-lab\.png"/);
+  assert.match(teachingDataSource, /imageWidth": 1671/);
+  assert.match(teachingDataSource, /imageHeight": 941/);
+});
+
 test("the page exposes the approved sequence and accessible question anchors", () => {
   assert.match(pageSource, /The Sequence/);
   assert.match(pageSource, /Start with what education is meant to achieve\./);
@@ -90,8 +108,7 @@ test("the page exposes the approved sequence and accessible question anchors", (
   assert.match(pageSource, /target="_blank"[\s\S]*rel="noopener noreferrer"/);
 });
 
-test("the route keeps the semantic single-title structure and responsive side rails", () => {
-  assert.equal((pageSource.match(/<h1\b/g) ?? []).length, 1);
+test("the route keeps one semantic title per rendered layout and responsive side rails", async () => {
   assert.match(pageSource, /id="feature-title"/);
   assert.match(cssSource, /position: sticky/);
   assert.match(cssSource, /@media \(max-width: 1279px\)/);
@@ -99,6 +116,11 @@ test("the route keeps the semantic single-title structure and responsive side ra
   assert.match(cssSource, /\.sideRail[\s\S]*position: static/);
   assert.match(cssSource, /\.heroImage \{[\s\S]*object-position: 100% center;[\s\S]*transform: scale\(1\.5\)/);
   assert.match(cssSource, /@media \(max-width: 767px\)[\s\S]*object-position: 100% top;[\s\S]*transform: scale\(1\.34\)/);
+
+  const defaultLayout = await renderFeaturePage();
+  const officialLayout = await renderFeaturePage("could-ai-become-our-teaching-superpower");
+  assert.equal((defaultLayout.match(/<h1\b/g) ?? []).length, 1);
+  assert.equal((officialLayout.match(/<h1\b/g) ?? []).length, 1);
 });
 
 test("rendered article IDs are unique and question targets receive keyboard focus", async () => {
@@ -132,4 +154,67 @@ test("the launch renders the refreshed portal story while existing feature route
   assert.match(models, /Four New AI Models Could Get Your Next Project Moving/);
   assert.match(models, /A reason to revisit the project you put aside/);
   assert.doesNotMatch(models, /FEATURE LAUNCH|Explore the Grant Portal/);
+});
+
+test("the official Feature renders its full artwork, single hero player, article, and linked sources", async () => {
+  const feature = await renderFeaturePage("could-ai-become-our-teaching-superpower");
+
+  assert.equal((feature.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(feature, /Could AI Become Our Teaching Superpower\?/);
+  assert.match(feature, /Dr\. Norma Jones, Editor-in-Chief/);
+  assert.match(feature, /September 25, 2026/);
+  assert.match(feature, /src="\/images\/innovation-pulse\/2026-09-25\/teaching-superpower-feature-lab\.png"/);
+  assert.match(feature, /width="1671"/);
+  assert.match(feature, /height="941"/);
+  assert.match(feature, /<span>Listen to the Feature<\/span>/);
+  assert.equal((feature.match(/<button\b/g) ?? []).length, 1);
+  assert.match(feature, /<button type="button" class="playButton" aria-label="Listen to the Feature"/);
+  assert.match(feature, /src="\/audio\/feature-teaching-superpower-v1\.mp3" preload="none"/);
+  assert.match(feature, /What could we help our students discover if we had more opportunities to explore, practice and learn ourselves\?/);
+  assert.match(feature, /href="https:\/\/www\.hubermanlab\.com\/episode\/using-ai-to-increase-your-intelligence-and-enrich-humanity-fei-fei-li"/);
+  assert.doesNotMatch(feature, /recording pending|feature recording is pending|\b\d+:\d\d\b/i);
+  assert.match(cssSource, /\.officialFeatureHero[\s\S]*grid-template-columns: minmax\(0, 0\.88fr\) minmax\(0, 1\.12fr\)/);
+  assert.match(cssSource, /\.officialArticle[\s\S]*max-width: 800px/);
+  assert.match(cssSource, /@media \(max-width: 767px\)[\s\S]*\.officialFeatureHero[\s\S]*grid-template-columns: minmax\(0, 1fr\)/);
+
+  const defaultOriginalFeature = await renderFeaturePage(
+    "could-ai-become-our-teaching-superpower",
+    (feature) => {
+      const featureWithoutPresentation = { ...feature };
+      delete featureWithoutPresentation.presentation;
+      return featureWithoutPresentation;
+    },
+  );
+  assert.match(defaultOriginalFeature, /class="officialFeatureHero"/);
+});
+
+test("homepage Feature audio is an independent control beside a separate Read action", async () => {
+  const dataModule = loadCommonJs(dataSource, resolve(root, "lib/data/featured-coverage.ts"));
+  const componentPath = resolve(root, "components/FeaturedCoverage.tsx");
+  const componentModule = loadCommonJs(readFileSync(componentPath, "utf8"), componentPath, {
+    "@/lib/data/featured-coverage": dataModule,
+    "next/image": {
+      __esModule: true,
+      default: ({ alt, className, src }) => React.createElement("img", { alt, className, src }),
+    },
+    "next/link": {
+      __esModule: true,
+      default: ({ children, href, ...props }) => React.createElement("a", { ...props, href }, children),
+    },
+  });
+  const markup = renderToStaticMarkup(componentModule.default({
+    feature: dataModule.LATEST_FEATURED_COVERAGE,
+    variant: "homepage",
+  }));
+  const buttonIndex = markup.indexOf("<button");
+  const latestAnchorOpen = markup.lastIndexOf("<a ", buttonIndex);
+  const latestAnchorClose = markup.lastIndexOf("</a>", buttonIndex);
+
+  assert.match(markup, /<span>Listen to the Feature<\/span>/);
+  assert.equal((markup.match(/<button\b/g) ?? []).length, 1);
+  assert.match(markup, /<button type="button" class="playButton" aria-label="Listen to the Feature"/);
+  assert.ok(latestAnchorClose > latestAnchorOpen, "the audio button must not be nested in the artwork link");
+  assert.match(markup, /Read full coverage/);
+  assert.match(markup, /Dr\. Norma Jones, Editor-in-Chief/);
+  assert.match(markup, /teaching-superpower-feature-lab\.png/);
 });

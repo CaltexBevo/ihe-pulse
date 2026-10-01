@@ -1,6 +1,7 @@
 import type { FeaturedCoverage } from './featured-coverage';
 
 export const TEACHING_SUPERPOWER_FEATURED_COVERAGE: FeaturedCoverage = {
+  presentation: "official",
   "slug": "could-ai-become-our-teaching-superpower",
   "eyebrow": "Original Feature",
   "title": "Could AI Become Our Teaching Superpower?",
@@ -39,6 +40,8 @@ export const TEACHING_SUPERPOWER_FEATURED_COVERAGE: FeaturedCoverage = {
   "imageWidth": 1671,
   "imageHeight": 941,
   "imageAlt": "Illustrated AI learning lab where educators and students turn one teaching challenge into a shared learning breakthrough beneath the title Could AI Be Your Teaching Superpower?",
+  "audioUrl": "/audio/feature-teaching-superpower-v1.mp3",
+  "audioDuration": "6:43",
   "sections": [
     {
       "paragraphs": [

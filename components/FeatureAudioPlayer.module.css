@@ -1,0 +1,79 @@
+.player {
+  display: grid;
+  justify-items: start;
+  gap: 0.7rem;
+  min-width: 0;
+  margin-top: 1.4rem;
+}
+
+.playButton {
+  display: inline-flex;
+  min-height: 3rem;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.75rem 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: #00d4ff;
+  color: #071426;
+  font: 700 0.96rem/1.2 var(--font-sans);
+  cursor: pointer;
+  transition: filter 150ms ease, transform 150ms ease;
+}
+
+.playButton:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.playButton:focus-visible,
+.seek:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.icon {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.details {
+  display: grid;
+  gap: 0.4rem;
+  width: min(100%, 25rem);
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.status {
+  overflow-wrap: anywhere;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: auto minmax(3.5rem, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+}
+
+.seek {
+  width: 100%;
+  min-width: 0;
+  accent-color: var(--cyan);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playButton {
+    transition: none;
+  }
+}

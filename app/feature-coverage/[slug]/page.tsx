@@ -11,6 +11,7 @@ import {
 } from "@/lib/data/featured-coverage";
 import { pageMetadata } from "@/lib/og";
 import FeatureLaunchArticle from "@/components/FeatureLaunchArticle";
+import FeatureAudioPlayer from "@/components/FeatureAudioPlayer";
 
 const SEQUENCE_STEPS = [
   {
@@ -261,6 +262,70 @@ function ArticleSection({
   );
 }
 
+function OfficialFeatureArticle({ feature }: { feature: FeaturedCoverage }) {
+  return (
+    <article className={`${styles.page} ${styles.officialFeaturePage}`}>
+      <header className={styles.officialFeatureHero}>
+        <div className={styles.officialFeatureCopy}>
+          <p className={styles.officialFeatureLabel}>{feature.eyebrow}</p>
+          <h1 id="feature-title" className={styles.officialFeatureTitle}>{feature.title}</h1>
+          <p className={styles.officialFeatureMeta}>
+            <span>{feature.byline}</span>
+            <time dateTime={feature.publishedAt}>{feature.publishedLabel}</time>
+          </p>
+          {feature.audioUrl && (
+            <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" />
+          )}
+        </div>
+        {feature.imagePath && (
+          <div className={styles.officialFeatureArt}>
+            <Image
+              src={feature.imagePath}
+              alt={feature.imageAlt || feature.title}
+              width={feature.imageWidth ?? 1671}
+              height={feature.imageHeight ?? 941}
+              priority
+              unoptimized={feature.slug === "could-ai-become-our-teaching-superpower"}
+              sizes="(max-width: 767px) 100vw, 55vw"
+              className={styles.officialFeatureImage}
+            />
+          </div>
+        )}
+      </header>
+
+      <div className={styles.officialArticle}>
+        {feature.sections.map((section, sectionIndex) => (
+          <ArticleSection
+            key={section.heading ?? `intro-${sectionIndex}`}
+            feature={feature}
+            section={section}
+            sectionIndex={sectionIndex}
+          />
+        ))}
+
+        <aside className={styles.officialSources} aria-labelledby="official-feature-sources">
+          <h2 id="official-feature-sources">Sources</h2>
+          <ul>
+            {(feature.sources ?? [{ label: feature.sourceLabel, url: feature.sourceUrl }]).map((source) => (
+              <li key={source.url}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer" className={styles.articleLink}>
+                  {source.label} <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+
+        <div className={styles.articleFooter}>
+          <Link href="/" className={styles.backLink}>
+            <span aria-hidden="true">←</span> Return to the Innovation Pulse
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default async function FeaturedCoveragePage({
   params,
 }: {
@@ -277,44 +342,42 @@ export default async function FeaturedCoveragePage({
     return <FeatureLaunchArticle feature={feature} />;
   }
 
+  if (feature.presentation === "official" || (!feature.presentation && feature.eyebrow === "Original Feature")) {
+    return <OfficialFeatureArticle feature={feature} />;
+  }
+
   const questionSection = feature.sections.find((section) => section.heading === QUESTIONS_HEADING);
   const questions = questionSection?.bullets ?? [];
   const usesMitLayout = feature.slug === "mit-ai-education-purpose";
-  const usesTeachingSuperpowerLayout = feature.slug === "could-ai-become-our-teaching-superpower";
 
   return (
     <article className={styles.page}>
       <section
-        className={`${styles.hero} ${usesTeachingSuperpowerLayout ? styles.teachingSuperpowerHero : ""}`}
+        className={styles.hero}
         aria-labelledby="feature-title"
       >
         <div className={styles.heroCopy}>
-          {!usesTeachingSuperpowerLayout && (
-            <>
-              <p className={styles.featureLabel}>
-                <span aria-hidden="true" className={styles.featureLabelLine} />
-                <span>{feature.eyebrow}</span>
-              </p>
-              <p className={styles.analysisLabel}>
-                {feature.eyebrow === "Original Feature" ? "Original Feature" : "Original Analysis"}
-              </p>
-            </>
-          )}
+          <p className={styles.featureLabel}>
+            <span aria-hidden="true" className={styles.featureLabelLine} />
+            <span>{feature.eyebrow}</span>
+          </p>
+          <p className={styles.analysisLabel}>
+            {feature.eyebrow === "Original Feature" ? "Original Feature" : "Original Analysis"}
+          </p>
           <h1 id="feature-title" className={styles.heroTitle}>
             <FeatureTitle title={feature.title} />
           </h1>
         </div>
 
-        <div className={`${styles.heroArt} ${usesTeachingSuperpowerLayout ? styles.teachingSuperpowerHeroArt : ""}`}>
+        <div className={styles.heroArt}>
           {feature.imagePath && (
             <Image
               src={feature.imagePath}
               alt={feature.imageAlt || feature.title}
               fill
               priority
-              unoptimized={usesTeachingSuperpowerLayout}
-              sizes={usesTeachingSuperpowerLayout ? "(max-width: 1400px) 100vw, 1400px" : "(max-width: 767px) 100vw, 55vw"}
-              className={`${styles.heroImage} ${usesTeachingSuperpowerLayout ? styles.teachingSuperpowerHeroImage : ""}`}
+              sizes="(max-width: 767px) 100vw, 55vw"
+              className={styles.heroImage}
             />
           )}
         </div>

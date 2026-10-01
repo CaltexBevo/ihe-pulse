@@ -10,7 +10,7 @@ export type FeaturedCoverageSection = {
 };
 
 export type FeaturedCoverage = {
-  presentation?: 'launch';
+  presentation?: 'launch' | 'official';
   slug: string;
   eyebrow: string;
   title: string;
@@ -28,6 +28,9 @@ export type FeaturedCoverage = {
   imageWidth?: number;
   imageHeight?: number;
   homepageImagePath?: string | null;
+  audioUrl?: string;
+  /** A measured runtime supplied with the verified recording receipt. */
+  audioDuration?: string;
   imageAlt: string;
   sections: FeaturedCoverageSection[];
 };

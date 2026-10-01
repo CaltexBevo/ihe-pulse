@@ -6,6 +6,7 @@ import {
   type FeaturedCoverage as FeaturedCoverageRecord,
 } from "@/lib/data/featured-coverage";
 import styles from "./FeaturedCoverage.module.css";
+import FeatureAudioPlayer from "./FeatureAudioPlayer";
 
 type FeaturedCoverageProps = {
   feature?: FeaturedCoverageRecord;
@@ -149,23 +150,26 @@ export default function FeaturedCoverage({
           Browse All Original Features <span aria-hidden="true">→</span>
         </Link>
 
-        <Link
-          href={`/feature-coverage/${feature.slug}`}
+        <article
           className={isHomepage
-            ? "group grid gap-4 rounded-[12px] border border-[var(--border-strong)] bg-[var(--bg-card)] p-3 transition-colors hover:border-[var(--cyan)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cyan)] md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-center sm:p-4"
-            : "group grid gap-7 rounded-[18px] border border-[var(--border-strong)] bg-[var(--bg-card)] p-4 transition-colors hover:border-[var(--cyan)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cyan)] sm:p-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center"}
+            ? "grid gap-4 rounded-[12px] border border-[var(--border-strong)] bg-[var(--bg-card)] p-3 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-center sm:p-4"
+            : "grid gap-7 rounded-[18px] border border-[var(--border-strong)] bg-[var(--bg-card)] p-4 sm:p-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center"}
         >
-          <FeatureArtwork feature={feature} compact={isHomepage} />
+          <Link href={`/feature-coverage/${feature.slug}`} aria-label={`Read ${feature.title}`}>
+            <FeatureArtwork feature={feature} compact={isHomepage} />
+          </Link>
 
           <div className="min-w-0">
             <p className={`${isHomepage ? "mb-2" : "mb-3"} font-mono text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-[var(--magenta-text)]`}>
               {feature.eyebrow}
             </p>
             <h3
-              className={`${isHomepage ? "mb-2 text-[clamp(1.35rem,2.4vw,2rem)]" : "mb-4 text-[clamp(1.5rem,3vw,2.35rem)]"} font-bold leading-[1.08] tracking-[-0.02em] text-[var(--text)] transition-colors group-hover:text-[var(--cyan)]`}
+              className={`${isHomepage ? "mb-2 text-[clamp(1.35rem,2.4vw,2rem)]" : "mb-4 text-[clamp(1.5rem,3vw,2.35rem)]"} font-bold leading-[1.08] tracking-[-0.02em] text-[var(--text)] transition-colors`}
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              {feature.title}
+              <Link href={`/feature-coverage/${feature.slug}`} className="hover:text-[var(--cyan)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cyan)]">
+                {feature.title}
+              </Link>
             </h3>
             <p className={`${isHomepage ? "mb-3 text-[0.84rem] leading-[1.55]" : "mb-5 text-[0.96rem] leading-[1.7]"} text-[var(--text-secondary)]`}>
               {feature.teaser}
@@ -180,11 +184,19 @@ export default function FeaturedCoverage({
                 {feature.publishedLabel}
               </time>
             </div>
-            <span className={`${isHomepage ? "mt-3" : "mt-5"} inline-flex font-mono text-[0.7rem] tracking-[0.05em] text-[var(--cyan)]`}>
+            {feature.audioUrl && (
+              <div className={isHomepage ? "mt-3" : "mt-5"}>
+                <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" />
+              </div>
+            )}
+            <Link
+              href={`/feature-coverage/${feature.slug}`}
+              className={`${feature.audioUrl ? "mt-3" : isHomepage ? "mt-3" : "mt-5"} inline-flex font-mono text-[0.7rem] tracking-[0.05em] text-[var(--cyan)] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cyan)]`}
+            >
               {readingLabel} <span aria-hidden="true">→</span>
-            </span>
+            </Link>
           </div>
-        </Link>
+        </article>
         {isHomepage && isLaunch && (
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">
             Also read:{" "}
