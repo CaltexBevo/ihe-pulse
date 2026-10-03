@@ -19,6 +19,27 @@ const { innovationGrants, INNOVATION_GRANTS_VERIFIED_ON, INNOVATION_GRANTS_FULL_
 
 const AS_OF = new Date("2026-09-15T00:00:00.000Z");
 
+test("October 3 broad refresh adds five verified opportunities without inflating pools or changing provenance", () => {
+  const records = getPublicInnovationGrants();
+  const additions = records.filter((record) => record.portalAddedDate === "2026-10-03");
+  assert.deepEqual(additions.map((record) => record.id), [111, 112, 113, 114, 115]);
+  assert.ok(additions.every((record) => record.lastVerified === "Oct 3, 2026"));
+  assert.equal(records.length, 61);
+  assert.deepEqual(getPublicInnovationGrantFundingSnapshot(new Date("2026-10-03T19:00:00Z")), {
+    publishedProgramPoolUsd: 127299990, publishedProgramPoolCount: 12,
+    approximatePoolCount: 6, openOpportunityCount: 40, openNowCount: 26,
+    closingSoonCount: 14, openingSoonCount: 0, currentCallsWithoutPublishedPool: 28,
+  });
+  assert.deepEqual(additions.filter((record) => record.publishedProgramPoolUsd).map((record) => record.id), [111, 112]);
+  assert.deepEqual(additions.map((record) => record.locationEligibility.scope), ["state-or-territory", "state-or-territory", "institution-only", "institution-only", "institution-only"]);
+  assert.match(additions.find((record) => record.id === 112).deadlineTimeZone, /CST.*confirm/);
+  assert.match(additions.find((record) => record.id === 113).eligibility, /AI literacy courses.*ineligible/);
+  assert.ok(!records.some((record) => [109, 116].includes(record.id)));
+  const currentIds = records.map((record) => record.id);
+  assert.equal(new Set(currentIds).size, currentIds.length);
+  assert.ok(records.filter((record) => record.id < 111).every((record) => record.portalAddedDate < "2026-10-03"));
+});
+
 test("verification copy discloses retained review flags rather than claiming every uncertain path is hidden", () => {
   for (const path of ["../app/innovation-grants/page.tsx", "../app/innovation-grants/directory/InnovationGrantsDirectory.tsx"]) {
     const source = readFileSync(new URL(path, import.meta.url), "utf8");
@@ -72,10 +93,10 @@ test("October 3 verification advances only fully checked records and retains unr
     assert.doesNotMatch(innovationGrants.find((record) => record.id === id).sourceNotes, /Loading|prior full-verification date/);
   }
   assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Oct 3, 2026");
-  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 28, 2026");
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 3, 2026");
   const verifiedIds = [38, 53, 65, 69, 76, 77, 78, 80, 83, 84, 87, 89];
   assert.deepEqual(innovationGrants.filter((record) => record.id < 92 && record.lastVerified === "Oct 3, 2026").map((record) => record.id), verifiedIds);
-  assert.equal(innovationGrants.filter((record) => record.lastVerified === "Oct 3, 2026").length, 24);
+  assert.equal(innovationGrants.filter((record) => record.id < 111 && record.lastVerified === "Oct 3, 2026").length, 24);
   assert.deepEqual([59, 79, 90, 96].map((id) => [id, innovationGrants.find((record) => record.id === id).lastVerified]), [
     [59, "Sep 20, 2026"], [79, "Sep 9, 2026"], [90, "Sep 20, 2026"], [96, "Sep 17, 2026"],
   ]);
@@ -194,14 +215,14 @@ test("focused corporate additions preserve whole-inventory freshness and inclusi
   const records = getPublicInnovationGrants();
   const additions = records.filter((record) => record.id >= 92 && record.id < 101);
   const today = new Date("2026-09-15T00:00:00.000Z");
-  assert.equal(innovationGrants.length, 72);
-  assert.equal(new Set(innovationGrants.map((record) => record.id)).size, 72);
+  assert.equal(innovationGrants.filter((record) => record.id < 111).length, 72);
+  assert.equal(new Set(innovationGrants.filter((record) => record.id < 111).map((record) => record.id)).size, 72);
   assert.equal(records.filter((record) => record.id < 101).length, 47);
   assert.deepEqual(additions.map((record) => record.id), [92, 93, 94, 95, 96, 97, 98, 99, 100]);
   assert.ok(additions.every((record) => record.portalAddedDate === "2026-09-15"));
   assert.ok(additions.every((record) => record.lastVerified === (record.id === 96 ? "Sep 17, 2026" : record.id === 92 ? "Sep 22, 2026" : record.id === 99 ? "Sep 28, 2026" : "Oct 3, 2026")));
   assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Oct 3, 2026");
-  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 28, 2026");
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 3, 2026");
   const californiaIds = filterInnovationGrantOpportunities(records, {
     ...DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS, location: "CA", status: "all",
   }, today).map((record) => record.id);
@@ -372,7 +393,7 @@ test("September 23 daily snapshot preserves pools and archive while two more cal
   assert.equal(snapshot.publishedProgramPoolCount, 11);
   assert.equal(snapshot.approximatePoolCount, 7);
   assert.equal(records.filter((record) => getInnovationGrantLifecycle(record, today) === "closed").length, 11);
-  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 28, 2026");
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 3, 2026");
 });
 
 test("September 25 rolls the passed NSAW call into Closed/Past and removes its pool from active funding", () => {
@@ -411,7 +432,7 @@ test("September 26 rolls Rev Up EV into Closed/Past and removes its estimated po
   assert.equal(snapshot.approximatePoolCount, 5);
   assert.equal(snapshot.openOpportunityCount, 38);
   assert.equal(snapshot.closingSoonCount, 11);
-  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 28, 2026");
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 3, 2026");
 });
 
 test("Monday additions use actual publication dates, restricted geography, and only current-call cash pools", () => {
@@ -438,10 +459,10 @@ test("Monday additions use actual publication dates, restricted geography, and o
 });
 
 test("September 28 Monday additions include only fully verified, publicly actionable opportunities", () => {
-  const records = getPublicInnovationGrants();
+  const records = getPublicInnovationGrants().filter((record) => record.id < 111);
   const additions = records.filter((record) => [108, 110].includes(record.id));
   const today = new Date("2026-09-28T12:00:00Z");
-  const snapshot = getPublicInnovationGrantFundingSnapshot(today);
+  const snapshot = getInnovationGrantFundingSnapshot(records, today);
 
   assert.deepEqual(additions.map((record) => record.id), [108, 110]);
   assert.ok(additions.every((record) => record.portalAddedDate === "2026-09-28"));
@@ -463,14 +484,13 @@ test("September 28 Monday additions include only fully verified, publicly action
   assert.equal(sure.finalDeadlineDate, "2026-10-16");
   assert.equal(sure.publishedProgramPoolUsd, 300_000);
   assert.match(sure.applicationAccess, /Request an invitation/);
-  assert.equal(innovationGrants.find((record) => record.id === 111), undefined);
   assert.equal(records.find((record) => record.id === 109), undefined);
-  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 28, 2026");
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 3, 2026");
 });
 
 test("October 2 archives four final deadlines but retains DOE for timely LOI applicants", () => {
   const today = new Date("2026-10-02T12:00:00Z");
-  const records = getPublicInnovationGrants();
+  const records = getPublicInnovationGrants().filter((record) => record.id < 111);
   const snapshot = getInnovationGrantFundingSnapshot(records, today);
   for (const id of [62, 64, 88, 102]) {
     const record = records.find((item) => item.id === id);
@@ -497,7 +517,7 @@ test("October 2 archives four final deadlines but retains DOE for timely LOI app
 
 test("October 1 archives CUNY after its deadline while retaining same-day calls", () => {
   const today = new Date("2026-10-01T12:00:00Z");
-  const records = getPublicInnovationGrants();
+  const records = getPublicInnovationGrants().filter((record) => record.id < 111);
   const cuny = records.find((record) => record.id === 104);
   const snapshot = getInnovationGrantFundingSnapshot(records, today);
   assert.equal(getInnovationGrantLifecycle(cuny, today), "closed");
@@ -533,5 +553,5 @@ test("three September 21 deadlines archive without deleting records or refreshin
     getInnovationGrantFundingSnapshot(records, after).publishedProgramPoolUsd, 6_257_403);
   assert.match(records.find((record) => record.id === 92).applicationAccess, /no longer accepting responses/);
   assert.match(records.find((record) => record.id === 89).sourceNotes, /up to 50%.*conflicting RFA 25%/);
-  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Sep 28, 2026");
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 3, 2026");
 });

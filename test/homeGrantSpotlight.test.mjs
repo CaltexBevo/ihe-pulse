@@ -93,7 +93,7 @@ test("September 26 homepage removes the passed Rev Up EV pool and retains its ar
 });
 
 test("September 28 homepage reflects the Monday additions and current verified total", () => {
-  const result = getHomepageGrantSummary(records, new Date("2026-09-28T18:00:00Z"));
+  const result = getHomepageGrantSummary(records.filter((record) => record.id < 111), new Date("2026-09-28T18:00:00Z"));
   assert.equal(result.totalCount, 56);
   assert.equal(result.funding.openOpportunityCount, 40);
   assert.equal(result.funding.closingSoonCount, 12);
