@@ -81,6 +81,21 @@ export default function EmailSignup({
     void readNewsletterReadiness().then((value) => { if (active) setReady(value); });
     return () => { active = false; };
   }, []);
+  // ThemeProvider mounts page content after the browser first resolves URL fragments.
+  useEffect(() => {
+    if (!anchorId || window.location.hash !== `#${anchorId}`) return;
+    const frame = window.requestAnimationFrame(() => {
+      if (window.location.hash !== `#${anchorId}`) return;
+      const target = document.getElementById(anchorId);
+      if (!target) return;
+      const headerHeight = document.querySelector('header nav')?.getBoundingClientRect().height ?? 0;
+      window.scrollTo({
+        top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight),
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [anchorId]);
   const [step, setStep] = useState<SignupStep>('profile');
   const [preferences, setPreferences] = useState<Preferences>({ pulse: false, grants: false });
   const [firstName, setFirstName] = useState('');
