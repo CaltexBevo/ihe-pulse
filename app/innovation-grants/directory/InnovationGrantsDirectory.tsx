@@ -110,9 +110,9 @@ const FUNDER_TYPES: Array<[FunderType, string]> = [
 
 const FUNDER_ID_MAP: Record<Exclude<FunderType, "all" | "other">, readonly number[]> = {
   federal: [44, 61, 62, 63, 64, 65, 66, 67, 71, 72, 73, 74, 78, 79, 80, 81, 82, 84, 87, 88, 91, 101, 102, 103, 108],
-  state: [43, 52, 54, 55, 56, 57, 58, 59, 68, 70, 89, 90, 106, 110],
+  state: [43, 52, 54, 55, 56, 57, 58, 59, 68, 70, 89, 90, 106, 110, 111, 112],
   nonprofit: [42, 51, 53, 60, 69, 75, 76, 77, 83, 86, 107],
-  institution: [38, 48, 85, 104, 105],
+  institution: [38, 48, 85, 104, 105, 113, 114, 115],
   corporate: [92, 93, 94, 95, 96, 97, 98, 99, 100],
 };
 
@@ -286,7 +286,7 @@ function OpportunityCard({
             <DetailField label="What it funds" value={opportunity.whatItFunds} wide />
             <DetailField label="Geography" value={opportunity.geography} />
             <DetailField label="Cost share / matching" value={opportunity.costShareRequirement} />
-            <DetailField label="Final application deadline" value={opportunity.deadline} />
+            <DetailField label={opportunity.priorityDeadlineDate && !opportunity.finalDeadlineDate ? "Priority application deadline" : "Final application deadline"} value={opportunity.deadline} />
             <DetailField label="Deadline time zone" value={opportunity.deadlineTimeZone} />
             <DetailField label="Application access" value={opportunity.applicationAccess} wide />
             <DetailField label="Innovation areas" value={opportunity.innovationAreas.map(areaLabel).join(" · ")} wide />

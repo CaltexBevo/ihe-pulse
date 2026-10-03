@@ -29,3 +29,11 @@ test("release freshness is explicit metadata, distinct from inventory and discov
     assert.ok(page.includes("Individual records retain their own dates."));
   }
 });
+
+test("inventory and discovery labels agree with their machine-readable dates", () => {
+  const label = (date) => new Intl.DateTimeFormat("en-US", {
+    month: "short", day: "numeric", year: "numeric", timeZone: "UTC",
+  }).format(new Date(`${date}T12:00:00Z`));
+  assert.equal(metadata.INNOVATION_GRANTS_VERIFIED_ON, label(metadata.INNOVATION_GRANTS_VERIFICATION_DATE));
+  assert.equal(metadata.INNOVATION_GRANTS_FULL_SEARCH_DATE, label(metadata.INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO));
+});

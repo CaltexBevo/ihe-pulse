@@ -94,6 +94,11 @@ const LOCATION_ELIGIBILITY_BY_ID: Readonly<Record<number, InnovationGrantLocatio
   107: { scope: "unresolved" },
   108: nationwide(),
   110: { scope: "state-or-territory", jurisdictions: ["WV"] },
+  111: { scope: "state-or-territory", jurisdictions: ["NJ"] },
+  112: { scope: "state-or-territory", jurisdictions: ["IA"] },
+  113: { scope: "institution-only" },
+  114: { scope: "institution-only" },
+  115: { scope: "institution-only" },
 };
 
 export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {

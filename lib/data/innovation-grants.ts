@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -2305,6 +2305,192 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     announcementWindow: "Monday discovery, Sep. 28, 2026",
     sourceNotes: "The current STaR opportunities page and STaR.SURE.2026 RFP support Oct. 16, 2026, regional accreditation, approximately $300,000 in anticipated annual funding for this call, five to six awards, up to $75,000 each, and no match. Current RFP: https://wvresearch.org/wp-content/uploads/2026/06/SUREGrantRFP6126.pdf . Funding depends on state Research Challenge Fund availability and Council approval. Time of day and timezone are not stated. Applicants must request a GO! invitation; no account or application was created."
   }),
+  grant({
+    "portalAddedDate": "2026-10-03",
+    "lastVerified": "Oct 3, 2026",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Oct. 3, 2026",
+    "scopeDisposition": "included",
+    "id": 111,
+    "recommendationRank": 20,
+    "title": "New Jersey Higher Education AI Readiness Grant",
+    "source": "New Jersey Office of the Secretary of Higher Education",
+    "officialUrl": "https://nj.gov/highereducation/broadcasts/2026/09302026.shtml",
+    "applicationUrl": "https://nj.gov/highereducation/finance/grants.shtml",
+    "announcedDate": "Sept. 30, 2026",
+    "announcedDateIso": "2026-09-30",
+    "awardAmount": "Up to $100,000 for faculty development, $75,000 for student AI literacy, or $50,000 for planning and governance; $675,000 total call funding",
+    "publishedProgramPoolUsd": 675000,
+    "publishedProgramPoolApproximate": false,
+    "eligibility": "Partnerships of two to five New Jersey county colleges, public four-year institutions, or independent four-year institutions receiving state operating aid. Each institution may join only one partnership; each application addresses one priority area.",
+    "whatItFunds": "Shared resources and programs for faculty AI development, student AI literacy, or institutional AI planning and governance.",
+    "geography": "New Jersey",
+    "costShareRequirement": "Not stated in the official source",
+    "applicationAccess": "Official grant index provides the notice and required Excel budget template. Submit the narrative PDF and Excel budget by email to both officials specified in the notice. Template downloaded and validated; no email or application submitted.",
+    "deadline": "Oct. 30, 2026 at 5 p.m. Eastern Time",
+    "deadlineTimeZone": "Eastern Time",
+    "finalDeadlineDate": "2026-10-30",
+    "audiences": [
+        "community-colleges",
+        "four-year-colleges-universities",
+        "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+        "ai-emerging-technology",
+        "teaching-learning",
+        "faculty-development",
+        "digital-transformation-infrastructure",
+        "community-college-innovation"
+    ],
+    "bestFit": "New Jersey college partnerships building reusable AI teaching, literacy and governance resources.",
+    "eligibilityBadge": "New Jersey college partnerships",
+    "sourceNotes": "Current notice: https://nj.gov/highereducation/documents/pdf/FY27_OSHE_AI_Readiness_NGO.pdf . Finance index supplies Eastern Time. Required budget: https://nj.gov/highereducation/documents/excel/FY27_OSHE_AI_Readiness_BudgetTemplate.xlsx . Project period January through December 2027. Only the published $675,000 call pool enters the tally; per-award caps are not added separately."
+}),
+  grant({
+    "id": 112,
+    "portalAddedDate": "2026-10-03",
+    "lastVerified": "Oct 3, 2026",
+    "recommendationRank": 22,
+    "title": "Iowa Career Training Physical Expansion Grant Program",
+    "source": "Iowa Workforce Development",
+    "officialUrl": "https://www.iowagrants.gov/viewStorefrontOpportunity.do?OIDString=1787926579172%7COpportunity",
+    "applicationUrl": "https://www.iowagrants.gov/viewStorefrontOpportunity.do?OIDString=1787926579172%7COpportunity",
+    "announcedDate": "Sept. 15, 2026",
+    "announcedDateIso": "2026-09-15",
+    "awardAmount": "Up to $1 million per award; $3.5 million available for this call, including $1.5 million reserved for healthcare",
+    "publishedProgramPoolUsd": 3500000,
+    "publishedProgramPoolApproximate": false,
+    "eligibility": "Iowa community colleges and unionized or nonunionized private-sector apprenticeship programs located and operating in Iowa, expanding predominantly in-person training in high-demand fields. Applicants must satisfy fiscal, employment and program-standing requirements.",
+    "whatItFunds": "New or expanded workforce-training facilities and equipment that increase training slots. Equipment-only projects must add at least five slots; construction or modification projects at least ten.",
+    "geography": "Iowa",
+    "costShareRequirement": "No match or cost sharing required",
+    "applicationAccess": "The official IowaGrants opportunity is posted and provides login or registration instructions for applying. No account was created or authenticated application submitted.",
+    "deadline": "Oct. 19, 2026 at 2 p.m. CST, as printed by the funder",
+    "deadlineTimeZone": "CST, as stated in the official notice; confirm the clock time with the funder",
+    "finalDeadlineDate": "2026-10-19",
+    "audiences": [
+        "community-colleges"
+    ],
+    "innovationAreas": [
+        "workforce-pathways",
+        "community-college-innovation",
+        "digital-transformation-infrastructure"
+    ],
+    "scopeDisposition": "included",
+    "bestFit": "Iowa community colleges adding physical capacity and equipment for high-demand workforce programs.",
+    "eligibilityBadge": "Iowa community colleges and apprenticeships",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Oct. 3, 2026",
+    "sourceNotes": "Official notice explicitly identifies $3.5 million available under this award, not a broader appropriation; counted once, including the healthcare reservation. Reimbursement-only with no advance payments. Project period Nov. 1, 2026 to June 30, 2030. No layoffs in the prior six months; applicants must not be in bankruptcy or state-tax arrears, and apprenticeship programs must be in good standing. Internal wages, travel and indirect costs are excluded. The notice prints CST; that wording is preserved."
+}),
+  grant({
+    "portalAddedDate": "2026-10-03",
+    "lastVerified": "Oct 3, 2026",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Oct. 3, 2026",
+    "scopeDisposition": "included",
+    "id": 113,
+    "recommendationRank": 35,
+    "title": "University of Colorado AI Sprint Grant: AI for Teaching & Learning",
+    "source": "University of Colorado System",
+    "officialUrl": "https://www.cu.edu/oaa/cu-system-sprint-grant-ai-teaching-learning",
+    "applicationUrl": "https://www.cu.edu/forms/cu-system-sprint-grant-ai-teaching-learning-submission-form",
+    "announcedDate": "Fall 2026 round; opening date not stated",
+    "awardAmount": "Up to $20,000 per award",
+    "eligibility": "Full-time University of Colorado tenured, tenure-track or instructional-series faculty. One award per faculty member across the three rounds. Projects must address a single regular course; AI literacy courses, special topics, independent study, and thesis or dissertation hours are ineligible.",
+    "whatItFunds": "AI teaching experiments that improve and evaluate student learning in one course, including justified project expenses and support toward one course buyout.",
+    "geography": "University of Colorado system only",
+    "costShareRequirement": "Not stated in the official source",
+    "applicationAccess": "Official public submission form renders applicant fields, campus and project details, requested amount, PDF upload and Submit. No form was filled or submitted.",
+    "deadline": "Oct. 16, 2026 at midnight; time zone not stated",
+    "deadlineTimeZone": "Not stated in the official source",
+    "finalDeadlineDate": "2026-10-16",
+    "audiences": [
+        "four-year-colleges-universities",
+        "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+        "ai-emerging-technology",
+        "teaching-learning",
+        "research-evidence-building",
+        "faculty-development"
+    ],
+    "bestFit": "University of Colorado faculty testing AI teaching methods against specific course learning outcomes.",
+    "eligibilityBadge": "University of Colorado full-time faculty",
+    "sourceNotes": "The official program page and rendered application agree on Oct. 16; the form specifies midnight without a timezone. Complete within two academic semesters of award. Activities already completed or within two months of the submission deadline are ineligible. Supporting letters, CV and project proposal are combined into one PDF. A Spring 2027 round is announced. No program pool is inferred from up to ten awards per round."
+}),
+  grant({
+    "id": 114,
+    "portalAddedDate": "2026-10-03",
+    "lastVerified": "Oct 3, 2026",
+    "recommendationRank": 38,
+    "title": "Provost's Award for Teaching Innovations in the Age of AI",
+    "source": "Northwestern University",
+    "officialUrl": "https://nnci.northwestern.edu/major-initiatives/provosts-award-for-teaching-innovations-in-the-age-of-ai.html",
+    "applicationUrl": "https://nnci.northwestern.edu/docs/provosts-award-for-innovations-with-ai-in-education.pdf",
+    "announcedDate": "Current 2026 call; opening date not stated",
+    "awardAmount": "Up to $5,000 per award",
+    "eligibility": "Full-time Northwestern University teaching-line and tenure-line faculty, individually or in teams, with department-chair or dean endorsement. The project must relate to a class the applicant will teach in the next two academic years.",
+    "whatItFunds": "AI-era course redesign, learning design, assessment and classroom innovations with an evaluation plan. Projects can use AI or develop teaching approaches that serve learning goals without AI.",
+    "geography": "Northwestern University only",
+    "costShareRequirement": "Not stated in the official source",
+    "applicationAccess": "Official RFP directs applicants to email a complete PDF proposal to NNCI@northwestern.edu. The public instructions are accessible; no message or application was submitted.",
+    "deadline": "Oct. 16, 2026 for full consideration; time and time zone not stated",
+    "deadlineTimeZone": "Not stated in the official source",
+    "priorityDeadlineDate": "2026-10-16",
+    "audiences": [
+        "four-year-colleges-universities",
+        "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+        "ai-emerging-technology",
+        "teaching-learning",
+        "research-evidence-building",
+        "faculty-development"
+    ],
+    "scopeDisposition": "included",
+    "bestFit": "Northwestern faculty assessing a substantial course redesign for teaching and learning in the age of AI.",
+    "eligibilityBadge": "Northwestern full-time faculty only",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Oct. 3, 2026",
+    "sourceNotes": "Official program page and linked RFP agree. Projects may begin winter 2027. Regular instructional or administrative salaries, standard faculty leaves, and research unrelated to the curriculum innovation are excluded. No program-level cash pool is published, so the per-award cap is excluded from the funding tally. RFP: https://nnci.northwestern.edu/docs/provosts-award-for-innovations-with-ai-in-education.pdf"
+}),
+  grant({
+    "portalAddedDate": "2026-10-03",
+    "lastVerified": "Oct 3, 2026",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Oct. 3, 2026",
+    "scopeDisposition": "included",
+    "id": 115,
+    "recommendationRank": 40,
+    "title": "CSU Bakersfield FTLC Mini-Grant Program: Fall 2026",
+    "source": "California State University, Bakersfield Faculty Teaching & Learning Center",
+    "officialUrl": "https://www.csub.edu/ftlc/faculty-mini-grants.shtml",
+    "applicationUrl": "https://csub.kualibuild.com/app/6a8de592ce8b2e02a0c4842e/run",
+    "announcedDate": "Aug. 31, 2026",
+    "announcedDateIso": "2026-08-31",
+    "awardAmount": "Up to $500 per award",
+    "eligibility": "CSU Bakersfield full-time lecturers, tenure-track faculty and tenured faculty. Priority goes to instructors who have not recently received a mini-grant.",
+    "whatItFunds": "Teaching innovation and faculty professional development, including instructional materials, teaching-related conference participation and outside speakers for innovative teaching.",
+    "geography": "California State University, Bakersfield only",
+    "costShareRequirement": "Not stated in the official source",
+    "applicationAccess": "The official RFP links to Kuali Build, which redirects to Microsoft institutional sign-in. The sign-in page was verified; no login or application attempted.",
+    "deadline": "Oct. 16, 2026; time and time zone not stated",
+    "deadlineTimeZone": "Not stated in the official source",
+    "finalDeadlineDate": "2026-10-16",
+    "audiences": [
+        "four-year-colleges-universities",
+        "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+        "teaching-learning",
+        "student-success",
+        "faculty-development"
+    ],
+    "bestFit": "CSU Bakersfield faculty trying a small teaching innovation or applying professional learning to their courses.",
+    "eligibilityBadge": "CSU Bakersfield faculty only",
+    "sourceNotes": "The current Fall 2026 RFP resolves the older cycle-year discrepancy: https://www.csub.edu/ftlc/_files/FTLCMiniGrantAnnouncementFall2026.pdf . Activities run September 2026 through February 2027; awards reimburse costs after expenditure. Faculty stipends, release time, student salaries, ordinary departmental expenses and recurring subscriptions are excluded. No published program pool; award cap excluded from tally."
+}),
 ];
 
 export const INNOVATION_GRANTS_ACTIONABLE_COUNT = innovationGrants.filter(
