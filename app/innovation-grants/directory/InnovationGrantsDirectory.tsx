@@ -286,7 +286,7 @@ function OpportunityCard({
             <DetailField label="What it funds" value={opportunity.whatItFunds} wide />
             <DetailField label="Geography" value={opportunity.geography} />
             <DetailField label="Cost share / matching" value={opportunity.costShareRequirement} />
-            <DetailField label="Final application deadline" value={opportunity.deadline} />
+            <DetailField label={opportunity.priorityDeadlineDate && !opportunity.finalDeadlineDate ? "Priority application deadline" : "Final application deadline"} value={opportunity.deadline} />
             <DetailField label="Deadline time zone" value={opportunity.deadlineTimeZone} />
             <DetailField label="Application access" value={opportunity.applicationAccess} wide />
             <DetailField label="Innovation areas" value={opportunity.innovationAreas.map(areaLabel).join(" · ")} wide />
