@@ -1,12 +1,11 @@
 import Link from 'next/link';
 import ResourceIcon, { type ResourceIconName } from './ResourceIcon';
 import FeaturedCoverage from '@/components/FeaturedCoverage';
-import NewsletterSignup from '@/components/NewsletterSignup';
+import EmailSignup from '@/components/EmailSignup';
 import QuickHitsSlider from '@/components/QuickHitsSlider';
 import { FEATURED_COVERAGE, LATEST_FEATURED_COVERAGE } from '@/lib/data/featured-coverage';
 import {
   formatPulseDate,
-  isWeeklyEpisode,
   V4_CATEGORY_SLUGS,
   type InnovationPulseEpisode,
   type V4Category,
@@ -103,23 +102,13 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
         }
       : story;
   });
-  const cadenceLabel = isWeeklyEpisode(episode) ? 'delivered weekly' : 'delivered every weekday';
-
   return (
     <>
-      <section className={styles.subscribeSection} aria-labelledby="homepage-subscribe-heading">
+      <div className={styles.subscribeSection}>
         <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)]">
-          <div className={styles.subscribe}>
-            <div className="np-sub-copy">
-              <h2 id="homepage-subscribe-heading" className={styles.subscribeHeading}>
-                Never miss an edition.
-              </h2>
-              <p className="np-sub-muted">The Innovation Pulse, {cadenceLabel}.</p>
-            </div>
-            <NewsletterSignup variant="inline-strip" />
-          </div>
+          <EmailSignup id="email-signup" variant="compact" placement="homepage" />
         </div>
-      </section>
+      </div>
 
       <FeaturedCoverage feature={LATEST_FEATURED_COVERAGE} variant="homepage" />
 

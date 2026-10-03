@@ -79,6 +79,13 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
+              <h2 className="text-[1.25rem] font-bold mb-4 text-[var(--text)]">Email choices and grant alerts</h2>
+              <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
+                When you subscribe, we store your first and last name, email address, email choices, and any grant criteria you provide with Mailchimp. We use your selected institution types, locations, focus areas, and minimum award amount to match newly listed grants for weekly alerts. Use the secure update-preferences link in an email from us to change your choices, or the unsubscribe link to stop emails.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-[1.25rem] font-bold mb-4 text-[var(--text)]">
                 Third-Party Services
               </h2>

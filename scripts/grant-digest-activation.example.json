@@ -1,0 +1,12 @@
+{
+  "enabled": false,
+  "sendEnabled": false,
+  "scope": "weekly-new-public-matching-grants-v1",
+  "approvalReference": "",
+  "audienceId": "",
+  "journalDirectory": "",
+  "maximum31DaySends": 4000,
+  "reserveSends": 1000,
+  "hostedProfileEditingVerified": false,
+  "profileVerificationReference": ""
+}

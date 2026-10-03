@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EmailSignup from "@/components/EmailSignup";
 import GrantUpdatedDate from "@/components/GrantUpdatedDate";
 import GrantFinder from "./GrantFinder";
 import PortalFundingTally from "./PortalFundingTally";
@@ -166,6 +167,7 @@ export default function InnovationGrantsPage() {
     asOf,
   ).slice(0, 3);
   return (
+    <>
     <div className={`${styles.portal} ${styles.home}`}>
         <PortalDayRefresh asOfDate={asOfDate} />
         <div className="field" aria-hidden="true">
@@ -277,5 +279,9 @@ export default function InnovationGrantsPage() {
           </div>
         </section>
     </div>
+    <div className={styles.signupPlacement}>
+      <EmailSignup id="email-signup" variant="portal" placement="grant-portal" />
+    </div>
+    </>
   );
 }
