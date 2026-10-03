@@ -2437,7 +2437,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     "applicationAccess": "Official RFP directs applicants to email a complete PDF proposal to NNCI@northwestern.edu. The public instructions are accessible; no message or application was submitted.",
     "deadline": "Oct. 16, 2026 for full consideration; time and time zone not stated",
     "deadlineTimeZone": "Not stated in the official source",
-    "finalDeadlineDate": "2026-10-16",
+    "priorityDeadlineDate": "2026-10-16",
     "audiences": [
         "four-year-colleges-universities",
         "faculty-teaching-centers"

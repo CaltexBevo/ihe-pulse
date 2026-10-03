@@ -38,6 +38,11 @@ test("October 3 broad refresh adds five verified opportunities without inflating
   const currentIds = records.map((record) => record.id);
   assert.equal(new Set(currentIds).size, currentIds.length);
   assert.ok(records.filter((record) => record.id < 111).every((record) => record.portalAddedDate < "2026-10-03"));
+  const northwestern = additions.find((record) => record.id === 114);
+  assert.equal(northwestern.finalDeadlineDate, undefined);
+  assert.equal(northwestern.priorityDeadlineDate, "2026-10-16");
+  assert.equal(getInnovationGrantLifecycle(northwestern, new Date("2026-10-16T12:00:00Z")), "closing-soon");
+  assert.equal(getInnovationGrantLifecycle(northwestern, new Date("2026-10-17T12:00:00Z")), "open-now");
 });
 
 test("verification copy discloses retained review flags rather than claiming every uncertain path is hidden", () => {
