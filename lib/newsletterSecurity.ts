@@ -1,3 +1,6 @@
+import { parseEmailPreferences, preferenceMergeFields, type EmailPreferences } from './server/mailchimpPreferences.ts';
+import { parseGrantAlertPreferences, type GrantAlertPreferences } from './grantAlertPreferences.ts';
+
 const MAX_REQUEST_BODY_BYTES = 4_096;
 const TURNSTILE_ACTION = 'newsletter_signup';
 const TURNSTILE_SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
@@ -10,7 +13,8 @@ const LOCAL_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http:/
 const LOCAL_HOSTNAMES = ['localhost', '127.0.0.1', '[::1]'];
 const PENDING_SUCCESS = {
   success: true,
-  message: 'Check your inbox to confirm your subscription!',
+  preferencesUrl: '/email-preferences',
+  message: 'If this is a new subscription, check your inbox to confirm it. Already subscribed? Use the secure preferences link in an Innovating Higher Ed email to change your choices.',
 };
 
 export type NewsletterEnvironment = {
@@ -21,6 +25,7 @@ export type NewsletterEnvironment = {
   MAILCHIMP_API_KEY?: string;
   MAILCHIMP_AUDIENCE_ID?: string;
   MAILCHIMP_SERVER_PREFIX?: string;
+  MAILCHIMP_PREFERENCES_SCHEMA?: string;
 };
 
 type NewsletterSubmission = {
@@ -29,6 +34,8 @@ type NewsletterSubmission = {
   lastName: string;
   honeypot: string;
   turnstileToken: string;
+  preferences?: EmailPreferences;
+  grantCriteria?: GrantAlertPreferences;
 };
 
 type TurnstileResponse = {
@@ -243,7 +250,15 @@ export function parseNewsletterSubmission(value: unknown): NewsletterSubmission 
   if (!email || !firstName || !lastName || turnstileToken.length < 10 || turnstileToken.length > 2_048) {
     return null;
   }
-  return { email, firstName, lastName, honeypot, turnstileToken };
+  // Older embedded forms mean Pulse only. New forms must supply explicit booleans.
+  if (record.preferences === undefined && record.grantCriteria === undefined) {
+    return { email, firstName, lastName, honeypot, turnstileToken };
+  }
+  const preferences = parseEmailPreferences(record.preferences);
+  const criteria = parseGrantAlertPreferences(record.grantCriteria ?? { audiences: [], locations: [], areas: [], minimumAwardUsd: null });
+  if (!preferences || !criteria.ok) return null;
+  if (!preferences.grants && (criteria.preferences.audiences.length || criteria.preferences.locations.length || criteria.preferences.areas.length || criteria.preferences.minimumAwardUsd !== null)) return null;
+  return { email, firstName, lastName, honeypot, turnstileToken, preferences, grantCriteria: criteria.preferences };
 }
 
 function validServiceConfiguration(environment: NewsletterEnvironment) {
@@ -253,6 +268,19 @@ function validServiceConfiguration(environment: NewsletterEnvironment) {
     environment.MAILCHIMP_AUDIENCE_ID?.match(/^[a-z0-9]+$/i) &&
     environment.MAILCHIMP_SERVER_PREFIX?.match(/^us\d+$/),
   );
+}
+
+/** Public boolean only; the flag is an operator assertion, not proof of delivery readiness. */
+export function handleNewsletterReadiness(request: Request, environment: NewsletterEnvironment = process.env) {
+  const allowed = newsletterAllowedOrigins(environment);
+  const origin = request.headers.get("origin");
+  const sameOrigin = Boolean(allowed?.has(new URL(request.url).origin)
+    && (!origin || origin === new URL(request.url).origin)
+    && !["cross-site", "same-site"].includes(request.headers.get("sec-fetch-site") ?? ""));
+  const ready = sameOrigin && environment.MAILCHIMP_PREFERENCES_SCHEMA === "v1"
+    && validServiceConfiguration(environment) && Boolean(turnstileAllowedHostnames(environment));
+  return Response.json({ ready }, { status: sameOrigin ? 200 : 403,
+    headers: { "Cache-Control": "private, no-store, max-age=0", "Vary": "Origin, Sec-Fetch-Site" } });
 }
 
 async function verifyTurnstile(
@@ -317,6 +345,9 @@ export async function handleNewsletterPost(request: Request, dependencies: Handl
       console.error('Newsletter signup unavailable: server configuration is incomplete.');
       return jsonResponse({ error: 'Newsletter service is temporarily unavailable. Please try again later.' }, 503);
     }
+    if (submission.preferences && environment.MAILCHIMP_PREFERENCES_SCHEMA !== 'v1') {
+      return jsonResponse({ error: 'Email preferences are temporarily unavailable. Please try again later.' }, 503);
+    }
 
     const serverController = new AbortController();
     const serverDeadline = setTimeout(
@@ -352,10 +383,14 @@ export async function handleNewsletterPost(request: Request, dependencies: Handl
           body: JSON.stringify({
             email_address: submission.email,
             status: 'pending',
-            tags: ['Innovation Pulse', 'Website Signup'],
+            tags: [...(!submission.preferences || submission.preferences.pulse ? ['Innovation Pulse'] : []), 'Website Signup'],
             merge_fields: {
               FNAME: submission.firstName,
               LNAME: submission.lastName,
+              ...(environment.MAILCHIMP_PREFERENCES_SCHEMA === 'v1' ? preferenceMergeFields(
+                submission.preferences ?? { pulse: true, grants: false },
+                submission.grantCriteria ?? { audiences: [], locations: [], areas: [], minimumAwardUsd: null },
+              ) : {}),
             },
           }),
           cache: 'no-store',

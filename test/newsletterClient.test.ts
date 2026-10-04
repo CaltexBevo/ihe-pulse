@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import {
@@ -7,6 +8,7 @@ import {
   NEWSLETTER_BROWSER_TIMEOUT_MS,
   nextChallengeReset,
   postNewsletter,
+  readNewsletterReadiness,
 } from '../lib/newsletterClient.ts';
 import { NEWSLETTER_SERVER_DEADLINE_MS } from '../lib/newsletterSecurity.ts';
 
@@ -17,6 +19,18 @@ const BODY = {
   _gotcha: '',
   turnstileToken: 'single-use-token',
 };
+
+test('client preserves explicit grants-only choices and criteria without changing legacy payloads', async () => {
+  for (const body of [BODY, { ...BODY, preferences: { pulse: false, grants: true }, grantCriteria: { audiences: ['community-colleges'], locations: ['CA'], areas: [], minimumAwardUsd: 5000 } }]) {
+    const result = await postNewsletter(body, (async (url, init) => {
+      assert.equal(url, '/api/newsletter');
+      assert.equal(init?.method, 'POST');
+      assert.deepEqual(JSON.parse(String(init?.body)), body);
+      return Response.json({ success: true, preferencesUrl: '/email-preferences' });
+    }) as typeof fetch);
+    assert.equal(result.data.preferencesUrl, '/email-preferences');
+  }
+});
 
 test('browser retry deadline leaves a deterministic margin after the total server deadline', () => {
   const timeoutMargin = NEWSLETTER_BROWSER_TIMEOUT_MS - NEWSLETTER_SERVER_DEADLINE_MS;
@@ -71,4 +85,31 @@ test('browser timeout remains active while a response body stalls', async () => 
     (error: unknown) => error instanceof FetchTimeoutError,
   );
   assert.equal(aborted, true);
+});
+
+test("readiness uses same-origin uncached GET and accepts only an explicit successful boolean", async () => {
+  for (const [body, status, expected] of [[{ready:true},200,true],[{ready:false},200,false],[{ready:"true"},200,false],[null,200,false],[{ready:true},503,false]] as const) {
+    assert.equal(await readNewsletterReadiness((async (url, init) => {
+      assert.equal(url, "/api/newsletter");
+      assert.equal(init?.method, "GET");
+      assert.equal(init?.cache, "no-store");
+      assert.equal(init?.credentials, "same-origin");
+      return Response.json(body, {status});
+    }) as typeof fetch), expected);
+  }
+  assert.equal(await readNewsletterReadiness((async () => { throw new Error("offline"); }) as typeof fetch), false);
+  assert.equal(await readNewsletterReadiness((async () => new Response("invalid JSON")) as typeof fetch), false);
+  assert.equal(await readNewsletterReadiness((async (_url, init) => new Promise((_resolve, reject) => {
+    init?.signal?.addEventListener("abort", () => reject(new Error("timeout")), {once:true});
+  })) as typeof fetch, 5), false);
+});
+
+test("inactive signup cannot submit or start a challenge before readiness", () => {
+  const source = readFileSync(new URL("../components/EmailSignup.tsx", import.meta.url), "utf8");
+  assert.match(source, /const \[ready, setReady\] = useState\(false\)/);
+  assert.match(source, /const submitDisabled = !ready \|\|/);
+  assert.match(source, /event.preventDefault\(\);\s*if \(!ready\) return;/);
+  assert.equal(source.includes("setChallengeActive(true)"), false);
+  assert.match(source, /Signups are not open yet/);
+  assert.equal(source.includes("disabled={status ==="), false);
 });

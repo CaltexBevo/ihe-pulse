@@ -1,0 +1,781 @@
+.signup {
+  --signup-panel: #0b1c34;
+  --signup-ink: #f7f6f2;
+  --signup-muted: #becbdd;
+  --signup-edge: #28435e;
+  --signup-input: #f8fafc;
+  --signup-input-ink: #071b36;
+  --signup-accent: var(--cyan);
+  --signup-amber: var(--amber);
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--signup-amber) 62%, var(--signup-edge));
+  border-radius: 4px 18px 4px 18px;
+  background: var(--signup-panel);
+  color: var(--signup-ink);
+  box-shadow: 0 12px 35px color-mix(in srgb, #001529 16%, transparent);
+}
+
+:global([data-theme='light']) .signup {
+  --signup-panel: #faf6ed;
+  --signup-ink: #071b36;
+  --signup-muted: #46596c;
+  --signup-edge: #aabdc9;
+  --signup-input: #fff;
+  --signup-input-ink: #071b36;
+  --signup-accent: var(--cyan);
+}
+
+.portalArt {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  pointer-events: none;
+  background: #071b36 url('/images/portal-email-signup-v3.webp') right center / auto 280px no-repeat;
+}
+
+.signup:has(.criteriaPanel) .portalArt {
+  background-size: auto 100%;
+}
+
+.signup::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--signup-panel) 0%, var(--signup-panel) 62%, transparent 83%);
+  content: '';
+}
+
+.panelGrid {
+  position: relative;
+  z-index: 0;
+  width: 70%;
+  max-width: 930px;
+  min-width: 0;
+}
+
+.profilePanel {
+  max-width: 900px;
+  padding: 20px;
+}
+
+.criteriaPanel {
+  max-width: 930px;
+  padding: 28px;
+}
+
+.compactVariant .profilePanel,
+.portalVariant .profilePanel {
+  padding: 20px;
+}
+
+.compactVariant .criteriaPanel,
+.portalVariant .criteriaPanel {
+  padding: 28px;
+}
+
+.profileTop {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(220px, 0.84fr) minmax(0, 1.16fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.intro,
+.choiceText,
+.field {
+  min-width: 0;
+}
+
+.intro h2,
+.criteriaIntro h2,
+.confirmation h2 {
+  margin: 0;
+  color: var(--signup-ink);
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: -0.8px;
+  overflow-wrap: anywhere;
+}
+
+.intro h2 span,
+.criteriaIntro h2 span {
+  color: var(--signup-accent);
+}
+
+.tagline {
+  margin: 3px 0 0;
+  color: var(--signup-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.emailChoices {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.emailChoice {
+  display: flex;
+  min-width: 0;
+  min-height: 44px;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 8px;
+  border: 1px solid var(--signup-accent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--signup-panel) 91%, var(--signup-accent));
+  color: var(--signup-ink);
+  cursor: pointer;
+}
+
+.grantChoice {
+  border-color: var(--signup-amber);
+  background: color-mix(in srgb, var(--signup-panel) 91%, var(--signup-amber));
+}
+
+.emailChoice.selected {
+  box-shadow: inset 0 0 0 1px var(--signup-accent);
+  background: color-mix(in srgb, var(--signup-panel) 78%, var(--signup-accent));
+}
+
+.grantChoice.selected {
+  box-shadow: inset 0 0 0 1px var(--signup-amber);
+  background: color-mix(in srgb, var(--signup-panel) 78%, var(--signup-amber));
+}
+
+.emailChoice:focus-within,
+.criteriaChoice:focus-within {
+  outline: 2px solid var(--signup-accent);
+  outline-offset: 2px;
+}
+
+.emailChoice input,
+.criteriaChoice input {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  margin: 0;
+  accent-color: var(--signup-accent);
+  cursor: pointer;
+}
+
+.grantChoice input {
+  accent-color: var(--signup-amber);
+}
+
+.choiceText strong,
+.choiceText small {
+  display: block;
+}
+
+.choiceText strong {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.choiceText small {
+  margin-top: 2px;
+  color: var(--signup-muted);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.choiceIcon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--signup-accent);
+}
+
+.grantChoice .choiceIcon {
+  color: var(--signup-amber);
+}
+
+.form {
+  position: relative;
+  display: block;
+  min-width: 0;
+  margin: 0;
+}
+
+.profilePanel .form {
+  margin-top: 4px;
+}
+
+.honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.identityRow {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(78px, 0.9fr) minmax(78px, 0.9fr) minmax(120px, 1.3fr) minmax(130px, 1.5fr);
+  align-items: end;
+  gap: 8px;
+}
+
+.field {
+  display: block;
+  color: var(--signup-ink);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.field > span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.field > span small {
+  color: var(--signup-muted);
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.field input,
+.field select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 33px;
+  margin-top: 3px;
+  padding: 6px 8px;
+  border: 1px solid var(--signup-edge);
+  border-radius: 4px;
+  background: var(--signup-input);
+  color: var(--signup-input-ink);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.field input::placeholder {
+  color: #52657a;
+  opacity: 1;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.emailChoice input:focus-visible,
+.criteriaChoice input:focus-visible,
+.primaryButton:focus-visible,
+.backButton:focus-visible,
+.preferencesLink:focus-visible {
+  outline: 3px solid var(--signup-accent);
+  outline-offset: 3px;
+}
+
+.primaryButton {
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 33px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: linear-gradient(110deg, #00d4ff 0%, #7ccde8 53%, #a78bfa 100%);
+  color: #071b36;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition: filter 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.primaryButton:hover:not(:disabled) {
+  filter: brightness(1.08);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--signup-accent) 28%, transparent);
+}
+
+.primaryButton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.primaryButton:disabled {
+  opacity: 1;
+  filter: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.formFooter {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+  color: var(--signup-muted);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.formFooter > span {
+  min-width: 0;
+}
+
+.preferencesLink {
+  color: var(--signup-accent);
+  font-size: 10px;
+  line-height: 1.35;
+  text-align: right;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.error {
+  margin: 7px 0 0;
+  color: var(--red, #b4232a);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.securityRow {
+  min-width: 0;
+  margin-top: 6px;
+  text-align: left;
+}
+
+.securityRow :global([data-newsletter-security]) {
+  width: 100%;
+  min-width: 0;
+}
+
+.securityRow :global([data-newsletter-security] p[role='status']) {
+  margin-top: 4px;
+  color: var(--signup-ink) !important;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.securityRow :global([data-newsletter-security] button) {
+  margin-top: 4px;
+  color: var(--signup-accent);
+  font-size: 11px;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.securityRow :global([data-newsletter-security] button:focus-visible) {
+  outline: 2px solid var(--signup-accent);
+  outline-offset: 3px;
+}
+
+.stepTopline {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--signup-edge);
+}
+
+.eyebrow {
+  color: var(--signup-accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.backButton {
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  border: 1px solid var(--signup-edge);
+  border-radius: 999px;
+  background: var(--signup-panel);
+  color: var(--signup-accent);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.criteriaIntro {
+  margin-top: 11px;
+}
+
+.criteriaIntro h2 {
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.08;
+}
+
+.criteriaIntro .tagline {
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.criteriaGrid {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.criteriaField {
+  min-width: 0;
+  margin: 0;
+  padding: 10px 12px 12px;
+  border: 1px solid var(--signup-edge);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--signup-panel) 96%, var(--signup-ink));
+}
+
+.criteriaField > legend {
+  max-width: 100%;
+  padding: 0 5px;
+  color: var(--signup-ink);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.fieldHelp {
+  margin: 2px 0 8px;
+  color: var(--signup-muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.audienceChoices {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 7px;
+}
+
+.areaChoices {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.criteriaChoice {
+  display: flex;
+  min-width: 0;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border: 1px solid var(--signup-edge);
+  border-radius: 5px;
+  background: var(--signup-panel);
+  color: var(--signup-ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.criteriaChoice span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.criteriaSelected {
+  border-color: var(--signup-accent);
+  background: color-mix(in srgb, var(--signup-panel) 88%, var(--signup-accent));
+  box-shadow: inset 0 0 0 1px var(--signup-accent);
+}
+
+.criteriaBottom {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 12px;
+  margin: 14px 0;
+  padding: 13px 12px 10px;
+  border: 1px solid var(--signup-edge);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--signup-panel) 96%, var(--signup-ink));
+}
+
+.fieldHint {
+  display: block;
+  margin-top: 4px;
+  color: var(--signup-muted);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.criteriaActions {
+  min-width: 0;
+}
+
+.criteriaActions .primaryButton {
+  min-height: 40px;
+  font-size: 13px;
+}
+
+.criteriaActions .fieldHelp {
+  margin: 7px 0 0;
+}
+
+.confirmation {
+  padding: 16px 0;
+}
+
+.success {
+  min-height: 112px;
+}
+
+.success .panelGrid {
+  width: 70%;
+  padding: 20px;
+}
+
+.confirmation h2 {
+  font-size: clamp(23px, 2.4vw, 30px);
+  line-height: 1.12;
+}
+
+.confirmation p {
+  margin: 7px 0 12px;
+  color: var(--signup-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.compactVariant .profilePanel {
+  padding: 20px;
+}
+
+.portalVariant .profilePanel {
+  padding: 20px;
+}
+
+@media (max-width: 760px) {
+  .portalArt {
+    opacity: 0.48;
+    background-position: calc(100% + 145px) center;
+    background-size: auto 400px;
+  }
+
+  .signup:has(.criteriaPanel) .portalArt {
+    opacity: 0.22;
+    background-size: auto 100%;
+  }
+
+  .signup::after {
+    background: linear-gradient(
+      90deg,
+      var(--signup-panel) 0%,
+      color-mix(in srgb, var(--signup-panel) 94%, transparent) 66%,
+      color-mix(in srgb, var(--signup-panel) 78%, transparent) 100%
+    );
+  }
+
+  .profilePanel,
+  .criteriaPanel,
+  .compactVariant .profilePanel,
+  .portalVariant .profilePanel,
+  .compactVariant .criteriaPanel,
+  .portalVariant .criteriaPanel {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .panelGrid {
+    width: 100%;
+  }
+
+  .success .panelGrid {
+    padding: 16px;
+  }
+
+  .profileTop {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .intro h2 {
+    font-size: 28px;
+    line-height: 1.08;
+  }
+
+  .tagline {
+    font-size: 12px;
+  }
+
+  .emailChoices {
+    gap: 8px;
+  }
+
+  .emailChoice {
+    min-height: 54px;
+    padding: 7px;
+    gap: 6px;
+  }
+
+  .choiceIcon {
+    display: none;
+  }
+
+  .choiceText strong {
+    font-size: 11px;
+  }
+
+  .choiceText small {
+    font-size: 10px;
+  }
+
+  .identityRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin-top: 5px;
+  }
+
+  .identityRow .field:nth-child(3),
+  .identityRow .primaryButton {
+    grid-column: 1 / -1;
+  }
+
+  .identityRow .field input {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .identityRow .primaryButton {
+    min-height: 40px;
+    font-size: 13px;
+  }
+
+  .formFooter {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .preferencesLink {
+    text-align: left;
+  }
+
+  .criteriaIntro h2 {
+    font-size: 27px;
+  }
+
+  .criteriaGrid,
+  .criteriaBottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .criteriaGrid {
+    gap: 14px;
+    margin-top: 13px;
+  }
+
+  .criteriaBottom {
+    gap: 12px;
+    margin: 12px 0;
+  }
+
+  .areaChoices {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .criteriaChoice {
+    min-height: 42px;
+    font-size: 12px;
+  }
+
+  .criteriaField {
+    padding: 10px 10px 12px;
+  }
+
+  .criteriaBottom .field input,
+  .criteriaBottom .field select {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .stepTopline {
+    align-items: flex-start;
+  }
+
+  .eyebrow {
+    max-width: 26ch;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1040px) {
+  .panelGrid {
+    width: 78%;
+  }
+}
+
+@media (max-width: 359px) {
+  .emailChoices {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .emailChoice {
+    min-height: 48px;
+  }
+
+  .choiceIcon {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton {
+    transition: none;
+  }
+
+  .primaryButton:active:not(:disabled) {
+    transform: none;
+  }
+}

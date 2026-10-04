@@ -478,4 +478,7 @@
 
 .portal{position:relative;isolation:isolate;overflow-x:clip;min-width:0;}
 
+.signupPlacement{width:min(100%,1180px);margin:0 auto 48px;padding:0 24px;}
+@media(max-width:580px){.signupPlacement{padding:0 16px;margin-bottom:36px}}
+
 .portal :global(.field){pointer-events:none;}

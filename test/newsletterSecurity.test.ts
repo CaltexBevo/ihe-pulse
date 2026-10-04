@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import {
   handleNewsletterPost,
+  handleNewsletterReadiness,
   isSameOriginRequest,
   newsletterAllowedOrigins,
   parseNewsletterSubmission,
@@ -461,4 +462,29 @@ test('operational errors do not log submitted PII or expose Mailchimp details', 
   } finally {
     console.error = originalError;
   }
+});
+
+test("readiness discloses only a non-cacheable boolean and requires the existing activation flag", async () => {
+  const env = {...VALID_ENVIRONMENT, MAILCHIMP_PREFERENCES_SCHEMA: "v1"};
+  for (const [environment, headers, expected, status] of [
+    [VALID_ENVIRONMENT, {}, false, 200], [env, {}, true, 200],
+    [{...env, MAILCHIMP_API_KEY: ""}, {}, false, 200],
+    [env, {origin:"https://other.example"}, false, 403],
+    [env, {"sec-fetch-site":"cross-site"}, false, 403],
+  ] as const) {
+    const response = handleNewsletterReadiness(new Request("http://localhost:3000/api/newsletter", {headers}), environment);
+    assert.equal(response.status, status);
+    assert.match(response.headers.get("cache-control")!, /no-store/);
+    assert.deepEqual(await response.json(), {ready:expected});
+  }
+});
+
+test("closed preference capture rejects before any challenge or provider request", async () => {
+  let calls = 0;
+  const response = await handleNewsletterPost(newsletterRequest({...VALID_BODY, preferences:{pulse:false,grants:true}}), {
+    env: VALID_ENVIRONMENT,
+    fetch: (async () => { calls++; throw new Error("must not contact provider"); }) as typeof fetch,
+  });
+  assert.equal(response.status, 503);
+  assert.equal(calls, 0);
 });
