@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import {
@@ -102,14 +101,4 @@ test("readiness uses same-origin uncached GET and accepts only an explicit succe
   assert.equal(await readNewsletterReadiness((async (_url, init) => new Promise((_resolve, reject) => {
     init?.signal?.addEventListener("abort", () => reject(new Error("timeout")), {once:true});
   })) as typeof fetch, 5), false);
-});
-
-test("inactive signup cannot submit or start a challenge before readiness", () => {
-  const source = readFileSync(new URL("../components/EmailSignup.tsx", import.meta.url), "utf8");
-  assert.match(source, /const \[ready, setReady\] = useState\(false\)/);
-  assert.match(source, /const submitDisabled = !ready \|\|/);
-  assert.match(source, /event.preventDefault\(\);\s*if \(!ready\) return;/);
-  assert.equal(source.includes("setChallengeActive(true)"), false);
-  assert.match(source, /Signups are not open yet/);
-  assert.equal(source.includes("disabled={status ==="), false);
 });

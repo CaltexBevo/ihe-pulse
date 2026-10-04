@@ -118,7 +118,7 @@ export default function EmailSignup({
   const securityStatusId = instanceId + '-security';
   const errorStatusId = instanceId + '-error';
   const finalActionNeedsChallenge = step === 'criteria' || (step === 'profile' && !preferences.grants);
-  const submitDisabled = !ready || status === 'loading' || (finalActionNeedsChallenge && !turnstileToken);
+  const submitDisabled = status === 'loading' || (finalActionNeedsChallenge && (!ready || !turnstileToken));
 
   useEffect(() => {
     if (previousStepRef.current === step) return;
@@ -152,17 +152,12 @@ export default function EmailSignup({
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!ready) return;
+    if (status === 'loading') return;
     setError('');
     setStatus('idle');
 
     if (!preferences.pulse && !preferences.grants) {
       setError('Choose at least one email to continue.');
-      return;
-    }
-
-    if (step === 'profile' && preferences.grants) {
-      setStep('criteria');
       return;
     }
 
@@ -175,6 +170,14 @@ export default function EmailSignup({
       setError('Enter your email address.');
       return;
     }
+
+    if (step === 'profile' && preferences.grants) {
+      setStep('criteria');
+      return;
+    }
+
+    // Draft navigation is local; only final enrollment requires service readiness.
+    if (!ready) return;
 
     if (honeypot) return;
 
@@ -304,7 +307,7 @@ export default function EmailSignup({
                     type="checkbox"
                     checked={preferences.pulse}
                     onChange={(event) => setChoice('pulse', event.target.checked)}
-                    disabled={!ready || status === 'loading'}
+                    disabled={status === 'loading'}
                   />
                   <span className={styles.choiceText}>
                     <strong>Innovation Pulse</strong>
@@ -317,7 +320,7 @@ export default function EmailSignup({
                     type="checkbox"
                     checked={preferences.grants}
                     onChange={(event) => setChoice('grants', event.target.checked)}
-                    disabled={!ready || status === 'loading'}
+                    disabled={status === 'loading'}
                   />
                   <span className={styles.choiceText}>
                     <strong>Grant alerts</strong>
@@ -348,15 +351,15 @@ export default function EmailSignup({
               <div className={styles.identityRow}>
                 <label className={styles.field} htmlFor={instanceId + '-first-name'}>
                   <span>First name</span>
-                  <input id={instanceId + '-first-name'} type="text" name="firstName" value={firstName} onChange={(event) => setFirstName(event.target.value)} autoComplete="given-name" placeholder="First name" maxLength={80} required disabled={!ready || status === 'loading'} />
+                  <input id={instanceId + '-first-name'} type="text" name="firstName" value={firstName} onChange={(event) => setFirstName(event.target.value)} autoComplete="given-name" placeholder="First name" maxLength={80} required disabled={status === 'loading'} />
                 </label>
                 <label className={styles.field} htmlFor={instanceId + '-last-name'}>
                   <span>Last name</span>
-                  <input id={instanceId + '-last-name'} type="text" name="lastName" value={lastName} onChange={(event) => setLastName(event.target.value)} autoComplete="family-name" placeholder="Last name" maxLength={80} required disabled={!ready || status === 'loading'} />
+                  <input id={instanceId + '-last-name'} type="text" name="lastName" value={lastName} onChange={(event) => setLastName(event.target.value)} autoComplete="family-name" placeholder="Last name" maxLength={80} required disabled={status === 'loading'} />
                 </label>
                 <label className={styles.field} htmlFor={instanceId + '-email'}>
                   <span>Email address</span>
-                  <input id={instanceId + '-email'} type="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" placeholder="you@institution.edu" maxLength={254} required disabled={!ready || status === 'loading'} />
+                  <input id={instanceId + '-email'} type="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" placeholder="you@institution.edu" maxLength={254} required disabled={status === 'loading'} />
                 </label>
                 <button type="submit" className={styles.primaryButton} disabled={submitDisabled}>
                   {status === 'loading' ? 'Signing you up…' : preferences.grants ? 'Set my grant criteria →' : 'Sign me up →'}
@@ -390,7 +393,7 @@ export default function EmailSignup({
             />
             <div className={styles.stepTopline}>
               <span className={styles.eyebrow}>Your grant connection · Step 2 of 2</span>
-              <button type="button" className={styles.backButton} onClick={goBack} disabled={!ready || status === 'loading'}>
+              <button type="button" className={styles.backButton} onClick={goBack} disabled={status === 'loading'}>
                 <span aria-hidden="true">← </span>Back
               </button>
             </div>
@@ -411,7 +414,7 @@ export default function EmailSignup({
                         type="checkbox"
                         checked={audiences.includes(option.id as InnovationGrantAudience)}
                         onChange={(event) => toggleAudience(option.id as InnovationGrantAudience, event.target.checked)}
-                        disabled={!ready || status === 'loading'}
+                        disabled={status === 'loading'}
                       />
                         <span>{option.label.replace(/\s*\/\s*/g, ' / ')}</span>
                     </label>
@@ -428,7 +431,7 @@ export default function EmailSignup({
                         type="checkbox"
                         checked={areas.includes(option.id as InnovationGrantArea)}
                         onChange={(event) => toggleArea(option.id as InnovationGrantArea, event.target.checked)}
-                        disabled={!ready || status === 'loading'}
+                        disabled={status === 'loading'}
                       />
                         <span>{option.label.replace(/\s*\/\s*/g, ' / ')}</span>
                     </label>
@@ -443,7 +446,7 @@ export default function EmailSignup({
                   id={instanceId + '-location'}
                   value={location}
                   onChange={(event) => setLocation(isLocation(event.target.value) ? event.target.value : '')}
-                  disabled={!ready || status === 'loading'}
+                  disabled={status === 'loading'}
                 >
                   <option value="">Any U.S. location</option>
                   <optgroup label="States and District of Columbia">
@@ -471,7 +474,7 @@ export default function EmailSignup({
                   onChange={(event) => setMinimumAward(event.target.value)}
                   placeholder="Any amount"
                   aria-describedby={instanceId + '-minimum-help'}
-                  disabled={!ready || status === 'loading'}
+                  disabled={status === 'loading'}
                 />
                 <small id={instanceId + '-minimum-help'} className={styles.fieldHint}>
                   Whole dollars per award. Unknown award amounts are omitted when a minimum is set.
@@ -483,7 +486,7 @@ export default function EmailSignup({
               <button type="submit" className={styles.primaryButton} disabled={submitDisabled}>
                 {status === 'loading' ? 'Activating your weekly alerts…' : 'Activate my weekly alerts →'}
               </button>
-              <p className={styles.fieldHelp}>Blank filters keep your options open. You can change these later.</p>
+              <p className={styles.fieldHelp} role="status">{ready ? 'Blank filters keep your options open. You can change these later.' : 'Signups are not open yet'}</p>
             </div>
             {error && <p id={errorStatusId} className={styles.error} role="alert">{error}</p>}
           </form>
