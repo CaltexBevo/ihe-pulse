@@ -5,6 +5,7 @@ import test from 'node:test';
 import vm from 'node:vm';
 import ts from 'typescript';
 import * as client from '../lib/newsletterClient.ts';
+import * as review from '../lib/emailSignupReview.ts';
 import * as shared from '../lib/innovation-grants-shared.ts';
 import * as directory from '../lib/innovation-grants-directory.ts';
 
@@ -15,13 +16,14 @@ const compiled = ts.transpileModule(readFileSync(new URL('../components/EmailSig
 
 // Execute the actual component's event handlers without a browser or provider.
 // This models hook state, not DOM validity/label activation; those need browser QA.
-async function mount({ readiness = false, hostname = 'www.innovatinghighered.com', holdPost = false } = {}) {
+async function mount({ readiness = false, hostname = 'www.innovatinghighered.com', holdPost = false, success = false } = {}) {
   const slots = [];
   let index = 0;
   let effects = [];
   let tree;
   let posts = 0;
   let consumed = 0;
+  const payloads = [];
   const analytics = [];
   let releasePost;
   const hooks = {
@@ -45,9 +47,11 @@ async function mount({ readiness = false, hostname = 'www.innovatinghighered.com
   };
   const modules = {
     react: hooks,
+    'react-dom': { createPortal: (node) => node },
+    '@/lib/emailSignupReview': review,
     'react/jsx-runtime': require('react/jsx-runtime'),
     'next/link': { default: 'a' },
-    'lucide-react': { BookOpen: 'svg', Building2: 'svg' },
+    'lucide-react': Object.fromEntries(['ArrowLeft', 'ArrowRight', 'Check', 'ChevronDown', 'HandCoins', 'Mail', 'X'].map((name) => [name, 'svg'])),
     '@/lib/innovation-grants-directory': directory,
     '@/lib/innovation-grants-shared': shared,
     '@/lib/newsletterClient': {
@@ -57,10 +61,11 @@ async function mount({ readiness = false, hostname = 'www.innovatinghighered.com
         return Response.json({ ready: readiness });
       }),
       consumeChallengeToken(token) { consumed++; return client.consumeChallengeToken(token); },
-      postNewsletter: async () => {
+      postNewsletter: async (payload) => {
+        payloads.push(payload);
         posts++;
         if (holdPost) await new Promise((resolve) => { releasePost = resolve; });
-        return { response: { ok: false }, data: { error: 'Offline provider fixture' } };
+        return { response: { ok: success }, data: success ? { success: true } : { error: 'Offline provider fixture' } };
       },
     },
     './EngagementAnalytics': { trackEvent: (...args) => analytics.push(args) },
@@ -70,6 +75,7 @@ async function mount({ readiness = false, hostname = 'www.innovatinghighered.com
   const exports = {};
   vm.runInNewContext(compiled, {
     exports, require: (name) => { assert.ok(name in modules, name); return modules[name]; },
+    document: { body: { style: {} } },
     window: { location: { hostname, hash: '' } }, process: { env: { NODE_ENV: 'production' } },
   });
   function render() {
@@ -81,6 +87,7 @@ async function mount({ readiness = false, hostname = 'www.innovatinghighered.com
   }
   function all(node = tree) {
     if (!node || typeof node !== 'object') return [];
+    if (node.type?.name === 'EmailChoices') return all(node.type(node.props));
     return [node, ...[node.props?.children].flat(Infinity).filter((child) => child != null).flatMap((child) => all(child))];
   }
   const find = (predicate) => {
@@ -94,7 +101,7 @@ async function mount({ readiness = false, hostname = 'www.innovatinghighered.com
   }
   function choice(position, checked) {
     const node = all().filter((item) => item.type === 'input' && item.props.type === 'checkbox')[position];
-    assert.equal(node.props.disabled, false);
+    assert.ok(!node.props.disabled);
     node.props.onChange({ target: { checked } });
     render();
   }
@@ -107,72 +114,88 @@ async function mount({ readiness = false, hostname = 'www.innovatinghighered.com
   render();
   await new Promise((resolve) => setImmediate(resolve));
   render();
-  return { all, find, render, change, choice, submit, analytics,
+  return { all, find, render, change, choice, submit, analytics, payloads,
+    open() { find((node) => node.type === 'button' && node.props.children?.[0] === 'Sign me up ').props.onClick({ currentTarget: { focus() {} } }); render(); },
     identity() { change('firstName', 'Test'); change('lastName', 'Reader'); change('email', 'reader@example.invalid'); },
     token() {
-      find((node) => node.type === 'form').props.onFocusCapture(); render();
       find((node) => node.type === 'challenge-fixture').props.onTokenChange('offline-token'); render();
     },
     counts: () => ({ posts, consumed }), release: () => releasePost?.(),
   };
 }
 
-for (const readiness of [false, 'unavailable']) {
-  test(`draft choices, criteria and Back work with readiness ${readiness}; final submission cannot send`, async () => {
+
+for (const readiness of [false, 'unavailable', true]) {
+  test(`grant draft remains interactive but cannot enroll with readiness ${readiness}`, async () => {
     const view = await mount({ readiness });
-    view.choice(0, true); view.choice(1, true);
-    assert.equal(view.all().filter((node) => node.type === 'input' && node.props.type === 'checkbox').every((node) => node.props.checked), true);
-    await view.submit(); // Component guard also protects callers bypassing native required validity.
-    assert.ok(view.find((node) => node.props?.role === 'alert'));
-    view.identity();
-    assert.equal(view.find((node) => node.type === 'button' && node.props.type === 'submit').props.disabled, false);
-    await view.submit();
-    assert.equal(view.find((node) => node.type === 'form').props['aria-label'], 'Grant alert criteria');
-    const criterion = view.all().find((node) => node.type === 'input' && node.props.type === 'checkbox');
-    assert.equal(criterion.props.disabled, false);
-    criterion.props.onChange({ target: { checked: true } }); view.render();
-    assert.equal(view.all().find((node) => node.type === 'input' && node.props.type === 'checkbox').props.checked, true);
-    assert.equal(view.find((node) => node.type === 'button' && node.props.type === 'submit').props.disabled, true);
-    assert.equal(view.find((node) => node.props?.role === 'status').props.children, 'Signups are not open yet');
-    await view.submit();
+    view.choice(0, true); view.choice(1, true); view.open();
+    view.identity(); await view.submit();
+    const fields = view.all().filter((node) => node.type?.name === 'Checklist');
+    assert.equal(fields.length, 4);
+    fields[0].props.onChange(['faculty-researcher']); view.render();
+    assert.deepEqual(view.find((node) => node.type?.name === 'Checklist' && node.props.field.key === 'roles').props.value, ['faculty-researcher']);
+    const final = view.find((node) => node.type === 'button' && node.props.children?.[0] === 'Start my weekly matches');
+    assert.equal(final.props.disabled, true);
+    assert.equal(final.props.onClick, undefined);
     assert.deepEqual(view.counts(), { posts: 0, consumed: 0 });
     assert.deepEqual(view.analytics, []);
-    view.find((node) => node.type === 'button' && node.props.type === 'button').props.onClick(); view.render();
-    assert.equal(view.find((node) => node.type === 'form').props['aria-label'], 'Email signup');
-    assert.equal(view.find((node) => node.type === 'input' && node.props.name === 'firstName').props.value, 'Test');
+    view.find((node) => node.type === 'button' && node.props.children?.[1] === ' Back').props.onClick(); view.render();
+    assert.equal(view.find((node) => node.props.name === 'firstName').props.value, 'Test');
     await view.submit();
-    assert.equal(view.all().find((node) => node.type === 'input' && node.props.type === 'checkbox').props.checked, true);
-    view.find((node) => node.type === 'button' && node.props.type === 'button').props.onClick(); view.render();
-    view.choice(1, false);
-    assert.equal(view.find((node) => node.type === 'button' && node.props.type === 'submit').props.disabled, true);
+    assert.deepEqual(view.find((node) => node.type?.name === 'Checklist' && node.props.field.key === 'roles').props.value, ['faculty-researcher']);
+  });
+}
+for (const readiness of [false, 'unavailable']) {
+  test(`Pulse fails closed with readiness ${readiness}`, async () => {
+    const view = await mount({ readiness });
+    view.choice(0, true); view.open(); view.identity();
+    assert.equal(view.find((node) => node.props.type === 'submit').props.disabled, true);
     await view.submit();
     assert.deepEqual(view.counts(), { posts: 0, consumed: 0 });
+    assert.equal(view.all().some((node) => node.type === 'challenge-fixture'), false);
   });
 }
 
-test('ready still requires challenge; localhost never sends or claims success with a token', async () => {
+test('ready requires challenge; loopback never sends or claims success', async () => {
   const view = await mount({ readiness: true, hostname: '127.0.0.1' });
-  view.choice(0, true); view.identity();
-  assert.equal(view.find((node) => node.type === 'button' && node.props.type === 'submit').props.disabled, true);
-  await view.submit();
-  assert.deepEqual(view.counts(), { posts: 0, consumed: 0 });
-  view.token();
-  assert.equal(view.find((node) => node.type === 'button' && node.props.type === 'submit').props.disabled, false);
-  await view.submit();
+  view.choice(0, true); view.open(); view.identity();
+  await view.submit(); assert.deepEqual(view.counts(), { posts: 0, consumed: 0 });
+  view.token(); await view.submit();
   assert.match(view.find((node) => node.props?.role === 'alert').props.children, /local preview/);
   assert.deepEqual(view.counts(), { posts: 0, consumed: 0 });
-  assert.deepEqual(view.analytics, []);
 });
 
-test('ready final request locks draft controls and blocks duplicate submissions while loading', async () => {
+test('Pulse single submission uses supported schema, locks controls and consumes challenge once', async () => {
   const view = await mount({ readiness: true, holdPost: true });
-  view.choice(0, true); view.identity(); view.token();
-  const pending = view.submit();
+  view.choice(0, true); view.open(); view.identity(); view.token();
+  const handler = view.find((node) => node.type === 'form').props.onSubmit;
+  const pending = handler({ preventDefault() {} });
+  await handler({ preventDefault() {} }); // Same render duplicate is also blocked by the ref latch.
+  view.render();
   assert.deepEqual(view.counts(), { posts: 1, consumed: 1 });
   assert.equal(view.all().filter((node) => node.type === 'input' && node.props.name !== '_gotcha').every((node) => node.props.disabled), true);
-  assert.equal(view.find((node) => node.type === 'button' && node.props.type === 'submit').props.disabled, true);
-  await view.find((node) => node.type === 'form').props.onSubmit({ preventDefault() {} });
-  assert.deepEqual(view.counts(), { posts: 1, consumed: 1 });
+  assert.equal(view.find((node) => node.props.type === 'submit').props.disabled, true);
+  assert.deepEqual(JSON.parse(JSON.stringify(view.payloads[0])), {
+    email: 'reader@example.invalid', firstName: 'Test', lastName: 'Reader', _gotcha: '', turnstileToken: 'offline-token',
+    preferences: { pulse: true, grants: false }, grantCriteria: { audiences: [], locations: [], areas: [], minimumAwardUsd: null },
+  });
   view.release(); await pending; view.render();
-  assert.equal(view.find((node) => node.type === 'input' && node.props.name === 'email').props.disabled, false);
+  assert.equal(view.find((node) => node.props.name === 'email').props.disabled, false);
+  assert.equal(view.find((node) => node.type === 'challenge-fixture').props.resetSignal, 1);
+  await view.submit(); assert.deepEqual(view.counts(), { posts: 1, consumed: 1 });
+});
+
+test('honeypot prevents enrollment; preferences use secure production route', async () => {
+  const view = await mount({ readiness: true });
+  assert.equal(view.find((node) => node.props.href === '/email-preferences').props.href, '/email-preferences');
+  view.choice(0, true); view.open(); view.identity(); view.token(); view.change('_gotcha', 'bot');
+  await view.submit(); assert.deepEqual(view.counts(), { posts: 0, consumed: 0 });
+});
+
+test('only confirmed API success reaches confirmation and clears identity', async () => {
+  const view = await mount({ readiness: true, success: true });
+  view.choice(0, true); view.open(); view.identity(); view.token(); await view.submit();
+  assert.equal(view.all().some((node) => node.type === 'form'), false);
+  assert.ok(view.find((node) => node.type === 'p' && node.props.children === 'Check your email for the next step.'));
+  assert.deepEqual(view.counts(), { posts: 1, consumed: 1 });
 });
