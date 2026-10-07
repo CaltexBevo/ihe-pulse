@@ -80,8 +80,5 @@ export const WONKA_LANTERN_FEATURED_COVERAGE: FeaturedCoverage = {
         "So here's my pitch. Let's teach with a Wonka level of creativity and a Green Lantern level of responsibility. Let's build AI classrooms that feel more like candy labs and less like factory lines. Let's make sure every tool we use leads back to connection, curiosity, and equity. Because our ideas, our values, and the choices we make can help shape the future of higher education. We’re storytelling animals. Let’s write this next chapter together."
       ]
     }
-  ],
-  "audioSourceNote": {
-    "text": "Georgia State reports a 22 percent reduction in summer melt in 2016 after introducing Pounce alongside a new student portal."
-  }
+  ]
 };
