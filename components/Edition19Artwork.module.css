@@ -1,0 +1,13 @@
+.artwork {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1920 / 850;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}

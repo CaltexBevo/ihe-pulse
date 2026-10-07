@@ -274,10 +274,10 @@ export default function ArchiveListClient({ episodes }: ArchiveListClientProps) 
                       value={Math.min(currentTime, duration)}
                       onChange={(event) => seekActiveEpisode(Number(event.currentTarget.value))}
                       aria-label={`Seek through ${episode.headline}`}
-                      aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
+                      aria-valuetext={`${formatTime(currentTime)} of ${formatTime(episode.date === '2026-10-02' ? Math.ceil(duration) : duration)}`}
                       style={{ '--progress': `${(currentTime / duration) * 100}%` } as CSSProperties}
                     />
-                    <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
+                    <span>{formatTime(currentTime)} / {formatTime(episode.date === '2026-10-02' ? Math.ceil(duration) : duration)}</span>
                   </div>
                 )}
             </article>

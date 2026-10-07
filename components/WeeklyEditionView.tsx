@@ -18,7 +18,7 @@ export default function WeeklyEditionView({ episode, current = false, previousDa
   const image = feature?.imagePath || lead.heroImage || lead.image;
   const sources = feature?.sources ?? (feature ? [{ label: feature.sourceLabel, url: feature.sourceUrl }] : lead.sourceLinks?.length ? lead.sourceLinks : [{ label: lead.source, url: lead.sourceUrl }]);
   return <div className={pageStyles.page}>
-    {!current && <nav className={pageStyles.breadcrumb} aria-label="Breadcrumb"><Link href="/innovation-pulse">Innovation Pulse</Link><span aria-hidden="true">/</span><time dateTime={episode.date}>{formatPulseDate(episode.date)}</time></nav>}
+    {!current && <nav className={pageStyles.breadcrumb} aria-label="Breadcrumb"><Link href="/innovation-pulse">Innovation Pulse</Link><span aria-hidden="true">/</span><time dateTime={episode.date}>{episode.editionNumber ? formatWeekCovered(episode) : formatPulseDate(episode.date)}</time></nav>}
     <HomeEpisodePlayer latestEpisode={{
       date: episode.date, audioUrl: episode.audioUrl, audioDuration: episode.audioDuration,
       headline: lead.title, fallbackArtwork: lead.heroImage || lead.image || '',
@@ -32,7 +32,7 @@ export default function WeeklyEditionView({ episode, current = false, previousDa
     <article className={styles.article} aria-labelledby="edition-lead-title">
       <p className={styles.label}>{feature ? feature.eyebrow : 'Lead Story'}</p>
       <h2 id="edition-lead-title">{feature?.title || lead.title}</h2>
-      <p className={styles.meta}>{feature?.byline || lead.source} · <time dateTime={episode.date}>{formatPulseDate(episode.date)}</time></p>
+      <p className={styles.meta}>{feature?.byline || lead.source} · <time dateTime={episode.date}>{episode.editionNumber ? formatWeekCovered(episode) : formatPulseDate(episode.date)}</time></p>
       <p>{introduction}</p>
       <details className={styles.disclosure}>
         <summary>{feature ? 'Read Full Feature' : 'Read Full Story'}</summary>

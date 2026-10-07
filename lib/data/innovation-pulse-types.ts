@@ -148,6 +148,8 @@ export interface InnovationPulseEpisode {
   broadcastScript?: string;
   // Cadence fields (weekly episodes have these; daily/legacy episodes don't)
   cadence?: 'daily' | 'weekly';
+  /** Founder-selected public edition number, independent of internal cohort date. */
+  editionNumber?: number;
   weekCovered?: string; // Format: "2026-05-23/2026-05-29"
 }
 
@@ -190,6 +192,7 @@ export function isWeeklyEpisode(episode: InnovationPulseEpisode): boolean {
  * Falls back to single-date format for daily/missing weekCovered
  */
 export function formatWeekCovered(episode: InnovationPulseEpisode): string {
+  if (episode.editionNumber) return `Weekly Edition ${episode.editionNumber}`;
   if (!episode.weekCovered || episode.cadence !== 'weekly') {
     // Daily or legacy episode: return day-based format
     const d = new Date(episode.date + 'T12:00:00');
@@ -222,6 +225,7 @@ export function formatWeekCovered(episode: InnovationPulseEpisode): string {
  * Format weekCovered for episode page display: "Covering May 23–29, 2026"
  */
 export function formatWeekCoveredLong(episode: InnovationPulseEpisode): string | null {
+  if (episode.editionNumber) return `Weekly Edition ${episode.editionNumber}`;
   if (!episode.weekCovered || episode.cadence !== 'weekly') {
     return null;
   }

@@ -56,3 +56,15 @@ test('archive CTA remains a date-specific route and expandable Feature skips onl
   assert.ok(view.includes('Read Full Feature'));
   assert.ok(view.includes('cleanBroadcastScript(episode.broadcastScript)'));
 });
+
+test('Edition 19 retains Dartmouth as its news lead and its eleven selected website stories', () => {
+  const episode = requiredEpisode('2026-10-02');
+  const content = getWeeklyEditionContent(episode);
+  assert.equal(episode.editionNumber, 19);
+  assert.equal(content.lead.title, 'A Clearer Path From an AI Flag to a Grading Decision');
+  assert.equal(content.feature, undefined, 'the separate Wonka Feature must not replace the news lead');
+  assert.equal(content.storyCount, 11);
+  assert.equal(content.stories.length, 10);
+  assert.ok(content.stories.some(story => story.title === 'More Control Over What AI Feedback Reveals'));
+  assert.ok(content.stories.every(story => !story.href.includes('wonka')));
+});

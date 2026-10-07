@@ -23,6 +23,7 @@ import { PLATFORM_LINKS, PlatformIcon, ShareGlyph } from '@/components/PlatformL
 import styles from './HomePulseHero.module.css';
 import September18Artwork from './September18Artwork';
 import September25Artwork from './September25Artwork';
+import Edition19Artwork from './Edition19Artwork';
 
 export interface HomePulseHeroViewModel {
   date: string;
@@ -97,7 +98,8 @@ export default function HomePulseHero({
   const usesSeptember11Hero = episode.date === '2026-09-11';
   const usesSeptember18Hero = episode.date === '2026-09-18' && Boolean(episode.weeklyHeroImageUrl);
   const usesSeptember25Hero = episode.date === '2026-09-25' && Boolean(episode.weeklyHeroImageUrl);
-  const usesApprovedFullHero = usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
+  const usesEdition19Hero = episode.date === '2026-10-02' && Boolean(episode.weeklyHeroImageUrl);
+  const usesApprovedFullHero = usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -251,7 +253,9 @@ export default function HomePulseHero({
         <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
       )}
 
-      {usesSeptember25Hero ? (
+      {usesEdition19Hero ? (
+        <Edition19Artwork src={episode.weeklyHeroImageUrl!} />
+      ) : usesSeptember25Hero ? (
         <September25Artwork src={episode.weeklyHeroImageUrl!} />
       ) : usesSeptember18Hero ? (
         <>
@@ -389,14 +393,14 @@ export default function HomePulseHero({
                 disabled={!hasAudio || !totalDuration}
                 aria-label="Seek through edition"
                 aria-valuetext={
-                  formatTime(currentTime) + ' of ' + formatTime(totalDuration)
+                  formatTime(currentTime) + ' of ' + formatTime(episode.date === '2026-10-02' ? Math.ceil(totalDuration) : totalDuration)
                 }
               />
             </div>
             <p className={styles.timeReadout}>
               <span>{formatTime(currentTime)}</span>
               <span aria-hidden="true"> / </span>
-              <span>{formatTime(totalDuration)}</span>
+              <span>{formatTime(episode.date === '2026-10-02' ? Math.ceil(totalDuration) : totalDuration)}</span>
             </p>
             {audioError && (
               <p className={styles.audioMessage} role="status">
