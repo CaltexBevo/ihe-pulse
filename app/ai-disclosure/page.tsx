@@ -34,7 +34,7 @@ export default function AIDisclosurePage() {
                 Our Philosophy
               </h2>
               <p className="text-[0.88rem] text-[var(--text-secondary)] leading-[1.7]">
-                Innovating Higher Ed brings human expertise, original writing, and editorial judgment to the ideas and resources we share. Dr. Norma Jones and Brent Jones shape our direction, contribute writing and analysis, and make the decisions about what we publish. We also use AI for research, drafting, revision, illustrations, audio production, and development. Our team guides that work and takes responsibility for the finished publication, so you can understand both the human contribution and the technology behind it.
+                Innovating Higher Ed brings human expertise, original writing, and editorial judgment to the ideas and resources we share. Dr. Norma Jones, Brent Jones, and our team shape our direction and contribute writing and analysis. Dr. Jones and Brent oversee the work and make the final decisions about what we publish. We also use AI for research, drafting, revision, illustrations, audio production, and development. Our team guides that work and takes responsibility for the finished publication, so you can understand both the human contribution and the technology behind it.
               </p>
             </section>
 
