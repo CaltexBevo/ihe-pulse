@@ -186,7 +186,7 @@ export default function FeaturedCoverage({
             </div>
             {feature.audioUrl && (
               <div className={isHomepage ? "mt-3" : "mt-5"}>
-                <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" />
+                <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" sourceNote={feature.audioSourceNote} />
               </div>
             )}
             <Link

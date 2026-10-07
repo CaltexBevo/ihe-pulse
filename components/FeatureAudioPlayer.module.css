@@ -77,3 +77,15 @@
     transition: none;
   }
 }
+
+.sourceNote {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.sourceNote a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

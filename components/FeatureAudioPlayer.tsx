@@ -11,9 +11,11 @@ import styles from "./FeatureAudioPlayer.module.css";
 export default function FeatureAudioPlayer({
   audioUrl,
   audioTitle,
+  sourceNote,
 }: {
   audioUrl: string;
   audioTitle: string;
+  sourceNote?: { text: string; url: string };
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const playRequestRef = useRef(0);
@@ -118,6 +120,11 @@ export default function FeatureAudioPlayer({
             />
             <span className={styles.time}>{formatFeatureAudioTime(duration, true)}</span>
           </div>
+        )}
+        {sourceNote && (
+          <p className={styles.sourceNote}>
+            Source note: <a href={sourceNote.url} target="_blank" rel="noopener noreferrer">{sourceNote.text}</a>
+          </p>
         )}
       </div>
     </div>

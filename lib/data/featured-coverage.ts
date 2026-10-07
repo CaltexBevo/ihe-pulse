@@ -1,3 +1,4 @@
+import { WONKA_LANTERN_FEATURED_COVERAGE } from './featured-coverage-wonka-lantern';
 import { MODELS_FEATURED_COVERAGE } from './featured-coverage-models';
 import { GRANT_PORTAL_FEATURED_LAUNCH } from './featured-coverage-grant';
 import { TEACHING_SUPERPOWER_FEATURED_COVERAGE } from './featured-coverage-teaching-superpower';
@@ -31,6 +32,7 @@ export type FeaturedCoverage = {
   audioUrl?: string;
   /** A measured runtime supplied with the verified recording receipt. */
   audioDuration?: string;
+  audioSourceNote?: { text: string; url: string };
   imageAlt: string;
   sections: FeaturedCoverageSection[];
 };
@@ -170,6 +172,7 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
 };
 
 export const FEATURED_COVERAGE = [
+  WONKA_LANTERN_FEATURED_COVERAGE,
   TEACHING_SUPERPOWER_FEATURED_COVERAGE,
   GRANT_PORTAL_FEATURED_LAUNCH,
   MODELS_FEATURED_COVERAGE,

@@ -104,7 +104,7 @@ function FeatureTitle({ title }: { title: string }) {
 function ArticleParagraph({ text, sourceUrl }: { text: string; sourceUrl: string }) {
   const sourceLead = "Read the complete MIT report";
 
-  if (text.startsWith(sourceLead)) {
+  if (text.startsWith(sourceLead) || text.startsWith("Source note:")) {
     return (
       <p className={styles.articleParagraph}>
         <a
@@ -232,7 +232,7 @@ function ArticleSection({
             key={`${sectionIndex}-${paragraphIndex}`}
             className={sectionIndex === 0 && paragraphIndex === 0 ? styles.leadParagraph : undefined}
           >
-            <ArticleParagraph text={paragraph} sourceUrl={feature.sourceUrl} />
+            <ArticleParagraph text={paragraph} sourceUrl={feature.sources?.find(source => section.sourceIds?.includes(source.id ?? ""))?.url ?? feature.sourceUrl} />
           </div>
         ))}
       </div>
@@ -274,7 +274,7 @@ function OfficialFeatureArticle({ feature }: { feature: FeaturedCoverage }) {
             <time dateTime={feature.publishedAt}>{feature.publishedLabel}</time>
           </p>
           {feature.audioUrl && (
-            <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" />
+            <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" sourceNote={feature.audioSourceNote} />
           )}
         </div>
         {feature.imagePath && (
