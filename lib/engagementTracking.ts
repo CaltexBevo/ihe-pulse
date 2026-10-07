@@ -59,6 +59,7 @@ const TRACKED_RELEASE_DATES = new Set([
   '2026-09-11',
   '2026-09-18',
   '2026-09-25',
+  '2026-10-02',
 ]);
 
 const MAILCHIMP_CONTENT = new Set([
@@ -276,6 +277,14 @@ export function redactAnalyticsEventUrl<T extends AnalyticsUrlEvent>(
 }
 
 export function episodeFromAudioSource(source: string) {
+  // This numbered public filename belongs to the same finite release registry.
+  try {
+    if (new URL(source, 'https://www.innovatinghighered.com').pathname === '/audio/innovation-pulse-weekly-edition-19.mp3') {
+      return isTrackedReleaseDate('2026-10-02') ? '2026-10-02' : null;
+    }
+  } catch {
+    return null;
+  }
   const candidate = source.match(/(?:^|[^\d])(\d{4}-\d{2}-\d{2})(?:[^\d]|$)/)?.[1] || '';
   return isTrackedReleaseDate(candidate) ? candidate : null;
 }

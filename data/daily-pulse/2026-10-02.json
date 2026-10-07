@@ -1,0 +1,251 @@
+{
+  "episode": {
+    "date": "2026-10-02",
+    "dayOfWeek": "Friday",
+    "cadence": "weekly",
+    "editionNumber": 19,
+    "weekCovered": "2026-09-26/2026-10-02",
+    "audioUrl": "/audio/innovation-pulse-weekly-edition-19.mp3",
+    "audioDuration": "8:23",
+    "broadcastScript": "This is The Innovation Pulse. I’m Doctor Norma Jones, and here’s who is innovating in higher education.\n\nIn our Feature story this week, a chocolate factory and a power ring invite us to imagine higher education’s future a little differently. In The Wonka-Lantern Framework, I bring together Willy Wonka’s creativity and the Green Lantern’s responsibility to explore how we can experiment with A.I. while letting our values lead. Bring your curiosity.\n\nAn A.I. detector flags a student's paper. What does an instructor need before deciding whether that result should affect the grade? Dartmouth's new Arts and Sciences guidelines give faculty a process that connects the course policy, the student's work and the student's response.\n\nThe policy allows the instructor of record to submit writing for detection. Students must receive written notice explaining which A.I. uses are permitted, which are prohibited, and whether detection results could affect grades. Before submitting work, faculty must remove identifying information from the content and the file's metadata.\n\nThe next step is communication. Under Dartmouth's guidelines, a detection result cannot affect a grade until the instructor has communicated with the student about the quality and integrity of the work. And when a case reaches the Committee on Standards, the committee looks for evidence beyond the detector result before finding a student responsible.\n\nThose are different decisions: assigning a grade and determining responsibility in a conduct case. Knowing which decision is in front of you helps identify the evidence you need. For a conversation about the work, one useful approach is to focus on a passage or choice that raises a specific concern. Ask how it was developed and how it fits the assignment. Then consider the response alongside the course rule and the work itself. That gives the instructor a more concrete basis for deciding what happens next.\n\nIn practical teaching, getting students to show up starts with planning what they will do together once they arrive. Wharton professor Gad Allon describes that approach in Penn Almanac. He reports attendance close to one hundred percent and says he grades class contribution.\n\nHis sessions develop around a problem. He hears several responses, asks a follow-up, invites another answer, and then names the concept. Students have already worked with the idea before he introduces its formal label. His slides provide prompts, while much of the explanation develops in the discussion and on the board.\n\nAllon prepares opening questions, transitions and turning points. He also brings professional experience and current events into the exchange. For an instructor adapting the discussion sequence, the preparation becomes specific: choose a problem that reveals the central idea, anticipate different answers, and prepare a follow-up that asks students to explain their reasoning.\n\nThe useful starting point is the purpose of the live session. What can this group examine together that a slide deck alone would not explain? Planning that exchange gives the teacher a discussion to guide, while preserving accessible materials and ways to participate.\n\nTurning to research, an A.I. teaching pilot is easier to evaluate when you decide in advance what evidence will show whether it worked. A new graduate-course preprint from researchers at the University of Tennessee, Knoxville, illustrates why student ratings and records of actual work answer different questions.\n\nThe design asked students to state a position and explain their reasoning before an A.I. partner responded with questions. Four research-methods courses participated, but only two returned usable study data. The authors found an increase in self-rated A.I. literacy. They did not find statistically reliable improvement in critical thinking, metacognition, or the three knowledge items they assessed.\n\nThe interaction records helped explain what the activity actually looked like. The authors analyzed seventy-five transcripts from sixteen students. Some submitted records omitted the student's turns or used private links the researchers could not open. That left parts of the exchange unavailable for review.\n\nFor faculty planning a pilot, this points to a concrete design choice. Collect the student's initial reasoning, a usable record of the exchange, and the revised work. Each serves a purpose: the first shows the starting position, the exchange shows what the A.I. contributed, and the revision shows what the student changed. Together, those records can help a teaching team examine whether the intended activity happened and what to adjust next. Plan how to capture them before the pilot begins.\n\nThat question of what students are practicing also matters when explaining an assignment. Earlier research with computing students and instructors suggests that the two groups may have different expectations about which skills will matter as A.I. becomes more capable.\n\nSeventeen students and four instructors at one U.S. public research university rated skills in imagined past, present and A.I.-rich future settings. Instructors rated critical thinking and problem solving as more important in the future than students did. Students expected creativity and metacognition, or thinking about their own thinking, to become more important.\n\nFor the teacher, the useful question is what judgment the assignment is meant to develop. A final answer may demonstrate part of that work. Choosing evidence, explaining why a method fits, or defending a conclusion may reveal something else.\n\nBefore changing an assignment because A.I. can answer it, identify the decision you want students to practice. Then check whether the submitted work gives you evidence of that decision. You can explain the assignment's purpose in terms of the judgment it develops, and assess the reasoning that the finished answer alone might leave out.\n\nIn educational technology, adding another course tool is easier to justify when you can name the function your assignment needs. Instructure's first EdTech Top Forty Higher Education report offers a useful view of the tools connected to Canvas.\n\nThe report covers activity involving about nineteen and a half million U.S. individuals, from September twenty twenty-five through April twenty twenty-six. Institutions used an average of twenty-eight integrated tools. Instructors used four, and students used five. These are applications connected through the Learning Tools Interoperability standard, which links outside tools to the course environment.\n\nDedicated A.I. tools did not appear in the top one hundred. That finding concerns this integration channel. It excludes consumer A.I. use outside the learning management system and some A.I. built into other applications.\n\nFor a course decision, start with an actual assignment. Trace the applications students must use and the job each one does. A required submission tool and a specialized application may have very different purposes, even if both generate frequent launches. Reviewing those functions could reveal a missing capability, duplicated work, or an access problem. Faculty and technology teams then have a shared reason to add a tool, keep one, or simplify what the assignment requires.\n\nYou'll find these stories and more on our website, including how to evaluate program-cut proposals by examining the teaching work behind the projected savings, and how to catch course problems while there's still time to respond.\n\nLooking for funding to move your own idea forward? Our Grant Portal has seven new opportunities in this edition's roundup, and now tracks over one hundred twenty-three million dollars in reported current program funding.\n\nAnd now you can sign up for a weekly update on grants that match your chosen criteria.\n\nI’m Doctor Norma Jones. Keep exploring with us at Innovating Higher Ed dot com. Let’s move higher education forward together. Thanks for listening.\n",
+    "weeklyHeroImageUrl": "/images/innovation-pulse/2026-10-02/weekly-D.png",
+    "editorialLens": "The Innovator's Edge"
+  },
+  "leadStory": {
+    "headline": "A Clearer Path From an AI Flag to a Grading Decision",
+    "summary": "An AI detector flag gives an instructor a result to investigate. A clearer grading decision starts with the course rule, the work and the student's response. Dartmouth's new Arts and Sciences guidelines require communication with the student about the work's quality and integrity before a detection result affects a grade and require additional evidence for a committee finding of responsibility.\n\nThe September policy authorizes the instructor of record to submit work to Pangram. Course notices must explain permitted and prohibited AI uses, the possibility of detection and potential grade consequences. Submitted work must be de-identified, including identifying information in its content and metadata.\n\nThese requirements connect the response to the course rule, the work and the student's account. They also distinguish an instructor's grade decision from a disciplinary committee's responsibility finding. For that committee finding, the flag must be accompanied by additional evidence. The distinction helps faculty identify which decision they are making and what evidence it requires.\n\nFor a teacher preparing a conversation, a useful starting point is the specific concern in the assignment. One approach would be to ask the student to explain a consequential passage or choice and how the work was developed. The relevant question should reflect what the course permitted and what the assignment assessed. It should give the student a meaningful opportunity to respond, rather than requiring them to account for a number alone.\n\nThe teacher's record can then connect the course policy, the observed concern, the response and any further evidence. Keeping those elements distinct may make the next decision clearer for the instructor and anyone asked to review it. Dartmouth's policy offers a concrete example of how an institution can organize that process before a detector result becomes a grade or conduct decision.",
+    "source": "Official Dartmouth detector guidelines",
+    "sourceUrl": "https://fas.dartmouth.edu/sites/fas/files/2026-09/Faculty%20of%20Arts%20and%20Sciences%20Guidelines%20on%20Use%20of%20AI%20Detection%20in%20Teaching.pdf",
+    "sourceLinks": [
+      {
+        "label": "Official Dartmouth detector guidelines",
+        "url": "https://fas.dartmouth.edu/sites/fas/files/2026-09/Faculty%20of%20Arts%20and%20Sciences%20Guidelines%20on%20Use%20of%20AI%20Detection%20in%20Teaching.pdf"
+      },
+      {
+        "label": "October 1 reporting and September 29 distribution",
+        "url": "https://www.thedartmouth.com/article/2026/10/hyde-dean-of-faculty-authorizes-professors-to-use-ai-detector-pangram-to-review-student-work"
+      }
+    ],
+    "category": "Ethical AI",
+    "imageUrl": "/images/innovation-pulse/2026-10-02/story-82-A.png",
+    "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-82-A.png",
+    "sourceStoryIndex": 82,
+    "storyId": "IHE-STORY-2026-10-02-082",
+    "publishedDate": "2026-10-01",
+    "reviewOnlyImage": false
+  },
+  "quickHits": [
+    {
+      "headline": "A Clearer Plan for Getting Students to Show Up and Participate",
+      "summary": "A clearer plan for attendance and participation begins with what students will do together during the live class. Wharton professor Gad Allon describes planning sessions around problems students work through together, giving instructors a concrete sequence to prepare.\n\nIn a September 29 Penn Almanac essay, Allon reports near-total attendance and explains that he grades contribution. His posted slides contain prompts rather than a complete account of the class. The session develops through responses: he presents a problem, hears several answers, challenges or extends them, invites another response and then names the concept.\n\nHe prepares opening questions, transitions and turning points before class. Relevant professional experience and current events supply material for discussion. The concept follows the exchange, giving the class a concrete problem to reason about first. His account shows how much preparation goes into creating a discussion that has somewhere to go.\n\nFor an instructor, this offers a way to plan the intellectual work of a live session. Which question will reveal the central issue, and what follow-up might deepen the explanation? The slides can support that sequence, alongside accessible materials and ways to participate. Preparing those questions gives the teacher a purposeful discussion to guide, with room to build on the answers students offer. Hearing competing reasoning and refining an explanation together gives attendance a connection to the learning the teacher has planned.",
+      "source": "Gad Allon in Penn Almanac",
+      "sourceUrl": "https://almanac.upenn.edu/articles/why-students-show-up",
+      "sourceLinks": [
+        {
+          "label": "Gad Allon in Penn Almanac",
+          "url": "https://almanac.upenn.edu/articles/why-students-show-up"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-104-A.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-104-A.png",
+      "sourceStoryIndex": 104,
+      "storyId": "IHE-STORY-2026-10-02-104",
+      "publishedDate": "2026-09-29",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Make Your AI Teaching Pilot Easier to Evaluate",
+      "summary": "An AI teaching pilot is easier to evaluate when the instructor plans which learning evidence to collect before it starts. A graduate-course preprint reports increased self-rated AI literacy alongside no statistically reliable improvement on its critical-thinking, metacognition or three knowledge items, illustrating why instructors need several kinds of evidence.\n\nThe thinking-partner design required students to state a position and explain their reasoning before AI responded with questions. Four research-methods courses participated, but only two produced usable study data. The approach placed the student's initial reasoning inside the activity rather than letting the exchange begin with an AI answer.\n\nThe authors also analyzed 75 interaction transcripts from 16 students. Some submissions omitted student turns or contained inaccessible private links. That made the record of actual use incomplete. The paper recommends incorporating reasoning requirements into assignment design and planning reliable interaction capture as part of the system.\n\nThe matched samples were small and differed by measure: 18 for AI literacy, 19 for thinking and metacognition, and 11 for the knowledge items. Those findings give instructors a reason to examine the work alongside students' reports of their experience.\n\nA pilot evaluation is easier to interpret when its evidence answers a specific teaching question. Initial reasoning can show how a learner approached the task; an exchange can show whether the AI asked the intended questions; a revision can show what changed. Identifying those records before the pilot begins can give a faculty team a clearer basis for deciding what to retain or adjust. The team can review the reasoning, the AI's contribution and the revised work together.",
+      "source": "Original thinking-partner preprint",
+      "sourceUrl": "https://arxiv.org/pdf/2609.37880",
+      "sourceLinks": [
+        {
+          "label": "Original thinking-partner preprint",
+          "url": "https://arxiv.org/pdf/2609.37880"
+        }
+      ],
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-101-B.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-101-B.png",
+      "sourceStoryIndex": 101,
+      "storyId": "IHE-STORY-2026-10-02-101",
+      "publishedDate": "2026-09-29",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Make Your Assignments Easier to Explain When AI Can Answer",
+      "summary": "Naming the judgment an assignment teaches makes its purpose easier to explain when AI can supply the final answer. A small study of computing students and instructors suggests why that explanation matters: the two groups may see the future importance of some skills differently.\n\nSeventeen students and four instructors at one U.S. public research university rated the expected importance of skills in imagined past, present and AI-rich future settings. Instructors rated critical thinking and problem solving as more important in the future than students did. Students, meanwhile, expected creativity and metacognition, or thinking about their own thinking, to become more important.\n\nFor teaching, the interesting issue is that the instructor's reason for assigning practice may not be the reason the student sees. Calling an activity important is less informative than explaining the decision it prepares someone to make. That explanation can help a teacher decide whether the assignment still asks for meaningful work when an AI-generated response is readily available.\n\nBefore changing the assignment, consider the judgment being taught. The finished answer might matter, but so might the choice of evidence or the explanation of why a method fits. If the assessment examines only the answer, the instructor may have little evidence about that judgment. Stating which decision the assignment prepares someone to make gives the teacher a clearer explanation of its purpose and a clearer basis for assessment.",
+      "source": "Original paper and version history",
+      "sourceUrl": "https://arxiv.org/abs/2609.31272",
+      "sourceLinks": [
+        {
+          "label": "Original paper and version history",
+          "url": "https://arxiv.org/abs/2609.31272"
+        },
+        {
+          "label": "Full four-page paper",
+          "url": "https://arxiv.org/pdf/2609.31272"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-43-A.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-43-A.png",
+      "sourceStoryIndex": 43,
+      "storyId": "IHE-STORY-2026-10-02-043",
+      "publishedDate": "2026-09-25",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Avoid Adding Course Tools Your Assignments Don't Need",
+      "summary": "Before adding another course tool, an instructor can check whether an assignment needs a function the existing tools already provide. Instructure's first EdTech Top 40 Higher Education report offers a view of connected-tool use that helps frame that decision.\n\nThe report covers de-identified Canvas integration activity from September 2025 through April 2026, involving about 19.5 million U.S. individuals. Institutions used an average of 28 integrated tools, compared with four for instructors and five for students. The data concerns tools connected through the Learning Tools Interoperability standard, which links an outside application to the course environment.\n\nDedicated AI tools did not appear in the top 100. This integration measure excludes consumer AI use outside the learning management system and some AI built into other tools. For choosing course tools, launch counts need to be read alongside the task each application supports. Opening a required submission tool frequently, for example, provides different information from choosing a specialized tool for a particular assignment.\n\nFor a course decision, the assignment can give faculty and technology teams a common starting point. What function does each tool provide, and does the work require it? One practical step is to trace an assignment through its required applications before adding another. That review could identify a missing function, duplicated functionality, an access problem or an instruction that needs clarification. It gives the instructor a clearer reason to add a tool, retain one or simplify the assignment's requirements.",
+      "source": "Original EdTech Top 40 Higher Education report",
+      "sourceUrl": "https://www.instructure.com/sites/default/files/pdf/EDUCAUSE%20ETT40%20Higher%20Ed%20Report-compressed.pdf",
+      "sourceLinks": [
+        {
+          "label": "Original EdTech Top 40 Higher Education report",
+          "url": "https://www.instructure.com/sites/default/files/pdf/EDUCAUSE%20ETT40%20Higher%20Ed%20Report-compressed.pdf"
+        },
+        {
+          "label": "Instructure report announcement",
+          "url": "https://www.instructure.com/press-release/instructure-launches-first-edtech-top-40-higher-education-finds-dedicated-ai-tools"
+        }
+      ],
+      "category": "EdTech & Digital Learning",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-65-A.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-65-A.png",
+      "sourceStoryIndex": 65,
+      "storyId": "IHE-STORY-2026-10-02-065",
+      "publishedDate": "2026-09-29",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Make Program-Cut Proposals Easier to Evaluate",
+      "summary": "A program-cut proposal is easier for faculty and administrators to evaluate when it connects projected savings to the teaching work required through the transition.\n\nEast Carolina University's fiscal-health report pairs program decisions with improvement plans and student teach-outs, giving faculty and administrators more to examine than a list of savings.\n\nECU reviewed 107 programs and identified 47 for discontinuation or significant revision; faculty identified 36 of those candidates. The report also lists 49 improvement plans. It identifies $6.628 million in savings, largely realizable in fiscal 2027, toward a three-year $25 million target.\n\nThe university's plans include resources for students completing affected programs, alongside development of adult online pathways and 90-credit degrees. In an October 1 commentary, Chancellor Philip Rogers connects financial restructuring with decisions about the university's future and reinvestment. The work involves both ending or changing offerings and developing what comes next.\n\nFor a dean or department chair, this makes the teaching plan a substantive part of reviewing the proposal. Remaining students still need the courses required to finish. Faculty assignments, advising capacity and the timing of a teach-out can shape what a proposed saving actually requires. A clear transition plan helps colleagues assess the consequences while choices are still open.\n\nWhen reviewing the proposal, ask whether it shows who will teach the remaining courses, how students will be advised and when resources become available. Those details can be considered alongside the criteria used to choose closure rather than improvement. Faculty participation is more useful when colleagues can examine those assumptions before the decision is settled. The practical value is a proposal that connects the budget action to the teaching work needed to carry it out.",
+      "source": "Philip G Rogers commentary",
+      "sourceUrl": "https://www.higheredtoday.org/2026/10/01/the-crossroads-is-here-the-question-is-who-decides/",
+      "sourceLinks": [
+        {
+          "label": "Philip G Rogers commentary",
+          "url": "https://www.higheredtoday.org/2026/10/01/the-crossroads-is-here-the-question-is-who-decides/"
+        },
+        {
+          "label": "ECU Fiscal Health Year One Report",
+          "url": "https://fiscalhealth.ecu.edu/wp-content/pv-uploads/sites/706/ECU_Fiscal_Health_Year_One_Report.pdf"
+        }
+      ],
+      "category": "Case Study",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-51-B.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-51-B.png",
+      "sourceStoryIndex": 51,
+      "storyId": "IHE-STORY-2026-10-02-051",
+      "publishedDate": "2026-10-01",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Catch Course Problems While There's Still Time to Respond",
+      "summary": "Midsemester feedback can help an instructor identify course problems while there is still time to respond. Duke faculty director Bridgette Hard describes a check that lets the teaching team hear concerns and explain its decisions while the same class is still running.\n\nHer October 1 article draws on a nearly 300-student introductory psychology course taught with graduate instructors and undergraduate teaching fellows. The team asks what helps learning, what remains difficult or unclear and what changes could help during the remaining weeks. Students also reflect on changes they could make to preparation, participation and study.\n\nHard suggests collecting responses through anonymous cards, a digital poll or a short survey. Her central follow-through is to tell the class what the team heard, what will change and the reasons behind its decisions. The feedback becomes part of an ongoing conversation about the course, rather than a collection of comments that disappears after submission.\n\nFor the instructor, the timing changes what the information is for. A confusing instruction or recurring point of difficulty can be examined while it still affects upcoming work. Responses may also identify a practice worth keeping. Explaining which adjustments are workable gives the class a reasoned response and the teacher a manageable way to act on the feedback.\n\nA short check can be especially useful when a teaching team needs a shared picture of the class. Different instructors may hear different concerns in discussion, office hours or email. Bringing those observations together with the feedback could help the team choose a manageable adjustment. The value of Hard's approach is its complete cycle: ask while there is time, consider the responses and explain the decision back to the people who supplied them.",
+      "source": "Bridgette Hard at Duke",
+      "sourceUrl": "https://ctl.duke.edu/blog/2026/10/from-the-faculty-director-listen-while-there-is-still-time-to-respond/",
+      "sourceLinks": [
+        {
+          "label": "Bridgette Hard at Duke",
+          "url": "https://ctl.duke.edu/blog/2026/10/from-the-faculty-director-listen-while-there-is-still-time-to-respond/"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-103-A.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-103-A.png",
+      "sourceStoryIndex": 103,
+      "storyId": "IHE-STORY-2026-10-02-103",
+      "publishedDate": "2026-10-01",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Less Guesswork When Grading AI Projects",
+      "summary": "An instructor grading an AI project needs evidence of the decisions behind the finished result. Anthropic's new Claude Frontier Academy also assesses whether an engineer can handle a fresh problem after training, offering an assessment model for educators to consider.\n\nAnnounced October 2, the program serves employer-nominated software engineers. Three days of simulated work follow a customer request through building, security review and handover. On the fourth day, participants face a new scenario for assessment. A 12-week deployment with their employer follows, ending with another practical assessment.\n\nThat sequence makes the change of problem part of the assessment. Completing the rehearsed project and responding to a new requirement produce different evidence. The handover also makes the work legible to someone who must maintain or use it. Anthropic has committed $100 million to the program and aims to train 10,000 engineers by the end of 2027.\n\nFor a faculty member, the useful question is which part of the submitted project reveals the learning being assessed. An attractive interface may show successful construction while leaving the reasoning behind its choices unclear. A changed requirement can make that reasoning visible, provided the change concerns something the course actually taught.\n\nFor a course adaptation, Innovating Higher Ed suggests asking for a brief explanation of a consequential choice, then assessing a small variation of the original task. Keep that variation focused on the course's learning goal, with accommodations and appropriate access tools preserved. The value is a clearer basis for deciding what the learner understands: the teacher can assess the finished product and the reasoning behind it.",
+      "source": "Anthropic announcement",
+      "sourceUrl": "https://www.anthropic.com/news/claude-frontier-academy",
+      "sourceLinks": [
+        {
+          "label": "Anthropic announcement",
+          "url": "https://www.anthropic.com/news/claude-frontier-academy"
+        },
+        {
+          "label": "Frontier Academy program structure",
+          "url": "https://claude.com/programs/frontier-academy"
+        }
+      ],
+      "category": "AI Workforce & Careers",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-37-A.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-37-A.png",
+      "sourceStoryIndex": 37,
+      "storyId": "IHE-STORY-2026-10-02-037",
+      "publishedDate": "2026-10-02",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Avoid Misreading Gallup's College Poll in Recruitment Planning",
+      "summary": "Recruitment planning is clearer when campus leaders separate a poll's question from the enrollment decision they need to understand. Gallup's October 1 report finds that 31% of U.S. adults call a college education very important today, while another 39% call it fairly important.\n\nThe very-important share has fallen from 35% in 2025 and 70% in 2013. In the current survey, 29% say not too important and 1% have no opinion. Adding the two importance categories shows that 70% still regard college as at least fairly important. That total and the falling intensity of support describe different aspects of the response.\n\nThe underlying question asks about college's importance today, rather than financial return, confidence in a particular institution or plans to enroll. The telephone survey involved 1,200 U.S. adults, with interviews conducted August 3–24.\n\nA campus leader using the result in recruitment planning can first identify the question the institution wants to answer. Affordability, the purpose of a degree and the choice of a particular college concern different decisions. Matching the research question to the decision can help a leader identify what additional local evidence would make the recruitment message more useful.\n\nThe national result can frame that discussion. Campus research and conversations with prospective students can examine the enrollment question more directly. Leaders then have a clearer basis for deciding which evidence should shape the message and which concern it should address.",
+      "source": "Gallup report",
+      "sourceUrl": "https://news.gallup.com/poll/715133/record-low-say-college-education-important.aspx",
+      "sourceLinks": [
+        {
+          "label": "Gallup report",
+          "url": "https://news.gallup.com/poll/715133/record-low-say-college-education-important.aspx"
+        },
+        {
+          "label": "Original poll topline",
+          "url": "https://news.gallup.com/file/poll/715142/2026_10_01%20College%20Importance%20Topline%20and%20Tabs.pdf"
+        }
+      ],
+      "category": "Insights & Trends",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-85-B.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-85-B.png",
+      "sourceStoryIndex": 85,
+      "storyId": "IHE-STORY-2026-10-02-085",
+      "publishedDate": "2026-10-01",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Keep Your Teaching Workload Manageable When Adding an Exam",
+      "summary": "Keeping teaching workload manageable when adding an exam means reviewing the full assessment plan, including what faculty and teaching staff must prepare, grade and explain. A Harvard instructor's account in The Crimson shows why a new exam needs to be considered alongside the assignments already in place.\n\nThe September 25 reporting analyzes roughly 130,000 undergraduate course evaluations and 4,300 syllabi. Average reported outside-class work rose from 5.9 hours a week in fall 2023 to seven hours in fall 2025. For courses offered in both semesters, the reported increase was roughly 20%.\n\nLecturer Sarah B. Craycraft told the reporters that keeping a capstone while adding seated exams overloaded students and teaching staff. The course later reduced its workload. Other instructors described students spending more time on assignments that had not changed. That makes reported time and the amount of assigned work related but distinct questions.\n\nThe teacher's decision concerns the combined assessment plan. An exam may serve a purpose the capstone does not, while retaining both still creates preparation, feedback and grading work. Reviewing each task separately can miss that cumulative demand. The instructor's account makes the staff time part of the issue, alongside the time students report spending.\n\nFor faculty reviewing a change, a useful question is what can be reduced when something is added. Course goals provide a reason to keep each assessment; the schedule and workload estimates help examine whether the full plan is workable. The teacher can then decide what to retain, replace or reduce so the new exam fits the course's teaching capacity.",
+      "source": "The Crimson original reporting",
+      "sourceUrl": "https://www.thecrimson.com/article/2026/9/25/harvard-q-guide-workload-analysis/",
+      "sourceLinks": [
+        {
+          "label": "The Crimson original reporting",
+          "url": "https://www.thecrimson.com/article/2026/9/25/harvard-q-guide-workload-analysis/"
+        }
+      ],
+      "category": "Insights & Trends",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-88-B.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-88-B.png",
+      "sourceStoryIndex": 88,
+      "storyId": "IHE-STORY-2026-10-02-088",
+      "publishedDate": "2026-09-25",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "More Control Over What AI Feedback Reveals",
+      "summary": "AI feedback can reveal more of an answer than an instructor intended. A new database-course preprint describes four stages of assistance that let educators specify how much help is available and let learners decide when to request more.\n\nThe design begins with prewritten concept questions, then guides application to a student's entity-relationship diagram, which maps relationships in a database. Later stages identify a general issue and offer localized clarification. Students can stop and revise after any stage. The educator defines requirements, rubrics and disclosure limits; the agent does not edit the full diagram.\n\nThe summer 2026 course enrolled 63 students, with 48 completing the homework. AI feedback was optional and ungraded, and teaching assistants graded submissions. The paper records 383 feedback episodes across three environments. Students sometimes revised after early conceptual support; incorrect diagnoses also sometimes influenced their revisions.\n\nThe design gives instructors a useful question to settle before choosing a tool: when should feedback draw attention to a problem, and when should it reveal a correction? That depends on the decision the assignment asks the learner to make.\n\nWhen planning feedback, specify how much help is permitted. A hint may preserve a decision the learner needs to work through; explicit clarification may fit a later request for assistance. That makes the amount of help an instructional choice the educator can examine.\n\nThe stages also give a faculty team something specific to review when checking feedback quality: what the system revealed and whether the diagnosis was sound. Defining those checks alongside the disclosure limits gives educators a clearer plan for how much assistance the tool should provide.",
+      "source": "Original staged-feedback preprint",
+      "sourceUrl": "https://arxiv.org/pdf/2610.00870",
+      "sourceLinks": [
+        {
+          "label": "Original staged-feedback preprint",
+          "url": "https://arxiv.org/pdf/2610.00870"
+        }
+      ],
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-10-02/story-105-B.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-02/story-105-B.png",
+      "sourceStoryIndex": 105,
+      "storyId": "IHE-STORY-2026-10-02-105",
+      "publishedDate": "2026-10-01",
+      "reviewOnlyImage": false
+    }
+  ],
+  "approvalDoc": "Edition 19 founder publication instruction, October 6, 2026; final-review/v3 exact prose and selected assets",
+  "editorialHook": "Grade with evidence, not just an AI flag. Explore discussion, teaching pilots, course tools, feedback, and more in Weekly Edition 19."
+}

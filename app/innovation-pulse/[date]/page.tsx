@@ -27,7 +27,7 @@ export async function generateMetadata({
     return { title: "Edition Not Found | Innovation Pulse" };
   }
   return pageMetadata({
-    title: `${formatPulseDate(date)} | Innovation Pulse`,
+    title: `${episode.editionNumber ? `Weekly Edition ${episode.editionNumber}` : formatPulseDate(date)} | Innovation Pulse`,
     description: episode.editorialHook,
     path: `/innovation-pulse/${date}`,
     type: "article",

@@ -176,7 +176,7 @@ test('malformed, ambiguous, unregistered, and personal attribution fails closed'
   const base = 'https://www.innovatinghighered.com/';
   const valid = 'utm_source=x&utm_medium=social&utm_campaign=innovation-pulse-2026-09-18&utm_content=story_post';
   const rejected = [
-    valid.replace('2026-09-18', '2026-10-02'),
+    valid.replace('2026-09-18', '2026-10-09'),
     valid.replace('2026-09-18', '2026-09-99'),
     valid.replace('2026-09-18', '2026-09-18-private'),
     valid.replace('utm_source=x', 'utm_source=person%40example.com'),
@@ -196,12 +196,15 @@ test('malformed, ambiguous, unregistered, and personal attribution fails closed'
 });
 
 test('approved weekly releases share a finite campaign and audio registry', () => {
-  for (const date of ['2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25']) {
+  for (const date of ['2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25', '2026-10-02']) {
     assert.equal(campaignEventProperties(`utm_source=mailchimp&utm_medium=email&utm_content=listen&utm_campaign=innovation-pulse-${date}`)?.campaign, `innovation-pulse-${date}`);
     assert.equal(episodeFromAudioSource(`https://storage.example/broadcast-${date}.mp3`), date);
     assert.deepEqual(sanitizeEngagementEvent('audio_progress', { episode: date, percent: 50 }), { episode: date, percent: 50 });
   }
-  assert.equal(episodeFromAudioSource('https://storage.example/broadcast-2026-10-02.mp3'), null);
+  assert.equal(episodeFromAudioSource('https://storage.example/broadcast-2026-10-09.mp3'), null);
+  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-19.mp3'), '2026-10-02');
+  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-20.mp3'), null);
+  assert.equal(episodeFromAudioSource('/audio/feature-wonka-lantern-v3.mp3'), null);
 });
 
 test('accepts only governed campaign combinations and registered release dates', () => {

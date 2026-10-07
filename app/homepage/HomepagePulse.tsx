@@ -120,7 +120,7 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
               <div className={styles.sectionHeading}>
                 <h2 id="quick-hits-heading">This Week&apos;s Stories</h2>
                 <p>
-                  {episodeStories.length} {episodeStories.length === 1 ? 'story' : 'stories'} from the {formatCoverageRange(episode)} Innovation Pulse.
+                  {episodeStories.length} {episodeStories.length === 1 ? 'story' : 'stories'} {episode.editionNumber ? `from Innovation Pulse Weekly Edition ${episode.editionNumber}.` : `from the ${formatCoverageRange(episode)} Innovation Pulse.`}
                 </p>
               </div>
               <Link href={`/innovation-pulse/${episode.date}`} className={styles.sectionAction}>

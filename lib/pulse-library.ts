@@ -30,6 +30,7 @@ export function getLibraryEditions(): ArchiveEpisodeData[] {
       ...episode.quickHits.flatMap((story) => [story.title, story.summary]),
       mapToV4Category(episode.deepDive.category),
       ...episode.quickHits.map((story) => mapToV4Category(story.category)),
+      formatWeekCovered(episode),
       episode.date,
       episode.weekCovered,
     ].filter(Boolean).join(' ').toLowerCase(),
