@@ -15,7 +15,7 @@ export default function FeatureAudioPlayer({
 }: {
   audioUrl: string;
   audioTitle: string;
-  sourceNote?: { text: string; url: string };
+  sourceNote?: { text: string; url?: string };
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const playRequestRef = useRef(0);
@@ -123,7 +123,7 @@ export default function FeatureAudioPlayer({
         )}
         {sourceNote && (
           <p className={styles.sourceNote}>
-            Source note: <a href={sourceNote.url} target="_blank" rel="noopener noreferrer">{sourceNote.text}</a>
+            Source note: {sourceNote.url ? <a href={sourceNote.url} target="_blank" rel="noopener noreferrer">{sourceNote.text}</a> : sourceNote.text}
           </p>
         )}
       </div>

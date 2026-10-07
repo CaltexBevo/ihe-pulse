@@ -32,7 +32,7 @@ export type FeaturedCoverage = {
   audioUrl?: string;
   /** A measured runtime supplied with the verified recording receipt. */
   audioDuration?: string;
-  audioSourceNote?: { text: string; url: string };
+  audioSourceNote?: { text: string; url?: string };
   imageAlt: string;
   sections: FeaturedCoverageSection[];
 };

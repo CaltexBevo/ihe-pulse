@@ -29,11 +29,6 @@ export const WONKA_LANTERN_FEATURED_COVERAGE: FeaturedCoverage = {
       "url": "https://www.dc.com/characters/sinestro"
     },
     {
-      "id": "gsu",
-      "label": "Georgia State: Reduction of Summer Melt",
-      "url": "https://success.gsu.edu/reduction-of-summer-melt/"
-    },
-    {
       "id": "gsu-2017",
       "label": "Georgia State: 2017 admissions technology award",
       "url": "https://news.gsu.edu/2017/11/01/georgia-state-wins-excalibur-award-for-deployment-of-innovative-admissions-technology/"
@@ -72,9 +67,7 @@ export const WONKA_LANTERN_FEATURED_COVERAGE: FeaturedCoverage = {
       "paragraphs": [
         "Source note: Georgia State reports a 22 percent reduction in summer melt in 2016 after introducing Pounce alongside a new student portal."
       ],
-      "sourceIds": [
-        "gsu"
-      ]
+      "sourceIds": []
     },
     {
       "paragraphs": [
@@ -89,7 +82,6 @@ export const WONKA_LANTERN_FEATURED_COVERAGE: FeaturedCoverage = {
     }
   ],
   "audioSourceNote": {
-    "text": "Georgia State reports a 22 percent reduction in summer melt in 2016 after introducing Pounce alongside a new student portal.",
-    "url": "https://success.gsu.edu/reduction-of-summer-melt/"
+    "text": "Georgia State reports a 22 percent reduction in summer melt in 2016 after introducing Pounce alongside a new student portal."
   }
 };
