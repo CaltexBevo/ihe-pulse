@@ -216,5 +216,16 @@ test("homepage Feature audio is an independent control beside a separate Read ac
   assert.ok(latestAnchorClose > latestAnchorOpen, "the audio button must not be nested in the artwork link");
   assert.match(markup, /Read full coverage/);
   assert.match(markup, /Dr\. Norma Jones, Editor-in-Chief/);
-  assert.match(markup, /teaching-superpower-feature-lab\.png/);
+  assert.ok(markup.includes(dataModule.LATEST_FEATURED_COVERAGE.imagePath));
+});
+
+
+test("Wonka source context accompanies its supplied recording and the Pounce paragraph", async () => {
+  const markup = await renderFeaturePage("the-wonka-lantern-framework");
+  const context = "Georgia State reports a 22 percent reduction in summer melt in 2016 after introducing Pounce alongside a new student portal.";
+  assert.equal(markup.split(context).length - 1, 2);
+  assert.ok(markup.indexOf(context) < markup.indexOf("</header>"));
+  assert.ok(markup.lastIndexOf(context) > markup.indexOf("That bot alone helped reduce summer melt by 22%"));
+  assert.match(markup, /src="\/audio\/feature-wonka-lantern-v3\.mp3"/);
+  assert.match(markup, /href="https:\/\/success\.gsu\.edu\/reduction-of-summer-melt\/"/);
 });
