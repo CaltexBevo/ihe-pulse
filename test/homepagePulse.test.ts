@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { getLatestEpisode } from '../lib/data/innovation-pulse.ts';
 
 import {
@@ -181,10 +183,12 @@ test('uses the real approved audio envelope for the current weekly player', () =
   assert.ok(latest);
   const waveform = getHomePulseWaveform(latest.date);
   assert.ok(waveform);
-  assert.ok(waveform.length >= 44);
+  assert.equal(latest.cadence, 'weekly');
+  assert.ok(latest.audioUrl);
+  assert.equal(waveform.length, 104);
   assert.ok(Math.min(...waveform) >= 14);
   assert.ok(Math.max(...waveform) <= 100);
-  assert.ok(new Set(waveform).size > 1);
+  assert.ok(new Set(waveform).size > 10, 'the latest published player must have a measured, nonflat envelope');
   assert.equal(getHomePulseWaveform('2099-01-01'), null);
 });
 
@@ -226,4 +230,16 @@ test('provides measured waveforms for the current homepage three-week lookback',
   for (const priorEpisode of priorEpisodes) {
     assert.ok(getHomePulseWaveform(priorEpisode.date));
   }
+});
+
+// Derived from the approved MP3 by the retained 104-window mono 8 kHz RMS recipe.
+// These two fingerprints bind the visible envelope to the audio that was measured.
+test('keeps the Edition 19 envelope paired with its exact measured audio master', () => {
+  const audio = readFileSync(new URL('../public/audio/innovation-pulse-weekly-edition-19.mp3', import.meta.url));
+  assert.equal(createHash('sha256').update(audio).digest('hex'),
+    'b89c27435ee5420ca3bd93f2b7f6652dd2c1c9bb091844bdeb8dca990824af83');
+  const waveform = getHomePulseWaveform('2026-10-02');
+  assert.ok(waveform);
+  assert.equal(createHash('sha256').update(JSON.stringify(waveform)).digest('hex'),
+    'da25a27a5f404bc5d8443d44975c8d584f5b966e148d559681a65e3ca1526d1a');
 });

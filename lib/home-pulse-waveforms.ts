@@ -3,6 +3,18 @@
  * Values are RMS amplitudes normalized to a 14-100 display range.
  */
 const HOME_PULSE_WAVEFORMS: Record<string, readonly number[]> = {
+  // Edition 19 approved MP3 SHA-256: b89c27435ee5420ca3bd93f2b7f6652dd2c1c9bb091844bdeb8dca990824af83
+  // 104 equal-duration mono 8 kHz float32 RMS windows normalized 14–100; 502.56 seconds.
+  "2026-10-02": [
+    66, 25, 52, 93, 59, 73, 55, 43, 58, 32, 72, 67, 44, 86, 41, 79,
+    42, 88, 19, 68, 67, 77, 31, 60, 49, 31, 57, 64, 46, 49, 71, 46,
+    56, 68, 64, 36, 49, 44, 38, 64, 55, 38, 63, 56, 70, 25, 70, 26,
+    89, 65, 67, 50, 51, 80, 38, 44, 58, 40, 77, 51, 65, 31, 61, 51,
+    40, 84, 57, 52, 68, 69, 46, 56, 82, 42, 55, 74, 41, 40, 83, 50,
+    39, 100, 28, 60, 58, 63, 50, 76, 65, 14, 49, 63, 83, 49, 72, 36,
+    64, 52, 66, 68, 73, 72, 87, 38,
+  ],
+
   // Approved September 25 first-person correction SHA-256: 200874d2409af4b8fce8052332c97000bf5c20f9cf0f764277a608c1398b9b5f
   // 104 equal-duration mono 8 kHz RMS windows normalized 14–100; 424.48 seconds.
   "2026-09-25": [
