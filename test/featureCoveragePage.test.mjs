@@ -227,5 +227,5 @@ test("Wonka source context accompanies its supplied recording and the Pounce par
   assert.ok(markup.indexOf(context) < markup.indexOf("</header>"));
   assert.ok(markup.lastIndexOf(context) > markup.indexOf("That bot alone helped reduce summer melt by 22%"));
   assert.match(markup, /src="\/audio\/feature-wonka-lantern-v3\.mp3"/);
-  assert.match(markup, /href="https:\/\/success\.gsu\.edu\/reduction-of-summer-melt\/"/);
+  assert.doesNotMatch(markup, /href="https:\/\/success\.gsu\.edu\/reduction-of-summer-melt\/"/);
 });

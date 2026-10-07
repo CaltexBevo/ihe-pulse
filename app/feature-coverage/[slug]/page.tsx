@@ -101,10 +101,10 @@ function FeatureTitle({ title }: { title: string }) {
   );
 }
 
-function ArticleParagraph({ text, sourceUrl }: { text: string; sourceUrl: string }) {
+function ArticleParagraph({ text, sourceUrl }: { text: string; sourceUrl?: string }) {
   const sourceLead = "Read the complete MIT report";
 
-  if (text.startsWith(sourceLead) || text.startsWith("Source note:")) {
+  if (sourceUrl && (text.startsWith(sourceLead) || text.startsWith("Source note:"))) {
     return (
       <p className={styles.articleParagraph}>
         <a
@@ -232,7 +232,7 @@ function ArticleSection({
             key={`${sectionIndex}-${paragraphIndex}`}
             className={sectionIndex === 0 && paragraphIndex === 0 ? styles.leadParagraph : undefined}
           >
-            <ArticleParagraph text={paragraph} sourceUrl={feature.sources?.find(source => section.sourceIds?.includes(source.id ?? ""))?.url ?? feature.sourceUrl} />
+            <ArticleParagraph text={paragraph} sourceUrl={section.sourceIds?.length === 0 ? undefined : feature.sources?.find(source => section.sourceIds?.includes(source.id ?? ""))?.url ?? feature.sourceUrl} />
           </div>
         ))}
       </div>
