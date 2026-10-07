@@ -186,6 +186,7 @@
 }
 
 .playerLabel {
+  text-align: center;
   margin: 0 0 8px;
   color: var(--cyan);
   font-family: var(--font-mono);
@@ -297,6 +298,7 @@
 }
 
 .actionPanel {
+  text-align: center;
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -321,6 +323,7 @@
 }
 
 .episodeMeta {
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
