@@ -233,7 +233,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 44,
     portalAddedDate: "2026-08-29",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 7,
     title: "NSF State and Regional Artificial Intelligence Infrastructure Hubs",
     source: "U.S. National Science Foundation",
@@ -484,7 +484,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 53,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 12,
     title: "ACS PrepareCTP Grant",
     source: "American Chemical Society",
@@ -707,7 +707,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 61,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 9,
     title: "NSF Tribal Colleges and Universities Program",
     source: "U.S. National Science Foundation",
@@ -820,7 +820,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 65,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 19,
     title: "Tribal Colleges Education Equity Grants Program",
     source: "USDA National Institute of Food and Agriculture",
@@ -833,7 +833,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     whatItFunds: "Curriculum and materials, faculty development and teacher preparation, experiential learning, teaching equipment, recruitment and retention, delivery systems, and partnerships.",
     geography: "Eligible U.S. Tribal Colleges",
     costShareRequirement: "No match required",
-    applicationAccess: "Public Grants.gov application package checked Oct. 6, 2026: Apply is available; authenticated submission not tested. Official Grants.gov application linked by USDA",
+    applicationAccess: "Public Grants.gov application package checked Oct. 8, 2026: the package remains reachable with an Apply control, but the Oct. 7 final deadline has passed; authenticated submission not tested.",
     deadline: "Oct. 7, 2026 at 5 p.m. ET",
     deadlineTimeZone: "Eastern Time",
     finalDeadlineDate: "2026-10-07",
@@ -938,7 +938,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 69,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 24,
     title: "Cornerstone: Learning for Living",
     source: "The Teagle Foundation",
@@ -990,7 +990,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 71,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 12,
     title: "NSF Innovation in Two-Year College STEM Education",
     source: "U.S. National Science Foundation",
@@ -1020,7 +1020,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 72,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 2,
     title: "NSF IUSE: EDU: January 2027 tracks",
     source: "U.S. National Science Foundation",
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1166,7 +1166,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 77,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 8,
     title: "Wake Forest ECI Communities of Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1193,7 +1193,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 78,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     publishedProgramPoolUsd: 5_700_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 14,
@@ -1208,7 +1208,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     whatItFunds: "Curriculum, faculty preparation, scientific instrumentation, instruction delivery, student recruitment and retention, and collaborative food and agricultural sciences education focused on advanced-baccalaureate, graduate and veterinary education.",
     geography: "United States",
     costShareRequirement: "No match is required",
-    applicationAccess: "Public Grants.gov application package checked Oct. 6, 2026: Apply is available; authenticated submission not tested. Submit the FY 2026 application through the official Grants.gov opportunity and follow the NIFA NOFO",
+    applicationAccess: "Public Grants.gov application package checked Oct. 8, 2026: Apply is available; authenticated submission not tested. Submit the FY 2026 application through the official Grants.gov opportunity and follow the NIFA NOFO",
     deadline: "Oct. 15, 2026 at 5 p.m. Eastern Time, per the amended FY 2026 notice",
     deadlineTimeZone: "Eastern Time",
     finalDeadlineDate: "2026-10-15",
@@ -1240,7 +1240,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     whatItFunds: "Agricultural education, research, and outreach capacity, equipment and infrastructure, faculty professional growth, graduate assistantships, and emerging food and renewable-resource programs.",
     geography: "United States",
     costShareRequirement: "No match is required",
-    applicationAccess: "Public Grants.gov application package checked Oct. 6, 2026: Apply is available; authenticated submission not tested. Submit through the official Grants.gov opportunity after confirming NIFA NLGCA certification",
+    applicationAccess: "Public Grants.gov application package checked Oct. 8, 2026: Apply is available; authenticated submission not tested. Submit through the official Grants.gov opportunity after confirming NIFA NLGCA certification",
     deadline: "Nov. 10, 2026 at 5 p.m. ET",
     deadlineTimeZone: "Eastern Time",
     finalDeadlineDate: "2026-11-10",
@@ -1257,7 +1257,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 80,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 10,
     title: "USDA NIFA Tribal Colleges Research Grant Program",
     source: "USDA National Institute of Food and Agriculture",
@@ -1270,7 +1270,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     whatItFunds: "Research capacity, innovative agricultural technologies including AI, undergraduate training, faculty and student pathways, and agriculture, natural-resources, and human-sciences education.",
     geography: "United States; eligible 1994 Land-grant Tribal Colleges",
     costShareRequirement: "No match is required",
-    applicationAccess: "Public Grants.gov application package checked Oct. 6, 2026: Apply is available; authenticated submission not tested. Submit the Phase III application through official Grants.gov opportunity 362029. Include the signed research-collaboration agreement and required student leadership-development component. The public application route was checked; authenticated submission was not tested.",
+    applicationAccess: "Public Grants.gov application package checked Oct. 8, 2026: Apply is available; authenticated submission not tested. Submit the Phase III application through official Grants.gov opportunity 362029. Include the signed research-collaboration agreement and required student leadership-development component. The public application route was checked; authenticated submission was not tested.",
     deadline: "Phase II closed Sept. 11, 2026 at 5 p.m. EDT. Phase III submission deadline: Dec. 31, 2026 at 5 p.m. EST.",
     deadlineTimeZone: "Eastern Time (EDT for Phase II; EST for Phase III)",
     priorityDeadlineDate: "2026-09-11",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1380,7 +1380,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 84,
     portalAddedDate: "2026-09-22",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 6,
     title: "NOAA Alaska Marine Education and Training Mini-Grant Program",
     source: "National Oceanic and Atmospheric Administration Fisheries",
@@ -1392,7 +1392,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     whatItFunds: "Marine education, workforce preparation, marine technology, and higher-education partnerships in Alaska.",
     geography: "Projects in Alaska",
     costShareRequirement: "No match required",
-    applicationAccess: "Apply through Grants.gov opportunity 362034, package PKG00292479. SAM, Grants.gov, and eRA registrations may take six weeks. Public application package checked Oct. 6; authenticated submission not tested.",
+    applicationAccess: "Apply through Grants.gov opportunity 362034, package PKG00292479. SAM, Grants.gov, and eRA registrations may take six weeks. Public application package checked Oct. 8; authenticated submission not tested.",
     deadline: "May 3, 2027 at 7:59 p.m. AKST, exactly as stated in the official notice",
     deadlineTimeZone: "AKST (officially stated; not converted for daylight saving time)",
     finalDeadlineDate: "2027-05-03",
@@ -1469,7 +1469,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
     portalAddedDate: "2026-09-07",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     applicationStatus: "open-now",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Sep. 7",
@@ -1487,7 +1487,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     eligibility: "Eligible 1890 land-grant universities under the current federal notice",
     whatItFunds: "Food and agricultural-sciences teaching capacity, student leadership, workforce preparation, educator development, and AI-enabled teaching and learning.",
     geography: "United States, eligible 1890 land-grant universities",
-    applicationAccess: "Public Grants.gov application package checked Oct. 6, 2026: Apply is available; authenticated submission not tested. Apply through Grants.gov under USDA-NIFA-CBGP-011698; select the Education Projects program area",
+    applicationAccess: "Public Grants.gov application package checked Oct. 8, 2026: Apply is available; authenticated submission not tested. Apply through Grants.gov under USDA-NIFA-CBGP-011698; select the Education Projects program area",
     deadline: "FY2026 education proposals due Nov. 4, 2026 at 5 p.m. Eastern Time",
     deadlineTimeZone: "Eastern Time",
     finalDeadlineDate: "2026-11-04",
@@ -1597,7 +1597,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 91,
     portalAddedDate: "2026-09-14",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 19,
     title: "NSF Computing Education Research",
     source: "U.S. National Science Foundation",
@@ -1664,7 +1664,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      lastVerified: "Oct 6, 2026",
+      lastVerified: "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1678,7 +1678,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
       "announcedDateIso": "2026-07-22",
       "fundingType": "cash",
       "awardAmount": "Primarily $5 million to $30 million per project, with flexibility upward; no direct grants below $1 million. The broad $200 million fund commitment is excluded from the cash total.",
-      "eligibility": "Accredited universities and other degree-granting institutions, independent research institutes and policy research organizations, and nonprofits experienced in large-scale field experiments. Institutional proposals only; individuals and for-profit entities are not eligible.",
+      "eligibility": "Accredited universities and other degree-granting institutions; established research institutes, companies, and policy research organizations; and research-implementing nonprofits experienced in large-scale field experiments. Institutional proposals only; individual researchers and projects subsidizing commercial product development are excluded.",
       "whatItFunds": "Large field experiments, pilots, and program evaluations, explicitly including higher-education curriculum and delivery models, retraining, credentialing, and early-career pathways for an AI-transformed labor market. Curriculum development alone and general product engineering are excluded.",
       "geography": "Global, including the United States; no U.S. state restriction stated",
       "applicationAccess": "Official rolling request-for-proposals Google Form is accessible. Sign-in is required for submission and uploads; authenticated submission was not tested.",
@@ -1699,11 +1699,11 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
       ],
       "bestFit": "Institutional teams capable of large empirical studies of educational delivery or retraining, with measurable labor-market outcomes.",
       "eligibilityBadge": "Large institutional cash grants",
-      "sourceNotes": "The $200M commitment spans five broad research areas and is not an isolated current higher-education call pool. Expected project duration is 24 to 48 months with initial results within 12 months. Public sharing at milestones is expected. The application excludes individuals, for-profit applicants, advocacy, theoretical work, curriculum development per se, and studies of Anthropic's own products."
+      "sourceNotes": "The $200M commitment spans five broad research areas and is not an isolated current higher-education call pool. Expected project duration is 24 to 48 months with initial results within 12 months. Public sharing at milestones is expected. The application excludes individual researchers, projects subsidizing commercial product development, advocacy, theoretical work, curriculum development per se, and studies of Anthropic's own products. The Oct. 8 public application explicitly includes established research companies; the prior blanket for-profit exclusion was incorrect."
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1741,7 +1741,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1815,7 +1815,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1853,7 +1853,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1969,7 +1969,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 101,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2048,7 +2048,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 103,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2128,7 +2128,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 105,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2165,7 +2165,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 106,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2207,7 +2207,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 107,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 6, 2026",
+      "lastVerified": "Oct 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2246,7 +2246,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 108,
     portalAddedDate: "2026-09-28",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     publishedProgramPoolUsd: 30_600_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 19,
@@ -2277,7 +2277,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 110,
     portalAddedDate: "2026-09-28",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     publishedProgramPoolUsd: 300_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 31,
@@ -2307,7 +2307,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 6, 2026",
+    "lastVerified": "Oct 8, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2349,7 +2349,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     "id": 112,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 6, 2026",
+    "lastVerified": "Oct 8, 2026",
     "recommendationRank": 22,
     "title": "Iowa Career Training Physical Expansion Grant Program",
     "source": "Iowa Workforce Development",
@@ -2385,7 +2385,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
 }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 6, 2026",
+    "lastVerified": "Oct 8, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2422,7 +2422,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     "id": 114,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 6, 2026",
+    "lastVerified": "Oct 8, 2026",
     "recommendationRank": 38,
     "title": "Provost's Award for Teaching Innovations in the Age of AI",
     "source": "Northwestern University",
@@ -2457,7 +2457,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
 }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 6, 2026",
+    "lastVerified": "Oct 8, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2494,7 +2494,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 116,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 41,
     title: "College of the Redwoods President's Innovation Funds: Fall 2026",
     source: "College of the Redwoods Foundation",
@@ -2522,7 +2522,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 117,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 39,
     title: "Engaging Difference in General Education (EDGE) Grants: 2026–28",
     source: "Interfaith America",
@@ -2551,7 +2551,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 118,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 42,
     title: "IU Indianapolis Open Educational Resources Development Grants",
     source: "Indiana University Indianapolis University Library",
@@ -2580,7 +2580,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 119,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 34,
     title: "AmeriHealth Caritas Bridge Pilot for Short-Term Healthcare Pathways",
     source: "North Carolina Community Colleges Foundation and NC Community College System",
@@ -2609,7 +2609,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 120,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 6, 2026",
+    lastVerified: "Oct 8, 2026",
     recommendationRank: 43,
     title: "MNOP OER Pathfinder Grant Program: 2026–27",
     source: "Minitex Network for Open & Affordable Practices (MNOP)",
