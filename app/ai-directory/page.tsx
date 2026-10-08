@@ -215,6 +215,13 @@ function ToolCard({ tool }: { tool: AiTool }) {
           )}
         </div>
 
+        {tool.staffPick && (
+          <span className="inline-flex items-center gap-1.5 self-start rounded-full border border-[var(--cyan)]/30 bg-[var(--cyan)]/10 px-2.5 py-1 text-xs font-semibold text-[var(--cyan)] mb-3">
+            <BadgeCheck size={14} aria-hidden="true" />
+            Staff Pick
+          </span>
+        )}
+
         {/* Description */}
         <p className="text-[0.88rem] text-[var(--text-muted)] leading-[1.55] mb-3.5 line-clamp-2">
           {tool.tagline}
@@ -271,6 +278,7 @@ export default function AIDirectoryPage() {
   const [activeTask, setActiveTask] = useState<TaskTag | null>(null);
   const [activeCategory, setActiveCategory] = useState('All');
   const [sortBy, setSortBy] = useState<SortOption>('all');
+  const [staffPicksOnly, setStaffPicksOnly] = useState(false);
 
   // Load data from JSON
   useEffect(() => {
@@ -298,6 +306,7 @@ export default function AIDirectoryPage() {
 
   const filtered = useMemo(() => {
     let result = tools.filter((app) => {
+      if (staffPicksOnly && !app.staffPick) return false;
       if (activeRole && !app.roles.includes(activeRole)) return false;
       if (activeTask && !app.tasks.includes(activeTask)) return false;
       if (activeCategory !== 'All' && app.category !== activeCategory) return false;
@@ -321,7 +330,7 @@ export default function AIDirectoryPage() {
     }
 
     return result;
-  }, [tools, activeRole, activeTask, activeCategory, search, sortBy]);
+  }, [tools, activeRole, activeTask, activeCategory, search, sortBy, staffPicksOnly]);
 
   const clearFilters = () => {
     setSearch('');
@@ -329,9 +338,10 @@ export default function AIDirectoryPage() {
     setActiveTask(null);
     setActiveCategory('All');
     setSortBy('all');
+    setStaffPicksOnly(false);
   };
 
-  const hasFilters = search || activeRole || activeTask || activeCategory !== 'All' || sortBy !== 'all';
+  const hasFilters = search || activeRole || activeTask || activeCategory !== 'All' || sortBy !== 'all' || staffPicksOnly;
   const directoryDate = directoryReview ? formatAiDirectoryDate(directoryReview.contentUpdatedAt) : null;
   const directoryStatusCopy = directoryReview?.status === 'current'
     ? `All ${directoryReview.visibleToolCount} records completed an official-source review${directoryReview.fullReviewCompletedAt ? ` on ${formatAiDirectoryDate(directoryReview.fullReviewCompletedAt)}` : ''}.`
@@ -514,8 +524,21 @@ export default function AIDirectoryPage() {
           </div>
 
           {/* ── Results count + clear ────────────────────── */}
+          <div className="flex flex-col items-center gap-2 mb-6">
+            <button
+              onClick={() => setStaffPicksOnly(!staffPicksOnly)}
+              aria-pressed={staffPicksOnly}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${staffPicksOnly ? 'border-[var(--cyan)] bg-[var(--cyan)]/10 text-[var(--cyan)]' : 'border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text)]'}`}
+            >
+              <BadgeCheck size={16} aria-hidden="true" />
+              Staff Picks ({staffPicks.length})
+            </button>
+            <p className="text-xs text-[var(--text-muted)] text-center">
+              Only cards marked Staff Pick are editorial selections. This label is not a product-testing or verification badge.
+            </p>
+          </div>
           <div className="flex items-center justify-between max-w-[1200px] mx-auto mb-6 px-1">
-            <div className="text-[0.84rem] text-[var(--text-muted)] font-mono">
+            <div aria-live="polite" className="text-[0.84rem] text-[var(--text-muted)] font-mono">
               {filtered.length} tool{filtered.length !== 1 ? 's' : ''}
             </div>
             {hasFilters && (
@@ -528,25 +551,10 @@ export default function AIDirectoryPage() {
             )}
           </div>
 
-          {/* ── Staff Picks ──────────────────────────────── */}
-          {!hasFilters && staffPicks.length > 0 && (
-            <section className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <BadgeCheck size={20} className="text-[var(--cyan)]" />
-                <div>
-                  <h2 className="text-xl font-bold text-[var(--text)]">Staff Picks</h2>
-                  <p className="text-xs text-[var(--text-muted)] mt-1">Editorial selections, not a factual verification badge.</p>
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
-                {staffPicks.slice(0, 3).map((tool) => (
-                  <ToolCard key={tool.slug} tool={tool} />
-                ))}
-              </div>
-            </section>
-          )}
-
           {/* ── App Grid (3-column) ──────────────────────── */}
+          <h2 className="text-xl font-bold text-[var(--cyan)] mb-5">
+            {staffPicksOnly ? 'Staff Picks' : hasFilters ? 'Matching tools' : 'All tools'}
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
             {filtered.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
