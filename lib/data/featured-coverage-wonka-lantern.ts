@@ -36,7 +36,7 @@ export const WONKA_LANTERN_FEATURED_COVERAGE: FeaturedCoverage = {
   ],
   "reportTitle": "The Wonka-Lantern Framework",
   "category": "Practical Tips",
-  "imagePath": "/images/innovation-pulse/2026-10-02/feature.png",
+  "imagePath": "/images/innovation-pulse/2026-10-02/feature-logo-integrated-v1.png",
   "imageWidth": 1920,
   "imageHeight": 1080,
   "imageAlt": "The Wonka-Lantern Framework. Imagine more with AI. Let your values lead. Dr. Norma Jones, Editor-in-Chief. Purple illustration with a brown top hat, green ring, and compass.",
