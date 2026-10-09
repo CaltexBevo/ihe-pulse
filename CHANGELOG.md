@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-08] Weekly artwork logo correction
+
+- Integrate the supplied transparent logo into the October 2 artwork background and align it with the supporting slogan.
+- Version the corrected master for homepage, weekly edition and archive artwork while retaining the original asset and existing player crop.
+
 ## [2026-10-08] AI Directory compact catalog
 
 - Put tool choices earlier with compact cards, a desktop filter sidebar, and an accessible mobile filter sheet.
