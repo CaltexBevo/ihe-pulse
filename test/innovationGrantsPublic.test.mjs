@@ -606,6 +606,7 @@ test("October 9 adds two scoped opportunities with mandatory entry deadlines and
   assert.equal(additions[0].finalDeadlineDate, "2026-10-23");
   assert.match(additions[0].applicationAccess, /Sign-in is required/);
   assert.equal(additions[1].finalDeadlineDate, "2026-10-30");
+  assert.match(additions[1].eligibility, /excluding members of the Pott College Grants Committee/);
   assert.match(additions[1].deadline, /Mandatory intent Oct. 30.*Nov. 6.*4:30/);
   assert.equal(getInnovationGrantLifecycle(additions[1], new Date("2026-10-31T12:00:00Z")), "closed");
   assert.equal(innovationGrants.find((record) => record.id === 95).lastVerified, "Oct 8, 2026");

@@ -2683,7 +2683,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
       "applicationUrl": "https://usisurvey.az1.qualtrics.com/jfe/form/SV_8IxEeAelA58xsFv",
       "announcedDate": "August 2026 guidelines",
       "awardAmount": "Seed projects up to $3,500; outreach up to $4,000; implementation and research up to $5,000",
-      "eligibility": "Full-time faculty and staff in the University of Southern Indiana Pott College of Science, Engineering, and Education.",
+      "eligibility": "Full-time faculty and staff in the University of Southern Indiana Pott College of Science, Engineering, and Education, excluding members of the Pott College Grants Committee.",
       "whatItFunds": "Outreach, retention, teaching and learning, and undergraduate student success through pilot projects and research-based interventions.",
       "geography": "USI Pott College only, Indiana",
       "costShareRequirement": "Not stated in the official source",
