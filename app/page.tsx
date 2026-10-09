@@ -1,9 +1,8 @@
 import styles from './homepage/HomepageShell.module.css';
 import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
 import HomeGrantSpotlight from "@/components/HomeGrantSpotlight";
-import PastEpisodesStrip from "@/components/PastEpisodesStrip";
 import HomepagePulse from "@/app/homepage/HomepagePulse";
-import { getLatestEpisode, getAllEpisodes } from "@/lib/data/innovation-pulse";
+import { getLatestEpisode } from "@/lib/data/innovation-pulse";
 import { formatWeekCovered } from "@/lib/data/innovation-pulse-types";
 import { getHomepageQuickHits } from "@/lib/homepagePulse";
 
@@ -12,7 +11,6 @@ export const dynamic = "force-dynamic";
 
 export default function Home() {
   const pulseEpisode = getLatestEpisode();
-  const allEpisodes = getAllEpisodes();
   const heroEpisode = pulseEpisode
     ? {
         date: pulseEpisode.date,
@@ -41,7 +39,6 @@ export default function Home() {
         </div>
       </section>
 
-      {pulseEpisode && <PastEpisodesStrip allEpisodes={allEpisodes} />}
       <HomepagePulse episode={pulseEpisode} />
     </div>
   );
