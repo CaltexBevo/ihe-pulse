@@ -235,10 +235,11 @@ test('negative fixtures fail closed for every required blocker', () => {
 test('directory pages use canonical JSON, expose all task filters, and remove misleading labels', () => {
   const listing = fs.readFileSync(path.join(process.cwd(), 'app/ai-directory/page.tsx'), 'utf8');
   const detail = fs.readFileSync(path.join(process.cwd(), 'app/ai-directory/[slug]/page.tsx'), 'utf8');
-  assert.match(listing, /fetch\('\/data\/ai-apps\.json'\)/);
-  assert.match(listing, /Assessment/);
-  assert.match(listing, /Note-Taking/);
-  assert.match(listing, /Recently Reviewed/);
+  assert.match(listing, /fetch\('\/data\/ai-apps\.json'(?:\)|,\s*\{)/);
+  assert.match(listing, /AI_DIRECTORY_TASKS\.map/);
+  assert.ok(AI_DIRECTORY_TASKS.includes('Assessment'));
+  assert.ok(AI_DIRECTORY_TASKS.includes('Note-Taking'));
+  assert.match(listing, /Recently Reviewed/i);
   assert.doesNotMatch(listing, /Recently Added/);
   assert.doesNotMatch(listing, /trending/);
   assert.doesNotMatch(listing, /\bVerified\b/);

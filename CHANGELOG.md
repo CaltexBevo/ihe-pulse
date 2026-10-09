@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-08] AI Directory compact catalog
+
+- Put tool choices earlier with compact cards, a desktop filter sidebar, and an accessible mobile filter sheet.
+- Keep one 44-tool catalog with five editorial Staff Picks, grid/list browsing, search, sorting, and combined filters.
+- Add Gemini Notebook and Scite, remove Sora and Grok, and limit detail routes to the current curated inventory.
+
 ## [2026-10-08] Homepage mobile refinements
 
 - Remove the homepage past-editions strip while retaining archive navigation.

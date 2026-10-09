@@ -1225,6 +1225,13 @@ function isExactEditorialCodeLine(line) {
 }
 
 function allowlistedProviderReference(relativePath, line, kind) {
+  if (relativePath === 'app/ai-directory/page.tsx') {
+    const editorialLines = new Set([
+      `'${PROVIDER_NAMES[1]}',`,
+      `${PROVIDER_NAMES[1]}: 'Compare drafts and organize documents.',`,
+    ]);
+    return editorialLines.has(line.trim()) ? 'editorial-directory-literal' : null;
+  }
   if (relativePath === 'lib/data/innovation-grants.ts') return isExactJsonStringLine(line) ? 'editorial-grant-string' : null;
   if (relativePath === 'lib/data/featured-coverage-models.ts' && /^\s*sourceIds:\s*\[(?:'[a-z-]+'(?:,\s*)?)*\],\s*$/.test(line)) return 'editorial-source-identifiers';
   if (relativePath.endsWith('.json') && (EDITORIAL_PROVIDER_PATHS.has(relativePath) || relativePath.startsWith('data/daily-pulse/'))) {

@@ -3,7 +3,7 @@
   "directoryReview": {
     "status": "partial",
     "fullReviewCompletedAt": null,
-    "contentUpdatedAt": "2026-09-18",
+    "contentUpdatedAt": "2026-09-19",
     "method": "official-source editorial review",
     "visibleToolCount": 44
   },
@@ -132,33 +132,6 @@
       "claimTypes": [
         "pricing",
         "education-use"
-      ]
-    },
-    {
-      "id": "grok-1-20260918",
-      "toolSlug": "grok",
-      "issuer": "Grok",
-      "title": "Grok product information",
-      "url": "https://x.ai/pricing",
-      "sourceType": "official-product",
-      "checkedAt": "2026-09-18",
-      "accessStatus": "confirmed",
-      "claimTypes": [
-        "availability",
-        "features"
-      ]
-    },
-    {
-      "id": "grok-2-20260918",
-      "toolSlug": "grok",
-      "issuer": "Grok",
-      "title": "Grok plans and access",
-      "url": "https://x.ai/pricing",
-      "sourceType": "official-pricing",
-      "checkedAt": "2026-09-18",
-      "accessStatus": "confirmed",
-      "claimTypes": [
-        "pricing"
       ]
     },
     {
@@ -796,34 +769,6 @@
       ]
     },
     {
-      "id": "sora-1-20260918",
-      "toolSlug": "sora",
-      "issuer": "Sora",
-      "title": "Sora official product page",
-      "url": "https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation",
-      "sourceType": "official-status",
-      "checkedAt": "2026-09-18",
-      "accessStatus": "redirected",
-      "claimTypes": [
-        "availability",
-        "status"
-      ]
-    },
-    {
-      "id": "sora-2-20260918",
-      "toolSlug": "sora",
-      "issuer": "Sora",
-      "title": "What to know about the Sora discontinuation",
-      "url": "https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation",
-      "sourceType": "official-status",
-      "checkedAt": "2026-09-18",
-      "accessStatus": "confirmed",
-      "claimTypes": [
-        "availability",
-        "status"
-      ]
-    },
-    {
       "id": "ideogram-1-20260918",
       "toolSlug": "ideogram",
       "issuer": "Ideogram",
@@ -1228,6 +1173,77 @@
         "pricing",
         "features"
       ]
+    },
+    {
+      "id": "gemini-notebook-product-20260919",
+      "toolSlug": "gemini-notebook",
+      "issuer": "Google",
+      "title": "Gemini Notebook for business",
+      "url": "https://workspace.google.com/products/gemini-notebook/",
+      "sourceType": "official-product",
+      "checkedAt": "2026-09-19",
+      "accessStatus": "confirmed",
+      "claimTypes": [
+        "availability",
+        "features"
+      ]
+    },
+    {
+      "id": "gemini-notebook-help-20260919",
+      "toolSlug": "gemini-notebook",
+      "issuer": "Google",
+      "title": "Learn about Gemini Notebook",
+      "url": "https://support.google.com/gemininotebook/answer/16164461?hl=en",
+      "sourceType": "official-documentation",
+      "checkedAt": "2026-09-19",
+      "accessStatus": "confirmed",
+      "claimTypes": [
+        "availability",
+        "features",
+        "education-use"
+      ]
+    },
+    {
+      "id": "gemini-notebook-pricing-20260919",
+      "toolSlug": "gemini-notebook",
+      "issuer": "Google",
+      "title": "Upgrade Gemini Notebook",
+      "url": "https://support.google.com/gemininotebook/answer/16213268?hl=en",
+      "sourceType": "official-pricing",
+      "checkedAt": "2026-09-19",
+      "accessStatus": "confirmed",
+      "claimTypes": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "scite-product-20260919",
+      "toolSlug": "scite",
+      "issuer": "Scite",
+      "title": "AI for Research | Scite",
+      "url": "https://scite.ai/",
+      "sourceType": "official-product",
+      "checkedAt": "2026-09-19",
+      "accessStatus": "confirmed",
+      "claimTypes": [
+        "availability",
+        "features",
+        "education-use"
+      ]
+    },
+    {
+      "id": "scite-pricing-20260919",
+      "toolSlug": "scite",
+      "issuer": "Scite",
+      "title": "Scite Pricing",
+      "url": "https://scite.ai/pricing",
+      "sourceType": "official-pricing",
+      "checkedAt": "2026-09-19",
+      "accessStatus": "confirmed",
+      "claimTypes": [
+        "pricing",
+        "features"
+      ]
     }
   ],
   "tools": [
@@ -1495,71 +1511,6 @@
           "availability",
           "features",
           "education-use",
-          "pricing"
-        ],
-        "unresolvedClaims": [],
-        "editorialRationale": "Practical uses are editorial suggestions based on documented capabilities, not hands-on ratings."
-      }
-    },
-    {
-      "slug": "grok",
-      "name": "Grok",
-      "tagline": "Explore public web and X material with an AI assistant.",
-      "description": "Grok offers conversation, web and X search, and voice interaction. Use it to locate public discussion and develop questions for further investigation.",
-      "category": "General LLMs",
-      "badge": null,
-      "values": [
-        "Explore public discussion",
-        "Find source leads",
-        "Develop questions"
-      ],
-      "tasks": [
-        "General LLM",
-        "Research",
-        "Content Creation"
-      ],
-      "roles": [
-        "faculty",
-        "administrator"
-      ],
-      "pricing": {
-        "model": "freemium",
-        "details": "Free access is limited; paid SuperGrok tiers increase access and feature limits.",
-        "startingPrice": null,
-        "checkedAt": "2026-09-18"
-      },
-      "keyFeatures": [
-        "Web search",
-        "X search",
-        "Voice interaction"
-      ],
-      "pros": [],
-      "cons": [],
-      "bestFor": [
-        "Explore public discussion",
-        "Find source leads",
-        "Develop questions"
-      ],
-      "strengths": [],
-      "limitations": [
-        "Social posts are leads to investigate, not evidence of prevalence or accuracy."
-      ],
-      "quickstart": "Try one small task using public or synthetic material. Compare the result with your original sources before using it.",
-      "integrations": [],
-      "platformUrl": "https://grok.com/",
-      "domain": "grok.com",
-      "staffPick": false,
-      "review": {
-        "status": "current",
-        "reviewedAt": "2026-09-18",
-        "contentUpdatedAt": "2026-09-18",
-        "evidenceIds": [
-          "grok-1-20260918",
-          "grok-2-20260918"
-        ],
-        "claimCoverage": [
-          "availability",
-          "features",
           "pricing"
         ],
         "unresolvedClaims": [],
@@ -2218,6 +2169,139 @@
         ],
         "unresolvedClaims": [],
         "editorialRationale": "Practical uses are editorial suggestions based on documented capabilities, not hands-on ratings."
+      }
+    },
+    {
+      "slug": "gemini-notebook",
+      "name": "Gemini Notebook",
+      "tagline": "Explore your sources with cited answers and study materials.",
+      "description": "Gemini Notebook, formerly NotebookLM, is Google's research assistant for working with supplied sources. Ask questions with inline citations, compare documents, and create Audio Overviews or study guides.",
+      "category": "Research",
+      "badge": null,
+      "values": [
+        "Explore supplied sources",
+        "Compare documents",
+        "Create study materials"
+      ],
+      "tasks": [
+        "Research"
+      ],
+      "roles": [
+        "faculty",
+        "student"
+      ],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": null,
+        "details": "Free Standard access is available. Google AI plans and qualifying Workspace arrangements offer higher limits or additional features; eligibility and limits vary by plan.",
+        "checkedAt": "2026-09-19"
+      },
+      "keyFeatures": [
+        "Source-grounded chat with inline citations",
+        "PDF, website, audio, Google Docs and Slides imports",
+        "Audio Overviews and mind maps"
+      ],
+      "pros": [],
+      "cons": [],
+      "bestFor": [
+        "Explore supplied sources",
+        "Compare documents",
+        "Create study materials"
+      ],
+      "strengths": [],
+      "limitations": [
+        "Google sign-in is required; managed accounts may need administrator enablement.",
+        "Availability and some features depend on region, age and plan.",
+        "Verify generated answers against the original sources."
+      ],
+      "quickstart": "Add a public document, ask one focused question, and open the cited passage to check the answer.",
+      "integrations": [],
+      "platformUrl": "https://notebook.google/",
+      "domain": "notebook.google",
+      "staffPick": false,
+      "review": {
+        "status": "current",
+        "reviewedAt": "2026-09-19",
+        "contentUpdatedAt": "2026-09-19",
+        "evidenceIds": [
+          "gemini-notebook-product-20260919",
+          "gemini-notebook-help-20260919",
+          "gemini-notebook-pricing-20260919"
+        ],
+        "claimCoverage": [
+          "availability",
+          "features",
+          "pricing",
+          "education-use"
+        ],
+        "unresolvedClaims": [],
+        "editorialRationale": "Practical uses are editorial suggestions based on documented capabilities, not hands-on ratings. No learning-outcome or institutional suitability claim is made."
+      }
+    },
+    {
+      "slug": "scite",
+      "name": "Scite",
+      "tagline": "Explore research literature and the context behind citations.",
+      "description": "Scite combines scholarly search, an AI research assistant and Smart Citations that show how later research discusses a work. Use the citation context to identify papers for closer reading.",
+      "category": "Research",
+      "badge": null,
+      "values": [
+        "Find research literature",
+        "Inspect citation context",
+        "Organize papers"
+      ],
+      "tasks": [
+        "Research"
+      ],
+      "roles": [
+        "faculty",
+        "student"
+      ],
+      "pricing": {
+        "model": "freemium",
+        "startingPrice": null,
+        "details": "Free Connect provides limited MCP connector credits but excludes the web Assistant and Search. Paid plans include the main web research features. A seven-day trial converts to the selected paid plan unless cancelled before it ends.",
+        "checkedAt": "2026-09-19"
+      },
+      "keyFeatures": [
+        "Scholarly search and AI Assistant",
+        "Smart Citation reports",
+        "Collections and citation alerts on paid plans"
+      ],
+      "pros": [],
+      "cons": [],
+      "bestFor": [
+        "Find research literature",
+        "Inspect citation context",
+        "Organize papers"
+      ],
+      "strengths": [],
+      "limitations": [
+        "Free Connect does not include web Assistant or Search.",
+        "Allowances vary by plan; trial access can convert to a paid subscription.",
+        "Citation context does not replace reading papers and evaluating their methods."
+      ],
+      "quickstart": "Review the access options, then search for a familiar paper and compare its citation context with the original publications.",
+      "integrations": [],
+      "platformUrl": "https://scite.ai/",
+      "domain": "scite.ai",
+      "staffPick": false,
+      "review": {
+        "status": "current",
+        "reviewedAt": "2026-09-19",
+        "contentUpdatedAt": "2026-09-19",
+        "evidenceIds": [
+          "scite-product-20260919",
+          "scite-pricing-20260919"
+        ],
+        "claimCoverage": [
+          "availability",
+          "features",
+          "pricing",
+          "education-use"
+        ],
+        "unresolvedClaims": [],
+        "editorialRationale": "Practical uses are editorial suggestions based on documented capabilities, not hands-on ratings. No learning-outcome or institutional suitability claim is made."
       }
     },
     {
@@ -2993,66 +3077,6 @@
         ],
         "unresolvedClaims": [
           "The official free-plan allowance is inconsistent; confirm your allowance before planning a project."
-        ],
-        "editorialRationale": "Practical uses are editorial suggestions based on documented capabilities, not hands-on ratings."
-      }
-    },
-    {
-      "slug": "sora",
-      "name": "Sora",
-      "tagline": "Consumer service discontinued.",
-      "description": "Sora's consumer web and app experiences have been discontinued, according to OpenAI.",
-      "category": "Image & Video",
-      "badge": null,
-      "values": [
-        "Read the retirement notice",
-        "Review existing dependencies",
-        "Plan an alternative workflow"
-      ],
-      "tasks": [
-        "Video & Media",
-        "Content Creation"
-      ],
-      "roles": [
-        "faculty"
-      ],
-      "pricing": {
-        "model": "unknown",
-        "startingPrice": null,
-        "details": "Consumer pricing is no longer applicable; no active consumer plan asserted.",
-        "checkedAt": "2026-09-18"
-      },
-      "keyFeatures": [],
-      "pros": [],
-      "cons": [],
-      "bestFor": [
-        "Read the retirement notice",
-        "Review existing dependencies",
-        "Plan an alternative workflow"
-      ],
-      "strengths": [],
-      "limitations": [
-        "Web and app ended April 26, 2026. API discontinuation is scheduled September 24, 2026, still future at this review."
-      ],
-      "quickstart": null,
-      "integrations": [],
-      "platformUrl": "https://openai.com/sora/",
-      "domain": "openai.com",
-      "staffPick": false,
-      "review": {
-        "status": "retire-candidate",
-        "reviewedAt": "2026-09-18",
-        "contentUpdatedAt": "2026-09-18",
-        "evidenceIds": [
-          "sora-1-20260918",
-          "sora-2-20260918"
-        ],
-        "claimCoverage": [
-          "availability",
-          "status"
-        ],
-        "unresolvedClaims": [
-          "Web and app ended April 26, 2026. API discontinuation is scheduled September 24, 2026, still future at this review."
         ],
         "editorialRationale": "Practical uses are editorial suggestions based on documented capabilities, not hands-on ratings."
       }
