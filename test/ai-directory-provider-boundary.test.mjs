@@ -510,6 +510,43 @@ test('anonymous exact checkout preserves orphan gitlinks, complete ancestry and 
   assert.notEqual(invoke().status, 0, 'checkout must refuse a nonempty workspace');
 });
 
+test('directory listing allows only its two exact editorial literals at its exact path', () => {
+  const state = fixture();
+  const provider = String.fromCharCode(97, 110, 116, 104, 114, 111, 112, 105, 99);
+  const model = String.fromCharCode(99, 108, 97, 117, 100, 101);
+  const literalLines = [`'${model}',`, `${model}: 'Compare drafts and organize documents.',`];
+  const scan = () => run(['scan', '--repo-root', state.repo, '--expected-head', state.head, ...dirtyArgs(state.repo)]);
+  const exactPath = resolve(state.repo, 'app/ai-directory/page.tsx');
+  mkdirSync(dirname(exactPath), { recursive: true });
+  for (const line of [...literalLines, literalLines.join('\n')]) {
+    writeFileSync(exactPath, `  ${line}\n`);
+    const outcome = scan();
+    assert.equal(outcome.status, 0, outcome.stderr);
+  }
+  const unsafeLines = [
+    `fetch('https://api.${provider}.com/v1/messages');`,
+    `import client from '@${provider}-ai/sdk';`,
+    `const client = require('@${provider}-ai/sdk');`,
+    `${model}: \`Compare drafts \${suffix}\`,`,
+    `${model}: 'Compare drafts and organize documents.' + suffix,`,
+    `${literalLines[0]} fetch('https://api.${provider}.com/v1/messages');`,
+    `${literalLines[1]} fetch('https://api.${provider}.com/v1/messages');`,
+    `${model}: 'Different unreviewed wording.',`,
+  ];
+  for (const relativePath of ['app/ai-directory/page.tsx', 'app/ai-directory/other.tsx', 'app/ai-directory/[slug]/page.tsx', 'app/other-directory/page.tsx']) {
+    const target = resolve(state.repo, relativePath);
+    mkdirSync(dirname(target), { recursive: true });
+    const rejected = relativePath === 'app/ai-directory/page.tsx' ? unsafeLines : [...literalLines, ...unsafeLines];
+    for (const line of rejected) {
+      writeFileSync(target, `${line}\n`);
+      const outcome = scan();
+      assert.notEqual(outcome.status, 0, `unexpected allowance at ${relativePath}: ${line}`);
+      assert.match(outcome.stderr, /unclassified provider references/i);
+    }
+    rmSync(target);
+  }
+});
+
 test('active-scope scanner preserves allowlisted editorial content and blocks an executable path', () => {
   const actualHead = git(repositoryRoot, ['rev-parse', 'HEAD']);
   const clean = run(['scan', '--repo-root', repositoryRoot, '--expected-head', actualHead, ...dirtyArgs(repositoryRoot)]);

@@ -15,12 +15,45 @@ import styles from './catalog.module.css';
 
 const pricingLabels: Record<string, string> = { free: 'Free', freemium: 'Freemium', paid: 'Paid', 'institutional-quote': 'Institutional quote', unknown: 'Pricing unknown' };
 const reviewLabels: Record<string, string> = { current: 'Source reviewed', limited: 'Limited review', 'retire-candidate': 'Retire candidate', blocked: 'Review pending' };
-const localLogos = new Set(['consensus', 'gamma', 'mentimeter', 'otter', 'chatgpt', 'elicit', 'teachfloor', 'eduaide', 'gradescope', 'notion-ai', 'runwayml', 'canva', 'quizlet', 'descript', 'curipod', 'disco', 'perplexity', 'claude', 'gemini', 'synthesia', 'brisk-teaching', 'copilot', 'turnitin', 'grammarly', 'pika', 'midjourney', 'slidesgo']);
+const localLogos = new Set([
+  'consensus',
+  'gamma',
+  'mentimeter',
+  'otter',
+  'chatgpt',
+  'elicit',
+  'teachfloor',
+  'eduaide',
+  'gradescope',
+  'notion-ai',
+  'runwayml',
+  'canva',
+  'quizlet',
+  'descript',
+  'curipod',
+  'disco',
+  'perplexity',
+  'claude',
+  'gemini',
+  'synthesia',
+  'brisk-teaching',
+  'copilot',
+  'turnitin',
+  'grammarly',
+  'pika',
+  'midjourney',
+  'slidesgo'
+]);
 const compactDescriptions: Record<string, string> = {
-  chatgpt: 'Draft materials and compare explanations.', claude: 'Compare drafts and organize documents.',
-  gemini: 'Explore a topic and draft explanations.', perplexity: 'Find starting sources and investigate a question.',
-  eduaide: 'Draft instructional materials for teacher preparation.', consensus: 'Find research papers and compare findings.',
-  elicit: 'Screen papers and organize evidence.', gradescope: 'Apply rubrics and coordinate grading.', gamma: 'Turn an outline into a presentation draft.',
+  chatgpt: 'Draft materials and compare explanations.',
+  claude: 'Compare drafts and organize documents.',
+  gemini: 'Explore a topic and draft explanations.',
+  perplexity: 'Find starting sources and investigate a question.',
+  eduaide: 'Draft instructional materials for teacher preparation.',
+  consensus: 'Find research papers and compare findings.',
+  elicit: 'Screen papers and organize evidence.',
+  gradescope: 'Apply rubrics and coordinate grading.',
+  gamma: 'Turn an outline into a presentation draft.',
 };
 function containDialogFocus(event: KeyboardEvent<HTMLDialogElement>) {
   if (event.key !== "Tab") return;
