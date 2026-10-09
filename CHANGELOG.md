@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-08] Wonka–Lantern artwork logo correction
+
+- Place the supplied transparent logo directly on the existing purple illustration, aligned with the title, without the dark backing box.
+- Version the shared Feature artwork for homepage, article, library and social previews while preserving the original image and all editorial and audio content.
+
 ## [2026-10-08] Weekly artwork logo correction
 
 - Integrate the supplied transparent logo into the October 2 artwork background and align it with the supporting slogan.
