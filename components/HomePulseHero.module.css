@@ -567,19 +567,20 @@
   }
 
   .platformGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 4px 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
   }
 
   .platformLink,
   .shareButton {
-    min-height: 70px;
+    min-width: 44px;
+    min-height: 56px;
     font-size: 0.62rem;
   }
 
   .platformIcon {
-    width: 34px;
-    height: 34px;
+    width: 24px;
+    height: 24px;
   }
 }
 

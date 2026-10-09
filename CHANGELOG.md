@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-08] Homepage mobile refinements
+
+- Remove the homepage past-editions strip while retaining archive navigation.
+- Reduce mobile listening icons and tighten story title/category spacing.
+- Wait for the incoming story image to decode before revealing the next carousel card.
+
 ## [2026-09-29] September 25 narration correction
 
 - Replace the September 25 episode audio with the approved first-person introduction and Feature proposal.
