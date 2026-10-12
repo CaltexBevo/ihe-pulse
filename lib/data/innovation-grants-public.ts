@@ -106,6 +106,8 @@ const LOCATION_ELIGIBILITY_BY_ID: Readonly<Record<number, InnovationGrantLocatio
   120: { scope: "regional", jurisdictions: ["MN", "ND", "SD"] },
   121: { scope: "institution-only" },
   122: { scope: "institution-only" },
+  123: { scope: "institution-only" },
+  124: { scope: "institution-only" },
 };
 
 export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {

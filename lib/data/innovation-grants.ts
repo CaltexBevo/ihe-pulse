@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -2707,6 +2707,61 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Broad discovery, Oct. 9, 2026",
       "sourceNotes": "Official page, seven-page guidelines and public intent entry checked Oct. 10. Guidelines: https://webprod.usi.edu/media/gu0llmca/innovation-fund-guidelines-2026-27.pdf . Mandatory intent date: https://webprod.usi.edu/sponsored-projects/grants-and-sponsored-projects/internal-awards-and-grants . Lifecycle uses the required intent cutoff so new applicants are not shown a later actionable window. No published program pool; per-award caps are excluded from the cash tally."
+  }),
+  grant({
+    id: 123,
+    portalAddedDate: "2026-10-12",
+    lastVerified: "Oct 12, 2026",
+    recommendationRank: 46,
+    title: "RIT Provost's Learning Innovation Grants: 2027–28",
+    source: "Rochester Institute of Technology Center for Teaching and Learning",
+    officialUrl: "https://www.rit.edu/teaching/provosts-learning-innovation-grants",
+    applicationUrl: "https://rit.az1.qualtrics.com/jfe/form/SV_0qBPyG9lIqdwI3I",
+    announcedDate: "Not stated; current 2027–28 call",
+    awardAmount: "Innovation up to $10,000; AI Course Revision up to $5,000; microgrants $1,500",
+    eligibility: "RIT full-time faculty throughout the award period, not on leave or recipients in the preceding year. Human-subject research requires IRB approval.",
+    whatItFunds: "Course improvements, AI-aware assignments and assessments, and evidence-informed teaching innovation.",
+    geography: "Rochester Institute of Technology only",
+    costShareRequirement: "Additional funding is preferred for Innovation Grants; mandatory match is not stated",
+    applicationAccess: "Public Qualtrics application; budget and supervisor-signed eligibility certification required",
+    deadline: "Oct. 12, 2026 at 11:59 p.m. Eastern Time",
+    deadlineTimeZone: "Eastern Time",
+    finalDeadlineDate: "2026-10-12",
+    audiences: ["four-year-colleges-universities", "faculty-teaching-centers"],
+    innovationAreas: ["teaching-learning", "ai-emerging-technology", "faculty-development"],
+    scopeDisposition: "included",
+    bestFit: "RIT faculty seeking support to revise courses, assignments or teaching approaches.",
+    eligibilityBadge: "RIT full-time faculty only",
+    inventoryOrigin: "weekly-new",
+    announcementWindow: "Broad discovery, Oct. 12, 2026",
+    sourceNotes: "Official call and rendered application intro checked Oct. 12. Faculty summer stipends are limited to $2,000 where applicable. Award caps are not a published program pool and are excluded from the cash tally.",
+  }),
+  grant({
+    id: 124,
+    portalAddedDate: "2026-10-12",
+    lastVerified: "Oct 12, 2026",
+    recommendationRank: 47,
+    title: "University of Kansas Teaching Innovation Grants: Fall 2026",
+    source: "University of Kansas Center for Teaching Excellence",
+    officialUrl: "https://cte.ku.edu/teaching-innovation-grants",
+    applicationUrl: "https://forms.cloud.microsoft/pages/responsepage.aspx?id=NmUXPOav9UO5Zjb-q748GjEuWGxfkURApYcGCtbr3xhUM0YwTTJaT0lFOVNLS0w1SUJBVVVVTU1YTC4u&route=shorturl",
+    announcedDate: "Not stated; Fall 2026 call",
+    awardAmount: "Up to $1,500 for a single course; up to $5,000 for multiple courses or a program",
+    eligibility: "Faculty with ongoing teaching roles at KU Lawrence or Edwards, including teaching professors, specialists and lecturers. Level 2 requires at least two faculty and an identified lead.",
+    whatItFunds: "Faculty-designed teaching changes and study of their effects on student learning.",
+    geography: "KU Lawrence and Edwards campuses only",
+    costShareRequirement: notStated,
+    applicationAccess: "Official Microsoft Forms link reaches an account-selection gate; authenticated form contents were not inspected",
+    deadline: "Rolling after the Sept. 14, 2026 priority deadline, contingent on available funds; no final cutoff stated",
+    deadlineTimeZone: "Not applicable to the rolling window",
+    audiences: ["four-year-colleges-universities", "faculty-teaching-centers"],
+    innovationAreas: ["teaching-learning", "research-evidence-building", "faculty-development"],
+    scopeDisposition: "included",
+    bestFit: "KU instructors seeking support to test a course change or coordinate improvements across courses.",
+    eligibilityBadge: "KU Lawrence and Edwards faculty only",
+    inventoryOrigin: "weekly-new",
+    announcementWindow: "Broad discovery, Oct. 12, 2026",
+    sourceNotes: "Official call and linked sign-in entry checked Oct. 12. Most funds must be used by June 1, 2027. Per-award caps are excluded from the cash tally because no program pool is published.",
   }),
 ];
 
