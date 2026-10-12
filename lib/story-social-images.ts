@@ -1,5 +1,10 @@
 // Social card crops are independent of the artwork displayed on the story page.
 export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number }>> = {
+  "georgia-tech-shows-two-ways-to-make-ai-practice-count": {
+    imagePath: "/images/stories/social/georgia-tech-ai-practice-card-v2.png",
+    imageWidth: 2048,
+    imageHeight: 1024,
+  },
   "nasa-and-ibm-turn-moon-data-into-open-ai-research-infrastruc": {
     imagePath: "/images/stories/social/nasa-ibm-moon-data-card.png",
     imageWidth: 1733,
