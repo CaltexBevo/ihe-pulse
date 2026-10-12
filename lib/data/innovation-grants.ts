@@ -2727,6 +2727,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     deadline: "Oct. 12, 2026 at 11:59 p.m. Eastern Time",
     deadlineTimeZone: "Eastern Time",
     finalDeadlineDate: "2026-10-12",
+    finalDeadlineAt: "2026-10-13T03:59:00Z",
     audiences: ["four-year-colleges-universities", "faculty-teaching-centers"],
     innovationAreas: ["teaching-learning", "ai-emerging-technology", "faculty-development"],
     scopeDisposition: "included",

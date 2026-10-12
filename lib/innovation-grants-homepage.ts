@@ -1,6 +1,7 @@
 import {
   getInnovationGrantFundingSnapshot,
   getInnovationGrantLifecycle,
+  getInnovationGrantNextDeadlineAt,
   getInnovationGrantPacificAsOfDate,
   getInnovationGrantPacificCalendarDate,
   type InnovationGrantOpportunity,
@@ -27,6 +28,7 @@ export function getHomepageGrantSummary(opportunities: InnovationGrantOpportunit
   }
   return {
     asOfDate,
+    refreshAt: getInnovationGrantNextDeadlineAt(opportunities, now),
     totalCount: opportunities.length,
     funding: getInnovationGrantFundingSnapshot(opportunities, asOf),
     latestDate,

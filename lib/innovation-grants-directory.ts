@@ -1,3 +1,4 @@
+import type { InnovationGrantAsOf } from "./innovation-grants-shared";
 import {
   getInnovationGrantDaysUntilDeadline,
   getInnovationGrantLifecycle,
@@ -302,7 +303,7 @@ function matchesKeyword(
 function matchesStatus(
   opportunity: InnovationGrantOpportunity,
   status: InnovationGrantStatusFilter,
-  asOf: Date,
+  asOf: InnovationGrantAsOf,
 ): boolean {
   if (status === "all") return true;
 
@@ -321,7 +322,7 @@ function matchesStatus(
 function matchesDeadline(
   opportunity: InnovationGrantOpportunity,
   deadline: InnovationGrantDeadlineFilter,
-  asOf: Date,
+  asOf: InnovationGrantAsOf,
 ): boolean {
   if (deadline === "any") return true;
   if (deadline === "rolling") return isInnovationGrantRolling(opportunity);
@@ -340,7 +341,7 @@ function matchesDeadline(
 function matchesFreshness(
   opportunity: InnovationGrantOpportunity,
   freshness: InnovationGrantFreshnessFilter,
-  asOf: Date,
+  asOf: InnovationGrantAsOf,
 ): boolean {
   if (freshness === "all") return true;
   if (freshness === "new-this-week") {
@@ -375,7 +376,8 @@ function parseDateOnly(value: string | undefined): number | undefined {
   return timestamp;
 }
 
-function dateOnlyUtc(date: Date): number {
+function dateOnlyUtc(asOf: InnovationGrantAsOf): number {
+  const date = asOf instanceof Date ? asOf : asOf.calendarDate;
   return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
 }
 
@@ -386,7 +388,7 @@ function dateOnlyUtc(date: Date): number {
 export function filterInnovationGrantOpportunities(
   opportunities: readonly InnovationGrantOpportunity[],
   filters: InnovationGrantDirectoryFilters,
-  asOf: Date,
+  asOf: InnovationGrantAsOf,
 ): InnovationGrantOpportunity[] {
   return opportunities.filter((opportunity) => {
     if (opportunity.scopeDisposition !== "included") return false;

@@ -1,5 +1,7 @@
 "use client";
 
+import type { InnovationGrantAsOf } from "@/lib/innovation-grants-shared";
+
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import GrantUpdatedDate from "@/components/GrantUpdatedDate";
 import { useSearchParams } from "next/navigation";
@@ -7,6 +9,7 @@ import {
   getInnovationGrantDaysUntilDeadline,
   getInnovationGrantInventoryLabel,
   getInnovationGrantLifecycle,
+  getInnovationGrantPacificAsOfDate,
   INNOVATION_GRANTS_AREA_FILTERS,
   INNOVATION_GRANTS_AUDIENCE_FILTERS,
   INNOVATION_GRANTS_FULL_SEARCH_DATE,
@@ -196,7 +199,7 @@ function parseQuery(params: { get(name: string): string | null; has(name: string
   return state;
 }
 
-function lifecycleMatches(opportunity: InnovationGrantOpportunity, states: DirectoryLifecycleFilter[], asOf: Date): boolean {
+function lifecycleMatches(opportunity: InnovationGrantOpportunity, states: DirectoryLifecycleFilter[], asOf: InnovationGrantAsOf): boolean {
   const lifecycle = getInnovationGrantLifecycle(opportunity, asOf);
   if (states.includes(lifecycle)) return true;
   return states.includes("active") && (lifecycle === "open-now" || lifecycle === "closing-soon");
@@ -229,7 +232,7 @@ function safeUrl(value: string | undefined): string | null {
   }
 }
 
-function deadlineLabel(opportunity: InnovationGrantOpportunity, asOf: Date): string {
+function deadlineLabel(opportunity: InnovationGrantOpportunity, asOf: InnovationGrantAsOf): string {
   const lifecycle = getInnovationGrantLifecycle(opportunity, asOf);
   if (lifecycle === "closed") return "Closed / Past";
   if (lifecycle === "recurring-watchlist") return "Planning only";
@@ -253,7 +256,7 @@ function OpportunityCard({
   selectedLocation,
 }: {
   opportunity: InnovationGrantOpportunity;
-  asOf: Date;
+  asOf: InnovationGrantAsOf;
   openById: boolean;
   selectedLocation: "all" | InnovationGrantJurisdictionCode;
 }) {
@@ -307,10 +310,10 @@ function OpportunityCard({
   );
 }
 
-export default function InnovationGrantsDirectory({ opportunities, asOfDate }: { opportunities: InnovationGrantOpportunity[]; asOfDate: string }) {
+export default function InnovationGrantsDirectory({ opportunities, asOfDate, asOfInstant }: { opportunities: InnovationGrantOpportunity[]; asOfDate: string; asOfInstant: string }) {
   const searchParams = useSearchParams();
   const [state, setState] = useState<DirectoryState>(() => parseQuery(searchParams));
-  const asOf = useMemo(() => new Date(`${asOfDate}T00:00:00.000Z`), [asOfDate]);
+  const asOf = useMemo(() => getInnovationGrantPacificAsOfDate(new Date(asOfInstant)), [asOfInstant]);
   const selectedLocationLabel = state.location === "all"
     ? null
     : getInnovationGrantJurisdictionLabel(state.location);

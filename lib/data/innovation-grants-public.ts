@@ -1,3 +1,4 @@
+import type { InnovationGrantAsOf } from "../innovation-grants-shared";
 import "server-only";
 
 import {
@@ -125,10 +126,10 @@ export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {
     });
 }
 
-export function getPublicInnovationGrantAsOfDate(): Date {
+export function getPublicInnovationGrantAsOfDate(): InnovationGrantAsOf {
   return getInnovationGrantPacificAsOfDate(new Date());
 }
 
-export function getPublicInnovationGrantFundingSnapshot(asOf: Date = getPublicInnovationGrantAsOfDate()) {
+export function getPublicInnovationGrantFundingSnapshot(asOf: InnovationGrantAsOf = getPublicInnovationGrantAsOfDate()) {
   return getInnovationGrantFundingSnapshot(getPublicInnovationGrants(), asOf);
 }
