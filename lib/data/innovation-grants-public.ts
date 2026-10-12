@@ -1,3 +1,4 @@
+import type { InnovationGrantAsOf } from "../innovation-grants-shared";
 import "server-only";
 
 import {
@@ -106,6 +107,8 @@ const LOCATION_ELIGIBILITY_BY_ID: Readonly<Record<number, InnovationGrantLocatio
   120: { scope: "regional", jurisdictions: ["MN", "ND", "SD"] },
   121: { scope: "institution-only" },
   122: { scope: "institution-only" },
+  123: { scope: "institution-only" },
+  124: { scope: "institution-only" },
 };
 
 export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {
@@ -123,10 +126,10 @@ export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {
     });
 }
 
-export function getPublicInnovationGrantAsOfDate(): Date {
+export function getPublicInnovationGrantAsOfDate(): InnovationGrantAsOf {
   return getInnovationGrantPacificAsOfDate(new Date());
 }
 
-export function getPublicInnovationGrantFundingSnapshot(asOf: Date = getPublicInnovationGrantAsOfDate()) {
+export function getPublicInnovationGrantFundingSnapshot(asOf: InnovationGrantAsOf = getPublicInnovationGrantAsOfDate()) {
   return getInnovationGrantFundingSnapshot(getPublicInnovationGrants(), asOf);
 }

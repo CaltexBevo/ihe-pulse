@@ -21,7 +21,7 @@ export default function HomeGrantSpotlight() {
 
   return (
     <section className={styles.wrapper} aria-labelledby="grant-spotlight-title">
-      <PortalDayRefresh asOfDate={summary.asOfDate} />
+      <PortalDayRefresh asOfDate={summary.asOfDate} refreshAt={summary.refreshAt} />
       <div className={styles.card}>
         <div className={styles.funding}>
           <p className={styles.kicker}>GRANT PORTAL</p>

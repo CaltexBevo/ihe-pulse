@@ -109,6 +109,8 @@ export interface InnovationGrantOpportunity {
   deadlineTimeZone: string;
   lastVerified: string;
   finalDeadlineDate?: string;
+  /** Verified absolute cutoff; never inferred from date-only or unspecified-zone sources. */
+  finalDeadlineAt?: string;
   priorityDeadlineDate?: string;
   openDate?: string;
   qualifiers: string[];
@@ -126,15 +128,15 @@ export interface InnovationGrantOpportunity {
 }
 
 /** Advance only with a released grant-content update, never from the runtime clock. */
-export const INNOVATION_GRANTS_UPDATED_DATE = "2026-10-10";
+export const INNOVATION_GRANTS_UPDATED_DATE = "2026-10-12";
 export const INNOVATION_GRANTS_UPDATED_ON = new Intl.DateTimeFormat("en-US", {
   month: "short", day: "numeric", year: "numeric", timeZone: "UTC",
 }).format(new Date(`${INNOVATION_GRANTS_UPDATED_DATE}T12:00:00Z`));
 
-export const INNOVATION_GRANTS_VERIFIED_ON = "Oct 10, 2026";
-export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-10-10";
-export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Oct 9, 2026";
-export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-10-09";
+export const INNOVATION_GRANTS_VERIFIED_ON = "Oct 12, 2026";
+export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-10-12";
+export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Oct 12, 2026";
+export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-10-12";
 export const INNOVATION_GRANTS_TIME_ZONE = "America/Los_Angeles";
 export const INNOVATION_GRANTS_SCOPE =
   "Actionable higher-ed innovation funding across AI & Emerging Technology, Teaching & Learning, Student Success, Workforce/Pathways, Community College Innovation, Digital Transformation/Infrastructure, Research/Evidence-Building, and Faculty Development";
@@ -174,7 +176,10 @@ export const INNOVATION_GRANTS_AREA_FILTERS: Array<{
   { id: "faculty-development", label: "Faculty Development" },
 ];
 
-function utcDay(date: Date): number {
+export type InnovationGrantAsOf = Date | { calendarDate: Date; instant: Date };
+
+function utcDay(asOf: InnovationGrantAsOf): number {
+  const date = asOf instanceof Date ? asOf : asOf.calendarDate;
   return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
 }
 
@@ -210,15 +215,22 @@ export function getInnovationGrantPacificCalendarDate(date: Date = new Date()): 
   return `${values.year}-${values.month}-${values.day}`;
 }
 
-/** Normalize the Pacific calendar date to UTC midnight for date-only comparisons. */
-export function getInnovationGrantPacificAsOfDate(date: Date = new Date()): Date {
+/** Preserve both Pacific calendar-day semantics and the actual instant for exact cutoffs. */
+export function getInnovationGrantPacificAsOfDate(date: Date = new Date()): InnovationGrantAsOf {
   const [year, month, day] = getInnovationGrantPacificCalendarDate(date).split("-").map(Number);
-  return new Date(Date.UTC(year, month - 1, day));
+  return { calendarDate: new Date(Date.UTC(year, month - 1, day)), instant: date };
+}
+
+/** Next verified instant boundary that an already-open page must refresh across. */
+export function getInnovationGrantNextDeadlineAt(opportunities: InnovationGrantOpportunity[], now: Date): string | undefined {
+  return opportunities.flatMap(({ finalDeadlineAt }) =>
+    finalDeadlineAt && Date.parse(finalDeadlineAt) > now.getTime() ? [finalDeadlineAt] : [],
+  ).sort((a, b) => Date.parse(a) - Date.parse(b))[0];
 }
 
 export function getInnovationGrantDaysUntilDeadline(
   opportunity: InnovationGrantOpportunity,
-  asOf: Date = new Date(),
+  asOf: InnovationGrantAsOf = new Date(),
 ): number | undefined {
   const today = utcDay(asOf);
   const priorityDeadline = isoDay(opportunity.priorityDeadlineDate);
@@ -247,7 +259,7 @@ export function getInnovationGrantInventoryLabel(
  */
 export function isInnovationGrantNewThisWeek(
   opportunity: InnovationGrantOpportunity,
-  asOf: Date = new Date(),
+  asOf: InnovationGrantAsOf = new Date(),
 ): boolean {
   if (opportunity.scopeDisposition !== "included") return false;
 
@@ -275,7 +287,7 @@ export function matchesInnovationGrantArea(
 export function sortInnovationGrantOpportunities(
   opportunities: InnovationGrantOpportunity[],
   sort: InnovationGrantSort,
-  asOf: Date = new Date(),
+  asOf: InnovationGrantAsOf = new Date(),
 ): InnovationGrantOpportunity[] {
   const sorted = [...opportunities];
   const byRecommendation = (left: InnovationGrantOpportunity, right: InnovationGrantOpportunity) =>
@@ -318,7 +330,7 @@ export function sortInnovationGrantOpportunities(
  */
 export function getInnovationGrantLifecycle(
   opportunity: InnovationGrantOpportunity,
-  asOf: Date = new Date(),
+  asOf: InnovationGrantAsOf = new Date(),
 ): InnovationGrantLifecycle {
   if (opportunity.applicationStatus === "recurring-watchlist") {
     return "recurring-watchlist";
@@ -329,6 +341,8 @@ export function getInnovationGrantLifecycle(
   const priorityDeadline = isoDay(opportunity.priorityDeadlineDate);
   const openingDate = isoDay(opportunity.openDate);
 
+  const instant = asOf instanceof Date ? asOf : asOf.instant;
+  if (opportunity.finalDeadlineAt && instant.getTime() >= Date.parse(opportunity.finalDeadlineAt)) return "closed";
   if (finalDeadline !== undefined && finalDeadline < today) return "closed";
   if (
     (openingDate !== undefined && openingDate > today) ||
@@ -371,7 +385,7 @@ export interface InnovationGrantFundingSnapshot {
  */
 export function getInnovationGrantFundingSnapshot(
   opportunities: InnovationGrantOpportunity[],
-  asOf: Date = new Date(),
+  asOf: InnovationGrantAsOf = new Date(),
 ): InnovationGrantFundingSnapshot {
   const snapshot: InnovationGrantFundingSnapshot = {
     publishedProgramPoolUsd: 0,

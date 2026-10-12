@@ -4,7 +4,7 @@ import { getPublicInnovationGrants } from "@/lib/data/innovation-grants-public";
 import { pageMetadata } from "@/lib/og";
 import InnovationGrantsDirectory from "./InnovationGrantsDirectory";
 import styles from "../portal.module.css";
-import { getInnovationGrantPacificCalendarDate } from "@/lib/innovation-grants-shared";
+import { getInnovationGrantPacificCalendarDate, getInnovationGrantNextDeadlineAt } from "@/lib/innovation-grants-shared";
 
 export const metadata = pageMetadata({
   title: "Find grant opportunities | Innovating Higher Ed",
@@ -22,7 +22,8 @@ export const dynamic = "force-dynamic";
 
 export default function InnovationGrantsDirectoryPage() {
   const opportunities = getPublicInnovationGrants();
-  const asOfDate = getInnovationGrantPacificCalendarDate(new Date());
+  const now = new Date();
+  const asOfDate = getInnovationGrantPacificCalendarDate(now);
 
   return (
     <div className={`${styles.portal} ${styles.results}`}>
@@ -33,9 +34,9 @@ export default function InnovationGrantsDirectoryPage() {
         <div className="shard s4" />
         <div className="sweep" />
       </div>
-      <PortalDayRefresh asOfDate={asOfDate} />
+      <PortalDayRefresh asOfDate={asOfDate} refreshAt={getInnovationGrantNextDeadlineAt(opportunities, now)} />
       <Suspense fallback={<DirectoryFallback />}>
-        <InnovationGrantsDirectory opportunities={opportunities} asOfDate={asOfDate} />
+        <InnovationGrantsDirectory opportunities={opportunities} asOfDate={asOfDate} asOfInstant={now.toISOString()} />
       </Suspense>
     </div>
   );

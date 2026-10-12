@@ -1,3 +1,4 @@
+import type { InnovationGrantAsOf } from "@/lib/innovation-grants-shared";
 import Link from "next/link";
 import EmailSignup from "@/components/EmailSignup";
 import GrantUpdatedDate from "@/components/GrantUpdatedDate";
@@ -77,7 +78,7 @@ function dateLabel(value: string): string {
   }).format(date);
 }
 
-function deadlineCountdown(opportunity: InnovationGrantOpportunity, asOf: Date): string {
+function deadlineCountdown(opportunity: InnovationGrantOpportunity, asOf: InnovationGrantAsOf): string {
   const lifecycle = getInnovationGrantLifecycle(opportunity, asOf);
   if (lifecycle === "opening-soon") return "Opening soon";
   if (lifecycle === "recurring-watchlist") return "Planning only";
@@ -108,7 +109,7 @@ function OpportunityLine({
   urgent,
 }: {
   opportunity: InnovationGrantOpportunity;
-  asOf: Date;
+  asOf: InnovationGrantAsOf;
   urgent?: boolean;
 }) {
   const firstArea = opportunity.innovationAreas[0];
@@ -169,7 +170,7 @@ export default function InnovationGrantsPage() {
   return (
     <>
     <div className={`${styles.portal} ${styles.home}`}>
-        <PortalDayRefresh asOfDate={asOfDate} />
+        <PortalDayRefresh asOfDate={asOfDate} refreshAt={summary.refreshAt} />
         <div className="field" aria-hidden="true">
           <div className="shard s1" />
           <div className="shard s2" />

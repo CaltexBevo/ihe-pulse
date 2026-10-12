@@ -5,10 +5,33 @@ import { useRouter } from "next/navigation";
 import { getInnovationGrantPacificCalendarDate } from "@/lib/innovation-grants-shared";
 
 /** Refresh date-only lifecycle labels when an overnight tab becomes active. */
-export default function PortalDayRefresh({ asOfDate }: { asOfDate: string }) {
+export default function PortalDayRefresh({ asOfDate, refreshAt }: { asOfDate: string; refreshAt?: string }) {
   const router = useRouter();
   const renderedDate = useRef(asOfDate);
   const requestedDate = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!refreshAt) return;
+    const cutoff = Date.parse(refreshAt);
+    if (!Number.isFinite(cutoff)) return;
+    let lastRequested = 0;
+    const refreshAfterCutoff = () => {
+      if (document.visibilityState !== "hidden" && Date.now() >= cutoff && Date.now() - lastRequested >= 5000) {
+        lastRequested = Date.now();
+        router.refresh();
+      }
+    };
+    // Retry a stale response at most every five seconds until the server removes this cutoff.
+    const timer = window.setInterval(refreshAfterCutoff, 1000);
+    refreshAfterCutoff();
+    window.addEventListener("focus", refreshAfterCutoff);
+    document.addEventListener("visibilitychange", refreshAfterCutoff);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("focus", refreshAfterCutoff);
+      document.removeEventListener("visibilitychange", refreshAfterCutoff);
+    };
+  }, [router, refreshAt]);
 
   useEffect(() => {
     renderedDate.current = asOfDate;
