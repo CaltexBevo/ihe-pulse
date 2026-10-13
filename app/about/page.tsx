@@ -44,13 +44,11 @@ export default function AboutPage() {
             <div className="w-16 h-1 bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] mx-auto mb-8 rounded-full" />
 
             <h1 className="text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.1] mb-6">
-              <span className="gradient-text">Built by Educators.</span>
-              <br />
-              <span className="text-[var(--text)]">Powered by AI. Made for You.</span>
+              <span className="gradient-text">Human Imagination. Shared Progress</span>
             </h1>
 
             <p className="text-[1.1rem] text-[var(--text-secondary)] leading-relaxed max-w-2xl mx-auto">
-              Two people. One mission. An A.I. briefing trusted by higher ed professionals across the country.
+              Technology to Enrich Learning and Advance Discovery
             </p>
           </div>
         </div>
