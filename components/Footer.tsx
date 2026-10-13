@@ -14,7 +14,6 @@ const platformLinks = [
 const communityLinks = [
   { href: '/podcast', label: 'Podcast' },
   { href: '/tinker-lab', label: 'Tinker Lab' },
-  { href: '/be-our-guest', label: 'Be Our Guest' },
   { href: '/about', label: 'About' },
 ];
 

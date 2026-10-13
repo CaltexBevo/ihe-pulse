@@ -1,9 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AboutPage() {
+  const [copyStatus, setCopyStatus] = useState("");
+  const [copyPending, setCopyPending] = useState(false);
+
+  const copyEmail = async () => {
+    setCopyPending(true);
+    setCopyStatus("");
+    try {
+      await navigator.clipboard.writeText("info@innovatinghighered.com");
+      setCopyStatus("Email address copied.");
+    } catch {
+      setCopyStatus("Copy unavailable. Select and copy the email address above.");
+    } finally {
+      setCopyPending(false);
+    }
+  };
+
   const revealRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -182,7 +198,6 @@ export default function AboutPage() {
             </h2>
             <p className="text-[0.95rem] text-[var(--text-secondary)] max-w-xl mx-auto mb-8 leading-relaxed">
               Have questions, feedback, or partnership inquiries? We&apos;d love to hear from you.
-              Or pitch yourself as a guest on the podcast. We&apos;re always looking for fresh perspectives.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
@@ -194,12 +209,21 @@ export default function AboutPage() {
                 </svg>
                 Contact Us
               </a>
-              <Link
-                href="/be-our-guest"
-                className="btn-secondary"
+            </div>
+            <div className="mt-5 text-sm text-[var(--text-secondary)]">
+              <p className="select-all break-all">info@innovatinghighered.com</p>
+              <button
+                type="button"
+                onClick={copyEmail}
+                disabled={copyPending}
+                aria-label="Copy email address"
+                className="mt-1 min-h-11 px-3 text-[var(--cyan)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cyan)] disabled:opacity-60"
               >
-                Be Our Guest
-              </Link>
+                {copyPending ? "Copying…" : "Copy email address"}
+              </button>
+              <p role="status" aria-live="polite" className="min-h-5 text-[var(--cyan)]">
+                {copyStatus}
+              </p>
             </div>
           </div>
         </div>
