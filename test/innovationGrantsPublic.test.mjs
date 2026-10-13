@@ -19,6 +19,24 @@ const { innovationGrants, INNOVATION_GRANTS_VERIFIED_ON, INNOVATION_GRANTS_FULL_
 
 const AS_OF = new Date("2026-09-15T00:00:00.000Z");
 
+test("October 13 daily check archives passed RIT and Tri-C deadlines without changing discovery or record dates", () => {
+  const records = getPublicInnovationGrants();
+  const asOf = new Date("2026-10-13T12:00:00Z");
+  assert.equal(records.length, 70);
+  for (const id of [105, 123]) {
+    assert.equal(getInnovationGrantLifecycle(records.find((record) => record.id === id), asOf), "closed");
+  }
+  assert.equal(records.filter((record) => getInnovationGrantLifecycle(record, asOf) === "closed").length, 24);
+  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Oct 13, 2026");
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 12, 2026");
+  assert.ok(records.every((record) => record.lastVerified !== "Oct 13, 2026"));
+  assert.deepEqual(getPublicInnovationGrantFundingSnapshot(asOf), {
+    publishedProgramPoolUsd: 115799990, publishedProgramPoolCount: 9, approximatePoolCount: 4,
+    openOpportunityCount: 43, openNowCount: 30, closingSoonCount: 13, openingSoonCount: 0,
+    currentCallsWithoutPublishedPool: 34,
+  });
+});
+
 test("October 12 discovery adds restricted campus calls without refreshing partially checked records or inflating cash", () => {
   const records = getPublicInnovationGrants();
   const additions = records.filter((record) => record.portalAddedDate === "2026-10-12");
@@ -174,7 +192,7 @@ test("October 10 verification advances only fully checked records and retains un
   for (const id of [105, 106]) {
     assert.doesNotMatch(innovationGrants.find((record) => record.id === id).sourceNotes, /Loading|prior full-verification date/);
   }
-  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Oct 12, 2026");
+  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Oct 13, 2026");
   assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 12, 2026");
   const verifiedIds = [44, 61, 69, 71, 72, 76, 77, 78, 80, 83, 84, 87, 91];
   assert.deepEqual(innovationGrants.filter((record) => record.id < 92 && record.lastVerified === "Oct 10, 2026").map((record) => record.id), verifiedIds);
@@ -303,7 +321,7 @@ test("focused corporate additions preserve whole-inventory freshness and inclusi
   assert.deepEqual(additions.map((record) => record.id), [92, 93, 94, 95, 96, 97, 98, 99, 100]);
   assert.ok(additions.every((record) => record.portalAddedDate === "2026-09-15"));
   assert.ok(additions.every((record) => record.lastVerified === (record.id === 96 ? "Sep 17, 2026" : record.id === 92 ? "Sep 22, 2026" : record.id === 99 ? "Sep 28, 2026" : record.id === 95 ? "Oct 8, 2026" : "Oct 10, 2026")));
-  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Oct 12, 2026");
+  assert.equal(INNOVATION_GRANTS_VERIFIED_ON, "Oct 13, 2026");
   assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 12, 2026");
   const californiaIds = filterInnovationGrantOpportunities(records, {
     ...DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS, location: "CA", status: "all",
