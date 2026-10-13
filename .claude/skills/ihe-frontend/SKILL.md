@@ -136,7 +136,7 @@ Do NOT reorder, remove, or add tools without founder approval.
 
 Sections that MUST exist (in order):
 
-1. **Hero**: "Built by Educators. Powered by AI. Made for You."
+1. **Hero**: "Human Imagination. Shared Progress" in the existing brand gradient, followed by "Technology to Enrich Learning and Advance Discovery" (founder-selected October 10, 2026; neither visible line has a final period).
 2. **Founder Bios** (Dr. Jones first, Brent second) — with monogram badges, taglines, credential badges
 3. **Let's Connect CTA** — Contact Us + Be Our Guest buttons
 
