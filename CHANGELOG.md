@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-13] About contact action
+
+- Temporarily remove the About guest invitation and Be Our Guest button plus the footer guest link, preserving the guest page.
+- Keep Contact Us directed to info@innovatinghighered.com and show the selectable address with a copy utility and truthful clipboard feedback.
+
 ## [2026-10-10] About hero copy
 
 - Use the founder-selected Human Imagination. Shared Progress heading in the existing brand gradient and Technology to Enrich Learning and Advance Discovery subtitle.

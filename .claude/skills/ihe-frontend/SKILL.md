@@ -82,7 +82,7 @@ The nav must contain these items in this exact order. Do NOT add, remove, or reo
 ### Content sections (3-column grid — TEMP STATE as of June 2026):
 1. **Brand Column**: Logo text, tagline, social links (X, LinkedIn, YouTube)
 2. **Platform Column**: Innovation Pulse, Prompt Navigator, AI Directory
-3. **Community Column**: Podcast, Tinker Lab, Be Our Guest, About
+3. **Community Column**: Podcast, Tinker Lab, About. Founder-directed temporary exception, October 13, 2026: omit the Be Our Guest link while retaining its page.
 
 **Newsletter Column** ("Never Miss a Pulse" with email input) is active and wired to Mailchimp via `/api/newsletter`. Footer uses 4-column grid with newsletter as the 4th column.
 
@@ -138,7 +138,7 @@ Sections that MUST exist (in order):
 
 1. **Hero**: "Human Imagination. Shared Progress" in the existing brand gradient, followed by "Technology to Enrich Learning and Advance Discovery" (founder-selected October 10, 2026; neither visible line has a final period).
 2. **Founder Bios** (Dr. Jones first, Brent second) — with monogram badges, taglines, credential badges
-3. **Let's Connect CTA** — Contact Us + Be Our Guest buttons
+3. **Let's Connect CTA** — Contact Us at `mailto:info@innovatinghighered.com`, with a visible selectable email address and accessible copy utility. Founder-directed temporary exception, October 13, 2026: omit the Be Our Guest button and podcast invitation; retain `/be-our-guest` unchanged for later work.
 
 ### Sections that were REMOVED and must NOT be re-added:
 - "What We Offer" cards (redundant with nav)
