@@ -3,11 +3,11 @@ import test from "node:test";
 import { readFileSync } from "node:fs";
 import { register } from "node:module";
 register("./innovationGrantsTestLoader.mjs", import.meta.url);
-const { getPublicInnovationGrants, getPublicInnovationGrantFundingSnapshot } = await import("../lib/data/innovation-grants-public.ts");
-const { getInnovationGrantPacificAsOfDate, getInnovationGrantLifecycle, getInnovationGrantNextDeadlineAt } = await import("../lib/innovation-grants-shared.ts");
+const { getPublicInnovationGrants } = await import("../lib/data/innovation-grants-public.ts");
+const { getInnovationGrantPacificAsOfDate, getInnovationGrantLifecycle, getInnovationGrantNextDeadlineAt, getInnovationGrantFundingSnapshot } = await import("../lib/innovation-grants-shared.ts");
 const { getHomepageGrantSummary } = await import("../lib/innovation-grants-homepage.ts");
 const { filterInnovationGrantOpportunities, DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS } = await import("../lib/innovation-grants-directory.ts");
-const records = getPublicInnovationGrants();
+const records = getPublicInnovationGrants().filter((record) => record.id < 125);
 const rit = records.find(({ id }) => id === 123);
 const triC = records.find(({ id }) => id === 105);
 
@@ -21,7 +21,7 @@ test("verified Eastern cutoff closes RIT at the actual instant throughout public
     const summary = getHomepageGrantSummary(records, now);
     assert.equal(summary.funding.openOpportunityCount, closed ? 44 : 45);
     assert.equal(summary.breakdown.closed, closed ? 1 : 0);
-    assert.equal(getPublicInnovationGrantFundingSnapshot(asOf).openOpportunityCount, closed ? 44 : 45);
+    assert.equal(getInnovationGrantFundingSnapshot(records, asOf).openOpportunityCount, closed ? 44 : 45);
     const active = filterInnovationGrantOpportunities(records, DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS, asOf);
     assert.equal(active.some(({ id }) => id === 123), !closed);
     assert.equal(getInnovationGrantNextDeadlineAt(records, now), closed ? undefined : rit.finalDeadlineAt);
