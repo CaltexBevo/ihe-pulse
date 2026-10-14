@@ -2802,6 +2802,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     officialUrl: "https://www.nsf.gov/funding/opportunities/idss-integrated-data-systems-services/nsf26-509/solicitation",
     applicationUrl: "https://www.research.gov/",
     announcedDate: "April 15, 2026",
+    announcedDateIso: "2026-04-15",
     awardAmount: "Category I: $10–$30 million for up to five years; Category II: up to $9 million for up to three years; Category III: up to $500,000 for up to two years",
     eligibility: "Two- and four-year institutions, including community colleges, accredited in and having a campus in the United States, acting for faculty; eligible U.S. nonprofit research and education organizations. Federal agencies and FFRDCs are subject to NSF PAPPG eligibility rules. One lead-organization proposal in each of Categories I and II; each PI, co-PI or senior person may participate in one proposal across those two categories. Category III has no proposal limit.",
     whatItFunds: "National, multidisciplinary operational data infrastructure supporting research, education and the data workforce. Category III funds planning, not technical development or operations. Not campus-only prototypes, single-discipline systems or individual research projects.",

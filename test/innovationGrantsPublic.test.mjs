@@ -10,7 +10,7 @@ const {
   getPublicInnovationGrants,
   INNOVATION_GRANTS_LAUNCH_HELD_IDS,
 } = await import("../lib/data/innovation-grants-public.ts");
-const { getInnovationGrantLifecycle, getInnovationGrantFundingSnapshot } = await import("../lib/innovation-grants-shared.ts");
+const { getInnovationGrantLifecycle, getInnovationGrantFundingSnapshot, sortInnovationGrantOpportunities } = await import("../lib/innovation-grants-shared.ts");
 const {
   DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS,
   filterInnovationGrantOpportunities,
@@ -37,6 +37,8 @@ test("October 14 check preserves deadline-day TCUP and archived RIT and Tri-C wi
   assert.ok(additions.every((record) => record.publishedProgramPoolUsd === undefined));
   assert.deepEqual(additions.map((record) => record.locationEligibility.scope), ["institution-only", "nationwide", "institution-only"]);
   assert.deepEqual(additions.map((record) => record.finalDeadlineDate), ["2026-10-30", "2027-07-27", "2026-11-13"]);
+  assert.equal(additions.find((record) => record.id === 126).announcedDateIso, "2026-04-15");
+  assert.equal(sortInnovationGrantOpportunities(additions, "newest", asOf)[0].id, 126, "known announcement sorts ahead of unstated dates");
   assert.deepEqual(getPublicInnovationGrantFundingSnapshot(asOf), {
     publishedProgramPoolUsd: 115799990, publishedProgramPoolCount: 9, approximatePoolCount: 4,
     openOpportunityCount: 46, openNowCount: 33, closingSoonCount: 13, openingSoonCount: 0,
