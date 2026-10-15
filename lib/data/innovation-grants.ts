@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -713,14 +713,14 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     source: "U.S. National Science Foundation",
     officialUrl: "https://www.nsf.gov/funding/opportunities/tcup-tribal-colleges-universities-program",
     applicationUrl: researchGov,
-    announcedDate: "Current multi-track cycle; original solicitation date is older",
+    announcedDate: "Historical cycle ending Oct. 14, 2026; original solicitation date is older",
     awardAmount: "Partnerships: up to $5 million per project, subject to an $825,000 institutional limit; CHAI: up to $250,000; Pre-TI: up to $150,000.",
     eligibility: "Federally recognized Tribal Colleges and Universities, qualifying Alaska Native-serving and Native Hawaiian-serving institutions. Eligible institutions lead Partnerships; non-TCUP partners must obtain support from other NSF programs.",
     whatItFunds: "STEM instruction, AI and computing capacity, cyberinfrastructure, faculty development, research, student pathways, and community partnerships.",
     geography: "United States and eligible Tribal-serving institutions",
     costShareRequirement: "Voluntary committed cost sharing is prohibited",
-    applicationAccess: "Submit the active Partnerships, CHAI, or Pre-TI track through Research.gov under NSF solicitation 21-595; TSETS is closed for 2026. The official Research.gov sign-in entry is available; authenticated submission was not tested.",
-    deadline: "Active 2026 tracks: Partnerships, CHAI, and Pre-TI accept submissions through Oct. 14, 2026 at 5 p.m. submitting-organization local time; TSETS closed Sept. 1, 2026.",
+    applicationAccess: "This annual window has closed. The next Partnerships, CHAI, and Pre-TI window is listed separately for 2026–27. Research.gov remains the public application entry; authenticated submission was not tested.",
+    deadline: "Historical window: Partnerships, CHAI, and Pre-TI closed Oct. 14, 2026 at 5 p.m. submitting-organization local time; TSETS closed Sept. 1, 2026.",
     deadlineTimeZone: "Submitting organization local time",
     sourceNotes: "Sep. 9, 2026 official recheck: NSF's current program page and active solicitation 21-595 keep Partnerships, CHAI, and Pre-TI open through Oct. 14, 2026 at 5 p.m. submitting-organization local time; the 2026 TSETS deadline passed Sept. 1. Track caps are Partnerships up to $5 million per project, subject to an $825,000 institutional limit, CHAI up to $250,000, and Pre-TI up to $150,000. The prior approximately $10.3 million program figure spans multiple tracks, including closed tracks, and is omitted from the static funding tally. Research.gov's public entry is reachable; no authenticated workspace was tested.",
     finalDeadlineDate: "2026-10-14",
@@ -730,7 +730,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     bestFit: "Eligible Tribal-serving institutions strengthening STEM teaching, AI or computing infrastructure, faculty capacity, and Native learner pathways.",
     eligibilityBadge: "Tribal-serving institutions",
     qualifiers: ["Multiple tracks"],
-    recurringLabel: "Current annual tracks",
+    recurringLabel: "Historical annual window",
     recurrenceEvidence: "The current NSF page lists annual track dates.",
   }),
   grant({
@@ -2848,6 +2848,39 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
     sourceNotes: "Official AY27 call and actual linked application entry checked Oct. 14. Per-person stipends are not a published program pool and are excluded from the cash tally.",
+  }),
+  grant({
+    id: 128,
+    portalAddedDate: "2026-10-15",
+    lastVerified: "Oct 15, 2026",
+    recommendationRank: 9,
+    title: "NSF Tribal Colleges and Universities Program: 2026–27 rolling tracks",
+    source: "U.S. National Science Foundation",
+    officialUrl: "https://www.nsf.gov/funding/opportunities/tcup-tribal-colleges-universities-program",
+    applicationUrl: researchGov,
+    announcedDate: "Solicitation posted June 29, 2021; annual window opens Oct. 15, 2026",
+    announcedDateIso: "2021-06-29",
+    openDate: "2026-10-15",
+    awardAmount: "Partnerships: up to $5 million over five years, with an $825,000 institutional limit ($165,000 annually) and $1 million annual project limit; CHAI: up to $250,000 for one year; Pre-TI: up to $150,000 over two years",
+    eligibility: "Federally recognized Tribal Colleges and Universities; Alaska Native-serving institutions with at least 20% Alaska Native undergraduate enrollment that meet Higher Education Act section 1058(b) criteria; Native Hawaiian-serving institutions with at least 10% Native Hawaiian undergraduate enrollment that meet those criteria and have Carnegie classification as baccalaureate or associate's colleges. Eligible institutions lead Partnerships; non-TCUP partners must obtain support from other NSF programs. Pre-TI requires no prior TCUP support, no TCUP support within five years, or a significantly novel STEM plan.",
+    whatItFunds: "Partnerships to strengthen STEM education and research; Cyberinfrastructure Health, Assistance, and Improvements (CHAI); and Pre-TI planning to build STEM instructional capacity.",
+    geography: "United States and eligible Tribal-serving institutions",
+    costShareRequirement: "Voluntary committed cost sharing is prohibited",
+    applicationAccess: "Research.gov public preparation and submission entry verified for NSF solicitation 21-595. No authenticated workspace or submission was tested.",
+    deadline: "Partnerships, CHAI, and Pre-TI: Oct. 15, 2026 through Oct. 14, 2027, due by 5 p.m. submitting organization's local time",
+    deadlineTimeZone: "Submitting organization's local time",
+    finalDeadlineDate: "2027-10-14",
+    audiences: ["community-colleges", "four-year-colleges-universities", "faculty-teaching-centers"],
+    innovationAreas: ["teaching-learning", "digital-transformation-infrastructure", "research-evidence-building", "faculty-development", "community-college-innovation"],
+    scopeDisposition: "included",
+    bestFit: "Eligible Tribal-serving institution teams seeking support to strengthen STEM teaching infrastructure or plan their next capacity-building project.",
+    eligibilityBadge: "Eligible Tribal-serving institutions only",
+    inventoryOrigin: "weekly-new",
+    announcementWindow: "Daily lifecycle verification, Oct. 15, 2026",
+    qualifiers: ["Partnerships, CHAI and Pre-TI only"],
+    recurringLabel: "2026–27 annual window",
+    recurrenceEvidence: "Current NSF program page lists Oct. 15, 2026–Oct. 14, 2027; active NSF 21-595 solicitation establishes annual Oct. 15–Oct. 14 windows.",
+    sourceNotes: "Official program page, active NSF 21-595 solicitation and public Research.gov entry checked Oct. 15. This is the new annual window for three rolling tracks, not a new solicitation announcement. The prior cycle remains in Closed/Past. The approximately $10.3 million umbrella includes other tracks and is excluded from the active cash tally. Research.gov advertises scheduled Oct. 16–17 maintenance; no current closure was observed.",
   }),
 ];
 
