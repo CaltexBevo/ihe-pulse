@@ -150,6 +150,8 @@ export interface InnovationPulseEpisode {
   cadence?: 'daily' | 'weekly';
   /** Founder-selected public edition number, independent of internal cohort date. */
   editionNumber?: number;
+  /** Explicit false keeps a website-only release out of the podcast feed. */
+  podcastFeedEnabled?: boolean;
   weekCovered?: string; // Format: "2026-05-23/2026-05-29"
 }
 

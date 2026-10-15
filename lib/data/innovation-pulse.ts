@@ -227,6 +227,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     themes: ((raw.meta as Record<string, unknown>)?.themes || raw.themes) as string[] || [],
     // Cadence fields for weekly episodes
     cadence,
+    podcastFeedEnabled: episode?.podcastFeedEnabled !== false,
     editionNumber: typeof episode?.editionNumber === 'number' ? episode.editionNumber : undefined,
     weekCovered,
     // Full script for on-page transcript (cleaned at render time)

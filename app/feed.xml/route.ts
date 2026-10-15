@@ -31,7 +31,7 @@ function toRssDate(isoDate: string): string | null {
 }
 
 export async function GET() {
-  const episodes = getAllEpisodes();
+  const episodes = getAllEpisodes().filter((episode) => episode.podcastFeedEnabled !== false);
 
   const items = episodes
     .map((ep) => {

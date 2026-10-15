@@ -4,6 +4,7 @@
     "dayOfWeek": "Friday",
     "cadence": "weekly",
     "editionNumber": 20,
+    "podcastFeedEnabled": false,
     "weekCovered": "2026-10-03/2026-10-09",
     "audioUrl": "/audio/innovation-pulse-weekly-edition-20.mp3",
     "audioDuration": "8:28",

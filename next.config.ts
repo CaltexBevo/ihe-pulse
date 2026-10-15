@@ -37,6 +37,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/innovation-pulse/story/make-it-so-how-we-made-the-my-voice-at-scale-video',
+        destination: '/feature-coverage/my-voice-at-scale',
+        permanent: true,
+      },
+      {
         source: '/daily-pulse',
         destination: '/innovation-pulse',
         permanent: true,
