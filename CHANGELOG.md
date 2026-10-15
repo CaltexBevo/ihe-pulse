@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-15] My Voice at Scale Original Feature
+
+- Publish the selected v17 full article, authentic illustrations and completed 7:43 narration at `/feature-coverage/my-voice-at-scale`.
+- Retain the independently selected homepage artwork, supplied teaching-video link and quotation sources.
+- Preserve the weekly Edition 20 publication hold and all other edition contents.
+
 ## [2026-10-15] Does It Fit standalone page
 
 - Serve the supplied Does It Fit HTML at `/Does-It-Fit`, preserving its contents.

@@ -215,8 +215,22 @@ test("homepage Feature audio is an independent control beside a separate Read ac
   assert.match(markup, /<button type="button" class="playButton" aria-label="Listen to the Feature"/);
   assert.ok(latestAnchorClose > latestAnchorOpen, "the audio button must not be nested in the artwork link");
   assert.match(markup, /Read full coverage/);
-  assert.match(markup, /Dr\. Norma Jones, Editor-in-Chief/);
-  assert.ok(markup.includes(dataModule.LATEST_FEATURED_COVERAGE.imagePath));
+  assert.ok(markup.includes(dataModule.LATEST_FEATURED_COVERAGE.byline));
+  assert.ok(markup.includes(dataModule.LATEST_FEATURED_COVERAGE.homepageImagePath ?? dataModule.LATEST_FEATURED_COVERAGE.imagePath));
+});
+
+test("My Voice renders the complete illustrated article and separate teaching-video route", async () => {
+  const markup = await renderFeaturePage("my-voice-at-scale");
+  assert.equal((markup.match(/class="articleParagraph"/g) ?? []).length, 30);
+  assert.equal((markup.match(/<figure\b/g) ?? []).length, 11);
+  assert.equal((markup.match(/<audio\b/g) ?? []).length, 1);
+  assert.match(markup, /feature-my-voice-at-scale-v17\.mp3/);
+  assert.match(markup, /7:43 · Narrated by Dr. Norma Jones/);
+  assert.match(markup, /But being human\? That is up to us\./);
+  assert.match(markup, /https:\/\/www.youtube.com\/watch\?v=8OLae04GiNM/);
+  assert.ok(markup.indexOf("But being human?") < markup.indexOf("Watch the teaching video"));
+  assert.ok(markup.indexOf("blank-backplate.png") < markup.indexOf("typed-backplate-intermediate.jpg"));
+  assert.ok(markup.indexOf("typed-backplate-intermediate.jpg") < markup.indexOf("typed-backplate-final.png"));
 });
 
 

@@ -1,3 +1,4 @@
+import { MY_VOICE_FEATURED_COVERAGE } from './featured-coverage-my-voice';
 import { WONKA_LANTERN_FEATURED_COVERAGE } from './featured-coverage-wonka-lantern';
 import { MODELS_FEATURED_COVERAGE } from './featured-coverage-models';
 import { GRANT_PORTAL_FEATURED_LAUNCH } from './featured-coverage-grant';
@@ -8,6 +9,16 @@ export type FeaturedCoverageSection = {
   paragraphs: string[];
   bullets?: string[];
   sourceIds?: string[];
+  illustrations?: Array<{
+    afterParagraph: number;
+    path: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+    label?: string;
+    wide?: boolean;
+  }>;
 };
 
 export type FeaturedCoverage = {
@@ -29,6 +40,12 @@ export type FeaturedCoverage = {
   imageWidth?: number;
   imageHeight?: number;
   homepageImagePath?: string | null;
+  homepageImageAlt?: string;
+  intactHomepageImage?: boolean;
+  imageCaption?: string;
+  showPreview?: boolean;
+  sourcesHeading?: string;
+  videoLink?: { url: string; label: string };
   audioUrl?: string;
   /** A measured runtime supplied with the verified recording receipt. */
   audioDuration?: string;
@@ -172,6 +189,7 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
 };
 
 export const FEATURED_COVERAGE = [
+  MY_VOICE_FEATURED_COVERAGE,
   WONKA_LANTERN_FEATURED_COVERAGE,
   TEACHING_SUPERPOWER_FEATURED_COVERAGE,
   GRANT_PORTAL_FEATURED_LAUNCH,

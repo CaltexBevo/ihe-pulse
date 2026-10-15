@@ -12,10 +12,12 @@ export default function FeatureAudioPlayer({
   audioUrl,
   audioTitle,
   sourceNote,
+  measuredDuration,
 }: {
   audioUrl: string;
   audioTitle: string;
   sourceNote?: { text: string; url?: string };
+  measuredDuration?: string;
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const playRequestRef = useRef(0);
@@ -102,7 +104,7 @@ export default function FeatureAudioPlayer({
       </button>
       <div className={styles.details}>
         <span className={styles.status} role="status" aria-live="polite">
-          {hasError ? "Audio unavailable. Select play to try again." : "Narrated by Dr. Norma Jones"}
+          {hasError ? "Audio unavailable. Select play to try again." : `${duration === 0 && measuredDuration ? measuredDuration + " · " : ""}Narrated by Dr. Norma Jones`}
         </span>
         {duration > 0 && (
           <div className={styles.timeline}>

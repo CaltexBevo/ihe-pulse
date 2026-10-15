@@ -35,12 +35,14 @@ export function FeatureArtwork({
       {imagePath ? (
         <Image
           src={imagePath}
-          alt={feature.imageAlt || feature.title}
+          alt={(compact && feature.homepageImageAlt) || feature.imageAlt || feature.title}
           fill
           priority
           unoptimized={usesTeachingSuperpowerArtwork}
           className={
-            usesHomepageHeroCrop
+            feature.intactHomepageImage
+              ? "object-contain"
+              : usesHomepageHeroCrop
               ? "origin-[70%_25%] scale-[1.65] object-cover"
               : "object-cover"
           }
@@ -186,7 +188,7 @@ export default function FeaturedCoverage({
             </div>
             {feature.audioUrl && (
               <div className={isHomepage ? "mt-3" : "mt-5"}>
-                <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" sourceNote={feature.audioSourceNote} />
+                <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" sourceNote={feature.audioSourceNote} measuredDuration={feature.showPreview ? feature.audioDuration : undefined} />
               </div>
             )}
             <Link

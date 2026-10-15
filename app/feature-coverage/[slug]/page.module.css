@@ -32,6 +32,57 @@
   min-width: 0;
 }
 
+.officialFeaturePreview {
+  margin-top: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.heroCaption {
+  padding: 0.7rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.articleFigure {
+  margin: 2rem 0 0.5rem;
+}
+
+.articleFigure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.articleFigure figcaption {
+  margin-top: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.figureLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--cyan);
+  font: 600 0.7rem/1.5 var(--font-mono);
+  text-transform: uppercase;
+}
+
+.teachingVideo {
+  margin-bottom: 1.75rem;
+}
+
+@media (min-width: 1100px) {
+  .wideFigure {
+    width: calc(100% + 220px);
+    margin-left: -110px;
+  }
+}
+
 .officialFeatureLabel {
   margin-bottom: 1.1rem;
   color: var(--cyan);

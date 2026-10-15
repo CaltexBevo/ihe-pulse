@@ -233,6 +233,17 @@ function ArticleSection({
             className={sectionIndex === 0 && paragraphIndex === 0 ? styles.leadParagraph : undefined}
           >
             <ArticleParagraph text={paragraph} sourceUrl={section.sourceIds?.length === 0 ? undefined : feature.sources?.find(source => section.sourceIds?.includes(source.id ?? ""))?.url ?? feature.sourceUrl} />
+            {section.illustrations?.filter((figure) => figure.afterParagraph === paragraphIndex + 1).map((figure) => (
+              <figure key={figure.path} className={`${styles.articleFigure} ${figure.wide ? styles.wideFigure : ""}`}>
+                <a href={figure.path} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size ${figure.label || "illustration"}`}>
+                  <Image src={figure.path} alt={figure.alt} width={figure.width} height={figure.height} sizes={figure.wide ? "(max-width: 767px) 100vw, 1000px" : "(max-width: 767px) 100vw, 800px"} unoptimized />
+                </a>
+                <figcaption>
+                  {figure.label && <span className={styles.figureLabel}>{figure.label}</span>}
+                  {figure.caption}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         ))}
       </div>
@@ -269,16 +280,17 @@ function OfficialFeatureArticle({ feature }: { feature: FeaturedCoverage }) {
         <div className={styles.officialFeatureCopy}>
           <p className={styles.officialFeatureLabel}>{feature.eyebrow}</p>
           <h1 id="feature-title" className={styles.officialFeatureTitle}>{feature.title}</h1>
+          {feature.showPreview && <p className={styles.officialFeaturePreview}>{feature.teaser}</p>}
           <p className={styles.officialFeatureMeta}>
             <span>{feature.byline}</span>
             <time dateTime={feature.publishedAt}>{feature.publishedLabel}</time>
           </p>
           {feature.audioUrl && (
-            <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" sourceNote={feature.audioSourceNote} />
+            <FeatureAudioPlayer audioUrl={feature.audioUrl} audioTitle="the Feature" sourceNote={feature.audioSourceNote} measuredDuration={feature.showPreview ? feature.audioDuration : undefined} />
           )}
         </div>
         {feature.imagePath && (
-          <div className={styles.officialFeatureArt}>
+          <figure className={styles.officialFeatureArt}>
             <Image
               src={feature.imagePath}
               alt={feature.imageAlt || feature.title}
@@ -289,7 +301,8 @@ function OfficialFeatureArticle({ feature }: { feature: FeaturedCoverage }) {
               sizes="(max-width: 767px) 100vw, 55vw"
               className={styles.officialFeatureImage}
             />
-          </div>
+            {feature.imageCaption && <figcaption className={styles.heroCaption}>{feature.imageCaption}</figcaption>}
+          </figure>
         )}
       </header>
 
@@ -304,7 +317,13 @@ function OfficialFeatureArticle({ feature }: { feature: FeaturedCoverage }) {
         ))}
 
         <aside className={styles.officialSources} aria-labelledby="official-feature-sources">
-          <h2 id="official-feature-sources">Sources</h2>
+          {feature.videoLink && (
+            <div className={styles.teachingVideo} id="watch-video">
+              <h2>Watch the teaching video</h2>
+              <a href={feature.videoLink.url} target="_blank" rel="noopener noreferrer" className={styles.articleLink}>{feature.videoLink.label} <span aria-hidden="true">↗</span></a>
+            </div>
+          )}
+          <h2 id="official-feature-sources">{feature.sourcesHeading || "Sources"}</h2>
           <ul>
             {(feature.sources ?? [{ label: feature.sourceLabel, url: feature.sourceUrl }]).map((source) => (
               <li key={source.url}>
