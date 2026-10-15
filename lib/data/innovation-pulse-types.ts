@@ -95,6 +95,7 @@ export interface StorySourceLink {
 export interface DeepDive {
   title: string;
   summary: string;
+  preview?: string;
   source: string;
   sourceUrl: string;
   sourceLinks?: StorySourceLink[];
@@ -111,6 +112,7 @@ export interface DeepDive {
 export interface QuickHit {
   title: string;
   summary: string;
+  preview?: string;
   source: string;
   sourceUrl: string;
   sourceLinks?: StorySourceLink[];

@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
   return pageMetadata({
     title: `${story.title} | Innovation Pulse`,
-    description: story.summary,
+    description: story.preview || story.summary,
     path: `/innovation-pulse/story/${slug}`,
     type: "article",
     imagePath: story.image || DEFAULT_STORY_IMAGE,
@@ -176,7 +176,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
         {/* Subtitle/Hook */}
         {!usesSeptember04Card && (
           <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8">
-            {story.summary.split('.').slice(0, 2).join('.')}...
+            {story.preview || `${story.summary.split('.').slice(0, 2).join('.')}...`}
           </p>
         )}
 

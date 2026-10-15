@@ -33,7 +33,8 @@
     "storyId": "IHE-HOPEFUL-AI-20261012-001",
     "selectionId": "WOW-01",
     "publishedDate": "2026-06-15",
-    "reviewOnlyImage": false
+    "reviewOnlyImage": false,
+    "preview": "Casey Harrell’s everyday conversations offer a clearer view of AI’s promise for communication, choice and connection."
   },
   "quickHits": [
     {
@@ -53,7 +54,8 @@
       "storyId": "IHE-STORY-2026-10-09-064",
       "selectionId": "64",
       "publishedDate": "2026-10-05",
-      "reviewOnlyImage": false
+      "reviewOnlyImage": false,
+      "preview": "A transparent message rule could help you give students a useful next action and examine whether they take it."
     },
     {
       "headline": "Get a Clearer View of Student Reasoning with AI Interviews",
@@ -72,7 +74,8 @@
       "storyId": "IHE-PRACTICAL-AI-20261012-001",
       "selectionId": "AI-01",
       "publishedDate": "2026-07-15",
-      "reviewOnlyImage": false
+      "reviewOnlyImage": false,
+      "preview": "Students’ interview records could give you a clearer basis for assessing how they gather evidence, follow up and justify a case recommendation."
     },
     {
       "headline": "Share AI Study Resources With a Clear Basis for Trust",
@@ -95,7 +98,8 @@
       "storyId": "IHE-STORY-2026-10-09-003",
       "selectionId": "3",
       "publishedDate": "2026-10-05",
-      "reviewOnlyImage": false
+      "reviewOnlyImage": false,
+      "preview": "A named reviewer and a visible checking record could help you explain how course-issued AI materials were prepared."
     },
     {
       "headline": "Make Vendor Proposals Easier to Compare",
@@ -114,7 +118,8 @@
       "storyId": "IHE-PRACTICAL-AI-20261012-003",
       "selectionId": "AI-03",
       "publishedDate": "2026-07-13 event",
-      "reviewOnlyImage": false
+      "reviewOnlyImage": false,
+      "preview": "A source-linked comparison table may help your committee examine vendor promises and identify questions that still need answers."
     },
     {
       "headline": "Use an AI Alternative to Sharpen Your Lesson Plan",
@@ -133,7 +138,8 @@
       "storyId": "IHE-PRACTICAL-AI-20261012-006",
       "selectionId": "AI-06",
       "publishedDate": "2026-06-24",
-      "reviewOnlyImage": false
+      "reviewOnlyImage": false,
+      "preview": "An AI-generated alternative could help you examine lesson-design choices and decide what student work would show progress toward your objective."
     },
     {
       "headline": "Find Journal Publishing Support Before You Submit",
@@ -152,7 +158,8 @@
       "storyId": "IHE-STORY-2026-10-09-048",
       "selectionId": "48",
       "publishedDate": "2026-10-05",
-      "reviewOnlyImage": false
+      "reviewOnlyImage": false,
+      "preview": "A short check with your library could make publishing coverage part of your submission plan before you budget for fees."
     },
     {
       "headline": "Make Archived Data Easier to Check Before Reusing It",
@@ -175,7 +182,8 @@
       "storyId": "IHE-STORY-2026-10-09-001",
       "selectionId": "1",
       "publishedDate": "2026-10-08 account; 2026-09-16 artifact",
-      "reviewOnlyImage": false
+      "reviewOnlyImage": false,
+      "preview": "An AI-assisted sky atlas suggests a principle you could adapt: keeping the origin of each contribution visible."
     },
     {
       "headline": "“Make It So”: How We Made the My Voice at Scale Video",

@@ -155,6 +155,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   const deepDive: InnovationPulseEpisode['deepDive'] = {
     title: ((rawDeepDive as Record<string, unknown>).headline || rawDeepDive.title) as string || '',
     summary: (leadStory?.editorialTake || rawDeepDive.summary || hook || broadcastScript.slice(0, 500)) as string || 'Read the full story for details.',
+    preview: typeof rawDeepDive.preview === 'string' ? rawDeepDive.preview : undefined,
     source: (rawDeepDive.source) as string || '',
     sourceUrl: (rawDeepDive.sourceUrl) as string || '',
     sourceLinks: (rawDeepDive.sourceLinks) as InnovationPulseEpisode['deepDive']['sourceLinks'],
@@ -171,6 +172,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   const quickHits: InnovationPulseEpisode['quickHits'] = rawQuickHits.map((hit) => ({
     title: (hit.headline || hit.title) as string || '',
     summary: (hit.summary) as string || 'Read the full story for details.',
+    preview: typeof hit.preview === 'string' ? hit.preview : undefined,
     source: (hit.source) as string || '',
     sourceUrl: (hit.sourceUrl) as string || '',
     sourceLinks: (hit.sourceLinks) as InnovationPulseEpisode['quickHits'][number]['sourceLinks'],
@@ -354,6 +356,7 @@ export function getEpisodeDates(): string[] {
 export interface AggregatedStory {
   title: string;
   summary: string;
+  preview?: string;
   source: string;
   sourceUrl: string;
   sourceLinks?: import('./innovation-pulse-types').StorySourceLink[];
@@ -376,6 +379,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
     stories.push({
       title: episode.deepDive.title,
       summary: episode.deepDive.summary,
+        preview: episode.deepDive.preview,
       source: episode.deepDive.source,
       sourceUrl: episode.deepDive.sourceUrl,
       sourceLinks: episode.deepDive.sourceLinks,
@@ -392,6 +396,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
       stories.push({
         title: hit.title,
         summary: hit.summary,
+          preview: hit.preview,
         source: hit.source,
         sourceUrl: hit.sourceUrl,
         sourceLinks: hit.sourceLinks,
@@ -474,6 +479,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
       return {
         title: episode.deepDive.title,
         summary: episode.deepDive.summary,
+        preview: episode.deepDive.preview,
         source: episode.deepDive.source,
         sourceUrl: episode.deepDive.sourceUrl,
         sourceLinks: episode.deepDive.sourceLinks,
@@ -500,6 +506,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
         return {
           title: hit.title,
           summary: hit.summary,
+          preview: hit.preview,
           source: hit.source,
           sourceUrl: hit.sourceUrl,
           sourceLinks: hit.sourceLinks,
