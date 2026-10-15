@@ -290,7 +290,7 @@ function OfficialFeatureArticle({ feature }: { feature: FeaturedCoverage }) {
           )}
         </div>
         {feature.imagePath && (
-          <figure className={styles.officialFeatureArt}>
+          <figure className={`${styles.officialFeatureArt} ${feature.intactHomepageImage ? styles.naturalFeatureArt : ''}`}>
             <Image
               src={feature.imagePath}
               alt={feature.imageAlt || feature.title}

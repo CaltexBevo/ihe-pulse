@@ -127,6 +127,13 @@
   background: var(--surface);
 }
 
+.naturalFeatureArt {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
 .officialFeatureImage {
   display: block;
   width: 100%;

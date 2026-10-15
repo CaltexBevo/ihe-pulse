@@ -30,7 +30,7 @@ export function FeatureArtwork({
 
   return (
     <div
-      className={`${compact ? "rounded-[10px]" : "rounded-[14px]"} relative aspect-[16/9] w-full overflow-hidden border border-[var(--border-strong)] bg-[var(--surface)]`}
+      className={feature.intactHomepageImage ? "relative aspect-[3/2] w-full" : `${compact ? "rounded-[10px]" : "rounded-[14px]"} relative aspect-[16/9] w-full overflow-hidden border border-[var(--border-strong)] bg-[var(--surface)]`}
     >
       {imagePath ? (
         <Image
