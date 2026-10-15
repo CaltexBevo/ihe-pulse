@@ -1,0 +1,198 @@
+{
+  "episode": {
+    "date": "2026-10-09",
+    "dayOfWeek": "Friday",
+    "cadence": "weekly",
+    "editionNumber": 20,
+    "weekCovered": "2026-10-03/2026-10-09",
+    "audioUrl": "/audio/innovation-pulse-weekly-edition-20.mp3",
+    "audioDuration": "8:28",
+    "broadcastScript": "This is the Innovation Pulse Weekly, Edition 20, and I’m Doctor Norma Jones. And here’s who is innovating in higher ed.\n\nThis week’s Feature takes you behind My Voice at Scale, an animated video about A.I.-supported feedback. It grew from a California Community Colleges Chancellor’s Office invitation to share short videos for faculty professional development. The making-of story shows how the script, images and narration came together, with choices colleagues might use to explain their own teaching approaches.\n\nYou can find a link to the original video and the full making-of story at Innovating Higher Ed dot com.\n\n<break time=\"1.0s\"/>\n\nFirst, from Beyond Ed, a remarkable development with a very personal meaning. Casey Harrell’s family can hear words he chooses in a recreation of his familiar voice. Harrell lives with amyotrophic lateral sclerosis, commonly called A.L.S., which has affected his speech and movement. An investigational brain–computer interface helps him communicate at home, with synthesized speech trained to sound like his earlier voice.\n\nImplanted electrodes record signals associated with his attempts to speak. A.I. translates those signals into words on a screen. Harrell can check and correct them, then choose to have them spoken aloud. He also uses the system to operate his computer. He decides what he wants to say, and the technology gives him a way to say it.\n\nA June study in Nature Medicine followed nearly two years of use, recording more than 3,800 hours with the system. Trained care partners set up the equipment; Harrell can then use it without a researcher present. That brings communication into the everyday setting of conversations, relationships and work.\n\nAnd here’s what that familiar voice means to his family. Harrell says it brings back memories for his wife and lets his daughter hear what he used to sound like. His words carry a sound connected to the person they know.\n\n<break time=\"1.0s\"/>\n\nIn Research, a chemistry course asks a useful question: what makes a reminder worth acting on? Students already had optional practice problems and could begin homework ahead of the deadline. Jae-Eun Russell and colleagues examined whether messages tied to students’ actual activity would encourage them to use those opportunities.\n\nThe messages pointed to a specific next step, such as starting homework earlier or practicing units that had received little attention. Excel rules selected prepared text from course activity records. The instructor checked each assembled message before sending it by mail merge. This was rule-based automation, rather than generative A.I. composing individual advice.\n\nStudents receiving four personalized emails participated in practice at a higher rate and started homework earlier than those receiving two general reminders. Grades did not differ significantly. The study tested the full messaging package, including its different timing and frequency. For an instructor considering reminders, the useful distinction is what the messages encouraged students to do, and whether that behavior changed.\n\n<break time=\"1.0s\"/>\n\nOur next Case Study comes from Northeastern, where students’ questions become part of the work an instructor can assess. Marketing lecturer Duane Lefevre was seeing A.I.-generated responses to conventional cases. Working with John Biske, he developed a Claude-based tool that gives students fictional executives to interview before writing their analysis.\n\nStudents start with a short company introduction. The executives hold different information and perspectives, so a useful recommendation depends on what students ask and how they follow up. One case, developed with a business-school partner in Brazil, concerns a startup founder facing a bribery demand. The builder also produces a teaching note to support faculty discussion.\n\nFaculty member Larissa Marchiori Pacheco used the tool in international business and strategy courses. She described students adapting their questions and arguments as the characters responded. Lefevre collects the exported conversation transcripts with the written analysis. An instructor can now examine the inquiry behind the recommendation: how students gathered information, followed a response and arrived at their conclusion.\n\n<break time=\"1.0s\"/>\n\nIn our next Research story, an economics course team paired A.I. study resources with a checking process students could see. A lecturer supplied NotebookLM with lecture slides, readings and assessment guidance from a first-year economics course. For each weekly topic, it produced a ten-minute podcast, frequently asked questions, and a study guide with comprehension questions and model answers.\n\nA named graduate teaching assistant checked every output. Did the definitions match the slides? Were the models using the course’s terminology? Did the supplied documents support the answers? Those were concrete questions the reviewer could investigate. Vague or misaligned sections went back for revised prompts or regeneration.\n\nStudents received the corrected materials through the course’s online learning environment. A label identified both their A.I. origin and academic verification, giving students information about how the resources had been prepared.\n\nIn their October preprint, Canh Thien Dang and An Nguyen report an association between access to the resources and higher examination marks, concentrated toward the lower end of the mark distribution. Students also described the verification label as a reason to engage while continuing to check the material. The new resources and academic review came as one package, so the study cannot separate their contributions. What the account does offer is a clear preparation process, with course materials, review questions and corrections you can trace.\n\n<break time=\"1.0s\"/>\n\nFor Practical Tips, let’s turn to an administrative task where the challenge is getting the evidence into a form you can compare. At UCLA’s Summer of A.I. showcase, Bill Sweeney described reviewing five vendor proposals against eighteen criteria. He used A.I. to summarize the submissions, compare pricing and answer follow-up questions.\n\nUCLA’s account points to a particularly useful output: a chart showing the proposals against the evaluation criteria. The chart brought the information together for Sweeney’s evaluation and recommendation. If you’re considering A.I. for a similar task, that may be a useful role to explore: organizing the evidence around your criteria so you have a clearer basis for the decision you still make.\n\n<break time=\"1.0s\"/>\n\nOur final Case Study brings the question of judgment into lesson design. In a language-teaching course, Nahielly Palacios had students first create materials together, choose learning outcomes and design an activity sequence. They presented their work and explained the teaching choices behind it.\n\nIn a later tutorial, the same groups used Gemini for a similar task, specifying the learners, context and intended outcomes in their prompts. Now they had two designs to examine. Did the suggested activities fit the teaching approach? Palacios reports that some groups found a mismatch between the activities and the pedagogy the tool proposed. Many preferred their own designs; others valued how quickly Gemini supplied a structure.\n\nThe comparison gave students something concrete to discuss: whether a lesson’s activities actually serve its stated purpose. An A.I. draft became something to examine and weigh against their own design decisions.\n\n<break time=\"1.0s\"/>\n\nYou’ll find the full stories on our website, with examples of how you might adapt the ideas to your own teaching or administrative work. There’s also a practical check of your library’s publishing support before you submit an article, and a starting point for checking and reusing scattered research data.\n\nLooking for funding to move your own idea forward? Our free Grant Portal lets you explore opportunities by institution, innovation area and deadline. You can also sign up for weekly grant updates.\n\nI’m Doctor Norma Jones. Keep exploring with us at Innovating Higher Ed dot com. Let’s move higher education forward together. Thanks for listening.\n\n<!-- IHE_PIPELINE_SIGNATURE:46c0bb83ffa735a2 -->\n",
+    "weeklyHeroImageUrl": "/images/innovation-pulse/2026-10-09/weekly-edition-20.png",
+    "editorialLens": "The Innovator's Edge"
+  },
+  "leadStory": {
+    "headline": "AI Turned His Brain Signals Into His Familiar Voice",
+    "summary": "Casey Harrell’s family can hear him communicate in a voice that sounds like his own, through an AI-assisted brain–computer interface. A June 15 study in Nature Medicine reports how Harrell, who lives with amyotrophic lateral sclerosis, or ALS, used the investigational system at home for conversations, work and everyday computer access.\n\nHarrell described what that familiar sound means to his family in UC Davis Health’s account. Hearing his voice can bring back memories for his wife. His daughter, who scarcely remembers his earlier speech, can hear what he used to sound like. The technology supports something personal: sharing his words with the people who know him.\n\nOver nearly two years, researchers recorded more than 3,800 hours of system use and close to two million communicated words. Those words were part of life at home, including conversations with family and colleagues, emails and messages.\n\nFour implanted electrode arrays record neural activity associated with attempted speech. A neural network and language model turn those signals into likely words on a screen. Harrell can then use speech software trained to match his pre-ALS voice. He can review and correct the words using gaze or cursor controls, and choose to have them spoken or move them into his computer.\n\nTrained care partners connect the recording equipment and start the system. After that setup, Harrell can operate it without a researcher present. His choices and the support around him are part of how the system works.\n\nFor academics considering what AI could contribute to accessibility, this case offers a concrete way to evaluate progress. You might look beyond a demonstration’s accuracy score to the communication someone chooses, the corrections they control and the support that makes regular use possible.\n\nThe hopeful possibility is communication that could fit more fully into a person’s own life. For Harrell, that already includes his own words, in a familiar voice, shared at home.",
+    "source": "Card and colleagues’ original Nature Medicine study",
+    "sourceUrl": "https://www.nature.com/articles/s41591-026-04414-6",
+    "sourceLinks": [
+      {
+        "label": "Card and colleagues’ original Nature Medicine study",
+        "url": "https://www.nature.com/articles/s41591-026-04414-6"
+      },
+      {
+        "label": "UC Davis Health’s account and Casey Harrell’s perspective",
+        "url": "https://health.ucdavis.edu/news/headlines/brain-computer-interface-enables-independent-accurate-communication-for-man-living-with-als/2026/06"
+      }
+    ],
+    "category": "Beyond Ed",
+    "imageUrl": "/images/innovation-pulse/2026-10-09/story-WOW-01.png",
+    "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-WOW-01.png",
+    "storyId": "IHE-HOPEFUL-AI-20261012-001",
+    "selectionId": "WOW-01",
+    "publishedDate": "2026-06-15",
+    "reviewOnlyImage": false
+  },
+  "quickHits": [
+    {
+      "headline": "Make Course Reminders Give Students a Useful Next Step",
+      "summary": "A reminder may be easier to act on when it points to a specific piece of course work. A chemistry-course study by Jae-Eun Russell and colleagues offers instructors a concrete approach: use existing activity records to select a supportive message with a clear next step.\n\nThe October 5 study analyzed 783 consenting students. The experimental group received four personalized emails; the comparison group received two generic reminders. Excel rules selected prepared text, the instructor reviewed the messages and mail merge delivered them. This was a rule-based messaging workflow.\n\nPractice-question participation was 90.5% in the personalized-message group and 81.6% in the comparison group. Homework began earlier, but homework, exam and final-grade outcomes did not differ significantly. The packages differed in content, frequency and timing. The study suggests a way to examine participation and learning outcomes separately.\n\nIn a college-algebra course, you could begin with one practice set tied to an upcoming quiz. Consider a simple rule that identifies students with no recorded attempt, then offers that specific resource. A draft might say: ‘You might try the three worked examples in the equation practice set before your next assessment. The explanations and accessible text version are linked here.’ The resource and link would need to be the ones actually available in your course.\n\nConsider reviewing each message before delivery and offering a way for students to tell you what support they need. An activity record describes what the system logged; it does not establish why someone has not used a resource. Your message could remain an invitation rather than a judgment about the student.\n\nYou might then examine practice attempts and assignment start times alongside assessment results. A clear rule, an available resource and a defined action could give you a reminder you can inspect and revise, with evidence tied to the help you intended to offer.",
+      "source": "Original study and full text",
+      "sourceUrl": "https://link.springer.com/article/10.1007/s11423-026-10728-6",
+      "sourceLinks": [
+        {
+          "label": "Original study and full text",
+          "url": "https://link.springer.com/article/10.1007/s11423-026-10728-6"
+        }
+      ],
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-10-09/story-64.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-64.png",
+      "storyId": "IHE-STORY-2026-10-09-064",
+      "selectionId": "64",
+      "publishedDate": "2026-10-05",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Get a Clearer View of Student Reasoning with AI Interviews",
+      "summary": "The questions a student asks may give you a clearer basis for assessing case analysis. Northeastern marketing lecturer Duane Lefevre developed an AI interview assignment with John Biske that makes information gathering part of the work students submit.\n\nBuilt with Claude, their tool gives students a brief company introduction and fictional executives to interview. Each persona has relevant background knowledge and a distinct perspective. Students question the characters, then submit an export containing conversation transcripts alongside their written analysis. Lefevre has used the tool for three semesters.\n\nFor an instructor, that record may open up something useful to assess: how students pursued the evidence behind their conclusions. Consider looking for a follow-up that clarified a vague answer, a question that exposed a conflict, or a recommendation revised after hearing another perspective. Those features could support your explanation of a grade.\n\nIn a public-policy course, you could explore a smaller text-chat version built around a fictional transit-route decision. Consider preparing three fact sheets: one for a transit director, one for a commuter and one for an accessibility advocate. Each character could hold different information within a consistent set of case facts.\n\nIn your campus-approved AI tool, you might test each role with an instruction such as: ‘Answer from this character’s fact sheet. Reveal information when asked, request clarification for vague questions, and leave the policy recommendation to the student.’ A short pilot could help you check whether the characters stay within their assigned facts.\n\nFor student work, consider requesting the interviews, a recommendation and a short explanation identifying which question most changed the student’s thinking. You might set criteria beforehand for purposeful questions, relevant follow-up, evidence and justification. Appropriate accommodations, assistive technology and accessible response formats remain part of demonstrating those goals. The records could help you trace the connection between what a student asked, the information they gathered and the decision they made.",
+      "source": "Northeastern faculty account and case-builder description",
+      "sourceUrl": "https://damore-mckim.northeastern.edu/news/cant-cheat-this-case-study-its-powered-by-ai/",
+      "sourceLinks": [
+        {
+          "label": "Northeastern faculty account and case-builder description",
+          "url": "https://damore-mckim.northeastern.edu/news/cant-cheat-this-case-study-its-powered-by-ai/"
+        }
+      ],
+      "category": "Case Study",
+      "imageUrl": "/images/innovation-pulse/2026-10-09/story-AI-01.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-AI-01.png",
+      "storyId": "IHE-PRACTICAL-AI-20261012-001",
+      "selectionId": "AI-01",
+      "publishedDate": "2026-07-15",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Share AI Study Resources With a Clear Basis for Trust",
+      "summary": "A study resource may be easier to explain when you can identify who checked it and what they checked. An October 5 preprint by Canh Thien Dang and An Nguyen describes course-grounded AI materials reviewed by a named graduate teaching assistant before students received them.\n\nThe researchers used NotebookLM to produce podcasts, FAQs and study guides from first-year economics course documents. The reviewer checked and corrected the outputs against those materials. Their nonrandom comparison covered 170 students and 340 examination marks. Access was associated with a 2.34-mark advantage on a 50-mark component, concentrated at the lower end of the mark distribution. New resources and academic review were part of the same package; the study did not isolate the effect of checking.\n\nYou could adapt the preparation process to a short revision pack. In an introductory economics course, consider supplying your approved notes and worked examples on movements along a demand curve and shifts of the curve. You might request five practice questions, answer explanations and a reference to the supplied passage behind each answer.\n\nA colleague or teaching assistant could review whether each question tests the intended distinction, whether the answer follows from the notes and whether the example uses the course’s terminology. A small review record might list the question, source passage, correction and reviewer. The student-facing pack could identify its AI origin and the academic checking step without presenting either as a guarantee.\n\nConsider offering an accessible text version alongside any audio, while preserving the course’s appropriate accommodations and assistive technology. You might invite students to flag an unclear explanation, then record the change in the next version. That would give you a practical route for maintaining the resource after release.\n\nThe resulting pack could make your preparation decisions visible: what material shaped it, who reviewed it and how corrections are handled. Those details may give you a clearer basis for deciding which AI-generated resources belong in your course.",
+      "source": "Original preprint and version history",
+      "sourceUrl": "https://arxiv.org/abs/2610.07097",
+      "sourceLinks": [
+        {
+          "label": "Original preprint and version history",
+          "url": "https://arxiv.org/abs/2610.07097"
+        },
+        {
+          "label": "Full original study",
+          "url": "https://arxiv.org/pdf/2610.07097"
+        }
+      ],
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-10-09/story-3.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-3.png",
+      "storyId": "IHE-STORY-2026-10-09-003",
+      "selectionId": "3",
+      "publishedDate": "2026-10-05",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Make Vendor Proposals Easier to Compare",
+      "summary": "An evidence table may help your committee distinguish supported promises from questions that still need answers. At UCLA’s July 13 Summer of AI showcase, Bill Sweeney described using AI to review five vendor proposals against 18 evaluation criteria.\n\nSweeney, interim director of the UCLA Events Office, used AI to summarize submissions, compare vendors, identify pricing differences and answer follow-up questions. UCLA’s account identifies charting the proposals against the criteria as especially useful. He made the final evaluation and recommendation.\n\nYou could adapt that approach when a department compares three classroom-software proposals. Consider agreeing on criteria first: accessibility evidence, learning-management-system integration, training, support and contract duration. You might then use a campus-approved tool suitable for those documents and supply the proposals plus your checklist.\n\nA starting request might be: ‘Make one row per criterion and one column per proposal. Cite the page or section supporting each entry. Write “not stated” when information is missing. Keep document facts separate from your interpretation, and leave the vendor choice to the committee.’ Document references could make the entries easier to trace back to the originals.\n\nSuppose one proposal includes accessibility test results, another offers a general accessibility statement and the third says nothing about testing. Preserving those distinctions may give you a specific follow-up question for each vendor. It could also help you keep unknowns separate from actual commitments.\n\nBefore the meeting, consider checking consequential cells against the proposals and listing unresolved questions. You might keep the table beside the source documents during discussion so colleagues can inspect the basis for an entry. A checked comparison could give your committee a common record of evidence and a clearer agenda for its decision.",
+      "source": "UCLA showcase and Bill Sweeney’s proposal-comparison practice",
+      "sourceUrl": "https://adminvc.ucla.edu/leadership-forum/summer-ai/2026",
+      "sourceLinks": [
+        {
+          "label": "UCLA showcase and Bill Sweeney’s proposal-comparison practice",
+          "url": "https://adminvc.ucla.edu/leadership-forum/summer-ai/2026"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-09/story-AI-03.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-AI-03.png",
+      "storyId": "IHE-PRACTICAL-AI-20261012-003",
+      "selectionId": "AI-03",
+      "publishedDate": "2026-07-13 event",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Use an AI Alternative to Sharpen Your Lesson Plan",
+      "summary": "An AI-generated alternative could give you a concrete way to examine the decisions in your own lesson plan. In a June account for The AI Commons, course director Nahielly Palacios described a tutorial sequence that put students’ teaching judgment at the center of that comparison.\n\nIn Digital Literacy in Language Teaching, groups first designed their own language-learning materials and activity sequences, then explained the choices behind them. In a later tutorial, they prompted Gemini to tackle a similar task and evaluated its fit with the learners, teaching context and approach. Palacios reports that many preferred their own designs; some identified mismatches between the AI’s activities and its proposed pedagogy.\n\nFor an introductory biology class, consider an objective such as explaining how differences in survival and reproduction can change a population over generations. You could sketch your own 15-minute activity using population data you have checked. Then you might give an approved AI tool the same objective, data, course level, available materials and time limit.\n\nA starting instruction could be: ‘Propose a different activity using only these materials. Require students to make a claim supported by the data. Explain what student work would show progress toward the objective.’ Keeping your first plan visible may make it easier to examine what each version contributes.\n\nConsider comparing the actual work each activity asks students to produce. Which questions connect a claim to evidence? What prior knowledge does each version assume? You might borrow a stronger question from one version for the other. If you adapt this comparison as a student assignment, you could specify where generative AI enters the work while preserving appropriate accommodations, assistive technology and accessible alternatives. You might keep a short note explaining any revisions and your reasons. That comparison may give you specific grounds for your teaching choices and a clearer basis for judging whether the activity delivers the learning you intended.",
+      "source": "Nahielly Palacios’s first-person tutorial account in The AI Commons",
+      "sourceUrl": "https://buttondown.com/AICommons/archive/the-ai-commons-6-a-case-study-special/",
+      "sourceLinks": [
+        {
+          "label": "Nahielly Palacios’s first-person tutorial account in The AI Commons",
+          "url": "https://buttondown.com/AICommons/archive/the-ai-commons-6-a-case-study-special/"
+        }
+      ],
+      "category": "Case Study",
+      "imageUrl": "/images/innovation-pulse/2026-10-09/story-AI-06.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-AI-06.png",
+      "storyId": "IHE-PRACTICAL-AI-20261012-006",
+      "selectionId": "AI-06",
+      "publishedDate": "2026-06-24",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Find Journal Publishing Support Before You Submit",
+      "summary": "Your library’s publishing agreements could change the costs you need to plan for when submitting an article. Binghamton University Libraries offers a concrete example: its new portal brings journals covered by nine publisher agreements into one search. The university’s announcement describes coverage across more than 5,500 journals for its researchers.\n\nThe transferable step is to investigate your own institution’s support before making a submission plan. Binghamton’s coverage belongs to its agreements. At another campus, a library search or a conversation with scholarly-communications staff could establish what applies to you and your manuscript.\n\nSuppose you are deciding between two journals that fit the paper. Consider preparing a small comparison with the journal name, article type, corresponding-author requirements, agreement period and any charge you would still need to cover. You might include a link to the library or publisher’s current agreement terms beside each entry.\n\nA focused inquiry could ask: ‘Does our agreement cover this journal and article type for this corresponding author? Is there a submission or acceptance-date condition, and what do I need to do to use it?’ An unanswered field could become a specific question for library staff rather than an assumed fee waiver.\n\nConsider keeping academic fit and publishing support visible as separate parts of the decision. The journal’s scope and review process would still matter. Confirmed coverage could then inform the budget for the journal you choose. You may arrive at submission with a clearer account of both where the work belongs and which publishing costs your institution can support.",
+      "source": "Binghamton Libraries’ original portal announcement",
+      "sourceUrl": "https://libnews.binghamton.edu/news/2026/10/05/new-tool-to-support-open-research-and-publishing/",
+      "sourceLinks": [
+        {
+          "label": "Binghamton Libraries’ original portal announcement",
+          "url": "https://libnews.binghamton.edu/news/2026/10/05/new-tool-to-support-open-research-and-publishing/"
+        }
+      ],
+      "category": "Tool Spotlight",
+      "imageUrl": "/images/innovation-pulse/2026-10-09/story-48.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-48.png",
+      "storyId": "IHE-STORY-2026-10-09-048",
+      "selectionId": "48",
+      "publishedDate": "2026-10-05",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Make Archived Data Easier to Check Before Reusing It",
+      "summary": "A small, traceable data-combination project could help you decide whether an archive is ready to support a new question. In an October 8 account published by Anthropic, astronomer Brice Ménard describes using Claude to help locate, calibrate and combine observations for an ultraviolet-sky atlas.\n\nThe atlas brings together measurements from several missions and identifies their origins. Measured values take priority; an ordinary statistical model fills remaining gaps. Its method description distinguishes those estimates from telescope observations. That visible distinction matters when deciding what the map can tell you.\n\nFor a smaller academic project, consider two existing rainfall datasets you are authorized to use. You might begin with their documentation and a few sample rows, asking an approved AI tool to draft an inventory of column names, units, date coverage and source files. Your question could be narrow: what would need to match before these tables could be combined?\n\nYou could request a proposed conversion table and a preview of the aligned rows. Consider checking units and dates against the original files, and retaining a source-file column beside every imported value. Missing measurements could stay visibly missing; any calculated value could carry a separate label explaining how it was derived.\n\nThe first useful output might be a checked sample table and a short list of unresolved differences. You could then decide whether to continue, consult a colleague with relevant methods expertise or revise the research question. The proposed rainfall exercise is a way to apply the atlas’s emphasis on provenance to a manageable piece of your own work. A traceable sample may give you a clearer basis for deciding what an archive can support.",
+      "source": "Brice Ménard’s original AI-assisted research account",
+      "sourceUrl": "https://www.anthropic.com/research/the-missing-map-of-the-sky",
+      "sourceLinks": [
+        {
+          "label": "Brice Ménard’s original AI-assisted research account",
+          "url": "https://www.anthropic.com/research/the-missing-map-of-the-sky"
+        },
+        {
+          "label": "Interactive atlas and public method description",
+          "url": "https://menard.pha.jhu.edu/uvmap/"
+        }
+      ],
+      "category": "Beyond Ed",
+      "imageUrl": "/images/innovation-pulse/2026-10-09/story-1.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-09/story-1.png",
+      "storyId": "IHE-STORY-2026-10-09-001",
+      "selectionId": "1",
+      "publishedDate": "2026-10-08 account; 2026-09-16 artifact",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "“Make It So”: How We Made the My Voice at Scale Video",
+      "summary": "We asked AI to help make a teaching video. Our script, image and editing decisions may help you plan a video of your own.",
+      "source": "Dr. Norma Jones · Original Feature",
+      "sourceUrl": "https://www.innovatinghighered.com/feature-coverage/my-voice-at-scale",
+      "sourceLinks": [
+        {
+          "label": "Read the complete Original Feature",
+          "url": "https://www.innovatinghighered.com/feature-coverage/my-voice-at-scale"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/feature-coverage/my-voice-at-scale-v17/homepage-selected-orange.png",
+      "heroImageUrl": "/images/feature-coverage/my-voice-at-scale-v17/feature-hero.png",
+      "storyId": "IHE-FEATURE-MY-VOICE-AT-SCALE",
+      "reviewOnlyImage": false
+    }
+  ],
+  "approvalDoc": "Founder instruction October 15, 2026: finish publishing the weekly on home page. Website only. Exact approved articles and current audio; latest approved WOW title with editorial selection of no-human option E."
+}
