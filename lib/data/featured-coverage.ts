@@ -30,6 +30,8 @@ export type FeaturedCoverage = {
   byline: string;
   authorName?: string;
   publishedAt: string;
+  /** Edition association can precede the actual Feature publication date. */
+  editionDate?: string;
   publishedLabel: string;
   sourceLabel: string;
   sourceUrl: string;

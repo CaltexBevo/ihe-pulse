@@ -9,6 +9,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
   "byline": "Dr. Norma Jones",
   "authorName": "Dr. Norma Jones",
   "publishedAt": "2026-10-15",
+  "editionDate": "2026-10-09",
   "publishedLabel": "October 15, 2026 · Edition 20",
   "sourceLabel": "Original teaching video",
   "sourceUrl": "https://www.youtube.com/watch?v=8OLae04GiNM",

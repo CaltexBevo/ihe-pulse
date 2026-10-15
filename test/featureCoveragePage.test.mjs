@@ -233,6 +233,19 @@ test("My Voice renders the complete illustrated article and separate teaching-vi
   assert.ok(markup.indexOf("typed-backplate-intermediate.jpg") < markup.indexOf("typed-backplate-final.png"));
 });
 
+test("My Voice binds only to its held Edition 20 identity despite its later publication date", () => {
+  const path = resolve(root, "lib/weeklyEdition.ts");
+  const weekly = loadCommonJs(readFileSync(path, "utf8"), path, {
+    "./data/innovation-pulse": {},
+    "./homepagePulse": {},
+  });
+  const story = { sourceUrl: "/feature-coverage/my-voice-at-scale", title: "My Voice at Scale" };
+  assert.equal(weekly.getEditionFeature(story, "2026-10-09").slug, "my-voice-at-scale");
+  assert.equal(weekly.getEditionFeature(story, "2026-10-02"), undefined);
+  assert.equal(weekly.getEditionFeature(story, "2026-10-15"), undefined);
+  assert.equal(weekly.getEditionFeature({sourceUrl: "/unrelated", title: "Other"}, "2026-10-09"), undefined);
+});
+
 
 test("Wonka keeps source context inline without a note beneath the recording", async () => {
   const markup = await renderFeaturePage("the-wonka-lantern-framework");

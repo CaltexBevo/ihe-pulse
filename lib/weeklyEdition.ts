@@ -6,7 +6,7 @@ import { getHomepageEpisodeStories, type HomepageStory } from './homepagePulse';
 /** Bind original coverage to its own edition and exact story identity, never the latest Feature. */
 export function getEditionFeature(story: HomepageStory, date: string) {
   return FEATURED_COVERAGE.find(feature =>
-    feature.publishedAt === date && (
+    (feature.editionDate ?? feature.publishedAt) === date && (
       story.sourceUrl === 'https://www.innovatinghighered.com/feature-coverage/' + feature.slug ||
       story.sourceUrl === '/feature-coverage/' + feature.slug ||
       story.title === feature.title
