@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-15] Does It Fit standalone page
+
+- Serve the supplied Does It Fit HTML at `/Does-It-Fit`, preserving its contents.
+- Keep the page out of navigation and sitemap, with noindex response headers.
+
 ## [2026-10-13] About contact action
 
 - Temporarily remove the About guest invitation and Be Our Guest button plus the footer guest link, preserving the guest page.

@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [{ source: '/Does-It-Fit', destination: '/Does-It-Fit.html' }];
+  },
+  async headers() {
+    return ['/Does-It-Fit', '/Does-It-Fit.html'].map((source) => ({
+      source,
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+    }));
+  },
   outputFileTracingIncludes: {
     "/innovation-grants/opengraph-image": ["./public/fonts/inter-bold.ttf"],
   },
