@@ -99,7 +99,8 @@ export default function HomePulseHero({
   const usesSeptember18Hero = episode.date === '2026-09-18' && Boolean(episode.weeklyHeroImageUrl);
   const usesSeptember25Hero = episode.date === '2026-09-25' && Boolean(episode.weeklyHeroImageUrl);
   const usesEdition19Hero = episode.date === '2026-10-02' && Boolean(episode.weeklyHeroImageUrl);
-  const usesApprovedFullHero = usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
+  const usesEdition20Hero = episode.date === '2026-10-09' && Boolean(episode.weeklyHeroImageUrl);
+  const usesApprovedFullHero = usesEdition20Hero || usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -253,7 +254,12 @@ export default function HomePulseHero({
         <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
       )}
 
-      {usesEdition19Hero ? (
+      {usesEdition20Hero ? (
+        <div className={styles.editionArtwork}>
+          <h1 id="home-pulse-title" className="sr-only">The Innovation Pulse, Weekly Edition 20.</h1>
+          <Image src={episode.weeklyHeroImageUrl!} alt="Innovation Pulse Weekly Edition 20, with Dr. Norma Jones." width={1920} height={863} sizes="(max-width: 1100px) 100vw, 1100px" className={styles.completeArtwork} priority unoptimized />
+        </div>
+      ) : usesEdition19Hero ? (
         <Edition19Artwork src={episode.weeklyHeroImageUrl!} />
       ) : usesSeptember25Hero ? (
         <September25Artwork src={episode.weeklyHeroImageUrl!} />
