@@ -221,12 +221,12 @@ test("homepage Feature audio is an independent control beside a separate Read ac
 
 test("My Voice renders the complete illustrated article and separate teaching-video route", async () => {
   const markup = await renderFeaturePage("my-voice-at-scale");
-  assert.equal((markup.match(/class="articleParagraph"/g) ?? []).length, 30);
+  assert.equal((markup.match(/class="articleParagraph"/g) ?? []).length, 31);
   assert.match(markup, /officialFeatureArt naturalFeatureArt/);
   assert.equal((markup.match(/<figure\b/g) ?? []).length, 11);
   assert.equal((markup.match(/<audio\b/g) ?? []).length, 1);
-  assert.match(markup, /feature-my-voice-at-scale-v17\.mp3/);
-  assert.match(markup, /7:43 · Narrated by Dr. Norma Jones/);
+  assert.match(markup, /feature-my-voice-at-scale-v18\.mp3/);
+  assert.match(markup, /7:32 · Narrated by Dr. Norma Jones/);
   assert.match(markup, /But being human\? That is up to us\./);
   assert.match(markup, /https:\/\/www.youtube.com\/watch\?v=8OLae04GiNM/);
   assert.ok(markup.indexOf("But being human?") < markup.indexOf("Watch the teaching video"));

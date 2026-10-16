@@ -34,8 +34,8 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
   "homepageImageAlt": "My Voice at Scale production illustration with text, picture and narration layers.",
   "intactHomepageImage": true,
   "showPreview": true,
-  "audioUrl": "/audio/feature-my-voice-at-scale-v17.mp3",
-  "audioDuration": "7:43",
+  "audioUrl": "/audio/feature-my-voice-at-scale-v18.mp3",
+  "audioDuration": "7:32",
   "videoLink": {
     "url": "https://www.youtube.com/watch?v=8OLae04GiNM",
     "label": "Watch My Voice at Scale: AI Supported Feedback"
@@ -43,11 +43,12 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
   "sections": [
     {
       "paragraphs": [
-        "I wanted to show fellow educators how I use Gemini to help turn my observations on student speeches into feedback that still sounds like me. An invitation from the California Community Colleges Chancellor’s Office gave me a reason to share that approach in a short video. It became My Voice at Scale: AI Supported Feedback. You’ll find a link to watch the finished video below.",
-        "That video explains my teaching approach. This is the story of how we made it: how we built a story around that approach, used AI tools to produce the narration and pictures, and worked through the revisions. If you have a teaching approach you’d like to share, our decisions may help you plan a video of your own.",
+        "I wanted to show fellow educators how I use Gemini to help turn my observations on student speeches into feedback that still sounds like me. An invitation from the California Community Colleges Chancellor’s Office gave me a reason to share that approach in a short video. It became My Voice at Scale: AI Supported Feedback. You’ll find a link to watch that video in the Feature story on our website.",
+        "That video explains my grading hack. This is the story of how we made it: how we built a story around that approach, used AI tools to produce the narration and pictures, and worked through the revisions. If you have a teaching approach you’d like to share, our decisions may help you plan a video of your own.",
         "We started late one afternoon. I’d asked my husband, Brent, to play producer. He’d produced and edited more than 100 episodes of television.",
         "“This will be easy,” he said.",
-        "We could have recorded my screen while I demonstrated Gemini. Brent said he couldn’t bring himself to make a boring screen recording. He wanted the challenge of making an animated teaching video.",
+        "Somehow, he was still an optimist.",
+        "We could have recorded my screen to walk colleagues through the Gemini process. Brent suggested trying an animated teaching video, giving us room to tell the story through a character and scenes. He was ready for a creative challenge.",
         "The plan sounded straightforward: write the script, create narration, illustrate the scenes, animate the images and assemble everything in a video editor. Presto, a finished video.",
         "I began with my written explanation of how I use Gemini. I watch each student’s speech and speak my observations into the chat. Gemini uses my notes, instructions and an example of my feedback to draft the wording. I check every line for accuracy, fairness and usefulness. I make the assessment and I assign the grade.",
         "I took that written explanation of my Gemini process and used ChatGPT to help shape it into a narration script for the teaching video.",
@@ -76,7 +77,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
       ],
       "illustrations": [
         {
-          "afterParagraph": 11,
+          "afterParagraph": 12,
           "wide": false,
           "caption": "The animated teacher has a recognizable situation and a reason to keep going.",
           "label": "Prepared opening illustration",
@@ -86,7 +87,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 941
         },
         {
-          "afterParagraph": 15,
+          "afterParagraph": 16,
           "wide": false,
           "caption": "Spoken narration at left; matching picture directions and reference numbers at right.",
           "label": "Working production script excerpt",
@@ -96,7 +97,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 250
         },
         {
-          "afterParagraph": 20,
+          "afterParagraph": 21,
           "wide": true,
           "caption": "The first assembly placed pictures above the narration track.",
           "label": "ChatGPT automated cut · CUT .04",
@@ -106,7 +107,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 1032
         },
         {
-          "afterParagraph": 21,
+          "afterParagraph": 22,
           "wide": false,
           "caption": "A reference image helped guide the room, computer, clothing and props in later shots.",
           "label": "Prepared room reference",
@@ -116,7 +117,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 941
         },
         {
-          "afterParagraph": 23,
+          "afterParagraph": 24,
           "wide": false,
           "caption": "The background leaves room for separately editable Gemini chat text.",
           "label": "1 · Blank illustrated monitor",
@@ -126,7 +127,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 2160
         },
         {
-          "afterParagraph": 24,
+          "afterParagraph": 25,
           "wide": false,
           "caption": "The Gemini label and first feedback sentence appear over the illustrated screen.",
           "label": "2 · Text added in the edit",
@@ -136,7 +137,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 1080
         },
         {
-          "afterParagraph": 24,
+          "afterParagraph": 25,
           "wide": false,
           "caption": "The completed feedback remains readable on the illustrated monitor.",
           "label": "3 · Finished teaching video",
@@ -146,7 +147,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 495
         },
         {
-          "afterParagraph": 24,
+          "afterParagraph": 25,
           "wide": false,
           "caption": "Editable text and the Typewriter effect sit above the backplate and narration.",
           "label": "Premiere timeline detail",
@@ -156,7 +157,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 426
         },
         {
-          "afterParagraph": 25,
+          "afterParagraph": 26,
           "wide": true,
           "caption": "The revised timeline includes replacement shots, editable text and refined timing.",
           "label": "Our final cut · CUT .11",
@@ -166,7 +167,7 @@ export const MY_VOICE_FEATURED_COVERAGE: FeaturedCoverage = {
           "height": 1036
         },
         {
-          "afterParagraph": 26,
+          "afterParagraph": 27,
           "wide": false,
           "caption": "The story returns to the teacher whose feedback the video was made to explain.",
           "label": "Finished teaching video",
