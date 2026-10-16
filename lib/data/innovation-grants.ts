@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -233,7 +233,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 44,
     portalAddedDate: "2026-08-29",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 7,
     title: "NSF State and Regional Artificial Intelligence Infrastructure Hubs",
     source: "U.S. National Science Foundation",
@@ -938,7 +938,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 69,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 24,
     title: "Cornerstone: Learning for Living",
     source: "The Teagle Foundation",
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1166,7 +1166,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 77,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 8,
     title: "Wake Forest ECI Communities of Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1193,7 +1193,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 78,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     publishedProgramPoolUsd: 5_700_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 14,
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1664,7 +1664,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      lastVerified: "Oct 10, 2026",
+      lastVerified: "Oct 16, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1703,7 +1703,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 10, 2026",
+      "lastVerified": "Oct 16, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1815,7 +1815,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 10, 2026",
+      "lastVerified": "Oct 16, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1853,7 +1853,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 10, 2026",
+      "lastVerified": "Oct 16, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 10, 2026",
+      "lastVerified": "Oct 16, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1969,7 +1969,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 101,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 10, 2026",
+      "lastVerified": "Oct 16, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2207,7 +2207,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 107,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 10, 2026",
+      "lastVerified": "Oct 16, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2277,7 +2277,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 110,
     portalAddedDate: "2026-09-28",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     publishedProgramPoolUsd: 300_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 31,
@@ -2349,7 +2349,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     "id": 112,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 10, 2026",
+    "lastVerified": "Oct 16, 2026",
     "recommendationRank": 22,
     "title": "Iowa Career Training Physical Expansion Grant Program",
     "source": "Iowa Workforce Development",
@@ -2385,7 +2385,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
 }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 10, 2026",
+    "lastVerified": "Oct 16, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2402,9 +2402,9 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     "geography": "University of Colorado system only",
     "costShareRequirement": "Not stated in the official source",
     "applicationAccess": "Official public submission form renders applicant fields, campus and project details, requested amount, PDF upload and Submit. No form was filled or submitted.",
-    "deadline": "Oct. 16, 2026 at midnight MDT",
+    "deadline": "Extended to Oct. 23, 2026 at midnight MDT",
     "deadlineTimeZone": "Mountain Daylight Time",
-    "finalDeadlineDate": "2026-10-16",
+    "finalDeadlineDate": "2026-10-23",
     "audiences": [
         "four-year-colleges-universities",
         "faculty-teaching-centers"
@@ -2417,12 +2417,12 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     ],
     "bestFit": "University of Colorado faculty testing AI teaching methods against specific course learning outcomes.",
     "eligibilityBadge": "University of Colorado full-time faculty",
-    "sourceNotes": "The official program page specifies Oct. 16, 2026 at midnight MDT. Complete within two academic semesters of award. Activities already completed or within two months of the submission deadline are ineligible. Supporting letters, CV and project proposal are combined into one PDF. A Spring 2027 round is announced. No program pool is inferred from up to ten awards per round."
+    "sourceNotes": "The official program page checked Oct. 16 extends the deadline to Oct. 23, 2026 at midnight MDT. Complete within two academic semesters of award. Activities already completed or within two months of the submission deadline are ineligible. Supporting letters, CV and project proposal are combined into one PDF. A Spring 2027 round is announced. No program pool is inferred from up to ten awards per round."
 }),
   grant({
     "id": 114,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 10, 2026",
+    "lastVerified": "Oct 16, 2026",
     "recommendationRank": 38,
     "title": "Provost's Award for Teaching Innovations in the Age of AI",
     "source": "Northwestern University",
@@ -2551,7 +2551,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 118,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 42,
     title: "IU Indianapolis Open Educational Resources Development Grants",
     source: "Indiana University Indianapolis University Library",
@@ -2609,7 +2609,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 120,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 43,
     title: "MNOP OER Pathfinder Grant Program: 2026–27",
     source: "Minitex Network for Open & Affordable Practices (MNOP)",
@@ -2675,7 +2675,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
       "id": 122,
       "portalAddedDate": "2026-10-09",
-      "lastVerified": "Oct 10, 2026",
+      "lastVerified": "Oct 16, 2026",
       "recommendationRank": 45,
       "title": "USI Pott College Innovation Fund: 2026–27",
       "source": "University of Southern Indiana Pott College of Science, Engineering, and Education",
@@ -2767,7 +2767,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 125,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 14, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 48,
     title: "Open Nebraska Affordable Content Grants: Fall 2026",
     source: "University of Nebraska Omaha Criss Library and Open Nebraska",
@@ -2795,7 +2795,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 126,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 14, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 49,
     title: "Integrated Data Systems & Services (IDSS)",
     source: "National Science Foundation",
@@ -2824,7 +2824,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 127,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 14, 2026",
+    lastVerified: "Oct 16, 2026",
     recommendationRank: 50,
     title: "Open Educational Resources Grant (AY27)",
     source: "National University",
@@ -2881,6 +2881,36 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     recurringLabel: "2026–27 annual window",
     recurrenceEvidence: "Current NSF program page lists Oct. 15, 2026–Oct. 14, 2027; active NSF 21-595 solicitation establishes annual Oct. 15–Oct. 14 windows.",
     sourceNotes: "Official program page, active NSF 21-595 solicitation and public Research.gov entry checked Oct. 15. This is the new annual window for three rolling tracks, not a new solicitation announcement. The prior cycle remains in Closed/Past. The approximately $10.3 million umbrella includes other tracks and is excluded from the active cash tally. Research.gov advertises scheduled Oct. 16–17 maintenance; no current closure was observed.",
+  }),
+  grant({
+    id: 129,
+    portalAddedDate: "2026-10-16",
+    lastVerified: "Oct 16, 2026",
+    recommendationRank: 39,
+    title: "Glendale Community College Senate Innovation Grant",
+    source: "Glendale Community College Academic Senate",
+    officialUrl: "https://glendale.edu/about-gcc/faculty-and-staff/academic-senate/senate-innovation-grant.html",
+    applicationUrl: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=sSnjZgOQrEm0yh9p5TvtsLtKrWnWj7JAr0KSpfXONCRUM0dOR1hXSUNWVEFVQ1REMlZNUjQwWjA3Mi4u",
+    announcedDate: "Fall 2026 call; opening date not stated",
+    awardAmount: "Up to $2,500 per award; $7,500 available for this call",
+    publishedProgramPoolUsd: 7500,
+    publishedProgramPoolApproximate: false,
+    eligibility: "Glendale Community College adjunct and full-time faculty at the Verdugo and Garfield campuses",
+    whatItFunds: "Innovative faculty projects, classroom materials, speakers, workshops and student trips.",
+    geography: "Glendale Community College only, California",
+    costShareRequirement: "Not stated in the official source",
+    applicationAccess: "Official nine-question Microsoft Forms application rendered with project and requested-amount fields. No information was entered or submitted.",
+    deadline: "Oct. 30, 2026 at 5 p.m.",
+    deadlineTimeZone: "Not stated in the official source",
+    finalDeadlineDate: "2026-10-30",
+    audiences: ["community-colleges", "faculty-teaching-centers"],
+    innovationAreas: ["teaching-learning", "faculty-development", "community-college-innovation"],
+    scopeDisposition: "included",
+    bestFit: "Glendale faculty seeking support for a classroom or faculty project they can complete by June 30, 2027.",
+    eligibilityBadge: "Glendale Community College faculty only",
+    inventoryOrigin: "weekly-new",
+    announcementWindow: "Broad discovery, Oct. 16, 2026",
+    sourceNotes: "Official current call and application verified Oct. 16. Projects must be completed by June 30, 2027. Only the explicitly published $7,500 Foundation-funded call pool enters the tally; the per-award cap is not counted separately. No time zone or announcement date is inferred.",
   }),
 ];
 
