@@ -12,6 +12,21 @@ function requiredEpisode(date: string) {
   return episode;
 }
 
+test('Edition 20 leads with its full original Feature and keeps all eight illustrated news stories', () => {
+  const episode = requiredEpisode('2026-10-09');
+  const before = JSON.stringify(episode);
+  const content = getWeeklyEditionContent(episode);
+  assert.equal(content.feature?.slug, 'my-voice-at-scale');
+  assert.equal(content.feature.sections.flatMap(section => section.paragraphs).length, 31);
+  assert.equal(content.storyCount, 9);
+  assert.equal(content.stories.length, 8);
+  assert.equal(content.stories[0].title, 'AI Turned His Brain Signals Into His Familiar Voice');
+  assert.equal(content.stories[0].image, '/images/innovation-pulse/2026-10-09/story-WOW-01.png');
+  assert.ok(content.stories.every(story => story.image && !story.href.includes('my-voice-at-scale')));
+  assert.deepEqual(content.stories.map(story => story.title), getHomepageEpisodeStories(episode).filter(story => story.sourceUrl !== content.lead.sourceUrl).map(story => story.title));
+  assert.equal(JSON.stringify(episode), before, 'website ordering must not mutate broadcast or source data');
+});
+
 test('September 25 uses the canonical first-person Feature, not its episode abstract', () => {
   const episode = requiredEpisode('2026-09-25');
   const content = getWeeklyEditionContent(episode);
@@ -36,7 +51,7 @@ test('historical editions stay independent and every edition story is represente
     assert.equal(content.storyCount, getHomepageEpisodeStories(episode).length);
     assert.equal(content.stories.length + 1, content.storyCount);
     assert.ok(content.stories.every(story => story.date === episode.date));
-    if (content.feature) assert.equal(content.feature.publishedAt, episode.date);
+    if (content.feature) assert.equal(content.feature.editionDate ?? content.feature.publishedAt, episode.date);
   }
   for (const date of ['2026-09-11', '2026-09-18']) {
     const episode = requiredEpisode(date);
