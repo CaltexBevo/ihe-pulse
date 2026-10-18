@@ -2675,7 +2675,7 @@ grant({
   grant({
       "id": 122,
       "portalAddedDate": "2026-10-09",
-      "lastVerified": "Oct 17, 2026",
+      "lastVerified": "Oct 18, 2026",
       "recommendationRank": 45,
       "title": "USI Pott College Innovation Fund: 2026–27",
       "source": "University of Southern Indiana Pott College of Science, Engineering, and Education",
@@ -2706,7 +2706,7 @@ grant({
       "eligibilityBadge": "USI Pott College full-time faculty and staff only",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Broad discovery, Oct. 9, 2026",
-      "sourceNotes": "Application form did not finish loading during the October 18 check; confirm access with the funder. Official page, seven-page guidelines and public intent entry checked Oct. 10. Guidelines: https://webprod.usi.edu/media/gu0llmca/innovation-fund-guidelines-2026-27.pdf . Mandatory intent date: https://webprod.usi.edu/sponsored-projects/grants-and-sponsored-projects/internal-awards-and-grants . Lifecycle uses the required intent cutoff so new applicants are not shown a later actionable window. No published program pool; per-award caps are excluded from the cash tally."
+      "sourceNotes": "Official page, seven-page guidelines and public intent entry checked Oct. 10. Guidelines: https://webprod.usi.edu/media/gu0llmca/innovation-fund-guidelines-2026-27.pdf . Mandatory intent date: https://webprod.usi.edu/sponsored-projects/grants-and-sponsored-projects/internal-awards-and-grants . Lifecycle uses the required intent cutoff so new applicants are not shown a later actionable window. No published program pool; per-award caps are excluded from the cash tally."
   }),
   grant({
     id: 123,

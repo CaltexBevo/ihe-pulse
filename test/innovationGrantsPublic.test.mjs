@@ -18,7 +18,7 @@ const { innovationGrants, INNOVATION_GRANTS_VERIFIED_ON, INNOVATION_GRANTS_FULL_
 
 const OCT16_VERIFIED_IDS = [44,69,76,77,78,83,93,94,97,98,100,101,107,110,112,113,114,118,120,122,125,126,127,129];
 const OCT17_VERIFIED_IDS = [44,69,71,72,76,77,83,87,91,93,94,97,98,100,101,103,106,107,108,110,111,112,113,114,115,116,117,118,120,122,125,126,127,128,129];
-const OCT18_VERIFIED_IDS = [44,69,71,72,76,77,80,83,87,91,93,94,97,98,100,101,103,106,107,108,111,112,113,114,116,117,118,120,125,126,127,128,129];
+const OCT18_VERIFIED_IDS = [44,69,71,72,76,77,80,83,87,91,93,94,97,98,100,101,103,106,107,108,111,112,113,114,116,117,118,120,122,125,126,127,128,129];
 
 function verifiedBeforeOct18(record) {
   if (!OCT18_VERIFIED_IDS.includes(record.id)) return record.lastVerified;
@@ -31,8 +31,7 @@ test("October 18 daily verification preserves discovery, qualified dates and all
   assert.equal(records.length, 75);
   assert.deepEqual(innovationGrants.filter((record) => record.lastVerified === "Oct 18, 2026").map((record) => record.id), OCT18_VERIFIED_IDS);
   assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Oct 16, 2026");
-  assert.equal(records.find((record) => record.id === 122).lastVerified, "Oct 17, 2026");
-  assert.match(records.find((record) => record.id === 122).sourceNotes, /Application form did not finish loading during the October 18 check/);
+  assert.equal(records.find((record) => record.id === 122).lastVerified, "Oct 18, 2026");
   assert.equal(getInnovationGrantLifecycle(records.find((record) => record.id === 59), new Date("2026-10-18T19:00:00Z")), "closed");
   assert.deepEqual(getInnovationGrantFundingSnapshot(records, new Date("2026-10-18T19:00:00Z")), {
     publishedProgramPoolUsd: 99057490, publishedProgramPoolCount: 7, approximatePoolCount: 2,
