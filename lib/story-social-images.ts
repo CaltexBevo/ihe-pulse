@@ -35,4 +35,44 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
     imageWidth: 1734,
     imageHeight: 907,
   },
+  "ai-turned-his-brain-signals-into-his-familiar-voice": {
+    imagePath: "/images/stories/social/edition20-wow-01-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
+  "make-course-reminders-give-students-a-useful-next-step": {
+    imagePath: "/images/stories/social/edition20-64-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
+  "get-a-clearer-view-of-student-reasoning-with-ai-interviews": {
+    imagePath: "/images/stories/social/edition20-ai-01-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
+  "share-ai-study-resources-with-a-clear-basis-for-trust": {
+    imagePath: "/images/stories/social/edition20-3-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
+  "make-vendor-proposals-easier-to-compare": {
+    imagePath: "/images/stories/social/edition20-ai-03-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
+  "use-an-ai-alternative-to-sharpen-your-lesson-plan": {
+    imagePath: "/images/stories/social/edition20-ai-06-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
+  "find-journal-publishing-support-before-you-submit": {
+    imagePath: "/images/stories/social/edition20-48-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
+  "make-archived-data-easier-to-check-before-reusing-it": {
+    imagePath: "/images/stories/social/edition20-1-card.png",
+    imageWidth: 1200,
+    imageHeight: 628,
+  },
 };
