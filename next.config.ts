@@ -2,10 +2,19 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async rewrites() {
-    return [{ source: '/Does-It-Fit', destination: '/Does-It-Fit.html' }];
+    return [
+      { source: '/Does-It-Fit', destination: '/Does-It-Fit.html' },
+      { source: '/Normas-AVC-Document-Navigator-4000', destination: '/Normas-AVC-Document-Navigator-4000.html' },
+    ];
   },
   async headers() {
-    return ['/Does-It-Fit', '/Does-It-Fit.html'].map((source) => ({
+    return [
+      '/Does-It-Fit',
+      '/Does-It-Fit.html',
+      '/Normas-AVC-Document-Navigator-4000',
+      '/Normas-AVC-Document-Navigator-4000.html',
+      '/normas-avc-navigator/:path*',
+    ].map((source) => ({
       source,
       headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
     }));
