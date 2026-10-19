@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -233,7 +233,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 44,
     portalAddedDate: "2026-08-29",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 7,
     title: "NSF State and Regional Artificial Intelligence Infrastructure Hubs",
     source: "U.S. National Science Foundation",
@@ -938,7 +938,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 69,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 24,
     title: "Cornerstone: Learning for Living",
     source: "The Teagle Foundation",
@@ -990,7 +990,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 71,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 12,
     title: "NSF Innovation in Two-Year College STEM Education",
     source: "U.S. National Science Foundation",
@@ -1020,7 +1020,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 72,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 2,
     title: "NSF IUSE: EDU: January 2027 tracks",
     source: "U.S. National Science Foundation",
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1166,7 +1166,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 77,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 8,
     title: "Wake Forest ECI Communities of Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1257,7 +1257,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 80,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 10,
     title: "USDA NIFA Tribal Colleges Research Grant Program",
     source: "USDA National Institute of Food and Agriculture",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1469,7 +1469,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
 grant({
     portalAddedDate: "2026-09-07",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     applicationStatus: "open-now",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Sep. 7",
@@ -1597,7 +1597,7 @@ grant({
   grant({
     id: 91,
     portalAddedDate: "2026-09-14",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 19,
     title: "NSF Computing Education Research",
     source: "U.S. National Science Foundation",
@@ -1664,7 +1664,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      lastVerified: "Oct 18, 2026",
+      lastVerified: "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1703,7 +1703,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1853,7 +1853,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1969,7 +1969,7 @@ grant({
   grant({
       "id": 101,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2048,7 +2048,7 @@ grant({
   grant({
       "id": 103,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2165,7 +2165,7 @@ grant({
   grant({
       "id": 106,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2207,7 +2207,7 @@ grant({
   grant({
       "id": 107,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2246,7 +2246,7 @@ grant({
   grant({
     id: 108,
     portalAddedDate: "2026-09-28",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     publishedProgramPoolUsd: 30_600_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 19,
@@ -2307,7 +2307,7 @@ grant({
   }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 18, 2026",
+    "lastVerified": "Oct 19, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2349,7 +2349,7 @@ grant({
   grant({
     "id": 112,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 18, 2026",
+    "lastVerified": "Oct 19, 2026",
     "recommendationRank": 22,
     "title": "Iowa Career Training Physical Expansion Grant Program",
     "source": "Iowa Workforce Development",
@@ -2385,7 +2385,7 @@ grant({
 }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 18, 2026",
+    "lastVerified": "Oct 19, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2422,7 +2422,7 @@ grant({
   grant({
     "id": 114,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 18, 2026",
+    "lastVerified": "Oct 19, 2026",
     "recommendationRank": 38,
     "title": "Provost's Award for Teaching Innovations in the Age of AI",
     "source": "Northwestern University",
@@ -2494,7 +2494,7 @@ grant({
   grant({
     id: 116,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 41,
     title: "College of the Redwoods President's Innovation Funds: Fall 2026",
     source: "College of the Redwoods Foundation",
@@ -2522,7 +2522,7 @@ grant({
   grant({
     id: 117,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 39,
     title: "Engaging Difference in General Education (EDGE) Grants: 2026–28",
     source: "Interfaith America",
@@ -2551,7 +2551,7 @@ grant({
   grant({
     id: 118,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 42,
     title: "IU Indianapolis Open Educational Resources Development Grants",
     source: "Indiana University Indianapolis University Library",
@@ -2580,7 +2580,7 @@ grant({
   grant({
     id: 119,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 10, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 34,
     title: "AmeriHealth Caritas Bridge Pilot for Short-Term Healthcare Pathways",
     source: "North Carolina Community Colleges Foundation and NC Community College System",
@@ -2594,8 +2594,8 @@ grant({
     geography: "North Carolina community colleges only",
     costShareRequirement: "Not stated in the official source",
     applicationAccess: "Prepare your college's proposal using the official RFP templates, then complete the Smartsheet application and required institutional attestations.",
-    deadline: "Nov. 18, 2026 at 11:59 p.m. ET",
-    deadlineTimeZone: "Eastern Time",
+    deadline: "Nov. 18, 2026 at 11:59 p.m.",
+    deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-18",
     audiences: ["community-colleges"],
     innovationAreas: ["student-success", "workforce-pathways", "research-evidence-building"],
@@ -2604,12 +2604,12 @@ grant({
     eligibilityBadge: "North Carolina community colleges only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 5, 2026",
-    sourceNotes: "Official RFP guidelines and rendered application checked Oct. 6. Predetermined college allocation: $666,667 student support, $80,000 success coaching and $10,000 implementation capacity over two years. Year-two disbursement depends on satisfactory progress, reporting and fiscal stewardship. Funding does not create underlying instructional capacity. The $3 million headline covers the broader initiative; neither that figure nor multiplied award allocations enter the cash-pool tally.",
+    sourceNotes: "Official RFP guidelines and rendered application checked Oct. 19. RFP: https://wordpress.nccommunitycolleges.edu/wp-content/uploads/2026/09/00_Bridge-Pilot-Overview-and-RFP-Guidelines-Final-10-1-1.docx . Predetermined college allocation: $666,667 student support, $80,000 success coaching and $10,000 implementation capacity over two years. Year-two disbursement depends on satisfactory progress, reporting and fiscal stewardship. Funding does not create underlying instructional capacity. The $3 million headline covers the broader initiative; neither that figure nor multiplied award allocations enter the cash-pool tally. No time zone or match requirement is inferred.",
   }),
   grant({
     id: 120,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 43,
     title: "MNOP OER Pathfinder Grant Program: 2026–27",
     source: "Minitex Network for Open & Affordable Practices (MNOP)",
@@ -2675,7 +2675,7 @@ grant({
   grant({
       "id": 122,
       "portalAddedDate": "2026-10-09",
-      "lastVerified": "Oct 18, 2026",
+      "lastVerified": "Oct 19, 2026",
       "recommendationRank": 45,
       "title": "USI Pott College Innovation Fund: 2026–27",
       "source": "University of Southern Indiana Pott College of Science, Engineering, and Education",
@@ -2767,7 +2767,7 @@ grant({
   grant({
     id: 125,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 48,
     title: "Open Nebraska Affordable Content Grants: Fall 2026",
     source: "University of Nebraska Omaha Criss Library and Open Nebraska",
@@ -2795,7 +2795,7 @@ grant({
   grant({
     id: 126,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 49,
     title: "Integrated Data Systems & Services (IDSS)",
     source: "National Science Foundation",
@@ -2824,7 +2824,7 @@ grant({
   grant({
     id: 127,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 50,
     title: "Open Educational Resources Grant (AY27)",
     source: "National University",
@@ -2852,7 +2852,7 @@ grant({
   grant({
     id: 128,
     portalAddedDate: "2026-10-15",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 9,
     title: "NSF Tribal Colleges and Universities Program: 2026–27 rolling tracks",
     source: "U.S. National Science Foundation",
@@ -2885,7 +2885,7 @@ grant({
   grant({
     id: 129,
     portalAddedDate: "2026-10-16",
-    lastVerified: "Oct 18, 2026",
+    lastVerified: "Oct 19, 2026",
     recommendationRank: 39,
     title: "Glendale Community College Senate Innovation Grant",
     source: "Glendale Community College Academic Senate",
@@ -2911,6 +2911,68 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 16, 2026",
     sourceNotes: "Official current call and application verified Oct. 16. Projects must be completed by June 30, 2027. Only the explicitly published $7,500 Foundation-funded call pool enters the tally; the per-award cap is not counted separately. No time zone or announcement date is inferred.",
+  }),
+  grant({
+    id: 130,
+    portalAddedDate: "2026-10-19",
+    lastVerified: "Oct 19, 2026",
+    recommendationRank: 40,
+    title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
+    source: "Texas Higher Education Coordinating Board",
+    officialUrl: "https://www.highered.texas.gov/grants/open-educational-resources-grant-program-oergp/",
+    applicationUrl: "https://thecb.fluxx.io/",
+    announcedDate: "Oct 16, 2026",
+    announcedDateIso: "2026-10-16",
+    awardAmount: "Estimated $15,000 Nursing awards or $285,000 Workforce awards; approximately $1 million for this call",
+    publishedProgramPoolUsd: 1000000,
+    publishedProgramPoolApproximate: true,
+    eligibility: "Texas public higher-education institutions with faculty-led projects. Workforce proposals require collaboration with another Texas public institution; Nursing collaboration is encouraged. Maximum one application per category per institution. Prior recipients must propose new courses.",
+    whatItFunds: "Faculty support to adopt OpenStax nursing resources in two or three courses, or develop or improve open resources for three to five workforce courses.",
+    geography: "Texas public higher-education institutions only",
+    costShareRequirement: "Not stated in the official source",
+    applicationAccess: "Official Fluxx institutional registration and login gateway verified. Applications must be submitted by an authorized institutional agent; no notice of intent required.",
+    deadline: "Nov. 20, 2026 at 5 p.m. Central Time",
+    deadlineTimeZone: "Central Time",
+    finalDeadlineDate: "2026-11-20",
+    finalDeadlineAt: "2026-11-20T23:00:00Z",
+    audiences: ["community-colleges", "four-year-colleges-universities", "faculty-teaching-centers"],
+    innovationAreas: ["teaching-learning", "workforce-pathways", "community-college-innovation", "digital-transformation-infrastructure"],
+    scopeDisposition: "included",
+    bestFit: "Texas faculty teams seeking funded support to replace nursing or workforce course materials with open resources.",
+    eligibilityBadge: "Texas public institutions only",
+    inventoryOrigin: "weekly-new",
+    announcementWindow: "Broad discovery, Oct. 19, 2026",
+    sourceNotes: "Official program, RFA 1801, FAQ and Fluxx gateway verified Oct. 19. RFA: https://reportcenter.highered.texas.gov/contracts/rfo-rfp-rfq-rfa/oergp-50/open-educational-resources-grant-program-rfa1801-2026-28/ . Award figures are estimates, not caps. Only the explicitly estimated $1 million current-call pool enters the tally, not a calculation from anticipated awards. Projects run from Jan. 4, 2027 or executed award, whichever is later, through Aug. 31, 2028.",
+  }),
+  grant({
+    id: 131,
+    portalAddedDate: "2026-10-19",
+    lastVerified: "Oct 19, 2026",
+    recommendationRank: 41,
+    title: "California College and Career Access Pathways Grant: Round 4",
+    source: "California Department of Education",
+    officialUrl: "https://www.cde.ca.gov/fg/fo/r17/ccap26rfa.asp",
+    applicationUrl: "https://www5.cde.ca.gov/pgms/Logon",
+    announcedDate: "Sep 28, 2026",
+    announcedDateIso: "2026-09-28",
+    awardAmount: "$100,000 per eligible high-school site; optional $50,000 justice-involved-youth supplement once per LEA",
+    eligibility: "California local educational agencies only: school districts, charter schools, county offices of education and Regional Occupational Centers or Programs. A community-college CEO or president's signed commitment is mandatory. Previously funded high-school sites are ineligible; colleges participate as partners, not lead applicants.",
+    whatItFunds: "LEA-led dual-enrollment partnerships with community colleges, including planning time, professional development, enrollment systems, advising and embedded student supports.",
+    geography: "California only",
+    costShareRequirement: "No matching funds required",
+    applicationAccess: "Official PGMS NextGen gateway verified; CAS sign-in and CDE account provisioning are required. No authenticated application was submitted or inspected.",
+    deadline: "Oct. 30, 2026 at 4 p.m. Pacific Daylight Time",
+    deadlineTimeZone: "Pacific Daylight Time",
+    finalDeadlineDate: "2026-10-30",
+    finalDeadlineAt: "2026-10-30T23:00:00Z",
+    audiences: ["community-colleges", "faculty-teaching-centers"],
+    innovationAreas: ["student-success", "workforce-pathways", "community-college-innovation", "teaching-learning"],
+    scopeDisposition: "included",
+    bestFit: "Community-college dual-enrollment teams seeking an LEA partner to fund shared planning, advising and enrollment improvements.",
+    eligibilityBadge: "California LEA lead; community-college partner required",
+    inventoryOrigin: "weekly-new",
+    announcementWindow: "Broad discovery, Oct. 19, 2026",
+    sourceNotes: "Official RFA, funding profile 7555, errata 1 and PGMS gateway verified Oct. 19. RFA: https://www.cde.ca.gov/fg/fo/r17/documents/ccap26rfa.docx . Errata removes per-pathway award language. The optional $50,000 supplement supports justice-involved youth in county-operated facilities and may be allocated only once per LEA across CCAP or MCEC, not to every site. The $100 million appropriation is not an isolated current-call pool and is excluded from the tally.",
   }),
 ];
 
