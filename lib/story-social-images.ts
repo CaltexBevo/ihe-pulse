@@ -1,5 +1,5 @@
 // Social card crops are independent of the artwork displayed on the story page.
-export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number }>> = {
+export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number; twitterTitle?: string }>> = {
   "georgia-tech-shows-two-ways-to-make-ai-practice-count": {
     imagePath: "/images/stories/social/georgia-tech-ai-practice-card-v3.png",
     imageWidth: 2048,
@@ -36,41 +36,49 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
     imageHeight: 907,
   },
   "ai-turned-his-brain-signals-into-his-familiar-voice": {
+    twitterTitle: "AI Turned His Brain Signals Into His Familiar Voice",
     imagePath: "/images/stories/social/edition20-wow-01-card.png",
     imageWidth: 1200,
     imageHeight: 628,
   },
   "make-course-reminders-give-students-a-useful-next-step": {
+    twitterTitle: "Make Course Reminders Give Students a Useful Next Step",
     imagePath: "/images/stories/social/edition20-64-card.png",
     imageWidth: 1200,
     imageHeight: 628,
   },
   "get-a-clearer-view-of-student-reasoning-with-ai-interviews": {
+    twitterTitle: "Get a Clearer View of Student Reasoning with AI Interviews",
     imagePath: "/images/stories/social/edition20-ai-01-card.png",
     imageWidth: 1200,
     imageHeight: 628,
   },
   "share-ai-study-resources-with-a-clear-basis-for-trust": {
+    twitterTitle: "Share AI Study Resources With a Clear Basis for Trust",
     imagePath: "/images/stories/social/edition20-3-card.png",
     imageWidth: 1200,
     imageHeight: 628,
   },
   "make-vendor-proposals-easier-to-compare": {
+    twitterTitle: "Make Vendor Proposals Easier to Compare",
     imagePath: "/images/stories/social/edition20-ai-03-card.png",
     imageWidth: 1200,
     imageHeight: 628,
   },
   "use-an-ai-alternative-to-sharpen-your-lesson-plan": {
+    twitterTitle: "Use an AI Alternative to Sharpen Your Lesson Plan",
     imagePath: "/images/stories/social/edition20-ai-06-card.png",
     imageWidth: 1200,
     imageHeight: 628,
   },
   "find-journal-publishing-support-before-you-submit": {
+    twitterTitle: "Find Journal Publishing Support Before You Submit",
     imagePath: "/images/stories/social/edition20-48-card.png",
     imageWidth: 1200,
     imageHeight: 628,
   },
   "make-archived-data-easier-to-check-before-reusing-it": {
+    twitterTitle: "Make Archived Data Easier to Check Before Reusing It",
     imagePath: "/images/stories/social/edition20-1-card.png",
     imageWidth: 1200,
     imageHeight: 628,
