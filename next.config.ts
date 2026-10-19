@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     return [
       { source: '/Does-It-Fit', destination: '/Does-It-Fit.html' },
       { source: '/Normas-AVC-Document-Navigator-4000', destination: '/Normas-AVC-Document-Navigator-4000.html' },
+      { source: '/AVCFT-Redesign', destination: '/AVCFT-Redesign.html' },
     ];
   },
   async headers() {
@@ -14,6 +15,8 @@ const nextConfig: NextConfig = {
       '/Normas-AVC-Document-Navigator-4000',
       '/Normas-AVC-Document-Navigator-4000.html',
       '/normas-avc-navigator/:path*',
+      '/AVCFT-Redesign',
+      '/AVCFT-Redesign.html',
     ].map((source) => ({
       source,
       headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],

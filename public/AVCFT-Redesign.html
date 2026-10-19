@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AVCFT Site Redesign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;600;650;700&family=Manrope:wght@500;600;650;700;800&family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&display=swap">
+<style>
+:root{
+  --ground:#faf8f4;
+  --panel:#ffffff;
+  --ink:#1b2333;
+  --ink-soft:#4c5568;
+  --line:#e3ded4;
+  --navy:#16305e;
+  --navy-deep:#0e2144;
+  --poppy:#e2571b;
+  --poppy-soft:#fbe9df;
+  --gold:#c8891e;
+  --gold-soft:#f7ecd6;
+  --hero-ink:#f5f1e8;
+  --hero-sub:#b9c4dc;
+  --chip:#eef1f7;
+  --shadow:0 1px 2px rgba(22,35,62,.06),0 8px 24px rgba(22,35,62,.07);
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --ground:#12161f;
+    --panel:#1a2030;
+    --ink:#e8e6df;
+    --ink-soft:#a8adbc;
+    --line:#2b3247;
+    --navy:#233d70;
+    --navy-deep:#0d1830;
+    --poppy:#f06a2d;
+    --poppy-soft:#3a2418;
+    --gold:#d99c33;
+    --gold-soft:#33290f;
+    --hero-ink:#f0ede4;
+    --hero-sub:#9fb0d0;
+    --chip:#242c40;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12161f;
+  --panel:#1a2030;
+  --ink:#e8e6df;
+  --ink-soft:#a8adbc;
+  --line:#2b3247;
+  --navy:#233d70;
+  --navy-deep:#0d1830;
+  --poppy:#f06a2d;
+  --poppy-soft:#3a2418;
+  --gold:#d99c33;
+  --gold-soft:#33290f;
+  --hero-ink:#f0ede4;
+  --hero-sub:#9fb0d0;
+  --chip:#242c40;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Archivo","Public Sans",sans-serif;line-height:1.12;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* prototype banner */
+.proto{background:var(--gold-soft);color:var(--ink);border-bottom:1px solid var(--line);font-size:13px;text-align:center;padding:7px 16px}
+.proto strong{color:var(--gold)}
+
+/* header */
+header.site{background:var(--navy-deep);color:var(--hero-ink);position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.bar{display:flex;align-items:center;gap:20px;padding:14px 0;flex-wrap:wrap}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--hero-ink)}
+.mark .badge{width:42px;height:42px;border-radius:6px;background:linear-gradient(150deg,var(--poppy) 0 55%,var(--gold) 55%);display:grid;place-items:center;font-family:"Archivo";font-weight:900;font-size:13px;color:#fff;letter-spacing:.02em}
+.mark .n{font-family:"Archivo";font-weight:800;font-size:19px;letter-spacing:.01em}
+.mark .t{font-size:11.5px;color:var(--hero-sub);letter-spacing:.08em;text-transform:uppercase}
+nav.main{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+nav.main button{appearance:none;border:0;background:transparent;color:var(--hero-sub);font:600 14px "Public Sans",sans-serif;padding:9px 13px;border-radius:6px;cursor:pointer}
+nav.main button:hover{color:var(--hero-ink);background:rgba(255,255,255,.07)}
+nav.main button[aria-current="page"]{color:#fff;background:rgba(255,255,255,.12)}
+nav.main button.join{background:var(--poppy);color:#fff}
+nav.main button.join:hover{background:#c94a14;color:#fff}
+nav.main button:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--poppy);outline-offset:2px}
+
+/* page switching */
+.page[hidden]{display:none}
+.page{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.page{animation:none}}
+
+/* hero */
+.hero{background:linear-gradient(170deg,var(--navy-deep) 0%,var(--navy) 100%);color:var(--hero-ink);padding:72px 0 64px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(226,87,27,.35),transparent 65%)}
+.hero .eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:900;font-stretch:112%;max-width:16ch}
+.hero .sub{margin-top:18px;max-width:56ch;color:var(--hero-sub);font-size:17.5px}
+.hero .cta-row{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{display:inline-block;border-radius:7px;padding:12px 20px;font:700 15px "Public Sans",sans-serif;text-decoration:none;cursor:pointer;border:0}
+.btn.primary{background:var(--poppy);color:#fff}
+.btn.primary:hover{background:#c94a14}
+.btn.ghost{background:transparent;color:var(--hero-ink);border:1.5px solid rgba(255,255,255,.35)}
+.btn.ghost:hover{border-color:#fff}
+.btn.navy{background:var(--navy);color:#fff}
+.btn.navy:hover{background:var(--navy-deep)}
+
+/* notice strip */
+.notices{background:var(--panel);border-bottom:1px solid var(--line)}
+.notices .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0}
+.notice{padding:18px 20px 18px 0;display:flex;gap:12px;align-items:flex-start}
+.notice+.notice{border-left:1px solid var(--line);padding-left:20px}
+.notice .dot{flex:0 0 10px;width:10px;height:10px;border-radius:50%;background:var(--poppy);margin-top:7px}
+.notice b{display:block;font-size:14.5px}
+.notice span{font-size:13.5px;color:var(--ink-soft)}
+@media (max-width:720px){.notice+.notice{border-left:0;padding-left:0;border-top:1px solid var(--line)}}
+
+/* sections */
+section.band{padding:56px 0}
+section.band.alt{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(24px,3.2vw,34px);font-weight:800;font-stretch:106%}
+.sec-head .more{font-size:14px;font-weight:600;color:var(--poppy);text-decoration:none;cursor:pointer;background:none;border:0;padding:0;font-family:inherit}
+.kicker{font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--poppy);margin-bottom:8px}
+.lede{max-width:62ch;color:var(--ink-soft);font-size:16.5px}
+
+/* cards */
+.grid{display:grid;gap:18px}
+.grid.c3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.grid.c2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;box-shadow:var(--shadow)}
+section.band.alt .card{background:var(--ground)}
+.card h3{font-size:17.5px;font-weight:700;margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--ink-soft)}
+.card .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;background:var(--chip);color:var(--ink-soft);border-radius:4px;padding:3px 8px;margin-bottom:12px}
+.card a.go{display:inline-block;margin-top:14px;font-size:14px;font-weight:700;color:var(--poppy);text-decoration:none}
+
+/* wall of awesomeness */
+.wall-hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 90%);color:var(--hero-ink);padding:58px 0 50px;position:relative;overflow:hidden}
+.wall-hero h1{font-size:clamp(32px,4.8vw,52px);font-weight:900;font-stretch:115%}
+.wall-hero .sub{color:var(--hero-sub);margin-top:14px;max-width:58ch}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--poppy)}
+.win.gold{border-top-color:var(--gold)}
+.win .stat{font-family:"Archivo";font-weight:900;font-stretch:110%;font-size:34px;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1}
+:root[data-theme="dark"] .win .stat{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .win .stat{color:var(--gold)}}
+.win h3{font-size:17px}
+.win p{font-size:14.5px;color:var(--ink-soft)}
+.win .yr{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink-soft)}
+.feature-win{grid-column:1 / -1;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--poppy);border-radius:10px;padding:28px;box-shadow:var(--shadow)}
+.feature-win .stat-big{font-family:"Archivo";font-weight:900;font-stretch:118%;font-size:clamp(40px,6vw,64px);color:var(--poppy);font-variant-numeric:tabular-nums;line-height:1}
+.feature-win h3{font-size:21px;margin-bottom:6px}
+.feature-win p{color:var(--ink-soft);font-size:15px;max-width:66ch}
+@media (max-width:640px){.feature-win{grid-template-columns:1fr}}
+.submit-win{margin-top:28px;background:var(--poppy-soft);border:1px dashed var(--poppy);border-radius:10px;padding:24px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.submit-win b{font-size:16.5px}
+.submit-win p{font-size:14px;color:var(--ink-soft)}
+
+/* resources */
+.mod{position:relative}
+.mod .num{position:absolute;top:18px;right:18px;font-family:"Archivo";font-weight:900;font-size:26px;color:var(--line)}
+.locknote{margin-top:20px;font-size:13.5px;color:var(--ink-soft);background:var(--chip);border-radius:8px;padding:14px 18px}
+
+/* rights */
+.script{background:var(--navy-deep);color:var(--hero-ink);border-radius:10px;padding:30px;margin:26px 0}
+.script .lab{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
+.script blockquote{margin:0;font-family:"Archivo";font-weight:700;font-size:clamp(19px,2.6vw,25px);line-height:1.35}
+.script p.note{margin-top:14px;color:var(--hero-sub);font-size:14px}
+table.cba{width:100%;border-collapse:collapse;font-size:14.5px}
+table.cba th{text-align:left;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);border-bottom:2px solid var(--line);padding:10px 14px 8px 0}
+table.cba td{border-bottom:1px solid var(--line);padding:12px 14px 12px 0;vertical-align:top}
+table.cba td:first-child{font-weight:700;white-space:nowrap;color:var(--navy)}
+:root[data-theme="dark"] table.cba td:first-child{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) table.cba td:first-child{color:var(--gold)}}
+.scrolly{overflow-x:auto}
+
+/* leadership */
+.officer{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow)}
+.officer .av{flex:0 0 46px;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:"Archivo";font-weight:800;font-size:15px}
+.officer.appt .av{background:var(--gold)}
+.officer b{display:block;font-size:15.5px}
+.officer span{font-size:13px;color:var(--ink-soft)}
+.officer a{font-size:13px;color:var(--poppy);text-decoration:none;font-weight:600}
+.role-h{font-size:13px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin:28px 0 14px}
+
+/* join */
+table.dues{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+table.dues th{text-align:left;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);border-bottom:2px solid var(--line);padding:10px 16px 8px 0}
+table.dues td{border-bottom:1px solid var(--line);padding:13px 16px 13px 0}
+table.dues td:first-child{font-weight:600}
+table.dues td:last-child{font-weight:700;color:var(--navy)}
+:root[data-theme="dark"] table.dues td:last-child{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) table.dues td:last-child{color:var(--gold)}}
+
+/* bargaining strip */
+.barg{background:var(--gold-soft);border:1px solid var(--line);border-radius:10px;padding:24px 26px;display:flex;gap:18px;align-items:flex-start}
+.barg .pulse{flex:0 0 12px;width:12px;height:12px;border-radius:50%;background:var(--gold);margin-top:6px}
+.barg b{font-size:16px}
+.barg p{font-size:14.5px;color:var(--ink-soft);margin-top:4px;max-width:70ch}
+
+/* footer */
+footer.site{background:var(--navy-deep);color:var(--hero-sub);padding:44px 0 36px;margin-top:0}
+footer.site .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+footer.site h4{color:var(--hero-ink);font-size:14px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px}
+footer.site p, footer.site a{font-size:14px;color:var(--hero-sub);text-decoration:none;line-height:1.9}
+footer.site a:hover{color:var(--hero-ink)}
+.solidarity{margin-top:34px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px}
+.solidarity .motto{font-family:"Archivo";font-weight:800;color:var(--gold);letter-spacing:.04em}
+</style>
+
+<style>
+/* AVCFT — warm editorial identity */
+:root{--ground:#f7f5ee;--panel:#fffefa;--ink:#162f3b;--ink-soft:#56666a;--line:#dddeda;--navy:#173c4a;--navy-deep:#112d39;--poppy:#b94025;--poppy-soft:#f5e7dd;--gold:#a96d22;--gold-soft:#eee9da;--hero-sub:#c6d5d9;--shadow:none}
+body{font-family:"DM Sans",sans-serif;line-height:1.7;background:var(--ground)}h1,h2,h3,h4{font-family:"Manrope",sans-serif;letter-spacing:-.045em}button,a{-webkit-tap-highlight-color:transparent}button{touch-action:manipulation}.wrap{max-width:1280px;padding:0 48px}.proto{font-size:10px;letter-spacing:.05em;padding:7px 20px;color:#5b665f;background:#e9ece5;border:0}.proto strong{color:#344b41;font-weight:600}.preview-sep{padding:0 10px;color:#9ca69d}
+header.site{background:rgba(247,245,238,.97);color:var(--ink);box-shadow:none;border-bottom:1px solid #173c4a17;backdrop-filter:blur(16px)}.bar{padding:20px 48px;gap:20px;flex-wrap:nowrap}.mark{color:var(--ink);gap:12px;flex-shrink:0}.mark .badge{position:relative;width:43px;height:44px;border-radius:0;background:none;color:var(--poppy);font:600 64px/.7 "Fraunces",Georgia,serif;display:block;letter-spacing:-.1em}.badge>span{position:absolute;right:0;top:-5px;font:25px/1 Georgia}.mark .n{font-family:"Manrope",sans-serif;font-weight:800;font-size:22px;letter-spacing:-.055em}.mark .t{font-size:10px;letter-spacing:.02em;text-transform:none;color:var(--ink-soft)}nav.main{gap:3px;flex-wrap:nowrap}nav.main button{font:600 11px "DM Sans",sans-serif;color:#42545a;border-radius:5px;padding:10px 10px;white-space:nowrap}nav.main button:hover{background:#e8ebe4;color:var(--ink)}nav.main button[aria-current="page"]{background:#e9ece5;color:var(--ink)}nav.main button.join{background:var(--ink);color:white;padding:13px 16px;margin-left:10px}nav.main button.join:hover{background:var(--poppy)}.menu-toggle{display:none}
+.hero.home-hero{background:var(--ground);padding:70px 0 48px;color:var(--ink);overflow:hidden}.home-hero:after{display:none}.hero-layout{display:grid;grid-template-columns:1.12fr 1fr;align-items:center;gap:56px}.hero-copy{padding:18px 0}.home-hero .eyebrow{font-size:10px;color:#50635d;letter-spacing:.16em;display:flex;align-items:center;gap:9px;margin-bottom:27px}.eyebrow>span{height:7px;width:7px;border-radius:50%;background:var(--poppy)}.home-hero h1{font-size:clamp(50px,6.3vw,83px);letter-spacing:-.065em;line-height:1.07;max-width:none;font-weight:650}.home-hero h1 em,h2 em{font-family:"Fraunces",Georgia,serif;font-weight:500;letter-spacing:-.06em;color:var(--poppy)}.home-hero .sub{font-size:22px;line-height:1.5;color:var(--ink);margin-top:27px;font-weight:500}.hero-detail{font-size:14px;color:var(--ink-soft);max-width:44ch;margin-top:15px;line-height:1.85}.hero .cta-row{gap:18px;margin-top:30px;align-items:center;flex-wrap:wrap}.btn{font:600 12px "DM Sans",sans-serif;padding:16px 20px;border-radius:5px;transition:transform .18s,background .18s;display:inline-flex;align-items:center;justify-content:center;gap:22px;min-height:46px}.btn:hover{transform:translateY(-2px)}.btn.primary{background:var(--poppy);box-shadow:0 3px 0 #81331d16}.btn.primary:hover{background:#993a24}.btn.text-btn{background:none;color:var(--ink);border:0;padding:12px 0;gap:12px;text-align:left;border-radius:0;border-bottom:1px solid #173c4a4a}.hero-footnote{border-top:1px solid var(--line);margin-top:38px;padding-top:19px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:9px;color:#617169}.little-star{font-size:26px;color:var(--poppy);line-height:1}.hero-footnote .local{font-size:8px;letter-spacing:.13em;margin-left:34px;margin-top:-9px;display:block;width:100%}.hero-visual{position:relative;padding:0 18px 0 0}.illustration{width:100%;max-width:450px;margin:0 auto;position:relative}.illustration svg{width:100%;display:block}.art-note{display:block;margin-top:15px;text-align:center;font:italic 15px "Fraunces",Georgia,serif;color:#66766b}.solidarity-seal{position:absolute;right:-13px;bottom:44px;transform:rotate(10deg);width:120px;height:120px;border-radius:50%;background:#f2cf85;color:#173c4a;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:8px;font-weight:700;letter-spacing:.07em;outline:1px solid #173c4a33;outline-offset:-7px;box-shadow:0 4px 10px #112d3908;line-height:1.8}.solidarity-seal i{font:italic 29px "Fraunces",serif;letter-spacing:-.05em}
+.notices{background:var(--navy-deep);color:#f7f5ee;border:0;margin-top:15px}.notices .wrap{grid-template-columns:repeat(3,1fr);gap:28px}.notice{padding:28px 0;gap:12px}.notice+.notice{border-left:1px solid #ffffff20;padding-left:25px}.notice .dot{background:#f0bc63;width:6px;height:6px;flex-basis:6px;margin-top:9px}.notice b{font-size:12px;font-weight:600;margin-bottom:5px;letter-spacing:.01em}.notice span{font-size:11px;color:#c2d0d1;line-height:1.8}
+section.band{padding:68px 0}section.band.alt{background:#eeeee6;border-top:0;border-bottom:0}.barg{background:none;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;padding:24px 0;gap:16px}.barg b{font-size:14px}.barg p{font-size:13px;max-width:95ch;line-height:1.8}.barg .pulse{height:7px;width:7px;flex-basis:7px;margin-top:9px;background:#97752c}.kicker{font-size:9px;letter-spacing:.18em;color:#7b582d;margin-bottom:14px}.sec-head{margin-bottom:34px;align-items:flex-end}.sec-head h2,.human-help h2{font-size:clamp(30px,3.7vw,47px);line-height:1.16;font-weight:650;letter-spacing:-.05em}.sec-head h2 em{font-weight:500}.sec-head .more{font-size:12px;color:var(--ink);border-bottom:1px solid #173c4a55;padding-bottom:6px}.feature-win{background:var(--panel);border:1px solid #dfe2d7;border-radius:12px;border-left:0;box-shadow:none;padding:40px;gap:40px;grid-template-columns:1fr 2fr;align-items:center}.feature-win .stat-big{font:600 clamp(50px,6.5vw,86px)/1.1 "Manrope",sans-serif;letter-spacing:-.075em;color:var(--poppy);border-right:1px solid var(--line);padding-right:28px}.stat-big>span{display:block;font:500 10px/1.6 "DM Sans",sans-serif;letter-spacing:0;color:#66736b;max-width:17ch;margin-top:8px}.feature-win h3{font-size:23px;line-height:1.3;max-width:32ch}.feature-win p{font-size:13px;line-height:1.9;margin-top:12px}.grid{gap:22px}.card{border-radius:10px;padding:30px;background:#fffefa;box-shadow:none;border-color:#dedfd7;display:flex;flex-direction:column;align-items:flex-start}.card h3{font-size:22px;line-height:1.3;font-weight:650;max-width:24ch;margin-bottom:14px}.card p{font-size:13px;line-height:1.85}.card .tag{font-size:9px;border-radius:3px;background:#e8ede7;color:#51675e;letter-spacing:.12em;padding:5px 9px;margin-bottom:20px}.service-number{font-size:9px;letter-spacing:.14em;color:var(--poppy);padding-bottom:26px;display:block}.card a.go{margin-top:auto;padding-top:25px;font-size:12px;color:var(--ink);text-underline-offset:5px}.card a.go:hover{text-decoration:underline}.mod .num{font-size:34px;color:#dbe2d8;right:23px;top:18px;font-family:"Manrope"}.mod h3{padding-right:15px}.lede{font-size:17px;line-height:1.9;max-width:66ch}.win{border-radius:10px;padding:30px;border-top:0;box-shadow:none;gap:17px}.win .stat{font:650 46px/1.1 "Manrope",sans-serif;letter-spacing:-.06em;color:var(--poppy)}.win h3{font-size:22px;line-height:1.3}.win p{font-size:13px;line-height:1.9}.win .yr{font-size:9px;letter-spacing:.12em}.win.gold{background:#efecdf}.wall-hero{padding:76px 0;background:var(--navy-deep)}.wall-hero h1{font-size:clamp(40px,5vw,68px);letter-spacing:-.055em}.wall-hero .sub{font-size:16px;line-height:1.8}.submit-win{background:#edece1;border:1px solid #dcdccc;border-radius:10px;padding:30px}.script{border-radius:12px;background:var(--navy-deep);padding:38px}.script blockquote{font:500 clamp(23px,3vw,34px)/1.4 "Fraunces",Georgia,serif;letter-spacing:-.02em}.script .lab{font-size:10px;color:#edbd71}.script .note{line-height:1.9}.role-h{font-size:10px;letter-spacing:.14em;margin-top:38px}.officer{box-shadow:none;border-radius:10px;padding:24px;gap:18px;align-items:center}.officer .av{background:#dfe7df;color:#254333;font-family:"Fraunces";font-size:20px;width:52px;height:52px;flex-basis:52px}.officer.appt .av{background:#eee2c8;color:#72532e}.officer b{font-size:17px;font-weight:600}.officer a{font-size:12px;overflow-wrap:anywhere}.officer>div{min-width:0}.officer span{font-size:12px}.scrolly{border:1px solid var(--line);border-radius:10px;background:var(--panel)}table.cba,table.dues{font-size:13px}table.cba th,table.dues th{padding:16px 20px;background:#e9ede5;font-size:10px}table.cba td,table.dues td{padding:19px 20px}table tr:last-child td{border-bottom:0}.locknote{background:#e9ede4;font-size:12px}.human-help{background:#ece7d9;padding:64px 0}.help-layout{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:60px}.human-help h2{font-size:clamp(32px,3.7vw,49px);line-height:1.2;font-weight:650}.human-help p{font-size:15px;color:var(--ink-soft);line-height:1.85;max-width:42ch;margin-bottom:23px}.help-phone{display:block;font-size:12px;margin-top:13px;text-decoration:none;color:var(--ink-soft)}.help-phone:hover{text-decoration:underline}footer.site{background:var(--navy-deep);padding:54px 0 24px}footer.site .cols{gap:38px;grid-template-columns:1.4fr 1fr 1fr 1fr}footer.site h4{font-family:"DM Sans";font-size:10px;letter-spacing:.13em;color:#f0eadc}footer.site p,footer.site a{font-size:11px;line-height:2;color:#bdcdce}.solidarity{margin-top:42px;padding-top:22px;font-size:10px;color:#a6bcbd}.solidarity .motto{font-family:"DM Sans";font-size:10px;color:#eac88a;letter-spacing:.17em}.skip-link{position:fixed;top:-100px;left:15px;background:var(--panel);color:var(--ink);padding:12px;z-index:100}.skip-link:focus{top:10px}:focus-visible{outline:3px solid #b94025!important;outline-offset:5px!important}.page{animation:fade .3s ease}.btn.ghost{border-color:#c6d5d955}.hero:not(.home-hero){background:var(--navy-deep);padding:70px 0}.hero:not(.home-hero) h1{font-size:clamp(34px,5vw,60px);font-weight:650}.hero:not(.home-hero) .eyebrow{color:#eac88a}
+@media(min-width:1100px){.grid.c3{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1100px){.wrap{padding-left:32px;padding-right:32px}.bar{padding-top:18px;padding-bottom:18px}.hero-layout{gap:35px}.home-hero h1{font-size:66px}.home-hero .sub{font-size:20px}nav.main button{padding-left:7px;padding-right:7px;font-size:10px}nav.main button.join{padding:12px 13px;margin-left:3px}.solidarity-seal{width:105px;height:105px;right:-12px}.hero .cta-row{gap:12px}.btn{font-size:11px;gap:14px}footer.site .cols{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.menu-toggle{display:flex;align-items:center;gap:15px;font:600 12px "DM Sans";color:var(--ink);border:1px solid #ccd2c9;padding:10px 13px;background:none;border-radius:5px}.bar{justify-content:space-between;flex-wrap:wrap}.mark .n{font-size:21px}nav.main{display:none;width:100%;margin:0;border-top:1px solid var(--line);padding-top:12px;gap:7px}nav.main.open{display:grid;grid-template-columns:repeat(2,1fr)}nav.main button{font-size:12px;text-align:left;padding:13px 10px}nav.main button.join{margin:0}.hero-layout{grid-template-columns:1fr 1fr;gap:24px}.home-hero h1{font-size:54px}.home-hero .eyebrow{font-size:8px;letter-spacing:.12em}.hero-detail{font-size:12px}.home-hero .sub{font-size:18px}.hero-footnote{font-size:8px}.home-hero .cta-row{flex-direction:column;align-items:flex-start}.hero-footnote{margin-top:28px}.hero-visual{padding-right:5px}.solidarity-seal{right:-18px;bottom:37px;width:90px;height:90px;font-size:6px}.solidarity-seal i{font-size:25px}.art-note{font-size:12px}.notices .wrap{gap:18px}.notice+.notice{padding-left:18px}.notice b{font-size:11px}.notice span{font-size:10px}.feature-win{gap:26px;padding:30px}.feature-win h3{font-size:21px}.help-layout{gap:30px}}
+@media(max-width:640px){.wrap{padding-left:24px;padding-right:24px}.bar{padding-top:15px;padding-bottom:15px}.proto{font-size:8px;padding:6px 12px}.preview-sep{padding:0 5px}.mark .badge{width:38px;height:38px;font-size:57px}.mark .n{font-size:20px}.mark .t{font-size:9px}.hero.home-hero{padding:30px 0 34px}.hero-layout{grid-template-columns:1fr;gap:25px}.hero-copy{padding:7px 0 0}.home-hero .eyebrow{font-size:8px;letter-spacing:.15em;margin-bottom:20px}.home-hero h1{font-size:clamp(47px,11.8vw,70px);line-height:1.04}.home-hero .sub{font-size:19px;margin-top:23px}.desktop-break{display:none}.hero-detail{font-size:13px;margin-top:12px;max-width:43ch}.home-hero .cta-row{flex-direction:row;gap:12px;align-items:center;margin-top:25px}.btn{font-size:11px;padding:14px 16px;gap:13px}.btn.text-btn{font-size:11px;padding:8px 0}.hero-footnote{display:none}.hero-visual{max-width:350px;margin:4px auto 0;padding:0 20px 0 0;width:100%}.illustration{max-width:280px}.solidarity-seal{right:0;bottom:34px;width:92px;height:92px;font-size:6px}.art-note{font-size:12px;margin-top:11px}.notices{margin-top:0}.notices .wrap{grid-template-columns:1fr;gap:0}.notice{padding:19px 0;gap:12px}.notice+.notice{padding-left:0;border-left:0;border-top:1px solid #ffffff20}.notice b{font-size:12px}.notice span{font-size:11px}.notice .dot{margin-top:8px}.grid.c2,.grid.c3{grid-template-columns:1fr}.sec-head h2{font-size:34px}.sec-head .more{font-size:11px;margin-top:5px}.sec-head{gap:18px;margin-bottom:25px}section.band{padding:43px 0}.barg{padding:22px 0}.barg b{font-size:12px}.barg p{font-size:12px}.feature-win{grid-template-columns:1fr;gap:25px;padding:28px}.feature-win .stat-big{border-right:0;border-bottom:1px solid var(--line);padding:0 0 22px;font-size:68px}.stat-big>span{font-size:10px;max-width:none}.feature-win h3{font-size:22px}.feature-win p{font-size:12px}.card{padding:28px}.card h3{font-size:24px}.card p{font-size:13px}.service-number{padding-bottom:24px}.wall-hero{padding:48px 0}.wall-hero h1{font-size:42px}.wall-hero .sub{font-size:14px}.script{padding:27px}.script .lab{font-size:9px}.script p.note{font-size:12px}.human-help{padding:44px 0}.help-layout{grid-template-columns:1fr;gap:25px}.human-help h2{font-size:37px}.human-help p{font-size:14px}.help-phone{display:inline-block;margin-left:12px;font-size:10px}.officer{padding:20px;gap:14px}.officer b{font-size:16px}.officer a{font-size:11px}.officer .av{width:45px;height:45px;flex-basis:45px}.lede{font-size:15px}.role-h{font-size:10px}.scrolly table{min-width:490px}.submit-win{padding:25px}footer.site{padding:40px 0 24px}footer.site .cols{gap:28px;grid-template-columns:1fr 1fr}footer.site .cols>div:first-child{grid-column:1/-1}footer.site p,footer.site a{font-size:10px}.solidarity{font-size:9px;gap:15px}.solidarity .motto{font-size:9px}.hero:not(.home-hero){padding:48px 0}.hero:not(.home-hero) .sub{font-size:15px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+/* Comfortable reading and touch targets at every size. */
+.card p,.win p,.feature-win p{font-size:15px}.hero-detail{font-size:15px}.notice b{font-size:14px}.notice span{font-size:13px}.barg p{font-size:14px}.card a.go{font-size:14px;min-height:44px}.btn{font-size:13px}nav.main button{min-height:44px}footer.site p,footer.site a{font-size:13px}.help-phone{font-size:13px}.art-note{font-size:15px}
+@media(max-width:640px){.card p,.win p,.feature-win p,.barg p{font-size:14px}.hero-detail{font-size:14px}.notice b{font-size:14px}.notice span{font-size:12px}.btn,.btn.text-btn{font-size:12px}.btn.text-btn{min-height:44px}.help-phone{display:block;margin:12px 0 0;font-size:13px}.art-note{font-size:13px}.officer a{font-size:12px}footer.site p,footer.site a{font-size:12px}.hero:not(.home-hero) .sub{font-size:16px}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#pg-home" onclick="event.preventDefault();const target=document.querySelector('.page:not([hidden])');target.setAttribute('tabindex','-1');target.focus();">Skip to content</a>
+
+<div class="proto"><strong>Design preview</strong><span class="preview-sep"> / </span> Prepared for AVCFT Executive Council review</div>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="mark" href="#" onclick="go('home');return false">
+      <span class="badge" aria-hidden="true">a<span>✳</span></span>
+      <span><span class="n">AVCFT</span><br><span class="t">Your faculty union</span></span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" onclick="toggleMenu()">Menu <span aria-hidden="true">☰</span></button>
+    <nav id="main-nav" class="main" aria-label="Main">
+      <button data-page="home" aria-current="page" onclick="go('home')">Home</button>
+      <button data-page="wall" onclick="go('wall')">Wall of Awesomeness</button>
+      <button data-page="resources" onclick="go('resources')">Member Resources</button>
+      <button data-page="rights" onclick="go('rights')">Know Your Rights</button>
+      <button data-page="leadership" onclick="go('leadership')">Leadership</button>
+      <button data-page="join" class="join" onclick="go('join')">Join your union ↗</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<main id="pg-home" class="page">
+  <div class="hero home-hero">
+    <div class="wrap hero-layout">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> The people behind the profession</div>
+        <h1>In solidarity.<br>For <em>all of us.</em></h1>
+        <p class="sub">You show up for your students.<br class="desktop-break"> We show up for you.</p>
+        <p class="hero-detail">Your faculty. Your voice. Your union. We represent AVC’s full-time and adjunct faculty—at the bargaining table, in the workplace, and every step in between.</p>
+        <div class="cta-row"><button class="btn primary" onclick="go('join')">Find your place with us <span aria-hidden="true">↗</span></button><button class="btn text-btn" onclick="go('resources')">Explore member resources <span aria-hidden="true">→</span></button></div>
+        <div class="hero-footnote"><span class="little-star" aria-hidden="true">✳</span> Antelope Valley College Federation of Teachers <span class="local">CFT–AFT LOCAL 4683A</span></div>
+      </div>
+      <div class="hero-visual"><div class="illustration"><svg viewBox="0 0 520 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="community-title"><title id="community-title">An illustrated faculty community standing together in the Antelope Valley</title>
+<defs><clipPath id="arch"><path d="M0 560V248C0 111 116 0 260 0s260 111 260 248v312Z"/></clipPath><pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#fff" opacity=".17"/></pattern></defs>
+<g clip-path="url(#arch)"><path fill="#d8e0d9" d="M0 0h520v560H0z"/><circle cx="360" cy="130" r="71" fill="#f0bc63"/><path d="m-40 365 126-143 87 90 90-127 142 139 72-52 98 95v193H0" fill="#99afa1"/><path d="m-20 411 142-93 124 81 137-101 160 105v157H0" fill="#6e8d81"/><path d="M0 463c113-61 191-44 275 0s171 11 245-30v127H0" fill="#c6a277"/>
+<!-- Four symbolic faculty figures, drawn for this design -->
+<path d="M8 560V395c0-48 29-78 68-78 45 0 72 32 72 78v165" fill="#e7ddd0"/><path d="m54 330 21 43 26-43" fill="#b97551"/><rect x="60" y="293" width="34" height="49" rx="13" fill="#b97551"/><ellipse cx="77" cy="278" rx="40" ry="49" fill="#c68a62"/><path d="M37 279c-10-61 22-79 56-63 33 3 36 34 23 65l-9-42c-14 20-37 25-59 24l-2 24" fill="#283d3b"/><path d="M42 396v164m71-164v164" stroke="#c2b7a6" stroke-width="3"/><path d="m68 284 4 0m20 0 4 0" stroke="#39423d" stroke-width="3" stroke-linecap="round"/><path d="M75 303q10 7 18-1" stroke="#8c533b" stroke-width="2" fill="none"/>
+<path d="M109 560V356c0-53 33-85 81-85s83 34 83 85v204" fill="#d95c36"/><rect x="170" y="247" width="39" height="52" rx="14" fill="#87563f"/><ellipse cx="190" cy="218" rx="44" ry="55" fill="#a57353"/><path d="M146 223c-9-37-3-74 37-75 37-8 60 20 51 75l-11-38-65 6-3 35" fill="#253633"/><path d="M166 224h14m20 0h14m-34 0h20" stroke="#293c37" stroke-width="3" fill="none"/><rect x="164" y="216" width="20" height="16" rx="5" stroke="#293c37" stroke-width="2" fill="none"/><rect x="197" y="216" width="20" height="16" rx="5" stroke="#293c37" stroke-width="2" fill="none"/><path d="M179 247q10 8 22-1" stroke="#694733" stroke-width="2" fill="none"/><path d="m171 282 19 30 19-30M143 375v185m98-185v185" stroke="#b94b2d" stroke-width="3" fill="none"/><path d="m164 417 58-8 9 94-59 7Z" fill="#f0d799"/><path d="m178 434 31-4m-29 16 31-4" stroke="#b4a16f" stroke-width="2"/>
+<path d="M245 560V392c0-50 29-83 74-83s80 33 80 83v168" fill="#213e50"/><path d="M274 276c-18-73 16-108 49-107 49 0 57 49 43 110l-12 65h-77Z" fill="#37463a"/><rect x="301" y="284" width="36" height="50" rx="13" fill="#b78059"/><ellipse cx="319" cy="254" rx="40" ry="53" fill="#d29d72"/><path d="M278 246q-4-70 45-66 49 6 35 74l-17-50c-10 22-31 33-63 36" fill="#37463a"/><path d="m303 258 4 0m21 0 4 0" stroke="#4a4b38" stroke-width="3" stroke-linecap="round"/><path d="M309 280q10 8 20-1" stroke="#9c6649" stroke-width="2" fill="none"/><path d="m301 320 18 26 19-26M279 409v151m84-151v151" stroke="#3c5662" stroke-width="3" fill="none"/>
+<path d="M376 560V420c0-48 28-77 67-77s72 30 72 77v140" fill="#e5b859"/><rect x="425" y="310" width="35" height="51" rx="13" fill="#985f41"/><ellipse cx="442" cy="289" rx="40" ry="51" fill="#b77e55"/><path d="M403 288c-14-56 13-79 43-72 40-7 54 33 35 73l-8-39-61 3-4 35" fill="#dfded1"/><path d="m428 295 4 0m20 0 4 0" stroke="#41483b" stroke-width="3" stroke-linecap="round"/><path d="M434 315q10 7 19-1" stroke="#805438" stroke-width="2" fill="none"/><path d="m427 353 15 24 19-24M406 437v123m78-123v123" stroke="#c49c4b" stroke-width="3" fill="none"/>
+<path d="M-10 544c110-9 187 14 275 4s164-13 270 1v30H-10" fill="#112e3b"/><path fill="url(#grain)" d="M0 0h520v560H0z"/></g></svg></div><span class="art-note">Different stories. One collective voice.</span><div class="solidarity-seal" aria-hidden="true">YOUR UNION.<br><i>Always</i><br>IN YOUR CORNER.</div></div>
+    </div>
+  </div>
+  <div class="notices">
+    <div class="wrap" role="list">
+      <div class="notice" role="listitem"><span class="dot"></span><div><b>Grievance window: 20 instructional days</b><span>Act within 20 instructional days of any violation to begin informal resolution — or the right to grieve is waived.</span></div></div>
+      <div class="notice" role="listitem"><span class="dot"></span><div><b>Weingarten rights</b><span>You have the right to union representation at any investigatory meeting. Invoke it before the meeting begins.</span></div></div>
+      <div class="notice" role="listitem"><span class="dot"></span><div><b>Need help now?</b><span>Email contact@avcft.org or call (661) 450-8437. Do not sign anything or attend a meeting alone first.</span></div></div>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="barg">
+        <span class="pulse"></span>
+        <div>
+          <b>Bargaining status — negotiations ongoing</b>
+          <p>Our contract expired June 30, 2025. Your Negotiating Team — Scott Lee, Kathy Osburn, Tamira Palmetto, and Eugene Siegel — is at the table bargaining the 2025–2028 agreement. Watch for bargaining updates by email, and bring questions to any General Membership Meeting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" style="padding-top:48px">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="kicker">Recent victory</div><h2>Real solidarity.<br><em>Real results.</em></h2></div>
+        <button class="more" onclick="go('wall')">Visit the Wall of Awesomeness →</button>
+      </div>
+      <div class="grid">
+        <div class="feature-win">
+          <div class="stat-big">$2.6M<span>estimated faculty restitution</span></div>
+          <div>
+            <h3>Winter Intersession returns — PERB Decision HO-U-1865</h3>
+            <p>After a six-year fight that began in 2019, a neutral state agency found the District violated California labor law and our contract. AVCFT prevailed on the majority of claims — unilateral changes, retaliation, direct dealing, interference, and information violations — returning Winter Intersession with an estimated $2.6 million in faculty restitution. Winter 2025 then posted the highest intersession student attendance since 2009.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="kicker">Start here</div><h2>Good work deserves<br><em>someone in your corner.</em></h2></div>
+      </div>
+      <div class="grid c3">
+        <div class="card"><span class="service-number">01 / REPRESENT</span><h3>We negotiate your contract</h3><p>Pay, benefits, workload, evaluation, leaves, and working conditions — the District must bargain with AVCFT, not with individual faculty.</p><a class="go" href="#" onclick="go('rights');return false">Your contract rights →</a></div>
+        <div class="card"><span class="service-number">02 / DEFEND</span><h3>We enforce it when it's violated</h3><p>Grievance representation at no cost to you, Weingarten representation at investigatory meetings, and a five-level process that goes all the way to the Board.</p><a class="go" href="#" onclick="go('rights');return false">The grievance process →</a></div>
+        <div class="card"><span class="service-number">03 / SUPPORT</span><h3>We put the union in your pocket</h3><p>The Canvas Member Resource Hub gives you eight modules of plain-language contract guidance — including a 24/7 AI assistant for general CBA questions.</p><a class="go" href="#" onclick="go('resources');return false">Member resources →</a></div>
+      </div>
+    </div>
+  </section>
+<section class="human-help"><div class="wrap help-layout"><div><div class="kicker">A real person. On your side.</div><h2>You don’t have to<br>figure it out <em>alone.</em></h2></div><div><p>A question about your contract? A difficult meeting coming up? Start a conversation with your union.</p><a class="btn primary" href="mailto:contact@avcft.org">Let’s talk <span aria-hidden="true">↗</span></a><a class="help-phone" href="tel:+16614508437">or call (661) 450-8437</a></div></div></section>
+</main>
+
+<!-- ============ WALL ============ -->
+<main id="pg-wall" class="page" hidden>
+  <div class="wall-hero">
+    <div class="wrap">
+      <div class="eyebrow" style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px">AVCFT Presents</div>
+      <h1>The Wall of Awesomeness</h1>
+      <p class="sub">Faculty do remarkable things — and so does a union that stands behind them. This wall celebrates the wins we've earned together, in Solidarity for All.</p>
+    </div>
+  </div>
+  <section class="band">
+    <div class="wrap">
+      <div class="grid c3">
+        <div class="feature-win">
+          <div class="stat-big">$2.6M<span>estimated faculty restitution</span></div>
+          <div>
+            <h3>Winter Intersession is back — and it's paying faculty back</h3>
+            <p>PERB Decision HO-U-1865 ended a six-year fight: the District violated the law and our contract, and AVCFT prevailed on the majority of claims. Winter Intersession returned in 2024–25 with an estimated $2.6 million in faculty restitution — then posted its highest student attendance (FTES) since 2009.</p>
+          </div>
+        </div>
+        <div class="win"><span class="yr">2024 – 2025</span><span class="stat">+20%</span><h3>Record membership growth</h3><p>Union membership grew more than 20% since Summer 2024 — the strongest AVCFT has been in years.</p></div>
+        <div class="win gold"><span class="yr">2023 – 2025</span><span class="stat">13% + 4%</span><h3>Raises won at the table</h3><p>A 13% raise for 2023–24, 4% for 2024–25, and an 8% one-time stipend for 2022–23 — negotiated and ratified by the membership.</p></div>
+        <div class="win"><span class="yr">2023</span><span class="stat">$17,500</span><h3>Health &amp; welfare cap raised</h3><p>The benefit cap increased from $14,500 to $17,500 per year, keeping quality coverage within reach for faculty families.</p></div>
+        <div class="win gold"><span class="yr">2025</span><span class="stat">68%</span><h3>A voice for adjunct faculty</h3><p>Adjuncts are 68% of AVC's instructional faculty. AVCFT created a dedicated Vice President of Adjunct Faculty seat to make sure that majority is heard. We see you. We need you. We stand with you.</p></div>
+        <div class="win"><span class="yr">2023</span><span class="stat">$100</span><h3>Independent study rate up 33%</h3><p>The per-student, per-unit independent study rate rose from $75 to $100 in the ratified 2023 agreement, alongside increased coaching stipends.</p></div>
+        <div class="win gold"><span class="yr">2024 – 2025</span><span class="stat">10 mo.</span><h3>Showing up, on the record</h3><p>Ten straight months of documented public comment at Board of Trustees meetings — on due process, retaliation, legal spending, and faculty morale.</p></div>
+      </div>
+      <div class="submit-win">
+        <div><b>Got a win that belongs on this wall?</b><p>A grant, an award, a published book, a student success story, a milestone — yours or a colleague's. Faculty wins are union wins.</p></div>
+        <a class="btn primary" href="mailto:communications@avcft.org?subject=Wall%20of%20Awesomeness%20submission">Submit a Win ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RESOURCES ============ -->
+<main id="pg-resources" class="page" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="kicker">Canvas Member Resource Hub</div>
+      <div class="sec-head"><h2>Your union, in your pocket</h2></div>
+      <p class="lede">Every AVC faculty member has access to the AVCFT Member Resource Hub on Canvas — plain-language modules covering your contract, your rights, and exactly what to do when something goes wrong. Log in once and it's there whenever you need it.</p>
+      <div class="grid c3" style="margin-top:30px">
+        <div class="card mod"><span class="num">01</span><span class="tag">Contract</span><h3>Contract &amp; CBA</h3><p>What the CBA is, key articles at a glance — discipline, evaluation, workload, leaves — and how to read your contract like a rep.</p><a class="go" href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Open in Canvas ↗</a></div>
+        <div class="card mod"><span class="num">02</span><span class="tag">Process</span><h3>Grievance Process</h3><p>All five levels with deadlines, what belongs on the grievance form, and the 20-instructional-day rule you cannot miss.</p><a class="go" href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Open in Canvas ↗</a></div>
+        <div class="card mod"><span class="num">03</span><span class="tag">Prepare</span><h3>Preparing for a Grievance &amp; Investigation</h3><p>Checklists for filing a grievance and for investigatory meetings — what to bring, what to document, what never to sign.</p><a class="go" href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Open in Canvas ↗</a></div>
+        <div class="card mod"><span class="num">04</span><span class="tag">Rights</span><h3>Member Rights</h3><p>Weingarten rights, discipline &amp; due process, workload &amp; LHE caps, evaluation, leaves, non-discrimination, and personnel file rights.</p><a class="go" href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Open in Canvas ↗</a></div>
+        <div class="card mod"><span class="num">05</span><span class="tag">Law</span><h3>Labor Relations</h3><p>What the District cannot do under California EERA — unilateral changes, direct dealing, retaliation — and how AVCFT enforces it.</p><a class="go" href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Open in Canvas ↗</a></div>
+        <div class="card mod"><span class="num">07</span><span class="tag">People</span><h3>Contacts &amp; Leadership</h3><p>Every officer, who to contact in which situation, and what to do the moment you receive a notice or reprimand.</p><a class="go" href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Open in Canvas ↗</a></div>
+        <div class="card mod"><span class="num">08</span><span class="tag">24/7</span><h3>Ask the Union — AI Assistant</h3><p>General CBA guidance any hour of the day: workload, scheduling, Weingarten, probationary rights. Not legal advice — for active matters, contact leadership directly.</p><a class="go" href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Open in Canvas ↗</a></div>
+        <div class="card mod"><span class="tag">Documents</span><h3>Collective Bargaining Agreement</h3><p>Download the current CBA and related MOUs, and check where negotiations stand for the 2025–2028 agreement.</p><a class="go" href="https://avcft.org/collective-bargaining-agreements/" target="_blank" rel="noopener">CBA archive ↗</a></div>
+      </div>
+      <p class="locknote">Module 6 of the hub contains internal officer and steward tools and stays in Canvas, available to designated officers only.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RIGHTS ============ -->
+<main id="pg-rights" class="page" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="kicker">Know Your Rights</div>
+      <div class="sec-head"><h2>Before any meeting, before you sign anything — read this</h2></div>
+      <p class="lede">Your first step in almost every situation is the same: contact AVCFT before responding, signing, or attending any meeting alone. Email contact@avcft.org or call (661) 450-8437.</p>
+
+      <div class="script">
+        <div class="lab">Weingarten Rights — say this before the meeting begins</div>
+        <blockquote>"I request union representation before this meeting continues."</blockquote>
+        <p class="note">You have the right to union representation at any investigatory meeting that could lead to discipline. Management cannot penalize you for invoking it. If representation is refused: document the refusal, withdraw from the meeting, and contact AVCFT immediately.</p>
+      </div>
+
+      <div class="grid c2" style="margin-bottom:34px">
+        <div class="card"><span class="tag">Deadline</span><h3>The 20-day rule</h3><p>You must begin informal resolution within <b>20 instructional days</b> of learning about a violation — instructional days, not calendar days. Missing the window permanently waives the grievance. When in doubt, contact AVCFT the same week.</p></div>
+        <div class="card"><span class="tag">Probationary faculty</span><h3>Non-reemployment notice</h3><p>Notice must arrive by certified or registered mail (Art. VIII §4.4.8(p)). If notice was never properly received, the clock never started — a mandatory remedy may apply. Contact AVCFT immediately.</p></div>
+        <div class="card"><span class="tag">Discipline</span><h3>Progressive discipline &amp; just cause</h3><p>Verbal warning → written reprimand → suspension → termination, in that order, and all of it requires just cause (Art. VII §2.5). Skipped steps are grievable.</p></div>
+        <div class="card"><span class="tag">Workload</span><h3>The caps that protect you</h3><p>25 LHE full-time cap per term (Art. X §3.5.1) — overload requires your consent. Involuntary reduction triggers 10-calendar-day bumping rights (§14.10). The 50% Rule (Art. XVII §4.0) limits distance-ed changes without negotiation.</p></div>
+      </div>
+
+      <div class="sec-head"><h2 style="font-size:24px">Key CBA articles at a glance</h2></div>
+      <div class="scrolly">
+      <table class="cba">
+        <tr><th>Article</th><th>Topic</th><th>What it covers</th></tr>
+        <tr><td>Art. V</td><td>Leaves</td><td>Sick leave, personal necessity, bereavement, sabbatical, family care (CFRA), and other entitlements.</td></tr>
+        <tr><td>Art. VII</td><td>Discipline</td><td>Progressive discipline and just cause for all disciplinary action; personnel file rights.</td></tr>
+        <tr><td>Art. VIII</td><td>Evaluation &amp; tenure</td><td>Probationary evaluation timelines, committee composition, certified-mail notice requirements.</td></tr>
+        <tr><td>Art. X</td><td>Workload &amp; LHE</td><td>LHE calculations, the 25 LHE cap, scheduling preference and rollover, bumping rights.</td></tr>
+        <tr><td>Art. XIV</td><td>Grievance procedure</td><td>The five-level process — informal resolution through Board of Trustees — all deadlines in instructional days.</td></tr>
+        <tr><td>Art. XVII §4.0</td><td>50 Percent Rule</td><td>Limits on distance education; changes require negotiation before implementation.</td></tr>
+      </table>
+      </div>
+      <p style="margin-top:22px;font-size:14px;color:var(--ink-soft)">Want the full plain-language walkthrough? It's all in the <a href="#" onclick="go('resources');return false" style="color:var(--poppy);font-weight:600">Canvas Member Resource Hub</a>. General guidance only — not legal advice.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ LEADERSHIP ============ -->
+<main id="pg-leadership" class="page" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="kicker">Contacts &amp; Leadership</div>
+      <div class="sec-head"><h2>The people in your corner</h2></div>
+      <p class="lede">Reach the whole council at contact@avcft.org or (661) 450-8437 · Office: 3041 West Avenue K, Lancaster, CA 93536 (main campus, T700 Room B1). For urgent matters, contact the President directly — Perry aims to respond within 24 hours.</p>
+
+      <div class="role-h">Elected Officers</div>
+      <div class="grid c2">
+        <div class="officer"><span class="av">PJ</span><div><b>Perry Jehlicka</b><span>President · </span><a href="mailto:president@avcft.org">president@avcft.org</a></div></div>
+        <div class="officer"><span class="av">CP</span><div><b>Carlos Pinho</b><span>Vice President · </span><a href="mailto:vpresident@avcft.org">vpresident@avcft.org</a></div></div>
+        <div class="officer"><span class="av">ES</span><div><b>Elle Smith</b><span>Adjunct Vice President · </span><a href="mailto:adjvp@avcft.org">adjvp@avcft.org</a></div></div>
+        <div class="officer"><span class="av">AB</span><div><b>Dr. Aurora Burd</b><span>Past President &amp; Secretary · </span><a href="mailto:secretary@avcft.org">secretary@avcft.org</a></div></div>
+        <div class="officer"><span class="av">KM</span><div><b>Kent Moser</b><span>Treasurer · </span><a href="mailto:treasurer@avcft.org">treasurer@avcft.org</a></div></div>
+      </div>
+
+      <div class="role-h">Appointed Officers</div>
+      <div class="grid c2">
+        <div class="officer appt"><span class="av">DA</span><div><b>David Adams</b><span>Grievance Officer · </span><a href="mailto:grievance@avcft.org">grievance@avcft.org</a></div></div>
+        <div class="officer appt"><span class="av">SL</span><div><b>Dr. Scott Lee</b><span>Past President &amp; Political Director · </span><a href="mailto:political@avcft.org">political@avcft.org</a></div></div>
+        <div class="officer appt"><span class="av">NJ</span><div><b>Dr. Norma Jones</b><span>Membership &amp; Communications Director · </span><a href="mailto:membership@avcft.org">membership@avcft.org</a></div></div>
+        <div class="officer appt"><span class="av">KO</span><div><b>Kathy Osburn</b><span>Grievance Committee Member · </span><a href="mailto:grievance_team_member@avcft.org">grievance_team_member@avcft.org</a></div></div>
+      </div>
+
+      <div class="role-h">Negotiating Team — 2025–2028 CBA</div>
+      <div class="card"><p style="font-size:15px;color:var(--ink)">Scott Lee · Kathy Osburn · Tamira Palmetto · Eugene Siegel</p><p style="margin-top:6px">Bargaining the successor agreement to the contract that expired June 30, 2025.</p></div>
+
+      <div class="role-h">Who to contact, when</div>
+      <div class="grid c2">
+        <div class="card"><h3>Reprimand, investigation, or non-reemployment notice</h3><p>Contact the President immediately. Do not respond in writing or attend any meeting before consulting AVCFT. Invoke Weingarten rights at any meeting.</p></div>
+        <div class="card"><h3>Possible contract violation</h3><p>The informal resolution window is 20 instructional days. Contact the President or the Grievance Officer quickly, with dates and specifics documented.</p></div>
+        <div class="card"><h3>Adjunct faculty concerns</h3><p>Contact Elle Smith, Adjunct Vice President — your dedicated voice on the council.</p></div>
+        <div class="card"><h3>Membership, events &amp; communications</h3><p>Contact Dr. Norma Jones — including Wall of Awesomeness submissions and newsletter items.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ JOIN ============ -->
+<main id="pg-join" class="page" hidden>
+  <div class="hero" style="padding:56px 0 48px">
+    <div class="wrap">
+      <div class="eyebrow">Membership</div>
+      <h1 style="max-width:20ch">All faculty are in the bargaining unit. Members make it strong.</h1>
+      <p class="sub">Every full-time and adjunct faculty member is covered by the contract AVCFT negotiates. Joining as a dues-paying member is what gives the union the strength — and the standing — to win fights like the $2.6M Winter Intersession decision.</p>
+      <div class="cta-row"><a class="btn primary" href="https://connect.aft.org/app/memberforms/4683A/join" target="_blank" rel="noopener">Join Online Now ↗</a></div>
+    </div>
+  </div>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><h2>2025–2026 membership dues</h2></div>
+      <p class="lede" style="margin-bottom:24px">Paid by payroll deduction. Adjunct dues scale with your load, so membership stays affordable at every level.</p>
+      <div class="scrolly">
+      <table class="dues">
+        <tr><th>Category</th><th>Annual</th><th>Months</th><th>Monthly</th></tr>
+        <tr><td>Full-time faculty</td><td>$1,265.52</td><td>12</td><td>$105.46</td></tr>
+        <tr><td>Adjunct, 8+ hrs/LHE</td><td>$704.16</td><td>10</td><td>$58.68</td></tr>
+        <tr><td>Adjunct, 4–8 hrs/LHE</td><td>$353.16</td><td>10</td><td>$29.43</td></tr>
+        <tr><td>Adjunct, ≤4 hrs/LHE</td><td>$217.08</td><td>10</td><td>$18.09</td></tr>
+      </table>
+      </div>
+      <div class="grid c3" style="margin-top:34px">
+        <div class="card"><span class="tag">Why join</span><h3>A contract with teeth</h3><p>Members fund the representation, the bargaining, and the enforcement — including grievance defense at no individual cost.</p></div>
+        <div class="card"><span class="tag">Why join</span><h3>A louder voice</h3><p>Membership grew 20%+ since Summer 2024. Every new member strengthens our position at the bargaining table.</p></div>
+        <div class="card"><span class="tag">Why join</span><h3>A community</h3><p>Socials, welcome events, workshops, and a union that celebrates faculty wins on the Wall of Awesomeness.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>AVCFT</h4>
+        <p>Antelope Valley College Federation of Teachers<br>CFT-AFT Local 4683A<br>3041 West Avenue K, Lancaster, CA 93536</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p><a href="mailto:contact@avcft.org">contact@avcft.org</a><br><a href="tel:+16614508437">(661) 450-8437</a><br><a href="mailto:president@avcft.org">president@avcft.org</a> (urgent)</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p><a href="https://connect.aft.org/app/memberforms/4683A/join" target="_blank" rel="noopener">Join AVCFT ↗</a><br><a href="https://avcft.org/collective-bargaining-agreements/" target="_blank" rel="noopener">CBA Archive ↗</a><br><a href="https://avcft.org/newsletters/" target="_blank" rel="noopener">Newsletters ↗</a><br><a href="https://avc.instructure.com/courses/68590" target="_blank" rel="noopener">Canvas Resource Hub ↗</a></p>
+      </div>
+      <div>
+        <h4>Affiliations</h4>
+        <p>California Federation of Teachers (CFT)<br>American Federation of Teachers (AFT)<br>Antelope Valley College</p>
+      </div>
+    </div>
+    <div class="solidarity">
+      <span class="motto">IN SOLIDARITY FOR ALL</span>
+      <span>© 2026 AVCFT · CFT-AFT Local 4683A</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+ const nav=document.querySelector('nav.main');
+ const open=nav.classList.toggle('open');
+ document.querySelector('.menu-toggle').setAttribute('aria-expanded',String(open));
+}
+function go(id, update=true){
+ const page=document.getElementById('pg-'+id);
+ if(!page)return;
+ document.querySelectorAll('.page').forEach(p=>p.hidden=p!==page);
+ document.querySelectorAll('nav.main button').forEach(b=>{
+ if(b.dataset.page===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+ });
+ document.querySelector('nav.main').classList.remove('open');
+ document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+ document.querySelector('.skip-link').href='#pg-'+id;
+ document.title=(id==='home'?'AVCFT — In Solidarity for All':document.querySelector('[data-page="'+id+'"]').textContent+' | AVCFT');
+ if(update&&location.hash!=='#'+id)history.pushState(null,'','#'+id);
+ window.scrollTo({top:0});
+}
+window.addEventListener('popstate',()=>go(location.hash.slice(1)||'home',false));
+go(location.hash.slice(1)||'home',false);
+</script>
+
+</body></html>
