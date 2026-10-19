@@ -15,6 +15,8 @@ type PageMetadataOptions = {
   /** Optional accessible description for the social image. */
   imageAlt?: string;
   /** Optional Twitter card variant. */
+  /** Optional social-only title; page and Open Graph titles remain unchanged. */
+  twitterTitle?: string;
   twitterCard?: "summary" | "summary_large_image";
   /** Optional dimensions for a page-specific social image. */
   imageWidth?: number;
@@ -38,6 +40,7 @@ export function pageMetadata({
   imagePath,
   imageAlt,
   twitterCard = "summary",
+  twitterTitle,
   imageWidth,
   imageHeight,
 }: PageMetadataOptions): Metadata {
@@ -64,7 +67,7 @@ export function pageMetadata({
     },
     twitter: {
       card: twitterCard,
-      title,
+      title: twitterTitle ?? title,
       description,
       images: [imageUrl],
     },
