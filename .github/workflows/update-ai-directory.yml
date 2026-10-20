@@ -56,6 +56,9 @@ jobs:
       - name: Run provider-boundary and directory schema/UI tests
         run: node --loader ./scripts/update-ai-directory.mjs --test test/ai-directory-provider-boundary.test.mjs test/ai-directory/ai-directory-schema.test.ts
 
+      - name: Validate responsive library image delivery
+        run: node --test test/libraryImageDelivery.test.mjs
+
       - name: Scan active provider scope
         run: node scripts/update-ai-directory.mjs scan --repo-root . --expected-head "$EXPECTED_HEAD" --allowed-dirty-paths '[]'
 

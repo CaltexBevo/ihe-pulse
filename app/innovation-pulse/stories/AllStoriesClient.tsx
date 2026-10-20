@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./AllStories.module.css";
 export type LibraryStory = { id: string; href: string; title: string; summary: string; source: string; category: string; date: string; dateLabel: string; image: string };
 const CURRENT = ["Insights & Trends", "Case Study", "Practical Tips", "Ethical AI", "Beyond Ed", "Research", "AI Workforce & Careers", "Investing in Innovation"];
@@ -30,10 +31,11 @@ export default function AllStoriesClient({ stories, embedded = false }: { storie
   <div className={styles.filters} role="group" aria-label="Filter stories by category">{["", ...categories].map(c => <button key={c} type="button" aria-label={c ? "Filter by " + c : "Show all topics"} aria-pressed={category === c} onClick={() => { setCategory(c); setLimit(12); }}>{c || "All topics"}</button>)}</div>
   <p className={styles.count} role="status" aria-live="polite">Showing {Math.min(limit, results.length)} of {results.length} {results.length === 1 ? "story" : "stories"}{query.trim() || category ? " (" + stories.length + " total)" : ""}</p>
   {results.length ? <div className={styles.grid}>{results.slice(0,limit).map(s => <article key={s.id} className={styles.card}><Link href={s.href} className={styles.cardLink}>
-   {s.image && <div className={styles.image}>{
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={s.image} alt="" loading="lazy" width="640" height="360"/>
-   }</div>}
+   {s.image && <div className={styles.image}>
+    <Image src={s.image} alt="" loading="lazy" width={640} height={427}
+     // Match the 1/2/3-column grid, page gutters, gaps and card inset.
+     sizes="(max-width: 600px) calc(100vw - clamp(2rem, 8vw, 4rem) - 20px), (max-width: 900px) calc((100vw - clamp(2rem, 8vw, 4rem) - 18px) / 2 - 20px), (max-width: 1440px) calc((100vw - 4rem - 36px) / 3 - 20px), calc((1440px - 4rem - 36px) / 3 - 20px)" />
+   </div>}
    <div className={styles.cardBody}><p className={styles.category}>{s.category}</p><h2>{s.title}</h2><div className={styles.cardFooter}><time dateTime={s.date}>{s.dateLabel}</time><span className={styles.read}>Read story <span aria-hidden="true">→</span></span></div></div>
   </Link></article>)}</div> : <div className={styles.empty}><h2>No stories found</h2><p>{query.trim() ? "No stories match “" + query.trim() + "”" + (category ? " in " + category : "") + "." : "No stories match these filters."}</p><button type="button" aria-label="Clear story filters" onClick={clear}>Clear filters</button></div>}
   {limit < results.length && <div className={styles.more}><button type="button" aria-label="Load more stories" onClick={() => setLimit(n => n + 12)}>Load more stories <span aria-hidden="true">↓</span></button></div>}

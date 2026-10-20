@@ -394,6 +394,7 @@ After pushing changes to Vercel:
 - [ ] Cadence language matches current mode
 - [ ] Skip navigation link works (Tab from fresh page load)
 - [ ] All interactive elements are keyboard accessible
+- [ ] For image/component changes, verify a nonempty rendered card set at desktop/mobile: actual selected responsive URLs, decoded dimensions, response format/bytes and unchanged complete-artwork framing. CSS dimensions, lazy loading and visual approval do not prove efficient delivery. Run relevant regression coverage (library: `node --test test/libraryImageDelivery.test.mjs`) and compare the actual live selected responses after release. Keep high-resolution masters unchanged. Full acceptance: HQ `operations/skills/ihe-website-distribution/references/image-delivery.md`.
 
 ---
 
