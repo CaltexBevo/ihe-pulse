@@ -236,7 +236,7 @@ function ArticleSection({
             {section.illustrations?.filter((figure) => figure.afterParagraph === paragraphIndex + 1).map((figure) => (
               <figure key={figure.path} className={`${styles.articleFigure} ${figure.wide ? styles.wideFigure : ""}`}>
                 <a href={figure.path} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size ${figure.label || "illustration"}`}>
-                  <Image src={figure.path} alt={figure.alt} width={figure.width} height={figure.height} sizes={figure.wide ? "(max-width: 767px) 100vw, 1000px" : "(max-width: 767px) 100vw, 800px"} unoptimized />
+                  <Image src={figure.path} alt={figure.alt} width={figure.width} height={figure.height} sizes={figure.wide ? "(min-width: 1100px) calc(800px - 4rem + 220px), calc(min(100vw, 800px) - clamp(2rem, 8vw, 4rem))" : "calc(min(100vw, 800px) - clamp(2rem, 8vw, 4rem))"} />
                 </a>
                 <figcaption>
                   {figure.label && <span className={styles.figureLabel}>{figure.label}</span>}
@@ -297,8 +297,7 @@ function OfficialFeatureArticle({ feature }: { feature: FeaturedCoverage }) {
               width={feature.imageWidth ?? 1671}
               height={feature.imageHeight ?? 941}
               priority
-              unoptimized={feature.slug === "could-ai-become-our-teaching-superpower"}
-              sizes="(max-width: 767px) 100vw, 55vw"
+              sizes={`(max-width: 767px) calc(100vw - clamp(2rem, 8vw, 4rem) - ${feature.intactHomepageImage ? 0 : 2}px), calc((min(100vw, 1400px) - clamp(2rem, 8vw, 4rem) - clamp(2rem, 5vw, 4.5rem)) * 0.56 - ${feature.intactHomepageImage ? 0 : 2}px)`}
               className={styles.officialFeatureImage}
             />
             {feature.imageCaption && <figcaption className={styles.heroCaption}>{feature.imageCaption}</figcaption>}

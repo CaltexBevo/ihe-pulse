@@ -5,7 +5,7 @@ export const APPROVED_SEPTEMBER_11_HERO =
   '/images/innovation-pulse/homepage/2026-09-11-approved-bold-diagonal.png';
 
 /** Founder-selected master, displayed without cropping its editorial content or retypesetting it. */
-export default function ApprovedSeptember11HeroArtwork() {
+export default function ApprovedSeptember11HeroArtwork({ sizes }: { sizes: string }) {
   return (
     <>
       <div className={styles.accessibleCopy}>
@@ -29,7 +29,7 @@ export default function ApprovedSeptember11HeroArtwork() {
           height={936}
           className={styles.image}
           priority
-          unoptimized
+          sizes={sizes}
         />
       </div>
     </>

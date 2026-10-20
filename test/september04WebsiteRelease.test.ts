@@ -123,7 +123,7 @@ test('September 4 hero binds the approved master and semantic copy without chang
   assert.match(artworkCss, /aspect-ratio:\s*1671\s*\/\s*766/);
   assert.match(artworkCss, /overflow:\s*hidden/);
   assert.match(hero, /import ApprovedSeptemberHeroArtwork from ['"]\.\/ApprovedSeptemberHeroArtwork['"]/);
-  assert.match(hero, /usesSeptember04Hero\s*\?\s*<ApprovedSeptemberHeroArtwork\s*\/>/);
+  assert.match(hero, /usesSeptember04Hero\s*\?\s*<ApprovedSeptemberHeroArtwork\s+sizes=/);
   assert.match(hero, /getHomePulseWaveform\(episode\.date\)/);
   assert.match(hero, /audio\.currentTime = boundedTime/);
 

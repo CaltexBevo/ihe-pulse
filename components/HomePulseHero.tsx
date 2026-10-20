@@ -102,6 +102,9 @@ export default function HomePulseHero({
   const usesEdition20Hero = episode.date === '2026-10-09' && Boolean(episode.weeklyHeroImageUrl);
   const usesApprovedFullHero = usesEdition20Hero || usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
 
+  // Homepage and dated editions have different bounds, with the same gutters and border.
+  const artworkSizes = `calc(min(100vw, ${editionLayout ? 1440 : 1200}px) - clamp(2rem, 8vw, 4rem) - 2px)`;
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -257,19 +260,19 @@ export default function HomePulseHero({
       {usesEdition20Hero ? (
         <div className={styles.editionArtwork}>
           <h1 id="home-pulse-title" className="sr-only">The Innovation Pulse, Weekly Edition 20.</h1>
-          <Image src={episode.weeklyHeroImageUrl!} alt="Innovation Pulse Weekly Edition 20, with Dr. Norma Jones." width={1920} height={863} sizes="(max-width: 1100px) 100vw, 1100px" className={styles.completeArtwork} priority unoptimized />
+          <Image src={episode.weeklyHeroImageUrl!} alt="Innovation Pulse Weekly Edition 20, with Dr. Norma Jones." width={1920} height={863} sizes={artworkSizes} className={styles.completeArtwork} priority />
         </div>
       ) : usesEdition19Hero ? (
-        <Edition19Artwork src={episode.weeklyHeroImageUrl!} />
+        <Edition19Artwork src={episode.weeklyHeroImageUrl!} sizes={artworkSizes} />
       ) : usesSeptember25Hero ? (
-        <September25Artwork src={episode.weeklyHeroImageUrl!} />
+        <September25Artwork src={episode.weeklyHeroImageUrl!} sizes={artworkSizes} />
       ) : usesSeptember18Hero ? (
         <>
           <h1 id="home-pulse-title" className="sr-only">Turn papers into research assistants. This week’s Innovation Pulse.</h1>
           <September18Artwork src={episode.weeklyHeroImageUrl!} />
         </>
-      ) : usesSeptember04Hero ? <ApprovedSeptemberHeroArtwork /> : usesSeptember11Hero ? (
-        <ApprovedSeptember11HeroArtwork />
+      ) : usesSeptember04Hero ? <ApprovedSeptemberHeroArtwork sizes={artworkSizes} /> : usesSeptember11Hero ? (
+        <ApprovedSeptember11HeroArtwork sizes={`calc((${artworkSizes}) * 1681 / 1641)`} />
       ) : editionLayout ? (
         <div className={styles.editionArtwork}>
           <h1 id="home-pulse-title" className={styles.editionTitle}>Innovation Pulse</h1>

@@ -24,9 +24,16 @@ export function FeatureArtwork({
     compact && feature.homepageImagePath
       ? feature.homepageImagePath
       : feature.imagePath;
-  const usesTeachingSuperpowerArtwork = feature.slug === "could-ai-become-our-teaching-superpower";
   const usesHomepageHeroCrop =
     compact && Boolean(feature.homepageImagePath);
+  const imageBorder = feature.intactHomepageImage ? 0 : 2;
+  const imageScale = !feature.intactHomepageImage && usesHomepageHeroCrop ? 1.65 : 1;
+  // HomepageShell adds a 14px padded, 1px bordered tray around the compact card.
+  const containerWidth = `min(100vw, 1200px) - clamp(2rem, 8vw, 4rem)${compact ? " - 30px" : ""}`;
+  // Match card padding/borders, its responsive columns, and the existing art crop.
+  const artworkSizes = compact
+    ? `(max-width: 639px) calc((${containerWidth} - ${26 + imageBorder}px) * ${imageScale}), (max-width: 767px) calc((${containerWidth} - ${34 + imageBorder}px) * ${imageScale}), calc(((${containerWidth} - 50px) * 0.525 - ${imageBorder}px) * ${imageScale})`
+    : `(max-width: 639px) calc(${containerWidth} - ${34 + imageBorder}px), (max-width: 1023px) calc(${containerWidth} - ${50 + imageBorder}px), calc((${containerWidth} - 78px) * 0.525 - ${imageBorder}px)`;
 
   return (
     <div
@@ -38,7 +45,6 @@ export function FeatureArtwork({
           alt={(compact && feature.homepageImageAlt) || feature.imageAlt || feature.title}
           fill
           priority
-          unoptimized={usesTeachingSuperpowerArtwork}
           className={
             feature.intactHomepageImage
               ? "object-contain"
@@ -46,7 +52,7 @@ export function FeatureArtwork({
               ? "origin-[70%_25%] scale-[1.65] object-cover"
               : "object-cover"
           }
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          sizes={artworkSizes}
         />
       ) : (
         <div
