@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from './September25Artwork.module.css';
 
 /** Founder-selected September 25 edition master, shown as the full homepage artwork. */
-export default function September25Artwork({ src }: { src: string }) {
+export default function September25Artwork({ src, sizes }: { src: string; sizes: string }) {
   return (
     <>
       <div className={styles.accessibleCopy}>
@@ -17,10 +17,9 @@ export default function September25Artwork({ src }: { src: string }) {
           alt="September 19–25 Innovation Pulse edition artwork: an AI learning lab turns one teaching challenge into a shared learning breakthrough, with additional episode stories about visible student thinking, stronger class discussions, and the return of touch."
           width={1672}
           height={941}
-          sizes="(max-width: 1100px) 100vw, 1100px"
+          sizes={sizes}
           className={styles.image}
           priority
-          unoptimized
         />
       </div>
     </>

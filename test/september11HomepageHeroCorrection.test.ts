@@ -41,6 +41,6 @@ test('September 11 homepage uses the exact founder-approved episode artwork', ()
   assert.match(componentCss, /aspect-ratio:\s*1641\s*\/\s*622/);
   assert.match(componentCss, /overflow:\s*hidden/);
   assert.match(hero, /usesSeptember11Hero\s*=\s*episode\.date\s*===\s*'2026-09-11'/);
-  assert.match(hero, /usesSeptember11Hero\s*\?\s*\(\s*<ApprovedSeptember11HeroArtwork\s*\/>/);
+  assert.match(hero, /usesSeptember11Hero\s*\?\s*\(\s*<ApprovedSeptember11HeroArtwork\s+sizes=/);
   assert.match(hero, /usesApprovedFullHero/);
 });
