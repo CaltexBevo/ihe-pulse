@@ -173,13 +173,6 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           {story.title}
         </h1>
 
-        {/* Subtitle/Hook */}
-        {!usesSeptember04Card && (
-          <p className="text-[1.15rem] text-[var(--text-secondary)] leading-[1.55] mb-8">
-            {story.preview || `${story.summary.split('.').slice(0, 2).join('.')}...`}
-          </p>
-        )}
-
         {/* Story Audio Clip (if lead story) */}
         {story.type === "deepDive" && story.audioUrl && (
           <StoryPageClient audioUrl={story.audioUrl} />
