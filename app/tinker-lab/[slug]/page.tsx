@@ -5,6 +5,9 @@ import { ArrowLeft, Clock, FlaskConical, Lightbulb, User, Tag } from 'lucide-rea
 import { posts } from '@/lib/data/posts';
 import { pageMetadata } from '@/lib/og';
 
+// Only published inventory entries are routable; retired entries return HTTP 404.
+export const dynamicParams = false;
+
 function getPodbeanUrl(podbeanId: string) {
   return `https://www.podbean.com/player-v2/?i=${podbeanId}&from=pb6admin&share=1&download=1&rtl=0&fonts=Arial&skin=60a0c8&font-color=auto&logo_link=episode_page&btn-skin=1b1b1b`;
 }

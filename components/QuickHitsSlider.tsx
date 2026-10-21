@@ -52,7 +52,7 @@ function StoryFace({ story, onImageReady }: { story: HomepageStory; onImageReady
   const pill = story.feature ? { text: 'var(--amber)' } : pillColorsFor(category);
   const image = getHomepageStoryImage(story);
   return <div className={styles.face}>
-    <div className={styles.imageFrame}>{image ? <Image key={image} src={image} alt="" fill loading={onImageReady ? 'eager' : undefined} onLoad={onImageReady} onError={onImageReady} sizes="(max-width: 680px) 100vw, (max-width: 1024px) 50vw, 33vw" className={styles.image} /> : <div className={styles.imageFallback}>Innovation Pulse story</div>}</div>
+    {!story.omitImage && <div className={styles.imageFrame}>{image ? <Image key={image} src={image} alt="" fill loading={onImageReady ? 'eager' : undefined} onLoad={onImageReady} onError={onImageReady} sizes="(max-width: 680px) 100vw, (max-width: 1024px) 50vw, 33vw" className={styles.image} /> : <div className={styles.imageFallback}>Innovation Pulse story</div>}</div>}
     <div className={styles.body}><h3 className={styles.title}>{story.title}</h3><div className={styles.category} style={{ color: pill.text }}><span className={styles.categoryDot} style={{ backgroundColor: pill.text }} />{story.feature ? 'Original Feature' : category}</div></div>
   </div>;
 }

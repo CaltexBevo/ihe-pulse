@@ -63,7 +63,7 @@
       "source": "UC Berkeley Center for Studies in Higher Education",
       "sourceUrl": "https://cshe.berkeley.edu/publications/artificial-intelligence-and-grade-inflation-cshe-higher-education-working-paper-series",
       "category": "Insights & Trends",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-18-story3.png"
+      "omitImage": true
     },
     {
       "headline": "A.T. and T. Recruits Electricians While College Graduate Hiring Slows",
@@ -71,7 +71,7 @@
       "source": "CNBC",
       "sourceUrl": "https://www.cnbc.com/2026/05/19/ai-hiring-slowdown-skilled-trade-workers.html",
       "category": "AI Workforce & Careers",
-      "imageUrl": "https://storage.googleapis.com/ihe-daily-news-audio/images/2026-05-18-story2.png"
+      "omitImage": true
     },
     {
       "headline": "Universities Abandon A.I. Detection Software After Accuracy Problems",

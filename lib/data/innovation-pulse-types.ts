@@ -104,6 +104,8 @@ export interface DeepDive {
   callbackFirstCovered?: string;
   category: StoryCategory;
   editorialCallout?: string;
+  /** Explicitly text-only; suppress automatic artwork fallback. */
+  omitImage?: boolean;
   image?: string; // Assigned at data load time for consistency
   heroImage?: string; // Reviewed wide 1200x420 derivative for story pages
   dataViz?: DataVizConfig; // Optional chart data
@@ -119,6 +121,8 @@ export interface QuickHit {
   category: StoryCategory;
   isCallback?: boolean;
   callbackDate?: string;
+  /** Explicitly text-only; suppress automatic artwork fallback. */
+  omitImage?: boolean;
   image?: string; // Assigned at data load time for consistency
   heroImage?: string; // Reviewed wide 1200x420 derivative for story pages
   dataViz?: DataVizConfig; // Optional chart data

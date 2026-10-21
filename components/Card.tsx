@@ -17,6 +17,7 @@ interface CardProps {
   sourceUrl?: string;
   date: string;
   imageUrl?: string;
+  omitImage?: boolean;
   badgeText?: string;
   badgeColor?: string;
   href?: string;
@@ -39,6 +40,7 @@ export default function Card({
   sourceUrl,
   date,
   imageUrl,
+  omitImage = false,
   badgeText,
   badgeColor = "rgba(200, 80, 192, 0.85)",
   href,
@@ -61,7 +63,7 @@ export default function Card({
     <>
       {/* Story artwork can opt into an uncropped frame. */}
       <div className="relative overflow-hidden">
-        <div
+        {!omitImage && <div
           className={`relative w-full transition-all duration-400 ${
             preserveArtwork ? "aspect-[3/2] bg-[var(--surface)]" : isExpanded ? "h-[190px]" : "h-[180px]"
           }`}
@@ -80,10 +82,10 @@ export default function Card({
           )}
           {/* Subtle gradient overlay at bottom for badge readability */}
           {!preserveArtwork && <div className="absolute inset-0 bg-gradient-to-t from-[rgba(8,8,15,0.4)] via-transparent to-transparent pointer-events-none" />}
-        </div>
+        </div>}
         {/* Badge Overlay - JetBrains Mono */}
         {badgeText && (
-          <div className={preserveArtwork ? "px-4 pt-3 flex flex-col gap-1" : "absolute top-[10px] left-[10px] flex flex-col gap-1"}>
+          <div className={preserveArtwork || omitImage ? "px-4 pt-3 flex flex-col gap-1" : "absolute top-[10px] left-[10px] flex flex-col gap-1"}>
             <span
               className="text-[0.53rem] font-semibold tracking-[0.06em] uppercase px-2 py-[3px] rounded-[5px] backdrop-blur-[8px] w-fit"
               style={{

@@ -162,6 +162,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     isCallback: (rawDeepDive.isCallback as boolean) ?? false,
     category: mapCategory((rawDeepDive.category) as string || '', date),
     editorialCallout: (rawDeepDive.editorialCallout) as string | undefined,
+    omitImage: rawDeepDive.omitImage === true,
     image: (rawDeepDive.image || rawDeepDive.imageUrl) as string | undefined,
     heroImage: (rawDeepDive.heroImage || rawDeepDive.heroImageUrl) as string | undefined,
     dataViz: (rawDeepDive.dataViz) as InnovationPulseEpisode['deepDive']['dataViz'] | undefined,
@@ -178,6 +179,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
     sourceLinks: (hit.sourceLinks) as InnovationPulseEpisode['quickHits'][number]['sourceLinks'],
     category: mapCategory((hit.category) as string || '', date),
     isCallback: hit.isCallback as boolean | undefined,
+    omitImage: hit.omitImage === true,
     image: (hit.image || hit.imageUrl) as string | undefined,
     heroImage: (hit.heroImage || hit.heroImageUrl) as string | undefined,
     dataViz: (hit.dataViz) as InnovationPulseEpisode['quickHits'][number]['dataViz'] | undefined,
@@ -249,13 +251,15 @@ function assignImagesToEpisode(episode: InnovationPulseEpisode): InnovationPulse
   // Assign image to lead story (deepDive) - use JSON image if present, otherwise fallback
   const deepDiveWithImage = {
     ...episode.deepDive,
-    image: episode.deepDive.image || imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category, episode.date),
+    image: episode.deepDive.omitImage ? undefined : episode.deepDive.image || imageAssigner.getImage(episode.deepDive.title, episode.deepDive.category, episode.date),
+    heroImage: episode.deepDive.omitImage ? undefined : episode.deepDive.heroImage,
   };
 
   // Assign images to all quickHits - use JSON image if present, otherwise fallback
   const quickHitsWithImages = episode.quickHits.map((hit) => ({
     ...hit,
-    image: hit.image || imageAssigner.getImage(hit.title, hit.category, episode.date),
+    image: hit.omitImage ? undefined : hit.image || imageAssigner.getImage(hit.title, hit.category, episode.date),
+    heroImage: hit.omitImage ? undefined : hit.heroImage,
   }));
 
   return {
@@ -364,6 +368,7 @@ export interface AggregatedStory {
   date: string;
   type: 'deepDive' | 'quickHit';
   isCallback?: boolean;
+  omitImage?: boolean;
   image?: string; // Pre-assigned at data load time
   heroImage?: string; // Reviewed wide derivative when available
 }
@@ -389,6 +394,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
       isCallback: episode.deepDive.isCallback,
       image: episode.deepDive.image,
       heroImage: episode.deepDive.heroImage,
+      omitImage: episode.deepDive.omitImage,
     });
 
     // Add quick hits
@@ -405,6 +411,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
         type: 'quickHit',
         image: hit.image,
         heroImage: hit.heroImage,
+        omitImage: hit.omitImage,
       });
     }
   }
@@ -496,6 +503,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
         editorialTake: episode.deepDive.editorialCallout,
         image: episode.deepDive.image,
         heroImage: episode.deepDive.heroImage,
+        omitImage: episode.deepDive.omitImage,
       };
     }
 
@@ -520,6 +528,7 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
           audioUrl: episode.audioUrl,
           image: hit.image,
           heroImage: hit.heroImage,
+          omitImage: hit.omitImage,
         };
       }
     }

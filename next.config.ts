@@ -87,10 +87,11 @@ const nextConfig: NextConfig = {
       { source: '/be_out-guest/', destination: '/about', permanent: true },
       { source: '/author/:slug*', destination: '/about', permanent: true },
       { source: '/educator-tools/', destination: '/educator-tools', permanent: true },
-      // :slug+ (one or more segments) — NEVER :slug* here: zero-segment match
+      // Require one or more segments — NEVER :slug* here: zero-segment match
       // makes /tinker-lab redirect to itself (infinite 308 loop, site-wide
       // ERR_TOO_MANY_REDIRECTS via footer link prefetch). Fixed 2026-07-15.
-      { source: '/tinker-lab/:slug+', destination: '/tinker-lab', permanent: true },
+      // The two retired articles must reach their normal route 404 instead.
+      { source: '/tinker-lab/:slug((?!(?:wonka-lantern|chatgpt-pro)/?$).+)', destination: '/tinker-lab', permanent: true },
     ];
   },
 };

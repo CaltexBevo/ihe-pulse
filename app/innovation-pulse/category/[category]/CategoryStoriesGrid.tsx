@@ -26,6 +26,7 @@ interface CategoryStory {
   categoryColor: string;
   date: string;
   image: string;
+  omitImage?: boolean;
   type: "deepDive" | "quickHit";
   editorialLens: string;
   slug: string;
@@ -52,6 +53,7 @@ export default function CategoryStoriesGrid({ stories, category, categoryColor }
           sourceUrl={story.sourceUrl}
           date={story.date}
           imageUrl={story.image}
+          omitImage={story.omitImage}
           badgeText={story.type === "deepDive" ? "LEAD" : V4_BADGE_TEXT[category]}
           badgeColor={story.type === "deepDive" ? "rgba(0,212,255,0.85)" : categoryColor}
           preserveArtwork
