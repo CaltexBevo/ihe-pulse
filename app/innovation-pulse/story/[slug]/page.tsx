@@ -70,7 +70,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     imagePath: story.image || DEFAULT_STORY_IMAGE,
     ...STORY_SOCIAL_IMAGES[slug],
     imageAlt: story.title,
-    twitterCard: "summary_large_image",
+    omitImage: story.omitImage,
+    twitterCard: story.omitImage ? "summary" : "summary_large_image",
   });
 }
 
@@ -117,7 +118,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       </div>
 
       {/* Hero Image */}
-      <div
+      {!story.omitImage && <div
         className={
           usesSeptember04Card
             ? "max-w-[820px] mx-auto relative aspect-[1672/941] overflow-hidden bg-[#e7f2ff]"
@@ -135,7 +136,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           priority
         />
 
-      </div>
+      </div>}
 
       {/* Article Content */}
       <div className="max-w-[820px] mx-auto px-[var(--px)] relative z-10 pt-8">
@@ -289,7 +290,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
                   href={`/innovation-pulse/story/${related.slug}`}
                   className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] transition-all"
                 >
-                  <div className="relative aspect-[3/2] overflow-hidden bg-[var(--surface)]">
+                  {!related.omitImage && <div className="relative aspect-[3/2] overflow-hidden bg-[var(--surface)]">
                     <Image
                       src={relatedImage}
                       alt={related.title}
@@ -297,7 +298,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
                       className="object-contain"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
-                  </div>
+                  </div>}
                   <div className="p-4">
                     <div className="font-mono text-[0.55rem] font-semibold tracking-[0.08em] uppercase mb-2 flex items-center gap-2">
                       <span

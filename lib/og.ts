@@ -12,6 +12,8 @@ type PageMetadataOptions = {
   type?: "website" | "article";
   /** Optional page-specific social image path or absolute URL. */
   imagePath?: string;
+  /** Explicitly omit social artwork for text-only articles. */
+  omitImage?: boolean;
   /** Optional accessible description for the social image. */
   imageAlt?: string;
   /** Optional Twitter card variant. */
@@ -30,7 +32,7 @@ type PageMetadataOptions = {
  * Next.js does NOT deep-merge `openGraph` across segments: any page that
  * defines `openGraph` drops the root layout's `images` unless re-specified.
  * That's why this helper always emits the full openGraph block, including
- * the brand og-image.
+ * the brand og-image unless the article explicitly omits artwork.
  */
 export function pageMetadata({
   title,
@@ -38,6 +40,7 @@ export function pageMetadata({
   path,
   type = "website",
   imagePath,
+  omitImage = false,
   imageAlt,
   twitterCard = "summary",
   twitterTitle,
@@ -56,7 +59,7 @@ export function pageMetadata({
       url,
       siteName: SITE_NAME,
       type,
-      images: [
+      images: omitImage ? [] : [
         {
           url: imageUrl,
           width: imageWidth ?? (imagePath ? undefined : 1254),
@@ -69,7 +72,7 @@ export function pageMetadata({
       card: twitterCard,
       title: twitterTitle ?? title,
       description,
-      images: [imageUrl],
+      images: omitImage ? [] : [imageUrl],
     },
   };
 }
