@@ -118,6 +118,7 @@ const LOCATION_ELIGIBILITY_BY_ID: Readonly<Record<number, InnovationGrantLocatio
   131: { scope: "state-or-territory", jurisdictions: ["CA"] },
   132: { scope: "institution-only" },
   133: nationwide(),
+  134: nationwide(),
 };
 
 export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {
