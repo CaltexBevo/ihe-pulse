@@ -15,6 +15,8 @@ test('Edition 21 preserves the approved ten-story payload and placement', () => 
   assert.equal(release.episode.date, '2026-10-16');
   assert.equal(release.episode.publishedAt, '2026-10-26');
   assert.equal(release.episode.weekCovered, '2026-10-10/2026-10-16');
+  assert.equal(release.hook, release.leadStory.preview);
+  assert.ok(release.hook.length > 0);
 });
 
 test('Edition 21 artwork and player bind the selected masters', () => {
