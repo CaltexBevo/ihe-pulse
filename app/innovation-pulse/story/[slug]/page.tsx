@@ -67,6 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: story.preview || story.summary,
     path: `/innovation-pulse/story/${slug}`,
     type: "article",
+    publishedAt: story.publishedAt,
     imagePath: story.image || DEFAULT_STORY_IMAGE,
     ...STORY_SOCIAL_IMAGES[slug],
     imageAlt: story.title,
@@ -113,7 +114,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           Back to Innovation Pulse
         </Link>
         <span className="font-mono text-[0.68rem] text-[var(--text-muted)] ml-auto">
-          {formatPulseDate(story.episodeDate)}
+          {formatPulseDate(story.publishedAt || story.episodeDate)}
         </span>
       </div>
 
@@ -162,7 +163,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
             {story.editorialLens}
           </span>
           <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
-            {formatShortDate(story.episodeDate)}
+            {formatShortDate(story.publishedAt || story.episodeDate)}
           </span>
           <span className="font-mono text-[0.68rem] text-[var(--text-muted)]">
             · {Math.max(1, Math.ceil(story.summary.trim().split(/\s+/).length / 200))} min read
@@ -312,7 +313,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
                     </h3>
                     <div className="flex justify-between font-mono text-[0.58rem] text-[var(--text-muted)] pt-2 border-t border-[var(--border)]">
                       <span className="text-[var(--cyan)]">{related.source}</span>
-                      <span>{formatShortDate(related.episodeDate)}</span>
+                      <span>{formatShortDate(related.publishedAt || related.episodeDate)}</span>
                     </div>
                   </div>
                 </Link>
@@ -341,7 +342,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
             <span className="font-mono text-[0.6rem] text-[var(--text-muted)] tracking-[0.08em] uppercase block mb-2">
               Full edition →
             </span>
-            <span className="text-[0.9rem] font-semibold">{formatShortDate(story.episodeDate)} Briefing</span>
+            <span className="text-[0.9rem] font-semibold">{story.editionNumber ? `Weekly Edition ${story.editionNumber}` : formatShortDate(story.episodeDate)}</span>
           </Link>
         </div>
       </div>

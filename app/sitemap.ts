@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { getEpisodeDates } from '@/lib/data/innovation-pulse';
+import { getAllEpisodes, getAllStoriesAggregated, generateSlug } from '@/lib/data/innovation-pulse';
 import { FEATURED_COVERAGE } from '@/lib/data/featured-coverage';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -36,13 +36,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Episode pages
-  const episodeDates = getEpisodeDates();
-  const episodePages = episodeDates.map(date => ({
-    url: `${baseUrl}/innovation-pulse/${date}`,
-    lastModified: new Date(date + 'T12:00:00Z'),
+  const episodePages = getAllEpisodes().map(episode => ({
+    url: `${baseUrl}/innovation-pulse/${episode.date}`,
+    lastModified: new Date((episode.publishedAt || episode.date) + 'T12:00:00Z'),
     changeFrequency: 'never' as const,
     priority: 0.8,
   }));
 
-  return [...staticPages, ...featurePages, ...episodePages];
+  const storyPages = getAllStoriesAggregated().map(story => ({
+    url: `${baseUrl}/innovation-pulse/story/${generateSlug(story.title)}`,
+    lastModified: new Date((story.publishedAt || story.date) + 'T12:00:00Z'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...featurePages, ...episodePages, ...storyPages];
 }

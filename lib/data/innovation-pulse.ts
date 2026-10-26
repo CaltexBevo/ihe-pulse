@@ -216,6 +216,7 @@ function normalizeEpisode(raw: Record<string, unknown>): InnovationPulseEpisode 
   // Use pullQuote for editorialHook if available (V3), otherwise fall back to hook
   const normalizedEpisode: InnovationPulseEpisode = {
     date,
+    publishedAt: typeof episode?.publishedAt === 'string' ? episode.publishedAt : undefined,
     dayOfWeek,
     editorialLens,
     editorialHook: pullQuote || hook || '',
@@ -358,6 +359,7 @@ export function getEpisodeDates(): string[] {
 // ── Story Aggregation Types ─────────────────────────────────────────────────
 
 export interface AggregatedStory {
+  publishedAt?: string;
   title: string;
   summary: string;
   preview?: string;
@@ -390,6 +392,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
       sourceLinks: episode.deepDive.sourceLinks,
       category: episode.deepDive.category,
       date: episode.date,
+      publishedAt: episode.publishedAt,
       type: 'deepDive',
       isCallback: episode.deepDive.isCallback,
       image: episode.deepDive.image,
@@ -408,6 +411,7 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
         sourceLinks: hit.sourceLinks,
         category: hit.category,
         date: episode.date,
+        publishedAt: episode.publishedAt,
         type: 'quickHit',
         image: hit.image,
         heroImage: hit.heroImage,
@@ -467,6 +471,7 @@ export function generateSlug(title: string): string {
 // Extended story type with episode context
 export interface StoryWithContext extends AggregatedStory {
   slug: string;
+  editionNumber?: number;
   episodeDate: string;
   editorialLens: string;
   editorialCallout?: string;
@@ -492,10 +497,12 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
         sourceLinks: episode.deepDive.sourceLinks,
         category: episode.deepDive.category,
         date: episode.date,
+        publishedAt: episode.publishedAt,
         type: 'deepDive',
         isCallback: episode.deepDive.isCallback,
         slug: deepDiveSlug,
         episodeDate: episode.date,
+        editionNumber: episode.editionNumber,
         editorialLens: episode.editorialLens,
         editorialCallout: episode.deepDive.editorialCallout,
         audioUrl: episode.audioUrl,
@@ -520,10 +527,12 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
           sourceLinks: hit.sourceLinks,
           category: hit.category,
           date: episode.date,
+          publishedAt: episode.publishedAt,
           type: 'quickHit',
           isCallback: hit.isCallback,
           slug: hitSlug,
           episodeDate: episode.date,
+          editionNumber: episode.editionNumber,
           editorialLens: episode.editorialLens,
           audioUrl: episode.audioUrl,
           image: hit.image,

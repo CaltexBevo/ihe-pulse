@@ -24,7 +24,7 @@ export default async function AllStoriesPage({ searchParams }: { searchParams: P
   const href = feature ? "/feature-coverage/" + feature.slug : "/innovation-pulse/story/" + generateSlug(story.title);
   if (seen.has(href)) continue;
   seen.add(href);
-  stories.push({ id: href, href, title: story.title, summary: story.summary, source: story.source, category: mapToV4Category(story.category), date: story.date, dateLabel: label(story.date), image: story.image || story.heroImage || "" });
+  stories.push({ id: href, href, title: story.title, summary: story.summary, source: story.source, category: mapToV4Category(story.category), date: story.publishedAt || story.date, dateLabel: label(story.publishedAt || story.date), image: story.image || story.heroImage || "" });
  }
  stories.sort((a,b) => b.date.localeCompare(a.date));
  return <LibraryView stories={stories} editions={getLibraryEditions()} tab={tab} />;
