@@ -31,6 +31,8 @@ export async function generateMetadata({
     description: episode.editorialHook,
     path: `/innovation-pulse/${date}`,
     type: "article",
+    publishedAt: episode.publishedAt,
+    imagePath: episode.weeklyHeroImageUrl,
   });
 }
 

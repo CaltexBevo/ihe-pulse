@@ -22,13 +22,14 @@ export function getWeeklyEditionContent(episode: InnovationPulseEpisode) {
     ? stories.find(story => getEditionFeature(story, episode.date)?.slug === 'my-voice-at-scale')
     : undefined) ?? stories[0];
   const feature = getEditionFeature(lead, episode.date);
-  const dateLabel = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(episode.date + 'T12:00:00Z'));
+  const publishedAt = episode.publishedAt || episode.date;
+  const dateLabel = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(publishedAt + 'T12:00:00Z'));
   return {
     lead, feature, storyCount: stories.length,
     stories: stories.filter(story => story !== lead).map(story => {
       const original = getEditionFeature(story, episode.date);
       const href = original ? '/feature-coverage/' + original.slug : '/innovation-pulse/story/' + generateSlug(story.title);
-      return { id: href, href, title: original?.title || story.title, summary: story.summary, source: story.source, category: mapToV4Category(story.category), date: episode.date, dateLabel, image: original?.imagePath || story.heroImage || story.image || '' };
+      return { id: href, href, title: original?.title || story.title, summary: story.summary, source: story.source, category: mapToV4Category(story.category), date: publishedAt, dateLabel, image: original?.imagePath || story.heroImage || story.image || '' };
     }),
   };
 }

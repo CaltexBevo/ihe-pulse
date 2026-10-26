@@ -1,0 +1,227 @@
+{
+  "episode": {
+    "date": "2026-10-16",
+    "publishedAt": "2026-10-26",
+    "dayOfWeek": "Friday",
+    "cadence": "weekly",
+    "editionNumber": 21,
+    "podcastFeedEnabled": false,
+    "weekCovered": "2026-10-10/2026-10-16",
+    "audioUrl": "/audio/innovation-pulse-weekly-edition-21.mp3",
+    "audioDuration": "7:03",
+    "broadcastScript": "This is the Innovation Pulse Weekly, Edition 21, and I’m Doctor Norma Jones. And here’s who is innovating in higher ed.\n\nWe begin with Insights and Trends. Eric So had written half a sentence when he asked ChatGPT to finish his reply to a colleague. He edited the answer and sent it. Then the MIT professor realized how little of his own thinking had gone into helping her.\n\nIn an MIT News interview about his book, The Collision, So describes a similar problem with polished presentations. If the presenter doesn’t understand the material, something has been lost. Preparing the slides was also preparation for the conversation.\n\nSo urges managers to look beyond finished output. Can people explain their reasoning and defend their decisions? That reveals more about developing judgment than counting how often employees use A.I.\n\nHis positive case is to use A.I. as a tutor, helping people tackle material that stretches them. Routine work could give way to more demanding thinking, provided people still get the guidance and practice that help them grow.\n\nOur Case Study takes us into a statistics assignment where the conversation with A.I. becomes part of the work an instructor can assess. A student set up a calculation correctly, then gave it the wrong label. The A.I. tutor caught the mix-up. The student corrected it and continued working through the problem.\n\nThat exchange came from a University of Washington course using a tool called L.L. teacher. Emanuela Furfaro and colleagues supplied reference solutions and set the kind of help the model should offer. Students could ask for explanations while their complete conversations remained available for assessment.\n\nMore than eighty percent of survey respondents said the assignments helped their comprehension and interpretation of statistical results. That describes students’ perceived learning.\n\nSome assignments reversed the usual checking process. The A.I. deliberately introduced a flawed step or definition. Students had to find it, explain it and make the correction. Questioning the model was part of the homework.\n\nFor Practical Tips, the University of Glasgow connects A.I. literacy to one continuing task: analyzing sensitive patient information and preparing a public report. The patients are fictional, which lets participants discuss the work openly without exposing confidential projects of their own.\n\nVinny Davies and colleagues carry that same problem through four areas: Understanding, Development, Reporting and Safety. A worksheet keeps the decisions connected as the work progresses.\n\nFor example, using A.I. to generate code also raises questions about checking the code, documenting the assistance and protecting the information supplied to the tool. Those choices all belong to the same analysis.\n\nThe team has used the framework in an online course and short training sessions. By the reporting stage, learners have to explain where A.I. contributed and how they checked the result. The course leads toward an account of the work that someone else can examine.\n\nIn Research, a legal answer reveals a problem for A.I. grading. A student might mention the right rule, then explain why it doesn’t apply. Finding the phrase does not establish what the student meant or how much credit the answer deserves.\n\nSebastian Nagl’s research synthesis proposes dividing those jobs. The examiner sets the criteria and weights. A.I. offers a judgment for each criterion, supported by quotations from the answer. Software checks that the words occur and calculates the total. The examiner reads the complete response and decides the grade.\n\nThe proposed checks go beyond matching text. A valid argument might be paraphrased. A decisive reason might be removed. A student might take a different defensible route. Nagl calls for specifying how scores should respond before testing those changes.\n\nThe design remains a proposal. Its useful question is precise: can a grading system follow a change in the student’s reasoning, rather than simply react to a change in wording?\n\nOur next Practical Tip starts with an unsettling citation: the linked page had the current fact, while the A.I. answer gave the outdated one. Owen Walters, Lihu Chen and Francesca Toni at Imperial College London investigated how that could happen.\n\nThey tested facts that had changed, including athletes moving to new teams. In the controlled tests, the page containing the updated information was always within reach. Some models relied on search snippets without opening it; others encountered current evidence and still produced the old answer.\n\nThe researchers then supplied source pages directly for fifty claims about athletes. One model went from endorsing fourteen outdated claims to endorsing none. Other models responded differently.\n\nThat result separates finding information from using it. Even a relevant, current citation can sit beside a wrong answer. The check is the relationship between the precise claim and what the page actually says.\n\nWe close with Beyond Ed and a forecast that saw trouble weeks away. On November twentieth, twenty twenty-five, a system picked up a cold outbreak headed for the eastern United States in mid-December. The leading conventionally corrected model used for comparison missed it.\n\nResearch led by Hannah Guan and Soukayna Mouatadid and published in Nature explains the approach. Their system learns recurring errors in existing weather forecasts by comparing past predictions with what actually happened. It then adjusts the probabilities of possible conditions.\n\nThe team’s MicroDuet system led every tested weather variable and forecast horizon in a season of an international competition. The tests covered weekly temperature, precipitation and air pressure roughly three and four weeks ahead, rather than exact weather on a particular day.\n\nThat longer view could matter for preparation. Co-author Judah Cohen told MIT News that energy officials had described what two weeks’ warning of an ice storm could offer compared with two days. The aim is more time to prepare for conditions that demand action before they arrive.\n\nYou’ll find all six stories and their sources at Innovating Higher Ed dot com. There are also website stories on A.I. research rating scales, a chemistry team’s model replication, a neural bypass supporting movement and touch, and lecture descriptions shaped by listeners’ needs.\n\nI’m Doctor Norma Jones. Keep exploring with us at Innovating Higher Ed dot com. Let’s move higher education forward together. Thanks for listening.",
+    "weeklyHeroImageUrl": "/images/innovation-pulse/2026-10-16/weekly-edition-21.png",
+    "editorialLens": "The Innovator's Edge"
+  },
+  "leadStory": {
+    "headline": "Use AI to Strengthen the Thinking You Want to Keep",
+    "summary": "Eric So had written half a sentence when he handed a colleague’s question to ChatGPT. He asked it to finish his response professionally, made a few edits and sent it. Then the MIT professor realized how little of his own thinking had gone into helping her.\n\nHe recounts that moment in an MIT News interview about his book, The Collision: What AI Does to Us. His concern is that a task can be finished while the thinking it once required quietly disappears.\n\nSo describes polished presentations whose presenters do not understand the material. Preparing the slides, he argues, was also preparation for the discussion. Automating the product can remove the work that made someone ready to use it.\n\nThat changes what successful AI adoption looks like. In a separate MIT Sloan interview, So urges managers to look beyond finished output and ask whether people can explain their reasoning and defend their decisions. Counting how often employees use AI tells them much less about whether judgment is developing.\n\nThe same concern reaches junior colleagues. Removing routine tasks could create room for more demanding work, So argues, if organizations reinvest in guidance and opportunities to build judgment. Otherwise, the work disappears along with a route through which people learned to do it.\n\nHis positive case for AI is more ambitious than getting existing tasks done faster. Used as a tutor, he says, it can help people tackle material that stretches them. The opportunity is to spend less time on routine work and more on thinking worth getting better at.",
+    "preview": "MIT Sloan’s Eric So explains how AI adoption can preserve the practice that develops professional judgment.",
+    "source": "The Collision: What AI Does to Us",
+    "sourceUrl": "https://mitsloan.mit.edu/ideas-made-to-matter/collision-what-ai-does-to-us",
+    "sourceLinks": [
+      {
+        "label": "MIT News interview with Eric So",
+        "url": "https://news.mit.edu/2026/collision-between-ai-your-brain-and-society-eric-so-book-1015"
+      },
+      {
+        "label": "MIT Sloan interview",
+        "url": "https://mitsloan.mit.edu/ideas-made-to-matter/collision-what-ai-does-to-us"
+      }
+    ],
+    "category": "Insights & Trends",
+    "imageUrl": "/images/innovation-pulse/2026-10-16/story-72.png",
+    "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-72.png",
+    "storyId": "IHE-STORY-2026-10-16-072",
+    "selectionId": "72",
+    "publishedDate": "2026-10-05",
+    "reviewOnlyImage": false
+  },
+  "quickHits": [
+    {
+      "headline": "See the Reasoning Behind AI Assisted Homework",
+      "summary": "The student had set up the calculation correctly, then given it the wrong label. An AI tutor caught the mix-up. The student corrected it and continued, eventually explaining which stock portfolio offered the most appealing balance of risk and return.\n\nAn instructor reading only the final answer would miss that exchange. In a University of Washington statistics course, it was part of the work available to grade.\n\nEmanuela Furfaro and colleagues used LLteacher to bring AI conversations into homework. Instructors supplied reference solutions and set the kind of help the model should offer. Students could ask for an explanation or a forgotten formula, but still had to work through the problem. The complete conversation remained available for assessment.\n\nThe study followed 134 consenting students. More than 80 percent of survey respondents said the assignments helped their comprehension and interpretation of statistical results, a report of perceived learning rather than a measured achievement gain.\n\nSome assignments went further: the AI deliberately introduced a flawed step or definition, and students had to find, explain and correct the error. Questioning the model was part of the assignment.",
+      "preview": "A statistics course retained students’ AI conversations, making the questions, corrections and reasoning behind an answer available for assessment.",
+      "source": "AI-Guided Assignments in Practice: Students' Experiences in a Large Introductory Statistics Course",
+      "sourceUrl": "https://arxiv.org/abs/2610.15834",
+      "sourceLinks": [
+        {
+          "label": "Original study and full paper",
+          "url": "https://arxiv.org/abs/2610.15834"
+        }
+      ],
+      "category": "Case Study",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-1.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-1.png",
+      "storyId": "IHE-STORY-2026-10-16-001",
+      "selectionId": "1",
+      "publishedDate": "2026-10-11",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Plan AI Literacy Around a Real Analytical Task",
+      "summary": "The patient data are fictional. The decisions about using AI are not. In a University of Glasgow teaching framework, an analysis of sensitive clinical information becomes the thread connecting an entire AI literacy course, from understanding a model to explaining its contribution in a public report.\n\nVinny Davies and colleagues built the framework around four areas: Understanding, Development, Reporting and Safety. A worksheet carries the same analytical problem through each. That continuity matters: choosing to let AI generate code also raises questions about checking the code, documenting the assistance and protecting the information supplied to the tool. These decisions belong to the same piece of work.\n\nThe fictional case solves another problem for the course designers. Participants can discuss it in an open forum without revealing confidential details from their own projects. Everyone has a shared problem to examine, while the choices remain recognizable to people who work with real data.\n\nThe authors refined the framework through workshop feedback and have used it in an online course and two-to-three-hour training sessions. Their paper also describes plans to bring it into undergraduate and postgraduate skills courses.\n\nThe framework gives AI literacy a destination beyond familiarity with a tool. By the reporting stage, the learner has to explain where AI entered the analysis and how the resulting work was checked. Producing an answer is one part of the task; being able to account for it completes the work.",
+      "preview": "A University of Glasgow framework carries one analytical problem through AI capabilities, development, reporting and organizational safeguards.",
+      "source": "A Framework for Teaching the Responsible and Effective Use of Generative AI in Statistics and Data Science",
+      "sourceUrl": "https://arxiv.org/abs/2610.21663",
+      "sourceLinks": [
+        {
+          "label": "A Framework for Teaching the Responsible and Effective Use of Generative AI in Statistics and Data Science",
+          "url": "https://arxiv.org/abs/2610.21663"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-2.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-2.png",
+      "storyId": "IHE-STORY-2026-10-16-002",
+      "selectionId": "2",
+      "publishedDate": "2026-10-15",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Give AI Grading a Standard You Can Explain",
+      "summary": "A student can mention the right legal rule and then explain why it does not apply. An AI grader that finds the phrase has located evidence, but it has not yet understood the answer. That small distinction is central to Sebastian Nagl’s proposal for making AI-assisted grading more accountable.\n\nLegal answers are an especially revealing test because good reasoning can take more than one route. A defensible choice early in an argument may make a later step unnecessary. An early mistake may also carry through several later steps without becoming a new mistake each time. Counting expected phrases cannot resolve those relationships.\n\nNagl’s synthesis compares eight evaluation approaches and proposes a division of responsibility. The examiner sets the criteria and their weights. The model offers a judgment for each criterion, supported by quotations from the student’s answer. Software checks that the quotations actually occur and calculates the total. The examiner reads the complete response and decides the grade.\n\nEach part answers a different question. Are those the student’s words? Do they support the interpretation? How much credit does that reasoning deserve? A quotation check can settle the first while leaving the other two open.\n\nThe proposed tests are just as revealing. Paraphrase a sound argument. Remove a decisive reason. Add irrelevant material. Introduce a valid alternative solution. Nagl calls for specifying the expected scoring response before running these checks. The architecture remains a proposal, but it makes an otherwise vague promise of explainability concrete: a grading system should be able to follow what changed in the reasoning, not merely notice that the wording changed.",
+      "preview": "A proposed grading design separates finding evidence in an answer, interpreting that evidence and deciding how much credit it earns.",
+      "source": "SoK: Grading Open-Text Legal Answers, from Law School Exams to Trustworthy Rubric Judges",
+      "sourceUrl": "https://arxiv.org/abs/2610.19992",
+      "sourceLinks": [
+        {
+          "label": "SoK: Grading Open-Text Legal Answers, from Law School Exams to Trustworthy Rubric Judges",
+          "url": "https://arxiv.org/abs/2610.19992"
+        }
+      ],
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-27.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-27.png",
+      "storyId": "IHE-STORY-2026-10-16-027",
+      "selectionId": "27",
+      "publishedDate": "2026-10-14",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Follow an AI Citation All the Way to the Evidence",
+      "summary": "The current answer was on a page the AI could reach. Sometimes the model even cited that page, then gave the outdated answer anyway.\n\nOwen Walters, Lihu Chen and Francesca Toni at Imperial College London followed this failure through search-assisted AI systems. They assembled 225 facts that had changed, including athletes moving to different teams. In their controlled tests, the researchers made sure the page containing the updated fact was always available. A failed answer could no longer be explained simply by missing information.\n\nSearch results offered one clue. Across the pooled controlled episodes, models relying only on snippets gave outdated answers 6.4 percent of the time. For episodes in which a model opened and cited a page, the figure was 1.3 percent. Opening the evidence was associated with fewer errors, although that comparison alone does not show what caused the improvement.\n\nThe team then changed the route to the evidence. For 50 claims about athletes who had changed teams, they supplied the source page directly. One model went from endorsing 14 outdated claims to endorsing none. Other models responded differently.\n\nTheir investigation also reached inside the models. In some failed responses, the updated information gained influence during processing before the old answer prevailed. The system had encountered useful evidence without carrying it through to the final claim.\n\nThat makes the citation itself an incomplete assurance. The linked page may be current and relevant while the answer beside it is wrong. Following the link all the way through means checking whether the page supports the particular claim, including the version of the fact that is true now.",
+      "preview": "A study traced how search-assisted models could retrieve current information yet give an outdated answer or cite a contradicting page.",
+      "source": "Retrieved but Not Read: Understanding Why Search-Augmented LLMs Fail to Use Available Evidence",
+      "sourceUrl": "https://arxiv.org/abs/2610.21731",
+      "sourceLinks": [
+        {
+          "label": "Retrieved but Not Read: Understanding Why Search-Augmented LLMs Fail to Use Available Evidence",
+          "url": "https://arxiv.org/abs/2610.21731"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-29.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-29.png",
+      "storyId": "IHE-STORY-2026-10-16-029",
+      "selectionId": "29",
+      "publishedDate": "2026-10-15",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "AI Improved Forecasts Several Weeks Ahead",
+      "summary": "On November 20, 2025, a weather forecast picked up a cold outbreak headed for the eastern United States in mid-December. The leading conventionally corrected model used for comparison missed it. The successful forecast came from a system that had learned how existing forecasts tend to go wrong.\n\nThat is the idea behind research led by Hannah Guan and Soukayna Mouatadid and published in Nature. Their team added a machine-learning correction to forecasting models, using past predictions and the weather that actually followed to identify recurring errors. The system adjusts the probabilities those models assign to possible conditions.\n\nIt works on weekly outlooks, such as whether a week will be unusually cold or wet. Those are useful questions even when an exact forecast for a particular day remains out of reach.\n\nThe team’s MicroDuet system led every tested weather variable and forecast horizon in the September–November 2025 season of an international forecasting competition. The tests covered weekly temperature, precipitation and pressure roughly three and four weeks ahead.\n\nFor MIT researcher and co-author Judah Cohen, the reason to push that far ahead is preparation time. He told MIT News that energy officials had described the difference between two days’ warning of an ice storm and two weeks: the longer window could let them prepare adequately.\n\nThe resulting model does not need a supercomputer to run. Cohen says Kenya’s meteorological office has approached the team about using it for seasonal rains. Because the correction is an add-on, forecasting agencies could improve systems they already have, with more warning for decisions that cannot wait until a storm is on the doorstep.",
+      "preview": "A machine-learning correction method improved weekly weather outlooks by learning recurring errors in existing forecasts.",
+      "source": "Advancing subseasonal forecasting with machine learning",
+      "sourceUrl": "https://www.nature.com/articles/s41586-026-11126-x",
+      "sourceLinks": [
+        {
+          "label": "Original Nature study",
+          "url": "https://www.nature.com/articles/s41586-026-11126-x"
+        },
+        {
+          "label": "MIT News coverage and researcher interview",
+          "url": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014"
+        }
+      ],
+      "category": "Beyond Ed",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-C.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-C.png",
+      "storyId": "IHE-WOW-2026-10-16-C",
+      "selectionId": "C",
+      "publishedDate": "2026-10-14",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Know When a Rating Scale Is Shaping Your AI Research Results",
+      "summary": "Zero seems like a harmless number until it means different things to a researcher and an AI model. In a study of automated text scoring, the authors found that models often appeared to treat zero as the absence of toxicity, even when the rating scale extended below zero. After the researchers converted the scores to a common range, that interpretation could make texts appear more toxic.\n\nWonjeong Jo, Gyuwan Kim and Ming Shan Hee investigated how much the numbers offered to a model shape its judgments. Five models scored 11,700 texts for political leaning, movie-review sentiment and toxicity. The researchers tried 16 scale designs, varying the numerical range, the availability of negative numbers and whether the model could use fractional values.\n\nIf these were simply different units for the same judgment, converting every score to a zero-to-one range should have made the answers comparable. Instead, changing a scale feature shifted scores by roughly one-tenth of that range on average. About one-fifth of texts moved between low, middle and high categories.\n\nMore detailed rubric prompts did not remove the overall sensitivity. The model was interpreting the scale while deciding what the text meant; the later arithmetic could not necessarily reverse that decision.\n\nThe authors recommend checking alternative defensible scales, matching the endpoints to the concept and comparing results with suitable human judgments.",
+      "preview": "Changing a rating scale altered AI text scores even after researchers converted the results to the same numerical range.",
+      "source": "Change the Number, Change the Answer: Assessing Rating Scale Sensitivity in LLM-Based Text Scoring",
+      "sourceUrl": "https://arxiv.org/abs/2610.22187",
+      "sourceLinks": [
+        {
+          "label": "Change the Number, Change the Answer: Assessing Rating Scale Sensitivity in LLM-Based Text Scoring",
+          "url": "https://arxiv.org/abs/2610.22187"
+        }
+      ],
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-53.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-53.png",
+      "storyId": "IHE-STORY-2026-10-16-053",
+      "selectionId": "53",
+      "publishedDate": "2026-10-15",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Give an AI Replication Project a Clear Route Forward",
+      "summary": "For three chemistry students trying to reproduce a published AI model, repeated training failures led them to try a different computing environment. A fresh Linux cloud setup succeeded where their Windows setup had failed. Getting past that obstacle exposed the next one: the data did not adequately cover the enzymes and substrates they wanted to study.\n\nThe students and their tutor at Rotterdam University of Applied Sciences spent four months reproducing and extending ProSmith, an enzyme-related prediction model. They began without programming or data-science backgrounds and used AI coding assistants. Their account is useful because it follows the work beyond the moment an assistant produces code.\n\nTo improve the data, the team traced database labels back to original publications and assembled additional examples. They also moved from simulated negative examples to experimentally determined negatives, evidence about interactions that did not occur. That altered what the model could learn from, rather than simply adjusting its settings.\n\nA later concern about data leakage turned out not to be leakage. Investigating it nevertheless led the team to preserve a training-only model, save models and weights automatically, and keep predictions connected to their original input records.\n\nThe researchers organized these experiences into PRAISE, a six-stage workflow spanning the question, data, computing setup, execution, validation and deployment. Each stage has an output, with routes back when a later problem requires an earlier decision to change.\n\nBy the end, the prediction script ran on the research cloud. The new enzyme predictions still needed experimental validation. The team had reached a meaningful milestone: a working computational process that could produce candidates for the laboratory to investigate.",
+      "preview": "A chemistry team’s four-month reproduction of an AI model shows how data, computing and validation decisions shaped the work.",
+      "source": "PRAISE: A Reproducible Workflow for Non-Programmer Scientists to Implement Published AI Models",
+      "sourceUrl": "https://arxiv.org/abs/2610.16980",
+      "sourceLinks": [
+        {
+          "label": "PRAISE: A Reproducible Workflow for Non-Programmer Scientists to Implement Published AI Models",
+          "url": "https://arxiv.org/abs/2610.16980"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-69.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-69.png",
+      "storyId": "IHE-STORY-2026-10-16-069",
+      "selectionId": "69",
+      "publishedDate": "2026-10-12",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "A Neural Bypass Helped a Man Grasp Objects and Sense Touch",
+      "summary": "He could grasp his sister’s hand and feel the contact. In a Nature Medicine study involving one man with tetraplegia, a system linking brain signals, muscle stimulation and touch feedback made that exchange possible. The researchers also documented assisted drinking and self-feeding.\n\nMaking a hand close was only part of the challenge. Holding something fragile requires adjusting pressure as contact changes. The team tested that problem with hollow eggshells, where too much force would defeat the purpose of a successful grasp.\n\nTwo AI components did different jobs. A decoder interpreted brain activity associated with the participant’s intention to move. A separate controller, trained through reinforcement learning in a simulation, continuously adjusted grip force. Electrical stimulation activated muscles, while a powered hand support helped where stimulation alone was insufficient.\n\nIn the eggshell trials, force stayed below the prescribed threshold in an average of 87 percent of trials with the controller, compared with 27 percent without it. Those figures describe force regulation in that task, rather than overall hand-function recovery.\n\nTouch completed another part of the connection. Sensors measured grip and triggered stimulation in the brain’s sensory cortex, providing feedback associated with the participant’s own hand. Intention could lead to movement, and contact could send information back.\n\nChandrasekaran, Wandelt and colleagues also reported rehabilitation changes beyond the assisted tasks. Right-wrist sensitivity remained improved for more than two months after combined brain, spinal and peripheral stimulation stopped. That lasting sensory change is distinct from the technology-assisted grasping. Together, the findings connect a demanding engineering problem to experiences with immediate human meaning: holding an object, feeding oneself and feeling another person’s hand.",
+      "preview": "A brain-and-body interface connected movement intent, assisted grasping and touch feedback in a study involving one participant.",
+      "source": "A neuroprosthesis for restoring hand movement and sensation in a person with complete tetraplegia",
+      "sourceUrl": "https://www.nature.com/articles/s41591-026-04498-0",
+      "sourceLinks": [
+        {
+          "label": "A neuroprosthesis for restoring hand movement and sensation in a person with complete tetraplegia",
+          "url": "https://www.nature.com/articles/s41591-026-04498-0"
+        }
+      ],
+      "category": "Beyond Ed",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-A.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-A.png",
+      "storyId": "IHE-WOW-2026-10-16-A",
+      "selectionId": "A",
+      "publishedDate": "2026-07-16",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Make Lecture Descriptions Useful to the People Who Need Them",
+      "summary": "A lecturer points to a curve. The transcript captures the words, but the curve has no label. For someone who cannot see the gesture, a faithful transcript can still leave out the explanation’s most important piece.\n\nThis is one of the problems examined in AD4Edu, a University of Zurich project drawing on 66 lecture videos to study audio description. Stylianos Psychias and Yingqiang Gao combined video, nearby speech, slide text and available pauses to work out what needed describing and when the system should remain silent.\n\nThen they asked a more revealing question: did descriptions that satisfied the evaluation rules actually give blind and low-vision listeners what they wanted?\n\nFour raters each compared 400 pairs of descriptions. Rules concerned with pointing gestures aligned closely with their preferences, agreeing in nearly nine out of ten decided comparisons. A rule concerned with description length agreed only about one time in six. Listeners often preferred the fuller account, even when the automated criterion favored brevity.\n\nThe listening conditions help explain what that result means. Descriptions were played separately, so extra detail did not talk over the lecturer. The finding does not settle how much narration belongs in a busy recording. It does reveal a cost that a brevity score can miss: cutting words can also cut information the listener needs.",
+      "preview": "A lecture-description benchmark found that automated rule scores and blind and low-vision listeners’ preferences did not always agree.",
+      "source": "AD4EDU: Benchmarking University Lecture Audio Description across Accessibility Standards, Metrics, and Learner Preferences",
+      "sourceUrl": "https://arxiv.org/abs/2610.17042",
+      "sourceLinks": [
+        {
+          "label": "AD4EDU: Benchmarking University Lecture Audio Description across Accessibility Standards, Metrics, and Learner Preferences",
+          "url": "https://arxiv.org/abs/2610.17042"
+        }
+      ],
+      "category": "Research",
+      "imageUrl": "/images/innovation-pulse/2026-10-16/story-52.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-16/story-52.png",
+      "storyId": "IHE-STORY-2026-10-16-052",
+      "selectionId": "52",
+      "publishedDate": "2026-10-12",
+      "reviewOnlyImage": false
+    }
+  ],
+  "hook": "MIT Sloan’s Eric So explains how AI adoption can preserve the practice that develops professional judgment."
+}

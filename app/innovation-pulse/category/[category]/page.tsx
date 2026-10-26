@@ -54,7 +54,7 @@ export default async function CategoryArchivePage({ params }: { params: Promise<
     sourceUrl: story.sourceUrl,
     category: category,
     categoryColor: categoryColor,
-    date: formatShortDate(story.episodeDate),
+    date: formatShortDate(story.publishedAt || story.episodeDate),
     image: story.image || "",
     omitImage: story.omitImage,
     type: story.type,

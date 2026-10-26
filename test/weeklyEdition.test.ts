@@ -50,7 +50,7 @@ test('historical editions stay independent and every edition story is represente
     const content = getWeeklyEditionContent(episode);
     assert.equal(content.storyCount, getHomepageEpisodeStories(episode).length);
     assert.equal(content.stories.length + 1, content.storyCount);
-    assert.ok(content.stories.every(story => story.date === episode.date));
+    assert.ok(content.stories.every(story => story.date === (episode.publishedAt || episode.date)));
     if (content.feature) assert.equal(content.feature.editionDate ?? content.feature.publishedAt, episode.date);
   }
   for (const date of ['2026-09-11', '2026-09-18']) {
@@ -60,6 +60,17 @@ test('historical editions stay independent and every edition story is represente
     assert.equal(content.lead.summary, episode.deepDive.summary);
   }
   assert.equal(getEditionFeature({ ...requiredEpisode('2026-09-25').deepDive, date: '2026-09-04' }, '2026-09-04'), undefined);
+});
+
+test('Edition 21 keeps its covered-week route key while cards show actual publication date', () => {
+  const episode = requiredEpisode('2026-10-16');
+  const content = getWeeklyEditionContent(episode);
+  assert.equal(episode.date, '2026-10-16');
+  assert.equal(episode.weekCovered, '2026-10-10/2026-10-16');
+  assert.equal(episode.publishedAt, '2026-10-26');
+  assert.ok(content.stories.every(story => story.date === '2026-10-26'));
+  assert.ok(content.stories.every(story => story.dateLabel === 'Oct 26, 2026'));
+  assert.equal(getEpisodeByDate('2026-10-26'), null, 'publication date must not create a different edition route');
 });
 
 test('archive CTA remains a date-specific route and expandable Feature skips only the visible introduction', () => {

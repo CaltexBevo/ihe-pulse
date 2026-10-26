@@ -10,6 +10,7 @@ type PageMetadataOptions = {
   /** Route path starting with "/", e.g. "/podcast" or `/podcast/${slug}` */
   path: string;
   type?: "website" | "article";
+  publishedAt?: string;
   /** Optional page-specific social image path or absolute URL. */
   imagePath?: string;
   /** Explicitly omit social artwork for text-only articles. */
@@ -39,6 +40,7 @@ export function pageMetadata({
   description,
   path,
   type = "website",
+  publishedAt,
   imagePath,
   omitImage = false,
   imageAlt,
@@ -59,6 +61,7 @@ export function pageMetadata({
       url,
       siteName: SITE_NAME,
       type,
+      ...(type === "article" && publishedAt ? { publishedTime: publishedAt } : {}),
       images: omitImage ? [] : [
         {
           url: imageUrl,

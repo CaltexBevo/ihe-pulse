@@ -137,6 +137,8 @@ export interface StoryWatching {
 
 export interface InnovationPulseEpisode {
   date: string;
+  /** Actual publication date; date remains the stable covered-week route key. */
+  publishedAt?: string;
   dayOfWeek: string;
   editorialLens: EditorialLens;
   editorialHook: string;

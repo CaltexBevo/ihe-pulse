@@ -100,7 +100,8 @@ export default function HomePulseHero({
   const usesSeptember25Hero = episode.date === '2026-09-25' && Boolean(episode.weeklyHeroImageUrl);
   const usesEdition19Hero = episode.date === '2026-10-02' && Boolean(episode.weeklyHeroImageUrl);
   const usesEdition20Hero = episode.date === '2026-10-09' && Boolean(episode.weeklyHeroImageUrl);
-  const usesApprovedFullHero = usesEdition20Hero || usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
+  const usesEdition21Hero = episode.date === '2026-10-16' && Boolean(episode.weeklyHeroImageUrl);
+  const usesApprovedFullHero = usesEdition21Hero || usesEdition20Hero || usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
 
   // Homepage and dated editions have different bounds, with the same gutters and border.
   const artworkSizes = `calc(min(100vw, ${editionLayout ? 1440 : 1200}px) - clamp(2rem, 8vw, 4rem) - 2px)`;
@@ -257,7 +258,12 @@ export default function HomePulseHero({
         <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
       )}
 
-      {usesEdition20Hero ? (
+      {usesEdition21Hero ? (
+        <div className={styles.editionArtwork}>
+          <h1 id="home-pulse-title" className="sr-only">Use AI to Stretch Your Thinking. Innovation Pulse Weekly Edition 21.</h1>
+          <Image src={episode.weeklyHeroImageUrl!} alt="Use AI to Stretch Your Thinking. Innovation Pulse Weekly Edition 21, with Dr. Norma Jones." width={1877} height={838} sizes={artworkSizes} className={styles.completeArtwork} priority />
+        </div>
+      ) : usesEdition20Hero ? (
         <div className={styles.editionArtwork}>
           <h1 id="home-pulse-title" className="sr-only">The Innovation Pulse, Weekly Edition 20.</h1>
           <Image src={episode.weeklyHeroImageUrl!} alt="Innovation Pulse Weekly Edition 20, with Dr. Norma Jones." width={1920} height={863} sizes={artworkSizes} className={styles.completeArtwork} priority />
