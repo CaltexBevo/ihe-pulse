@@ -128,15 +128,15 @@ export interface InnovationGrantOpportunity {
 }
 
 /** Advance only with a released grant-content update, never from the runtime clock. */
-export const INNOVATION_GRANTS_UPDATED_DATE = "2026-10-23";
+export const INNOVATION_GRANTS_UPDATED_DATE = "2026-10-26";
 export const INNOVATION_GRANTS_UPDATED_ON = new Intl.DateTimeFormat("en-US", {
   month: "short", day: "numeric", year: "numeric", timeZone: "UTC",
 }).format(new Date(`${INNOVATION_GRANTS_UPDATED_DATE}T12:00:00Z`));
 
-export const INNOVATION_GRANTS_VERIFIED_ON = "Oct 23, 2026";
-export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-10-23";
-export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Oct 23, 2026";
-export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-10-23";
+export const INNOVATION_GRANTS_VERIFIED_ON = "Oct 26, 2026";
+export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-10-26";
+export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Oct 26, 2026";
+export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-10-26";
 export const INNOVATION_GRANTS_TIME_ZONE = "America/Los_Angeles";
 export const INNOVATION_GRANTS_SCOPE =
   "Actionable higher-ed innovation funding across AI & Emerging Technology, Teaching & Learning, Student Success, Workforce/Pathways, Community College Innovation, Digital Transformation/Infrastructure, Research/Evidence-Building, and Faculty Development";

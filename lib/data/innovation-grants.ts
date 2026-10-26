@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -233,7 +233,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 44,
     portalAddedDate: "2026-08-29",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 7,
     title: "NSF State and Regional Artificial Intelligence Infrastructure Hubs",
     source: "U.S. National Science Foundation",
@@ -938,7 +938,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 69,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 24,
     title: "Cornerstone: Learning for Living",
     source: "The Teagle Foundation",
@@ -990,7 +990,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 71,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 12,
     title: "NSF Innovation in Two-Year College STEM Education",
     source: "U.S. National Science Foundation",
@@ -1020,7 +1020,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 72,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 2,
     title: "NSF IUSE: EDU: January 2027 tracks",
     source: "U.S. National Science Foundation",
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1166,7 +1166,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 77,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 8,
     title: "Wake Forest ECI Communities of Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1257,7 +1257,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 80,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 10,
     title: "USDA NIFA Tribal Colleges Research Grant Program",
     source: "USDA National Institute of Food and Agriculture",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1469,7 +1469,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
 grant({
     portalAddedDate: "2026-09-07",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     applicationStatus: "open-now",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Sep. 7",
@@ -1597,7 +1597,7 @@ grant({
   grant({
     id: 91,
     portalAddedDate: "2026-09-14",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 19,
     title: "NSF Computing Education Research",
     source: "U.S. National Science Foundation",
@@ -1664,7 +1664,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      lastVerified: "Oct 23, 2026",
+      lastVerified: "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1703,7 +1703,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 23, 2026",
+      "lastVerified": "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 23, 2026",
+      "lastVerified": "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1853,7 +1853,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 23, 2026",
+      "lastVerified": "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 23, 2026",
+      "lastVerified": "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1969,7 +1969,7 @@ grant({
   grant({
       "id": 101,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 23, 2026",
+      "lastVerified": "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2048,7 +2048,7 @@ grant({
   grant({
       "id": 103,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 23, 2026",
+      "lastVerified": "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2165,7 +2165,7 @@ grant({
   grant({
       "id": 106,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 23, 2026",
+      "lastVerified": "Oct 26, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2246,7 +2246,7 @@ grant({
   grant({
     id: 108,
     portalAddedDate: "2026-09-28",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     publishedProgramPoolUsd: 30_600_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 19,
@@ -2307,7 +2307,7 @@ grant({
   }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 23, 2026",
+    "lastVerified": "Oct 26, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2385,7 +2385,7 @@ grant({
 }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 23, 2026",
+    "lastVerified": "Oct 26, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2401,7 +2401,7 @@ grant({
     "whatItFunds": "AI teaching experiments that improve and evaluate student learning in one course, including justified project expenses and support toward one course buyout.",
     "geography": "University of Colorado system only",
     "costShareRequirement": "Not stated in the official source",
-    "applicationAccess": "Official public submission form renders applicant fields, campus and project details, requested amount, PDF upload and Submit. No form was filled or submitted.",
+    "applicationAccess": "The Oct. 23 deadline has passed with no verified extension. Official public submission form renders applicant fields, campus and project details, requested amount, PDF upload and Submit. No form was filled or submitted.",
     "deadline": "Extended to Oct. 23, 2026 at midnight MDT",
     "deadlineTimeZone": "Mountain Daylight Time",
     "finalDeadlineDate": "2026-10-23",
@@ -2422,7 +2422,7 @@ grant({
   grant({
     "id": 114,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 23, 2026",
+    "lastVerified": "Oct 26, 2026",
     "recommendationRank": 38,
     "title": "Provost's Award for Teaching Innovations in the Age of AI",
     "source": "Northwestern University",
@@ -2494,7 +2494,7 @@ grant({
   grant({
     id: 116,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 41,
     title: "College of the Redwoods President's Innovation Funds: Fall 2026",
     source: "College of the Redwoods Foundation",
@@ -2522,7 +2522,7 @@ grant({
   grant({
     id: 117,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 39,
     title: "Engaging Difference in General Education (EDGE) Grants: 2026–28",
     source: "Interfaith America",
@@ -2551,7 +2551,7 @@ grant({
   grant({
     id: 118,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 42,
     title: "IU Indianapolis Open Educational Resources Development Grants",
     source: "Indiana University Indianapolis University Library",
@@ -2580,7 +2580,7 @@ grant({
   grant({
     id: 119,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 34,
     title: "AmeriHealth Caritas Bridge Pilot for Short-Term Healthcare Pathways",
     source: "North Carolina Community Colleges Foundation and NC Community College System",
@@ -2651,7 +2651,7 @@ grant({
       "whatItFunds": "Course-level responsible AI teaching, assessment and student-learning innovations; administrative productivity projects are excluded.",
       "geography": "Hudson County Community College only, New Jersey",
       "costShareRequirement": "Not stated in the official source",
-      "applicationAccess": "The official Microsoft Forms link reaches institutional sign-in. Sign-in is required; the authenticated response form was not inspected.",
+      "applicationAccess": "The Oct. 23 deadline has passed with no verified extension. The official Microsoft Forms link reaches institutional sign-in. Sign-in is required; the authenticated response form was not inspected.",
       "deadline": "Oct. 23, 2026; time and time zone not stated",
       "deadlineTimeZone": "Not stated in the official source",
       "finalDeadlineDate": "2026-10-23",
@@ -2767,7 +2767,7 @@ grant({
   grant({
     id: 125,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 48,
     title: "Open Nebraska Affordable Content Grants: Fall 2026",
     source: "University of Nebraska Omaha Criss Library and Open Nebraska",
@@ -2795,7 +2795,7 @@ grant({
   grant({
     id: 126,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 49,
     title: "Integrated Data Systems & Services (IDSS)",
     source: "National Science Foundation",
@@ -2824,7 +2824,7 @@ grant({
   grant({
     id: 127,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 50,
     title: "Open Educational Resources Grant (AY27)",
     source: "National University",
@@ -2852,7 +2852,7 @@ grant({
   grant({
     id: 128,
     portalAddedDate: "2026-10-15",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 9,
     title: "NSF Tribal Colleges and Universities Program: 2026–27 rolling tracks",
     source: "U.S. National Science Foundation",
@@ -2885,7 +2885,7 @@ grant({
   grant({
     id: 129,
     portalAddedDate: "2026-10-16",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 39,
     title: "Glendale Community College Senate Innovation Grant",
     source: "Glendale Community College Academic Senate",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Oct 22, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2942,7 +2942,7 @@ grant({
     eligibilityBadge: "Texas public institutions only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 19, 2026",
-    sourceNotes: "Oct. 23 access check: the official program page was blocked; the RFA and Fluxx gateway remained accessible. Confirm current call details with the coordinating board; the Oct. 22 full-verification date is retained. Official program, RFA 1801, FAQ and Fluxx gateway verified Oct. 19. RFA: https://reportcenter.highered.texas.gov/contracts/rfo-rfp-rfq-rfa/oergp-50/open-educational-resources-grant-program-rfa1801-2026-28/ . Award figures are estimates, not caps. Only the explicitly estimated $1 million current-call pool enters the tally, not a calculation from anticipated awards. Projects run from Jan. 4, 2027 or executed award, whichever is later, through Aug. 31, 2028.",
+    sourceNotes: "Oct. 26 access check: the official program page is accessible again and agrees with the current RFA. Official program, RFA 1801, FAQ and Fluxx gateway verified Oct. 19. RFA: https://reportcenter.highered.texas.gov/contracts/rfo-rfp-rfq-rfa/oergp-50/open-educational-resources-grant-program-rfa1801-2026-28/ . Award figures are estimates, not caps. Only the explicitly estimated $1 million current-call pool enters the tally, not a calculation from anticipated awards. Projects run from Jan. 4, 2027 or executed award, whichever is later, through Aug. 31, 2028.",
   }),
   grant({
     id: 131,
@@ -2977,7 +2977,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -3006,7 +3006,7 @@ grant({
   grant({
     id: 133,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 29,
     title: "Educating Character Initiative: 2027 Capacity-Building Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -3037,7 +3037,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Oct 23, 2026",
+    lastVerified: "Oct 26, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3063,6 +3063,36 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 23, 2026",
     sourceNotes: "Official call, three-page PDF and public application verified Oct. 23. PDF: https://eadn-wc05-13916404.nxedge.io/wp-content/uploads/2026/09/Call-for-Proposals-26-27.pdf . Decisions are expected by April 2027; the form says funding will be available June 2027. The tally includes the explicitly published up-to $220,000 current-cycle pool, marked approximate because it is a ceiling, not a guaranteed payout. It is not added again as a per-award cap. Lobbying and advocacy recommending specific legislation, candidates or elected officials are excluded.",
+  }),
+  grant({
+    id: 135,
+    portalAddedDate: "2026-10-26",
+    lastVerified: "Oct 26, 2026",
+    recommendationRank: 32,
+    title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
+    source: "Amazon Research Awards",
+    officialUrl: "https://www.amazon.science/research-awards/call-for-proposals/multilingual-and-contextual-ai-evaluation-call-for-proposals-fall-2026",
+    applicationUrl: "https://home.academic-research-portal.amazon.science/login",
+    announcedDate: "Submission period opens Oct. 1, 2026",
+    openDate: "2026-10-01",
+    awardAmount: "Cash and AWS credits: each no more than $50,000 on average; individual amounts set by the awards panel",
+    eligibility: "Adult full-time faculty at accredited institutions or permanent researchers at legally recognized nonprofit organizations. One proposal per PI per call. Amazon employment, family, procurement and sanctions exclusions apply; consult program rules.",
+    whatItFunds: "Multilingual AI evaluation, including education deployments and AI-literacy or evaluation capacity in Global South institutions.",
+    geography: "United States and other eligible countries; geographic sanctions and program-rule exclusions apply",
+    costShareRequirement: "Not stated in the official source",
+    applicationAccess: "Official application portal requires sign-up or login. No account or application was submitted.",
+    deadline: "Nov. 4, 2026 at 11:59 p.m. Pacific Time",
+    deadlineTimeZone: "Pacific Time",
+    finalDeadlineDate: "2026-11-04",
+    finalDeadlineAt: "2026-11-05T07:59:00Z",
+    audiences: ["community-colleges", "four-year-colleges-universities", "faculty-teaching-centers"],
+    innovationAreas: ["ai-emerging-technology", "teaching-learning", "research-evidence-building", "faculty-development"],
+    scopeDisposition: "included",
+    bestFit: "Faculty researchers seeking support to evaluate educational AI across languages and cultural contexts.",
+    eligibilityBadge: "Full-time faculty or permanent nonprofit researchers",
+    inventoryOrigin: "weekly-new",
+    announcementWindow: "Broad discovery, Oct. 26, 2026",
+    sourceNotes: "Current call and rules verified Oct. 26: https://www.amazon.science/research-awards/program-rules . Cash goes to the institution as a one-time gift. The call excludes administrative overhead. No program-wide pool is published; cash averages and in-kind credits are excluded from the tally.",
   }),
 ];
 
