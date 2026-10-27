@@ -1,11 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import HeroAudioDiagnostics from './HeroAudioDiagnostics';
+import { installHeroAudioDiagnostics, playbackCheckEnabled, type HeroAudioDiagnosticsController, type PlaybackReport } from '@/lib/heroAudioDiagnostics';
 import { installHeroAudioRecovery } from '@/lib/heroAudioRecovery';
 import ApprovedSeptemberHeroArtwork from './ApprovedSeptemberHeroArtwork';
 import ApprovedSeptember11HeroArtwork from './ApprovedSeptember11HeroArtwork';
 import {
   useEffect,
+  useCallback,
   useRef,
   useState,
   type CSSProperties,
@@ -66,6 +69,10 @@ export default function HomePulseHero({
   editionLayout = false,
 }: HomePulseHeroProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const diagnosticsRef = useRef<HeroAudioDiagnosticsController | null>(null);
+  const [playbackReport, setPlaybackReport] = useState<PlaybackReport | null>(null);
+  const getPlaybackReport = useCallback(() => diagnosticsRef.current?.report() ?? playbackReport!, [playbackReport]);
+  const clearPlaybackReport = useCallback(() => diagnosticsRef.current?.clear(), []);
   const recoveryRef = useRef<ReturnType<typeof installHeroAudioRecovery> | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -107,6 +114,20 @@ export default function HomePulseHero({
 
   // Homepage and dated editions have different bounds, with the same gutters and border.
   const artworkSizes = `calc(min(100vw, ${editionLayout ? 1440 : 1200}px) - clamp(2rem, 8vw, 4rem) - 2px)`;
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const diagnostics = installHeroAudioDiagnostics(audio, episode.date, {
+      enabled: playbackCheckEnabled(window.location.search),
+      onChange: setPlaybackReport,
+    });
+    diagnosticsRef.current = diagnostics;
+    // Synchronize the panel with the browser opt-in after client navigation.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (!diagnostics) setPlaybackReport(null);
+    return () => { diagnostics?.dispose(); diagnosticsRef.current = null; };
+  }, [episode.audioUrl, episode.date]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -154,9 +175,13 @@ export default function HomePulseHero({
     if (!audio) return;
 
     const recovery = installHeroAudioRecovery(audio, episode.audioUrl, {
-      onRestore: setCurrentTime,
+      onRestore: position => {
+        setCurrentTime(position);
+        diagnosticsRef.current?.mark('recovery-restored', position);
+      },
     });
     recoveryRef.current = recovery;
+    diagnosticsRef.current?.mark('recovery-installed');
     setCurrentTime(audio.currentTime);
     setDuration(Number.isFinite(audio.duration) ? audio.duration : 0);
 
@@ -196,10 +221,12 @@ export default function HomePulseHero({
     if (!audio || !hasAudio) return;
 
     if (isPlaying) {
+      diagnosticsRef.current?.mark('action-pause');
       audio.pause();
       return;
     }
 
+    diagnosticsRef.current?.mark('action-play');
     setAudioError(false);
     recoveryRef.current?.preparePlayback();
     audio.play().catch((error: DOMException) => {
@@ -211,6 +238,7 @@ export default function HomePulseHero({
     const audio = audioRef.current;
     if (!audio || !totalDuration) return;
     const boundedTime = Math.min(Math.max(nextTime, 0), totalDuration);
+    diagnosticsRef.current?.mark('action-seek', boundedTime);
     if (recoveryRef.current) recoveryRef.current.explicitSeek(boundedTime);
     else audio.currentTime = boundedTime;
     setCurrentTime(boundedTime);
@@ -483,6 +511,7 @@ export default function HomePulseHero({
           </div>
         </aside>
       </div>
+      {playbackReport && <HeroAudioDiagnostics report={playbackReport} getReport={getPlaybackReport} onClear={clearPlaybackReport} />}
     </section>
   );
 }
