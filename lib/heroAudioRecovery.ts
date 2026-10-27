@@ -57,11 +57,20 @@ export function installHeroAudioRecovery(
   };
   const timeupdate = () => { if (now() - lastSave >= 1000) save(); };
   const ended = () => { pending = false; clear(); };
+  const nativeSeek = () => {
+    if (disposed || audio.getAttribute('src') !== source) return;
+    pending = false;
+    // Native controls (including lock-screen controls) can restart without our UI.
+    if (audio.currentTime === 0) clear();
+    else save();
+  };
   const hidden = () => { if (documentTarget.visibilityState === 'hidden') save(); };
   audio.addEventListener('loadedmetadata', restore);
   audio.addEventListener('timeupdate', timeupdate);
   audio.addEventListener('pause', save);
   audio.addEventListener('ended', ended);
+  audio.addEventListener('seeking', nativeSeek);
+  audio.addEventListener('seeked', nativeSeek);
   windowTarget.addEventListener('pagehide', save);
   documentTarget.addEventListener('visibilitychange', hidden);
   restore();
@@ -82,6 +91,8 @@ export function installHeroAudioRecovery(
       audio.removeEventListener('timeupdate', timeupdate);
       audio.removeEventListener('pause', save);
       audio.removeEventListener('ended', ended);
+      audio.removeEventListener('seeking', nativeSeek);
+      audio.removeEventListener('seeked', nativeSeek);
       windowTarget.removeEventListener('pagehide', save);
       documentTarget.removeEventListener('visibilitychange', hidden);
     },

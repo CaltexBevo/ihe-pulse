@@ -67,3 +67,21 @@ test('cleanup does not write a replacement source position under the former sour
   const s = setup({ data: bookmarked() }); s.audio.getAttribute = () => 'other.mp3'; s.audio.currentTime = 50; s.controller.dispose();
   assert.equal(JSON.parse(s.data.get(key)).position, 95.959);
 });
+
+test('native restart at zero clears recovery for play and reinstantiation', () => {
+  const s = setup({ data: bookmarked() }); s.audio.currentTime = 0;
+  for (const event of ['seeking', 'seeked', 'timeupdate', 'pause']) s.emit(event);
+  s.controller.preparePlayback(); assert.equal(s.audio.currentTime, 0);
+  s.controller.dispose(); assert.equal(setup({ data: s.data }).audio.currentTime, 0);
+});
+test('native nonzero seek before metadata is preserved and saved when seek completes', () => {
+  const s = setup({ data: bookmarked(), duration: NaN }); s.audio.currentTime = 24; s.emit('seeking');
+  s.audio.duration = 423.16; s.emit('loadedmetadata'); assert.equal(s.audio.currentTime, 24);
+  s.emit('seeked'); assert.equal(JSON.parse(s.data.get(key)).position, 24);
+});
+test('seek events from a replaced source or disposed controller do not erase its bookmark', () => {
+  const s = setup({ data: bookmarked() }); s.audio.getAttribute = () => 'other.mp3'; s.audio.currentTime = 0;
+  s.emit('seeking'); s.emit('seeked'); assert.equal(JSON.parse(s.data.get(key)).position, 95.959);
+  s.controller.dispose(); s.audio.getAttribute = () => 'episode.mp3';
+  s.emit('seeking'); s.emit('seeked'); assert.equal(JSON.parse(s.data.get(key)).position, 95.959);
+});
