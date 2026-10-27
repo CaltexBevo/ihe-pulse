@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import HeroAudioDiagnostics, { HeroAudioDiagnosticObserver } from './HeroAudioDiagnostics';
 import type { HeroAudioDiagnosticsController, PlaybackReport } from '@/lib/heroAudioDiagnostics';
+import { getHeroAudioBufferDescriptor, installHeroAudioBuffer } from '@/lib/heroAudioBuffer';
 import { installHeroAudioPlayback } from '@/lib/heroAudioPlayback';
 import { installHeroAudioRecovery } from '@/lib/heroAudioRecovery';
 import ApprovedSeptemberHeroArtwork from './ApprovedSeptemberHeroArtwork';
@@ -75,8 +76,10 @@ export default function HomePulseHero({
   const [playbackReport, setPlaybackReport] = useState<PlaybackReport | null>(null);
   const getPlaybackReport = useCallback(() => diagnosticsRef.current?.captureReport() ?? playbackReport!, [playbackReport]);
   const clearPlaybackReport = useCallback(() => diagnosticsRef.current?.clear(), []);
-  const playbackRef = useRef<ReturnType<typeof installHeroAudioPlayback> | null>(null);
+  const playbackRef = useRef<Pick<ReturnType<typeof installHeroAudioPlayback>, 'play' | 'shouldPlay' | 'toggle' | 'explicitSeek' | 'dispose'> | null>(null);
   const recoveryRef = useRef<ReturnType<typeof installHeroAudioRecovery> | null>(null);
+  const [isPreparing, setIsPreparing] = useState(false);
+  const bufferedEpisode = getHeroAudioBufferDescriptor(episode.date, episode.audioUrl);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -164,7 +167,9 @@ export default function HomePulseHero({
     const audio = audioRef.current;
     if (!audio) return;
 
+    let buffer: ReturnType<typeof installHeroAudioBuffer> | null = null;
     const recovery = installHeroAudioRecovery(audio, episode.audioUrl, {
+      ownsSource: bufferedEpisode ? source => buffer?.ownsSource(source) ?? false : undefined,
       onRestore: position => {
         setCurrentTime(position);
         diagnosticsRef.current?.mark('recovery-restored', position);
@@ -175,7 +180,11 @@ export default function HomePulseHero({
     setCurrentTime(audio.currentTime);
     setDuration(Number.isFinite(audio.duration) ? audio.duration : 0);
 
-    const playback = installHeroAudioPlayback(audio, {
+    const playback = bufferedEpisode ? (buffer = installHeroAudioBuffer(audio, bufferedEpisode, {
+      recovery,
+      onPreparing: setIsPreparing,
+      onError: setAudioError,
+    })) : installHeroAudioPlayback(audio, {
       recovery,
       onError: setAudioError,
       onRestore: position => {
@@ -184,7 +193,7 @@ export default function HomePulseHero({
       },
     });
     playbackRef.current = playback;
-    if (autoPlay) playback.play(false);
+    if (autoPlay && !bufferedEpisode) playback.play(false);
 
     return () => {
       recovery.dispose();
@@ -193,7 +202,7 @@ export default function HomePulseHero({
       playback.dispose();
       playbackRef.current = null;
     };
-  }, [episode.audioUrl, autoPlay]);
+  }, [episode.audioUrl, autoPlay, bufferedEpisode]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -265,7 +274,7 @@ export default function HomePulseHero({
   return (
     <section className={styles.hero} aria-labelledby="home-pulse-title">
       {hasAudio && (
-        <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
+        <audio ref={audioRef} src={bufferedEpisode ? undefined : episode.audioUrl} preload={bufferedEpisode ? 'none' : 'metadata'} />
       )}
 
       {usesEdition21Hero ? (
@@ -344,9 +353,9 @@ export default function HomePulseHero({
             className={styles.playButton}
             onClick={togglePlay}
             disabled={!hasAudio}
-            aria-label={isPlaying ? 'Pause edition' : 'Play edition'}
+            aria-label={isPreparing ? 'Cancel loading edition' : isPlaying ? 'Pause edition' : 'Play edition'}
           >
-            {isPlaying ? (
+            {isPlaying || isPreparing ? (
               <svg className={styles.pauseIcon} viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="5" y="3" width="5" height="18" rx="1" fill="currentColor" />
                 <rect x="14" y="3" width="5" height="18" rx="1" fill="currentColor" />
@@ -360,7 +369,7 @@ export default function HomePulseHero({
 
           <div className={styles.playerContent}>
             <p className={styles.playerLabel}>
-              {!hasAudio ? 'Audio in production' : editionLayout ? 'Play this edition' : usesApprovedFullHero
+              {isPreparing ? 'Preparing episode…' : !hasAudio ? 'Audio in production' : editionLayout ? 'Play this edition' : usesApprovedFullHero
                 ? 'Play this week’s edition'
                 : `Play the ${roundedMinutes}-minute briefing`}
             </p>

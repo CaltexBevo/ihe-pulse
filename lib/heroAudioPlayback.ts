@@ -1,4 +1,28 @@
 type AudioSession = { type: string };
+export function createHeroPlaybackCategory(audio: HTMLAudioElement, options: {
+  audioSession?: () => AudioSession | undefined;
+  otherMediaPlaying?: () => boolean;
+} = {}) {
+  let owned: { session: AudioSession; previous: string } | null = null;
+  return {
+    request() {
+      try {
+        const session = (options.audioSession ?? (() => (navigator as Navigator & { audioSession?: AudioSession }).audioSession))();
+        if (!session || session.type !== 'auto') return;
+        session.type = 'playback';
+        owned = { session, previous: 'auto' };
+      } catch { /* Optional API; native playback remains available. */ }
+    },
+    dispose() {
+      try {
+        const otherPlaying = options.otherMediaPlaying ?? (() => Array.from(document.querySelectorAll('audio, video')).some(media => media !== audio && !(media as HTMLMediaElement).paused));
+        if (owned && audio.paused && !otherPlaying() && owned.session.type === 'playback') owned.session.type = owned.previous;
+      } catch { /* Do not change page-wide behavior when safety cannot be checked. */ }
+      owned = null;
+    },
+  };
+}
+
 type Position = { time: number; duration: number };
 
 /** Explicit play/retry only. Background events never start or reload media. */
@@ -12,7 +36,7 @@ export function installHeroAudioPlayback(audio: HTMLAudioElement, options: {
   let disposed = false, attempt = 0, needsReload = false;
   let lastPosition: Position | null = null;
   let retryPosition: Position | null = null;
-  let ownedSession: { session: AudioSession; previous: string } | null = null;
+  const category = createHeroPlaybackCategory(audio, options);
   let restoring = false;
   const remember = () => {
     const time = audio.currentTime, duration = audio.duration;
@@ -49,15 +73,6 @@ export function installHeroAudioPlayback(audio: HTMLAudioElement, options: {
   audio.addEventListener('loadedmetadata', restoreRetry);
   remember();
 
-  const requestPlaybackCategory = () => {
-    try {
-      const session = (options.audioSession ?? (() => (navigator as Navigator & { audioSession?: AudioSession }).audioSession))();
-      // Respect another component's explicit category, particularly recording.
-      if (!session || session.type !== 'auto') return;
-      session.type = 'playback';
-      ownedSession = { session, previous: 'auto' };
-    } catch { /* Unsupported or restricted APIs do not block native playback. */ }
-  };
   const play = (deliberate = true) => {
     if (disposed) return;
     const currentAttempt = ++attempt;
@@ -72,7 +87,7 @@ export function installHeroAudioPlayback(audio: HTMLAudioElement, options: {
       }
       options.recovery.preparePlayback();
       restoreRetry();
-      if (deliberate) requestPlaybackCategory();
+      if (deliberate) category.request();
       const result = audio.play();
       Promise.resolve(result).then(() => {
         if (!disposed && currentAttempt === attempt) needsReload = false;
@@ -114,12 +129,7 @@ export function installHeroAudioPlayback(audio: HTMLAudioElement, options: {
       audio.removeEventListener('ended', ended);
       audio.removeEventListener('seeking', seeking);
       audio.removeEventListener('loadedmetadata', restoreRetry);
-      try {
-        const otherMediaPlaying = options.otherMediaPlaying ?? (() => Array.from(document.querySelectorAll('audio, video')).some(media => media !== audio && !(media as HTMLMediaElement).paused));
-        if (ownedSession && audio.paused && !otherMediaPlaying() && ownedSession.session.type === 'playback') {
-          ownedSession.session.type = ownedSession.previous;
-        }
-      } catch { /* Leave the page category alone if ownership/safety cannot be checked. */ }
+      category.dispose();
     },
   };
 }
