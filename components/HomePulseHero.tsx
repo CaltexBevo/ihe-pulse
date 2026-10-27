@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import HeroAudioDiagnostics, { HeroAudioDiagnosticObserver } from './HeroAudioDiagnostics';
 import type { HeroAudioDiagnosticsController, PlaybackReport } from '@/lib/heroAudioDiagnostics';
+import { installHeroAudioPlayback } from '@/lib/heroAudioPlayback';
 import { installHeroAudioRecovery } from '@/lib/heroAudioRecovery';
 import ApprovedSeptemberHeroArtwork from './ApprovedSeptemberHeroArtwork';
 import ApprovedSeptember11HeroArtwork from './ApprovedSeptember11HeroArtwork';
@@ -74,6 +75,7 @@ export default function HomePulseHero({
   const [playbackReport, setPlaybackReport] = useState<PlaybackReport | null>(null);
   const getPlaybackReport = useCallback(() => diagnosticsRef.current?.captureReport() ?? playbackReport!, [playbackReport]);
   const clearPlaybackReport = useCallback(() => diagnosticsRef.current?.clear(), []);
+  const playbackRef = useRef<ReturnType<typeof installHeroAudioPlayback> | null>(null);
   const recoveryRef = useRef<ReturnType<typeof installHeroAudioRecovery> | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -173,53 +175,31 @@ export default function HomePulseHero({
     setCurrentTime(audio.currentTime);
     setDuration(Number.isFinite(audio.duration) ? audio.duration : 0);
 
-    if (autoPlay) {
-      audio.play().catch((error: DOMException) => {
-        if (
-          error?.name !== 'AbortError' &&
-          error?.name !== 'NotAllowedError'
-        ) {
-          setAudioError(true);
-        }
-      });
-    }
+    const playback = installHeroAudioPlayback(audio, {
+      recovery,
+      onError: setAudioError,
+      onRestore: position => {
+        setCurrentTime(position);
+        diagnosticsRef.current?.mark('recovery-restored', position);
+      },
+    });
+    playbackRef.current = playback;
+    if (autoPlay) playback.play(false);
 
     return () => {
       recovery.dispose();
       recoveryRef.current = null;
       audio.pause();
+      playback.dispose();
+      playbackRef.current = null;
     };
   }, [episode.audioUrl, autoPlay]);
-
-  useEffect(() => {
-    if (!isPlaying) return;
-    let frame = 0;
-
-    const updateProgress = () => {
-      if (audioRef.current) setCurrentTime(audioRef.current.currentTime);
-      frame = window.requestAnimationFrame(updateProgress);
-    };
-
-    frame = window.requestAnimationFrame(updateProgress);
-    return () => window.cancelAnimationFrame(frame);
-  }, [isPlaying]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio || !hasAudio) return;
-
-    if (isPlaying) {
-      diagnosticsRef.current?.mark('action-pause');
-      audio.pause();
-      return;
-    }
-
-    diagnosticsRef.current?.mark('action-play');
-    setAudioError(false);
-    recoveryRef.current?.preparePlayback();
-    audio.play().catch((error: DOMException) => {
-      if (error?.name !== 'AbortError') setAudioError(true);
-    });
+    diagnosticsRef.current?.mark(playbackRef.current?.shouldPlay() ? 'action-play' : 'action-pause');
+    playbackRef.current?.toggle();
   };
 
   const seekTo = (nextTime: number) => {
@@ -227,7 +207,8 @@ export default function HomePulseHero({
     if (!audio || !totalDuration) return;
     const boundedTime = Math.min(Math.max(nextTime, 0), totalDuration);
     diagnosticsRef.current?.mark('action-seek', boundedTime);
-    if (recoveryRef.current) recoveryRef.current.explicitSeek(boundedTime);
+    if (playbackRef.current) playbackRef.current.explicitSeek(boundedTime);
+    else if (recoveryRef.current) recoveryRef.current.explicitSeek(boundedTime);
     else audio.currentTime = boundedTime;
     setCurrentTime(boundedTime);
   };
