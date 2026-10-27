@@ -86,61 +86,61 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
 
   "use-ai-to-strengthen-the-thinking-you-want-to-keep": {
       "twitterTitle": "Use AI to Strengthen the Thinking You Want to Keep",
-      "imagePath": "/images/stories/social/edition21-72-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-72-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "see-the-reasoning-behind-ai-assisted-homework": {
       "twitterTitle": "See the Reasoning Behind AI Assisted Homework",
-      "imagePath": "/images/stories/social/edition21-1-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-1-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "plan-ai-literacy-around-a-real-analytical-task": {
       "twitterTitle": "Plan AI Literacy Around a Real Analytical Task",
-      "imagePath": "/images/stories/social/edition21-2-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-2-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "give-ai-grading-a-standard-you-can-explain": {
       "twitterTitle": "Give AI Grading a Standard You Can Explain",
-      "imagePath": "/images/stories/social/edition21-27-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-27-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "follow-an-ai-citation-all-the-way-to-the-evidence": {
       "twitterTitle": "Follow an AI Citation All the Way to the Evidence",
-      "imagePath": "/images/stories/social/edition21-29-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-29-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "ai-improved-forecasts-several-weeks-ahead": {
       "twitterTitle": "AI Improved Forecasts Several Weeks Ahead",
-      "imagePath": "/images/stories/social/edition21-C-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-C-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "know-when-a-rating-scale-is-shaping-your-ai-research-results": {
       "twitterTitle": "Know When a Rating Scale Is Shaping Your AI Research Results",
-      "imagePath": "/images/stories/social/edition21-53-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-53-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "give-an-ai-replication-project-a-clear-route-forward": {
       "twitterTitle": "Give an AI Replication Project a Clear Route Forward",
-      "imagePath": "/images/stories/social/edition21-69-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-69-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "a-neural-bypass-helped-a-man-grasp-objects-and-sense-touch": {
       "twitterTitle": "A Neural Bypass Helped a Man Grasp Objects and Sense Touch",
-      "imagePath": "/images/stories/social/edition21-A-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-A-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "make-lecture-descriptions-useful-to-the-people-who-need-them": {
       "twitterTitle": "Make Lecture Descriptions Useful to the People Who Need Them",
-      "imagePath": "/images/stories/social/edition21-52-card-v1.png",
+      "imagePath": "/images/stories/social/edition21-52-card-v2.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
