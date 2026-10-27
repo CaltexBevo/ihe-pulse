@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { installHeroAudioRecovery } from '@/lib/heroAudioRecovery';
 import ApprovedSeptemberHeroArtwork from './ApprovedSeptemberHeroArtwork';
 import ApprovedSeptember11HeroArtwork from './ApprovedSeptember11HeroArtwork';
 import {
@@ -65,6 +66,7 @@ export default function HomePulseHero({
   editionLayout = false,
 }: HomePulseHeroProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const recoveryRef = useRef<ReturnType<typeof installHeroAudioRecovery> | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -151,7 +153,12 @@ export default function HomePulseHero({
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.load();
+    const recovery = installHeroAudioRecovery(audio, episode.audioUrl, {
+      onRestore: setCurrentTime,
+    });
+    recoveryRef.current = recovery;
+    setCurrentTime(audio.currentTime);
+    setDuration(Number.isFinite(audio.duration) ? audio.duration : 0);
 
     if (autoPlay) {
       audio.play().catch((error: DOMException) => {
@@ -164,7 +171,11 @@ export default function HomePulseHero({
       });
     }
 
-    return () => audio.pause();
+    return () => {
+      recovery.dispose();
+      recoveryRef.current = null;
+      audio.pause();
+    };
   }, [episode.audioUrl, autoPlay]);
 
   useEffect(() => {
@@ -190,6 +201,7 @@ export default function HomePulseHero({
     }
 
     setAudioError(false);
+    recoveryRef.current?.preparePlayback();
     audio.play().catch((error: DOMException) => {
       if (error?.name !== 'AbortError') setAudioError(true);
     });
@@ -199,7 +211,8 @@ export default function HomePulseHero({
     const audio = audioRef.current;
     if (!audio || !totalDuration) return;
     const boundedTime = Math.min(Math.max(nextTime, 0), totalDuration);
-    audio.currentTime = boundedTime;
+    if (recoveryRef.current) recoveryRef.current.explicitSeek(boundedTime);
+    else audio.currentTime = boundedTime;
     setCurrentTime(boundedTime);
   };
 
