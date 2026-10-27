@@ -93,3 +93,11 @@ test('throwing native getters and ranges fail open', () => {
   assert.doesNotThrow(() => s.audio.emit('error')); assert.doesNotMatch(JSON.stringify(s.controller.report()), /private details/);
   assert.equal(s.controller.report().events.at(-1).position, null);
 });
+
+test('explicit report capture snapshots a frozen player without a media event', () => {
+  const s = setup(); s.tick(53000); s.audio.currentTime = 53; s.audio.paused = false; s.audio.readyState = 2;
+  assert.equal(s.controller.report().events.at(-1).position, 0);
+  const report = s.controller.captureReport(); const last = report.events.at(-1);
+  assert.equal(last.event, 'report-request'); assert.equal(last.position, 53); assert.equal(last.elapsedMs, 53000);
+  assert.equal(last.paused, false); assert.equal(last.readyState, 2);
+});

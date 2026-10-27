@@ -1,7 +1,34 @@
 'use client';
 
-import { memo, useState } from 'react';
-import type { PlaybackReport } from '@/lib/heroAudioDiagnostics';
+import { memo, useEffect, useState, type RefObject } from 'react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { installHeroAudioDiagnostics, type HeroAudioDiagnosticsController, type PlaybackReport } from '@/lib/heroAudioDiagnostics';
+
+export const HeroAudioDiagnosticObserver = memo(function HeroAudioDiagnosticObserver({
+  audioRef, controllerRef, edition, audioUrl, onReport,
+}: {
+  audioRef: RefObject<HTMLAudioElement | null>;
+  controllerRef: RefObject<HeroAudioDiagnosticsController | null>;
+  edition: string;
+  audioUrl: string;
+  onReport: (report: PlaybackReport | null) => void;
+}) {
+  const searchParams = useSearchParams();
+  const enabled = searchParams.get('audio-check') === '1';
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!enabled || !audio || !audioUrl) {
+      onReport(null);
+      return;
+    }
+    const diagnostics = installHeroAudioDiagnostics(audio, edition, { enabled, onChange: onReport });
+    controllerRef.current = diagnostics;
+    if (!diagnostics) onReport(null);
+    return () => { diagnostics?.dispose(); controllerRef.current = null; };
+  }, [enabled, edition, audioUrl, audioRef, controllerRef, onReport]);
+  return null;
+});
 
 function HeroAudioDiagnostics({ report, getReport, onClear }: {
   report: PlaybackReport;
@@ -28,6 +55,7 @@ function HeroAudioDiagnostics({ report, getReport, onClear }: {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBlock: '0.75rem' }}>
         <button type="button" aria-label="Copy playback report" className="btn-secondary" style={{ minHeight: '44px' }} onClick={copy}>Copy playback report</button>
         <button type="button" aria-label="Clear report" className="btn-secondary" style={{ minHeight: '44px' }} onClick={() => { onClear(); setMessage('Playback report cleared.'); }}>Clear report</button>
+        <Link href="/" prefetch={false} scroll={false} aria-label="Exit playback check" className="btn-secondary" style={{ minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}>Exit playback check</Link>
       </div>
       <p role="status" style={{ color: 'var(--cyan)' }}>{message}</p>
       <details open={expanded} onToggle={event => setExpanded(event.currentTarget.open)}>

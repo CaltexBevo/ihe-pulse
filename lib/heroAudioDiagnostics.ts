@@ -1,6 +1,6 @@
 /** Opt-in, local-only observation. This module never controls media playback. */
 const mediaEvents = ['play', 'playing', 'pause', 'waiting', 'stalled', 'suspend', 'error', 'ended', 'emptied', 'abort', 'loadstart', 'loadedmetadata', 'seeking', 'seeked'] as const;
-const eventNames = [...mediaEvents, 'timeupdate', 'mount', 'unmount', 'pagehide', 'pageshow', 'focus', 'blur', 'visibilitychange', 'audio-session-change', 'action-play', 'action-pause', 'action-seek', 'recovery-installed', 'recovery-restored'] as const;
+const eventNames = [...mediaEvents, 'timeupdate', 'report-request', 'mount', 'unmount', 'pagehide', 'pageshow', 'focus', 'blur', 'visibilitychange', 'audio-session-change', 'action-play', 'action-pause', 'action-seek', 'recovery-installed', 'recovery-restored'] as const;
 type EventName = typeof eventNames[number];
 export type PlaybackMarker = 'action-play' | 'action-pause' | 'action-seek' | 'recovery-installed' | 'recovery-restored';
 type AudioSession = EventTarget & { state?: string; type?: string };
@@ -132,6 +132,7 @@ export function installHeroAudioDiagnostics(audio: HTMLAudioElement, edition: st
   record('mount');
   return {
     report,
+    captureReport() { record('report-request'); return report(); },
     mark(event: PlaybackMarker, target?: number) {
       if (['action-play', 'action-pause', 'action-seek', 'recovery-installed', 'recovery-restored'].includes(event)) record(event, target);
     },
