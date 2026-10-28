@@ -1,0 +1,51 @@
+{
+  "editionId": "edition-21",
+  "editionNumber": 21,
+  "subject": "The Innovation Pulse: Edition 21",
+  "htmlPath": "data/newsletter-share/edition-21.html",
+  "sha256": "9c449ba1ebde385bedc6fbb00ef250f3f9cd128a3ebc362866a042f282500aec",
+  "parentApprovedHTMLSha256": "ea01f0e2879de819a8e73398cc1b1e7a7d88b5c7fff34ecbb1b6a454c699f26a",
+  "shareUrl": "https://www.innovatinghighered.com/innovation-pulse/share/edition-21",
+  "canonicalEditionUrl": "https://www.innovatinghighered.com/innovation-pulse/2026-10-16",
+  "storyHeadlines": [
+    "Use AI to Strengthen the Thinking You Want to Keep",
+    "See the Reasoning Behind AI Assisted Homework",
+    "Plan AI Literacy Around a Real Analytical Task",
+    "Give AI Grading a Standard You Can Explain",
+    "Follow an AI Citation All the Way to the Evidence",
+    "AI Improved Forecasts Several Weeks Ahead",
+    "Know When a Rating Scale Is Shaping Your AI Research Results",
+    "Give an AI Replication Project a Clear Route Forward",
+    "A Neural Bypass Helped a Man Grasp Objects and Sense Touch",
+    "Make Lecture Descriptions Useful to the People Who Need Them"
+  ],
+  "storyCount": 10,
+  "sourceParagraphCount": 55,
+  "imageUrls": [
+    "https://www.innovatinghighered.com/images/email/ihe-logo.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/weekly-edition-21.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-72.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-1.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-2.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-27.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-29.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-C.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-53.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-69.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-A.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-16/story-52.png",
+    "https://www.innovatinghighered.com/images/email/ihe-logo.png"
+  ],
+  "optOutPlaceholder": "{{SHARE_OPTOUT_URL}}",
+  "authority": "Brent explicitly approved full-newsletter button + recipient form implementation on October28; no subscriber campaign send approval",
+  "status": "LOCAL_IMPLEMENTATION_INPUT; actual sending configuration pending",
+  "edition": "edition-21",
+  "paragraphCount": 55,
+  "listeningUrls": [
+    "https://www.innovatinghighered.com/innovation-pulse/2026-10-16?utm_source=mailchimp&utm_medium=email&utm_campaign=innovation-pulse-2026-10-16&utm_content=listen&autoplay=true#audio-player",
+    "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335",
+    "https://open.spotify.com/show/4rMDJnlFbrLMr0hKAE3Oe6",
+    "https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/innovating-higher-ed",
+    "https://innovatinghighered.podbean.com/"
+  ]
+}

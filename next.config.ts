@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
     }));
   },
   outputFileTracingIncludes: {
+    "/api/newsletter/share": ["./data/newsletter-share/edition-21.html", "./data/newsletter-share/edition-21.json"],
     "/innovation-grants/opengraph-image": ["./public/fonts/inter-bold.ttf"],
   },
   images: {

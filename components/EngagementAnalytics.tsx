@@ -27,6 +27,7 @@ const dispatchCustomEvent = createEngagementDispatcher((name, properties) => {
 
 function isCurrentBrowserOptedOut() {
   if (typeof window === 'undefined') return false;
+  if (window.location.pathname.startsWith('/innovation-pulse/share/')) return true;
   try {
     return isInternalAnalyticsOptOut(window.location.hash, window.localStorage);
   } catch {

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 
 const TURNSTILE_SCRIPT_ID = 'ihe-turnstile-api';
 const TURNSTILE_SCRIPT_URL = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-const TURNSTILE_ACTION = 'newsletter_signup';
 const TURNSTILE_SCRIPT_TIMEOUT_MS = 5_000;
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
 
@@ -83,6 +82,7 @@ function loadTurnstile() {
 
 interface TurnstileChallengeProps {
   active: boolean;
+  action?: 'newsletter_signup' | 'newsletter_share';
   onTokenChange: (token: string) => void;
   resetSignal: number;
   statusId: string;
@@ -90,6 +90,7 @@ interface TurnstileChallengeProps {
 
 export default function TurnstileChallenge({
   active,
+  action = 'newsletter_signup',
   onTokenChange,
   resetSignal,
   statusId,
@@ -132,7 +133,7 @@ export default function TurnstileChallenge({
 
         widgetIdRef.current = api.render(containerRef.current, {
           sitekey: SITE_KEY,
-          action: TURNSTILE_ACTION,
+          action,
           appearance: 'interaction-only',
           'response-field': false,
           callback: (token) => {
@@ -159,7 +160,7 @@ export default function TurnstileChallenge({
       widgetIdRef.current = null;
       apiRef.current = null;
     };
-  }, [active, onTokenChange, retrySignal]);
+  }, [active, action, onTokenChange, retrySignal]);
 
   useEffect(() => {
     if (resetSignal < 1 || !apiRef.current || !widgetIdRef.current) return;
