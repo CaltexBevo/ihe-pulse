@@ -67,7 +67,7 @@ export async function readSnapshot(): Promise<Snapshot> {
   const base = path.join(process.cwd(), 'data/newsletter-share');
   const [html, json] = await Promise.all([readFile(path.join(base, 'edition-21.html'), 'utf8'), readFile(path.join(base, 'edition-21.json'), 'utf8')]);
   const metadata = JSON.parse(json);
-  if (metadata.sha256 !== '9c449ba1ebde385bedc6fbb00ef250f3f9cd128a3ebc362866a042f282500aec') throw new Error('Unapproved snapshot');
+  if (metadata.sha256 !== '0954b0d6565146146d6d48609746b3516e040543c1e9504c8f05e55805653865') throw new Error('Unapproved snapshot');
   return { ...metadata, html };
 }
 export async function verifyChallenge(token: string, env: Env, transport: typeof fetch = fetch) {
