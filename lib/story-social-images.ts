@@ -1,5 +1,5 @@
 // Social card crops are independent of the artwork displayed on the story page.
-export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number; twitterTitle?: string }>> = {
+export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number; twitterImagePath?: string; twitterTitle?: string }>> = {
   "georgia-tech-shows-two-ways-to-make-ai-practice-count": {
     imagePath: "/images/stories/social/georgia-tech-ai-practice-card-v3.png",
     imageWidth: 2048,
@@ -105,42 +105,49 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
   "give-ai-grading-a-standard-you-can-explain": {
       "twitterTitle": "Give AI Grading a Standard You Can Explain",
       "imagePath": "/images/stories/social/edition21-27-card-v2.png",
+      "twitterImagePath": "/images/stories/social/edition21-27-card-v3.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "follow-an-ai-citation-all-the-way-to-the-evidence": {
       "twitterTitle": "Follow an AI Citation All the Way to the Evidence",
       "imagePath": "/images/stories/social/edition21-29-card-v2.png",
+      "twitterImagePath": "/images/stories/social/edition21-29-card-v3.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "ai-improved-forecasts-several-weeks-ahead": {
       "twitterTitle": "AI Improved Forecasts Several Weeks Ahead",
       "imagePath": "/images/stories/social/edition21-C-card-v2.png",
+      "twitterImagePath": "/images/stories/social/edition21-C-card-v3.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "know-when-a-rating-scale-is-shaping-your-ai-research-results": {
       "twitterTitle": "Know When a Rating Scale Is Shaping Your AI Research Results",
       "imagePath": "/images/stories/social/edition21-53-card-v2.png",
+      "twitterImagePath": "/images/stories/social/edition21-53-card-v3.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "give-an-ai-replication-project-a-clear-route-forward": {
       "twitterTitle": "Give an AI Replication Project a Clear Route Forward",
       "imagePath": "/images/stories/social/edition21-69-card-v2.png",
+      "twitterImagePath": "/images/stories/social/edition21-69-card-v3.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "a-neural-bypass-helped-a-man-grasp-objects-and-sense-touch": {
       "twitterTitle": "A Neural Bypass Helped a Man Grasp Objects and Sense Touch",
       "imagePath": "/images/stories/social/edition21-A-card-v2.png",
+      "twitterImagePath": "/images/stories/social/edition21-A-card-v3.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },
   "make-lecture-descriptions-useful-to-the-people-who-need-them": {
       "twitterTitle": "Make Lecture Descriptions Useful to the People Who Need Them",
       "imagePath": "/images/stories/social/edition21-52-card-v2.png",
+      "twitterImagePath": "/images/stories/social/edition21-52-card-v3.png",
       "imageWidth": 1200,
       "imageHeight": 630
   },

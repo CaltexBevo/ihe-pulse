@@ -13,6 +13,8 @@ type PageMetadataOptions = {
   publishedAt?: string;
   /** Optional page-specific social image path or absolute URL. */
   imagePath?: string;
+  /** Optional Twitter-only artwork; leaves Open Graph and page artwork unchanged. */
+  twitterImagePath?: string;
   /** Explicitly omit social artwork for text-only articles. */
   omitImage?: boolean;
   /** Optional accessible description for the social image. */
@@ -42,6 +44,7 @@ export function pageMetadata({
   type = "website",
   publishedAt,
   imagePath,
+  twitterImagePath,
   omitImage = false,
   imageAlt,
   twitterCard = "summary",
@@ -51,6 +54,7 @@ export function pageMetadata({
 }: PageMetadataOptions): Metadata {
   const url = `${SITE_URL}${path}`;
   const imageUrl = imagePath ? new URL(imagePath, SITE_URL).href : OG_IMAGE_URL;
+  const twitterImageUrl = twitterImagePath ? new URL(twitterImagePath, SITE_URL).href : imageUrl;
   return {
     title,
     description,
@@ -75,7 +79,7 @@ export function pageMetadata({
       card: twitterCard,
       title: twitterTitle ?? title,
       description,
-      images: omitImage ? [] : [imageUrl],
+      images: omitImage ? [] : [twitterImageUrl],
     },
   };
 }
