@@ -61,7 +61,7 @@ function canonicalCatalog(articles: readonly RankedArticle[]): RankedArticle[] {
 }
 
 function queryUrl(paths: string[], window: RankingWindow, project: string, team: string) {
-  const filter = `environment eq 'production' and requestPath in (${paths.map(path => `'${path}'`).join(',')})`;
+  const filter = `environment eq 'production' and (${paths.map(path => `requestPath eq '${path}'`).join(' or ')})`;
   const params = new URLSearchParams({ projectId: project, slug: team, by: 'requestPath', ...window, limit: String(BATCH_SIZE), filter });
   return new URL(`https://api.vercel.com/v1/query/web-analytics/visits/aggregate?${params}`);
 }

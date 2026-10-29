@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Homepage ranking filter compatibility
+
+- Use explicit exact-path equality alternatives for Vercel analytics batches after production rejected the membership filter, preserving production-only collection, complete ranking validation and the archive fallback.
+
 ## [2026-10-29] Homepage ranking activation diagnostics
 
 - Add bounded server-only diagnostic summaries for uncached ranking loads, preserving strict completeness checks and the truthful archive fallback. No credentials, raw responses or visitor data are logged.
