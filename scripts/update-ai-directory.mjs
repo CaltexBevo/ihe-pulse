@@ -1224,7 +1224,11 @@ function isExactEditorialCodeLine(line) {
   return false;
 }
 
-function allowlistedProviderReference(relativePath, line, kind) {
+function allowlistedProviderReference(relativePath, line, kind, contentHash) {
+  // Immutable reviewed editorial email only. Any byte change requires renewed review;
+  // neither adjacent HTML files nor executable additions inherit this allowance.
+  if (relativePath === 'data/newsletter-share/edition-20.html' && kind !== 'symlink' &&
+      contentHash === 'ef5c377584c736e1b183f8fc9f0b72d3e3af2d4be5a349d134f0aba464587d26') return 'hash-bound-editorial-newsletter';
   if (relativePath === 'app/ai-directory/page.tsx') {
     const editorialLines = new Set([
       `'${PROVIDER_NAMES[1]}',`,
@@ -1321,10 +1325,12 @@ function runScan(options) {
   for (const entry of scanned.files) {
     const { filePath } = entry;
     const relativePath = relative(context.repoRoot, filePath);
-    const lines = (entry.content ?? readFileSync(filePath, 'utf8')).split(/\r?\n/);
+    const content = entry.content ?? readFileSync(filePath, 'utf8');
+    const contentHash = sha256(content);
+    const lines = content.split(/\r?\n/);
     for (const [index, line] of lines.entries()) {
       if (!PROVIDER_PATTERN.test(line)) continue;
-      const classification = allowlistedProviderReference(relativePath, line, entry.kind);
+      const classification = allowlistedProviderReference(relativePath, line, entry.kind, contentHash);
       if (classification) allowed.push({ path: relativePath, line: index + 1, classification });
       else violations.push({ path: relativePath, line: index + 1 });
     }

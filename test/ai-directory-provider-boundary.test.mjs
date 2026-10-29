@@ -1083,3 +1083,26 @@ test('empty, truncated, malformed, wrong-hash, and same-path candidates never wr
   assert.notEqual(wrongHash.status, 0);
   assert.deepEqual(readFileSync(state.target), state.baselineBytes);
 });
+
+
+test('newsletter editorial allowance requires exact path and complete reviewed bytes', () => {
+  const state = fixture();
+  const relativePath = 'data/newsletter-share/edition-20.html';
+  const target = resolve(state.repo, relativePath);
+  mkdirSync(dirname(target), { recursive: true });
+  const approved = readFileSync(resolve(repositoryRoot, relativePath));
+  writeFileSync(target, approved);
+  const scan = () => run(['scan', '--repo-root', state.repo, '--expected-head', state.head, ...dirtyArgs(state.repo)]);
+  assert.equal(scan().status, 0);
+  const provider = String.fromCharCode(99, 108, 97, 117, 100, 101);
+  for (const addition of ['<!-- changed -->', `<script>fetch('/api/${provider}')</script>`, `<img onerror="${provider}()">`]) {
+    writeFileSync(target, Buffer.concat([approved, Buffer.from(addition)]));
+    assert.notEqual(scan().status, 0, 'changed or executable snapshot must fail');
+  }
+  writeFileSync(target, approved);
+  const sibling = resolve(state.repo, 'data/newsletter-share/other.html');
+  writeFileSync(sibling, approved);
+  assert.notEqual(scan().status, 0, 'identical bytes at unapproved path must fail');
+  rmSync(sibling);
+
+});
