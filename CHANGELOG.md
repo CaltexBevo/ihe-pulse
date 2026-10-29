@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Exact ranking date-echo compatibility
+
+- Normalize valid ISO/date and Unix-millisecond provider echoes before exact window comparison. Mismatched windows still fail closed, with only bounded UTC dates and fixed types available in server diagnostics.
+
 ## [2026-10-29] Bounded homepage ranking partitions
 
 - Collect complete 100-row reports for only the current article prefixes, using short production filters and requiring every partition to validate before ranking. Preserve the timeout, privacy safeguards and archive fallback.
