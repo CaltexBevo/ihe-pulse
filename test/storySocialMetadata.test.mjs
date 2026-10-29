@@ -120,3 +120,81 @@ test("explicit custom image dimensions remain intact", () => {
   const metadata = pageMetadata({ ...base, imagePath: "/custom.png", imageWidth: 1200, imageHeight: 630 });
   assert.deepEqual(metadata.openGraph?.images, [{ url: "https://www.innovatinghighered.com/custom.png", width: 1200, height: 630, alt: "Innovating Higher Ed" }]);
 });
+
+test("Twitter-only artwork preserves Open Graph, canonical and page metadata", () => {
+  const options = { ...base, imagePath: "/original.png", imageWidth: 1200, imageHeight: 630 };
+  const original = pageMetadata(options);
+  for (const twitterImagePath of ["/twitter.png", "https://cdn.example.com/twitter.png?v=3"]) {
+    const metadata = pageMetadata({ ...options, twitterImagePath });
+    assert.deepEqual(metadata.twitter.images, [new URL(twitterImagePath, "https://www.innovatinghighered.com").href]);
+    assert.deepEqual(metadata.openGraph, original.openGraph);
+    assert.deepEqual(metadata.alternates, original.alternates);
+    assert.equal(metadata.title, original.title);
+    assert.equal(metadata.description, original.description);
+  }
+});
+
+test("Twitter artwork falls back to page and brand images, and honors explicit omission", () => {
+  for (const options of [base, { ...base, imagePath: "/original.png" }]) {
+    const metadata = pageMetadata(options);
+    assert.deepEqual(metadata.twitter.images, [metadata.openGraph.images[0].url]);
+    const omitted = pageMetadata({ ...options, twitterImagePath: "/twitter.png", omitImage: true });
+    assert.deepEqual(omitted.twitter.images, []);
+    assert.deepEqual(omitted.openGraph.images, []);
+  }
+});
+
+const correctedEdition21Cards = {
+  "27": "give-ai-grading-a-standard-you-can-explain",
+  "29": "follow-an-ai-citation-all-the-way-to-the-evidence",
+  "C": "ai-improved-forecasts-several-weeks-ahead",
+  "53": "know-when-a-rating-scale-is-shaping-your-ai-research-results",
+  "69": "give-an-ai-replication-project-a-clear-route-forward",
+  "A": "a-neural-bypass-helped-a-man-grasp-objects-and-sense-touch",
+  "52": "make-lecture-descriptions-useful-to-the-people-who-need-them",
+};
+
+test("only seven pending Edition 21 cards override Twitter; all other mappings retain fallback", () => {
+  assert.deepEqual(
+    Object.keys(STORY_SOCIAL_IMAGES).filter(slug => STORY_SOCIAL_IMAGES[slug].twitterImagePath).sort(),
+    Object.values(correctedEdition21Cards).sort(),
+  );
+  const live = {
+    "72": "use-ai-to-strengthen-the-thinking-you-want-to-keep",
+    "1": "see-the-reasoning-behind-ai-assisted-homework",
+    "2": "plan-ai-literacy-around-a-real-analytical-task",
+  };
+  for (const [id, slug] of Object.entries(live)) {
+    const card = STORY_SOCIAL_IMAGES[slug];
+    assert.equal(card.imagePath, `/images/stories/social/edition21-${id}-card-v2.png`);
+    assert.equal(card.twitterImagePath, undefined);
+    const metadata = pageMetadata({ ...base, ...card });
+    assert.deepEqual(metadata.twitter.images, [metadata.openGraph.images[0].url]);
+  }
+});
+
+test("corrected Edition 21 cards retain original OG and website hero artwork", () => {
+  const episode = JSON.parse(fs.readFileSync("data/daily-pulse/2026-10-16.json", "utf8"));
+  const stories = [episode.leadStory, ...episode.quickHits];
+  for (const [id, slug] of Object.entries(correctedEdition21Cards)) {
+    const card = STORY_SOCIAL_IMAGES[slug];
+    assert.equal(card.imagePath, `/images/stories/social/edition21-${id}-card-v2.png`);
+    assert.equal(card.twitterImagePath, `/images/stories/social/edition21-${id}-card-v3.png`);
+    const metadata = pageMetadata({ ...base, path: `/innovation-pulse/story/${slug}`, ...card });
+    assert.equal(metadata.openGraph.images[0].url, `https://www.innovatinghighered.com${card.imagePath}`);
+    assert.deepEqual(metadata.twitter.images, [`https://www.innovatinghighered.com${card.twitterImagePath}`]);
+    const story = stories.find(story => story.selectionId === id);
+    assert.equal(story.imageUrl, `/images/innovation-pulse/2026-10-16/story-${id}.png`);
+    assert.equal(story.heroImageUrl, story.imageUrl);
+    assert.notEqual(story.heroImageUrl, card.twitterImagePath);
+  }
+});
+
+test("all seven corrected Twitter images exist at their measured 1200 by 630 dimensions", () => {
+  for (const slug of Object.values(correctedEdition21Cards)) {
+    const bytes = fs.readFileSync(`public${STORY_SOCIAL_IMAGES[slug].twitterImagePath}`);
+    assert.deepEqual([...bytes.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+    assert.equal(bytes.readUInt32BE(16), 1200);
+    assert.equal(bytes.readUInt32BE(20), 630);
+  }
+});
