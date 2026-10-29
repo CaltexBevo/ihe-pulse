@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Verified homepage story rankings preparation
+
+- Query all current Pulse and Original Feature article paths for production pageviews over the last 30 days, with hourly server caching and bounded complete-batch validation.
+- Show Most Viewed Stories only with four verified positive results; preserve the archive sidebar when configuration, completeness or freshness is unavailable. Activation remains pending.
+
 ## [2026-10-29] Temporary guest-page pause
 
 - Return an HTTP 307 temporary redirect with no-store caching from `/be-our-guest` to `/podcast`, removing the guest application and QR from the public route while preserving the prior source in Git history.

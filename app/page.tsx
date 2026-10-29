@@ -1,6 +1,7 @@
 import styles from './homepage/HomepageShell.module.css';
 import HomepageWelcome from "./homepage/HomepageWelcome";
-import MoreStoriesToExplore from "./homepage/MoreStoriesToExplore";
+import MoreStoriesToExplore, { ArchiveStoriesSidebar } from "./homepage/MoreStoriesToExplore";
+import { Suspense } from 'react';
 import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
 import HomeGrantSpotlight from "@/components/HomeGrantSpotlight";
 import HomepagePulse from "@/app/homepage/HomepagePulse";
@@ -32,7 +33,7 @@ export default function Home() {
       <HomepageWelcome />
       <div className={styles.leadRow}>
         {heroEpisode && <HomeEpisodePlayer latestEpisode={heroEpisode} compact />}
-        <MoreStoriesToExplore />
+        <Suspense fallback={<ArchiveStoriesSidebar />}><MoreStoriesToExplore /></Suspense>
       </div>
       <HomeGrantSpotlight compact />
 
