@@ -2,7 +2,7 @@
 import { useCallback, useRef, useState, type FormEvent } from 'react';
 import TurnstileChallenge from '@/components/TurnstileChallenge';
 
-export default function ShareNewsletterForm({ available }: { available: boolean }) {
+export default function ShareNewsletterForm({ available, edition = 'edition-21' }: { available: boolean; edition?: 'edition-20' | 'edition-21' }) {
   const [token, setToken] = useState('');
   const [active, setActive] = useState(false);
   const [reset, setReset] = useState(0);
@@ -19,7 +19,7 @@ export default function ShareNewsletterForm({ available }: { available: boolean 
     const form = event.currentTarget;
     const fields = new FormData(form);
     requestId.current ||= crypto.randomUUID();
-    const submission = { edition: 'edition-21', email: fields.get('email'), name: fields.get('name'), note: fields.get('note'), _gotcha: fields.get('_gotcha'), requestId: requestId.current, turnstileToken: token };
+    const submission = { edition, email: fields.get('email'), name: fields.get('name'), note: fields.get('note'), _gotcha: fields.get('_gotcha'), requestId: requestId.current, turnstileToken: token };
     setBusy(true); setToken(''); setMessage('Sending the full newsletter…');
     try {
       const res = await fetch('/api/newsletter/share', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(submission), signal: AbortSignal.timeout(25000) });

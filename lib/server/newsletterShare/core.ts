@@ -1,3 +1,4 @@
+import { EDITIONS, isEdition, type Edition } from './editions.ts';
 // Server implementation only: route handlers import this module; never client components.
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import { isIP } from 'node:net';
@@ -7,7 +8,7 @@ export const EDITION = 'edition-21';
 export const SUBJECT = 'The Innovation Pulse: Edition 21';
 export const FROM_EMAIL = 'info@innovatinghighered.com';
 export type Env = Record<string, string | undefined>;
-export type Submission = { email: string; name: string; note: string; requestId: string; turnstileToken: string };
+export type Submission = { edition: Edition; email: string; name: string; note: string; requestId: string; turnstileToken: string };
 export type Snapshot = { html: string; sha256: string; edition: string; subject: string; storyCount: number; paragraphCount: number; imageUrls: string[]; listeningUrls: string[] };
 export type Reservation = { attempt: string; recipient: string; ip: string; fingerprint: string; edition: string };
 export type ReserveResult = 'reserved' | 'accepted' | 'pending' | 'conflict' | 'limited' | 'suppressed';
@@ -19,7 +20,7 @@ export interface ShareStore {
 export type Message = { to: string; html: string; text: string; subject: string; from: string; idempotencyKey: string };
 export type SendResult = { status: 'accepted'; id: string } | { status: 'queued'; id: string } | { status: 'rejected' };
 export type Dependencies = {
-  env: Env; store: ShareStore; snapshot: () => Promise<Snapshot>;
+  env: Env; store: ShareStore; snapshot: (edition?: Edition) => Promise<Snapshot>;
   verify: (token: string) => Promise<boolean>; send: (message: Message) => Promise<SendResult>;
 };
 const unavailable = 'Full-newsletter sharing is temporarily unavailable. Please try again later.';
@@ -62,10 +63,10 @@ export function parseSubmission(raw: unknown): Submission | null {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
   const r = raw as Record<string, unknown>;
   const allowed = ['email', 'name', 'note', 'requestId', 'turnstileToken', '_gotcha', 'edition'];
-  if (Object.keys(r).some(k => !allowed.includes(k)) || r.edition !== EDITION || (r._gotcha !== undefined && r._gotcha !== '')) return null;
+  if (Object.keys(r).some(k => !allowed.includes(k)) || !isEdition(r.edition) || (r._gotcha !== undefined && r._gotcha !== '')) return null;
   const email = normalizeEmail(r.email), name = plain(r.name, 80), note = plain(r.note, 500);
   if (!email || name === null || note === null || typeof r.requestId !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(r.requestId) || typeof r.turnstileToken !== 'string' || r.turnstileToken.length < 10 || r.turnstileToken.length > 2048) return null;
-  return { email, name, note, requestId: r.requestId.toLowerCase(), turnstileToken: r.turnstileToken };
+  return { edition: r.edition, email, name, note, requestId: r.requestId.toLowerCase(), turnstileToken: r.turnstileToken };
 }
 export async function readBody(request: Request): Promise<unknown> {
   if (request.headers.get('content-type')?.split(';')[0].trim() !== 'application/json') throw new Error('body');
@@ -95,7 +96,9 @@ export function readSuppressionToken(key: string, token: unknown) {
   return timingSafeEqual(Buffer.from(signature, 'hex'), Buffer.from(digest(key, 'stop', recipient), 'hex')) ? recipient : null;
 }
 export function validateSnapshot(snapshot: Snapshot) {
-  if (snapshot.edition !== EDITION || snapshot.subject !== SUBJECT || snapshot.storyCount !== 10 || snapshot.paragraphCount !== 55 ||
+  if (!isEdition(snapshot.edition)) throw new Error('snapshot');
+  const binding = EDITIONS[snapshot.edition];
+  if (snapshot.sha256 !== binding.sha256 || snapshot.subject !== binding.subject || snapshot.storyCount !== binding.storyCount || snapshot.paragraphCount !== binding.paragraphCount ||
     createHash('sha256').update(snapshot.html).digest('hex') !== snapshot.sha256 ||
     /\*\|[^]*?\|\*|<(?:script|form|iframe)\b|\son\w+\s*=|javascript:/i.test(snapshot.html) ||
     !snapshot.html.includes('</body>') || (snapshot.html.match(/\{\{SHARE_OPTOUT_URL\}\}/g) || []).length !== 1 ||
@@ -104,13 +107,14 @@ export function validateSnapshot(snapshot: Snapshot) {
 }
 export function compose(snapshot: Snapshot, submission: Submission, key: string, recipient: string): Message {
   validateSnapshot(snapshot);
+  if (snapshot.edition !== submission.edition) throw new Error('Edition mismatch');
   const stop = `${ORIGIN}/innovation-pulse/share/stop#token=${suppressionToken(key, recipient)}`;
   const intro = `<div style="max-width:640px;margin:20px auto;padding:20px;font-family:Arial,sans-serif;background:#ffffff;color:#111111"><p>${submission.name ? `${escapeHtml(submission.name)} shared` : 'Someone shared'} this edition of The Innovation Pulse with you.</p>${submission.note ? `<p style="white-space:pre-wrap">${escapeHtml(submission.note)}</p>` : ''}<p>This is a one-time shared email. You have not been subscribed.</p></div>`;
   let html = snapshot.html.replace('{{SHARE_OPTOUT_URL}}', escapeHtml(stop));
   html = html.includes('{{SHARE_NOTE_HTML}}') ? html.replace('{{SHARE_NOTE_HTML}}', () => intro) : html.replace(/(<body\b[^>]*>)/i, match => match + intro);
   // HTML body remains the complete source. Plain text is an accessibility alternative.
   const text = html.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([^]*?)<\/a>/gi, (_match, href: string, label: string) => `${label} (${href})`).replace(/<style\b[^>]*>[^]*?<\/style>/gi, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim() + `\nStop shared emails: ${stop}`;
-  return { to: submission.email, html, text, subject: SUBJECT, from: FROM_EMAIL, idempotencyKey: digest(key, 'attempt', submission.requestId) };
+  return { to: submission.email, html, text, subject: snapshot.subject, from: FROM_EMAIL, idempotencyKey: digest(key, 'attempt', submission.requestId) };
 }
 export async function handleShare(request: Request, deps: Dependencies) {
   if (!checkOrigin(request)) return response({ error: 'Request origin is not allowed.' }, 403);
@@ -124,9 +128,9 @@ export async function handleShare(request: Request, deps: Dependencies) {
     const key = deps.env.NEWSLETTER_SHARE_HMAC_KEY!;
     const recipient = digest(key, 'recipient', submission.email);
     const attempt = digest(key, 'attempt', submission.requestId);
-    const snapshot = await deps.snapshot();
+    const snapshot = await deps.snapshot(submission.edition);
     const message = compose(snapshot, submission, key, recipient);
-    const reservation = await deps.store.reserve({ attempt, recipient, ip: digest(key, 'ip', ip), edition: EDITION, fingerprint: digest(key, 'payload', JSON.stringify([recipient, snapshot.sha256, submission.name, submission.note])) });
+    const reservation = await deps.store.reserve({ attempt, recipient, ip: digest(key, 'ip', ip), edition: submission.edition, fingerprint: digest(key, 'payload', JSON.stringify([recipient, snapshot.sha256, submission.name, submission.note])) });
     if (reservation === 'accepted') return response({ success: true, message: 'The full newsletter was accepted for delivery. Your friend has not been subscribed.' });
     if (reservation === 'suppressed') return response({ error: 'This request cannot be delivered.' }, 409);
     if (reservation === 'limited') return response({ error: 'Sharing limit reached. Please try another day.' }, 429);

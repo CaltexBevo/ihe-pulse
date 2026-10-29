@@ -1,3 +1,4 @@
+import { EDITIONS, isEdition, type Edition } from './editions.ts';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { type Dependencies, type Env, type Message, type Reservation, type ReserveResult, type ShareStore, type Snapshot, type SendResult, validRedisUrl } from './core.ts';
@@ -13,12 +14,15 @@ if old then
  return 'pending'
 end
 if redis.call('EXISTS', KEYS[3]) == 1 then return 'pending' end
-if tonumber(redis.call('GET', KEYS[4]) or '0') >= 3 or tonumber(redis.call('GET', KEYS[5]) or '0') >= 1 or tonumber(redis.call('GET', KEYS[6]) or '0') >= 50 then return 'limited' end
+local limits = {3, 1, 40, 25, 1000}
+for i=4,8 do
+ if tonumber(redis.call('GET', KEYS[i]) or '0') >= limits[i-3] then return 'limited' end
+end
 redis.call('SET', KEYS[2], cjson.encode({fingerprint=ARGV[1],status='pending'}))
 redis.call('SET', KEYS[3], 'reserved')
-for i=4,6 do
+for i=4,8 do
  local n = redis.call('INCR', KEYS[i])
- if n == 1 then redis.call('EXPIRE', KEYS[i], i == 4 and 3600 or 86400) end
+ if n == 1 then redis.call('EXPIRE', KEYS[i], i == 4 and 3600 or (i == 8 and 2678400 or 86400)) end
 end
 return 'reserved'
 `;
@@ -49,9 +53,9 @@ export class RedisShareStore implements ShareStore {
     return body.result;
   }
   async reserve(v: Reservation): Promise<ReserveResult> {
-    const result = await this.command(['EVAL', RESERVE_LUA, 6,
+    const result = await this.command(['EVAL', RESERVE_LUA, 8,
       `${prefix}stop:${v.recipient}`, `${prefix}attempt:${v.attempt}`, `${prefix}edition:${v.edition}:${v.recipient}`,
-      `${prefix}ip:${v.ip}`, `${prefix}recipient:${v.recipient}`, `${prefix}global`, v.fingerprint]);
+      `${prefix}ip:${v.ip}`, `${prefix}recipient:${v.recipient}`, `${prefix}global`, `${prefix}edition-day:${v.edition}`, `${prefix}global-month`, v.fingerprint]);
     if (!['reserved', 'accepted', 'pending', 'conflict', 'limited', 'suppressed'].includes(result as string)) throw new Error('Storage unavailable');
     return result as ReserveResult;
   }
@@ -63,11 +67,12 @@ export class RedisShareStore implements ShareStore {
     if (await this.command(['SET', `${prefix}stop:${recipient}`, 'blocked']) !== 'OK') throw new Error('Storage unavailable');
   }
 }
-export async function readSnapshot(): Promise<Snapshot> {
+export async function readSnapshot(edition: Edition = 'edition-21'): Promise<Snapshot> {
+  if (!isEdition(edition)) throw new Error('Unapproved edition');
   const base = path.join(process.cwd(), 'data/newsletter-share');
-  const [html, json] = await Promise.all([readFile(path.join(base, 'edition-21.html'), 'utf8'), readFile(path.join(base, 'edition-21.json'), 'utf8')]);
+  const [html, json] = await Promise.all([readFile(path.join(base, `${edition}.html`), 'utf8'), readFile(path.join(base, `${edition}.json`), 'utf8')]);
   const metadata = JSON.parse(json);
-  if (metadata.sha256 !== '0954b0d6565146146d6d48609746b3516e040543c1e9504c8f05e55805653865') throw new Error('Unapproved snapshot');
+  if (metadata.sha256 !== EDITIONS[edition].sha256 || metadata.edition !== edition) throw new Error('Unapproved snapshot');
   return { ...metadata, html };
 }
 export async function verifyChallenge(token: string, env: Env, transport: typeof fetch = fetch) {

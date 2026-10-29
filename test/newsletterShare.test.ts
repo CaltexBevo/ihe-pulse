@@ -111,8 +111,10 @@ test('Redis adapter uses atomic EVAL and only opaque keys/fingerprints; transpor
   const transport: typeof fetch=async(_url,init)=>{commands.push(JSON.parse(init!.body as string));return Response.json({result:commands.length===1?'reserved':1});};
   const store=new RedisShareStore(env,transport); const v={attempt:'a'.repeat(64),recipient:'b'.repeat(64),ip:'c'.repeat(64),fingerprint:'d'.repeat(64),edition:'edition-21'};
   assert.equal(await store.reserve(v),'reserved'); await store.finish(v.attempt,'accepted','mock-id');
-  assert.equal(commands[0][0],'EVAL'); assert.equal(commands[0][1],RESERVE_LUA); assert.equal(commands[0][2],6); assert.equal(commands[1][1],FINISH_LUA);
+  assert.equal(commands[0][0],'EVAL'); assert.equal(commands[0][1],RESERVE_LUA); assert.equal(commands[0][2],8); assert.equal(commands[1][1],FINISH_LUA);
   assert.ok(!JSON.stringify(commands).includes('friend@example.edu'));
+  assert.equal(commands[0][9], 'ihe:{newsletter-share}:v1:edition-day:edition-21');
+  assert.equal(commands[0][10], 'ihe:{newsletter-share}:v1:global-month');
   await assert.rejects(()=>new RedisShareStore(env,async()=>Response.json({error:'failure'})).reserve(v));
 });
 test('provider receives exactly one HTML recipient, no tracking, fixed payload, and validates outcomes', async () => {
@@ -157,4 +159,18 @@ test('dollar replacement sequences in personal text remain literal and cannot du
   assert.equal((result.html.match(/<body/gi)||[]).length,1);
   assert.ok(result.html.includes('$&amp; $` $&#39; $1 $&lt;name&gt;'));
   for (const image of snapshot.imageUrls) assert.equal(result.html.split(image).length,snapshot.html.split(image).length);
+});
+test('both bound editions preserve their content and subject; mismatched and unlisted editions cannot send', async () => {
+  for (const edition of ['edition-20', 'edition-21'] as const) {
+    const { deps, sent } = fixture();
+    const snapshot = await readSnapshot(edition);
+    assert.equal((await handleShare(request({ ...body(), edition }), deps)).status, 200);
+    assert.equal(sent[0].subject, `The Innovation Pulse: Edition ${edition.slice(-2)}`);
+    for (const image of snapshot.imageUrls) assert.ok(sent[0].html.includes(image) || sent[0].html.includes(image.replace(/&/g, '&amp;')));
+    const mismatch = fixture();
+    mismatch.deps.snapshot = () => readSnapshot(edition === 'edition-20' ? 'edition-21' : 'edition-20');
+    assert.equal((await handleShare(request({ ...body(), edition }), mismatch.deps)).status, 503);
+    assert.equal(mismatch.sent.length, 0);
+  }
+  await assert.rejects(() => readSnapshot('../edition-20' as 'edition-20'));
 });
