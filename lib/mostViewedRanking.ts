@@ -38,11 +38,11 @@ const MAX_ARTICLES = 800;
 const MAX_BYTES = 65_536;
 const ARTICLE_PATH = /^\/(?:innovation-pulse\/story|feature-coverage)\/[a-z0-9-]+$/;
 
-/** Exact 30-day interval through the latest completed UTC hour boundary.
- * Vercel echoes the hour boundary, not the preceding millisecond. */
+/** Inclusive 30-day request ending before the current UTC hour. Vercel
+ * converts that requested hour into an exclusive next-hour query echo. */
 export function rankingWindow(now = Date.now()): RankingWindow {
   const end = Math.floor(now / HOUR) * HOUR;
-  return { since: new Date(end - 30 * DAY).toISOString(), until: new Date(end).toISOString() };
+  return { since: new Date(end - 30 * DAY).toISOString(), until: new Date(end - 1).toISOString() };
 }
 
 export function isCurrentRanking(result: VerifiedRanking | null, now = Date.now()): result is VerifiedRanking {
@@ -179,7 +179,11 @@ function parseReport(payload: unknown, url: URL, prefix: string): Map<string, nu
     if (Object.keys(query).some(key => !['since', 'until', 'filter', 'limit', 'groupBy'].includes(key))) throw new RankingFailure('query_shape', { extraFields: true });
     const actualSince = normalizeProviderDate(query.since);
     const actualUntil = normalizeProviderDate(query.until);
-    if (actualSince !== url.searchParams.get('since') || actualUntil !== url.searchParams.get('until')) {
+    // Observed provider contract: the requested until hour is inclusive and
+    // echoed as its exact exclusive next-hour boundary. No tolerance is used.
+    const requestedUntil = Date.parse(url.searchParams.get('until')!);
+    const expectedExclusiveUntil = new Date(Math.floor(requestedUntil / HOUR) * HOUR + HOUR).toISOString();
+    if (actualSince !== url.searchParams.get('since') || actualUntil !== expectedExclusiveUntil) {
       throw new RankingFailure('query_window', { sinceType: safeType(query.since), untilType: safeType(query.until),
         ...(actualSince ? { actualSince } : {}), ...(actualUntil ? { actualUntil } : {}) });
     }

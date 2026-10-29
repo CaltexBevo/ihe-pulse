@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Verified inclusive ranking request
+
+- End the request before the current hour and validate Vercel's exact exclusive next-hour echo, preserving a complete 30-day window without accepting timestamp tolerance or the current hour.
+
 ## [2026-10-29] Verified ranking hour boundary
 
 - Request the exact completed-hour boundary echoed by Vercel for the 30-day ranking window, retaining exact timestamp equality and all completeness checks.
