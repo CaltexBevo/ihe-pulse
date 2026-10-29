@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Verified ranking hour boundary
+
+- Request the exact completed-hour boundary echoed by Vercel for the 30-day ranking window, retaining exact timestamp equality and all completeness checks.
+
 ## [2026-10-29] Exact ranking date-echo compatibility
 
 - Normalize valid ISO/date and Unix-millisecond provider echoes before exact window comparison. Mismatched windows still fail closed, with only bounded UTC dates and fixed types available in server diagnostics.

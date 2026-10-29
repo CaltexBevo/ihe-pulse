@@ -36,9 +36,10 @@ function collect(fetcher: typeof fetch, overrides: Partial<Parameters<typeof col
   return collectMostViewed({ articles, window, token: 'test-token-not-a-credential', now: () => instant, fetcher, ...overrides });
 }
 
-test('uses an exact inclusive 30-day completed-hour UTC window', () => {
-  assert.deepEqual(window, { since: '2026-09-29T17:00:00.000Z', until: '2026-10-29T16:59:59.999Z' });
-  assert.equal(Date.parse(window.until) - Date.parse(window.since) + 1, 30 * 24 * 3600000);
+test('uses the provider-verified exact 30-day completed-hour UTC boundaries', () => {
+  assert.deepEqual(window, { since: '2026-09-29T17:00:00.000Z', until: '2026-10-29T17:00:00.000Z' });
+  assert.equal(Date.parse(window.until) - Date.parse(window.since), 30 * 24 * 3600000);
+  assert.equal(Date.parse(window.until) % 3600000, 0);
 });
 
 test('provider date echoes accept exact ISO or Unix millisecond strings and numbers only', async () => {
