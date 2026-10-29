@@ -2,7 +2,7 @@
 
 import { Analytics, track } from '@vercel/analytics/react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Suspense, useCallback, useEffect, useMemo } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   analyticsNavigationKey,
   analyticsPagePath,
@@ -21,6 +21,7 @@ import {
 } from '@/lib/engagementTracking';
 
 const campaignLandings = new Set<string>();
+let networkCollectionAllowed = false;
 const dispatchCustomEvent = createEngagementDispatcher((name, properties) => {
   track(name, properties);
 });
@@ -42,6 +43,7 @@ function trackEvent(
   const budgetKey = typeof window === 'undefined' ? 'server' : window.location.pathname;
   return dispatchCustomEvent(
     isEngagementTrackingEnabled(process.env.NEXT_PUBLIC_ENGAGEMENT_EVENTS) &&
+      networkCollectionAllowed &&
       !isCurrentBrowserOptedOut(),
     budgetKey,
     name,
@@ -96,18 +98,44 @@ function CustomEngagementEvents({ publicPagePaths }: { publicPagePaths: Readonly
 }
 
 export default function EngagementAnalytics({ publicPagePaths }: { publicPagePaths: string[] }) {
+  const [collectionAllowed, setCollectionAllowed] = useState(false);
   const publicPagePathSet = useMemo(() => new Set(publicPagePaths), [publicPagePaths]);
+  useEffect(() => {
+    networkCollectionAllowed = false;
+    if (isCurrentBrowserOptedOut()) return;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 5000);
+    let mounted = true;
+    fetch('/api/analytics-context', { cache: 'no-store', credentials: 'same-origin', signal: controller.signal })
+      .then(async response => {
+        if (!response.ok) return;
+        const context: unknown = await response.json();
+        if (!mounted || !context || typeof context !== 'object' || !('excluded' in context) || context.excluded !== false) return;
+        networkCollectionAllowed = true;
+        setCollectionAllowed(true);
+      })
+      .catch(() => { /* Unknown network context suppresses collection for this page. */ })
+      .finally(() => window.clearTimeout(timeout));
+    return () => {
+      mounted = false;
+      networkCollectionAllowed = false;
+      controller.abort();
+      window.clearTimeout(timeout);
+    };
+  }, []);
   const beforeSend = useCallback((event: AnalyticsUrlEvent) => {
-    if (isCurrentBrowserOptedOut()) return null;
+    if (!networkCollectionAllowed || isCurrentBrowserOptedOut()) return null;
     return redactAnalyticsEventUrl(event, publicPagePathSet);
   }, [publicPagePathSet]);
+
+  if (!collectionAllowed) return null;
 
   return (
     <>
       {/*
         NEXT_PUBLIC_ENGAGEMENT_EVENTS controls custom events only. The
-        browser-local internal opt-out is checked at both delivery boundaries,
-        suppressing automatic pageviews and custom events for Brent and QA.
+        network check completes before the analytics script or listeners mount.
+        Browser opt-out is also checked at both delivery boundaries.
       */}
       <Analytics beforeSend={beforeSend} />
       <Suspense fallback={null}>
