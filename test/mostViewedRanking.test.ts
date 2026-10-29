@@ -22,7 +22,11 @@ function fixture(rows: (paths: string[]) => Row[] = paths => paths.map(path => (
     assert.equal(url.searchParams.get('limit'), '40');
     assert.equal(init?.redirect, 'error');
     assert.equal(init?.cache, 'no-store');
-    const paths = [...url.searchParams.get('filter')!.matchAll(/'(\/(?:innovation-pulse\/story|feature-coverage)\/[^']+)'/g)].map(match => match[1]);
+    const filter = url.searchParams.get('filter')!;
+    const paths = [...filter.matchAll(/requestPath eq '(\/(?:innovation-pulse\/story|feature-coverage)\/[^']+)'/g)].map(match => match[1]);
+    assert.doesNotMatch(filter, /requestPath\s+in\s*\(/);
+    assert.equal(filter, `environment eq 'production' and (${paths.map(path => `requestPath eq '${path}'`).join(' or ')})`);
+    assert.ok(paths.length > 0);
     assert.ok(paths.length <= 40);
     return Response.json({ version: 1, data: rows(paths), query: { since: window.since, until: window.until, groupBy: ['requestPath'], limit: 40, filter: url.searchParams.get('filter') } });
   };
@@ -41,7 +45,7 @@ test('queries every article across bounded batches and globally ranks views, not
   const source = fixture(paths => paths.map(path => ({ requestPath: path, pageviews: Number(path.slice(-3)) + 1, visitors: 1000 - Number(path.slice(-3)), title: 'Untrusted provider title' })));
   const result = await collect(source.fetcher);
   assert.equal(source.urls.length, 3);
-  const queried = source.urls.flatMap(url => [...url.searchParams.get('filter')!.matchAll(/'(\/[^']+)'/g)].map(match => match[1]));
+  const queried = source.urls.flatMap(url => [...url.searchParams.get('filter')!.matchAll(/requestPath eq '(\/[^']+)'/g)].map(match => match[1]));
   assert.equal(new Set(queried).size, 85);
   assert.deepEqual(result?.articles, [84, 83, 82, 81].map(index => articles[index]));
   assert.deepEqual(Object.keys(result!).sort(), ['articles', 'since', 'until']);
@@ -88,7 +92,7 @@ test('every actual published Pulse and Feature route is queried, including gener
   const source = fixture();
   const result = await collect(source.fetcher, { articles: catalog });
   assert.equal(result?.articles.length, 4);
-  const queried = source.urls.flatMap(url => [...url.searchParams.get('filter')!.matchAll(/'(\/[^']+)'/g)].map(match => match[1]));
+  const queried = source.urls.flatMap(url => [...url.searchParams.get('filter')!.matchAll(/requestPath eq '(\/[^']+)'/g)].map(match => match[1]));
   assert.deepEqual(new Set(queried), new Set(catalog.map(article => article.href)));
 });
 
