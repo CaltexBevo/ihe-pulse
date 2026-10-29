@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Complete homepage ranking report
+
+- Request one bounded production pageview report, validate completeness before selecting current article routes, and reject overflow or partial responses. Preserve the archive fallback and privacy-safe diagnostics.
+
 ## [2026-10-29] Homepage ranking filter compatibility
 
 - Use explicit exact-path equality alternatives for Vercel analytics batches after production rejected the membership filter, preserving production-only collection, complete ranking validation and the archive fallback.

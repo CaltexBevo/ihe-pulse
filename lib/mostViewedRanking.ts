@@ -7,10 +7,12 @@ type DiagnosticCode = 'success' | 'missing_config' | 'stale_window' | 'catalog' 
 type SafeType = 'missing' | 'null' | 'array' | 'object' | 'string' | 'number' | 'boolean' | 'other';
 type ProviderCode = 'invalid_query' | 'bad_request' | 'not_found' | 'forbidden' | 'unauthorized' | 'unknown';
 type ProviderParameter = 'since' | 'until' | 'by' | 'limit' | 'filter' | 'projectId' | 'unknown';
+const ERROR_TERMS = ['invalid', 'filter', 'expression', 'syntax', 'parse', 'unexpected', 'unsupported', 'operator', 'function', 'property', 'dimension', 'type', 'string', 'object', 'array', 'json', 'length', 'maximum', 'limit', 'character', 'too', 'many', 'complex', 'query', 'must', 'production', 'environment', 'requestPath', 'by', 'eq', 'or', 'and', 'in', 'not', 'allowed', 'format'] as const;
 type DiagnosticDetails = {
   httpStatus?: number; dataType?: SafeType; queryType?: SafeType; versionType?: SafeType; extraFields?: boolean;
   providerCode?: ProviderCode; providerParameter?: ProviderParameter;
   mentionsBy?: boolean; mentionsFilter?: boolean; mentionsWindow?: boolean; mentionsProject?: boolean;
+  terms?: Array<typeof ERROR_TERMS[number]>;
 };
 export type RankingDiagnostic = DiagnosticDetails & RankingWindow & {
   code: DiagnosticCode; batches: number; completedBatches: number; rows: number;
@@ -30,9 +32,9 @@ function safeType(value: unknown): SafeType {
 }
 const HOUR = 3_600_000;
 const DAY = 24 * HOUR;
-const BATCH_SIZE = 40;
-const MAX_BATCHES = 20;
-const MAX_BYTES = 65_536;
+const REPORT_LIMIT = 1000;
+const MAX_ARTICLES = 800;
+const MAX_BYTES = 262_144;
 const ARTICLE_PATH = /^\/(?:innovation-pulse\/story|feature-coverage)\/[a-z0-9-]+$/;
 
 /** Inclusive API endpoints: exactly 30 days ending at the last completed UTC hour. */
@@ -56,13 +58,13 @@ function canonicalCatalog(articles: readonly RankedArticle[]): RankedArticle[] {
     if (!ARTICLE_PATH.test(article.href) || !article.title.trim() || seen.has(article.href)) throw new RankingFailure('catalog');
     seen.add(article.href);
   }
-  if (articles.length < 4 || articles.length > BATCH_SIZE * MAX_BATCHES) throw new RankingFailure('catalog');
+  if (articles.length < 4 || articles.length > MAX_ARTICLES) throw new RankingFailure('catalog');
   return [...articles].sort((a, b) => a.href < b.href ? -1 : a.href > b.href ? 1 : 0);
 }
 
-function queryUrl(paths: string[], window: RankingWindow, project: string, team: string) {
-  const filter = `environment eq 'production' and (${paths.map(path => `requestPath eq '${path}'`).join(' or ')})`;
-  const params = new URLSearchParams({ projectId: project, slug: team, by: 'requestPath', ...window, limit: String(BATCH_SIZE), filter });
+function queryUrl(window: RankingWindow, project: string, team: string) {
+  const filter = "environment eq 'production'";
+  const params = new URLSearchParams({ projectId: project, slug: team, by: 'requestPath', ...window, limit: String(REPORT_LIMIT), filter });
   return new URL(`https://api.vercel.com/v1/query/web-analytics/visits/aggregate?${params}`);
 }
 
@@ -77,8 +79,12 @@ function providerFailureDetails(payload: unknown): DiagnosticDetails {
   const parameter = error.parameter ?? error.param;
   const providerParameter: ProviderParameter = typeof parameter === 'string' && parameters.includes(parameter) ? parameter as ProviderParameter : 'unknown';
   const message = typeof error.message === 'string' && error.message.length <= 2048 ? error.message : '';
+  const terms = (message.match(/[A-Za-z][A-Za-z0-9_]*/g) ?? []).flatMap(word => {
+    const term = ERROR_TERMS.find(candidate => candidate.toLowerCase() === word.toLowerCase());
+    return term ? [term] : [];
+  }).slice(0, 40);
   return {
-    providerCode, providerParameter,
+    providerCode, providerParameter, terms,
     mentionsBy: /\bby\b/i.test(message),
     mentionsFilter: /\bfilter\b/i.test(message),
     mentionsWindow: /\b(?:since|until|window|date range)\b/i.test(message),
@@ -120,10 +126,10 @@ async function readBoundedJson(response: Response): Promise<unknown> {
   catch { throw new RankingFailure('json'); }
 }
 
-function parseBatch(payload: unknown, paths: string[], url: URL): Map<string, number> {
+function parseReport(payload: unknown, url: URL): Map<string, number> {
   if (!record(payload)) throw new RankingFailure('shape');
   const details = { dataType: safeType(payload.data), queryType: safeType(payload.query), versionType: safeType(payload.version) };
-  if (!Array.isArray(payload.data) || payload.data.length > paths.length) throw new RankingFailure('shape', details);
+  if (!Array.isArray(payload.data) || payload.data.length > REPORT_LIMIT) throw new RankingFailure('shape', details);
   // Accept only the documented complete aggregate shape. Unknown completion,
   // error or pagination fields cannot silently turn partial data into a rank.
   const extraFields = Object.keys(payload).some(key => !['data', 'query', 'version'].includes(key));
@@ -137,13 +143,13 @@ function parseBatch(payload: unknown, paths: string[], url: URL): Map<string, nu
       if ((typeof query[key] !== 'string' && typeof query[key] !== 'number') || new Date(query[key]).getTime() !== new Date(url.searchParams.get(key)!).getTime()) throw new RankingFailure('query_window');
     }
     if (query.filter !== url.searchParams.get('filter')) throw new RankingFailure('query_filter');
-    if ((typeof query.limit !== 'number' && typeof query.limit !== 'string') || Number(query.limit) !== BATCH_SIZE) throw new RankingFailure('query_limit');
+    if ((typeof query.limit !== 'number' && typeof query.limit !== 'string') || Number(query.limit) !== REPORT_LIMIT) throw new RankingFailure('query_limit');
     if (!Array.isArray(query.groupBy) || query.groupBy.length !== 1 || query.groupBy[0] !== 'requestPath') throw new RankingFailure('query_dimension');
   }
-  const allowed = new Set(paths);
   const result = new Map<string, number>();
   for (const row of payload.data) {
-    if (!record(row) || typeof row.requestPath !== 'string' || !allowed.has(row.requestPath) || result.has(row.requestPath)
+    if (!record(row) || typeof row.requestPath !== 'string' || row.requestPath.length > 2048
+      || !/^\/[^\s?#\u0000-\u001f\u007f]*$/.test(row.requestPath) || row.requestPath.startsWith('//') || result.has(row.requestPath)
       || !Number.isSafeInteger(row.pageviews) || (row.pageviews as number) < 0
       || (row.environment !== undefined && row.environment !== 'production')) throw new RankingFailure('rows');
     result.set(row.requestPath, row.pageviews as number);
@@ -176,29 +182,23 @@ export async function collectMostViewed(input: {
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     const articles = canonicalCatalog(input.articles);
-    const batches: RankedArticle[][] = [];
-    for (let start = 0; start < articles.length; start += BATCH_SIZE) batches.push(articles.slice(start, start + BATCH_SIZE));
-    batchesCount = batches.length;
+    batchesCount = 1;
     const counts = new Map<string, number>();
-    let next = 0;
     const work = async () => {
-      while (next < batches.length && !controller.signal.aborted) {
-        const batch = batches[next++];
-        const paths = batch.map(article => article.href);
-        const url = queryUrl(paths, input.window, input.project || 'ihe-pulse', input.team || 'brents-projects-eaca52c7');
-        const response = await (input.fetcher ?? fetch)(url, {
-          headers: { Accept: 'application/json', Authorization: `Bearer ${input.token}` },
-          cache: 'no-store', signal: controller.signal, redirect: 'error',
-        });
-        const rows = parseBatch(await boundedJson(response), paths, url);
-        completedBatches++; rowCount += rows.size;
-        for (const [path, views] of rows) counts.set(path, views);
-      }
+      const url = queryUrl(input.window, input.project || 'ihe-pulse', input.team || 'brents-projects-eaca52c7');
+      const response = await (input.fetcher ?? fetch)(url, {
+        headers: { Accept: 'application/json', Authorization: `Bearer ${input.token}` },
+        cache: 'no-store', signal: controller.signal, redirect: 'error',
+      });
+      const rows = parseReport(await boundedJson(response), url);
+      completedBatches = 1; rowCount = rows.size;
+      const canonical = new Set(articles.map(article => article.href));
+      for (const [path, views] of rows) if (canonical.has(path)) counts.set(path, views);
     };
     const deadline = new Promise<never>((_, reject) => {
       timer = setTimeout(() => { controller.abort(); reject(new RankingFailure('timeout')); }, Math.min(input.timeoutMs ?? 12_000, 12_000));
     });
-    await Promise.race([Promise.all(Array.from({ length: Math.min(3, batches.length) }, work)), deadline]);
+    await Promise.race([work(), deadline]);
     const positive = articles.filter(article => (counts.get(article.href) ?? 0) > 0);
     positive.sort((a, b) => counts.get(b.href)! - counts.get(a.href)! || (a.href < b.href ? -1 : a.href > b.href ? 1 : 0));
     const result = { ...input.window, articles: positive.slice(0, 4) };
