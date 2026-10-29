@@ -10,6 +10,7 @@ import { createRankingMemo, rankingCacheIdentity } from './mostViewedMemo';
 const cachedRanking = unstable_cache(async (since: string, until: string, articles: RankedArticle[], identity: ReturnType<typeof rankingCacheIdentity>) => collectMostViewed({
   articles, window: { since, until }, token: process.env.VERCEL_ANALYTICS_TOKEN,
   project: identity.project, team: identity.team,
+  onDiagnostic: diagnostic => console.info('[homepage-ranking]', JSON.stringify(diagnostic)),
 }), ['homepage-most-viewed-v1'], { revalidate: 3600 });
 const memo = createRankingMemo<VerifiedRanking>();
 

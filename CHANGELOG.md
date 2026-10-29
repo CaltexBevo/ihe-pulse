@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Homepage ranking activation diagnostics
+
+- Add bounded server-only diagnostic summaries for uncached ranking loads, preserving strict completeness checks and the truthful archive fallback. No credentials, raw responses or visitor data are logged.
+
 ## [2026-10-29] Verified homepage story rankings preparation
 
 - Query all current Pulse and Original Feature article paths for production pageviews over the last 30 days, with hourly server caching and bounded complete-batch validation.
