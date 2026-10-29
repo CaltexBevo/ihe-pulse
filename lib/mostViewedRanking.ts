@@ -32,9 +32,9 @@ function safeType(value: unknown): SafeType {
 }
 const HOUR = 3_600_000;
 const DAY = 24 * HOUR;
-const REPORT_LIMIT = 1000;
+const REPORT_LIMIT = 100;
 const MAX_ARTICLES = 800;
-const MAX_BYTES = 262_144;
+const MAX_BYTES = 65_536;
 const ARTICLE_PATH = /^\/(?:innovation-pulse\/story|feature-coverage)\/[a-z0-9-]+$/;
 
 /** Inclusive API endpoints: exactly 30 days ending at the last completed UTC hour. */
@@ -62,8 +62,24 @@ function canonicalCatalog(articles: readonly RankedArticle[]): RankedArticle[] {
   return [...articles].sort((a, b) => a.href < b.href ? -1 : a.href > b.href ? 1 : 0);
 }
 
-function queryUrl(window: RankingWindow, project: string, team: string) {
-  const filter = "environment eq 'production'";
+function articlePartitions(articles: readonly RankedArticle[]): string[] {
+  const prefixes = new Set<string>();
+  for (const article of articles) {
+    if (article.href.startsWith('/feature-coverage/')) prefixes.add('/feature-coverage/');
+    else {
+      const first = article.href.slice('/innovation-pulse/story/'.length, '/innovation-pulse/story/'.length + 1);
+      if (!/^[a-z0-9]$/.test(first)) throw new RankingFailure('catalog');
+      prefixes.add(`/innovation-pulse/story/${first}`);
+    }
+  }
+  if (prefixes.size > 37) throw new RankingFailure('catalog');
+  const partitions = [...prefixes].sort();
+  if (articles.some(article => partitions.filter(prefix => article.href.startsWith(prefix)).length !== 1)) throw new RankingFailure('catalog');
+  return partitions;
+}
+
+function queryUrl(window: RankingWindow, project: string, team: string, prefix: string) {
+  const filter = `environment eq 'production' and startswith(requestPath,'${prefix}')`;
   const params = new URLSearchParams({ projectId: project, slug: team, by: 'requestPath', ...window, limit: String(REPORT_LIMIT), filter });
   return new URL(`https://api.vercel.com/v1/query/web-analytics/visits/aggregate?${params}`);
 }
@@ -126,7 +142,7 @@ async function readBoundedJson(response: Response): Promise<unknown> {
   catch { throw new RankingFailure('json'); }
 }
 
-function parseReport(payload: unknown, url: URL): Map<string, number> {
+function parseReport(payload: unknown, url: URL, prefix: string): Map<string, number> {
   if (!record(payload)) throw new RankingFailure('shape');
   const details = { dataType: safeType(payload.data), queryType: safeType(payload.query), versionType: safeType(payload.version) };
   if (!Array.isArray(payload.data) || payload.data.length > REPORT_LIMIT) throw new RankingFailure('shape', details);
@@ -149,7 +165,7 @@ function parseReport(payload: unknown, url: URL): Map<string, number> {
   const result = new Map<string, number>();
   for (const row of payload.data) {
     if (!record(row) || typeof row.requestPath !== 'string' || row.requestPath.length > 2048
-      || !/^\/[^\s?#\u0000-\u001f\u007f]*$/.test(row.requestPath) || row.requestPath.startsWith('//') || result.has(row.requestPath)
+      || !/^\/[^\s?#\u0000-\u001f\u007f]*$/.test(row.requestPath) || !row.requestPath.startsWith(prefix) || result.has(row.requestPath)
       || !Number.isSafeInteger(row.pageviews) || (row.pageviews as number) < 0
       || (row.environment !== undefined && row.environment !== 'production')) throw new RankingFailure('rows');
     result.set(row.requestPath, row.pageviews as number);
@@ -182,23 +198,33 @@ export async function collectMostViewed(input: {
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     const articles = canonicalCatalog(input.articles);
-    batchesCount = 1;
+    const partitions = articlePartitions(articles);
+    batchesCount = partitions.length;
     const counts = new Map<string, number>();
+    const canonical = new Set(articles.map(article => article.href));
+    const seen = new Set<string>();
+    let next = 0;
     const work = async () => {
-      const url = queryUrl(input.window, input.project || 'ihe-pulse', input.team || 'brents-projects-eaca52c7');
-      const response = await (input.fetcher ?? fetch)(url, {
-        headers: { Accept: 'application/json', Authorization: `Bearer ${input.token}` },
-        cache: 'no-store', signal: controller.signal, redirect: 'error',
-      });
-      const rows = parseReport(await boundedJson(response), url);
-      completedBatches = 1; rowCount = rows.size;
-      const canonical = new Set(articles.map(article => article.href));
-      for (const [path, views] of rows) if (canonical.has(path)) counts.set(path, views);
+      while (next < partitions.length && !controller.signal.aborted) {
+        const prefix = partitions[next++];
+        const url = queryUrl(input.window, input.project || 'ihe-pulse', input.team || 'brents-projects-eaca52c7', prefix);
+        const response = await (input.fetcher ?? fetch)(url, {
+          headers: { Accept: 'application/json', Authorization: `Bearer ${input.token}` },
+          cache: 'no-store', signal: controller.signal, redirect: 'error',
+        });
+        const rows = parseReport(await boundedJson(response), url, prefix);
+        completedBatches++; rowCount += rows.size;
+        for (const [path, views] of rows) {
+          if (seen.has(path)) throw new RankingFailure('rows');
+          seen.add(path);
+          if (canonical.has(path)) counts.set(path, views);
+        }
+      }
     };
     const deadline = new Promise<never>((_, reject) => {
       timer = setTimeout(() => { controller.abort(); reject(new RankingFailure('timeout')); }, Math.min(input.timeoutMs ?? 12_000, 12_000));
     });
-    await Promise.race([work(), deadline]);
+    await Promise.race([Promise.all(Array.from({ length: Math.min(3, partitions.length) }, work)), deadline]);
     const positive = articles.filter(article => (counts.get(article.href) ?? 0) > 0);
     positive.sort((a, b) => counts.get(b.href)! - counts.get(a.href)! || (a.href < b.href ? -1 : a.href > b.href ? 1 : 0));
     const result = { ...input.window, articles: positive.slice(0, 4) };
