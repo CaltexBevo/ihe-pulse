@@ -19,13 +19,16 @@ function fixture(rows: (paths: string[]) => Row[] = paths => paths.map(path => (
     const url = new URL(String(input)); urls.push(url);
     assert.equal(url.origin, 'https://api.vercel.com');
     assert.equal(url.searchParams.get('by'), 'requestPath');
-    assert.equal(url.searchParams.get('limit'), '1000');
+    assert.equal(url.searchParams.get('limit'), '100');
     assert.equal(init?.redirect, 'error');
     assert.equal(init?.cache, 'no-store');
     const filter = url.searchParams.get('filter')!;
-    assert.equal(filter, "environment eq 'production'");
-    assert.doesNotMatch(filter, /requestPath/);
-    return Response.json({ version: 1, data: rows(paths), query: { since: window.since, until: window.until, groupBy: ['requestPath'], limit: 1000, filter: url.searchParams.get('filter') } });
+    const match = /^environment eq 'production' and startswith\(requestPath,'(\/feature-coverage\/|\/innovation-pulse\/story\/[a-z0-9])'\)$/.exec(filter);
+    assert.ok(match);
+    const selected = paths.filter(path => path.startsWith(match[1]));
+    assert.ok(selected.length > 0);
+    assert.ok(filter.length < 150);
+    return Response.json({ version: 1, data: rows(selected), query: { since: window.since, until: window.until, groupBy: ['requestPath'], limit: 100, filter: url.searchParams.get('filter') } });
   };
   return { urls, fetcher };
 }
@@ -38,45 +41,44 @@ test('uses an exact inclusive 30-day completed-hour UTC window', () => {
   assert.equal(Date.parse(window.until) - Date.parse(window.since) + 1, 30 * 24 * 3600000);
 });
 
-test('one complete production report globally ranks article views, not visitors', async () => {
+test('complete prefix reports globally rank article views, not visitors', async () => {
   const source = fixture(paths => paths.map(path => ({ requestPath: path, pageviews: Number(path.slice(-3)) + 1, visitors: 1000 - Number(path.slice(-3)), title: 'Untrusted provider title' })));
   const result = await collect(source.fetcher);
-  assert.equal(source.urls.length, 1);
+  assert.equal(source.urls.length, 2);
   assert.deepEqual(result?.articles, [84, 83, 82, 81].map(index => articles[index]));
   assert.deepEqual(Object.keys(result!).sort(), ['articles', 'since', 'until']);
   assert.ok(!JSON.stringify(result).includes('pageviews'));
   assert.ok(!JSON.stringify(result).includes('visitors'));
 });
 
-test('valid noncatalog page paths are validated but never ranked, returned or logged', async () => {
-  const noncatalog = '/unrelated/private-looking-path-marker';
+test('valid noncatalog paths in the requested prefix are validated but never ranked, returned or logged', async () => {
+  const marker = 'private-looking-path-marker';
   const diagnostics: RankingDiagnostic[] = [];
   const source = fixture(paths => [...paths.map(path => ({ requestPath: path, pageviews: 1 })),
-    { requestPath: noncatalog, pageviews: 1000000 }, { requestPath: '/', pageviews: 1000000 }]);
+    { requestPath: paths[0] + marker, pageviews: 1000000 }]);
   const result = await collect(source.fetcher, { onDiagnostic: item => diagnostics.push(item) });
   assert.equal(result?.articles.length, 4);
-  assert.ok(!JSON.stringify([result, diagnostics]).includes(noncatalog));
+  assert.ok(!JSON.stringify([result, diagnostics]).includes(marker));
   assert.equal(diagnostics[0].rows, 87);
   for (const invalidRows of [
-    [{ requestPath: noncatalog, pageviews: 'bad' }],
-    [{ requestPath: noncatalog, pageviews: 1, environment: 'preview' }],
-    [{ requestPath: noncatalog, pageviews: 1 }, { requestPath: noncatalog, pageviews: 2 }],
+    [{ requestPath: '/feature-coverage/not-in-catalog', pageviews: 'bad' }],
+    [{ requestPath: '/feature-coverage/not-in-catalog', pageviews: 1, environment: 'preview' }],
+    [{ requestPath: '/feature-coverage/not-in-catalog', pageviews: 1 }, { requestPath: '/feature-coverage/not-in-catalog', pageviews: 2 }],
     [{ requestPath: 'Others', pageviews: 1 }],
+    [{ requestPath: '/not-requested', pageviews: 1 }],
   ]) assert.equal(await collect(fixture(paths => [...paths.map(path => ({ requestPath: path, pageviews: 1 })), ...invalidRows]).fetcher), null);
 });
 
-test('accepts complete 1000-row report above old byte cap and rejects 1001 rows or oversized bodies', async () => {
-  const noncatalog = Array.from({ length: 915 }, (_, i) => ({ requestPath: `/other/${'a'.repeat(100)}-${i}`, pageviews: 1 }));
-  const rows = (paths: string[]) => [...paths.map(path => ({ requestPath: path, pageviews: 2 })), ...noncatalog];
-  const source = fixture(rows);
-  const result = await collect(source.fetcher);
-  assert.equal(result?.articles.length, 4);
-  assert.equal(await collect(fixture(paths => [...rows(paths), { requestPath: '/overflow', pageviews: 1 }]).fetcher), null);
-  assert.equal(await collect(async () => new Response('x'.repeat(262145))), null);
+test('accepts complete 100-row partitions and rejects 101 rows or oversized bodies', async () => {
+  const rows = (paths: string[]) => [...paths.map(path => ({ requestPath: path, pageviews: 2 })),
+    ...Array.from({ length: 100 - paths.length }, (_, i) => ({ requestPath: paths[0] + '-extra-' + i, pageviews: 1 }))];
+  assert.equal((await collect(fixture(rows).fetcher))?.articles.length, 4);
+  assert.equal(await collect(fixture(paths => [...rows(paths), { requestPath: paths[0] + '-overflow', pageviews: 1 }]).fetcher), null);
+  assert.equal(await collect(async () => new Response('x'.repeat(65537))), null);
 });
 
-test('complete report requires exact production filter, full window, dimension and 1000-row echo', async () => {
-  for (const mutation of [{ filter: "environment eq 'preview'" }, { since: '2026-10-01' }, { until: '2026-10-28' }, { groupBy: ['route'] }, { limit: 100 }]) {
+test('complete report requires exact production filter, full window, dimension and 100-row echo', async () => {
+  for (const mutation of [{ filter: "environment eq 'preview'" }, { since: '2026-10-01' }, { until: '2026-10-28' }, { groupBy: ['route'] }, { limit: 1000 }]) {
     const source = fixture();
     assert.equal(await collect(async (url, init) => {
       const payload = await (await source.fetcher(url, init)).json();
@@ -112,10 +114,10 @@ for (const [name, transform] of [
   });
 }
 
-test('an unsuccessful report yields no ranking and no request retry', async () => {
-  let calls = 0;
-  assert.equal(await collect(async () => { calls++; return new Response('', { status: 401 }); }), null);
-  assert.equal(calls, 1);
+test('one failed partition invalidates the full ranking without retry', async () => {
+  let calls = 0; const source = fixture();
+  assert.equal(await collect(async (url, init) => ++calls === 2 ? new Response('', { status: 401 }) : source.fetcher(url, init)), null);
+  assert.equal(calls, 2);
 });
 
 test('the full actual published catalog participates, including generated trailing hyphens', async () => {
@@ -125,8 +127,34 @@ test('the full actual published catalog participates, including generated traili
   const source = fixture(undefined, catalog.map(article => article.href));
   const result = await collect(source.fetcher, { articles: catalog });
   assert.equal(result?.articles.length, 4);
-  assert.equal(source.urls.length, 1);
+  assert.ok(source.urls.length <= 37);
+  const prefixes = source.urls.map(url => /startswith\(requestPath,'([^']+)'\)/.exec(url.searchParams.get('filter')!)![1]);
+  assert.equal(new Set(prefixes).size, prefixes.length);
+  for (const article of catalog) assert.equal(prefixes.filter(prefix => article.href.startsWith(prefix)).length, 1);
   assert.deepEqual(result?.articles, [...catalog].sort((a, b) => a.href < b.href ? -1 : 1).slice(0, 4));
+});
+
+test('all 37 possible partitions are bounded to three concurrent requests and cover every article once', async () => {
+  const catalog = [...'abcdefghijklmnopqrstuvwxyz0123456789'].map(char => ({ href: `/innovation-pulse/story/${char}-story`, title: 'Story' }));
+  catalog.push({ href: '/feature-coverage/feature', title: 'Feature' });
+  const source = fixture(undefined, catalog.map(article => article.href));
+  let active = 0; let peak = 0;
+  const result = await collect(async (url, init) => {
+    active++; peak = Math.max(peak, active);
+    try { await new Promise(resolve => setTimeout(resolve, 1)); return await source.fetcher(url, init); }
+    finally { active--; }
+  }, { articles: catalog });
+  assert.equal(result?.articles.length, 4);
+  assert.equal(source.urls.length, 37); assert.equal(peak, 3);
+  const prefixes = source.urls.map(url => /startswith\(requestPath,'([^']+)'\)/.exec(url.searchParams.get('filter')!)![1]);
+  assert.equal(new Set(prefixes).size, 37);
+  for (const article of catalog) assert.equal(prefixes.filter(prefix => article.href.startsWith(prefix)).length, 1);
+});
+
+test('unsupported leading slug characters fail before querying instead of omitting an article', async () => {
+  const source = fixture();
+  assert.equal(await collect(source.fetcher, { articles: [...articles, { href: '/innovation-pulse/story/-unsupported', title: 'Story' }] }), null);
+  assert.equal(source.urls.length, 0);
 });
 
 test('explicit truncation, pagination, errors and absent query evidence reject otherwise valid positive rows', async () => {
@@ -143,7 +171,7 @@ test('explicit truncation, pagination, errors and absent query evidence reject o
 test('rejects malformed JSON, oversized response and mismatched query echoes', async () => {
   const invalid: typeof fetch[] = [
     async () => new Response('{'),
-    async () => new Response('x'.repeat(262145)),
+    async () => new Response('x'.repeat(65537)),
     async () => Response.json({ data: [], query: { until: '2020-01-01' } }),
     async () => Response.json({ data: [], query: { groupBy: ['route'] } }),
     async () => Response.json({ data: [], query: { filter: "environment eq 'preview'" } }),
@@ -204,8 +232,8 @@ test('diagnostics emit one bounded success summary with only canonical top-four 
   const result = await collect(fixture().fetcher, { onDiagnostic: item => diagnostics.push(item) });
   assert.equal(diagnostics.length, 1);
   assert.equal(diagnostics[0].code, 'success');
-  assert.equal(diagnostics[0].batches, 1);
-  assert.equal(diagnostics[0].completedBatches, 1);
+  assert.equal(diagnostics[0].batches, 2);
+  assert.equal(diagnostics[0].completedBatches, 2);
   assert.equal(diagnostics[0].rows, 85);
   assert.deepEqual(diagnostics[0].top, result!.articles.map(article => ({ href: article.href, pageViews: 1 })));
   assert.deepEqual(Object.keys(diagnostics[0]).sort(), ['batches', 'code', 'completedBatches', 'rows', 'since', 'top', 'until']);
@@ -275,7 +303,7 @@ test('HTTP error bodies expose only allowlisted provider classifications and fix
 });
 
 test('oversized and non-JSON HTTP error bodies retain status without exposing body content', async () => {
-  for (const body of ['private non-JSON provider failure', 'x'.repeat(262145)]) {
+  for (const body of ['private non-JSON provider failure', 'x'.repeat(65537)]) {
     const diagnostics: RankingDiagnostic[] = [];
     assert.equal(await collect(async () => new Response(body, { status: 400 }), { onDiagnostic: item => diagnostics.push(item) }), null);
     assert.equal(diagnostics.length, 1); assert.equal(diagnostics[0].httpStatus, 400);

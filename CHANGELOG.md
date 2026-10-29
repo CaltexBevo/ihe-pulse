@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Bounded homepage ranking partitions
+
+- Collect complete 100-row reports for only the current article prefixes, using short production filters and requiring every partition to validate before ranking. Preserve the timeout, privacy safeguards and archive fallback.
+
 ## [2026-10-29] Complete homepage ranking report
 
 - Request one bounded production pageview report, validate completeness before selecting current article routes, and reject overflow or partial responses. Preserve the archive fallback and privacy-safe diagnostics.
