@@ -330,6 +330,7 @@ function TechniqueCard({ technique, index, isExpanded, onToggle }: {
                     })}
                   </div>
                   <button
+                    data-analytics-action="prompt_copy"
                     onClick={(e) => { e.stopPropagation(); handleCopy(prompt, i); }}
                     className="absolute top-2 right-2 font-mono text-[0.55rem] text-[var(--cyan)] px-2 py-1 rounded-[4px] border border-[rgba(0,212,255,0.2)] bg-[rgba(0,212,255,0.06)] hover:bg-[rgba(0,212,255,0.15)] transition-colors flex items-center gap-1"
                   >

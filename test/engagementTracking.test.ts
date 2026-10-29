@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import {
   analyticsDeliveryState,
+  ANALYTICS_BUTTON_ACTIONS,
   analyticsNavigationKey,
   analyticsPagePath,
   campaignEventProperties,
@@ -679,6 +680,52 @@ class FakeListenerTarget implements ListenerTargetLike {
   }
 }
 
+test('main-site controls count fixed actions without reading selections or text', () => {
+  const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
+  const handlers = createPageEngagementHandlers({
+    page: '/innovation-grants/directory', hostname: 'www.innovatinghighered.com',
+    dispatch: (name, properties) => sent.push([name, properties]),
+    getVisibility: () => 'visible',
+    getScrollMetrics: () => ({ scrollHeight: 0, innerHeight: 0, scrollY: 0 }),
+  });
+  const control = (tagName: string, type: string, action: string | null) => ({
+    tagName, type,
+    get value(): never { throw new Error('Never read entered or selected values'); },
+    get textContent(): never { throw new Error('Never read visible or prompt text'); },
+    getAttribute: (key: string) => key === 'data-analytics-action' ? action : null,
+    closest: () => null,
+  });
+  for (const [tagName, type, action] of [
+    ['SELECT', 'select-one', 'grant_filter_audience'],
+    ['SELECT', 'select-one', 'directory_role_filter'],
+    ['INPUT', 'checkbox', 'grant_filter_lifecycle'],
+    ['INPUT', 'checkbox', 'directory_staff_picks'],
+  ]) {
+    const target = control(tagName, type, action);
+    const before = sent.length;
+    handlers.onClick({ type: 'click', target } as unknown as Event);
+    assert.equal(sent.length, before, 'opening a control is not a selection change');
+    handlers.onControlChange({ type: 'change', target } as unknown as Event);
+    assert.deepEqual(sent.at(-1), ['button_click', {page: '/innovation-grants/directory', action}]);
+  }
+  const count = sent.length;
+  for (const target of [
+    control('INPUT', 'search', 'grant_filter_audience'),
+    control('INPUT', 'text', 'prompt_copy'),
+    control('TEXTAREA', '', 'prompt_copy'),
+    control('SELECT', 'select-one', null),
+    control('SELECT', 'select-one', 'private@example.com'),
+  ]) handlers.onControlChange({ type: 'change', target } as unknown as Event);
+  assert.equal(sent.length, count, 'text fields and unregistered controls are excluded');
+
+  for (const action of ANALYTICS_BUTTON_ACTIONS) {
+    const button = { tagName: 'BUTTON', getAttribute: (key: string) => key === 'data-analytics-action' ? action : null };
+    handlers.onClick({ type: 'click', target: { closest: () => button } } as unknown as Event);
+    assert.deepEqual(sent.at(-1), ['button_click', { page: '/innovation-grants/directory', action }]);
+    assert.equal(sanitizeEngagementEvent('button_click', {page: '/', action, value: 'never collect'}), null);
+  }
+});
+
 test('listener installation has idempotent cleanup for SPA effect replacement', () => {
   const windowTarget = new FakeListenerTarget();
   const documentTarget = new FakeListenerTarget();
@@ -703,6 +750,7 @@ test('listener installation has idempotent cleanup for SPA effect replacement', 
 
   assert.equal(windowTarget.listeners.get('scroll')?.size, 1);
   assert.equal(documentTarget.listeners.get('click')?.size, 1);
+  assert.equal(documentTarget.listeners.get('change')?.size, 1);
   assert.equal(documentTarget.listeners.get('playing')?.size, 1);
   assert.equal(documentTarget.listeners.get('pause')?.size, 1);
   assert.equal(documentTarget.listeners.get('seeking')?.size, 1);
@@ -713,6 +761,7 @@ test('listener installation has idempotent cleanup for SPA effect replacement', 
   assert.equal(cleared, 1);
   assert.equal(windowTarget.listeners.get('scroll')?.size, 0);
   assert.equal(documentTarget.listeners.get('click')?.size, 0);
+  assert.equal(documentTarget.listeners.get('change')?.size, 0);
   assert.equal(documentTarget.listeners.get('playing')?.size, 0);
   assert.equal(documentTarget.listeners.get('pause')?.size, 0);
   assert.equal(documentTarget.listeners.get('seeking')?.size, 0);

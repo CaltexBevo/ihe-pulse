@@ -46,6 +46,7 @@ function FinderSelect({
       <select
         id={id}
         name={name}
+        data-analytics-action={`grant_filter_${name}`}
         className={`slot ${className}`}
         value={value}
         defaultValue={value === undefined ? (name === "deadline" ? "any" : "all") : undefined}
@@ -120,7 +121,7 @@ export default function GrantFinder() {
           <span className="sentence-period" aria-hidden="true">.</span>
         </div>
       </div>
-      <button className="go" type="submit">Show my opportunities</button>
+      <button data-analytics-action="grant_find_opportunities" className="go" type="submit">Show my opportunities</button>
       <Link className="alt" href="/innovation-grants/directory">Browse everything instead</Link>
     </form>
   );
