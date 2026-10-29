@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Verified homepage story rankings preparation
+
+- Query all current Pulse and Original Feature article paths for production pageviews over the last 30 days, with hourly server caching and bounded complete-batch validation.
+- Show Most Viewed Stories only with four verified positive results; preserve the archive sidebar when configuration, completeness or freshness is unavailable. Activation remains pending.
+
 ## [2026-10-29] Approved homepage style
 
 - Apply the approved compact homepage layout, continuous light/dark canvas, aligned Feature actions, topic/resource panels, and homepage-only footer.
