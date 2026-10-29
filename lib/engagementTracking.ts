@@ -8,7 +8,9 @@ export type EngagementEventName =
   | 'audio_progress'
   | 'audio_complete'
   | 'share_click'
+  | 'internal_link_click'
   | 'outbound_click'
+  | 'button_click'
   | 'newsletter_signup_attempt'
   | 'newsletter_signup_success'
   | 'newsletter_signup_error';
@@ -20,6 +22,17 @@ export const MAX_CUSTOM_EVENTS_PER_PAGE = 32;
 export const INTERNAL_ANALYTICS_OPT_OUT_STORAGE_KEY = 'ihe-internal-analytics-opt-out';
 export const INTERNAL_ANALYTICS_OPT_OUT_HASH = '#ihe-analytics-opt-out';
 export const INTERNAL_ANALYTICS_OPT_IN_HASH = '#ihe-analytics-opt-in';
+export const ANALYTICS_BUTTON_ACTIONS = [
+  'newsletter_open',
+  'menu_toggle',
+  'theme_toggle',
+  'directory_filter',
+  'directory_review',
+  'directory_grid',
+  'directory_list',
+  'copy_search_link',
+] as const;
+export type AnalyticsButtonAction = typeof ANALYTICS_BUTTON_ACTIONS[number];
 
 const ANALYTICS_ORIGIN = 'https://www.innovatinghighered.com';
 
@@ -60,6 +73,16 @@ const TRACKED_RELEASE_DATES = new Set([
   '2026-09-18',
   '2026-09-25',
   '2026-10-02',
+  // These dates and filenames are established by data/daily-pulse/2026-10-09.json
+  // and data/daily-pulse/2026-10-16.json in the released frontend data.
+  '2026-10-09',
+  '2026-10-16',
+]);
+
+const TRACKED_AUDIO_PATHS = new Map([
+  ['/audio/innovation-pulse-weekly-edition-19.mp3', '2026-10-02'],
+  ['/audio/innovation-pulse-weekly-edition-20.mp3', '2026-10-09'],
+  ['/audio/innovation-pulse-weekly-edition-21.mp3', '2026-10-16'],
 ]);
 
 const MAILCHIMP_CONTENT = new Set([
@@ -110,15 +133,30 @@ const ANALYTICS_PAGE_PATHS = new Set([
   '/innovation-pulse/[date]',
   '/innovation-pulse/category/[category]',
   '/innovation-pulse/story/[slug]',
+  '/feature-coverage/[slug]',
+  '/innovation-grants',
+  '/innovation-grants/directory',
   '/podcast/[slug]',
   '/tinker-lab/[slug]',
   '/other',
 ]);
 
-const SHARE_CHANNELS = new Set(['copy', 'email', 'linkedin', 'native', 'x']);
+const SHARE_CHANNELS = new Set(['copy', 'email', 'instagram', 'linkedin', 'native', 'x']);
 const NEWSLETTER_PLACEMENTS = new Set(['card', 'inline', 'inline-strip', 'footer']);
 const NEWSLETTER_ERROR_REASONS = new Set(['network', 'service']);
-const OUTBOUND_DESTINATIONS = new Set(['external', 'linkedin', 'mailchimp', 'podbean', 'x', 'youtube']);
+const BUTTON_ACTIONS = new Set<string>(ANALYTICS_BUTTON_ACTIONS);
+const OUTBOUND_DESTINATIONS = new Set([
+  'amazon',
+  'apple',
+  'external',
+  'instagram',
+  'linkedin',
+  'mailchimp',
+  'podbean',
+  'spotify',
+  'x',
+  'youtube',
+]);
 
 export function isTrackedReleaseDate(value: string) {
   return TRACKED_RELEASE_DATES.has(value);
@@ -131,12 +169,12 @@ function isCampaign(value: string) {
 }
 
 /**
- * Build-time switch for custom engagement events only. A changed value takes
- * effect after a separately approved environment update and deployment.
- * Automatic pageviews are controlled separately in Vercel.
+ * Custom events are active in the released implementation when no override is
+ * configured. The explicit disabled value is the rollback switch. Unknown
+ * values fail closed. Browser-local opt-out suppresses both analytics paths.
  */
 export function isEngagementTrackingEnabled(value: string | undefined) {
-  return value === 'enabled';
+  return value === undefined || value === 'enabled';
 }
 
 export interface AnalyticsOptOutStorage {
@@ -225,6 +263,8 @@ export function analyticsPagePath(pathname: string) {
   if (/^\/innovation-pulse\/story\/[^/]+$/.test(path)) return '/innovation-pulse/story/[slug]';
   if (/^\/innovation-pulse\/category\/[^/]+$/.test(path)) return '/innovation-pulse/category/[category]';
   if (/^\/ai-directory\/[^/]+$/.test(path)) return '/ai-directory/[slug]';
+  if (/^\/feature-coverage\/[^/]+$/.test(path)) return '/feature-coverage/[slug]';
+  if (path === '/innovation-grants' || path === '/innovation-grants/directory') return path;
   if (/^\/podcast\/[^/]+$/.test(path)) return '/podcast/[slug]';
   if (/^\/tinker-lab\/[^/]+$/.test(path)) return '/tinker-lab/[slug]';
   return '/other';
@@ -277,15 +317,18 @@ export function redactAnalyticsEventUrl<T extends AnalyticsUrlEvent>(
 }
 
 export function episodeFromAudioSource(source: string) {
-  // This numbered public filename belongs to the same finite release registry.
+  // These exact public filenames are mapped only where the released data files
+  // establish the edition/date identity.
+  let pathname = '';
   try {
-    if (new URL(source, 'https://www.innovatinghighered.com').pathname === '/audio/innovation-pulse-weekly-edition-19.mp3') {
-      return isTrackedReleaseDate('2026-10-02') ? '2026-10-02' : null;
-    }
+    pathname = new URL(source, ANALYTICS_ORIGIN).pathname;
   } catch {
     return null;
   }
-  const candidate = source.match(/(?:^|[^\d])(\d{4}-\d{2}-\d{2})(?:[^\d]|$)/)?.[1] || '';
+  const mappedEpisode = TRACKED_AUDIO_PATHS.get(pathname);
+  if (mappedEpisode) return isTrackedReleaseDate(mappedEpisode) ? mappedEpisode : null;
+
+  const candidate = pathname.match(/(?:^|[^\d])(\d{4}-\d{2}-\d{2})(?:[^\d]|$)/)?.[1] || '';
   return isTrackedReleaseDate(candidate) ? candidate : null;
 }
 
@@ -318,12 +361,47 @@ export function outboundDestination(href: string, currentHostname: string) {
     const hostname = parsed.hostname.toLowerCase().replace(/^www\./, '');
     const localHostname = currentHostname.toLowerCase().replace(/^www\./, '');
     if (!hostname || hostname === localHostname) return null;
+    if (hostname === 'apple.com' || hostname.endsWith('.apple.com')) return 'apple';
+    if (hostname === 'spotify.com' || hostname.endsWith('.spotify.com')) return 'spotify';
+    if (
+      hostname === 'amazon.com' ||
+      hostname.endsWith('.amazon.com') ||
+      hostname === 'amazonmusic.com' ||
+      hostname.endsWith('.amazonmusic.com') ||
+      hostname === 'audible.com' ||
+      hostname.endsWith('.audible.com')
+    ) return 'amazon';
+    if (hostname === 'instagram.com' || hostname.endsWith('.instagram.com')) return 'instagram';
     if (hostname === 'x.com' || hostname.endsWith('.x.com') || hostname === 'twitter.com') return 'x';
     if (hostname === 'linkedin.com' || hostname.endsWith('.linkedin.com')) return 'linkedin';
     if (hostname === 'youtube.com' || hostname.endsWith('.youtube.com') || hostname === 'youtu.be') return 'youtube';
     if (hostname === 'podbean.com' || hostname.endsWith('.podbean.com')) return 'podbean';
     if (hostname === 'mailchimp.com' || hostname.endsWith('.mailchimp.com')) return 'mailchimp';
     return 'external';
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Return a same-site path only when it is present in the server-built public
+ * route allowlist. Queries, fragments, private identifiers, and unknown paths
+ * therefore never become event properties.
+ */
+export function internalLinkTarget(
+  href: string,
+  currentHostname: string,
+  publicPagePaths: ReadonlySet<string>,
+) {
+  if (!href.trim() || href.trim().startsWith('#')) return null;
+  try {
+    const parsed = new URL(href, `https://${currentHostname}`);
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return null;
+    const hostname = parsed.hostname.toLowerCase().replace(/^www\./, '');
+    const localHostname = currentHostname.toLowerCase().replace(/^www\./, '').split(':', 1)[0];
+    if (!hostname || hostname !== localHostname) return null;
+    const path = parsed.pathname.replace(/\/+$/, '') || '/';
+    return publicPagePaths.has(path) ? path : null;
   } catch {
     return null;
   }
@@ -347,11 +425,14 @@ function channelToSearch(channel: string) {
 export function sanitizeEngagementEvent(
   name: EngagementEventName,
   properties: Record<string, AnalyticsValue>,
+  publicPagePaths?: ReadonlySet<string>,
 ): Record<string, AnalyticsValue> | null {
   if (Object.keys(properties).length > 2) return null;
 
   const page = typeof properties.page === 'string' ? properties.page : '';
   const episode = typeof properties.episode === 'string' ? properties.episode : '';
+  const target = typeof properties.target === 'string' ? properties.target : '';
+  const action = typeof properties.action === 'string' ? properties.action : '';
 
   switch (name) {
     case 'campaign_landing':
@@ -382,10 +463,18 @@ export function sanitizeEngagementEvent(
       if (!hasOnlyProperties(properties, ['page', 'channel'])) return null;
       if (!ANALYTICS_PAGE_PATHS.has(page) || typeof properties.channel !== 'string' || !SHARE_CHANNELS.has(properties.channel)) return null;
       return { page, channel: properties.channel };
+    case 'internal_link_click':
+      if (!hasOnlyProperties(properties, ['page', 'target'])) return null;
+      if (!ANALYTICS_PAGE_PATHS.has(page) || !publicPagePaths?.has(target)) return null;
+      return { page, target };
     case 'outbound_click':
       if (!hasOnlyProperties(properties, ['page', 'destination'])) return null;
       if (!ANALYTICS_PAGE_PATHS.has(page) || typeof properties.destination !== 'string' || !OUTBOUND_DESTINATIONS.has(properties.destination)) return null;
       return { page, destination: properties.destination };
+    case 'button_click':
+      if (!hasOnlyProperties(properties, ['page', 'action'])) return null;
+      if (!ANALYTICS_PAGE_PATHS.has(page) || !BUTTON_ACTIONS.has(action)) return null;
+      return { page, action };
     case 'newsletter_signup_attempt':
     case 'newsletter_signup_success':
       if (!hasOnlyProperties(properties, ['placement'])) return null;
@@ -422,9 +511,10 @@ export function createEngagementDispatcher(
     budgetKey: string,
     name: EngagementEventName,
     properties: Record<string, AnalyticsValue> = {},
+    publicPagePaths?: ReadonlySet<string>,
   ) => {
     if (!enabled) return false;
-    const safeProperties = sanitizeEngagementEvent(name, properties);
+    const safeProperties = sanitizeEngagementEvent(name, properties, publicPagePaths);
     if (!safeProperties) return false;
     if (budgetKey !== pageBudgetKey) {
       pageBudgetKey = budgetKey;
@@ -445,12 +535,14 @@ interface EngagementHandlerOptions {
   page: string;
   hostname: string;
   dispatch: EngagementEventSender;
+  publicPagePaths?: ReadonlySet<string>;
   getVisibility: () => string;
   getScrollMetrics: () => { scrollHeight: number; innerHeight: number; scrollY: number };
 }
 
 interface InteractiveElementLike {
   href?: string;
+  tagName?: string;
   getAttribute: (name: string) => string | null;
 }
 
@@ -465,20 +557,155 @@ function mediaTarget(event: Event) {
     currentSrc?: string;
     duration?: number;
     currentTime?: number;
+    paused?: boolean;
+    seeking?: boolean;
     getAttribute?: (name: string) => string | null;
   } | null;
-  if (!target || target.tagName !== 'AUDIO') return null;
+  if (!target || target.tagName?.toUpperCase() !== 'AUDIO') return null;
   return target;
+}
+
+function buttonAnalyticsAction(element: InteractiveElementLike): AnalyticsButtonAction | null {
+  if (element.tagName?.toUpperCase() !== 'BUTTON') return null;
+
+  const explicit = element.getAttribute('data-analytics-action');
+  if (explicit !== null) return BUTTON_ACTIONS.has(explicit) ? explicit as AnalyticsButtonAction : null;
+
+  const label = element.getAttribute('aria-label') || '';
+  if (/^Toggle menu$/i.test(label)) return 'menu_toggle';
+  if (/^Switch to (?:light|dark) mode$/i.test(label)) return 'theme_toggle';
+  if (/^Filter tools$/i.test(label)) return 'directory_filter';
+  if (/^How we review$/i.test(label)) return 'directory_review';
+  if (/^Grid view$/i.test(label)) return 'directory_grid';
+  if (/^List view$/i.test(label)) return 'directory_list';
+  if (/^Copy search link$/i.test(label)) return 'copy_search_link';
+  return null;
+}
+
+interface AudioObservationState {
+  observedIntervals: Array<[number, number]>;
+  lastTime: number | null;
+  isPlaying: boolean;
+  startedSinceSeek: boolean;
+  startSent: boolean;
+  completeSent: boolean;
+  progressMilestones: Set<number>;
+}
+
+// Progress is the union of observed playback-position intervals, not the sum
+// of repeated passes over the same position or the furthest reached position.
+// Only small forward deltas while the element is playing count; seeking
+// contributes nothing, and completion still requires an ended event after at
+// least 90% of the valid duration was observed.
+const MAX_OBSERVED_TIME_DELTA_SECONDS = 5;
+const COMPLETION_OBSERVED_FRACTION = 0.9;
+
+function mediaNumber(value: number | undefined) {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function positiveDuration(value: number | undefined) {
+  const duration = mediaNumber(value);
+  return duration !== null && duration > 0 ? duration : null;
+}
+
+function clampedPlaybackTime(value: number | undefined, duration: number) {
+  const currentTime = mediaNumber(value);
+  return currentTime === null ? null : Math.min(duration, Math.max(0, currentTime));
+}
+
+function observedPlaybackSeconds(state: AudioObservationState) {
+  return state.observedIntervals.reduce((total, [start, end]) => total + end - start, 0);
+}
+
+function addObservedInterval(
+  state: AudioObservationState,
+  start: number,
+  end: number,
+  duration: number,
+) {
+  const boundedStart = Math.min(duration, Math.max(0, start));
+  const boundedEnd = Math.min(duration, Math.max(0, end));
+  if (boundedEnd <= boundedStart) return;
+
+  const merged: Array<[number, number]> = [];
+  let nextStart = boundedStart;
+  let nextEnd = boundedEnd;
+  let inserted = false;
+
+  for (const [intervalStart, intervalEnd] of state.observedIntervals) {
+    if (intervalEnd < nextStart) {
+      merged.push([intervalStart, intervalEnd]);
+      continue;
+    }
+    if (intervalStart > nextEnd) {
+      if (!inserted) {
+        merged.push([nextStart, nextEnd]);
+        inserted = true;
+      }
+      merged.push([intervalStart, intervalEnd]);
+      continue;
+    }
+    nextStart = Math.min(nextStart, intervalStart);
+    nextEnd = Math.max(nextEnd, intervalEnd);
+  }
+
+  if (!inserted) merged.push([nextStart, nextEnd]);
+  state.observedIntervals = merged;
+}
+
+function getAudioState(
+  states: WeakMap<object, Map<string, AudioObservationState>>,
+  audio: object,
+  episode: string,
+) {
+  const byEpisode = states.get(audio) || new Map<string, AudioObservationState>();
+  const current = byEpisode.get(episode);
+  if (current) return current;
+  const created: AudioObservationState = {
+    observedIntervals: [],
+    lastTime: null,
+    isPlaying: false,
+    startedSinceSeek: false,
+    startSent: false,
+    completeSent: false,
+    progressMilestones: new Set<number>(),
+  };
+  byEpisode.set(episode, created);
+  states.set(audio, byEpisode);
+  return created;
+}
+
+function observePlayback(audio: ReturnType<typeof mediaTarget>, state: AudioObservationState) {
+  if (!audio || !state.isPlaying || audio.seeking === true) return;
+  const duration = positiveDuration(audio.duration);
+  if (duration === null) {
+    state.lastTime = null;
+    return;
+  }
+  const currentTime = clampedPlaybackTime(audio.currentTime, duration);
+  if (currentTime === null) {
+    state.lastTime = null;
+    return;
+  }
+  if (state.lastTime === null) {
+    state.lastTime = currentTime;
+    return;
+  }
+  const previousTime = state.lastTime;
+  const delta = currentTime - previousTime;
+  state.lastTime = currentTime;
+  if (delta <= 0 || delta > MAX_OBSERVED_TIME_DELTA_SECONDS) return;
+  addObservedInterval(state, previousTime, currentTime, duration);
 }
 
 export function createPageEngagementHandlers(options: EngagementHandlerOptions) {
   const visibleTimeMilestones = new Set<number>();
   const scrollMilestones = new Set<number>();
-  const audioMilestones = new WeakMap<object, Map<string, Set<number>>>();
-  const audioStarts = new WeakMap<object, Set<string>>();
-  const audioCompletions = new WeakMap<object, Set<string>>();
+  const audioStates = new WeakMap<object, Map<string, AudioObservationState>>();
   const handledClicks = new WeakSet<object>();
   let visibleSeconds = 0;
+  const publicPagePaths = options.publicPagePaths || new Set(PUBLIC_ANALYTICS_STATIC_PATHS);
 
   const onVisibleTimeTick = () => {
     if (options.getVisibility() !== 'visible') return;
@@ -506,37 +733,81 @@ export function createPageEngagementHandlers(options: EngagementHandlerOptions) 
     const audio = mediaTarget(event);
     if (!audio) return;
     const episode = episodeFromAudioSource(audio.currentSrc || audio.getAttribute?.('src') || '');
-    if (!episode) return;
+    if (!episode) {
+      if (event.type === 'error' || event.type === 'abort' || event.type === 'emptied') {
+        const statesByEpisode = audioStates.get(audio);
+        statesByEpisode?.forEach((state) => {
+          state.isPlaying = false;
+          state.lastTime = null;
+          state.startedSinceSeek = false;
+        });
+      }
+      return;
+    }
 
-    if (event.type === 'play') {
-      const started = audioStarts.get(audio) || new Set<string>();
-      if (firstObservation(episode, started)) {
-        audioStarts.set(audio, started);
+    const state = getAudioState(audioStates, audio, episode);
+
+    if (event.type === 'playing') {
+      state.isPlaying = true;
+      state.startedSinceSeek = true;
+      const duration = positiveDuration(audio.duration);
+      state.lastTime = duration === null ? null : clampedPlaybackTime(audio.currentTime, duration);
+      if (!state.startSent) {
+        state.startSent = true;
         options.dispatch('audio_play', { page: options.page, episode });
       }
       return;
     }
 
+    if (event.type === 'pause' || event.type === 'error' || event.type === 'abort' || event.type === 'emptied') {
+      observePlayback(audio, state);
+      state.isPlaying = false;
+      state.lastTime = null;
+      if (event.type !== 'pause') state.startedSinceSeek = false;
+      return;
+    }
+
+    if (event.type === 'seeking') {
+      state.isPlaying = false;
+      state.lastTime = null;
+      state.startedSinceSeek = false;
+      return;
+    }
+
+    if (event.type === 'seeked') {
+      // A seeked event does not prove playback resumed. Wait for `playing` so
+      // a seek-to-end cannot create progress or completion by itself.
+      state.isPlaying = false;
+      state.lastTime = null;
+      return;
+    }
+
     if (event.type === 'ended') {
-      const completed = audioCompletions.get(audio) || new Set<string>();
-      if (firstObservation(episode, completed)) {
-        audioCompletions.set(audio, completed);
+      observePlayback(audio, state);
+      state.isPlaying = false;
+      state.lastTime = null;
+      const duration = positiveDuration(audio.duration);
+      if (
+        state.startedSinceSeek &&
+        duration !== null &&
+        !state.completeSent &&
+        observedPlaybackSeconds(state) >= duration * COMPLETION_OBSERVED_FRACTION
+      ) {
+        state.completeSent = true;
         options.dispatch('audio_complete', { page: options.page, episode });
       }
       return;
     }
 
-    const duration = Number(audio.duration);
-    const currentTime = Number(audio.currentTime);
-    if (!Number.isFinite(duration) || duration <= 0 || !Number.isFinite(currentTime)) return;
-    const milestonesByEpisode = audioMilestones.get(audio) || new Map<string, Set<number>>();
-    const seen = milestonesByEpisode.get(episode) || new Set<number>();
-    const percent = Math.floor((currentTime / duration) * 100);
-    for (const milestone of newlyReachedMilestones(percent, AUDIO_PROGRESS_THRESHOLDS, seen)) {
+    if (event.type !== 'timeupdate') return;
+    if (!state.isPlaying) return;
+    observePlayback(audio, state);
+    const duration = positiveDuration(audio.duration);
+    if (duration === null) return;
+    const observedPercent = Math.floor(Math.min(100, (observedPlaybackSeconds(state) / duration) * 100));
+    for (const milestone of newlyReachedMilestones(observedPercent, AUDIO_PROGRESS_THRESHOLDS, state.progressMilestones)) {
       options.dispatch('audio_progress', { episode, percent: milestone });
     }
-    milestonesByEpisode.set(episode, seen);
-    audioMilestones.set(audio, milestonesByEpisode);
   };
 
   const onClick = (event: Event) => {
@@ -550,10 +821,23 @@ export function createPageEngagementHandlers(options: EngagementHandlerOptions) 
     if (/Share on X/i.test(label) || /x\.com\/intent/i.test(href)) channel = 'x';
     else if (/Share on LinkedIn/i.test(label) || /linkedin\.com\/sharing/i.test(href)) channel = 'linkedin';
     else if (/Share via email/i.test(label)) channel = 'email';
-    else if (/Copy link/i.test(label)) channel = 'copy';
-    else if (/Share (?:episode|edition)/i.test(label)) channel = 'native';
+    else if (/Share on Instagram/i.test(label)) channel = 'instagram';
+    else if (/Copy link|Link copied/i.test(label)) channel = 'copy';
+    else if (/Share (?:episode|edition)|Share this page|Page link copied/i.test(label)) channel = 'native';
     if (channel) {
       options.dispatch('share_click', { page: options.page, channel });
+      return;
+    }
+
+    const action = buttonAnalyticsAction(element);
+    if (action) {
+      options.dispatch('button_click', { page: options.page, action });
+      return;
+    }
+
+    const target = internalLinkTarget(href, options.hostname, publicPagePaths);
+    if (target) {
+      options.dispatch('internal_link_click', { page: options.page, target });
       return;
     }
 
@@ -582,11 +866,10 @@ export function installEngagementListeners(options: ListenerInstallOptions) {
   const mediaListener: EventListener = (event) => options.handlers.onMediaEvent(event);
   const clickListener: EventListener = (event) => options.handlers.onClick(event);
   const timer = options.setInterval(options.handlers.onVisibleTimeTick, 1000);
+  const mediaEvents = ['playing', 'pause', 'seeking', 'seeked', 'timeupdate', 'ended', 'error', 'abort', 'emptied'];
 
   options.windowTarget.addEventListener('scroll', scrollListener, { passive: true });
-  options.documentTarget.addEventListener('play', mediaListener, true);
-  options.documentTarget.addEventListener('timeupdate', mediaListener, true);
-  options.documentTarget.addEventListener('ended', mediaListener, true);
+  for (const mediaEvent of mediaEvents) options.documentTarget.addEventListener(mediaEvent, mediaListener, true);
   options.documentTarget.addEventListener('click', clickListener, true);
 
   let cleaned = false;
@@ -595,9 +878,7 @@ export function installEngagementListeners(options: ListenerInstallOptions) {
     cleaned = true;
     options.clearInterval(timer);
     options.windowTarget.removeEventListener('scroll', scrollListener);
-    options.documentTarget.removeEventListener('play', mediaListener, true);
-    options.documentTarget.removeEventListener('timeupdate', mediaListener, true);
-    options.documentTarget.removeEventListener('ended', mediaListener, true);
+    for (const mediaEvent of mediaEvents) options.documentTarget.removeEventListener(mediaEvent, mediaListener, true);
     options.documentTarget.removeEventListener('click', clickListener, true);
   };
 }

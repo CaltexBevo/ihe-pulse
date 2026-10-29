@@ -255,7 +255,7 @@ export default function EmailSignup({ id: anchorId, className = '', variant = 'c
         </div>
         <div className={styles.bannerActions}>
           <EmailChoices choices={choices} onChange={(value) => { setChoices(value); setError(''); }} compact disabled={loading} />
-          <button type="button" className={styles.primary} onClick={(event) => open(event.currentTarget)}>Sign me up <ArrowRight size={18} aria-hidden="true" /></button>
+          <button type="button" data-analytics-action="newsletter_open" className={styles.primary} onClick={(event) => open(event.currentTarget)}>Sign me up <ArrowRight size={18} aria-hidden="true" /></button>
           <Link className={styles.preferences} href="/email-preferences">Already subscribed? <u>Update preferences</u></Link>
           {!step && error && <p className={styles.error} role="alert">{error}</p>}
         </div>

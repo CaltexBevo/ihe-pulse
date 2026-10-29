@@ -34,7 +34,11 @@ function isCurrentBrowserOptedOut() {
   }
 }
 
-function trackEvent(name: EngagementEventName, properties: Record<string, AnalyticsValue> = {}) {
+function trackEvent(
+  name: EngagementEventName,
+  properties: Record<string, AnalyticsValue> = {},
+  publicPagePaths?: ReadonlySet<string>,
+) {
   const budgetKey = typeof window === 'undefined' ? 'server' : window.location.pathname;
   return dispatchCustomEvent(
     isEngagementTrackingEnabled(process.env.NEXT_PUBLIC_ENGAGEMENT_EVENTS) &&
@@ -42,10 +46,11 @@ function trackEvent(name: EngagementEventName, properties: Record<string, Analyt
     budgetKey,
     name,
     properties,
+    publicPagePaths,
   );
 }
 
-function CustomEngagementEvents() {
+function CustomEngagementEvents({ publicPagePaths }: { publicPagePaths: ReadonlySet<string> }) {
   const pathname = usePathname();
   const search = useSearchParams().toString();
   const navigationKey = analyticsNavigationKey(pathname || '/', search);
@@ -61,14 +66,15 @@ function CustomEngagementEvents() {
     if (campaignProperties) {
       const campaignKey = `${page}:${campaignProperties.campaign}:${campaignProperties.channel}`;
       if (firstObservation(campaignKey, campaignLandings)) {
-        trackEvent('campaign_landing', campaignProperties);
+        trackEvent('campaign_landing', campaignProperties, publicPagePaths);
       }
     }
 
     const handlers = createPageEngagementHandlers({
       page,
       hostname: window.location.hostname,
-      dispatch: trackEvent,
+      publicPagePaths,
+      dispatch: (name, properties) => trackEvent(name, properties, publicPagePaths),
       getVisibility: () => document.visibilityState,
       getScrollMetrics: () => ({
         scrollHeight: document.documentElement.scrollHeight,
@@ -84,7 +90,7 @@ function CustomEngagementEvents() {
       setInterval: (callback, milliseconds) => window.setInterval(callback, milliseconds),
       clearInterval: (token) => window.clearInterval(token as number),
     });
-  }, [navigationKey, pathname, search]);
+  }, [navigationKey, pathname, search, publicPagePaths]);
 
   return null;
 }
@@ -105,7 +111,7 @@ export default function EngagementAnalytics({ publicPagePaths }: { publicPagePat
       */}
       <Analytics beforeSend={beforeSend} />
       <Suspense fallback={null}>
-        <CustomEngagementEvents />
+        <CustomEngagementEvents publicPagePaths={publicPagePathSet} />
       </Suspense>
     </>
   );
