@@ -3,6 +3,31 @@ import 'server-only';
 export type RankedArticle = { href: string; title: string };
 export type RankingWindow = { since: string; until: string };
 export type VerifiedRanking = RankingWindow & { articles: RankedArticle[] };
+type DiagnosticCode = 'success' | 'missing_config' | 'stale_window' | 'catalog' | 'http_status' | 'body' | 'body_bounds' | 'json' | 'shape' | 'version' | 'query_shape' | 'query_window' | 'query_filter' | 'query_limit' | 'query_dimension' | 'rows' | 'timeout' | 'network' | 'insufficient_positive';
+type SafeType = 'missing' | 'null' | 'array' | 'object' | 'string' | 'number' | 'boolean' | 'other';
+type ProviderCode = 'invalid_query' | 'bad_request' | 'not_found' | 'forbidden' | 'unauthorized' | 'unknown';
+type ProviderParameter = 'since' | 'until' | 'by' | 'limit' | 'filter' | 'projectId' | 'unknown';
+type DiagnosticDetails = {
+  httpStatus?: number; dataType?: SafeType; queryType?: SafeType; versionType?: SafeType; extraFields?: boolean;
+  providerCode?: ProviderCode; providerParameter?: ProviderParameter;
+  mentionsBy?: boolean; mentionsFilter?: boolean; mentionsWindow?: boolean; mentionsProject?: boolean;
+};
+export type RankingDiagnostic = DiagnosticDetails & RankingWindow & {
+  code: DiagnosticCode; batches: number; completedBatches: number; rows: number;
+  top?: Array<{ href: string; pageViews: number }>;
+};
+class RankingFailure extends Error {
+  readonly code: DiagnosticCode;
+  readonly details: DiagnosticDetails;
+  constructor(code: DiagnosticCode, details: DiagnosticDetails = {}) { super(code); this.code = code; this.details = details; }
+}
+function safeType(value: unknown): SafeType {
+  if (value === undefined) return 'missing';
+  if (value === null) return 'null';
+  if (Array.isArray(value)) return 'array';
+  const type = typeof value;
+  return type === 'object' || type === 'string' || type === 'number' || type === 'boolean' ? type : 'other';
+}
 const HOUR = 3_600_000;
 const DAY = 24 * HOUR;
 const BATCH_SIZE = 40;
@@ -28,10 +53,10 @@ function record(value: unknown): value is Record<string, unknown> {
 function canonicalCatalog(articles: readonly RankedArticle[]): RankedArticle[] {
   const seen = new Set<string>();
   for (const article of articles) {
-    if (!ARTICLE_PATH.test(article.href) || !article.title.trim() || seen.has(article.href)) throw new Error('Invalid catalog');
+    if (!ARTICLE_PATH.test(article.href) || !article.title.trim() || seen.has(article.href)) throw new RankingFailure('catalog');
     seen.add(article.href);
   }
-  if (articles.length < 4 || articles.length > BATCH_SIZE * MAX_BATCHES) throw new Error('Catalog bounds');
+  if (articles.length < 4 || articles.length > BATCH_SIZE * MAX_BATCHES) throw new RankingFailure('catalog');
   return [...articles].sort((a, b) => a.href < b.href ? -1 : a.href > b.href ? 1 : 0);
 }
 
@@ -41,10 +66,39 @@ function queryUrl(paths: string[], window: RankingWindow, project: string, team:
   return new URL(`https://api.vercel.com/v1/query/web-analytics/visits/aggregate?${params}`);
 }
 
+function providerFailureDetails(payload: unknown): DiagnosticDetails {
+  // Only the documented-style error object is inspected. Unknown schemas and
+  // values stay unknown; neither messages nor arbitrary object keys are logged.
+  const error = record(payload) && record(payload.error) ? payload.error : null;
+  if (!error) return { providerCode: 'unknown', providerParameter: 'unknown' };
+  const codes: readonly string[] = ['invalid_query', 'bad_request', 'not_found', 'forbidden', 'unauthorized'];
+  const parameters: readonly string[] = ['since', 'until', 'by', 'limit', 'filter', 'projectId'];
+  const providerCode: ProviderCode = typeof error.code === 'string' && codes.includes(error.code) ? error.code as ProviderCode : 'unknown';
+  const parameter = error.parameter ?? error.param;
+  const providerParameter: ProviderParameter = typeof parameter === 'string' && parameters.includes(parameter) ? parameter as ProviderParameter : 'unknown';
+  const message = typeof error.message === 'string' && error.message.length <= 2048 ? error.message : '';
+  return {
+    providerCode, providerParameter,
+    mentionsBy: /\bby\b/i.test(message),
+    mentionsFilter: /\bfilter\b/i.test(message),
+    mentionsWindow: /\b(?:since|until|window|date range)\b/i.test(message),
+    mentionsProject: /\b(?:projectId|project)\b/i.test(message),
+  };
+}
+
 async function boundedJson(response: Response): Promise<unknown> {
-  if (!response.ok || !response.body) throw new Error('Unavailable aggregate');
+  if (!response.ok) {
+    let details: DiagnosticDetails = { providerCode: 'unknown', providerParameter: 'unknown' };
+    try { details = providerFailureDetails(await readBoundedJson(response)); } catch { /* Status survives invalid or oversized error bodies. */ }
+    throw new RankingFailure('http_status', { httpStatus: response.status, ...details });
+  }
+  return readBoundedJson(response);
+}
+
+async function readBoundedJson(response: Response): Promise<unknown> {
+  if (!response.body) throw new RankingFailure('body');
   const length = response.headers.get('content-length');
-  if (length !== null && (!/^\d+$/.test(length) || Number(length) > MAX_BYTES)) throw new Error('Aggregate bounds');
+  if (length !== null && (!/^\d+$/.test(length) || Number(length) > MAX_BYTES)) throw new RankingFailure('body_bounds');
   const reader = response.body.getReader();
   const chunks: Uint8Array[] = [];
   let size = 0;
@@ -53,7 +107,7 @@ async function boundedJson(response: Response): Promise<unknown> {
       const { value, done } = await reader.read();
       if (done) break;
       size += value.byteLength;
-      if (size > MAX_BYTES) throw new Error('Aggregate bounds');
+      if (size > MAX_BYTES) throw new RankingFailure('body_bounds');
       chunks.push(value);
     }
   } finally {
@@ -62,38 +116,43 @@ async function boundedJson(response: Response): Promise<unknown> {
   const bytes = new Uint8Array(size);
   let offset = 0;
   for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
-  return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
+  try { return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)); }
+  catch { throw new RankingFailure('json'); }
 }
 
 function parseBatch(payload: unknown, paths: string[], url: URL): Map<string, number> {
-  if (!record(payload) || !Array.isArray(payload.data) || payload.data.length > paths.length) throw new Error('Invalid aggregate');
+  if (!record(payload)) throw new RankingFailure('shape');
+  const details = { dataType: safeType(payload.data), queryType: safeType(payload.query), versionType: safeType(payload.version) };
+  if (!Array.isArray(payload.data) || payload.data.length > paths.length) throw new RankingFailure('shape', details);
   // Accept only the documented complete aggregate shape. Unknown completion,
   // error or pagination fields cannot silently turn partial data into a rank.
-  if (Object.keys(payload).some(key => !['data', 'query', 'version'].includes(key)) || !record(payload.query)
-    || !Number.isSafeInteger(payload.version) || (payload.version as number) < 0) throw new Error('Incomplete aggregate');
+  const extraFields = Object.keys(payload).some(key => !['data', 'query', 'version'].includes(key));
+  if (extraFields || !record(payload.query)) throw new RankingFailure('shape', { ...details, extraFields });
+  if (!Number.isSafeInteger(payload.version) || (payload.version as number) < 0) throw new RankingFailure('version', details);
   {
-    if (!record(payload.query)) throw new Error('Invalid query echo');
+    if (!record(payload.query)) throw new RankingFailure('query_shape', details);
     const query = payload.query;
-    if (Object.keys(query).some(key => !['since', 'until', 'filter', 'limit', 'groupBy'].includes(key))) throw new Error('Unknown query shape');
+    if (Object.keys(query).some(key => !['since', 'until', 'filter', 'limit', 'groupBy'].includes(key))) throw new RankingFailure('query_shape', { extraFields: true });
     for (const key of ['since', 'until'] as const) {
-      if ((typeof query[key] !== 'string' && typeof query[key] !== 'number') || new Date(query[key]).getTime() !== new Date(url.searchParams.get(key)!).getTime()) throw new Error('Window mismatch');
+      if ((typeof query[key] !== 'string' && typeof query[key] !== 'number') || new Date(query[key]).getTime() !== new Date(url.searchParams.get(key)!).getTime()) throw new RankingFailure('query_window');
     }
-    if (query.filter !== url.searchParams.get('filter')) throw new Error('Filter mismatch');
-    if ((typeof query.limit !== 'number' && typeof query.limit !== 'string') || Number(query.limit) !== BATCH_SIZE) throw new Error('Limit mismatch');
-    if (!Array.isArray(query.groupBy) || query.groupBy.length !== 1 || query.groupBy[0] !== 'requestPath') throw new Error('Dimension mismatch');
+    if (query.filter !== url.searchParams.get('filter')) throw new RankingFailure('query_filter');
+    if ((typeof query.limit !== 'number' && typeof query.limit !== 'string') || Number(query.limit) !== BATCH_SIZE) throw new RankingFailure('query_limit');
+    if (!Array.isArray(query.groupBy) || query.groupBy.length !== 1 || query.groupBy[0] !== 'requestPath') throw new RankingFailure('query_dimension');
   }
   const allowed = new Set(paths);
   const result = new Map<string, number>();
   for (const row of payload.data) {
     if (!record(row) || typeof row.requestPath !== 'string' || !allowed.has(row.requestPath) || result.has(row.requestPath)
       || !Number.isSafeInteger(row.pageviews) || (row.pageviews as number) < 0
-      || (row.environment !== undefined && row.environment !== 'production')) throw new Error('Invalid aggregate row');
+      || (row.environment !== undefined && row.environment !== 'production')) throw new RankingFailure('rows');
     result.set(row.requestPath, row.pageviews as number);
   }
   return result;
 }
 
-/** No provider payload, credentials, counts or error details leave this boundary. */
+/** Public return contains no provider data. Optional server diagnostics emit
+ * only fixed codes/types and validated aggregate success evidence. */
 export async function collectMostViewed(input: {
   articles: readonly RankedArticle[];
   window: RankingWindow;
@@ -103,17 +162,23 @@ export async function collectMostViewed(input: {
   fetcher?: typeof fetch;
   now?: () => number;
   timeoutMs?: number;
+  onDiagnostic?: (diagnostic: RankingDiagnostic) => void;
 }): Promise<VerifiedRanking | null> {
-  if (!input.token?.trim()) return null;
   const now = input.now ?? Date.now;
   const expected = rankingWindow(now());
-  if (input.window.since !== expected.since || input.window.until !== expected.until) return null;
+  let batchesCount = 0; let completedBatches = 0; let rowCount = 0;
+  const report = (code: DiagnosticCode, details: DiagnosticDetails = {}, top?: RankingDiagnostic['top']) => {
+    try { input.onDiagnostic?.({ code, ...expected, batches: batchesCount, completedBatches, rows: rowCount, ...details, ...(top ? { top } : {}) }); } catch { /* Diagnostics never alter collection. */ }
+  };
+  if (!input.token?.trim()) { report('missing_config'); return null; }
+  if (input.window.since !== expected.since || input.window.until !== expected.until) { report('stale_window'); return null; }
   const controller = new AbortController();
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     const articles = canonicalCatalog(input.articles);
     const batches: RankedArticle[][] = [];
     for (let start = 0; start < articles.length; start += BATCH_SIZE) batches.push(articles.slice(start, start + BATCH_SIZE));
+    batchesCount = batches.length;
     const counts = new Map<string, number>();
     let next = 0;
     const work = async () => {
@@ -126,18 +191,26 @@ export async function collectMostViewed(input: {
           cache: 'no-store', signal: controller.signal, redirect: 'error',
         });
         const rows = parseBatch(await boundedJson(response), paths, url);
+        completedBatches++; rowCount += rows.size;
         for (const [path, views] of rows) counts.set(path, views);
       }
     };
     const deadline = new Promise<never>((_, reject) => {
-      timer = setTimeout(() => { controller.abort(); reject(new Error('Aggregate timeout')); }, Math.min(input.timeoutMs ?? 12_000, 12_000));
+      timer = setTimeout(() => { controller.abort(); reject(new RankingFailure('timeout')); }, Math.min(input.timeoutMs ?? 12_000, 12_000));
     });
     await Promise.race([Promise.all(Array.from({ length: Math.min(3, batches.length) }, work)), deadline]);
     const positive = articles.filter(article => (counts.get(article.href) ?? 0) > 0);
     positive.sort((a, b) => counts.get(b.href)! - counts.get(a.href)! || (a.href < b.href ? -1 : a.href > b.href ? 1 : 0));
     const result = { ...input.window, articles: positive.slice(0, 4) };
-    return isCurrentRanking(result, now()) ? result : null;
-  } catch {
+    if (positive.length < 4) { report('insufficient_positive'); return null; }
+    if (!isCurrentRanking(result, now())) { report('stale_window'); return null; }
+    const top = result.articles.every(article => article.href.length <= 240)
+      ? result.articles.map(article => ({ href: article.href, pageViews: counts.get(article.href)! })) : undefined;
+    report('success', {}, top);
+    return result;
+  } catch (error) {
+    if (error instanceof RankingFailure) report(error.code, error.details);
+    else report(controller.signal.aborted ? 'timeout' : 'network');
     return null;
   } finally {
     if (timer) clearTimeout(timer);

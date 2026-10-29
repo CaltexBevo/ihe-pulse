@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
-import { collectMostViewed, rankingWindow, isCurrentRanking, type RankedArticle } from '../lib/mostViewedRanking.ts';
+import { collectMostViewed, rankingWindow, isCurrentRanking, type RankedArticle, type RankingDiagnostic } from '../lib/mostViewedRanking.ts';
 import { getRankingArticleCatalog } from '../lib/mostViewedCatalog.ts';
 import { getAllStorySlugs } from '../lib/data/innovation-pulse.ts';
 import { FEATURED_COVERAGE } from '../lib/data/featured-coverage.ts';
@@ -153,12 +153,98 @@ test('server integration caches unavailable results without credential keys and 
   assert.match(server, /^import 'server-only'/);
   assert.match(server, /revalidate: 3600/);
   assert.match(server, /cachedRanking\(window.since, window.until, catalog, identity\)/);
-  assert.doesNotMatch(server, /NEXT_PUBLIC|console\./);
+  assert.doesNotMatch(server, /NEXT_PUBLIC/);
+  assert.match(server, /onDiagnostic: diagnostic => console.info\('\[homepage-ranking\]', JSON.stringify\(diagnostic\)\)/);
   assert.match(component, /if \(ranking\) return/);
   assert.match(component, /More Stories to Explore/);
   assert.match(component, /From the story archive/);
   const page = readFileSync(new URL('../app/page.tsx', import.meta.url), 'utf8');
   assert.match(page, /Suspense fallback=\{<ArchiveStoriesSidebar \/>\}/);
+});
+
+test('diagnostics emit one bounded success summary with only canonical top-four paths and views', async () => {
+  const diagnostics: RankingDiagnostic[] = [];
+  const result = await collect(fixture().fetcher, { onDiagnostic: item => diagnostics.push(item) });
+  assert.equal(diagnostics.length, 1);
+  assert.equal(diagnostics[0].code, 'success');
+  assert.equal(diagnostics[0].batches, 3);
+  assert.equal(diagnostics[0].completedBatches, 3);
+  assert.equal(diagnostics[0].rows, 85);
+  assert.deepEqual(diagnostics[0].top, result!.articles.map(article => ({ href: article.href, pageViews: 1 })));
+  assert.deepEqual(Object.keys(diagnostics[0]).sort(), ['batches', 'code', 'completedBatches', 'rows', 'since', 'top', 'until']);
+  assert.ok(JSON.stringify(diagnostics).length < 1500);
+});
+
+test('failure diagnostics never disclose token, provider content, unknown keys or thrown error text', async () => {
+  const sensitive = 'SECRET_OR_PRIVATE_CONTENT_SENTINEL';
+  const base = fixture();
+  const cases: Array<[typeof fetch, RankingDiagnostic['code']]> = [
+    [async () => new Response(sensitive, { status: 401, statusText: sensitive }), 'http_status'],
+    [async () => { throw new Error(sensitive); }, 'network'],
+    [async () => new Response(sensitive), 'json'],
+    [async (url, init) => { const payload = await (await base.fetcher(url, init)).json(); return Response.json({ ...payload, [sensitive]: sensitive }); }, 'shape'],
+    [async (url, init) => { const payload = await (await base.fetcher(url, init)).json(); return Response.json({ ...payload, version: sensitive }); }, 'version'],
+    [async (url, init) => { const payload = await (await base.fetcher(url, init)).json(); payload.query.filter = sensitive; return Response.json(payload); }, 'query_filter'],
+    [async (url, init) => { const payload = await (await base.fetcher(url, init)).json(); payload.data[0].requestPath = sensitive; return Response.json(payload); }, 'rows'],
+  ];
+  for (const [fetcher, code] of cases) {
+    const diagnostics: RankingDiagnostic[] = [];
+    assert.equal(await collect(fetcher, { token: sensitive, onDiagnostic: item => diagnostics.push(item) }), null);
+    assert.equal(diagnostics.length, 1);
+    assert.equal(diagnostics[0].code, code);
+    assert.equal(diagnostics[0].top, undefined);
+    assert.ok(!JSON.stringify(diagnostics).includes(sensitive));
+    assert.ok(JSON.stringify(diagnostics).length < 500);
+    if (code === 'http_status') assert.equal(diagnostics[0].httpStatus, 401);
+    if (code === 'version') assert.equal(diagnostics[0].versionType, 'string');
+  }
+});
+
+test('missing configuration, stale windows and timeout produce one honest unavailable summary', async () => {
+  for (const [overrides, code] of [
+    [{ token: undefined }, 'missing_config'],
+    [{ window: rankingWindow(instant - 3600000) }, 'stale_window'],
+    [{ timeoutMs: 10, fetcher: async () => new Promise<Response>(() => {}) }, 'timeout'],
+  ] as const) {
+    const diagnostics: RankingDiagnostic[] = [];
+    assert.equal(await collect(fixture().fetcher, { ...overrides, onDiagnostic: item => diagnostics.push(item) }), null);
+    assert.equal(diagnostics.length, 1); assert.equal(diagnostics[0].code, code);
+  }
+  assert.ok(await collect(fixture().fetcher, { onDiagnostic: () => { throw new Error('logger failed'); } }));
+});
+
+test('HTTP error bodies expose only allowlisted provider classifications and fixed mention flags', async () => {
+  const sensitive = 'SECRET_OR_PRIVATE_CONTENT_SENTINEL';
+  const cases = [
+    { error: { code: 'invalid_query', parameter: 'by', message: `Invalid by and filter for since until projectId ${sensitive}` } },
+    { error: { code: sensitive, param: sensitive, message: sensitive, [sensitive]: sensitive } },
+    { unexpected: { code: sensitive, message: sensitive } },
+  ];
+  for (let i = 0; i < cases.length; i++) {
+    const diagnostics: RankingDiagnostic[] = [];
+    assert.equal(await collect(async () => Response.json(cases[i], { status: 400 }), { onDiagnostic: item => diagnostics.push(item) }), null);
+    assert.equal(diagnostics.length, 1);
+    const diagnostic = diagnostics[0];
+    assert.equal(diagnostic.code, 'http_status'); assert.equal(diagnostic.httpStatus, 400);
+    assert.equal(diagnostic.providerCode, i === 0 ? 'invalid_query' : 'unknown');
+    assert.equal(diagnostic.providerParameter, i === 0 ? 'by' : 'unknown');
+    if (i === 0) {
+      assert.equal(diagnostic.mentionsBy, true); assert.equal(diagnostic.mentionsFilter, true);
+      assert.equal(diagnostic.mentionsWindow, true); assert.equal(diagnostic.mentionsProject, true);
+    }
+    assert.ok(!JSON.stringify(diagnostic).includes(sensitive));
+    assert.ok(JSON.stringify(diagnostic).length < 600);
+  }
+});
+
+test('oversized and non-JSON HTTP error bodies retain status without exposing body content', async () => {
+  for (const body of ['private non-JSON provider failure', 'x'.repeat(65537)]) {
+    const diagnostics: RankingDiagnostic[] = [];
+    assert.equal(await collect(async () => new Response(body, { status: 400 }), { onDiagnostic: item => diagnostics.push(item) }), null);
+    assert.equal(diagnostics.length, 1); assert.equal(diagnostics[0].httpStatus, 400);
+    assert.equal(diagnostics[0].providerCode, 'unknown');
+    assert.ok(!JSON.stringify(diagnostics).includes(body));
+  }
 });
 
 test('same-hour deployment or project changes cannot reuse a previous unavailable cache entry', async () => {
