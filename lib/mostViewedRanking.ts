@@ -13,6 +13,7 @@ type DiagnosticDetails = {
   providerCode?: ProviderCode; providerParameter?: ProviderParameter;
   mentionsBy?: boolean; mentionsFilter?: boolean; mentionsWindow?: boolean; mentionsProject?: boolean;
   terms?: Array<typeof ERROR_TERMS[number]>;
+  sinceType?: SafeType; untilType?: SafeType; actualSince?: string; actualUntil?: string;
 };
 export type RankingDiagnostic = DiagnosticDetails & RankingWindow & {
   code: DiagnosticCode; batches: number; completedBatches: number; rows: number;
@@ -50,6 +51,26 @@ export function isCurrentRanking(result: VerifiedRanking | null, now = Date.now(
 
 function record(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+/** Only exact date/ISO representations or Unix milliseconds, never seconds,
+ * locale prose, coercible objects or arbitrary provider strings. */
+export function normalizeProviderDate(value: unknown): string | null {
+  let timestamp: number;
+  if (typeof value === 'number' && Number.isSafeInteger(value)) timestamp = value;
+  else if (typeof value === 'string' && /^\d{13}$/.test(value)) timestamp = Number(value);
+  else if (typeof value === 'string') {
+    const match = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}):(\d{2})(?:\.\d{1,3})?(?:Z|[+-](\d{2}):(\d{2})))?$/.exec(value);
+    if (!match) return null;
+    const [, year, month, day, hour, minute, second, offsetHour, offsetMinute] = match;
+    const daysInMonth = new Date(Date.UTC(Number(year), Number(month), 0)).getUTCDate();
+    if (Number(month) < 1 || Number(month) > 12 || Number(day) < 1 || Number(day) > daysInMonth
+      || Number(hour ?? 0) > 23 || Number(minute ?? 0) > 59 || Number(second ?? 0) > 59
+      || Number(offsetHour ?? 0) > 23 || Number(offsetMinute ?? 0) > 59) return null;
+    timestamp = Date.parse(value);
+  } else return null;
+  if (!Number.isFinite(timestamp) || timestamp < Date.UTC(2000, 0, 1) || timestamp >= Date.UTC(2101, 0, 1)) return null;
+  return new Date(timestamp).toISOString();
 }
 
 function canonicalCatalog(articles: readonly RankedArticle[]): RankedArticle[] {
@@ -155,8 +176,11 @@ function parseReport(payload: unknown, url: URL, prefix: string): Map<string, nu
     if (!record(payload.query)) throw new RankingFailure('query_shape', details);
     const query = payload.query;
     if (Object.keys(query).some(key => !['since', 'until', 'filter', 'limit', 'groupBy'].includes(key))) throw new RankingFailure('query_shape', { extraFields: true });
-    for (const key of ['since', 'until'] as const) {
-      if ((typeof query[key] !== 'string' && typeof query[key] !== 'number') || new Date(query[key]).getTime() !== new Date(url.searchParams.get(key)!).getTime()) throw new RankingFailure('query_window');
+    const actualSince = normalizeProviderDate(query.since);
+    const actualUntil = normalizeProviderDate(query.until);
+    if (actualSince !== url.searchParams.get('since') || actualUntil !== url.searchParams.get('until')) {
+      throw new RankingFailure('query_window', { sinceType: safeType(query.since), untilType: safeType(query.until),
+        ...(actualSince ? { actualSince } : {}), ...(actualUntil ? { actualUntil } : {}) });
     }
     if (query.filter !== url.searchParams.get('filter')) throw new RankingFailure('query_filter');
     if ((typeof query.limit !== 'number' && typeof query.limit !== 'string') || Number(query.limit) !== REPORT_LIMIT) throw new RankingFailure('query_limit');

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
-import { collectMostViewed, rankingWindow, isCurrentRanking, type RankedArticle, type RankingDiagnostic } from '../lib/mostViewedRanking.ts';
+import { collectMostViewed, rankingWindow, isCurrentRanking, normalizeProviderDate, type RankedArticle, type RankingDiagnostic } from '../lib/mostViewedRanking.ts';
 import { getRankingArticleCatalog } from '../lib/mostViewedCatalog.ts';
 import { getAllStorySlugs } from '../lib/data/innovation-pulse.ts';
 import { FEATURED_COVERAGE } from '../lib/data/featured-coverage.ts';
@@ -39,6 +39,47 @@ function collect(fetcher: typeof fetch, overrides: Partial<Parameters<typeof col
 test('uses an exact inclusive 30-day completed-hour UTC window', () => {
   assert.deepEqual(window, { since: '2026-09-29T17:00:00.000Z', until: '2026-10-29T16:59:59.999Z' });
   assert.equal(Date.parse(window.until) - Date.parse(window.since) + 1, 30 * 24 * 3600000);
+});
+
+test('provider date echoes accept exact ISO or Unix millisecond strings and numbers only', async () => {
+  for (const format of [(date: string) => date, (date: string) => Date.parse(date), (date: string) => String(Date.parse(date))]) {
+    const source = fixture();
+    const result = await collect(async (url, init) => {
+      const payload = await (await source.fetcher(url, init)).json();
+      payload.query.since = format(window.since); payload.query.until = format(window.until);
+      return Response.json(payload);
+    });
+    assert.equal(result?.articles.length, 4);
+  }
+  assert.equal(normalizeProviderDate('2026-10-29'), '2026-10-29T00:00:00.000Z');
+  assert.equal(normalizeProviderDate('2026-10-29T09:00:00-08:00'), '2026-10-29T17:00:00.000Z');
+  for (const invalid of ['PRIVATE_SENTINEL', '1793293200', 1793293200, '2026-02-30', '2026-10-29T24:00:00Z', '2026-10-29T17:00:00', '1999-12-31', '2101-01-01', false, {}, NaN, Infinity]) {
+    assert.equal(normalizeProviderDate(invalid), null);
+  }
+});
+
+test('wrong date instant still fails and diagnostics contain only bounded normalized UTC dates', async () => {
+  const source = fixture();
+  const diagnostics: RankingDiagnostic[] = [];
+  const shiftedUntil = Date.parse(window.until) + 1;
+  assert.equal(await collect(async (url, init) => {
+    const payload = await (await source.fetcher(url, init)).json();
+    payload.query.since = String(Date.parse(window.since)); payload.query.until = String(shiftedUntil);
+    return Response.json(payload);
+  }, { onDiagnostic: item => diagnostics.push(item) }), null);
+  assert.equal(diagnostics[0].code, 'query_window');
+  assert.equal(diagnostics[0].actualSince, window.since);
+  assert.equal(diagnostics[0].actualUntil, new Date(shiftedUntil).toISOString());
+  assert.equal(diagnostics[0].sinceType, 'string');
+  const unsafe: RankingDiagnostic[] = [];
+  assert.equal(await collect(async (url, init) => {
+    const payload = await (await source.fetcher(url, init)).json();
+    payload.query.since = 'PRIVATE_SENTINEL'; payload.query.until = '2200-01-01';
+    return Response.json(payload);
+  }, { onDiagnostic: item => unsafe.push(item) }), null);
+  assert.equal(unsafe[0].actualSince, undefined); assert.equal(unsafe[0].actualUntil, undefined);
+  assert.ok(!JSON.stringify(unsafe).includes('PRIVATE_SENTINEL'));
+  assert.ok(!JSON.stringify(unsafe).includes('2200'));
 });
 
 test('complete prefix reports globally rank article views, not visitors', async () => {
