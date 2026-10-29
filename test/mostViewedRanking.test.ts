@@ -9,6 +9,7 @@ import { createRankingMemo, rankingCacheIdentity } from '../lib/mostViewedMemo.t
 
 const instant = Date.parse('2026-10-29T17:34:00Z');
 const window = rankingWindow(instant);
+const providerUntil = new Date(Date.parse(window.until) + 1).toISOString();
 const articles: RankedArticle[] = Array.from({ length: 85 }, (_, i) => ({
   href: `${i % 2 ? '/feature-coverage' : '/innovation-pulse/story'}/article-${String(i).padStart(3, '0')}`, title: `Canonical title ${i}`,
 }));
@@ -28,7 +29,8 @@ function fixture(rows: (paths: string[]) => Row[] = paths => paths.map(path => (
     const selected = paths.filter(path => path.startsWith(match[1]));
     assert.ok(selected.length > 0);
     assert.ok(filter.length < 150);
-    return Response.json({ version: 1, data: rows(selected), query: { since: window.since, until: window.until, groupBy: ['requestPath'], limit: 100, filter: url.searchParams.get('filter') } });
+    assert.equal(url.searchParams.get('until'), window.until);
+    return Response.json({ version: 1, data: rows(selected), query: { since: window.since, until: providerUntil, groupBy: ['requestPath'], limit: 100, filter: url.searchParams.get('filter') } });
   };
   return { urls, fetcher };
 }
@@ -36,10 +38,10 @@ function collect(fetcher: typeof fetch, overrides: Partial<Parameters<typeof col
   return collectMostViewed({ articles, window, token: 'test-token-not-a-credential', now: () => instant, fetcher, ...overrides });
 }
 
-test('uses the provider-verified exact 30-day completed-hour UTC boundaries', () => {
-  assert.deepEqual(window, { since: '2026-09-29T17:00:00.000Z', until: '2026-10-29T17:00:00.000Z' });
-  assert.equal(Date.parse(window.until) - Date.parse(window.since), 30 * 24 * 3600000);
-  assert.equal(Date.parse(window.until) % 3600000, 0);
+test('uses an inclusive 30-day request ending before the current UTC hour', () => {
+  assert.deepEqual(window, { since: '2026-09-29T17:00:00.000Z', until: '2026-10-29T16:59:59.999Z' });
+  assert.equal(Date.parse(window.until) - Date.parse(window.since) + 1, 30 * 24 * 3600000);
+  assert.equal(providerUntil, '2026-10-29T17:00:00.000Z');
 });
 
 test('provider date echoes accept exact ISO or Unix millisecond strings and numbers only', async () => {
@@ -47,7 +49,7 @@ test('provider date echoes accept exact ISO or Unix millisecond strings and numb
     const source = fixture();
     const result = await collect(async (url, init) => {
       const payload = await (await source.fetcher(url, init)).json();
-      payload.query.since = format(window.since); payload.query.until = format(window.until);
+      payload.query.since = format(window.since); payload.query.until = format(providerUntil);
       return Response.json(payload);
     });
     assert.equal(result?.articles.length, 4);
@@ -62,7 +64,7 @@ test('provider date echoes accept exact ISO or Unix millisecond strings and numb
 test('wrong date instant still fails and diagnostics contain only bounded normalized UTC dates', async () => {
   const source = fixture();
   const diagnostics: RankingDiagnostic[] = [];
-  const shiftedUntil = Date.parse(window.until) + 1;
+  const shiftedUntil = Date.parse(providerUntil) + 1;
   assert.equal(await collect(async (url, init) => {
     const payload = await (await source.fetcher(url, init)).json();
     payload.query.since = String(Date.parse(window.since)); payload.query.until = String(shiftedUntil);
@@ -81,6 +83,28 @@ test('wrong date instant still fails and diagnostics contain only bounded normal
   assert.equal(unsafe[0].actualSince, undefined); assert.equal(unsafe[0].actualUntil, undefined);
   assert.ok(!JSON.stringify(unsafe).includes('PRIVATE_SENTINEL'));
   assert.ok(!JSON.stringify(unsafe).includes('2200'));
+});
+
+test('observed inclusive-hour conversion accepts only the exact exclusive echo and excludes the current hour', async () => {
+  // The two actual observations: 20:59:59.999 -> 21:00; 21:00 -> 22:00.
+  const hourEnd = Date.parse('2026-10-29T21:00:00.000Z');
+  const requested = rankingWindow(hourEnd + 34 * 60000);
+  assert.equal(requested.until, '2026-10-29T20:59:59.999Z');
+  for (const delta of [0, -1, 1, -3600000, 3600000]) {
+    const source = fixture();
+    const result = await collect(async (input, init) => {
+      const url = new URL(String(input));
+      assert.equal(url.searchParams.get('until'), requested.until);
+      // Generate the fixture through its usual transport validation, then bind
+      // this observation's requested dates and exclusive provider endpoint.
+      const fixtureUrl = new URL(url); fixtureUrl.searchParams.set('until', window.until);
+      const payload = await (await source.fetcher(fixtureUrl, init)).json();
+      payload.query.since = requested.since;
+      payload.query.until = new Date(hourEnd + delta).toISOString();
+      return Response.json(payload);
+    }, { window: requested, now: () => hourEnd + 34 * 60000 });
+    assert.equal(result !== null, delta === 0);
+  }
 });
 
 test('complete prefix reports globally rank article views, not visitors', async () => {
