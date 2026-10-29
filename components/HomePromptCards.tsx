@@ -213,6 +213,7 @@ export default function HomePromptCards() {
 
             {/* Copy Button */}
             <button
+              data-analytics-action="prompt_copy"
               onClick={() => handleCopy(prompts[expandedPrompt].fullPrompt)}
               className="inline-flex items-center gap-2 font-mono text-[0.68rem] text-[var(--cyan)] px-4 py-2 rounded-[8px] bg-[var(--cyan-dim)] border border-[rgba(0,212,255,0.2)] hover:bg-[rgba(0,212,255,0.2)] transition-colors font-medium"
             >

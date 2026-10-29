@@ -61,7 +61,7 @@ export function CopyPromptButton({
   };
 
   return (
-    <button type="button" aria-live="polite" onClick={handleCopy} aria-label={ariaLabel} className={className}>
+    <button data-analytics-action="prompt_copy" type="button" aria-live="polite" onClick={handleCopy} aria-label={ariaLabel} className={className}>
       {copyState === "copied" ? "Copied!" : copyState === "failed" ? "Copy failed" : label}
     </button>
   );
@@ -110,6 +110,7 @@ export default function PromptTemplatesClient({
             return (
               <button
                 key={d}
+                data-analytics-action="prompt_difficulty_filter"
                 onClick={() => setSelectedDifficulty(d)}
                 aria-label={`Filter by ${d}`}
                 aria-pressed={isActive}
@@ -143,6 +144,7 @@ export default function PromptTemplatesClient({
             return (
               <button
                 key={c}
+                data-analytics-action="prompt_category_filter"
                 onClick={() => setSelectedCategory(c)}
                 aria-label={`Filter by ${c}`}
                 aria-pressed={isActive}

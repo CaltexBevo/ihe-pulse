@@ -33,6 +33,42 @@ export const ANALYTICS_BUTTON_ACTIONS = [
   'directory_grid',
   'directory_list',
   'copy_search_link',
+  'grant_filter_audience',
+  'grant_filter_location',
+  'grant_filter_area',
+  'grant_filter_deadline',
+  'grant_filter_lifecycle',
+  'grant_filter_matched_funding',
+  'grant_filter_freshness',
+  'grant_filter_cost_share',
+  'grant_filter_funder',
+  'grant_find_opportunities',
+  'grant_apply_filters',
+  'grant_clear_filters',
+  'grant_sort_change',
+  'grant_page_size_change',
+  'grant_page_previous',
+  'grant_page_next',
+  'grant_widen_deadline',
+  'directory_category_filter',
+  'directory_role_filter',
+  'directory_task_filter',
+  'directory_pricing_filter',
+  'directory_review_filter',
+  'directory_clear_filters',
+  'directory_sort_change',
+  'directory_staff_picks',
+  'directory_filters_close',
+  'directory_results_show',
+  'directory_review_close',
+  'directory_retry',
+  'prompt_difficulty_filter',
+  'prompt_category_filter',
+  'prompt_copy',
+  'story_previous',
+  'story_next',
+  'story_rotation_pause',
+  'story_rotation_resume',
 ] as const;
 export type AnalyticsButtonAction = typeof ANALYTICS_BUTTON_ACTIONS[number];
 
@@ -849,7 +885,18 @@ export function createPageEngagementHandlers(options: EngagementHandlerOptions) 
     if (destination) options.dispatch('outbound_click', { page: options.page, destination });
   };
 
-  return { onVisibleTimeTick, onScroll, onMediaEvent, onClick };
+  const onControlChange = (event: Event) => {
+    const control = event.target as { tagName?: string; type?: string; getAttribute?: (name: string) => string | null } | null;
+    if (!control || (control.tagName?.toUpperCase() !== 'SELECT' &&
+      !(control.tagName?.toUpperCase() === 'INPUT' && control.type === 'checkbox'))) return;
+    const action = control.getAttribute?.('data-analytics-action');
+    if (!action || !BUTTON_ACTIONS.has(action)) return;
+    // Only a fixed action identifier is sent. Never read a selected value,
+    // search string, prompt, clipboard contents or any other entered data.
+    options.dispatch('button_click', { page: options.page, action });
+  };
+
+  return { onVisibleTimeTick, onScroll, onMediaEvent, onClick, onControlChange };
 }
 
 export interface ListenerTargetLike {
@@ -869,12 +916,14 @@ export function installEngagementListeners(options: ListenerInstallOptions) {
   const scrollListener: EventListener = () => options.handlers.onScroll();
   const mediaListener: EventListener = (event) => options.handlers.onMediaEvent(event);
   const clickListener: EventListener = (event) => options.handlers.onClick(event);
+  const changeListener: EventListener = (event) => options.handlers.onControlChange(event);
   const timer = options.setInterval(options.handlers.onVisibleTimeTick, 1000);
   const mediaEvents = ['playing', 'pause', 'seeking', 'seeked', 'timeupdate', 'ended', 'error', 'abort', 'emptied'];
 
   options.windowTarget.addEventListener('scroll', scrollListener, { passive: true });
   for (const mediaEvent of mediaEvents) options.documentTarget.addEventListener(mediaEvent, mediaListener, true);
   options.documentTarget.addEventListener('click', clickListener, true);
+  options.documentTarget.addEventListener('change', changeListener, true);
 
   let cleaned = false;
   return () => {
@@ -884,5 +933,6 @@ export function installEngagementListeners(options: ListenerInstallOptions) {
     options.windowTarget.removeEventListener('scroll', scrollListener);
     for (const mediaEvent of mediaEvents) options.documentTarget.removeEventListener(mediaEvent, mediaListener, true);
     options.documentTarget.removeEventListener('click', clickListener, true);
+    options.documentTarget.removeEventListener('change', changeListener, true);
   };
 }
