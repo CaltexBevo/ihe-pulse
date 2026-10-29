@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Approved homepage style
+
+- Apply the approved compact homepage layout, continuous light/dark canvas, aligned Feature actions, topic/resource panels, and homepage-only footer.
+- Preserve current edition content and the latest weekly playback recovery, diagnostics, and carousel tracking.
+- Present four real archive stories under “More Stories to Explore”, without an unverified readership ranking or date-range claim.
+
 ## [2026-10-15] My Voice at Scale Original Feature
 
 - Publish the selected v17 full article, authentic illustrations and completed 7:43 narration at `/feature-coverage/my-voice-at-scale`.

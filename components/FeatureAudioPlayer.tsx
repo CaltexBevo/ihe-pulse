@@ -13,11 +13,13 @@ export default function FeatureAudioPlayer({
   audioTitle,
   sourceNote,
   measuredDuration,
+  compact = false,
 }: {
   audioUrl: string;
   audioTitle: string;
   sourceNote?: { text: string; url?: string };
   measuredDuration?: string;
+  compact?: boolean;
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const playRequestRef = useRef(0);
@@ -71,7 +73,7 @@ export default function FeatureAudioPlayer({
   };
 
   return (
-    <div className={styles.player}>
+    <div className={`${styles.player} ${compact ? styles.compact : ""}`}>
       <audio
         ref={audioRef}
         src={audioUrl}

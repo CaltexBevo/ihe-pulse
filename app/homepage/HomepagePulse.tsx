@@ -76,7 +76,7 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
   if (!episode) {
     return (
       <section className={styles.empty} aria-labelledby="homepage-empty-heading">
-        <h1 id="homepage-empty-heading">No Briefings Yet</h1>
+        <h2 id="homepage-empty-heading">No editions yet</h2>
         <p>Check back soon for the latest Innovation Pulse.</p>
       </section>
     );
@@ -104,34 +104,28 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
   });
   return (
     <>
-      <div className={styles.subscribeSection}>
-        <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)]">
-          <EmailSignup id="email-signup" variant="compact" placement="homepage" />
-        </div>
-      </div>
-
-      <FeaturedCoverage feature={LATEST_FEATURED_COVERAGE} variant="homepage" />
-
-
       <section className={styles.section} aria-labelledby="quick-hits-heading">
         <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)]">
           <div className={styles.module}>
-            <div className={styles.sectionHeadingWithAction}>
+            <QuickHitsSlider stories={episodeStories} header={<>
               <div className={styles.sectionHeading}>
                 <h2 id="quick-hits-heading">This Week&apos;s Stories</h2>
                 <p>
                   {episodeStories.length} {episodeStories.length === 1 ? 'story' : 'stories'} {episode.editionNumber ? `from Innovation Pulse Weekly Edition ${episode.editionNumber}.` : `from the ${formatCoverageRange(episode)} Innovation Pulse.`}
                 </p>
               </div>
+            </>} headerAction={
               <Link href={`/innovation-pulse/${episode.date}`} className={styles.sectionAction}>
                 View all {episodeStories.length} stories <span aria-hidden="true">→</span>
               </Link>
-            </div>
-            <QuickHitsSlider stories={episodeStories} />
+            } />
           </div>
         </div>
       </section>
 
+      <FeaturedCoverage feature={LATEST_FEATURED_COVERAGE} variant="homepage" />
+
+      <div className={styles.lowerGroups}>
       <section className={styles.topicsSection} aria-labelledby="topics-heading">
         <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)]">
           <div className={styles.topicModule}>
@@ -193,6 +187,10 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
           </div>
         </div>
       </section>
+      </div>
+      <div className={styles.signupBanner}>
+        <EmailSignup id="email-signup" variant="compact" placement="homepage" />
+      </div>
     </>
   );
 }

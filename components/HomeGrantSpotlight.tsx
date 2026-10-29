@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ResourceIcon from "@/app/homepage/ResourceIcon";
 import GrantUpdatedDate from "@/components/GrantUpdatedDate";
 import PortalDayRefresh from "@/app/innovation-grants/PortalDayRefresh";
 import PortalFundingTally from "@/app/innovation-grants/PortalFundingTally";
@@ -6,7 +7,7 @@ import { getPublicInnovationGrants } from "@/lib/data/innovation-grants-public";
 import { getHomepageGrantSummary } from "@/lib/innovation-grants-homepage";
 import styles from "./HomeGrantSpotlight.module.css";
 
-export default function HomeGrantSpotlight() {
+export default function HomeGrantSpotlight({ compact = false }: { compact?: boolean }) {
   const summary = getHomepageGrantSummary(getPublicInnovationGrants());
   const { funding, breakdown } = summary;
   const cohortLabel = summary.latestDate ? new Date(`${summary.latestDate}T12:00:00Z`).toLocaleDateString("en-US", {
@@ -18,6 +19,17 @@ export default function HomeGrantSpotlight() {
     breakdown.openingSoon && `${breakdown.openingSoon} opening soon`,
     breakdown.closed && `${breakdown.closed} closed`,
   ].filter(Boolean).join(" + ");
+
+  if (compact) return <section className={styles.wrapper} aria-labelledby="grant-spotlight-title">
+    <PortalDayRefresh asOfDate={summary.asOfDate} refreshAt={summary.refreshAt} />
+    <div className={styles.compact}>
+      <div className={styles.portalIdentity}><span className={styles.portalBadge}><ResourceIcon name="portal" /></span><h2 id="grant-spotlight-title">Grant Portal</h2></div>
+      <div><strong>{funding.openOpportunityCount}</strong><span>currently open</span></div>
+      <div><strong>{summary.totalCount}</strong><span>grants &amp; support programs</span></div>
+      <div className={styles.compactFunding}><strong><PortalFundingTally amount={funding.publishedProgramPoolUsd} /></strong><span>reported current program funding</span><span><GrantUpdatedDate /></span></div>
+      <Link href="/innovation-grants" className={styles.action}>Explore Grant Portal <span aria-hidden="true">→</span></Link>
+    </div>
+  </section>;
 
   return (
     <section className={styles.wrapper} aria-labelledby="grant-spotlight-title">

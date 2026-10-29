@@ -56,3 +56,25 @@
     height: 44px;
   }
 }
+
+.homePlatforms { display:flex; flex:0 0 auto; align-items:center; gap:2px; padding-left:8px; margin-left:6px; border-left:1px solid var(--border-strong); }
+.homePlatforms a { display:grid; place-items:center; width:30px; height:40px; border-radius:5px; color:var(--text); }
+.homePlatforms svg { width:20px; height:20px; }
+.homePlatforms a:hover { background:var(--cyan-soft); }
+.homePlatforms a:focus-visible { outline:2px solid var(--cyan); outline-offset:2px; }
+.homePlatforms .youtube { color:#f52626; }
+.homePlatforms .apple { color:#bc50ff; }
+.homePlatforms .spotify { color:#1db954; }
+.homePlatforms .audible { color:#ee9900; }
+:global([data-theme="light"]) .homePlatforms .youtube { color:#d71919; }
+:global([data-theme="light"]) .homePlatforms .apple { color:#8734d3; }
+:global([data-theme="light"]) .homePlatforms .spotify { color:#087b39; }
+:global([data-theme="light"]) .homePlatforms .audible { color:#986000; }
+.homeDesktop > a { padding-inline:8px; font-size:.74rem; }
+.homeNav .logoFrame { width:120px; }
+.homeDropdown .homePlatforms { margin:10px 12px 0; padding:10px 0 0; border-left:0; border-top:1px solid var(--border-strong); gap:10px; flex-wrap:wrap; }
+.homeDropdown .homePlatforms a { width:40px; height:44px; }
+@media(max-width:1199px) { .homeNav .homeDesktop { display:none; } .homeNav .homeMobile { display:flex; } .homeNav .homeDropdown { display:block; } }
+@media(min-width:1200px) { .homeNav .homeDesktop { display:flex; } .homeNav .homeMobile,.homeNav .homeDropdown { display:none; } }
+
+@media(max-width:359px) { .homeDropdown .homePlatforms { gap:2px; } }

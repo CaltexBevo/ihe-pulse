@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useReducer, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useReducer, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { mapToV4Category } from '@/lib/data/innovation-pulse-types';
 import { getHomepageStoryHref, getHomepageStoryImage, type HomepageStory } from '@/lib/homepagePulse';
 import { pillColorsFor } from '@/lib/categoryPalette';
@@ -52,11 +52,11 @@ function StoryFace({ story, onImageReady }: { story: HomepageStory; onImageReady
   const pill = story.feature ? { text: 'var(--amber)' } : pillColorsFor(category);
   const image = getHomepageStoryImage(story);
   return <div className={styles.face}>
-    {!story.omitImage && <div className={styles.imageFrame}>{image ? <Image key={image} src={image} alt="" fill loading={onImageReady ? 'eager' : undefined} onLoad={onImageReady} onError={onImageReady} sizes="(max-width: 680px) 100vw, (max-width: 1024px) 50vw, 33vw" className={styles.image} /> : <div className={styles.imageFallback}>Innovation Pulse story</div>}</div>}
+    {!story.omitImage && <div className={styles.imageFrame}>{image ? <Image key={image} src={image} alt="" fill loading={onImageReady ? 'eager' : undefined} onLoad={onImageReady} onError={onImageReady} sizes="(max-width: 680px) calc(100vw - clamp(2rem, 8vw, 4rem) - 2px), (max-width: 1024px) calc((100vw - clamp(2rem, 8vw, 4rem) - 14px) / 2 - 2px), calc((min(100vw, 1200px) - clamp(2rem, 8vw, 4rem) - 28px) / 3 - 2px)" className={styles.image} /> : <div className={styles.imageFallback}>Innovation Pulse story</div>}</div>}
     <div className={styles.body}><h3 className={styles.title}>{story.title}</h3><div className={styles.category} style={{ color: pill.text }}><span className={styles.categoryDot} style={{ backgroundColor: pill.text }} />{story.feature ? 'Original Feature' : category}</div></div>
   </div>;
 }
-export default function QuickHitsSlider({ stories }: { stories: HomepageStory[] }) {
+export default function QuickHitsSlider({ stories, header, headerAction }: { stories: HomepageStory[]; header?: ReactNode; headerAction?: ReactNode }) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [state, dispatch] = useReducer(reducer, stories.length, initial);
   const [manualPaused, setManualPaused] = useState(false);
@@ -112,11 +112,15 @@ export default function QuickHitsSlider({ stories }: { stories: HomepageStory[] 
   const move = (backwards: boolean) => dispatch(backwards ? { type: 'previous', instant: reducedMotion } : { type: 'next', count: stories.length, instant: reducedMotion });
   if (!stories.length) return null;
   return <div ref={sliderRef} className={styles.slider} aria-label="Innovation Pulse stories" onMouseEnter={() => { setPointerPaused(true); dispatch({ type: 'settle' }); }} onMouseLeave={() => setPointerPaused(false)} onFocusCapture={() => { setFocusPaused(true); dispatch({ type: 'settle' }); }} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocusPaused(false); }} data-carousel-paused={automaticPaused ? 'true' : 'false'}>
+    <div className={header ? styles.header : undefined}>
+    {header}
     <div className={styles.controls} aria-label="Innovation Pulse story navigation">
       <button type="button" className={styles.arrow} onClick={() => move(true)} disabled={!state.history.length || !!state.pending} data-analytics-action="story_previous" aria-label="Restore previous story" aria-controls="innovation-pulse-stories-track"><span aria-hidden="true">←</span></button>
       <button type="button" className={styles.pauseButton} disabled={reducedMotion || !canAdvance} onClick={() => { if (!manualPaused) dispatch({ type: 'settle' }); setManualPaused(value => !value); }} data-analytics-action={manualPaused ? 'story_rotation_resume' : 'story_rotation_pause'} aria-pressed={manualPaused || reducedMotion} aria-label={reducedMotion ? 'Automatic rotation disabled for reduced motion' : manualPaused ? 'Resume automatic story rotation' : 'Pause automatic story rotation'} aria-controls="innovation-pulse-stories-track"><span aria-hidden="true">{manualPaused || reducedMotion ? '▶' : 'Ⅱ'}</span><span className={styles.controlText}>{reducedMotion ? 'Manual' : manualPaused ? 'Resume' : 'Pause'}</span></button>
       <button type="button" className={styles.arrow} onClick={() => move(false)} disabled={!canAdvance || !!state.pending} data-analytics-action="story_next" aria-label="Show next story" aria-controls="innovation-pulse-stories-track"><span aria-hidden="true">→</span></button>
       <span className={styles.range} aria-live={automaticPaused ? 'polite' : 'off'}>Stories {state.visible.map(index => index + 1).join(', ')} of {stories.length}</span>
+    </div>
+    {headerAction}
     </div>
     <ul id="innovation-pulse-stories-track" className={styles.track} style={{ '--story-slots': state.visible.length } as CSSProperties} tabIndex={0} onKeyDown={event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); move(event.key === 'ArrowLeft'); } }} aria-label="This week's Innovation Pulse stories" aria-roledescription="carousel">
       {state.visible.map((index, slot) => {

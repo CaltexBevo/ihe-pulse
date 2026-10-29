@@ -16,9 +16,11 @@ type FeaturedCoverageProps = {
 export function FeatureArtwork({
   feature,
   compact = false,
+  homepageLayout = false,
 }: {
   feature: FeaturedCoverageRecord;
   compact?: boolean;
+  homepageLayout?: boolean;
 }) {
   const imagePath =
     compact && feature.homepageImagePath
@@ -28,10 +30,12 @@ export function FeatureArtwork({
     compact && Boolean(feature.homepageImagePath);
   const imageBorder = feature.intactHomepageImage ? 0 : 2;
   const imageScale = !feature.intactHomepageImage && usesHomepageHeroCrop ? 1.65 : 1;
-  // HomepageShell adds a 14px padded, 1px bordered tray around the compact card.
+  // Retain legacy compact sizing for other callers; homepageLayout uses the open card.
   const containerWidth = `min(100vw, 1200px) - clamp(2rem, 8vw, 4rem)${compact ? " - 30px" : ""}`;
   // Match card padding/borders, its responsive columns, and the existing art crop.
-  const artworkSizes = compact
+  const artworkSizes = homepageLayout
+    ? `(max-width: 767px) calc((min(100vw, 1200px) - clamp(2rem, 8vw, 4rem) - 2px) * ${imageScale}), calc((min(100vw, 1200px) - clamp(2rem, 8vw, 4rem) - 2px) * .4 * ${imageScale})`
+    : compact
     ? `(max-width: 639px) calc((${containerWidth} - ${26 + imageBorder}px) * ${imageScale}), (max-width: 767px) calc((${containerWidth} - ${34 + imageBorder}px) * ${imageScale}), calc(((${containerWidth} - 50px) * 0.525 - ${imageBorder}px) * ${imageScale})`
     : `(max-width: 639px) calc(${containerWidth} - ${34 + imageBorder}px), (max-width: 1023px) calc(${containerWidth} - ${50 + imageBorder}px), calc((${containerWidth} - 78px) * 0.525 - ${imageBorder}px)`;
 
@@ -106,6 +110,25 @@ export default function FeaturedCoverage({
   const sectionLabel = isLaunch ? "Grant Portal" : isHomepage ? feature.eyebrow : "Original analysis";
   const sectionTitle = isLaunch ? "Feature Launch" : isHomepage ? feature.reportTitle : "Featured Coverage";
   const readingLabel = isLaunch ? "Read launch story" : "Read full coverage";
+
+  if (isHomepage) return <section className={styles.homeSection} aria-labelledby="featured-coverage-heading">
+    <article className={styles.homeCard}>
+      <Link href={`/feature-coverage/${feature.slug}`} className={styles.homeArt} aria-label={`Read ${feature.title}`}>
+        <FeatureArtwork feature={feature} compact homepageLayout />
+      </Link>
+      <div className={styles.homeCopy}>
+        <p className={styles.homeEyebrow}>{feature.eyebrow}</p>
+        <h2 id="featured-coverage-heading"><Link href={`/feature-coverage/${feature.slug}`}>{feature.title}</Link></h2>
+        <p className={styles.homeTeaser}>{feature.teaser}</p>
+        <p className={styles.homeByline}>{feature.byline}</p>
+        <div className={styles.homeActions}>
+          <Link href={`/feature-coverage/${feature.slug}`} className={styles.homeRead}>Read the Feature <span aria-hidden="true">→</span></Link>
+          {feature.audioUrl && <FeatureAudioPlayer compact audioUrl={feature.audioUrl} audioTitle="the Feature" sourceNote={feature.audioSourceNote} measuredDuration={feature.showPreview ? feature.audioDuration : undefined} />}
+          <Link href="/feature-coverage" className={styles.homeBrowse}>Browse Original Features <span aria-hidden="true">→</span></Link>
+        </div>
+      </div>
+    </article>
+  </section>;
 
   return (
     <section

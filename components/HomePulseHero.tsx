@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import HeroAudioDiagnostics, { HeroAudioDiagnosticObserver } from './HeroAudioDiagnostics';
 import type { HeroAudioDiagnosticsController, PlaybackReport } from '@/lib/heroAudioDiagnostics';
 import { installHeroAudioPlayback } from '@/lib/heroAudioPlayback';
@@ -50,6 +51,7 @@ interface HomePulseHeroProps {
   episode: HomePulseHeroEpisode;
   autoPlay?: boolean;
   editionLayout?: boolean;
+  compact?: boolean;
 }
 
 function formatTime(seconds: number): string {
@@ -69,6 +71,7 @@ export default function HomePulseHero({
   episode,
   autoPlay = false,
   editionLayout = false,
+  compact = false,
 }: HomePulseHeroProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const diagnosticsRef = useRef<HeroAudioDiagnosticsController | null>(null);
@@ -116,7 +119,7 @@ export default function HomePulseHero({
   const usesApprovedFullHero = usesEdition21Hero || usesEdition20Hero || usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
 
   // Homepage and dated editions have different bounds, with the same gutters and border.
-  const artworkSizes = `calc(min(100vw, ${editionLayout ? 1440 : 1200}px) - clamp(2rem, 8vw, 4rem) - 2px)`;
+  const artworkSizes = compact ? "(max-width: 899px) calc(100vw - clamp(2rem, 8vw, 4rem) - 2px), calc((min(100vw, 1200px) - clamp(2rem, 8vw, 4rem) - 16px) * .65 - 2px)" : `calc(min(100vw, ${editionLayout ? 1440 : 1200}px) - clamp(2rem, 8vw, 4rem) - 2px)`;
 
 
   useEffect(() => {
@@ -263,12 +266,17 @@ export default function HomePulseHero({
   };
 
   return (
-    <section className={styles.hero} aria-labelledby="home-pulse-title">
+    <section className={`${styles.hero} ${compact ? styles.compact : ""}`} aria-labelledby="home-pulse-title">
       {hasAudio && (
         <audio ref={audioRef} src={episode.audioUrl} preload="metadata" />
       )}
 
-      {usesEdition21Hero ? (
+      {compact ? (
+        <div className={styles.editionArtwork}>
+          <h2 id="home-pulse-title" className="sr-only">This week’s Innovation Pulse</h2>
+          <Image src={episode.weeklyHeroImageUrl || styledArtwork || fallbackArtwork} alt="Innovation Pulse weekly artwork, with Dr. Norma Jones." width={1920} height={863} sizes={artworkSizes} className={styles.completeArtwork} priority />
+        </div>
+      ) : usesEdition21Hero ? (
         <div className={styles.editionArtwork}>
           <h1 id="home-pulse-title" className="sr-only">Use AI to Stretch Your Thinking. Innovation Pulse Weekly Edition 21.</h1>
           <Image src={episode.weeklyHeroImageUrl!} alt="Use AI to Stretch Your Thinking. Innovation Pulse Weekly Edition 21, with Dr. Norma Jones." width={1877} height={838} sizes={artworkSizes} className={styles.completeArtwork} priority />
@@ -435,19 +443,20 @@ export default function HomePulseHero({
           </div>
         </div>
 
+        {compact && <Link href={`/innovation-pulse/${episode.date}`} className={styles.readEdition}>Read this week&apos;s stories <span aria-hidden="true">→</span></Link>}
         <aside
           className={styles.actionPanel}
           aria-label="Innovation Pulse listening options"
         >
           <div className={styles.actionHeading}>
-            <p className={styles.showName}>Innovation Pulse</p>
+            <p className={styles.showName}>Innovation Pulse{compact ? ` · ${weekLabel}` : ""}</p>
             <p className={styles.episodeMeta}>
-              <span>{weekLabel}</span>
+              <span>{compact ? "With Dr. Norma Jones" : weekLabel}</span>
               <span className={styles.metaDivider} aria-hidden="true" />
               <span>{episode.audioDuration}</span>
             </p>
           </div>
-          <p className={styles.listenFollow}>Listen &amp; follow</p>
+          {!compact && <p className={styles.listenFollow}>Listen &amp; follow</p>}
           <div className={styles.platformGrid}>
             {PLATFORM_LINKS.map((platform) => (
               <a
@@ -463,7 +472,7 @@ export default function HomePulseHero({
                 <span className={styles.platformIcon}>
                   <PlatformIcon name={platform.name} />
                 </span>
-                <span>{platform.label}</span>
+                <span className={compact ? "sr-only" : undefined}>{platform.label}</span>
               </a>
             ))}
             <button
