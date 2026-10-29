@@ -3,6 +3,7 @@
 ## [2026-10-29] Temporary guest-page pause
 
 - Temporarily redirect `/be-our-guest` to `/podcast`, removing the guest application and QR from the public route while preserving the prior source in Git history.
+- Temporarily hide the podcast page guest invitation so the redirect destination does not invite visitors back to the paused route.
 
 ## [2026-10-29] Approved homepage style
 
