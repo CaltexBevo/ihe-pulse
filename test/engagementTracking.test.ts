@@ -10,6 +10,7 @@ import {
   createPageEngagementHandlers,
   episodeFromAudioSource,
   firstObservation,
+  internalLinkTarget,
   installEngagementListeners,
   isEngagementTrackingEnabled,
   isInternalAnalyticsOptOut,
@@ -25,7 +26,8 @@ test('custom-event kill switch is exact and does not claim to disable automatic 
   assert.equal(isEngagementTrackingEnabled('enabled'), true);
   assert.equal(isEngagementTrackingEnabled('true'), false);
   assert.equal(isEngagementTrackingEnabled('ENABLED'), false);
-  assert.equal(isEngagementTrackingEnabled(undefined), false);
+  assert.equal(isEngagementTrackingEnabled(undefined), true);
+  assert.equal(isEngagementTrackingEnabled('disabled'), false);
   assert.deepEqual(analyticsDeliveryState('disabled'), {
     customEvents: false,
     automaticPageviews: true,
@@ -176,7 +178,7 @@ test('malformed, ambiguous, unregistered, and personal attribution fails closed'
   const base = 'https://www.innovatinghighered.com/';
   const valid = 'utm_source=x&utm_medium=social&utm_campaign=innovation-pulse-2026-09-18&utm_content=story_post';
   const rejected = [
-    valid.replace('2026-09-18', '2026-10-09'),
+    valid.replace('2026-09-18', '2026-10-17'),
     valid.replace('2026-09-18', '2026-09-99'),
     valid.replace('2026-09-18', '2026-09-18-private'),
     valid.replace('utm_source=x', 'utm_source=person%40example.com'),
@@ -196,14 +198,18 @@ test('malformed, ambiguous, unregistered, and personal attribution fails closed'
 });
 
 test('approved weekly releases share a finite campaign and audio registry', () => {
-  for (const date of ['2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25', '2026-10-02']) {
+  for (const date of [
+    '2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25',
+    '2026-10-02', '2026-10-09', '2026-10-16',
+  ]) {
     assert.equal(campaignEventProperties(`utm_source=mailchimp&utm_medium=email&utm_content=listen&utm_campaign=innovation-pulse-${date}`)?.campaign, `innovation-pulse-${date}`);
     assert.equal(episodeFromAudioSource(`https://storage.example/broadcast-${date}.mp3`), date);
     assert.deepEqual(sanitizeEngagementEvent('audio_progress', { episode: date, percent: 50 }), { episode: date, percent: 50 });
   }
-  assert.equal(episodeFromAudioSource('https://storage.example/broadcast-2026-10-09.mp3'), null);
+  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-20.mp3'), '2026-10-09');
+  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-21.mp3'), '2026-10-16');
+  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-22.mp3'), null);
   assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-19.mp3'), '2026-10-02');
-  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-20.mp3'), null);
   assert.equal(episodeFromAudioSource('/audio/feature-wonka-lantern-v3.mp3'), null);
 });
 
@@ -250,6 +256,10 @@ test('normalizes routes, bounds audio identities, and detects query-only SPA cha
     '2026-08-14',
   );
   assert.equal(
+    episodeFromAudioSource('https://storage.example/unknown.mp3?episode=2026-10-09'),
+    null,
+  );
+  assert.equal(
     episodeFromAudioSource('https://storage.example/broadcast-2026-08-28.mp3'),
     '2026-08-28',
   );
@@ -286,9 +296,11 @@ test('page handlers report visible-tab time and deduplicate scroll, audio, and r
   const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
   let visibility = 'visible';
   let scrollY = 0;
+  const publicPagePaths = new Set(['/', '/about', '/innovation-pulse/2026-10-09']);
   const handlers = createPageEngagementHandlers({
     page: '/innovation-pulse/[date]',
     hostname: 'www.innovatinghighered.com',
+    publicPagePaths,
     dispatch: (name, properties) => sent.push([name, properties]),
     getVisibility: () => visibility,
     getScrollMetrics: () => ({ scrollHeight: 2000, innerHeight: 1000, scrollY }),
@@ -308,20 +320,27 @@ test('page handlers report visible-tab time and deduplicate scroll, audio, and r
     tagName: 'AUDIO',
     currentSrc: 'https://storage.example/broadcast-2026-08-21.mp3',
     duration: 100,
-    currentTime: 60,
+    currentTime: 0,
+    paused: false,
+    seeking: false,
     getAttribute: () => null,
   };
   const playEvent = { type: 'play', target: audio } as unknown as Event;
   handlers.onMediaEvent(playEvent);
-  handlers.onMediaEvent(playEvent);
+  assert.equal(sent.filter(([name]) => name === 'audio_play').length, 0, 'play is only a request');
+  const playingEvent = { type: 'playing', target: audio } as unknown as Event;
+  handlers.onMediaEvent(playingEvent);
+  handlers.onMediaEvent(playingEvent);
   const progressEvent = { type: 'timeupdate', target: audio } as unknown as Event;
-  handlers.onMediaEvent(progressEvent);
-  handlers.onMediaEvent(progressEvent);
+  for (const currentTime of Array.from({ length: 20 }, (_, index) => (index + 1) * 5)) {
+    audio.currentTime = currentTime;
+    handlers.onMediaEvent(progressEvent);
+  }
   const endedEvent = { type: 'ended', target: audio } as unknown as Event;
   handlers.onMediaEvent(endedEvent);
   handlers.onMediaEvent(endedEvent);
   assert.equal(sent.filter(([name]) => name === 'audio_play').length, 1);
-  assert.equal(sent.filter(([name]) => name === 'audio_progress').length, 2);
+  assert.equal(sent.filter(([name]) => name === 'audio_progress').length, 3);
   assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 1);
 
   const shareElement = {
@@ -353,6 +372,287 @@ test('page handlers report visible-tab time and deduplicate scroll, audio, and r
       { page: '/innovation-pulse/[date]', channel: 'native' },
     ]);
   }
+
+  const internalLink = {
+    tagName: 'A',
+    href: 'https://www.innovatinghighered.com/about?email=private@example.com',
+    getAttribute: () => null,
+  };
+  handlers.onClick({ type: 'click', target: { closest: () => internalLink } } as unknown as Event);
+  assert.deepEqual(sent.at(-1), [
+    'internal_link_click',
+    { page: '/innovation-pulse/[date]', target: '/about' },
+  ]);
+});
+
+test('failed playback waits for playing, pause/resume does not duplicate starts, and seeking cannot complete audio', () => {
+  const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
+  const audio = {
+    tagName: 'AUDIO',
+    currentSrc: 'https://storage.example/broadcast-2026-10-09.mp3',
+    duration: 100,
+    currentTime: 0,
+    paused: true,
+    seeking: false,
+    getAttribute: () => null,
+  };
+  const handlers = createPageEngagementHandlers({
+    page: '/',
+    hostname: 'www.innovatinghighered.com',
+    dispatch: (name, properties) => sent.push([name, properties]),
+    getVisibility: () => 'visible',
+    getScrollMetrics: () => ({ scrollHeight: 0, innerHeight: 0, scrollY: 0 }),
+  });
+
+  handlers.onMediaEvent({ type: 'play', target: audio } as unknown as Event);
+  handlers.onMediaEvent({ type: 'error', target: audio } as unknown as Event);
+  assert.equal(sent.filter(([name]) => name === 'audio_play').length, 0);
+
+  audio.paused = false;
+  handlers.onMediaEvent({ type: 'playing', target: audio } as unknown as Event);
+  audio.currentTime = 10;
+  handlers.onMediaEvent({ type: 'timeupdate', target: audio } as unknown as Event);
+  audio.paused = true;
+  handlers.onMediaEvent({ type: 'pause', target: audio } as unknown as Event);
+
+  audio.paused = false;
+  handlers.onMediaEvent({ type: 'playing', target: audio } as unknown as Event);
+  audio.currentTime = 20;
+  handlers.onMediaEvent({ type: 'timeupdate', target: audio } as unknown as Event);
+
+  audio.seeking = true;
+  audio.currentTime = 99;
+  handlers.onMediaEvent({ type: 'seeking', target: audio } as unknown as Event);
+  audio.seeking = false;
+  handlers.onMediaEvent({ type: 'seeked', target: audio } as unknown as Event);
+  audio.currentTime = 100;
+  handlers.onMediaEvent({ type: 'timeupdate', target: audio } as unknown as Event);
+  handlers.onMediaEvent({ type: 'ended', target: audio } as unknown as Event);
+
+  assert.equal(sent.filter(([name]) => name === 'audio_play').length, 1);
+  assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 0);
+  assert.equal(sent.filter(([name]) => name === 'audio_progress').some(([, properties]) => properties.percent === 50), false);
+});
+
+test('replayed prefixes count once, seeked waits for playing, and valid ending completes', () => {
+  const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
+  const audio = {
+    tagName: 'AUDIO',
+    currentSrc: 'https://storage.example/broadcast-2026-10-09.mp3',
+    duration: 100,
+    currentTime: 0,
+    paused: false,
+    seeking: false,
+    getAttribute: () => null,
+  };
+  const handlers = createPageEngagementHandlers({
+    page: '/',
+    hostname: 'www.innovatinghighered.com',
+    dispatch: (name, properties) => sent.push([name, properties]),
+    getVisibility: () => 'visible',
+    getScrollMetrics: () => ({ scrollHeight: 0, innerHeight: 0, scrollY: 0 }),
+  });
+  const media = (type: string) => handlers.onMediaEvent({ type, target: audio } as unknown as Event);
+
+  for (let replay = 0; replay < 10; replay += 1) {
+    if (replay > 0) {
+      audio.seeking = true;
+      audio.currentTime = 0;
+      media('seeking');
+      audio.seeking = false;
+      media('seeked');
+    }
+    audio.paused = false;
+    media('playing');
+    audio.currentTime = 5;
+    media('timeupdate');
+    audio.currentTime = 10;
+    media('timeupdate');
+  }
+
+  audio.seeking = true;
+  audio.currentTime = 99;
+  media('seeking');
+  audio.seeking = false;
+  media('seeked');
+  audio.currentTime = 100;
+  media('timeupdate');
+  media('ended');
+  assert.equal(sent.filter(([name]) => name === 'audio_progress').length, 0, 'seeked without playing cannot advance progress');
+  assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 0, 'seeked without playing cannot complete');
+
+  media('playing');
+  media('timeupdate');
+  media('ended');
+  assert.equal(sent.filter(([name]) => name === 'audio_progress').length, 0, 'replayed prefix does not inflate union coverage');
+  assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 0, 'replayed prefix cannot complete by seeking to the end');
+
+  audio.currentTime = 0;
+  audio.seeking = true;
+  media('seeking');
+  audio.seeking = false;
+  media('seeked');
+  media('playing');
+  for (const currentTime of Array.from({ length: 20 }, (_, index) => (index + 1) * 5)) {
+    audio.currentTime = currentTime;
+    media('timeupdate');
+  }
+  media('ended');
+  assert.equal(sent.filter(([name]) => name === 'audio_progress').length, 3, 'a full valid ending reaches each progress threshold');
+  assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 1, 'a full valid ending completes once');
+});
+
+test('zero-duration audio cannot produce progress or completion', () => {
+  const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
+  const audio = {
+    tagName: 'AUDIO',
+    currentSrc: 'https://storage.example/broadcast-2026-10-09.mp3',
+    duration: 0,
+    currentTime: 0,
+    paused: false,
+    seeking: false,
+    getAttribute: () => null,
+  };
+  const handlers = createPageEngagementHandlers({
+    page: '/',
+    hostname: 'www.innovatinghighered.com',
+    dispatch: (name, properties) => sent.push([name, properties]),
+    getVisibility: () => 'visible',
+    getScrollMetrics: () => ({ scrollHeight: 0, innerHeight: 0, scrollY: 0 }),
+  });
+
+  handlers.onMediaEvent({ type: 'playing', target: audio } as unknown as Event);
+  handlers.onMediaEvent({ type: 'timeupdate', target: audio } as unknown as Event);
+  handlers.onMediaEvent({ type: 'ended', target: audio } as unknown as Event);
+  assert.equal(sent.filter(([name]) => name === 'audio_progress').length, 0);
+  assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 0);
+});
+
+test('terminal pause before ended preserves a valid completion once', () => {
+  const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
+  const audio = {
+    tagName: 'AUDIO',
+    currentSrc: 'https://storage.example/broadcast-2026-10-09.mp3',
+    duration: 100,
+    currentTime: 0,
+    paused: false,
+    seeking: false,
+    getAttribute: () => null,
+  };
+  const handlers = createPageEngagementHandlers({
+    page: '/',
+    hostname: 'www.innovatinghighered.com',
+    dispatch: (name, properties) => sent.push([name, properties]),
+    getVisibility: () => 'visible',
+    getScrollMetrics: () => ({ scrollHeight: 0, innerHeight: 0, scrollY: 0 }),
+  });
+
+  handlers.onMediaEvent({ type: 'playing', target: audio } as unknown as Event);
+  for (const currentTime of Array.from({ length: 20 }, (_, index) => (index + 1) * 5)) {
+    audio.currentTime = currentTime;
+    handlers.onMediaEvent({ type: 'timeupdate', target: audio } as unknown as Event);
+  }
+  audio.paused = true;
+  handlers.onMediaEvent({ type: 'pause', target: audio } as unknown as Event);
+  handlers.onMediaEvent({ type: 'ended', target: audio } as unknown as Event);
+  handlers.onMediaEvent({ type: 'ended', target: audio } as unknown as Event);
+
+  assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 1);
+});
+
+test('source reset clears the started-since-seek completion gate', () => {
+  const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
+  const audio = {
+    tagName: 'AUDIO',
+    currentSrc: 'https://storage.example/broadcast-2026-10-09.mp3',
+    duration: 100,
+    currentTime: 0,
+    paused: false,
+    seeking: false,
+    getAttribute: () => null,
+  };
+  const handlers = createPageEngagementHandlers({
+    page: '/',
+    hostname: 'www.innovatinghighered.com',
+    dispatch: (name, properties) => sent.push([name, properties]),
+    getVisibility: () => 'visible',
+    getScrollMetrics: () => ({ scrollHeight: 0, innerHeight: 0, scrollY: 0 }),
+  });
+
+  handlers.onMediaEvent({ type: 'playing', target: audio } as unknown as Event);
+  for (const currentTime of Array.from({ length: 20 }, (_, index) => (index + 1) * 5)) {
+    audio.currentTime = currentTime;
+    handlers.onMediaEvent({ type: 'timeupdate', target: audio } as unknown as Event);
+  }
+  audio.currentSrc = '';
+  handlers.onMediaEvent({ type: 'emptied', target: audio } as unknown as Event);
+  audio.currentSrc = 'https://storage.example/broadcast-2026-10-09.mp3';
+  audio.currentTime = 100;
+  handlers.onMediaEvent({ type: 'ended', target: audio } as unknown as Event);
+
+  assert.equal(sent.filter(([name]) => name === 'audio_complete').length, 0);
+});
+
+test('click coverage accepts only public routes, fixed actions, and known destinations', () => {
+  const sent: Array<[EngagementEventName, Record<string, string | number | boolean>]> = [];
+  const publicPagePaths = new Set(['/', '/about', '/innovation-pulse/2026-10-09']);
+  const handlers = createPageEngagementHandlers({
+    page: '/',
+    hostname: 'www.innovatinghighered.com',
+    publicPagePaths,
+    dispatch: (name, properties) => sent.push([name, properties]),
+    getVisibility: () => 'visible',
+    getScrollMetrics: () => ({ scrollHeight: 0, innerHeight: 0, scrollY: 0 }),
+  });
+  const click = (element: { tagName?: string; href?: string; getAttribute: (name: string) => string | null }) => {
+    handlers.onClick({ type: 'click', target: { closest: () => element } } as unknown as Event);
+  };
+
+  click({
+    tagName: 'A',
+    href: 'https://www.innovatinghighered.com/account/private-user-id',
+    getAttribute: () => null,
+  });
+  assert.equal(sent.length, 0, 'private same-site paths are dropped');
+
+  click({
+    tagName: 'BUTTON',
+    href: '',
+    getAttribute: (name) => name === 'data-analytics-action' ? 'newsletter_open' : null,
+  });
+  click({
+    tagName: 'BUTTON',
+    href: '',
+    getAttribute: (name) => name === 'data-analytics-action' ? 'newsletter_submit' : null,
+  });
+  click({
+    tagName: 'BUTTON',
+    href: '',
+    getAttribute: (name) => name === 'aria-label' ? 'Toggle menu' : null,
+  });
+  assert.deepEqual(sent, [
+    ['button_click', { page: '/', action: 'newsletter_open' }],
+    ['button_click', { page: '/', action: 'menu_toggle' }],
+  ]);
+
+  for (const [href, destination] of [
+    ['https://podcasts.apple.com/us/podcast/example', 'apple'],
+    ['https://open.spotify.com/show/example', 'spotify'],
+    ['https://music.amazon.com/podcasts/example', 'amazon'],
+    ['https://www.instagram.com/innovatinghighered/', 'instagram'],
+  ] as const) {
+    click({ tagName: 'A', href, getAttribute: () => null });
+    assert.deepEqual(sent.at(-1), ['outbound_click', { page: '/', destination }]);
+  }
+
+  assert.equal(internalLinkTarget('/about?email=private@example.com', 'www.innovatinghighered.com', publicPagePaths), '/about');
+  assert.equal(internalLinkTarget('/account/private-user-id', 'www.innovatinghighered.com', publicPagePaths), null);
+  assert.equal(internalLinkTarget('https://attacker.example/about', 'www.innovatinghighered.com', publicPagePaths), null);
+  assert.equal(
+    sanitizeEngagementEvent('internal_link_click', { page: '/', target: '/about' }, publicPagePaths)?.target,
+    '/about',
+  );
+  assert.equal(sanitizeEngagementEvent('internal_link_click', { page: '/', target: '/account/private-user-id' }, publicPagePaths), null);
 });
 
 class FakeListenerTarget implements ListenerTargetLike {
@@ -393,13 +693,21 @@ test('listener installation has idempotent cleanup for SPA effect replacement', 
 
   assert.equal(windowTarget.listeners.get('scroll')?.size, 1);
   assert.equal(documentTarget.listeners.get('click')?.size, 1);
-  assert.equal(documentTarget.listeners.get('play')?.size, 1);
+  assert.equal(documentTarget.listeners.get('playing')?.size, 1);
+  assert.equal(documentTarget.listeners.get('pause')?.size, 1);
+  assert.equal(documentTarget.listeners.get('seeking')?.size, 1);
+  assert.equal(documentTarget.listeners.get('seeked')?.size, 1);
+  assert.equal(documentTarget.listeners.get('error')?.size, 1);
   cleanup();
   cleanup();
   assert.equal(cleared, 1);
   assert.equal(windowTarget.listeners.get('scroll')?.size, 0);
   assert.equal(documentTarget.listeners.get('click')?.size, 0);
-  assert.equal(documentTarget.listeners.get('play')?.size, 0);
+  assert.equal(documentTarget.listeners.get('playing')?.size, 0);
+  assert.equal(documentTarget.listeners.get('pause')?.size, 0);
+  assert.equal(documentTarget.listeners.get('seeking')?.size, 0);
+  assert.equal(documentTarget.listeners.get('seeked')?.size, 0);
+  assert.equal(documentTarget.listeners.get('error')?.size, 0);
 });
 
 test('closed schemas enforce two properties and exclude raw PII-like fields', () => {
@@ -411,14 +719,16 @@ test('closed schemas enforce two properties and exclude raw PII-like fields', ()
     ['audio_progress', { episode: '2026-08-14', percent: 50 }],
     ['audio_complete', { page: '/', episode: '2026-08-14' }],
     ['share_click', { page: '/', channel: 'native' }],
+    ['internal_link_click', { page: '/', target: '/about' }],
     ['outbound_click', { page: '/innovation-pulse/[date]', destination: 'external' }],
+    ['button_click', { page: '/', action: 'newsletter_open' }],
     ['newsletter_signup_attempt', { placement: 'footer' }],
     ['newsletter_signup_success', { placement: 'footer' }],
     ['newsletter_signup_error', { placement: 'footer', reason: 'network' }],
   ];
 
   for (const [name, properties] of validEvents) {
-    const sanitized = sanitizeEngagementEvent(name, properties);
+    const sanitized = sanitizeEngagementEvent(name, properties, new Set(['/', '/about']));
     assert.ok(sanitized, `${name} should be accepted`);
     assert.ok(Object.keys(sanitized).length <= 2, `${name} exceeds the property limit`);
   }
@@ -435,6 +745,10 @@ test('closed schemas enforce two properties and exclude raw PII-like fields', ()
 test('finite outbound classification and first-observation helper remain fail closed', () => {
   assert.equal(outboundDestination('https://www.innovatinghighered.com/about', 'www.innovatinghighered.com'), null);
   assert.equal(outboundDestination('https://youtu.be/example', 'www.innovatinghighered.com'), 'youtube');
+  assert.equal(outboundDestination('https://podcasts.apple.com/us/podcast/example', 'www.innovatinghighered.com'), 'apple');
+  assert.equal(outboundDestination('https://open.spotify.com/show/example', 'www.innovatinghighered.com'), 'spotify');
+  assert.equal(outboundDestination('https://music.amazon.com/podcasts/example', 'www.innovatinghighered.com'), 'amazon');
+  assert.equal(outboundDestination('https://www.instagram.com/innovatinghighered/', 'www.innovatinghighered.com'), 'instagram');
   assert.equal(outboundDestination('https://news.example.edu/story/person-id', 'www.innovatinghighered.com'), 'external');
   assert.equal(outboundDestination('mailto:person@example.com', 'www.innovatinghighered.com'), null);
   const seen = new Set<string>();
