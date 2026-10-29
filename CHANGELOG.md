@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-10-29] Temporary guest-page pause
+
+- Temporarily redirect `/be-our-guest` to `/podcast`, removing the guest application and QR from the public route while preserving the prior source in Git history.
+
 ## [2026-10-29] Approved homepage style
 
 - Apply the approved compact homepage layout, continuous light/dark canvas, aligned Feature actions, topic/resource panels, and homepage-only footer.
