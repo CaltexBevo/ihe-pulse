@@ -239,24 +239,7 @@ export default function PodcastPage() {
         </div>
       </div>
 
-      {/* Be Our Guest CTA */}
-      <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] pb-12">
-        <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[20px] p-8 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)]" />
 
-          <h2 className="font-sans text-[1.4rem] font-bold mb-2">
-            Be Our Guest
-          </h2>
-          <p className="text-[0.88rem] text-[var(--text-secondary)] max-w-[480px] mx-auto mb-6">
-            Have a story to share about AI in higher education? We&apos;d love to
-            hear from you.
-          </p>
-
-          <Link href="/be-our-guest" className="btn-primary">
-            Apply to Be a Guest
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }
