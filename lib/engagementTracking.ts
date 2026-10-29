@@ -23,6 +23,8 @@ export const INTERNAL_ANALYTICS_OPT_OUT_STORAGE_KEY = 'ihe-internal-analytics-op
 export const INTERNAL_ANALYTICS_OPT_OUT_HASH = '#ihe-analytics-opt-out';
 export const INTERNAL_ANALYTICS_OPT_IN_HASH = '#ihe-analytics-opt-in';
 export const ANALYTICS_BUTTON_ACTIONS = [
+  'audio_play_request',
+  'audio_pause_request',
   'newsletter_open',
   'menu_toggle',
   'theme_toggle',
@@ -572,7 +574,9 @@ function buttonAnalyticsAction(element: InteractiveElementLike): AnalyticsButton
   if (explicit !== null) return BUTTON_ACTIONS.has(explicit) ? explicit as AnalyticsButtonAction : null;
 
   const label = element.getAttribute('aria-label') || '';
-  if (/^Toggle menu$/i.test(label)) return 'menu_toggle';
+  if (/^Play (?:edition|episode|audio)$/i.test(label)) return 'audio_play_request';
+  if (/^Pause (?:edition|episode|audio)$/i.test(label)) return 'audio_pause_request';
+  if (/^(?:Toggle menu|Open navigation menu|Close navigation menu)$/i.test(label)) return 'menu_toggle';
   if (/^Switch to (?:light|dark) mode$/i.test(label)) return 'theme_toggle';
   if (/^Filter tools$/i.test(label)) return 'directory_filter';
   if (/^How we review$/i.test(label)) return 'directory_review';

@@ -635,6 +635,16 @@ test('click coverage accepts only public routes, fixed actions, and known destin
     ['button_click', { page: '/', action: 'menu_toggle' }],
   ]);
 
+  for (const [label, action] of [
+    ['Play edition', 'audio_play_request'],
+    ['Pause edition', 'audio_pause_request'],
+    ['Open navigation menu', 'menu_toggle'],
+  ]) {
+    click({ tagName: 'BUTTON', getAttribute: (key) => key === 'aria-label' ? label : null });
+    assert.deepEqual(sent.at(-1), ['button_click', { page: '/', action }]);
+  }
+  assert.equal(sent.filter(([name]) => name === 'audio_play').length, 0, 'button presses never claim successful playback');
+
   for (const [href, destination] of [
     ['https://podcasts.apple.com/us/podcast/example', 'apple'],
     ['https://open.spotify.com/show/example', 'spotify'],
