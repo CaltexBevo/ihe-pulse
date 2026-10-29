@@ -1,0 +1,48 @@
+{
+  "edition": "edition-20",
+  "editionId": "edition-20",
+  "editionNumber": 20,
+  "subject": "The Innovation Pulse: Edition 20",
+  "sha256": "ef5c377584c736e1b183f8fc9f0b72d3e3af2d4be5a349d134f0aba464587d26",
+  "parentApprovedHTMLSha256": "b47e9ae6f7bd6bd1ff354e9edb7fcd54aabedb805f5e47328a58eb88fd866150",
+  "storyCount": 9,
+  "paragraphCount": 59,
+  "storyHeadlines": [
+    "\u201cMake It So\u201d: How We Made the My Voice at Scale Video",
+    "AI Turned His Brain Signals Into His Familiar Voice",
+    "Make Course Reminders Give Students a Useful Next Step",
+    "Get a Clearer View of Student Reasoning with AI Interviews",
+    "Share AI Study Resources With a Clear Basis for Trust",
+    "Make Vendor Proposals Easier to Compare",
+    "Use an AI Alternative to Sharpen Your Lesson Plan",
+    "Find Journal Publishing Support Before You Submit",
+    "Make Archived Data Easier to Check Before Reusing It"
+  ],
+  "imageUrls": [
+    "https://www.innovatinghighered.com/images/email/ihe-logo.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/weekly-edition-20.png?dpl=dpl_EprqisFgYM9XRHFSNYrHbNNkEq3T",
+    "https://www.innovatinghighered.com/images/feature-coverage/my-voice-at-scale-v18/feature-hero.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-WOW-01.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-64.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-AI-01.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-3.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-AI-03.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-AI-06.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-48.png",
+    "https://www.innovatinghighered.com/images/innovation-pulse/2026-10-09/story-1.png",
+    "https://www.innovatinghighered.com/images/email/ihe-logo.png"
+  ],
+  "listeningUrls": [
+    "https://www.innovatinghighered.com/innovation-pulse/2026-10-09?utm_source=mailchimp&utm_medium=email&utm_campaign=innovation-pulse-2026-10-09&utm_content=listen&autoplay=true#audio-player",
+    "https://www.youtube.com/watch?v=8OLae04GiNM",
+    "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335",
+    "https://open.spotify.com/show/4rMDJnlFbrLMr0hKAE3Oe6",
+    "https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/innovating-higher-ed",
+    "https://innovatinghighered.podbean.com/",
+    "https://www.innovatinghighered.com/audio/feature-my-voice-at-scale-v18.mp3"
+  ],
+  "canonicalEditionUrl": "https://www.innovatinghighered.com/innovation-pulse/2026-10-09",
+  "shareUrl": "https://www.innovatinghighered.com/innovation-pulse/share/edition-20",
+  "sourceParagraphCounting": "All p elements preceding FORWARD CTA; includes header and Feature preview",
+  "providerDraftUIId": "13525343"
+}
