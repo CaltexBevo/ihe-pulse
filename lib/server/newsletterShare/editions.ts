@@ -1,6 +1,6 @@
 export const EDITIONS = {
   "edition-20": {
-    "sha256": "d7d53ef83b36797eb5644d8f8f3c67194448d6eca429d29391b039a8448019bf",
+    "sha256": "ef5c377584c736e1b183f8fc9f0b72d3e3af2d4be5a349d134f0aba464587d26",
     "subject": "The Innovation Pulse: Edition 20",
     "storyCount": 9,
     "paragraphCount": 59

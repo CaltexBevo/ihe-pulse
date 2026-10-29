@@ -3,7 +3,7 @@
   "editionId": "edition-20",
   "editionNumber": 20,
   "subject": "The Innovation Pulse: Edition 20",
-  "sha256": "d7d53ef83b36797eb5644d8f8f3c67194448d6eca429d29391b039a8448019bf",
+  "sha256": "ef5c377584c736e1b183f8fc9f0b72d3e3af2d4be5a349d134f0aba464587d26",
   "parentApprovedHTMLSha256": "b47e9ae6f7bd6bd1ff354e9edb7fcd54aabedb805f5e47328a58eb88fd866150",
   "storyCount": 9,
   "paragraphCount": 59,
@@ -38,7 +38,8 @@
     "https://podcasts.apple.com/us/podcast/innovating-higher-ed/id1774879335",
     "https://open.spotify.com/show/4rMDJnlFbrLMr0hKAE3Oe6",
     "https://music.amazon.com/podcasts/3ab228ea-6a9d-4173-95e9-dcc03bc6ecc9/innovating-higher-ed",
-    "https://innovatinghighered.podbean.com/"
+    "https://innovatinghighered.podbean.com/",
+    "https://www.innovatinghighered.com/audio/feature-my-voice-at-scale-v18.mp3"
   ],
   "canonicalEditionUrl": "https://www.innovatinghighered.com/innovation-pulse/2026-10-09",
   "shareUrl": "https://www.innovatinghighered.com/innovation-pulse/share/edition-20",
