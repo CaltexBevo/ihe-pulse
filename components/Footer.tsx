@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import FooterLayout from './FooterLayout';
 import Link from 'next/link';
 import NewsletterSignup from './NewsletterSignup';
 import FooterShareButton from './FooterShareButton';
@@ -19,7 +20,27 @@ const communityLinks = [
 
 export default function Footer() {
   return (
-    <footer className={`${styles.footer} border-t border-[var(--border)] bg-[var(--bg-elevated)]`} role="contentinfo">
+    <FooterLayout homepage={<div className={styles.homeRow}>
+      <Link href="/" aria-label="Innovating Higher Ed home" className={styles.logoLink}>
+        <span className={styles.logoFrame} aria-hidden="true">
+          <Image src="/images/ihe-logo.png" alt="" fill sizes="100px" className={`${styles.logo} ${styles.logoDark}`} />
+          <Image src="/images/ihe-logo-light.png" alt="" fill sizes="100px" className={`${styles.logo} ${styles.logoLight}`} />
+        </span>
+      </Link>
+      <div className={styles.homeSocial} aria-label="Innovating Higher Ed social links">
+        {PLATFORM_LINKS.map(platform => <a key={platform.name} href={platform.href} target="_blank" rel="noopener noreferrer" className={`${styles.socialLink} ${styles[platform.name]}`} aria-label={platform.accessibleLabel} title={platform.label}><span className={styles.socialIcon}><PlatformIcon name={platform.name} /></span></a>)}
+        <FooterShareButton className={styles.homeShare} />
+      </div>
+      <a className={styles.homeContact} href="mailto:info@innovatinghighered.com">Contact Us</a>
+      <nav className={styles.homeLegal} aria-label="Legal links">
+        <Link href="/about">About</Link>
+        <Link href="/terms">Terms of Use</Link>
+        <Link href="/privacy">Privacy Policy</Link>
+        <Link href="/disclaimer">Disclaimer</Link>
+        <Link href="/ai-disclosure">AI Disclosure</Link>
+      </nav>
+      <span className={styles.homeCopyright}>&copy; 2026 Innovating Higher Ed. All rights reserved.</span>
+    </div>}>
       <div className="mx-auto max-w-[var(--max-w)] px-[var(--px)] py-10">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-[minmax(340px,1.5fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(240px,1.2fr)] lg:gap-12">
           <div>
@@ -101,7 +122,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div>
+          <div className={styles.newsletterColumn}>
             <NewsletterSignup variant="footer" />
           </div>
         </div>
@@ -121,6 +142,6 @@ export default function Footer() {
           </nav>
         </div>
       </div>
-    </footer>
+    </FooterLayout>
   );
 }

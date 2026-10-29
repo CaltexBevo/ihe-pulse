@@ -637,3 +637,56 @@
 .editionArtwork { background: var(--bg-card); }
 .editionTitle { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 750; padding: 24px; margin: 0; }
 .completeArtwork { display: block; width: 100%; height: auto; object-fit: contain; }
+
+/* Compact homepage owner; dated edition presentation remains unchanged. */
+.compact { margin:0; height:100%; border-radius:10px; box-shadow:var(--home-shadow); }
+.compact .playerPanel { grid-template-columns:minmax(0,1fr) auto; min-height:0; align-items:center; }
+.compact .playerSection { grid-template-columns:54px minmax(0,1fr); gap:14px; padding:15px; }
+.compact .playButton { width:54px; height:54px; box-shadow:none; }
+.compact .playIcon,.compact .pauseIcon { width:25px; height:25px; }
+.compact .playerLabel { font-size:.65rem; margin-bottom:6px; }
+.compact .waveShell { height:40px; }
+.compact .timeReadout { font-size:.65rem; margin-top:5px; }
+.readEdition { display:flex; align-items:center; gap:10px; margin:12px 15px 12px 0; padding:12px; border-radius:7px; background:var(--cyan); color:var(--bg); font-size:.8rem; line-height:1.3; font-weight:750; text-decoration:none; }
+.readEdition:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
+.compact .actionPanel { grid-column:1/-1; flex-direction:row; align-items:center; justify-content:space-between; gap:12px; padding:8px 15px; border-left:0; border-top:1px solid var(--border-strong); text-align:left; }
+.compact .showName { font-size:.7rem; letter-spacing:.02em; }
+.compact .episodeMeta { font-size:.57rem; gap:6px; margin-top:5px; justify-content:flex-start; }
+.compact .listenFollow { font-size:.55rem; margin:0; }
+.compact .platformGrid { gap:3px; flex:0 1 280px; }
+.compact .platformLink,.compact .shareButton { min-height:40px; font-size:.51rem; padding:2px; gap:2px; }
+.compact .platformIcon { width:22px; height:22px; }
+@media(max-width:1100px) { .compact .actionPanel { flex-wrap:wrap; } .compact .listenFollow { display:none; } .compact .platformGrid { flex:1; min-width:220px; } }
+@media(max-width:540px) { .compact .playerPanel { grid-template-columns:1fr; } .compact .playerSection { padding-bottom:8px; } .readEdition { margin:0 15px 12px; justify-content:center; } .compact .actionPanel { align-items:center; } .compact .actionHeading { width:100%; } .compact .platformGrid { flex-basis:100%; } .compact .platformLink,.compact .shareButton { font-size:.6rem; min-height:48px; } }
+
+:global([data-homepage]) .compact { margin-top:0; }
+
+:global([data-homepage]) .compact { border-color:var(--home-outline); }
+.compact .readEdition { background:var(--home-button); color:var(--home-ink); }
+.compact .readEdition:hover { background:var(--home-button-hover); }
+.compact .readEdition:focus-visible { outline-color:var(--home-link); }
+.compact .playButton { border-color:var(--home-accent); }
+.compact .playerLabel,.compact .showName,.compact .episodeMeta span:last-child { color:var(--home-link); }
+.compact .waveBar { background:var(--home-accent); opacity:.8; }
+.compact .waveBarPlayed { background:var(--home-link); opacity:1; }
+.compact .actionPanel { flex-wrap:nowrap; padding:6px 15px; border-color:var(--home-outline); }
+.compact .actionHeading { width:auto; }
+.compact .showName { line-height:1.4; }
+.compact .platformGrid { display:block; flex:0 0 auto; min-width:0; }
+.compact .shareButton { flex-direction:row; align-items:center; gap:6px; min-height:40px; padding:4px 8px; color:var(--home-link); font-size:.7rem; }
+.compact .episodeMeta { font-family:var(--font-sans); text-transform:none; font-size:.67rem; letter-spacing:0; }
+
+/* Compact listening links retain comfortable targets without competing with edition identity. */
+.compact .actionPanel { flex-wrap:wrap; gap:6px 12px; }
+.compact .actionHeading { flex:1 1 230px; }
+.compact .platformGrid { display:flex; flex:0 1 auto; align-items:center; gap:2px; }
+.compact .platformLink { width:36px; min-height:44px; padding:6px; }
+.compact .platformIcon { width:22px; height:22px; }
+.compact .shareButton { min-height:44px; padding:6px; }
+@media(max-width:540px) { .compact .actionHeading { flex-basis:100%; } .compact .platformGrid { flex:1 1 100%; justify-content:space-between; } .compact .platformLink { width:40px; } }
+@media(max-width:540px) {
+  .compact .platformGrid { flex-wrap:wrap; }
+  .compact .platformLink { width:36px; min-width:36px; flex:0 0 36px; min-height:44px; }
+  .compact .shareButton { flex:0 0 auto; min-width:70px; margin-left:auto; }
+  .compact .platformIcon { flex-shrink:0; }
+}

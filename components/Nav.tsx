@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { PLATFORM_LINKS, PlatformIcon } from "./PlatformLinks";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Nav.module.css";
 
@@ -20,8 +21,15 @@ const navLinks = [
   // Hidden from nav per 2026-04-17 sprint — pages still exist at /tinker-lab and /be-our-guest
 ];
 
+function HomepagePlatforms() {
+  return <div className={styles.homePlatforms} role="group" aria-label="Follow and listen to Innovating Higher Ed">
+    {PLATFORM_LINKS.map(platform => <a key={platform.name} href={platform.href} target="_blank" rel="noopener noreferrer" aria-label={platform.accessibleLabel} title={platform.label} className={styles[platform.name]}><PlatformIcon name={platform.name} /></a>)}
+  </div>;
+}
+
 export default function Nav() {
   const pathname = usePathname();
+  const isHomepage = pathname === "/";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (href: string) => {
@@ -33,7 +41,7 @@ export default function Nav() {
 
   return (
     <nav
-      className="sticky top-0 z-[100] border-b border-[var(--border)] glass"
+      className={`sticky top-0 z-[100] border-b border-[var(--border)] glass ${isHomepage ? styles.homeNav : ""}`}
     >
       <div className="flex items-center h-14 px-[var(--px)] max-w-[var(--max-w)] mx-auto">
         {/* Brand Logo with hover glow */}
@@ -71,7 +79,7 @@ export default function Nav() {
 
         {/* Nav Links - Desktop */}
         <div
-          className="hidden lg:flex items-center gap-[0.15rem] ml-auto"
+          className={`hidden lg:flex items-center gap-[0.15rem] ml-auto ${isHomepage ? styles.homeDesktop : ""}`}
           data-theme-slot="desktop"
         >
           {navLinks.map((link) => (
@@ -92,6 +100,7 @@ export default function Nav() {
             </Link>
           ))}
 
+          {isHomepage && <HomepagePlatforms />}
           <div className="ml-2 pl-2 border-l border-[var(--border)]">
             <ThemeToggle />
           </div>
@@ -99,7 +108,7 @@ export default function Nav() {
 
         {/* Mobile: Theme Toggle + Menu Button */}
         <div
-          className="lg:hidden ml-auto flex items-center gap-1"
+          className={`lg:hidden ml-auto flex items-center gap-1 ${isHomepage ? styles.homeMobile : ""}`}
           data-theme-slot="mobile"
         >
           <ThemeToggle />
@@ -138,7 +147,7 @@ export default function Nav() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-[var(--border)] glass">
+        <div className={`lg:hidden border-t border-[var(--border)] glass ${isHomepage ? styles.homeDropdown : ""}`}>
           <div className="px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -158,6 +167,7 @@ export default function Nav() {
                 {link.label}
               </Link>
             ))}
+            {isHomepage && <HomepagePlatforms />}
           </div>
         </div>
       )}

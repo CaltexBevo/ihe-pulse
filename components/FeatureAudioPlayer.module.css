@@ -89,3 +89,10 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.compact { margin-top:0; gap:6px; }
+.compact .playButton { min-height:40px; padding:10px 14px; border:1px solid var(--cyan); border-radius:7px; background:transparent; color:var(--text); font-size:.8rem; }
+.compact .details { font-size:.65rem; }
+
+:global([data-homepage]) .compact .playButton { border-color:var(--home-accent); color:var(--home-link); }
+:global([data-homepage]) .compact .playButton:hover { background:var(--home-button); color:var(--home-ink); }

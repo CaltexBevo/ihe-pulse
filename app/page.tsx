@@ -1,4 +1,6 @@
 import styles from './homepage/HomepageShell.module.css';
+import HomepageWelcome from "./homepage/HomepageWelcome";
+import MoreStoriesToExplore from "./homepage/MoreStoriesToExplore";
 import HomeEpisodePlayer from "@/components/HomeEpisodePlayer";
 import HomeGrantSpotlight from "@/components/HomeGrantSpotlight";
 import HomepagePulse from "@/app/homepage/HomepagePulse";
@@ -27,17 +29,12 @@ export default function Home() {
 
   return (
     <div className={styles.homepage} data-homepage>
-      <HomeGrantSpotlight />
-      <section className="relative" aria-label="Latest Innovation Pulse">
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,212,255,0.04)] via-[rgba(200,80,192,0.02)] to-transparent pointer-events-none" />
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-40" />
-
-        <div className="max-w-[var(--max-w)] mx-auto px-[var(--px)] relative">
-          {heroEpisode && (
-            <HomeEpisodePlayer latestEpisode={heroEpisode} />
-          )}
-        </div>
-      </section>
+      <HomepageWelcome />
+      <div className={styles.leadRow}>
+        {heroEpisode && <HomeEpisodePlayer latestEpisode={heroEpisode} compact />}
+        <MoreStoriesToExplore />
+      </div>
+      <HomeGrantSpotlight compact />
 
       <HomepagePulse episode={pulseEpisode} />
     </div>
