@@ -3175,7 +3175,7 @@ grant({
     "eligibility": "CU Denver Downtown Campus IRC faculty and lecturers. The current application lists lecturers, instructors, senior/principal instructors and teaching-track faculty. One professional-development grant per academic year.",
     "whatItFunds": "Professional training, new instructional skills, course-delivery improvements, alternative teaching methods, instructional technology and institutional or student improvement activities.",
     "geography": "CU Denver Downtown Campus only",
-    "costShareRequirement": "Department or school matching funds and documented approval are required; minimum amount or ratio is not stated",
+    "costShareRequirement": "Department or school matching funds are required, with documented approval",
     "applicationAccess": "Public AY 2027 Formstack application and separate department approval form. Applicants provide activity goals, outcomes, budget and matching-fund confirmation; recipients complete an outcomes evaluation.",
     "deadline": "Feb. 2, 2027 at 11:59 p.m.; time zone not stated",
     "deadlineTimeZone": "Not stated in the official source",
@@ -3194,7 +3194,7 @@ grant({
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 30, 2026",
     "qualifiers": [
-        "Apply at least one month before travel. After-the-fact reimbursement requires chair approval; international travel requires Concur approval documentation.",
+        "The minimum matching amount or ratio is not stated. Apply at least one month before travel. After-the-fact reimbursement requires chair approval; international travel requires Concur approval documentation.",
         "Activities must relate to the applicant’s position or field. College tuition and events also submitted for salary advancement are excluded."
     ],
     "sourceNotes": "Official current call, expanded full instructions, AY 2027 application, department approval form and rubric verified Oct. 30. The application and full instructions require departmental matching for applicants, beyond the overview’s administrator shorthand. The $20,000 annual fund is not isolated to this call and is excluded from the aggregate; the $1,000 individual cap is also excluded."

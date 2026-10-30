@@ -13,6 +13,7 @@ const { getInnovationGrantLifecycle, getInnovationGrantFundingSnapshot, sortInno
 const {
   DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS,
   filterInnovationGrantOpportunities,
+  classifyInnovationGrantCostShare,
 } = await import("../lib/innovation-grants-directory.ts");
 const { innovationGrants, INNOVATION_GRANTS_VERIFIED_ON, INNOVATION_GRANTS_FULL_SEARCH_DATE } = await import("../lib/data/innovation-grants.ts");
 
@@ -1010,6 +1011,7 @@ test("October 30 institutional additions preserve restrictions and exclude infer
   assert.equal(denver.finalDeadlineDate, "2027-02-02");
   assert.match(denver.deadline, /11:59 p.m.; time zone not stated/);
   assert.match(denver.costShareRequirement, /matching funds.*required/);
+  assert.equal(classifyInnovationGrantCostShare(denver), "required");
   const snapshot = getInnovationGrantFundingSnapshot(records, new Date("2026-10-30T13:00:00Z"));
   assert.equal(snapshot.publishedProgramPoolUsd, 94052490);
   assert.equal(snapshot.openOpportunityCount, 44);
