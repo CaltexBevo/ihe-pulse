@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -233,7 +233,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 44,
     portalAddedDate: "2026-08-29",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 7,
     title: "NSF State and Regional Artificial Intelligence Infrastructure Hubs",
     source: "U.S. National Science Foundation",
@@ -938,7 +938,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 69,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 24,
     title: "Cornerstone: Learning for Living",
     source: "The Teagle Foundation",
@@ -990,7 +990,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 71,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 12,
     title: "NSF Innovation in Two-Year College STEM Education",
     source: "U.S. National Science Foundation",
@@ -1020,7 +1020,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 72,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 2,
     title: "NSF IUSE: EDU: January 2027 tracks",
     source: "U.S. National Science Foundation",
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1166,7 +1166,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 77,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 8,
     title: "Wake Forest ECI Communities of Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1257,7 +1257,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 80,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 10,
     title: "USDA NIFA Tribal Colleges Research Grant Program",
     source: "USDA National Institute of Food and Agriculture",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1469,7 +1469,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
 grant({
     portalAddedDate: "2026-09-07",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     applicationStatus: "open-now",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Sep. 7",
@@ -1597,7 +1597,7 @@ grant({
   grant({
     id: 91,
     portalAddedDate: "2026-09-14",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 19,
     title: "NSF Computing Education Research",
     source: "U.S. National Science Foundation",
@@ -1664,7 +1664,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      lastVerified: "Oct 29, 2026",
+      lastVerified: "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1703,7 +1703,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 29, 2026",
+      "lastVerified": "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 29, 2026",
+      "lastVerified": "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1853,7 +1853,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 29, 2026",
+      "lastVerified": "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Oct 29, 2026",
+      "lastVerified": "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1969,7 +1969,7 @@ grant({
   grant({
       "id": 101,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 29, 2026",
+      "lastVerified": "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2048,7 +2048,7 @@ grant({
   grant({
       "id": 103,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 29, 2026",
+      "lastVerified": "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2165,7 +2165,7 @@ grant({
   grant({
       "id": 106,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Oct 29, 2026",
+      "lastVerified": "Oct 30, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2246,7 +2246,7 @@ grant({
   grant({
     id: 108,
     portalAddedDate: "2026-09-28",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     publishedProgramPoolUsd: 30_600_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 19,
@@ -2307,7 +2307,7 @@ grant({
   }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 29, 2026",
+    "lastVerified": "Oct 30, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2385,7 +2385,7 @@ grant({
 }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 29, 2026",
+    "lastVerified": "Oct 30, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2422,7 +2422,7 @@ grant({
   grant({
     "id": 114,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Oct 29, 2026",
+    "lastVerified": "Oct 30, 2026",
     "recommendationRank": 38,
     "title": "Provost's Award for Teaching Innovations in the Age of AI",
     "source": "Northwestern University",
@@ -2494,7 +2494,7 @@ grant({
   grant({
     id: 116,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 41,
     title: "College of the Redwoods President's Innovation Funds: Fall 2026",
     source: "College of the Redwoods Foundation",
@@ -2522,7 +2522,7 @@ grant({
   grant({
     id: 117,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 39,
     title: "Engaging Difference in General Education (EDGE) Grants: 2026–28",
     source: "Interfaith America",
@@ -2551,7 +2551,7 @@ grant({
   grant({
     id: 118,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 42,
     title: "IU Indianapolis Open Educational Resources Development Grants",
     source: "Indiana University Indianapolis University Library",
@@ -2580,7 +2580,7 @@ grant({
   grant({
     id: 119,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 34,
     title: "AmeriHealth Caritas Bridge Pilot for Short-Term Healthcare Pathways",
     source: "North Carolina Community Colleges Foundation and NC Community College System",
@@ -2767,7 +2767,7 @@ grant({
   grant({
     id: 125,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 48,
     title: "Open Nebraska Affordable Content Grants: Fall 2026",
     source: "University of Nebraska Omaha Criss Library and Open Nebraska",
@@ -2795,7 +2795,7 @@ grant({
   grant({
     id: 126,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 49,
     title: "Integrated Data Systems & Services (IDSS)",
     source: "National Science Foundation",
@@ -2824,7 +2824,7 @@ grant({
   grant({
     id: 127,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 50,
     title: "Open Educational Resources Grant (AY27)",
     source: "National University",
@@ -2852,7 +2852,7 @@ grant({
   grant({
     id: 128,
     portalAddedDate: "2026-10-15",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 9,
     title: "NSF Tribal Colleges and Universities Program: 2026–27 rolling tracks",
     source: "U.S. National Science Foundation",
@@ -2885,7 +2885,7 @@ grant({
   grant({
     id: 129,
     portalAddedDate: "2026-10-16",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 39,
     title: "Glendale Community College Senate Innovation Grant",
     source: "Glendale Community College Academic Senate",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2977,7 +2977,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -3006,7 +3006,7 @@ grant({
   grant({
     id: 133,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 29,
     title: "Educating Character Initiative: 2027 Capacity-Building Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -3037,7 +3037,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3067,7 +3067,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3097,7 +3097,7 @@ grant({
   grant({
     id: 136,
     portalAddedDate: "2026-10-28",
-    lastVerified: "Oct 29, 2026",
+    lastVerified: "Oct 30, 2026",
     recommendationRank: 33,
     title: "CCCCO AI for Teaching and Learning Institute: Cohort 1",
     source: "California Community Colleges Chancellor's Office",
@@ -3123,6 +3123,82 @@ grant({
     qualifiers: ["Jan. 19–June 18, 2027 participation requires an estimated 40–60 hours per team member, plus local planning time. The application requires an in-person convening; details are forthcoming.", "Teams produce an openly licensed project artifact and participate in program evaluation."],
     sourceNotes: "Official call and linked application verified Oct. 28. The form announces 15 selected colleges, but no aggregate funding pool is explicitly published. The $10,000 per-college amount is excluded from the program-pool tally; no multiplication or assumption of unrestricted cash. Cohort 2 interest in the form is not a separately verified open funding call.",
   }),
+  grant({
+    "id": 137,
+    "portalAddedDate": "2026-10-30",
+    "lastVerified": "Oct 30, 2026",
+    "recommendationRank": 34,
+    "title": "University of South Carolina Innovative Pedagogy Grant",
+    "source": "University of South Carolina Center for Teaching Excellence",
+    "officialUrl": "https://sc.edu/about/offices_and_divisions/cte/programs/grants/innovative_pedagogy_grant/index.php",
+    "applicationUrl": "https://sc.edu/about/offices_and_divisions/cte/programs/grants/innovative_pedagogy_grant/innovative_pedagogy_grant_2026-2027_application/index.php",
+    "announcedDate": "2026–27 call; exact announcement date not stated",
+    "awardAmount": "$2,500 per award; up to 10 awards, subject to application quality and available funding",
+    "eligibility": "Full-time faculty at USC Columbia or the Schools of Medicine in Columbia and Greenville. Applicants must teach the funded course as instructor of record and have completed prior CTE-funded projects and reports. One funded course per recipient.",
+    "whatItFunds": "Developing or revising a course using pedagogical innovations, with instructional-design support; salary, equipment, student support, travel and other implementation resources are eligible.",
+    "geography": "University of South Carolina Columbia and Schools of Medicine Columbia and Greenville only",
+    "costShareRequirement": "Not stated in the official source",
+    "applicationAccess": "Public current-cycle application requires a project narrative of up to 1,250 words, signed department support form, CV, budget-manager details and a PeopleSoft chart string.",
+    "deadline": "Nov. 2, 2026; time and time zone not stated",
+    "deadlineTimeZone": "Not stated in the official source",
+    "finalDeadlineDate": "2026-11-02",
+    "audiences": [
+        "four-year-colleges-universities",
+        "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+        "teaching-learning",
+        "faculty-development"
+    ],
+    "scopeDisposition": "included",
+    "bestFit": "Eligible USC faculty seeking funding and instructional-design support to develop or revise a course.",
+    "eligibilityBadge": "Eligible USC full-time faculty only",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Oct. 30, 2026",
+    "qualifiers": [
+        "Department endorsement must confirm that the course will be offered and taught by the applicant in spring, summer or fall 2027. Applicants certify they are not on notice of termination and have not accepted employment elsewhere.",
+        "Recipients attend a December 2026 kickoff and September 2027 sharing workshop, implement the course in 2027 and submit a final report by Dec. 17, 2027."
+    ],
+    "sourceNotes": "Official call, expanded guidelines, current application and department support PDF verified Oct. 30. No aggregate program pool is explicitly published; the per-award amount and maximum award count are not multiplied into the tally."
+}),
+  grant({
+    "id": 138,
+    "portalAddedDate": "2026-10-30",
+    "lastVerified": "Oct 30, 2026",
+    "recommendationRank": 35,
+    "title": "CU Denver IRC Faculty Professional Development Grant",
+    "source": "University of Colorado Denver Center for Faculty Development & Advancement",
+    "officialUrl": "https://www.cudenver.edu/center-for-faculty-development-advancement/faculty-grants-at-the-cfda/irc-faculty-professional-development-grant",
+    "applicationUrl": "https://ucdenverdata.formstack.com/forms/ay2027_ircpdgrant",
+    "announcedDate": "AY 2027 call; exact opening date not stated",
+    "awardAmount": "Up to $1,000 per faculty member per academic year",
+    "eligibility": "CU Denver Downtown Campus IRC faculty and lecturers. The current application lists lecturers, instructors, senior/principal instructors and teaching-track faculty. One professional-development grant per academic year.",
+    "whatItFunds": "Professional training, new instructional skills, course-delivery improvements, alternative teaching methods, instructional technology and institutional or student improvement activities.",
+    "geography": "CU Denver Downtown Campus only",
+    "costShareRequirement": "Department or school matching funds are required, with documented approval",
+    "applicationAccess": "Public AY 2027 Formstack application and separate department approval form. Applicants provide activity goals, outcomes, budget and matching-fund confirmation; recipients complete an outcomes evaluation.",
+    "deadline": "Feb. 2, 2027 at 11:59 p.m.; time zone not stated",
+    "deadlineTimeZone": "Not stated in the official source",
+    "finalDeadlineDate": "2027-02-02",
+    "audiences": [
+        "four-year-colleges-universities",
+        "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+        "teaching-learning",
+        "faculty-development"
+    ],
+    "scopeDisposition": "included",
+    "bestFit": "Eligible CU Denver faculty seeking support to strengthen instructional skills or improve course delivery.",
+    "eligibilityBadge": "CU Denver Downtown IRC faculty only",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Oct. 30, 2026",
+    "qualifiers": [
+        "The minimum matching amount or ratio is not stated. Apply at least one month before travel. After-the-fact reimbursement requires chair approval; international travel requires Concur approval documentation.",
+        "Activities must relate to the applicant’s position or field. College tuition and events also submitted for salary advancement are excluded."
+    ],
+    "sourceNotes": "Official current call, expanded full instructions, AY 2027 application, department approval form and rubric verified Oct. 30. The application and full instructions require departmental matching for applicants, beyond the overview’s administrator shorthand. The $20,000 annual fund is not isolated to this call and is excluded from the aggregate; the $1,000 individual cap is also excluded."
+}),
 ];
 
 export const INNOVATION_GRANTS_ACTIONABLE_COUNT = innovationGrants.filter(
