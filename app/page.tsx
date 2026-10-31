@@ -1,3 +1,4 @@
+import PicardFeatureHero from "@/components/PicardFeatureHero";
 import styles from './homepage/HomepageShell.module.css';
 import HomepageWelcome from "./homepage/HomepageWelcome";
 import MoreStoriesToExplore, { ArchiveStoriesSidebar } from "./homepage/MoreStoriesToExplore";
@@ -31,11 +32,12 @@ export default function Home() {
   return (
     <div className={styles.homepage} data-homepage>
       <HomepageWelcome />
+      <PicardFeatureHero home />
+      <HomeGrantSpotlight compact />
       <div className={styles.leadRow}>
         {heroEpisode && <HomeEpisodePlayer latestEpisode={heroEpisode} compact />}
         <Suspense fallback={<ArchiveStoriesSidebar />}><MoreStoriesToExplore /></Suspense>
       </div>
-      <HomeGrantSpotlight compact />
 
       <HomepagePulse episode={pulseEpisode} />
     </div>

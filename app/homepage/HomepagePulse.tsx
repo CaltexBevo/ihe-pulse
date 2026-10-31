@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import ResourceIcon, { type ResourceIconName } from './ResourceIcon';
-import FeaturedCoverage from '@/components/FeaturedCoverage';
 import EmailSignup from '@/components/EmailSignup';
 import QuickHitsSlider from '@/components/QuickHitsSlider';
-import { FEATURED_COVERAGE, LATEST_FEATURED_COVERAGE } from '@/lib/data/featured-coverage';
+import { FEATURED_COVERAGE } from '@/lib/data/featured-coverage';
 import {
   formatPulseDate,
   V4_CATEGORY_SLUGS,
@@ -123,7 +122,6 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
         </div>
       </section>
 
-      <FeaturedCoverage feature={LATEST_FEATURED_COVERAGE} variant="homepage" />
 
       <div className={styles.lowerGroups}>
       <section className={styles.topicsSection} aria-labelledby="topics-heading">

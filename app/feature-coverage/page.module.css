@@ -223,3 +223,6 @@
 :global([data-theme='light'] body:has([data-site-light-background])) .page {
   background: transparent;
 }
+
+/* Preserve the approved Picard master, including its complete title and logo. */
+.picardArtwork{aspect-ratio:3 / 2}.picardArtwork .image{object-fit:contain}.cardLink:hover .picardArtwork .image{transform:none}

@@ -214,7 +214,7 @@ test("homepage Feature audio is an independent control beside a separate Read ac
   assert.equal((markup.match(/<button\b/g) ?? []).length, 1);
   assert.match(markup, /<button type="button" class="playButton" aria-label="Listen to the Feature"/);
   assert.ok(latestAnchorClose > latestAnchorOpen, "the audio button must not be nested in the artwork link");
-  assert.match(markup, /Read full coverage/);
+  assert.match(markup, /Read the Feature/);
   assert.ok(markup.includes(dataModule.LATEST_FEATURED_COVERAGE.byline));
   assert.ok(markup.includes(dataModule.LATEST_FEATURED_COVERAGE.homepageImagePath ?? dataModule.LATEST_FEATURED_COVERAGE.imagePath));
 });
@@ -256,4 +256,23 @@ test("Wonka keeps source context inline without a note beneath the recording", a
   assert.ok(markup.lastIndexOf(context) > markup.indexOf("That bot alone helped reduce summer melt by 22%"));
   assert.match(markup, /src="\/audio\/feature-wonka-lantern-v3\.mp3"/);
   assert.doesNotMatch(markup, /href="https:\/\/success\.gsu\.edu\/reduction-of-summer-melt\/"/);
+});
+
+
+test("Picard preserves all 102 approved paragraphs and exact narration/artwork", async () => {
+  const markup = await renderFeaturePage("the-measure-of-a-man");
+  const data = loadCommonJs(dataSource, resolve(root, "lib/data/featured-coverage.ts")).getFeaturedCoverageBySlug("the-measure-of-a-man");
+  const paragraphs = data.sections.flatMap(section => section.paragraphs);
+  assert.equal(paragraphs.length, 102);
+  assert.equal(createHash("sha256").update(paragraphs.join("\n\n")).digest("hex"), "cc39a38e4ef5a324a40b155a133cf6ce6b982fbe94e984c128e6b1af33cb86d5");
+  assert.equal((markup.match(/data-source-index=/g) ?? []).length, 102);
+  assert.equal((markup.match(/<h1\b/g) ?? []).length, 1);
+  assert.equal((markup.match(/<audio\b/g) ?? []).length, 1);
+  assert.match(markup, /Adieu, mon capitaine\./);
+  assert.match(markup, /Read the Feature<\/a>/);
+  assert.match(markup, /id="read"/);
+  for (const [path, hash] of [
+    [data.imagePath, "6387a06818f7285bb94e2d1ff3b88527175550284705705ee2d3ca1ba1a62c1c"],
+    [data.audioUrl, "56b46f7a267d57ad5618b7740b6301fa7ccc989d6b0c5fbc44541ec765eaeef3"],
+  ]) assert.equal(createHash("sha256").update(readFileSync(resolve(root, "public" + path))).digest("hex"), hash);
 });
