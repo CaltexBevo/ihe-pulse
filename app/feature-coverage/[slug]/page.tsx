@@ -1,3 +1,4 @@
+import PicardFeatureArticle from "@/components/PicardFeatureArticle";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -355,6 +356,8 @@ export default async function FeaturedCoveragePage({
   if (!feature) {
     notFound();
   }
+
+  if (feature.slug === "the-measure-of-a-man") return <PicardFeatureArticle />;
 
   if (feature.presentation === "launch") {
     return <FeatureLaunchArticle feature={feature} />;
