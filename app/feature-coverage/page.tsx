@@ -30,7 +30,7 @@ export default function FeatureCoverageIndexPage() {
           {FEATURED_COVERAGE.map((feature) => (
             <article key={feature.slug} className={styles.card}>
               <Link href={`/feature-coverage/${feature.slug}`} className={styles.cardLink}>
-                <div className={styles.artwork}>
+                <div className={`${styles.artwork} ${feature.slug === "the-measure-of-a-man" ? styles.picardArtwork : ""}`}>
                   {feature.imagePath ? (
                     <Image
                       src={feature.imagePath}
