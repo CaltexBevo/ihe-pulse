@@ -295,3 +295,11 @@ export const PICARD_SECTIONS = [
 ];
 
 export const PICARD_SIGNALS = ["Picard's artificial heart shows us that technology can become part of our lives without diminishing our humanity.", "He remained open to who they might become.", "Perhaps the measure of a human isn't what we're made of, but what we choose to become.", "Faculty don't have to know everything about AI. We can ask questions, learn alongside students, and model intellectual humility."];
+
+export const PICARD_PULL_QUOTES = [
+  "Why do we so often measure other forms of intelligence by how closely they resemble our own?",
+  "When we lack answers about a new form of intelligence, should uncertainty lead toward curiosity, caution, or prohibition?",
+  "\"You know as well as I do that fear only exists for one purpose. To be conquered.\"",
+  "As educators, we prepare students for the world they're entering, not simply the world we remember.",
+  "He gave us a character who believed intelligence deserved curiosity, difference didn't automatically mean danger, and leadership sometimes required challenging the institutions we love. He offers us a measure of humanity."
+];
