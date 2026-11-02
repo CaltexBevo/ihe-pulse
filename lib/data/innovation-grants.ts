@@ -3230,7 +3230,7 @@ innovationGrants.push(
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 2, 2026",
     qualifiers: ["Funds go to academic units, must be spent in FY2027 and cannot carry forward. Supplemental salary, conference-presentation travel and unrelated equipment are excluded.", "Projects requiring institutional data beyond existing access need documented authorization. Recipients submit a 750–1,000-word reflection; missing it makes them ineligible for future center grants."],
-    sourceNotes: "Official center page, public InfoReady terms and Apply login route verified Nov. 2. The explicit $50,000 total pool is included once; no multiplication of the 50 possible awards. A future spring call is mentioned but is not a separate verified open opportunity. Candidate 139 remains withheld for conflicting Ready for Work terms.",
+    sourceNotes: "Official center page, public InfoReady terms and Apply login route verified Nov. 2. The explicit $50,000 total pool is included once; no multiplication of the 50 possible awards. A future spring call is mentioned but is not a separate verified open opportunity.",
   }),
   grant({
     id: 141,
