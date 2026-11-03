@@ -11,7 +11,7 @@ export default async function AllStoriesPage({ searchParams }: { searchParams: P
  const { tab } = await searchParams;
  const seen = new Set<string>();
  const stories: LibraryStory[] = [];
- const label = (date: string) => new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(date + "T12:00:00Z"));
+ const label = (date: string) => date ? new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(date + "T12:00:00Z")) : "";
  // Original features own their canonical title, date, artwork, and destination.
  for (const feature of FEATURED_COVERAGE) {
   const href = "/feature-coverage/" + feature.slug;

@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -23,6 +23,7 @@ const V4_CATEGORY_CONFIG: Record<string, { color: string; slug: string }> = {
   "Beyond Ed": { color: "var(--cyan)", slug: "beyond-ed" },
   "Week in Review": { color: "var(--magenta)", slug: "week-in-review" },
   "Tool Spotlight": { color: "var(--cyan)", slug: "practical-tips" },
+  "AI Workforce & Careers": { color: "var(--amber)", slug: "ai-workforce-and-careers" },
   // Old categories mapping
   "Research & Innovation": { color: "var(--cyan)", slug: "insights-and-trends" },
   "Infrastructure & Operations": { color: "var(--purple)", slug: "case-study" },
@@ -78,6 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === "mark-cuban-puts-learning-at-the-center-of-ais-career-promise") redirect("/feature-coverage/mark-cuban-ai-learning-judgment");
   const story = getStoryBySlug(slug);
 
   if (!story) {

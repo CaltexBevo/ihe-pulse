@@ -1,0 +1,182 @@
+{
+  "episode": {
+    "date": "2026-10-23",
+    "publishedAt": "2026-11-03",
+    "dayOfWeek": "Friday",
+    "cadence": "weekly",
+    "editionNumber": 22,
+    "podcastFeedEnabled": false,
+    "audioUrl": "/audio/innovation-pulse-weekly-edition-22.mp3",
+    "audioDuration": "8:21",
+    "broadcastScript": "This is the Innovation Pulse Weekly, Edition twenty-two, and I’m Doctor Norma Jones. And here’s who is innovating in higher ed.\n\nWhen I heard the news that we had lost Sir Patrick Stewart, I wanted to pause and say thank you. What an extraordinary artist. He brought intelligence, compassion, humor, and such humanity to his work. Through Captain Jean-Luc Picard, he helped us imagine a better future. My Special Feature, The Measure of a Man, is a tribute to that gift and a reflection on what we can carry forward from it.\n\nHe gave us a character who believed intelligence deserved curiosity, difference didn’t automatically mean danger, and leadership sometimes required challenging the institutions we love. He offers us a measure of humanity.\n\nThat’s something worth carrying into our decisions about AI. Can technology expand our expression, strengthen our agency, help us discover possibilities we haven’t imagined? Come explore a richer way to judge what AI could contribute, and what we want to preserve. Read or listen at Innovating Higher Ed dot com.\n\nOur first story is a Case Study: Cornell Puts Students in Charge of Questioning Classroom A.I. Architecture students get A.I. versions of Parliament and King Charles the Second as debating partners. Seventeenth-century politics has entered the chat.\n\nPamela Karimi’s students took the role of John Evelyn, whose proposals addressed London’s smoky air. Karimi and Andre Hafner grounded the chatbots in primary and secondary sources, Holly Hartigan reports in the Cornell Chronicle.\n\nThe delightful part is that the historical record stays in the room. Students can question what their simulated opponents say. Karimi describes that exchange as a way into close reading and historical reasoning.\n\nAt Cornell, Suélia Fleury Rosa is also designing work that begins without A.I., followed by checking A.I.-generated answers. The faculty fellowship welcomes both approaches: using A.I. and preserving learning without it. Fellows meet monthly, design a course intervention, assess what happens and share what they learn.\n\nSo this is a fellowship that makes room for disagreement about the tool while giving instructors a shared way to examine the teaching.\n\nTurning to Ethical A.I.: Philosophy’s A.I. Role Reaches Into Reasoning and Model Rules. Somebody has to decide what a model ought to do. And “ought” is doing quite a bit of work in that sentence.\n\nIn a July N.P.R. interview, Benjamin Sutherland discusses his reporting for The Economist. Logic and inference can contribute to model reasoning. Philosophers also help write model constitutions, the principles intended to guide responses.\n\nThen the questions get interesting. One philosophical approach begins with rules about unacceptable actions. Another weighs consequences. When principles pull in different directions, somebody still has to work through the reasons for choosing one action over another.\n\nThat gives us a useful way to read an A.I. answer. What reasons does it express? Which priorities come through? Alongside checking the information, we can examine the judgment in the reply. Philosophy brings those choices into view.\n\nFor Practical Tips, Three Learning Questions Make A.I. Teaching Choices Clearer. A polished answer can make quite an entrance. Beth Schwartz and Chris Hakala want our attention on the thinking that produced it.\n\nWriting in Faculty Focus, the psychologists draw on learning science to ask three questions. Does the activity deepen engagement with the material? Does feedback lead to revision? Do students become more aware of what they understand?\n\nTheir examples keep the learner thinking. A.I. prompts a student to explain the reasoning. Or it comments on a draft, and the student revises. The next piece of thinking belongs to the learner.\n\nThat is the thread running through all three questions: engagement, revision and awareness of understanding. The work continues after the response arrives. Their framework gives faculty a way to follow the thinking an activity asks students to sustain, all the way from an initial response to explanation and revision.\n\nNow, Beyond Ed: A fallen robot learns to choose its way back up. Standing up sounds simple enough. Add a wall beside the robot, and suddenly the interesting question is which way it should move.\n\nUniversity of Michigan researchers call their system RISE. Their preprint describes learned recovery movements and a planner that predicts how each movement will unfold. A depth camera supplies information about the space around the robot. A requested direction can guide the recovery without retraining.\n\nIn the team’s wall comparison, the robot without vision hit the obstacle. Give it vision, and it changes direction. Add guidance, and it heads toward the open side from the start.\n\nThe physical prototype recovered nine times in ten attempts on staggered steps and five times in five guided attempts near a wall, with computation running on an external graphics processor.\n\nThere is the lovely detail: getting back up becomes a choice shaped by the surroundings. The space around the robot helps determine the movement itself.\n\nBack in higher education, our Insights and Trends story is An Academic’s A.I. Writing Experiment Shows Why Meaning Needs Checking. Cary DiPietro knew his argument. His A.I. editor kept giving him a different one.\n\nThe Northern Lights College academic was writing about students’ use of A.I. while using the tools himself. They helped him develop thoughts and untangle sentences. They also changed an argument he understood, in prose smooth enough that he initially missed it.\n\nIn the Teaching in Higher Education journal’s blog, he describes students writing in English as an additional language. Their prose can be judged insufficiently fluent, then questioned when A.I. makes it more fluent. The same way of judging language produces both reactions. His models kept turning that double bind into two problems happening one after the other.\n\nThe sentences flowed. The relationship between the ideas had moved.\n\nKnowing the research helped DiPietro catch the distortion, and human reviewers exposed other weaknesses. His account makes critical A.I. use wonderfully concrete for writers. Meaning depends on how ideas are connected, and checking an argument means examining those connections. That is where a convincing sentence can still need a closer look.\n\nTurning to A.I. Workforce and Careers: Mark Cuban Puts Learning at the Center of A.I.’s Career Promise. A capable tool gives us plenty to work with. Cuban keeps returning to the capable person.\n\nIn his Andreessen Horowitz conversation, doctors need knowledge to recognize important details and ask good questions. Junior employees need experience to develop professional judgment.\n\nThen comes his distinction: using A.I. to learn, or using it to avoid learning.\n\nOur extended coverage follows that thread through education and careers, with research on assisted performance and independent understanding. The possibility is to grow our expertise while extending our reach.\n\nAlongside these six stories, the website includes Having a Say in A.I. Use Is Linked to Better Worker Experiences. Charter’s report connects workers’ involvement in workplace A.I. decisions with the benefits they say they receive. Whose voice enters the conversation matters here, too.\n\nPlease consider subscribing and sharing, innovating higher ed dot com. Join us as we boldly explore new frontiers in educational innovation. I’m Doctor Norma Jones, thank you for listening.",
+    "weeklyHeroImageUrl": "/images/innovation-pulse/2026-10-23/weekly-edition-22-feature-preview-a.png"
+  },
+  "leadStory": {
+    "headline": "Cornell Puts Students in Charge of Questioning Classroom AI",
+    "summary": "An AI version of Parliament can give architecture students someone to argue with. It can also give them something to question. At Cornell, Pamela Karimi’s students took the role of John Evelyn, whose 1661 proposals addressed London’s smoky air, and debated simulations of Parliament and King Charles II. The exercise made historical constraints part of the conversation.\n\nAs Holly Hartigan reports in the Cornell Chronicle, Karimi and colleague Andre Hafner grounded the chatbots in primary and secondary sources. Their narrow scope matters: students could challenge the simulation against the historical record. Karimi describes the activity as a route into close reading and historical reasoning.\n\nOther instructors are drawing different boundaries. Biomedical engineering instructor Suélia Fleury Rosa is designing work that begins without AI, then requires students to verify AI-generated answers. Scott Seidenberger’s forthcoming human resources course will combine device-free lectures with a custom agent students can inspect and improve. These are accounts of teaching practices and plans, rather than a comparison establishing which approach produces greater learning.\n\nCornell’s fellowship makes room for that range. Its program description welcomes instructors who want to integrate AI and those who want to redesign teaching to preserve learning without it. Fellows meet monthly, develop a course intervention, assess its outcomes and share what they learn. The Center for Teaching Innovation supports that work with research, resources and help evaluating learning.\n\nThat shared process gives the different classroom choices a coherent purpose. The question is how a particular discipline teaches students to judge, explain and understand, including when the object of that judgment is AI itself.",
+    "preview": "An AI version of Parliament can give architecture students someone to argue with. It can also give them something to question. At Cornell, Pamela Karimi’s students took the role of John Evelyn, whose 1661 proposals addressed London’s smoky air, and debated simulations of Parliament and King Charles II. The exercise made historical constraints part of the conversation.",
+    "source": "Cornell Chronicle: classroom practices and instructor interviews",
+    "sourceUrl": "https://news.cornell.edu/stories/2026/10/cute-robots-historical-chatbots-ai-classroom-grows-more-sophisticated",
+    "sourceLinks": [
+      {
+        "label": "Cornell Chronicle: classroom practices and instructor interviews",
+        "url": "https://news.cornell.edu/stories/2026/10/cute-robots-historical-chatbots-ai-classroom-grows-more-sophisticated"
+      },
+      {
+        "label": "Cornell: AI Experimenters Faculty Fellows Program",
+        "url": "https://teaching.cornell.edu/teaching-spotlight/ai-experimenters-faculty-fellows-program"
+      }
+    ],
+    "category": "Case Study",
+    "imageUrl": "/images/innovation-pulse/2026-10-23/story-cornell.png",
+    "heroImageUrl": "/images/innovation-pulse/2026-10-23/story-cornell.png",
+    "storyId": "IHE-STORY-2026-10-23-001",
+    "selectionId": "cornell",
+    "reviewOnlyImage": false
+  },
+  "quickHits": [
+    {
+      "headline": "Philosophy’s AI Role Reaches Into Reasoning and Model Rules",
+      "summary": "Philosophers’ work in AI can reach into how a model reasons and which principles guide its responses. In a July NPR interview, journalist Benjamin Sutherland describes those roles as he discusses his reporting for The Economist.\n\nTraining in logic and inference can help with reasoning, he explains. The larger area he identifies concerns safety: deciding how models ought to behave. He points to philosophers helping write model constitutions and principles, documents that turn broad values into guidance for development.\n\nSutherland uses two traditions to explain the choices involved. One emphasizes rules about actions that are unacceptable; another weighs actions by their consequences. The distinction makes the work more concrete than a general call for ethical AI. Someone has to decide how principles operate when values conflict.\n\nSutherland could not establish how many philosophers the companies were hiring, so the interview does not quantify a job boom. Its more useful distinction concerns the reasons behind a judgment: the rules an action must respect, or the consequences it could produce. That is the philosophical lens this account offers for reading an AI reply. It directs attention to the reasons and priorities expressed in the answer, alongside whether the information is correct.",
+      "preview": "Philosophers’ work in AI can reach into how a model reasons and which principles guide its responses. In a July NPR interview, journalist Benjamin Sutherland describes those roles as he discusses his reporting for The Economist.",
+      "source": "NPR interview with Benjamin Sutherland, carried by KOSU",
+      "sourceUrl": "https://www.kosu.org/technology/2026-07-07/why-ai-companies-are-hiring-philosophers-to-help-develop-their-models",
+      "sourceLinks": [
+        {
+          "url": "https://www.kosu.org/technology/2026-07-07/why-ai-companies-are-hiring-philosophers-to-help-develop-their-models",
+          "label": "NPR interview with Benjamin Sutherland, carried by KOSU"
+        },
+        {
+          "url": "https://x.com/PhilHoyeck/status/2115154161239052393",
+          "label": "Founder-supplied Phil Hoyeck post"
+        }
+      ],
+      "category": "Ethical AI",
+      "imageUrl": "/images/innovation-pulse/2026-10-23/story-philosophy.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-23/story-philosophy.png",
+      "storyId": "supplied-philosophers",
+      "selectionId": "philosophy",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Three Learning Questions Make AI Teaching Choices Clearer",
+      "summary": "A polished answer tells an instructor little about the thinking that produced it. Psychologists Beth Schwartz and Chris Hakala use that distinction to explain how established learning principles can guide decisions about AI activities.\n\nWriting in Faculty Focus, they propose three questions: Does the activity deepen students’ engagement with the material? Does feedback lead to revision? Does it help students recognize what they understand and what they still need to learn? Their article offers expert reasoning, rather than results from a new classroom trial.\n\nThe connection between those questions is the work students continue to do. The authors describe AI prompting students to explain their reasoning or commenting on drafts that students then revise. In those examples, an AI response becomes part of a learning process. Generating a finished answer that bypasses practice changes that relationship.\n\nThey also distinguish confidence from understanding. Fluent output may feel convincing without revealing whether a student can explain the material. Their framework gives faculty something more specific to examine than whether an activity includes AI: the thinking, revision and self-awareness it asks students to sustain.",
+      "preview": "A polished answer tells an instructor little about the thinking that produced it. Psychologists Beth Schwartz and Chris Hakala use that distinction to explain how established learning principles can guide decisions about AI activities.",
+      "source": "Schwartz and Hakala in Faculty Focus",
+      "sourceUrl": "https://www.facultyfocus.com/articles/philosophy-of-teaching/ai-in-teaching-what-the-science-of-learning-already-tells-us/",
+      "sourceLinks": [
+        {
+          "label": "Schwartz and Hakala in Faculty Focus",
+          "url": "https://www.facultyfocus.com/articles/philosophy-of-teaching/ai-in-teaching-what-the-science-of-learning-already-tells-us/"
+        }
+      ],
+      "category": "Practical Tips",
+      "imageUrl": "/images/innovation-pulse/2026-10-23/story-learning.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-23/story-learning.png",
+      "storyId": "IHE-STORY-2026-10-23-015",
+      "selectionId": "learning",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "A fallen robot learns to choose its way back up",
+      "summary": "A robot lying beside a wall needs more than the ability to stand. It needs a way up that avoids the wall. University of Michigan researchers have developed RISE, a system that uses what a humanoid can see to help choose that route.\n\nThe October 21 preprint describes a repertoire of learned recovery movements and a planner that predicts how they will unfold. Depth-camera information helps the system account for its surroundings. A requested direction, path or rising speed can guide the movement without retraining the model.\n\nIn the researchers’ wall comparison, a version without vision collided with the obstacle. With visual information, the robot changed direction. With guidance added, it moved toward the open side from the start.\n\nTests on a physical Unitree G1 included 20 successful unguided recoveries on flat ground and nine successes in ten attempts on staggered steps. Guided recovery near a wall succeeded in five of five attempts. These are small research trials, with computation running on an external graphics processor.\n\nStanding up becomes a response to the space around the machine, rather than a movement repeated regardless of obstacles.",
+      "preview": "A robot lying beside a wall needs more than the ability to stand. It needs a way up that avoids the wall. University of Michigan researchers have developed RISE, a system that uses what a humanoid can see to help choose that route.",
+      "source": "primary preprint",
+      "sourceUrl": "https://arxiv.org/html/2610.30061v1",
+      "sourceLinks": [
+        {
+          "url": "https://arxiv.org/html/2610.30061v1",
+          "label": "primary preprint"
+        },
+        {
+          "url": "https://www.dustinturner.ai/newsletter/2026-10-22",
+          "label": "specialist explanatory coverage"
+        }
+      ],
+      "category": "Beyond Ed",
+      "imageUrl": "/images/innovation-pulse/2026-10-23/story-robot.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-23/story-robot.png",
+      "storyId": "frontier-rise-recovery",
+      "selectionId": "robot",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "An Academic’s AI Writing Experiment Shows Why Meaning Needs Checking",
+      "summary": "AI helped Cary DiPietro explore ideas and untangle sentences while he wrote about students’ use of AI. It also repeatedly changed an argument he understood, in prose smooth enough that he initially missed the change.\n\nWriting on the Teaching in Higher Education journal’s blog, the Northern Lights College academic describes a double bind facing students who use English as an additional language. Their writing can be judged insufficiently fluent, then treated as suspicious when AI makes it more fluent. His point concerned the same way of judging language producing both reactions. The models kept recasting that relationship as two problems happening in sequence.\n\nThat change matters because the relationship between ideas is part of their meaning. A sentence can contain recognizable information and still make the wrong argument. Checking a citation would not, by itself, resolve that kind of error.\n\nDiPietro says familiarity with the research helped him recognize the distortion. Repeated reading and feedback from human reviewers exposed other weaknesses. He also credits the tools with helping him develop thoughts and discover connections. Making use of that assistance required him to examine what the words were doing.\n\nHis reflection gives substance to a broader argument about education: attention to whether students have cheated can crowd out attention to how they learn to judge and justify knowledge. His own experience shows why that second question deserves time. Even an experienced writer needed help seeing what a convincing paragraph had concealed.\n\nFor academics reading AI-assisted writing, this offers a more precise understanding of what critical use involves. Fluency is one quality of the text; being able to explain its meaning and reasoning is a capability of the writer. The educational opportunity DiPietro describes lies in developing that capability through scrutiny, conversation and revision.",
+      "preview": "AI helped Cary DiPietro explore ideas and untangle sentences while he wrote about students’ use of AI. It also repeatedly changed an argument he understood, in prose smooth enough that he initially missed the change.",
+      "source": "Moving past integrity: a practical epistemology for the age of AI",
+      "sourceUrl": "https://teachinginhighereducation.wordpress.com/2026/10/28/moving-past-integrity-a-practical-epistemology-for-the-age-of-ai/",
+      "sourceLinks": [
+        {
+          "label": "Moving past integrity: a practical epistemology for the age of AI",
+          "url": "https://teachinginhighereducation.wordpress.com/2026/10/28/moving-past-integrity-a-practical-epistemology-for-the-age-of-ai/"
+        }
+      ],
+      "category": "Insights & Trends",
+      "imageUrl": "/images/innovation-pulse/2026-10-23/story-dipietro.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-23/story-dipietro.png",
+      "storyId": "supplied-dipietro-epistemology",
+      "selectionId": "dipietro",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Mark Cuban Puts Learning at the Center of AI’s Career Promise",
+      "summary": "Mark Cuban’s vision of AI reaches from new businesses to the way doctors are trained. Across those possibilities, he keeps returning to people who can ask better questions, understand context and keep learning. Our Feature explores what that means for higher education, with research that distinguishes completing work with AI from developing the judgment to do it well.",
+      "preview": "Cuban’s full interview connects AI opportunity with medical training, early-career experience and the ability to keep learning. Research helps explain what it would take to turn that promise into stronger human capability.",
+      "source": "The full a16z interview with Mark Cuban",
+      "sourceUrl": "https://www.youtube.com/watch?v=5UWDUD6qaM4",
+      "sourceLinks": [
+        {
+          "label": "The full a16z interview with Mark Cuban",
+          "url": "https://www.youtube.com/watch?v=5UWDUD6qaM4"
+        },
+        {
+          "label": "Bastani et al. • Generative AI without guardrails can harm learning",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12232635/"
+        },
+        {
+          "label": "Brynjolfsson, Li and Raymond • Generative AI at Work",
+          "url": "https://doi.org/10.1093/qje/qjae044"
+        },
+        {
+          "label": "Goh et al. • Large Language Model Influence on Diagnostic Reasoning",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11519755/"
+        },
+        {
+          "label": "Bainbridge • Ironies of Automation",
+          "url": "https://doi.org/10.1016/0005-1098(83)90046-8"
+        }
+      ],
+      "category": "AI Workforce & Careers",
+      "imageUrl": "/images/innovation-pulse/2026-10-23/story-cuban.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-23/story-cuban.png",
+      "storyId": "supplied-cuban-a16z",
+      "selectionId": "cuban",
+      "reviewOnlyImage": false
+    },
+    {
+      "headline": "Having a Say in AI Use Is Linked to Better Worker Experiences",
+      "summary": "An accountant interviewed for Charter’s AI Pulse report described a small but revealing calculation: a task that takes a few minutes can take longer once an AI tool needs instructions, checking and revision. The accountant questioned requiring AI for every task.\n\nThat experience fits the report’s central finding. Among 5,002 full-time U.S. desk-based workers who used AI at least occasionally, feeling involved in how AI fits one’s work was more strongly associated with reported benefits than advanced uses such as running agents in the background. The survey captures associations at one point in time; it does not establish that giving workers more influence caused those benefits.\n\nSupport also looked different depending on who described it. About 54 percent of managers said they gave specific guidance on AI use, compared with about 25 percent of workers who said their managers did so. These are responses from the two groups, not a matched comparison of individual managers and their employees. The gap distinguishes support leaders believe they provide from support workers report receiving.\n\nWhen asked which resource was most useful, 32.5 percent of AI users named hands-on training with specific tools. Dedicated experimentation time was selected by 13.9 percent. The report’s authors recommend practice connected to real work and managers making their own learning visible. Those are recommendations informed by the survey and interviews, rather than tested training effects.\n\nAccess to a tool, permission to experiment and useful guidance describe different experiences. The workers’ accounts bring the decisions surrounding AI use into view, alongside the capabilities of the technology itself.",
+      "preview": "An accountant interviewed for Charter’s AI Pulse report described a small but revealing calculation: a task that takes a few minutes can take longer once an AI tool needs instructions, checking and revision. The accountant questioned requiring AI for every task.",
+      "source": "Charter AI Pulse: original report",
+      "sourceUrl": "https://www.charterworks.com/assets/images/cws/Charter-AI-Pulse.pdf",
+      "sourceLinks": [
+        {
+          "label": "Charter AI Pulse: original report",
+          "url": "https://www.charterworks.com/assets/images/cws/Charter-AI-Pulse.pdf"
+        },
+        {
+          "label": "Charter AI Pulse release page",
+          "url": "https://www.charterworks.com/research/ai-pulse/"
+        }
+      ],
+      "category": "AI Workforce & Careers",
+      "imageUrl": "/images/innovation-pulse/2026-10-23/story-charter.png",
+      "heroImageUrl": "/images/innovation-pulse/2026-10-23/story-charter.png",
+      "storyId": "IHE-STORY-2026-10-23-022",
+      "selectionId": "charter",
+      "reviewOnlyImage": false
+    }
+  ],
+  "hook": "An AI version of Parliament can give architecture students someone to argue with. It can also give them something to question. At Cornell, Pamela Karimi’s students took the role of John Evelyn, whose 1661 proposals addressed London’s smoky air, and debated simulations of Parliament and King Charles II. The exercise made historical constraints part of the conversation."
+}

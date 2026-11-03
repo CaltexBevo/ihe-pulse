@@ -115,8 +115,10 @@ export default function HomePulseHero({
   const usesSeptember25Hero = episode.date === '2026-09-25' && Boolean(episode.weeklyHeroImageUrl);
   const usesEdition19Hero = episode.date === '2026-10-02' && Boolean(episode.weeklyHeroImageUrl);
   const usesEdition20Hero = episode.date === '2026-10-09' && Boolean(episode.weeklyHeroImageUrl);
+  const edition22ArtworkAlt = "Innovation Pulse Weekly Edition 22. Six stories, one weekly listen. The Measure of a Man, with Picard and Data.";
+  const usesEdition22Hero = episode.date === '2026-10-23' && Boolean(episode.weeklyHeroImageUrl);
   const usesEdition21Hero = episode.date === '2026-10-16' && Boolean(episode.weeklyHeroImageUrl);
-  const usesApprovedFullHero = usesEdition21Hero || usesEdition20Hero || usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
+  const usesApprovedFullHero = usesEdition22Hero || usesEdition21Hero || usesEdition20Hero || usesEdition19Hero || usesSeptember04Hero || usesSeptember11Hero || usesSeptember18Hero || usesSeptember25Hero;
 
   // Homepage and dated editions have different bounds, with the same gutters and border.
   const artworkSizes = compact ? "(max-width: 899px) calc(100vw - clamp(2rem, 8vw, 4rem) - 2px), calc((min(100vw, 1200px) - clamp(2rem, 8vw, 4rem) - 16px) * .65 - 2px)" : `calc(min(100vw, ${editionLayout ? 1440 : 1200}px) - clamp(2rem, 8vw, 4rem) - 2px)`;
@@ -274,7 +276,12 @@ export default function HomePulseHero({
       {compact ? (
         <div className={styles.editionArtwork}>
           <h2 id="home-pulse-title" className="sr-only">This week’s Innovation Pulse</h2>
-          <Image src={episode.weeklyHeroImageUrl || styledArtwork || fallbackArtwork} alt="Innovation Pulse weekly artwork, with Dr. Norma Jones." width={1920} height={863} sizes={artworkSizes} className={styles.completeArtwork} priority />
+          <Image src={episode.weeklyHeroImageUrl || styledArtwork || fallbackArtwork} alt={usesEdition22Hero ? edition22ArtworkAlt : "Innovation Pulse weekly artwork, with Dr. Norma Jones."} width={1920} height={863} sizes={artworkSizes} className={styles.completeArtwork} priority />
+        </div>
+      ) : usesEdition22Hero ? (
+        <div className={styles.editionArtwork}>
+          <h1 id="home-pulse-title" className="sr-only">Innovation Pulse Weekly Edition 22.</h1>
+          <Image src={episode.weeklyHeroImageUrl!} alt={edition22ArtworkAlt} width={1875} height={839} sizes={artworkSizes} className={styles.completeArtwork} priority />
         </div>
       ) : usesEdition21Hero ? (
         <div className={styles.editionArtwork}>

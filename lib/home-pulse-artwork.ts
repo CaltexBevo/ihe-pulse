@@ -28,6 +28,7 @@ export function getHomePulseArtwork(date: string): string | null {
 // Complete approved weekly masters, without the homepage's interactive crop.
 export function getEpisodeHeroArtwork(date: string): string | null {
   const approved: Record<string, string> = {
+    '2026-10-23': '/images/innovation-pulse/2026-10-23/weekly-edition-22-feature-preview-a.png',
     '2026-10-16': '/images/innovation-pulse/2026-10-16/weekly-edition-21.png',
     '2026-10-02': '/images/innovation-pulse/2026-10-02/weekly-D-logo-integrated-v1.png',
     '2026-09-04': '/images/innovation-pulse/homepage/2026-09-04-approved-hero-v4-a-blue.png',
