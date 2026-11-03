@@ -62,8 +62,10 @@ export async function generateMetadata({
       imageWidth: feature.imagePath ? feature.imageWidth : undefined,
       imageHeight: feature.imagePath ? feature.imageHeight : undefined,
     }),
-    authors: [{ name: feature.authorName ?? "Dr. Norma Jones" }],
-    creator: feature.authorName ?? "Dr. Norma Jones",
+    ...(feature.authorName !== "" ? {
+      authors: [{ name: feature.authorName ?? "Dr. Norma Jones" }],
+      creator: feature.authorName ?? "Dr. Norma Jones",
+    } : {}),
     publisher: "Innovating Higher Ed",
     ...(feature.presentation === "launch" ? { other: { "twitter:image:alt": feature.imageAlt } } : {}),
   };

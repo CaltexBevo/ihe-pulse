@@ -115,12 +115,14 @@ const TRACKED_RELEASE_DATES = new Set([
   // and data/daily-pulse/2026-10-16.json in the released frontend data.
   '2026-10-09',
   '2026-10-16',
+  '2026-10-23',
 ]);
 
 const TRACKED_AUDIO_PATHS = new Map([
   ['/audio/innovation-pulse-weekly-edition-19.mp3', '2026-10-02'],
   ['/audio/innovation-pulse-weekly-edition-20.mp3', '2026-10-09'],
   ['/audio/innovation-pulse-weekly-edition-21.mp3', '2026-10-16'],
+  ['/audio/innovation-pulse-weekly-edition-22.mp3', '2026-10-23'],
 ]);
 
 const MAILCHIMP_CONTENT = new Set([

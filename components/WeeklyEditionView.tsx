@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import HomeEpisodePlayer from './HomeEpisodePlayer';
+import PicardFeatureHero from './PicardFeatureHero';
 import EditionLink from './EditionLink';
 import AllStoriesClient from '@/app/innovation-pulse/stories/AllStoriesClient';
 import { cleanBroadcastScript, formatPulseDate, formatWeekCovered } from '@/lib/data/innovation-pulse';
@@ -12,7 +13,7 @@ import styles from './WeeklyEditionView.module.css';
 export default function WeeklyEditionView({ episode, current = false, previousDate, nextDate }: {
   episode: InnovationPulseEpisode; current?: boolean; previousDate?: string; nextDate?: string;
 }) {
-  const { lead, feature, stories, storyCount } = getWeeklyEditionContent(episode);
+  const { lead, feature, promotedFeature, stories, storyCount } = getWeeklyEditionContent(episode);
   const paragraphs = lead.summary.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
   const introduction = feature?.sections[0]?.paragraphs[0] || paragraphs[0];
   const image = feature?.imagePath || lead.heroImage || lead.image;
@@ -24,12 +25,13 @@ export default function WeeklyEditionView({ episode, current = false, previousDa
       headline: lead.title, fallbackArtwork: lead.heroImage || lead.image || '',
       weeklyHeroImageUrl: episode.weeklyHeroImageUrl, storyCount, weekLabel: formatWeekCovered(episode),
     }} editionLayout />
+    {promotedFeature === 'the-measure-of-a-man' && <PicardFeatureHero home />}
     <nav className={styles.navigation} aria-label="Edition navigation">
       {current && <EditionLink date={episode.date} />}
       <Link href="/innovation-pulse/stories">Explore the Library →</Link>
       <Link href="/innovation-pulse/stories?tab=editions">Weekly Editions →</Link>
     </nav>
-    <article className={styles.article} aria-labelledby="edition-lead-title">
+    {!promotedFeature && <article className={styles.article} aria-labelledby="edition-lead-title">
       <p className={styles.label}>{feature ? feature.eyebrow : 'Lead Story'}</p>
       <h2 id="edition-lead-title">{feature?.title || lead.title}</h2>
       <p className={styles.meta}>{feature?.byline || lead.source} · <time dateTime={episode.date}>{episode.editionNumber ? formatWeekCovered(episode) : formatPulseDate(episode.date)}</time></p>
@@ -55,10 +57,10 @@ export default function WeeklyEditionView({ episode, current = false, previousDa
           {feature && <p><Link href={'/feature-coverage/' + feature.slug}>Open the Feature page →</Link></p>}
         </div>
       </details>
-    </article>
+    </article>}
     {stories.length > 0 && <section className={pageStyles.currentStories} aria-labelledby="edition-stories-title">
       <h2 id="edition-stories-title">Stories in this edition</h2>
-      <p className={styles.meta}>{storyCount} stories in this edition, including the {feature ? 'Feature' : 'lead story'} above.</p>
+      <p className={styles.meta}>{storyCount} stories in this edition{!promotedFeature && `, including the ${feature ? 'Feature' : 'lead story'} above`}.</p>
       <AllStoriesClient stories={stories} embedded />
     </section>}
     {episode.broadcastScript && <section className={styles.transcript} aria-label="Edition transcript"><details className={styles.disclosure}>

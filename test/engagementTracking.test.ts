@@ -201,7 +201,7 @@ test('malformed, ambiguous, unregistered, and personal attribution fails closed'
 test('approved weekly releases share a finite campaign and audio registry', () => {
   for (const date of [
     '2026-08-28', '2026-09-04', '2026-09-11', '2026-09-18', '2026-09-25',
-    '2026-10-02', '2026-10-09', '2026-10-16',
+    '2026-10-02', '2026-10-09', '2026-10-16', '2026-10-23',
   ]) {
     assert.equal(campaignEventProperties(`utm_source=mailchimp&utm_medium=email&utm_content=listen&utm_campaign=innovation-pulse-${date}`)?.campaign, `innovation-pulse-${date}`);
     assert.equal(episodeFromAudioSource(`https://storage.example/broadcast-${date}.mp3`), date);
@@ -209,7 +209,8 @@ test('approved weekly releases share a finite campaign and audio registry', () =
   }
   assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-20.mp3'), '2026-10-09');
   assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-21.mp3'), '2026-10-16');
-  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-22.mp3'), null);
+  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-22.mp3'), '2026-10-23');
+  assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-23.mp3'), null);
   assert.equal(episodeFromAudioSource('/audio/innovation-pulse-weekly-edition-19.mp3'), '2026-10-02');
   assert.equal(episodeFromAudioSource('/audio/feature-wonka-lantern-v3.mp3'), null);
 });

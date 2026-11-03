@@ -49,7 +49,7 @@ test('historical editions stay independent and every edition story is represente
   for (const episode of getAllEpisodes()) {
     const content = getWeeklyEditionContent(episode);
     assert.equal(content.storyCount, getHomepageEpisodeStories(episode).length);
-    assert.equal(content.stories.length + 1, content.storyCount);
+    assert.equal(content.stories.length + (content.promotedFeature ? 0 : 1), content.storyCount);
     assert.ok(content.stories.every(story => story.date === (episode.publishedAt || episode.date)));
     if (content.feature) assert.equal(content.feature.editionDate ?? content.feature.publishedAt, episode.date);
   }

@@ -1,3 +1,4 @@
+import { CUBAN_FEATURED_COVERAGE } from "./featured-coverage-cuban";
 import { PICARD_FEATURED_COVERAGE } from "./featured-coverage-picard";
 import { MY_VOICE_FEATURED_COVERAGE } from './featured-coverage-my-voice';
 import { WONKA_LANTERN_FEATURED_COVERAGE } from './featured-coverage-wonka-lantern';
@@ -193,6 +194,7 @@ export const MIT_FEATURED_COVERAGE: FeaturedCoverage = {
 
 export const FEATURED_COVERAGE = [
   PICARD_FEATURED_COVERAGE,
+  CUBAN_FEATURED_COVERAGE,
   MY_VOICE_FEATURED_COVERAGE,
   WONKA_LANTERN_FEATURED_COVERAGE,
   TEACHING_SUPERPOWER_FEATURED_COVERAGE,

@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...FEATURED_COVERAGE.map((feature) => ({
       url: `${baseUrl}/feature-coverage/${feature.slug}`,
-      lastModified: new Date(`${feature.publishedAt}T12:00:00Z`),
+      ...(feature.publishedAt ? { lastModified: new Date(`${feature.publishedAt}T12:00:00Z`) } : {}),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
