@@ -1,5 +1,6 @@
 'use client';
 
+import StoryPreviewCard, { GRID_IMAGE_SIZES } from '@/components/StoryPreviewCard';
 import EditionLink from '@/components/EditionLink';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
@@ -7,6 +8,7 @@ import styles from './archive.module.css';
 import { APPROVED_SEPTEMBER_11_HERO } from '@/components/ApprovedSeptember11HeroArtwork';
 import approvedArtworkStyles from '@/components/ApprovedSeptember11HeroArtwork.module.css';
 import september04Styles from '@/components/ApprovedSeptemberHeroArtwork.module.css';
+import { getCardArtwork } from '@/lib/cardArtwork';
 
 export interface ArchiveEpisodeData {
   date: string;
@@ -35,14 +37,18 @@ function formatTime(seconds: number): string {
 
 function Artwork({ episode, priority = false }: { episode: ArchiveEpisodeData; priority?: boolean }) {
   const imageUrl = episode.thumbnailUrl || episode.fallbackImage;
+  const cardImage = imageUrl ? getCardArtwork(imageUrl) : null;
+  if (cardImage && cardImage.src !== imageUrl) {
+    return <Image src={cardImage.src} alt={`Edition artwork for ${episode.headline}`} fill sizes={GRID_IMAGE_SIZES} style={{ objectFit: cardImage.fit }} priority={priority} />;
+  }
   if (imageUrl === APPROVED_SEPTEMBER_11_HERO) {
     return <div className={styles.weeklyMaster}><div className={approvedArtworkStyles.artwork}>
-      <Image src={imageUrl} alt={`Edition artwork for ${episode.headline}`} width={1681} height={936} className={approvedArtworkStyles.image} />
+      <Image src={imageUrl} alt={`Edition artwork for ${episode.headline}`} width={1681} height={936} sizes={GRID_IMAGE_SIZES} className={approvedArtworkStyles.image} />
     </div></div>;
   }
   if (episode.date === '2026-09-04' && imageUrl?.includes('approved-hero-v4-a-blue')) {
     return <div className={styles.weeklyMaster}><div className={september04Styles.artwork}>
-      <Image src={imageUrl} alt={`Edition artwork for ${episode.headline}`} width={1671} height={941} className={september04Styles.image} />
+      <Image src={imageUrl} alt={`Edition artwork for ${episode.headline}`} width={1671} height={941} sizes={GRID_IMAGE_SIZES} className={september04Styles.image} />
     </div></div>;
   }
   if (imageUrl) {
@@ -51,8 +57,8 @@ function Artwork({ episode, priority = false }: { episode: ArchiveEpisodeData; p
         src={imageUrl}
         alt={`Edition artwork for ${episode.headline}`}
         fill
-        sizes={priority ? "(max-width: 760px) 100vw, 50vw" : "(max-width: 540px) 100vw, 180px"}
-        className={styles.artworkImage}
+        sizes={GRID_IMAGE_SIZES}
+        style={{objectFit:cardImage!.fit}}
         priority={priority}
       />
     );
@@ -234,21 +240,9 @@ export default function ArchiveListClient({ episodes }: ArchiveListClientProps) 
 
         <div className={styles.cardGrid}>
           {filteredEpisodes.map((episode) => (
-            <article className={styles.card} key={episode.date}>
-              <div className={styles.cardArtwork}>
-                <Artwork episode={episode} />
-              </div>
-
-              <div className={styles.cardCopy}>
-                <div className={styles.cardMeta}>
-                  <span>{episode.weekLabel}</span>
-                  <span>{episode.storyCount} stories</span>
-                </div>
-                <h3>{episode.headline}</h3>
-              </div>
-
-              <p className={styles.cardSummary}>{episode.summary}</p>
-
+            <StoryPreviewCard key={episode.date} title={episode.headline} intro={episode.summary}
+              category={'Weekly edition · '+episode.storyCount+' stories'} dateLabel={episode.weekLabel}
+              href={'/innovation-pulse/'+episode.date} artwork={<Artwork episode={episode} />}>
                 <div className={styles.cardActions}>
                   <button
                     type="button"
@@ -280,7 +274,7 @@ export default function ArchiveListClient({ episodes }: ArchiveListClientProps) 
                     <span>{formatTime(currentTime)} / {formatTime(episode.date === '2026-10-02' ? Math.ceil(duration) : duration)}</span>
                   </div>
                 )}
-            </article>
+            </StoryPreviewCard>
           ))}
         </div>
 

@@ -239,3 +239,5 @@
 .header .range { min-width:112px; font-size:.75rem; }
 @media(max-width:1050px) { .header { flex-wrap:wrap; } .header > :first-child { flex:1 1 100%; } }
 @media(max-width:540px) { .header { gap:10px; } .header .controls { width:100%; justify-content:flex-start; flex-wrap:wrap; } .header .range { margin-left:auto; min-width:0; } }
+
+.slot {position:relative;width:100%;overflow:hidden;align-self:flex-start;}

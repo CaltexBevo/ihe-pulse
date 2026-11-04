@@ -1,3 +1,4 @@
+import StoryPreviewCard from "@/components/StoryPreviewCard";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -280,47 +281,13 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
               Back to all stories →
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {relatedStories.map((related) => {
-              const relatedV4 = mapToV4Category(related.category);
-              const relatedConfig = V4_CATEGORY_CONFIG[related.category] || V4_CATEGORY_CONFIG["Insights & Trends"];
-              // Use pre-assigned image from related story data
-              const relatedImage = related.image || DEFAULT_STORY_IMAGE;
-
-              return (
-                <Link
-                  key={related.slug}
-                  href={`/innovation-pulse/story/${related.slug}`}
-                  className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] overflow-hidden hover:border-[var(--border-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_28px_rgba(0,0,0,0.3)] transition-all"
-                >
-                  {!related.omitImage && <div className="relative aspect-[3/2] overflow-hidden bg-[var(--surface)]">
-                    <Image
-                      src={relatedImage}
-                      alt={related.title}
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>}
-                  <div className="p-4">
-                    <div className="font-mono text-[0.55rem] font-semibold tracking-[0.08em] uppercase mb-2 flex items-center gap-2">
-                      <span
-                        className="w-[4px] h-[4px] rounded-full"
-                        style={{ backgroundColor: relatedConfig.color }}
-                      />
-                      <span style={{ color: relatedConfig.color }}>{relatedV4}</span>
-                    </div>
-                    <h3 className="text-[0.92rem] font-bold leading-[1.25] mb-2 line-clamp-2 group-hover:text-[var(--cyan)] transition-colors">
-                      {related.title}
-                    </h3>
-                    <div className="flex justify-between font-mono text-[0.58rem] text-[var(--text-muted)] pt-2 border-t border-[var(--border)]">
-                      <span className="text-[var(--cyan)]">{related.source}</span>
-                      <span>{formatShortDate(related.publishedAt || related.episodeDate)}</span>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            {relatedStories.map(related => <StoryPreviewCard key={related.slug}
+              href={'/innovation-pulse/story/' + related.slug} title={related.title}
+              intro={related.preview || related.summary} category={mapToV4Category(related.category)}
+              image={related.omitImage ? undefined : related.image || DEFAULT_STORY_IMAGE}
+              source={related.source} sourceUrl={related.sourceUrl}
+              dateLabel={formatShortDate(related.publishedAt || related.episodeDate)} />)}
           </div>
         </div>
       )}

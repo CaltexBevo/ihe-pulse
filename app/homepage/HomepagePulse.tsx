@@ -2,7 +2,7 @@ import Link from 'next/link';
 import ResourceIcon, { type ResourceIconName } from './ResourceIcon';
 import EmailSignup from '@/components/EmailSignup';
 import QuickHitsSlider from '@/components/QuickHitsSlider';
-import { FEATURED_COVERAGE } from '@/lib/data/featured-coverage';
+import { FEATURED_COVERAGE, featureCardSource } from '@/lib/data/featured-coverage';
 import {
   formatPulseDate,
   V4_CATEGORY_SLUGS,
@@ -95,6 +95,8 @@ export default function HomepagePulse({ episode }: HomepagePulseProps) {
           ...story,
           feature: {
             slug: feature.slug,
+            originalSource: featureCardSource(feature),
+            byline: feature.byline,
             imagePath: feature.imagePath,
             category: feature.category,
           },
