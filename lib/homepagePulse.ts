@@ -13,6 +13,8 @@ export type HomepageStory = (DeepDive | QuickHit) & {
 };
 
 export type HomepageFeatureLink = {
+  originalSource?: {label: string; url: string};
+  byline?: string;
   slug: string;
   imagePath: string | null;
   category: StoryCategory | string;

@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/Card";
+import StoryPreviewCard from "@/components/StoryPreviewCard";
 import type { V4Category } from "@/lib/data/innovation-pulse";
 
 // Badge text mapping
@@ -38,28 +38,12 @@ interface CategoryStoriesGridProps {
   categoryColor: string;
 }
 
-export default function CategoryStoriesGrid({ stories, category, categoryColor }: CategoryStoriesGridProps) {
-  return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {stories.map((story, i) => (
-        <Card
-          key={`${story.slug}-${i}`}
-          title={story.title}
-          teaser={story.summary}
-          fullContent={story.summary}
-          category={story.category}
-          categoryColor={story.categoryColor}
-          source={story.source}
-          sourceUrl={story.sourceUrl}
-          date={story.date}
-          imageUrl={story.image}
-          omitImage={story.omitImage}
-          badgeText={story.type === "deepDive" ? "LEAD" : V4_BADGE_TEXT[category]}
-          badgeColor={story.type === "deepDive" ? "rgba(0,212,255,0.85)" : categoryColor}
-          preserveArtwork
-          expandable={true}
-        />
-      ))}
-    </div>
-  );
+export default function CategoryStoriesGrid({ stories }: CategoryStoriesGridProps) {
+  return <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+    {stories.map((story,i) => <StoryPreviewCard headingLevel={2} key={story.slug+'-'+i}
+      href={'/innovation-pulse/story/'+story.slug} title={story.title} intro={story.summary}
+      image={story.omitImage ? undefined : story.image} category={story.category}
+      source={story.source} sourceUrl={story.sourceUrl} dateLabel={story.date}
+      badge={story.type === 'deepDive' ? 'Lead' : V4_BADGE_TEXT[story.category]} expandedText={story.summary} />)}
+  </div>;
 }

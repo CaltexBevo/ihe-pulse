@@ -1,0 +1,33 @@
+.conceptPage.conceptPage {max-width:1200px;}
+.shell {max-width:1200px;margin:0 auto;}
+.heading {font-family:var(--font-heading),sans-serif;font-size:clamp(1.7rem,3.5vw,3rem);font-weight:750;letter-spacing:-.035em;line-height:1.12;margin:0 0 16px;}
+.hub {border:1px solid var(--border-strong);border-radius:16px;background:var(--bg-card);color:var(--text);padding:8px;overflow:hidden;}
+.art {position:relative;aspect-ratio:1875/839;border-radius:10px;overflow:hidden;background:var(--bg-elevated);}
+.art img {object-fit:contain;}
+.artButton {position:absolute;inset:0;width:100%;height:100%;cursor:pointer;}
+.artButton:focus-visible {outline:3px solid var(--cyan);outline-offset:-4px;}
+.selection,.panel {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 20px;}
+.selection {border-bottom:1px solid var(--border-strong);}
+.tabs {display:flex;gap:10px;}
+.tabs button {min-height:52px;padding:8px 12px;border-bottom:3px solid transparent;font-weight:700;color:var(--text-muted);line-height:1.25;}
+.tabs button[aria-selected=true] {border-color:var(--cyan);color:var(--cyan);}
+.tabs span {white-space:nowrap;}
+.read {color:var(--cyan);font-size:.9rem;font-weight:650;}
+.panel {padding-top:12px;padding-bottom:10px;}
+.controls {display:flex;align-items:center;gap:18px;flex:1;min-width:0;}
+.play {display:grid;place-items:center;background:var(--brand-grad);color:var(--bg);border:1px solid var(--border-strong);border-radius:50%;width:58px;height:58px;flex:none;}
+.timeline {min-width:0;flex:1;}
+.wave {height:40px;position:relative;}
+.wave svg,.wave input {position:absolute;inset:0;width:100%;height:100%;}
+.wave svg {fill:var(--cyan);opacity:.85;}
+.wave .played {fill:var(--text);}
+.wave input {opacity:0;cursor:pointer;}
+.wave:focus-within {outline:2px solid var(--cyan);outline-offset:2px;}
+.clock {text-align:center;font-family:var(--font-mono),monospace;font-size:.8rem;font-variant-numeric:tabular-nums;margin:2px 0 0;}
+.clock span {color:var(--text-muted);}
+.follow {border-left:1px solid var(--border-strong);padding-left:18px;text-align:center;}
+.follow>span {color:var(--text-muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;}
+.follow>div {display:flex;justify-content:center;flex-wrap:wrap;}
+.follow a,.follow button {width:38px;min-height:44px;display:grid;place-items:center;color:var(--text);}
+.follow svg {width:21px;height:21px;}
+@media(max-width:760px){.selection,.panel{padding-left:8px;padding-right:8px;gap:8px;flex-wrap:wrap}.selection{padding-bottom:8px}.tabs{width:100%;gap:0}.tabs button{padding-inline:5px;flex:1}.read{font-size:.84rem}.controls{flex-basis:100%;gap:10px}.play{width:46px;height:46px}.follow{border-left:0;border-top:1px solid var(--border);padding:5px 0 0;width:100%}.follow a,.follow button{width:36px}}

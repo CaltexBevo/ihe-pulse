@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getAllStoriesAggregated, generateSlug, mapToV4Category } from "@/lib/data/innovation-pulse";
-import { FEATURED_COVERAGE } from "@/lib/data/featured-coverage";
+import { FEATURED_COVERAGE, featureCardSource } from "@/lib/data/featured-coverage";
 import { pageMetadata } from "@/lib/og";
 import LibraryView from "./LibraryView";
 import { getLibraryEditions } from "@/lib/pulse-library";
@@ -16,7 +16,8 @@ export default async function AllStoriesPage({ searchParams }: { searchParams: P
  for (const feature of FEATURED_COVERAGE) {
   const href = "/feature-coverage/" + feature.slug;
   seen.add(href);
-  stories.push({ id: href, href, title: feature.title, summary: feature.teaser, source: feature.sourceLabel, category: mapToV4Category(feature.category), date: feature.publishedAt, dateLabel: label(feature.publishedAt), image: feature.imagePath || "" });
+  const original = featureCardSource(feature);
+  stories.push({ id: href, href, title: feature.title, summary: feature.teaser, source: original.label, sourceUrl: original.url, byline: feature.byline, category: mapToV4Category(feature.category), date: feature.publishedAt, dateLabel: label(feature.publishedAt), image: feature.imagePath || "" });
  }
  // The aggregate is newest first, so repeated story routes retain the newest item.
  for (const story of getAllStoriesAggregated()) {
@@ -24,7 +25,7 @@ export default async function AllStoriesPage({ searchParams }: { searchParams: P
   const href = feature ? "/feature-coverage/" + feature.slug : "/innovation-pulse/story/" + generateSlug(story.title);
   if (seen.has(href)) continue;
   seen.add(href);
-  stories.push({ id: href, href, title: story.title, summary: story.summary, source: story.source, category: mapToV4Category(story.category), date: story.publishedAt || story.date, dateLabel: label(story.publishedAt || story.date), image: story.image || story.heroImage || "" });
+  stories.push({ id: href, href, title: story.title, summary: story.summary, preview: story.preview, source: story.source, sourceUrl: story.sourceUrl, category: mapToV4Category(story.category), date: story.publishedAt || story.date, dateLabel: label(story.publishedAt || story.date), image: story.image || story.heroImage || "" });
  }
  stories.sort((a,b) => b.date.localeCompare(a.date));
  return <LibraryView stories={stories} editions={getLibraryEditions()} tab={tab} />;

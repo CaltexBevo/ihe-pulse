@@ -58,6 +58,13 @@ export type FeaturedCoverage = {
   sections: FeaturedCoverageSection[];
 };
 
+/** Keep the label and URL from the same original when showing one source on a card. */
+export function featureCardSource(feature: FeaturedCoverage) {
+  const primary = { label: feature.sourceLabel, url: feature.sourceUrl };
+  if (primary.label && primary.url) return primary;
+  return feature.sources?.[0] ?? primary;
+}
+
 export { MODELS_FEATURED_COVERAGE } from './featured-coverage-models';
 
 /**

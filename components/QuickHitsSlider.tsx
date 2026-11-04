@@ -1,10 +1,8 @@
 'use client';
-import Image from 'next/image';
-import Link from 'next/link';
+import StoryPreviewCard from './StoryPreviewCard';
 import { useEffect, useReducer, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { mapToV4Category } from '@/lib/data/innovation-pulse-types';
 import { getHomepageStoryHref, getHomepageStoryImage, type HomepageStory } from '@/lib/homepagePulse';
-import { pillColorsFor } from '@/lib/categoryPalette';
 import styles from './QuickHitsSlider.module.css';
 
 const DWELL_MS = 3000;
@@ -49,12 +47,10 @@ function reducer(state: State, action: Action): State {
 }
 function StoryFace({ story, onImageReady }: { story: HomepageStory; onImageReady?: () => void }) {
   const category = story.category === 'Tool Spotlight' ? story.category : mapToV4Category(story.category);
-  const pill = story.feature ? { text: 'var(--amber)' } : pillColorsFor(category);
-  const image = getHomepageStoryImage(story);
-  return <div className={styles.face}>
-    {!story.omitImage && <div className={styles.imageFrame}>{image ? <Image key={image} src={image} alt="" fill loading={onImageReady ? 'eager' : undefined} onLoad={onImageReady} onError={onImageReady} sizes="(max-width: 680px) calc(100vw - clamp(2rem, 8vw, 4rem) - 2px), (max-width: 1024px) calc((100vw - clamp(2rem, 8vw, 4rem) - 14px) / 2 - 2px), calc((min(100vw, 1200px) - clamp(2rem, 8vw, 4rem) - 28px) / 3 - 2px)" className={styles.image} /> : <div className={styles.imageFallback}>Innovation Pulse story</div>}</div>}
-    <div className={styles.body}><h3 className={styles.title}>{story.title}</h3><div className={styles.category} style={{ color: pill.text }}><span className={styles.categoryDot} style={{ backgroundColor: pill.text }} />{story.feature ? 'Original Feature' : category}</div></div>
-  </div>;
+  return <StoryPreviewCard title={story.title} href={getHomepageStoryHref(story)}
+    category={story.feature ? 'Original Feature' : category} image={story.omitImage ? undefined : getHomepageStoryImage(story)}
+    intro={story.preview || story.summary} source={story.feature?.originalSource?.label || story.source} sourceUrl={story.feature?.originalSource?.url || story.sourceUrl} byline={story.feature?.byline}
+    sizes="(max-width: 680px) 96vw, (max-width: 1024px) 47vw, (max-width: 1200px) 31vw, 365px" onImageReady={onImageReady} />;
 }
 export default function QuickHitsSlider({ stories, header, headerAction }: { stories: HomepageStory[]; header?: ReactNode; headerAction?: ReactNode }) {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -127,11 +123,12 @@ export default function QuickHitsSlider({ stories, header, headerAction }: { sto
         const story = stories[index]; if (!story) return null;
         const pending = state.pending?.slot === slot ? state.pending : null;
         return <li key={slot} className={styles.item} aria-label={`${index + 1} of ${stories.length}`}>
-          <Link href={getHomepageStoryHref(story)} className={styles.card} aria-label={`${story.feature ? 'Read original feature' : 'Read story'}: ${story.title}`} data-story-index={index} data-story-feature={story.feature ? 'true' : 'false'} onClick={event => { if (pending) event.preventDefault(); }}>
-            <span className={styles.srOnly}>{story.title}</span>
-            <div aria-hidden="true" inert className={styles.stationary}><StoryFace key={pending ? pending.incoming : index} story={stories[pending ? pending.incoming : index]} onImageReady={pending ? () => dispatch({ type: 'ready', incoming: pending.incoming }) : undefined} /></div>
-            {pending && <div key={`${index}-${pending.incoming}`} aria-hidden="true" inert className={`${styles.outgoing} ${pending.ready ? styles.revealing : ''}`} onAnimationEnd={() => dispatch({ type: 'commit' })}><StoryFace story={story} /></div>}
-          </Link>
+          <div className={styles.slot} data-story-index={index} data-story-feature={story.feature ? 'true':'false'}>
+            <div aria-hidden={pending ? true : undefined} inert={pending ? true : undefined}>
+              <StoryFace key={pending ? pending.incoming : index} story={stories[pending ? pending.incoming : index]} onImageReady={pending ? () => dispatch({type:'ready',incoming:pending.incoming}) : undefined} />
+            </div>
+            {pending && <div key={index+'-'+pending.incoming} aria-hidden="true" inert className={styles.outgoing+' '+(pending.ready?styles.revealing:'')} onAnimationEnd={() => dispatch({type:'commit'})}><StoryFace story={story}/></div>}
+          </div>
         </li>;
       })}
     </ul>

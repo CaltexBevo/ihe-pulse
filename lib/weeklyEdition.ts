@@ -1,6 +1,6 @@
 import type { InnovationPulseEpisode } from './data/innovation-pulse-types';
 import { generateSlug, mapToV4Category } from './data/innovation-pulse';
-import { FEATURED_COVERAGE } from './data/featured-coverage';
+import { FEATURED_COVERAGE, featureCardSource } from './data/featured-coverage';
 import { getHomepageEpisodeStories, type HomepageStory } from './homepagePulse';
 
 // A promoted Special Feature sits outside the edition's selected news lineup.
@@ -34,8 +34,9 @@ export function getWeeklyEditionContent(episode: InnovationPulseEpisode) {
     lead, feature, promotedFeature, storyCount: stories.length,
     stories: (promotedFeature ? stories : stories.filter(story => story !== lead)).map(story => {
       const original = getEditionFeature(story, episode.date);
+      const source = original ? featureCardSource(original) : undefined;
       const href = original ? '/feature-coverage/' + original.slug : '/innovation-pulse/story/' + generateSlug(story.title);
-      return { id: href, href, title: original?.title || story.title, summary: story.summary, source: story.source, category: mapToV4Category(story.category), date: publishedAt, dateLabel, image: original?.imagePath || story.heroImage || story.image || '' };
+      return { id: href, href, title: original?.title || story.title, summary: story.summary, preview: original?.teaser || story.preview, source: source?.label || story.source, sourceUrl: source?.url || story.sourceUrl, byline: original?.byline, category: mapToV4Category(story.category), date: publishedAt, dateLabel, image: original?.imagePath || story.heroImage || story.image || '' };
     }),
   };
 }
