@@ -1,5 +1,11 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-11-03] Shared story cards and Edition 22 listening hub
+
+- Use one compact browsing-card presentation across the Library, categories, homepage carousel and related stories, retaining titles, introductions, original sources and reading destinations.
+- Add separate 3:2 card artwork and individually reviewed image framing while preserving original hero and article masters.
+- Give Edition 22 one weekly/Feature listening hub and eight visible cards, with The Measure of a Man first and all seven edition stories retained. Keep the distinct recordings, runtimes and playback controls.
+
 ## [2026-10-29] Verified inclusive ranking request
 
 - End the request before the current hour and validate Vercel's exact exclusive next-hour echo, preserving a complete 30-day window without accepting timestamp tolerance or the current hour.
