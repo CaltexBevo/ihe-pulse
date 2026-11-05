@@ -1,6 +1,7 @@
 /* Exact 1681 × 936 master. Retain x20–1660, y26–647 (1641 × 622).
    Hide exterior margin and pictured footer; the real player renders below. */
 .artwork {
+  border-radius: var(--image-radius);
   position: relative;
   width: 100%;
   aspect-ratio: 1641 / 622;

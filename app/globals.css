@@ -10,6 +10,14 @@
 @source "../data";
 @source "../lib";
 
+/* Content images round every corner; component and circular utility styles win. */
+@layer base {
+  :where(img) { border-radius: var(--image-radius); }
+  :where(img[src*="ihe-logo"], img[src*="/logos/"], img[src*="logos%2F"], img[src*="mic03"]) {
+    border-radius: 0;
+  }
+}
+
 /* ============================================
    IHE PULSE - Electric Dusk Design System
    Complete Global Styles
@@ -24,6 +32,7 @@
    ============================================ */
 
 :root {
+  --image-radius: 12px;
   /* Core Background Colors */
   --bg: #08080f;
   --bg-elevated: #0e0e1a;
@@ -657,7 +666,9 @@ summary:focus:not(:focus-visible) {
 }
 
 /* Card Image - Standard height 170px */
+.image-frame,
 .card-img-wrap {
+  border-radius: var(--image-radius);
   position: relative;
   overflow: hidden;
 }
@@ -2874,7 +2885,7 @@ summary:focus:not(:focus-visible) {
   background: var(--surface);
   margin-bottom: 0;
   border: none;
-  border-radius: 0;
+  border-radius: var(--image-radius);
 }
 
 /* Hover/active styles now on .ip-recent-thumb parent */

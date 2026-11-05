@@ -62,7 +62,7 @@ export default function Card({
   const CardContent = (
     <>
       {/* Story artwork can opt into an uncropped frame. */}
-      <div className="relative overflow-hidden">
+      <div className="image-frame relative overflow-hidden">
         {!omitImage && <div
           className={`relative w-full transition-all duration-400 ${
             preserveArtwork ? "aspect-[3/2] bg-[var(--surface)]" : isExpanded ? "h-[190px]" : "h-[180px]"
