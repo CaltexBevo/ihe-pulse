@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-11-05] Edition 22 article share cards
+
+- Deliver dedicated full-bleed social artwork for the six Edition 22 Pulse articles and Mark Cuban Feature through their Open Graph and Twitter metadata.
+- Preserve article artwork, copy, audio and layout; use separate versioned card assets.
+
 ## [2026-11-04] Rounded website images
 
 - Give content images a shared all-corner radius, including browsing cards, weekly artwork, Features, article images and podcast artwork.
