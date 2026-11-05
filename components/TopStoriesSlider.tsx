@@ -44,7 +44,7 @@ export default function TopStoriesSlider({ stories }: TopStoriesSliderProps) {
           >
             {/* Image - 3:2 aspect ratio to match 1536x1024 source images */}
             {story.image && (
-              <div className="relative aspect-[3/2] overflow-hidden bg-[var(--surface)]">
+              <div className="image-frame relative aspect-[3/2] overflow-hidden bg-[var(--surface)]">
                 <Image
                   src={story.image}
                   alt=""

@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-11-04] Rounded website images
+
+- Give content images a shared all-corner radius, including browsing cards, weekly artwork, Features, article images and podcast artwork.
+- Round artwork clipping frames as well as images so historical crops and card lower corners remain rounded. Preserve existing circular icons, transparent brand marks, artwork bytes, framing, copy and audio.
+
 ## [2026-11-03] Shared story cards and Edition 22 listening hub
 
 - Use one compact browsing-card presentation across the Library, categories, homepage carousel and related stories, retaining titles, introductions, original sources and reading destinations.

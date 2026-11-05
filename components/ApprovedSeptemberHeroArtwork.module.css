@@ -1,6 +1,7 @@
 /* The original is 1671 × 941. Its printed controls start at source row 766.
    Clip only those rows; never stretch, regenerate, filter or retype the art. */
 .artwork {
+  border-radius: var(--image-radius);
   position: relative;
   width: 100%;
   aspect-ratio: 1671 / 766;
