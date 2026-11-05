@@ -11,6 +11,7 @@ import {
   type FeaturedCoverageSection,
 } from "@/lib/data/featured-coverage";
 import { pageMetadata } from "@/lib/og";
+import { STORY_SOCIAL_IMAGES } from "@/lib/story-social-images";
 import FeatureLaunchArticle from "@/components/FeatureLaunchArticle";
 import FeatureAudioPlayer from "@/components/FeatureAudioPlayer";
 
@@ -61,6 +62,7 @@ export async function generateMetadata({
       twitterCard: feature.imagePath ? "summary_large_image" : "summary",
       imageWidth: feature.imagePath ? feature.imageWidth : undefined,
       imageHeight: feature.imagePath ? feature.imageHeight : undefined,
+      ...STORY_SOCIAL_IMAGES[feature.slug],
     }),
     ...(feature.authorName !== "" ? {
       authors: [{ name: feature.authorName ?? "Dr. Norma Jones" }],

@@ -151,4 +151,41 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
       "imageWidth": 1200,
       "imageHeight": 630
   },
+
+  // Edition 22: dedicated full-bleed reading cards; page artwork stays unchanged.
+  "cornell-puts-students-in-charge-of-questioning-classroom-ai": {
+    imagePath: "/images/stories/social/edition22-cornell-card-20261105-v1.png",
+    imageWidth: 1732,
+    imageHeight: 908,
+  },
+  "philosophys-ai-role-reaches-into-reasoning-and-model-rules": {
+    imagePath: "/images/stories/social/edition22-philosophy-card-20261105-v1.png",
+    imageWidth: 1734,
+    imageHeight: 907,
+  },
+  "three-learning-questions-make-ai-teaching-choices-clearer": {
+    imagePath: "/images/stories/social/edition22-learning-card-20261105-v1.png",
+    imageWidth: 1734,
+    imageHeight: 907,
+  },
+  "a-fallen-robot-learns-to-choose-its-way-back-up": {
+    imagePath: "/images/stories/social/edition22-robot-card-20261105-v1.png",
+    imageWidth: 1734,
+    imageHeight: 907,
+  },
+  "an-academics-ai-writing-experiment-shows-why-meaning-needs-c": {
+    imagePath: "/images/stories/social/edition22-dipietro-card-20261105-v1.png",
+    imageWidth: 1731,
+    imageHeight: 909,
+  },
+  "mark-cuban-ai-learning-judgment": {
+    imagePath: "/images/stories/social/edition22-cuban-card-20261105-v1.png",
+    imageWidth: 1733,
+    imageHeight: 908,
+  },
+  "having-a-say-in-ai-use-is-linked-to-better-worker-experience": {
+    imagePath: "/images/stories/social/edition22-charter-card-20261105-v1.png",
+    imageWidth: 1731,
+    imageHeight: 908,
+  },
 };
