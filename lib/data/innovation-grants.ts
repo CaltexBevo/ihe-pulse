@@ -233,7 +233,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 44,
     portalAddedDate: "2026-08-29",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 7,
     title: "NSF State and Regional Artificial Intelligence Infrastructure Hubs",
     source: "U.S. National Science Foundation",
@@ -938,7 +938,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 69,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 24,
     title: "Cornerstone: Learning for Living",
     source: "The Teagle Foundation",
@@ -990,7 +990,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 71,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 12,
     title: "NSF Innovation in Two-Year College STEM Education",
     source: "U.S. National Science Foundation",
@@ -1020,7 +1020,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 72,
     portalAddedDate: "2026-08-30",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 2,
     title: "NSF IUSE: EDU: January 2027 tracks",
     source: "U.S. National Science Foundation",
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1166,7 +1166,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 77,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 8,
     title: "Wake Forest ECI Communities of Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1257,7 +1257,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 80,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 10,
     title: "USDA NIFA Tribal Colleges Research Grant Program",
     source: "USDA National Institute of Food and Agriculture",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1469,7 +1469,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   }),
 grant({
     portalAddedDate: "2026-09-07",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     applicationStatus: "open-now",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Sep. 7",
@@ -1597,7 +1597,7 @@ grant({
   grant({
     id: 91,
     portalAddedDate: "2026-09-14",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 19,
     title: "NSF Computing Education Research",
     source: "U.S. National Science Foundation",
@@ -1664,7 +1664,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      lastVerified: "Nov 3, 2026",
+      lastVerified: "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1703,7 +1703,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 3, 2026",
+      "lastVerified": "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 3, 2026",
+      "lastVerified": "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1853,7 +1853,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 3, 2026",
+      "lastVerified": "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 3, 2026",
+      "lastVerified": "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1969,7 +1969,7 @@ grant({
   grant({
       "id": 101,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Nov 3, 2026",
+      "lastVerified": "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2048,7 +2048,7 @@ grant({
   grant({
       "id": 103,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Nov 3, 2026",
+      "lastVerified": "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2165,7 +2165,7 @@ grant({
   grant({
       "id": 106,
       "portalAddedDate": "2026-09-22",
-      "lastVerified": "Nov 3, 2026",
+      "lastVerified": "Nov 5, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Monday discovery, Sep. 21, 2026",
       "scopeDisposition": "included",
@@ -2246,7 +2246,7 @@ grant({
   grant({
     id: 108,
     portalAddedDate: "2026-09-28",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     publishedProgramPoolUsd: 30_600_000,
     publishedProgramPoolApproximate: true,
     recommendationRank: 19,
@@ -2307,7 +2307,7 @@ grant({
   }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Nov 3, 2026",
+    "lastVerified": "Nov 5, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2385,7 +2385,7 @@ grant({
 }),
   grant({
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Nov 3, 2026",
+    "lastVerified": "Nov 5, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Oct. 3, 2026",
     "scopeDisposition": "included",
@@ -2422,7 +2422,7 @@ grant({
   grant({
     "id": 114,
     "portalAddedDate": "2026-10-03",
-    "lastVerified": "Nov 3, 2026",
+    "lastVerified": "Nov 5, 2026",
     "recommendationRank": 38,
     "title": "Provost's Award for Teaching Innovations in the Age of AI",
     "source": "Northwestern University",
@@ -2494,7 +2494,7 @@ grant({
   grant({
     id: 116,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 41,
     title: "College of the Redwoods President's Innovation Funds: Fall 2026",
     source: "College of the Redwoods Foundation",
@@ -2522,7 +2522,7 @@ grant({
   grant({
     id: 117,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 39,
     title: "Engaging Difference in General Education (EDGE) Grants: 2026–28",
     source: "Interfaith America",
@@ -2551,7 +2551,7 @@ grant({
   grant({
     id: 118,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 42,
     title: "IU Indianapolis Open Educational Resources Development Grants",
     source: "Indiana University Indianapolis University Library",
@@ -2580,7 +2580,7 @@ grant({
   grant({
     id: 119,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 34,
     title: "AmeriHealth Caritas Bridge Pilot for Short-Term Healthcare Pathways",
     source: "North Carolina Community Colleges Foundation and NC Community College System",
@@ -2767,7 +2767,7 @@ grant({
   grant({
     id: 125,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 48,
     title: "Open Nebraska Affordable Content Grants: Fall 2026",
     source: "University of Nebraska Omaha Criss Library and Open Nebraska",
@@ -2795,7 +2795,7 @@ grant({
   grant({
     id: 126,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 49,
     title: "Integrated Data Systems & Services (IDSS)",
     source: "National Science Foundation",
@@ -2824,7 +2824,7 @@ grant({
   grant({
     id: 127,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 50,
     title: "Open Educational Resources Grant (AY27)",
     source: "National University",
@@ -2852,7 +2852,7 @@ grant({
   grant({
     id: 128,
     portalAddedDate: "2026-10-15",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 9,
     title: "NSF Tribal Colleges and Universities Program: 2026–27 rolling tracks",
     source: "U.S. National Science Foundation",
@@ -2885,7 +2885,7 @@ grant({
   grant({
     id: 129,
     portalAddedDate: "2026-10-16",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 39,
     title: "Glendale Community College Senate Innovation Grant",
     source: "Glendale Community College Academic Senate",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2978,7 +2978,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -3007,7 +3007,7 @@ grant({
   grant({
     id: 133,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 29,
     title: "Educating Character Initiative: 2027 Capacity-Building Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -3038,7 +3038,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3068,7 +3068,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3098,7 +3098,7 @@ grant({
   grant({
     id: 136,
     portalAddedDate: "2026-10-28",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 33,
     title: "CCCCO AI for Teaching and Learning Institute: Cohort 1",
     source: "California Community Colleges Chancellor's Office",
@@ -3127,7 +3127,7 @@ grant({
   grant({
     "id": 137,
     "portalAddedDate": "2026-10-30",
-    "lastVerified": "Nov 3, 2026",
+    "lastVerified": "Nov 5, 2026",
     "recommendationRank": 34,
     "title": "University of South Carolina Innovative Pedagogy Grant",
     "source": "University of South Carolina Center for Teaching Excellence",
@@ -3165,7 +3165,7 @@ grant({
   grant({
     "id": 138,
     "portalAddedDate": "2026-10-30",
-    "lastVerified": "Nov 3, 2026",
+    "lastVerified": "Nov 5, 2026",
     "recommendationRank": 35,
     "title": "CU Denver IRC Faculty Professional Development Grant",
     "source": "University of Colorado Denver Center for Faculty Development & Advancement",
@@ -3206,7 +3206,7 @@ innovationGrants.push(
   grant({
     id: 140,
     portalAddedDate: "2026-11-02",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 4, 2026",
     recommendationRank: 36,
     title: "Penn State AI in Instruction Microgrant Program",
     source: "Penn State AI Center of Excellence for Teaching and Learning",
@@ -3220,7 +3220,7 @@ innovationGrants.push(
     geography: "Penn State faculty only",
     costShareRequirement: "The official application listing states that no funds will be matched",
     applicationAccess: "Official InfoReady full terms are public. Apply opens a Penn State login gateway; authenticated form contents were not inspected.",
-    deadline: "Nov. 5, 2026 at 12:00 a.m. on the official grants index; InfoReady gives the date only. Time zone not stated; confirm the cutoff before applying",
+    deadline: "Nov. 5, 2026; the prior grants index listed 12:00 a.m. without a time zone. InfoReady gives the date only; confirm current availability and cutoff",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-05",
     audiences: ["four-year-colleges-universities", "faculty-teaching-centers"],
@@ -3230,13 +3230,13 @@ innovationGrants.push(
     eligibilityBadge: "Eligible Penn State faculty only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 2, 2026",
-    qualifiers: ["Funds go to academic units, must be spent in FY2027 and cannot carry forward. Supplemental salary, conference-presentation travel and unrelated equipment are excluded.", "Projects requiring institutional data beyond existing access need documented authorization. Recipients submit a 750–1,000-word reflection; missing it makes them ineligible for future center grants."],
+    qualifiers: ["The grants index no longer lists this call as of Nov. 5; InfoReady still shows the Nov. 5 deadline and an Apply login route. Confirm current availability and the cutoff before applying.", "Funds go to academic units, must be spent in FY2027 and cannot carry forward. Supplemental salary, conference-presentation travel and unrelated equipment are excluded.", "Projects requiring institutional data beyond existing access need documented authorization. Recipients submit a 750–1,000-word reflection; missing it makes them ineligible for future center grants."],
     sourceNotes: "Official center page, public InfoReady terms and Apply login route verified Nov. 2. The explicit $50,000 total pool is included once; no multiplication of the 50 possible awards. A future spring call is mentioned but is not a separate verified open opportunity.",
   }),
   grant({
     id: 141,
     portalAddedDate: "2026-11-02",
-    lastVerified: "Nov 3, 2026",
+    lastVerified: "Nov 5, 2026",
     recommendationRank: 37,
     title: "Penn State Program or Large Course Transformation Grant",
     source: "Penn State AI Center of Excellence for Teaching and Learning",
