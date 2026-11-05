@@ -1,4 +1,5 @@
 .artwork {
+  border-radius: var(--image-radius);
   position: relative;
   width: 100%;
   aspect-ratio: 1920 / 850;
