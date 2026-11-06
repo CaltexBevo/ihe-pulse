@@ -169,6 +169,7 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
     imageHeight: 907,
   },
   "a-fallen-robot-learns-to-choose-its-way-back-up": {
+    twitterTitle: "A fallen robot learns to choose its way back up",
     imagePath: "/images/stories/social/edition22-robot-card-20261105-v1.png",
     imageWidth: 1734,
     imageHeight: 907,
@@ -179,11 +180,12 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
     imageHeight: 909,
   },
   "mark-cuban-ai-learning-judgment": {
-    imagePath: "/images/stories/social/edition22-cuban-card-20261105-v1.png",
+    imagePath: "/images/stories/social/edition22-cuban-card-20261105-v2.png",
     imageWidth: 1733,
     imageHeight: 908,
   },
   "having-a-say-in-ai-use-is-linked-to-better-worker-experience": {
+    twitterTitle: "Having a Say in AI Use Is Linked to Better Worker Experiences",
     imagePath: "/images/stories/social/edition22-charter-card-20261105-v1.png",
     imageWidth: 1731,
     imageHeight: 908,

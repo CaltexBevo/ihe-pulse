@@ -1,5 +1,10 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-11-05] Edition 22 native card clearance
+
+- Use the existing published Robot and Charter article titles for their X labels, omitting only the automatic publication suffix. Keep browser and Open Graph titles unchanged.
+- Raise the exact Cuban card logo above the observed native overlay using a new social-only asset. Preserve Cornell's corrected card and all other artwork.
+
 ## [2026-11-05] Cornell card logo clearance
 
 - Use a new Cornell-only social card with the exact logo raised above the observed native X title overlay. Preserve all other card artwork and the six other Edition 22 cards.
