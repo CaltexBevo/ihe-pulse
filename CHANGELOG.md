@@ -1,5 +1,9 @@
 # CHANGELOG — Innovating Higher Ed (ihe-pulse)
 
+## [2026-11-05] Cornell card logo clearance
+
+- Use a new Cornell-only social card with the exact logo raised above the observed native X title overlay. Preserve all other card artwork and the six other Edition 22 cards.
+
 ## [2026-11-05] Edition 22 article share cards
 
 - Deliver dedicated full-bleed social artwork for the six Edition 22 Pulse articles and Mark Cuban Feature through their Open Graph and Twitter metadata.

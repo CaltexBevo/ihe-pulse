@@ -154,7 +154,7 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
 
   // Edition 22: dedicated full-bleed reading cards; page artwork stays unchanged.
   "cornell-puts-students-in-charge-of-questioning-classroom-ai": {
-    imagePath: "/images/stories/social/edition22-cornell-card-20261105-v1.png",
+    imagePath: "/images/stories/social/edition22-cornell-card-20261105-v2.png",
     imageWidth: 1732,
     imageHeight: 908,
   },
