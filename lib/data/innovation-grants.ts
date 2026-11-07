@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 7, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 7, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 6, 2026",
+      "lastVerified": "Nov 7, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2604,7 +2604,7 @@ grant({
     eligibilityBadge: "North Carolina community colleges only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 5, 2026",
-    sourceNotes: "Official RFP guidelines and rendered application checked Oct. 19. RFP: https://wordpress.nccommunitycolleges.edu/wp-content/uploads/2026/09/00_Bridge-Pilot-Overview-and-RFP-Guidelines-Final-10-1-1.docx . Predetermined college allocation: $666,667 student support, $80,000 success coaching and $10,000 implementation capacity over two years. Year-two disbursement depends on satisfactory progress, reporting and fiscal stewardship. Funding does not create underlying instructional capacity. The $3 million headline covers the broader initiative; neither that figure nor multiplied award allocations enter the cash-pool tally. No time zone or match requirement is inferred.",
+    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official RFP guidelines and rendered application checked Oct. 19. RFP: https://wordpress.nccommunitycolleges.edu/wp-content/uploads/2026/09/00_Bridge-Pilot-Overview-and-RFP-Guidelines-Final-10-1-1.docx . Predetermined college allocation: $666,667 student support, $80,000 success coaching and $10,000 implementation capacity over two years. Year-two disbursement depends on satisfactory progress, reporting and fiscal stewardship. Funding does not create underlying instructional capacity. The $3 million headline covers the broader initiative; neither that figure nor multiplied award allocations enter the cash-pool tally. No time zone or match requirement is inferred.",
   }),
   grant({
     id: 120,
@@ -2779,10 +2779,10 @@ grant({
     whatItFunds: "Course development and conversion to low-cost or no-cost teaching materials that result in an Open Nebraska course attribute.",
     geography: "University of Nebraska Omaha only",
     costShareRequirement: notStated,
-    applicationAccess: "The extended Nov. 2 deadline has passed. The official NuRamp link still opens the campus sign-in chooser.",
-    deadline: "Nov. 2, 2026, extended from Oct. 16. Time and time zone were not stated.",
+    applicationAccess: "The official call says applications are open through Nov. 9. The public NuRamp route returned an access error during the Nov. 7 browser check; confirm access through your campus before applying.",
+    deadline: "Nov. 9, 2026, extended again from Nov. 2. Time and time zone are not stated.",
     deadlineTimeZone: "Not stated in the official source",
-    finalDeadlineDate: "2026-11-02",
+    finalDeadlineDate: "2026-11-09",
     audiences: ["four-year-colleges-universities", "faculty-teaching-centers"],
     innovationAreas: ["teaching-learning", "student-success", "digital-transformation-infrastructure", "faculty-development"],
     scopeDisposition: "included",
@@ -2790,7 +2790,7 @@ grant({
     eligibilityBadge: "UNO faculty and instructors only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
-    sourceNotes: "Official current call and NuRamp public sign-in entry checked Oct. 29. The call extends the deadline to Nov. 2 and lists award notifications for Nov. 23. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
+    sourceNotes: "Nov. 7 partial recheck: the current official call extends the deadline to Nov. 9 and lists award notifications for Nov. 30. The public application returned an access error in the browser, while the direct request reached the login page. Prior full-verification date retained; authenticated application contents were not inspected. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
   }),
   grant({
     id: 126,
@@ -2847,7 +2847,7 @@ grant({
     eligibilityBadge: "National University faculty and staff only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
-    sourceNotes: "Official AY27 call and actual linked application entry checked Oct. 14. Per-person stipends are not a published program pool and are excluded from the cash tally.",
+    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official AY27 call and actual linked application entry checked Oct. 14. Per-person stipends are not a published program pool and are excluded from the cash tally.",
   }),
   grant({
     id: 128,
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 7, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2978,7 +2978,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 7, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -3038,7 +3038,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 7, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3068,7 +3068,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 7, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3261,7 +3261,7 @@ innovationGrants.push(
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 2, 2026",
     qualifiers: ["Funds support academic year 2027–28 and must be spent in FY2028 without carry-forward. Supplemental salary, conference-presentation travel and unrelated equipment are excluded.", "The proposal must require participating students to complete AI Essentials. Institutional data beyond existing access needs documented authorization. Recipients submit a 2,000–3,000-word report and present at a university showcase."],
-    sourceNotes: "Official center page, public InfoReady full terms and Apply login route verified Nov. 2. The explicit $350,000 total pool is included once; the ten possible awards are not multiplied by the $50,000 cap. This is distinct from the individual microgrant program.",
+    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official center page, public InfoReady full terms and Apply login route verified Nov. 2. The explicit $350,000 total pool is included once; the ten possible awards are not multiplied by the $50,000 cap. This is distinct from the individual microgrant program.",
   }),
 );
 
@@ -3295,7 +3295,7 @@ innovationGrants.push(
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 6, 2026",
     qualifiers: ["Requests supporting student or educator teams must include development and active deployment of an SI method or tool. Activities must align with the original award and the Challenge.", "The suggested 3–5-page request covers activities, deliverables, participating teams and schools, partners and a justified budget. Prior Challenge supplement recipients must report progress and outcomes."],
-    sourceNotes: "NSF 27-011, linked PAPPG VI.E.5, official Research.gov supplemental-request guidance and actual NSF sign-in handoff checked Nov. 6. Both award limits apply. No program-level cash pool is published; per-PI caps are excluded from the tally. Higher-education mentoring and postsecondary pathways establish the education-innovation fit despite school-age beneficiaries.",
+    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. NSF 27-011, linked PAPPG VI.E.5, official Research.gov supplemental-request guidance and actual NSF sign-in handoff checked Nov. 6. Both award limits apply. No program-level cash pool is published; per-PI caps are excluded from the tally. Higher-education mentoring and postsecondary pathways establish the education-innovation fit despite school-age beneficiaries.",
   }),
   grant({
     id: 143,
@@ -3325,7 +3325,7 @@ innovationGrants.push(
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 6, 2026",
     qualifiers: ["Projects run Jan. 25–May 24, 2027. Teams attend required budget check-ins and bi-monthly sessions, create a toolkit and share results through a Teaching Talk and/or the MARS repository.", "Submit the proposal and administrative support letters as one PDF plus the required Excel budget. Fringe is deducted from the stipend allocation; confirm the current rate and eligibility with the Financial Point of Contact."],
-    sourceNotes: "Official full call, parent eligibility page, linked budget workbook and institutional login boundary checked Nov. 6. Funding for two teams is stated, but no aggregate pool is inferred by multiplying per-team caps. The generic budget template retains an older fiscal-year label; current stipend and fringe instructions come from the call, and net pay is not guaranteed.",
+    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official full call, parent eligibility page, linked budget workbook and institutional login boundary checked Nov. 6. Funding for two teams is stated, but no aggregate pool is inferred by multiplying per-team caps. The generic budget template retains an older fiscal-year label; current stipend and fringe instructions come from the call, and net pay is not guaranteed.",
   }),
 );
 
