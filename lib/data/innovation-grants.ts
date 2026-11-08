@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 7, 2026",
+    lastVerified: "Nov 8, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 7, 2026",
+    lastVerified: "Nov 8, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 7, 2026",
+      "lastVerified": "Nov 8, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 7, 2026",
+    lastVerified: "Nov 8, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2978,7 +2978,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Nov 7, 2026",
+    lastVerified: "Nov 8, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -3038,7 +3038,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 7, 2026",
+    lastVerified: "Nov 8, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3068,7 +3068,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 7, 2026",
+    lastVerified: "Nov 8, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
