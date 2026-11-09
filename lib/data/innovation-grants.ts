@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 8, 2026",
+    lastVerified: "Nov 9, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 8, 2026",
+    lastVerified: "Nov 9, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 8, 2026",
+      "lastVerified": "Nov 9, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 8, 2026",
+    lastVerified: "Nov 9, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2978,7 +2978,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Nov 8, 2026",
+    lastVerified: "Nov 9, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -3038,7 +3038,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 8, 2026",
+    lastVerified: "Nov 9, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3068,7 +3068,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 8, 2026",
+    lastVerified: "Nov 9, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3326,6 +3326,123 @@ innovationGrants.push(
     announcementWindow: "Broad discovery, Nov. 6, 2026",
     qualifiers: ["Projects run Jan. 25–May 24, 2027. Teams attend required budget check-ins and bi-monthly sessions, create a toolkit and share results through a Teaching Talk and/or the MARS repository.", "Submit the proposal and administrative support letters as one PDF plus the required Excel budget. Fringe is deducted from the stipend allocation; confirm the current rate and eligibility with the Financial Point of Contact."],
     sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official full call, parent eligibility page, linked budget workbook and institutional login boundary checked Nov. 6. Funding for two teams is stated, but no aggregate pool is inferred by multiplying per-team caps. The generic budget template retains an older fiscal-year label; current stipend and fringe instructions come from the call, and net pay is not guaranteed.",
+  }),
+  grant({
+    "portalAddedDate": "2026-11-09",
+    "lastVerified": "Nov 9, 2026",
+    "source": "Western Michigan University Office of Faculty Development",
+    "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
+    "announcedDate": "2026–27 cycle; announcement date not stated",
+    "geography": "Western Michigan University only, Michigan",
+    "costShareRequirement": "No mandatory matching contribution stated; applicants must identify other funding and explain how costs beyond the request will be covered",
+    "applicationAccess": "Complete public online application form is available; supervisor support and department budget contact information are required. No application submitted.",
+    "deadline": "Feb. 8, 2027, next review deadline; the Nov. 2, 2026 round has passed",
+    "deadlineTimeZone": "Not stated in the official source",
+    "finalDeadlineDate": "2027-02-08",
+    "audiences": [
+      "four-year-colleges-universities",
+      "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+      "teaching-learning",
+      "faculty-development"
+    ],
+    "scopeDisposition": "included",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Nov. 9, 2026",
+    "id": 144,
+    "recommendationRank": 40,
+    "title": "Western Michigan University Instructional Development Project Grants",
+    "applicationUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants/project-grant-application",
+    "awardAmount": "Up to $5,000 per project",
+    "eligibility": "Full-time WMU bargaining-unit faculty, including tenured, tenure-track and term faculty. Group, departmental and interdisciplinary proposals are encouraged; direct supervisor support is required. Professional instructors use the separate PIO application.",
+    "whatItFunds": "Instructional and curricular development in approved WMU courses and programs, including visiting experts, project-related training, student support and instructional materials.",
+    "bestFit": "Eligible WMU faculty seeking support for a course or curriculum redesign, with funding for the materials, expertise or student assistance needed to carry it out.",
+    "eligibilityBadge": "WMU full-time bargaining-unit faculty only",
+    "qualifiers": [
+      "Funding is reimbursed to departments, not individuals. Complete funded activities and expenses and submit reimbursement requests by June 15, 2027 unless an extension is approved. February decisions are expected by March 5.",
+      "Upload a 2–4-page project narrative and detailed budget worksheet. Faculty compensation, release time, computer equipment and individual conference travel are excluded.",
+      "Priority may favor group/interdisciplinary projects and units without project funding in the prior three years. Single-year projects are preferred."
+    ],
+    "sourceNotes": "Official 2026–27 program, complete public application and linked project budget worksheet verified Nov. 9. The worksheet footer refers to Travel Grant, but its title and project categories identify the Project worksheet; current program and application govern. No current-call program pool is published, so the per-project cap is excluded from the cash total."
+  }),
+  grant({
+    "portalAddedDate": "2026-11-09",
+    "lastVerified": "Nov 9, 2026",
+    "source": "Western Michigan University Office of Faculty Development",
+    "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
+    "announcedDate": "2026–27 cycle; announcement date not stated",
+    "geography": "Western Michigan University only, Michigan",
+    "costShareRequirement": "No mandatory matching contribution stated; applicants must identify other funding and explain how costs beyond the request will be covered",
+    "applicationAccess": "Complete public online application form is available; supervisor support and department budget contact information are required. No application submitted.",
+    "deadline": "Feb. 8, 2027, next review deadline; the Nov. 2, 2026 round has passed",
+    "deadlineTimeZone": "Not stated in the official source",
+    "finalDeadlineDate": "2027-02-08",
+    "audiences": [
+      "four-year-colleges-universities",
+      "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+      "teaching-learning",
+      "faculty-development"
+    ],
+    "scopeDisposition": "included",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Nov. 9, 2026",
+    "id": 145,
+    "recommendationRank": 41,
+    "title": "Western Michigan University PIO Instructional Development Grants",
+    "applicationUrl": "https://wmich.edu/x/pio-idg-app",
+    "awardAmount": "Up to $1,000 per award",
+    "eligibility": "Eligible WMU professional instructor (PIO) bargaining-unit members with direct supervisor support. Applications may cover instructional or curricular projects or professional learning tied to WMU teaching.",
+    "whatItFunds": "Instructional projects and teaching-related professional learning, including training, visiting experts, student support, instructional materials and eligible travel.",
+    "bestFit": "Eligible WMU professional instructors seeking project or professional-learning support to improve their own teaching or curriculum.",
+    "eligibilityBadge": "WMU PIO bargaining-unit members only",
+    "qualifiers": [
+      "Funding is reimbursed to departments, not individuals. Complete funded activities and expenses and submit reimbursement requests by June 15, 2027 unless an extension is approved. February decisions are expected by March 5.",
+      "Upload a proposal narrative of no more than two pages with budget information and applicable supporting materials. Instructor compensation, computer equipment and multi-year projects are excluded.",
+      "Professional learning must connect to teaching and student learning; presenting a paper alone is insufficient. Preference goes to applicants without a PIO grant in the previous three years."
+    ],
+    "sourceNotes": "Official current program and complete public PIO form verified Nov. 9. The agreement promises a minimum $6,000 each year across review rounds; this is not an isolated current-call pool and is excluded from the public cash total. No per-award multiplication."
+  }),
+  grant({
+    "portalAddedDate": "2026-11-09",
+    "lastVerified": "Nov 9, 2026",
+    "source": "Western Michigan University Office of Faculty Development",
+    "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
+    "announcedDate": "2026–27 cycle; announcement date not stated",
+    "geography": "Western Michigan University only, Michigan",
+    "costShareRequirement": "No mandatory matching contribution stated; applicants must identify other funding and explain how costs beyond the request will be covered",
+    "applicationAccess": "Complete public online application form is available; supervisor support and department budget contact information are required. No application submitted.",
+    "deadline": "Feb. 8, 2027, next review deadline; the Nov. 2, 2026 round has passed",
+    "deadlineTimeZone": "Not stated in the official source",
+    "finalDeadlineDate": "2027-02-08",
+    "audiences": [
+      "four-year-colleges-universities",
+      "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+      "teaching-learning",
+      "faculty-development"
+    ],
+    "scopeDisposition": "included",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Nov. 9, 2026",
+    "id": 146,
+    "recommendationRank": 42,
+    "title": "Western Michigan University Instructional Development Travel Grants",
+    "applicationUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants/travel-grant-application",
+    "awardAmount": "Up to $2,000 or the approved activity cost, whichever is lower",
+    "eligibility": "Full-time WMU bargaining-unit faculty with direct supervisor support. The professional learning must inform teaching or instructional practice and be applied in approved WMU courses or programs.",
+    "whatItFunds": "In-person or online conferences, workshops, meetings and other professional learning with a clear teaching and student-learning connection.",
+    "bestFit": "Eligible WMU faculty seeking reimbursement for professional learning they can apply to their teaching, instructional practice or curriculum.",
+    "eligibilityBadge": "WMU full-time bargaining-unit faculty only",
+    "qualifiers": [
+      "Funding is reimbursed to departments, not individuals. Complete funded activities and expenses and submit reimbursement requests by June 15, 2027 unless an extension is approved. February decisions are expected by March 5.",
+      "Presenting scholarly work alone is insufficient. Submit an approximately two-page narrative, supporting materials and the travel budget worksheet.",
+      "Preference goes to faculty without a Travel Grant in the previous three years. Previously denied requests cannot be resubmitted for the same trip; pre-award expenses are not guaranteed reimbursement."
+    ],
+    "sourceNotes": "Official current program, complete public travel application and linked budget worksheet verified Nov. 9. Included for its explicit instructional-development purpose, not generic disciplinary conference attendance. No current-call pool is published; the per-award cap is excluded from the cash total."
   }),
 );
 
