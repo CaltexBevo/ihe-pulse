@@ -6,7 +6,17 @@ register("./innovationGrantsTestLoader.mjs", import.meta.url);
 const { getHomepageGrantSummary } = await import("../lib/innovation-grants-homepage.ts");
 const { getPublicInnovationGrants, INNOVATION_GRANTS_LAUNCH_HELD_IDS } = await import("../lib/data/innovation-grants-public.ts");
 const now = new Date("2026-09-15T18:00:00Z");
-const records = getPublicInnovationGrants();
+// Historical September assertions predate the November 10 administrative set-aside clarification.
+const records = getPublicInnovationGrants().map(record => record.id === 106
+  ? { ...record, publishedProgramPoolUsd: 55_849_990 } : record);
+test("current homepage excludes the RNI administrative set-aside and archives elapsed UNO", () => {
+  const current = getPublicInnovationGrants();
+  const result = getHomepageGrantSummary(current, new Date("2026-11-10T18:00:00Z"));
+  assert.equal(current.find(record => record.id === 106).publishedProgramPoolUsd, 52_849_990);
+  assert.equal(result.funding.publishedProgramPoolUsd, 90_499_990);
+  assert.equal(result.funding.openOpportunityCount, 38);
+  assert.equal(result.totalCount, 91);
+});
 test("homepage banner omits the disclaimer and reserves end space for the dollar glyph ink", () => {
   const component = readFileSync(new URL("../components/HomeGrantSpotlight.tsx", import.meta.url), "utf8");
   const css = readFileSync(new URL("../components/HomeGrantSpotlight.module.css", import.meta.url), "utf8");
