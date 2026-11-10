@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 9, 2026",
+    lastVerified: "Nov 10, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 9, 2026",
+    lastVerified: "Nov 10, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 9, 2026",
+      "lastVerified": "Nov 10, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2176,7 +2176,7 @@ grant({
       "announcedDate": "2026-09-18",
       "announcedDateIso": "2026-09-18",
       "applicationStatus": "open-now",
-      "awardAmount": "Up to $2 million per college; $55,849,990 available under this Round 3 RFA",
+      "awardAmount": "Up to $2 million per college; $55,849,990 round total less $3 million reserved for administration and technical assistance, leaving a calculated $52,849,990 for awards",
       "eligibility": "California community-college districts; separate application for each college with an active ADN program or a plan to establish one within the grant term. Existing programs must remain in BRN good standing.",
       "whatItFunds": "New/expanded nursing capacity, dual-enrollment ADN pathways, faculty development, clinical placements, equipment and BSN transfer partnerships",
       "geography": "California community colleges only",
@@ -2200,8 +2200,8 @@ grant({
       ],
       "bestFit": "California colleges launching or expanding nursing pathways with demonstrably new capacity",
       "eligibilityBadge": "California community colleges only",
-      "sourceNotes": "Grant term: July 1, 2027 through June 30, 2029. Prior awardees are eligible only for new or expanded activities; duplication, supplanting and routine maintenance are excluded. The cash tally uses the RFA's published Round 3 pool. California community-college districts apply on behalf of individual colleges. Additional official evidence: https://www.cccco.edu/wp-content/uploads/2026/09/rni-r3-rfa-a11y.pdf.",
-      "publishedProgramPoolUsd": 55849990,
+      "sourceNotes": "Nov. 10 pool correction: slide 12 of the official bidders presentation identifies a $3,000,000 administrative and technical-assistance set-aside within the $55,849,990 round total. The cash tally uses the calculated remainder, $55,849,990 minus $3,000,000 = $52,849,990, not a separately published net figure. Prior verification date and the RFA's December PDT-label qualification are retained. Grant term: July 1, 2027 through June 30, 2029. Prior awardees are eligible only for new or expanded activities; duplication, supplanting and routine maintenance are excluded. California community-college districts apply on behalf of individual colleges. Official presentation: https://www.cccco.edu/wp-content/uploads/2026/11/rni-rfa-round-3-bidders-conference-a11y.pdf. RFA: https://www.cccco.edu/wp-content/uploads/2026/09/rni-r3-rfa-a11y.pdf.",
+      "publishedProgramPoolUsd": 52849990,
       "publishedProgramPoolApproximate": false
   }),
   grant({
@@ -2779,7 +2779,7 @@ grant({
     whatItFunds: "Course development and conversion to low-cost or no-cost teaching materials that result in an Open Nebraska course attribute.",
     geography: "University of Nebraska Omaha only",
     costShareRequirement: notStated,
-    applicationAccess: "The official call says applications are open through Nov. 9. The public NuRamp route returned an access error during the Nov. 7 browser check; confirm access through your campus before applying.",
+    applicationAccess: "The published Nov. 9 deadline has passed; no further extension was found in the Nov. 10 official-source check. The public NuRamp route returned an access error during the Nov. 7 and Nov. 10 browser checks; authenticated contents were not inspected.",
     deadline: "Nov. 9, 2026, extended again from Nov. 2. Time and time zone are not stated.",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-09",
@@ -2790,7 +2790,7 @@ grant({
     eligibilityBadge: "UNO faculty and instructors only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
-    sourceNotes: "Nov. 7 partial recheck: the current official call extends the deadline to Nov. 9 and lists award notifications for Nov. 30. The public application returned an access error in the browser, while the direct request reached the login page. Prior full-verification date retained; authenticated application contents were not inspected. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
+    sourceNotes: "Nov. 10 lifecycle check: the published Nov. 9 final deadline has passed and the official call shows no further extension; retained in Closed/Past. Nov. 7 partial recheck: the current official call extends the deadline to Nov. 9 and lists award notifications for Nov. 30. The public application returned an access error in the browser, while the direct request reached the login page. Prior full-verification date retained; authenticated application contents were not inspected. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
   }),
   grant({
     id: 126,
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 9, 2026",
+    lastVerified: "Nov 10, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2978,7 +2978,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Nov 9, 2026",
+    lastVerified: "Nov 10, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -3038,7 +3038,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 9, 2026",
+    lastVerified: "Nov 10, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3068,7 +3068,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 9, 2026",
+    lastVerified: "Nov 10, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3329,7 +3329,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 9, 2026",
+    "lastVerified": "Nov 10, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3368,7 +3368,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 9, 2026",
+    "lastVerified": "Nov 10, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3407,7 +3407,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 9, 2026",
+    "lastVerified": "Nov 10, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
