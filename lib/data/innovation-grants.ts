@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 10, 2026",
+    lastVerified: "Nov 11, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1240,7 +1240,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     whatItFunds: "Agricultural education, research, and outreach capacity, equipment and infrastructure, faculty professional growth, graduate assistantships, and emerging food and renewable-resource programs.",
     geography: "United States",
     costShareRequirement: "No match is required",
-    applicationAccess: "Public Grants.gov application package checked Oct. 10, 2026: Apply is available; authenticated submission not tested. Submit through the official Grants.gov opportunity after confirming NIFA NLGCA certification",
+    applicationAccess: "The public application is marked Closed after the Nov. 10 deadline. No extension was found in the Nov. 11 official-source check; authenticated submission was not inspected.",
     deadline: "Nov. 10, 2026 at 5 p.m. ET",
     deadlineTimeZone: "Eastern Time",
     finalDeadlineDate: "2026-11-10",
@@ -1252,7 +1252,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Aug. 31",
     qualifiers: ["Planning/workshop minimum conflict: under review"],
-    sourceNotes: "Sep. 9, 2026 official recheck: notice Table 2 gives a $25,000 planning/workshop minimum, while official Simpler.Grants.gov metadata gives $30,000. This discrepancy remains unresolved; only agreed award ceilings are displayed. The cover's average award range is not a stated minimum. The notice confirms Nov. 10 at 5 p.m. Eastern, no match, and an approximate $5.7 million FY2026 program pool. NIFA certification is required at application. Public application handoffs were checked, not authenticated submission workspaces. Sep. 26 partial recheck: the planning/workshop minimum conflict persists between the current NOFO and NIFA/Grants.gov public metadata; the public Grants.gov login entry remains reachable. Only agreed ceilings remain displayed and the Sep. 9 full-verification date is retained.",
+    sourceNotes: "Nov. 11 lifecycle check: the official application explicitly reports Closed after Nov. 10; the planning/workshop minimum conflict and prior full-verification date remain. Sep. 9, 2026 official recheck: notice Table 2 gives a $25,000 planning/workshop minimum, while official Simpler.Grants.gov metadata gives $30,000. This discrepancy remains unresolved; only agreed award ceilings are displayed. The cover's average award range is not a stated minimum. The notice confirms Nov. 10 at 5 p.m. Eastern, no match, and an approximate $5.7 million FY2026 program pool. NIFA certification is required at application. Public application handoffs were checked, not authenticated submission workspaces. Sep. 26 partial recheck: the planning/workshop minimum conflict persists between the current NOFO and NIFA/Grants.gov public metadata; the public Grants.gov login entry remains reachable. Only agreed ceilings remain displayed and the Sep. 9 full-verification date is retained.",
   }),
   grant({
     id: 80,
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 10, 2026",
+    lastVerified: "Nov 11, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 6, 2026",
+      "lastVerified": "Nov 11, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 10, 2026",
+      "lastVerified": "Nov 11, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2580,7 +2580,7 @@ grant({
   grant({
     id: 119,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 11, 2026",
     recommendationRank: 34,
     title: "AmeriHealth Caritas Bridge Pilot for Short-Term Healthcare Pathways",
     source: "North Carolina Community Colleges Foundation and NC Community College System",
@@ -2604,7 +2604,7 @@ grant({
     eligibilityBadge: "North Carolina community colleges only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 5, 2026",
-    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official RFP guidelines and rendered application checked Oct. 19. RFP: https://wordpress.nccommunitycolleges.edu/wp-content/uploads/2026/09/00_Bridge-Pilot-Overview-and-RFP-Guidelines-Final-10-1-1.docx . Predetermined college allocation: $666,667 student support, $80,000 success coaching and $10,000 implementation capacity over two years. Year-two disbursement depends on satisfactory progress, reporting and fiscal stewardship. Funding does not create underlying instructional capacity. The $3 million headline covers the broader initiative; neither that figure nor multiplied award allocations enter the cash-pool tally. No time zone or match requirement is inferred.",
+    sourceNotes: "Nov. 11 recheck: the complete public Smartsheet application now renders through the Submit control and institutional attestations; no information was entered or submitted. Official RFP guidelines and rendered application checked Oct. 19. RFP: https://wordpress.nccommunitycolleges.edu/wp-content/uploads/2026/09/00_Bridge-Pilot-Overview-and-RFP-Guidelines-Final-10-1-1.docx . Predetermined college allocation: $666,667 student support, $80,000 success coaching and $10,000 implementation capacity over two years. Year-two disbursement depends on satisfactory progress, reporting and fiscal stewardship. Funding does not create underlying instructional capacity. The $3 million headline covers the broader initiative; neither that figure nor multiplied award allocations enter the cash-pool tally. No time zone or match requirement is inferred.",
   }),
   grant({
     id: 120,
@@ -2767,7 +2767,7 @@ grant({
   grant({
     id: 125,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Nov 6, 2026",
+    lastVerified: "Nov 11, 2026",
     recommendationRank: 48,
     title: "Open Nebraska Affordable Content Grants: Fall 2026",
     source: "University of Nebraska Omaha Criss Library and Open Nebraska",
@@ -2779,7 +2779,7 @@ grant({
     whatItFunds: "Course development and conversion to low-cost or no-cost teaching materials that result in an Open Nebraska course attribute.",
     geography: "University of Nebraska Omaha only",
     costShareRequirement: notStated,
-    applicationAccess: "The published Nov. 9 deadline has passed; no further extension was found in the Nov. 10 official-source check. The public NuRamp route returned an access error during the Nov. 7 and Nov. 10 browser checks; authenticated contents were not inspected.",
+    applicationAccess: "The published Nov. 9 deadline has passed; no further extension was found in the Nov. 10 official-source check. The Nov. 11 public NuRamp route reaches institutional or guest sign-in; authenticated contents were not inspected.",
     deadline: "Nov. 9, 2026, extended again from Nov. 2. Time and time zone are not stated.",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-09",
@@ -2790,7 +2790,7 @@ grant({
     eligibilityBadge: "UNO faculty and instructors only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
-    sourceNotes: "Nov. 10 lifecycle check: the published Nov. 9 final deadline has passed and the official call shows no further extension; retained in Closed/Past. Nov. 7 partial recheck: the current official call extends the deadline to Nov. 9 and lists award notifications for Nov. 30. The public application returned an access error in the browser, while the direct request reached the login page. Prior full-verification date retained; authenticated application contents were not inspected. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
+    sourceNotes: "Nov. 11 recheck: the published Nov. 9 final deadline has passed and the official call shows no further extension; retained in Closed/Past. Award notifications are scheduled for Nov. 30. The public NuRamp application now reaches institutional or guest sign-in, resolving the earlier public-entry access error; authenticated application contents were not inspected. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
   }),
   grant({
     id: 126,
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 10, 2026",
+    lastVerified: "Nov 11, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2991,7 +2991,7 @@ grant({
     whatItFunds: "Pedagogy-focused professional development that strengthens preparation for teaching, with a presentation, workshop or syllabus deliverable by the end of the semester.",
     geography: "Tulane University only",
     costShareRequirement: notStated,
-    applicationAccess: "Public Airtable application is open; the current 2026–27 RFP is linked from the official funding page. No application was submitted.",
+    applicationAccess: "Application availability is under review: the public form displays No grants for its required Grant Cycle field, although the official page describes rolling applications. Confirm availability with CELT before preparing an application.",
     deadline: "Rolling until funds are exhausted for the 2026–27 academic year",
     deadlineTimeZone: "No fixed application cutoff stated",
     audiences: ["students-graduate-researchers", "faculty-teaching-centers"],
@@ -3002,7 +3002,7 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 21, 2026",
     qualifiers: ["Continuing education, licensing and professional-credit activities are excluded."],
-    sourceNotes: "Current RFP and matching public application verified Oct. 21: https://tulane.box.com/s/1nn2fihiccxjglet48kjhw2l5cj70243 . CELT pays approved costs rather than reimbursing the student. The June 1 fiscal-cycle date is not an application deadline. No total program pool is published or inferred from the per-request cap.",
+    sourceNotes: "Nov. 11 partial check: the current public form displays No grants for its required Grant Cycle field, while the official program page still says rolling until funds are exhausted. Current application availability is under review; retain the prior full-verification date. Current RFP and matching public application verified Oct. 21: https://tulane.box.com/s/1nn2fihiccxjglet48kjhw2l5cj70243 . CELT pays approved costs rather than reimbursing the student. The June 1 fiscal-cycle date is not an application deadline. No total program pool is published or inferred from the per-request cap.",
   }),
   grant({
     id: 133,
@@ -3038,7 +3038,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 10, 2026",
+    lastVerified: "Nov 11, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3052,7 +3052,7 @@ grant({
     whatItFunds: "Research and non-lobbying advocacy on commuter college students or first-generation professionals, including assessment of student supports and college-to-career preparation. Findings must be relevant to women and New York college students and include a gender dimension.",
     geography: "Applicants outside New York may apply; findings must have implications for New York college students",
     costShareRequirement: "Not stated in the official source",
-    applicationAccess: "Submit the public Project Information Form by Nov. 6. Only invited applicants proceed to full proposals in January 2027; no exact January date is posted. No information was entered or submitted.",
+    applicationAccess: "The public Project Information Form no longer accepts responses after its Nov. 6 deadline. Only invited applicants proceed to full proposals in January 2027; no exact January date is posted. No information was entered or submitted.",
     deadline: "Required Project Information Form due Nov. 6, 2026; time and time zone not stated",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-06",
@@ -3068,7 +3068,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 10, 2026",
+    lastVerified: "Nov 11, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3295,7 +3295,7 @@ innovationGrants.push(
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 6, 2026",
     qualifiers: ["Requests supporting student or educator teams must include development and active deployment of an SI method or tool. Activities must align with the original award and the Challenge.", "The suggested 3–5-page request covers activities, deliverables, participating teams and schools, partners and a justified budget. Prior Challenge supplement recipients must report progress and outcomes."],
-    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. NSF 27-011, linked PAPPG VI.E.5, official Research.gov supplemental-request guidance and actual NSF sign-in handoff checked Nov. 6. Both award limits apply. No program-level cash pool is published; per-PI caps are excluded from the tally. Higher-education mentoring and postsecondary pathways establish the education-innovation fit despite school-age beneficiaries.",
+    sourceNotes: "Nov. 11 lifecycle check: the Nov. 10 final deadline has passed and no extension was found; retained in Closed/Past. Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. NSF 27-011, linked PAPPG VI.E.5, official Research.gov supplemental-request guidance and actual NSF sign-in handoff checked Nov. 6. Both award limits apply. No program-level cash pool is published; per-PI caps are excluded from the tally. Higher-education mentoring and postsecondary pathways establish the education-innovation fit despite school-age beneficiaries.",
   }),
   grant({
     id: 143,
@@ -3329,7 +3329,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 10, 2026",
+    "lastVerified": "Nov 11, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3368,7 +3368,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 10, 2026",
+    "lastVerified": "Nov 11, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3407,7 +3407,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 10, 2026",
+    "lastVerified": "Nov 11, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3443,6 +3443,151 @@ innovationGrants.push(
       "Preference goes to faculty without a Travel Grant in the previous three years. Previously denied requests cannot be resubmitted for the same trip; pre-award expenses are not guaranteed reimbursement."
     ],
     "sourceNotes": "Official current program, complete public travel application and linked budget worksheet verified Nov. 9. Included for its explicit instructional-development purpose, not generic disciplinary conference attendance. No current-call pool is published; the per-award cap is excluded from the cash total."
+  }),
+);
+
+innovationGrants.push(
+  grant({
+    "portalAddedDate": "2026-11-11",
+    "lastVerified": "Nov 11, 2026",
+    "applicationStatus": "open-now",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Nov. 11, 2026",
+    "scopeDisposition": "included",
+    "id": 147,
+    "recommendationRank": 40,
+    "title": "NSF CyberAI SFS: Innovation Track",
+    "source": "U.S. National Science Foundation",
+    "officialUrl": "https://www.nsf.gov/funding/opportunities/cyberai-sfs-cyberaicorps-scholarship-service/nsf26-503/solicitation",
+    "applicationUrl": "https://www.research.gov/",
+    "announcedDate": "Feb. 4, 2026; current annual Innovation Track",
+    "announcedDateIso": "2026-02-04",
+    "awardAmount": "Up to $500,000 over up to three years; annual budget between $100,000 and $200,000",
+    "eligibility": "U.S.-based accredited two- and four-year institutions, including community colleges, and U.S. nonprofit nonacademic organizations directly associated with educational or research activities. PI, co-PI and senior/key personnel must hold a tenured/tenure-track position or a primary full-time paid research, administration or teaching appointment at an eligible U.S. campus.",
+    "whatItFunds": "Education innovations that expand AI and cybersecurity curricula, instructional resources, experiential learning, professional development and communities of practice.",
+    "geography": "United States; eligible institutions and organizations",
+    "locationEligibility": {
+      "scope": "nationwide",
+      "includesTerritories": false
+    },
+    "costShareRequirement": "Voluntary committed cost sharing is prohibited.",
+    "applicationAccess": "Full proposals may be submitted through Research.gov or Grants.gov. Separately submitted collaborative proposals must use Research.gov. The official proposal entry resolves to Research.gov Sign In with NSF ID, Login.gov or InCommon; no authenticated proposal workspace was inspected.",
+    "deadline": "Proposals accepted year-round; next annual target date April 3, 2027. The target is not a final submission deadline.",
+    "deadlineTimeZone": "No final cutoff; annual target date",
+    "audiences": [
+      "community-colleges",
+      "four-year-colleges-universities",
+      "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+      "ai-emerging-technology",
+      "teaching-learning",
+      "workforce-pathways",
+      "faculty-development",
+      "community-college-innovation"
+    ],
+    "bestFit": "Faculty teams seeking support to develop and share AI or cybersecurity teaching approaches and training resources.",
+    "eligibilityBadge": "Eligible U.S. institutions and education/research nonprofits",
+    "qualifiers": [
+      "This listing covers the Innovation Track, not the separate scholarship competition or its July deadline.",
+      "An individual may participate as PI, co-PI or senior personnel on at most two Innovation Track proposals in any 12 months. The organization has no Innovation Track proposal limit.",
+      "An evaluation plan with outcomes, metrics, formative and summative assessments and an independent evaluator is required; results must be shared."
+    ],
+    "sourceNotes": "NSF 26-503 and current NSF 26-018 FAQ checked Nov. 11. FAQ Submission Dates question 3 explicitly accepts Innovation Track proposals at any time: proposals more than 30 days after April 3 enter the following annual cohort. No finalDeadlineDate is assigned. The $500,000 maximum is per award, not a program pool; no USD aggregate inferred. International branch-campus funding needs a benefit/necessity justification; primary overseas-campus appointments are ineligible. The public Research.gov proposal sign-in boundary was verified Nov. 11."
+  }),
+  grant({
+    "portalAddedDate": "2026-11-11",
+    "lastVerified": "Nov 11, 2026",
+    "applicationStatus": "open-now",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Nov. 11, 2026",
+    "scopeDisposition": "included",
+    "id": 148,
+    "recommendationRank": 41,
+    "title": "IES Transformative Research in Special Education: FY2027 Phase 1",
+    "source": "U.S. Department of Education, Institute of Education Sciences",
+    "officialUrl": "https://ies.ed.gov/funding/grants/2027/transformative-research-special-education-84-324t",
+    "applicationUrl": "https://www.grants.gov/search-results-detail/364087",
+    "announcedDate": "Oct. 16, 2026",
+    "announcedDateIso": "2026-10-16",
+    "awardAmount": "Up to $3,750,000 for Phase 1 over three years, with a maximum of $1,250,000 per year",
+    "eligibility": "Institutions with capacity to conduct scientifically valid research, including higher-education institutions and nonprofit, for-profit, public or private organizations. Research must address U.S. education and factors under the control of U.S. education systems.",
+    "whatItFunds": "Research and development to improve preservice teacher education systems, helping them attract, prepare and retain general and special education teachers equipped to improve outcomes for students with or at risk for disabilities.",
+    "geography": "Research relevant to education in the United States; institutional eligibility is defined by research capacity",
+    "locationEligibility": {
+      "scope": "nationwide",
+      "includesTerritories": false
+    },
+    "costShareRequirement": "At least 5% of the total federal award in cash or in-kind support must be secured during Year 1. The application must describe the plan; a commitment is not required at submission. Unrecovered indirect costs cannot count toward the match.",
+    "applicationAccess": "Apply through Grants.gov opportunity ED-GRANTS-101526-002, package PKG00294412. The public package and active Apply route were verified; authenticated workspace contents were not accessed.",
+    "deadline": "Dec. 11, 2026, at 11:59:59 p.m. Eastern Time",
+    "deadlineTimeZone": "Eastern Time (EST on the program page)",
+    "finalDeadlineDate": "2026-12-11",
+    "finalDeadlineAt": "2026-12-12T04:59:59Z",
+    "audiences": [
+      "four-year-colleges-universities",
+      "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+      "teaching-learning",
+      "research-evidence-building",
+      "faculty-development"
+    ],
+    "bestFit": "Teacher-education research teams seeking support to develop and test substantial improvements to preservice preparation.",
+    "eligibilityBadge": "Institutions with scientifically valid research capacity",
+    "qualifiers": [
+      "The Oct. 29 letter of intent was optional and nonbinding; it is not a prerequisite to the full application.",
+      "Co-design partners and the cost-sharing agreement must be established by the end of Year 1; continuation funding for Years 2 and 3 depends on them.",
+      "Only Phase 1 is open in this competition. Phase 2 requires separate future instructions and is not included in this award amount."
+    ],
+    "sourceNotes": "Full FY2027 84.324T RFA, IES submission guide, official Simpler.Grants.gov listing and rendered Grants.gov package checked Nov. 11. The submission must be validated and fully uploaded by the stated cutoff. The required narrative has five sections and an 18-page limit. SAM/Grants.gov institutional registration and authorized submission are required. No current program-level pool is published; the $3.75 million per-award cap is excluded from the aggregate."
+  }),
+  grant({
+    "portalAddedDate": "2026-11-11",
+    "lastVerified": "Nov 11, 2026",
+    "applicationStatus": "open-now",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Nov. 11, 2026",
+    "scopeDisposition": "included",
+    "id": 149,
+    "recommendationRank": 47,
+    "title": "University of Turin TLC Teaching Innovation Call: 2026",
+    "source": "University of Turin Teaching and Learning Center",
+    "officialUrl": "https://www.teachingandlearningcenter.unito.it/en/events/call-teaching-innovation-projects",
+    "applicationUrl": "https://forms.gle/qXBdP8gbtsv6S3hy7",
+    "announcedDate": "Applications opened Oct. 5, 2026; deadline extended Nov. 4",
+    "announcedDateIso": "2026-10-05",
+    "awardAmount": "Four grants of €12,000 each, including applicable taxes and charges; the official ordinary call budget is €48,000",
+    "eligibility": "Groups of 3–8 members drawn from University of Turin faculty, technical/administrative staff, nonpermanent staff and students, plus eligible staff or students from UNITA partner universities. Every group must include a Turin student (the call also counts Turin graduates within two years of the application deadline in this category) and a Turin technical/administrative or nonpermanent staff member. The group lead must be Turin-affiliated at submission; a Turin degree alone is insufficient. TLC governing-board and evaluation-committee members are ineligible.",
+    "whatItFunds": "Collaborative teaching innovations in internationalization, inclusive and participatory teaching, and accessibility, including pedagogically grounded uses of emerging technologies.",
+    "geography": "University of Turin-led groups, with eligible UNITA partner-university participation",
+    "locationEligibility": {
+      "scope": "institution-only"
+    },
+    "costShareRequirement": "Not stated in the official call.",
+    "applicationAccess": "The university's Google Form first page displays the current call, Nov. 13 extension and full group-eligibility article. Later pages require acknowledgment; they were not traversed. Full application requirements are specified in Article 5 and Annex 1 of the official call. No application data was entered or submitted.",
+    "deadline": "Nov. 13, 2026, at noon; timezone not stated",
+    "deadlineTimeZone": "Not stated in the official call or inspected application",
+    "finalDeadlineDate": "2026-11-13",
+    "audiences": [
+      "four-year-colleges-universities",
+      "faculty-teaching-centers",
+      "students-graduate-researchers"
+    ],
+    "innovationAreas": [
+      "teaching-learning",
+      "faculty-development",
+      "ai-emerging-technology",
+      "student-success"
+    ],
+    "bestFit": "Turin-led teaching teams seeking project funding to develop accessible, collaborative approaches with student participation.",
+    "eligibilityBadge": "Turin-led groups with required Turin student and staff roles",
+    "qualifiers": [
+      "The Nov. 4 extension supersedes the original Nov. 9 date, which remains in older call text.",
+      "Shortlisted groups must present their projects publicly on Dec. 3. Expenses must be incurred by June 30, 2028 and reported by Sept. 30, 2028.",
+      "Funding cannot pay Turin ordinary/associate professors or permanent/fixed-term researchers. Generative AI used to prepare the proposal or presentation must be declared."
+    ],
+    "sourceNotes": "Full Italian decree/call, application requirements in Article 5 and Annex 1, and rendered application first page checked Nov. 11. Italian Article 3 and footnote 3 govern mandatory Turin membership, the recent-graduate exception and the Turin-affiliated lead; the English summary is less precise. UNITA participants count toward group size but do not replace the mandatory Turin student/staff roles. The explicit ordinary pool is €48,000; foreign-currency funding is excluded from the USD cash aggregate, with no conversion inferred. Additional awards depend on a tie, available resources and authorization; none assumed. No absolute cutoff instant is inferred without a stated timezone."
   }),
 );
 
