@@ -2790,7 +2790,7 @@ grant({
     eligibilityBadge: "UNO faculty and instructors only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
-    sourceNotes: "Nov. 10 lifecycle check: the published Nov. 9 final deadline has passed and the official call shows no further extension; retained in Closed/Past. Nov. 7 partial recheck: the current official call extends the deadline to Nov. 9 and lists award notifications for Nov. 30. The public application returned an access error in the browser, while the direct request reached the login page. Prior full-verification date retained; authenticated application contents were not inspected. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
+    sourceNotes: "Nov. 11 recheck: the published Nov. 9 final deadline has passed and the official call shows no further extension; retained in Closed/Past. Award notifications are scheduled for Nov. 30. The public NuRamp application now reaches institutional or guest sign-in, resolving the earlier public-entry access error; authenticated application contents were not inspected. Per-project caps are excluded from the cash tally; no current-call program pool is published.",
   }),
   grant({
     id: 126,
@@ -3557,15 +3557,15 @@ innovationGrants.push(
     "applicationUrl": "https://forms.gle/qXBdP8gbtsv6S3hy7",
     "announcedDate": "Applications opened Oct. 5, 2026; deadline extended Nov. 4",
     "announcedDateIso": "2026-10-05",
-    "awardAmount": "Four grants of €12,000 each; the official ordinary call budget is €48,000",
-    "eligibility": "Groups of 3–8 members drawn from University of Turin faculty, technical/administrative staff, nonpermanent staff and students, plus eligible staff or students from UNITA partner universities. Every group must include a Turin student and a Turin technical/administrative or nonpermanent staff member. The group lead must be Turin-affiliated. TLC governing-board and evaluation-committee members are ineligible.",
+    "awardAmount": "Four grants of €12,000 each, including applicable taxes and charges; the official ordinary call budget is €48,000",
+    "eligibility": "Groups of 3–8 members drawn from University of Turin faculty, technical/administrative staff, nonpermanent staff and students, plus eligible staff or students from UNITA partner universities. Every group must include a Turin student (the call also counts Turin graduates within two years of the application deadline in this category) and a Turin technical/administrative or nonpermanent staff member. The group lead must be Turin-affiliated at submission; a Turin degree alone is insufficient. TLC governing-board and evaluation-committee members are ineligible.",
     "whatItFunds": "Collaborative teaching innovations in internationalization, inclusive and participatory teaching, and accessibility, including pedagogically grounded uses of emerging technologies.",
     "geography": "University of Turin-led groups, with eligible UNITA partner-university participation",
     "locationEligibility": {
       "scope": "institution-only"
     },
     "costShareRequirement": "Not stated in the official call.",
-    "applicationAccess": "The university's Google Form displays the current call and Nov. 13 extension. It reproduces the full group-eligibility article; file upload records the applicant's Google account identity. No application data was entered or submitted.",
+    "applicationAccess": "The university's Google Form first page displays the current call, Nov. 13 extension and full group-eligibility article. Later pages require acknowledgment; they were not traversed. Full application requirements are specified in Article 5 and Annex 1 of the official call. No application data was entered or submitted.",
     "deadline": "Nov. 13, 2026, at noon; timezone not stated",
     "deadlineTimeZone": "Not stated in the official call or inspected application",
     "finalDeadlineDate": "2026-11-13",
@@ -3587,7 +3587,7 @@ innovationGrants.push(
       "Shortlisted groups must present their projects publicly on Dec. 3. Expenses must be incurred by June 30, 2028 and reported by Sept. 30, 2028.",
       "Funding cannot pay Turin ordinary/associate professors or permanent/fixed-term researchers. Generative AI used to prepare the proposal or presentation must be declared."
     ],
-    "sourceNotes": "Full Italian decree/call and rendered current application checked Nov. 11. Italian Article 3 governs mandatory Turin membership and the Turin-affiliated lead; the English summary is less precise. UNITA participants count toward group size but do not replace the mandatory Turin student/staff roles. The explicit ordinary pool is €48,000; foreign-currency funding is excluded from the USD cash aggregate, with no conversion inferred. Additional awards depend on a tie, available resources and authorization; none assumed. No absolute cutoff instant is inferred without a stated timezone."
+    "sourceNotes": "Full Italian decree/call, application requirements in Article 5 and Annex 1, and rendered application first page checked Nov. 11. Italian Article 3 and footnote 3 govern mandatory Turin membership, the recent-graduate exception and the Turin-affiliated lead; the English summary is less precise. UNITA participants count toward group size but do not replace the mandatory Turin student/staff roles. The explicit ordinary pool is €48,000; foreign-currency funding is excluded from the USD cash aggregate, with no conversion inferred. Additional awards depend on a tie, available resources and authorization; none assumed. No absolute cutoff instant is inferred without a stated timezone."
   }),
 );
 

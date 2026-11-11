@@ -44,7 +44,7 @@ test("November 11 archives elapsed calls while retaining qualified application d
   assert.equal(uno.lastVerified, "Nov 11, 2026");
   assert.match(uno.applicationAccess, /Nov\. 9 deadline has passed; no further extension.*Nov\. 10/);
   assert.match(uno.applicationAccess, /Nov\. 11.*institutional or guest sign-in.*authenticated contents were not inspected/);
-  assert.match(uno.sourceNotes, /award notifications for Nov\. 30/);
+  assert.match(uno.sourceNotes, /[Aa]ward notifications.*Nov\. 30/);
   assert.equal(getInnovationGrantLifecycle(uno, new Date("2026-11-09T18:00:00Z")), "closing-soon");
   assert.equal(getInnovationGrantLifecycle(uno, now), "closed");
   assert.equal(getInnovationGrantLifecycle(uno, new Date("2026-11-10T18:00:00Z")), "closed");
@@ -92,6 +92,7 @@ test("November 11 additions preserve target dates, matching and international el
   assert.equal(turin.locationEligibility.scope, "institution-only");
   assert.match(turin.eligibility, /Turin student.*Turin technical\/administrative or nonpermanent/);
   assert.match(turin.eligibility, /lead must be Turin-affiliated/);
+  assert.match(turin.eligibility, /graduates.*two years/);
   assert.match(turin.awardAmount, /€12,000.*€48,000/);
   assert.equal(turin.finalDeadlineDate, "2026-11-13");
   assert.equal(turin.finalDeadlineAt, undefined);
