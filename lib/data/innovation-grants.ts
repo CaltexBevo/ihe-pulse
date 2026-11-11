@@ -3518,7 +3518,7 @@ innovationGrants.push(
       "scope": "nationwide",
       "includesTerritories": false
     },
-    "costShareRequirement": "At least 5% of the total federal award in cash or in-kind support must be secured during Year 1. The application must describe the plan; a commitment is not required at submission. Unrecovered indirect costs cannot count toward the match.",
+    "costShareRequirement": "Cost sharing is required: at least 5% of the total federal award in cash or in-kind support must be secured during Year 1. The application must describe the plan; a commitment is not required at submission. Unrecovered indirect costs cannot count toward the match.",
     "applicationAccess": "Apply through Grants.gov opportunity ED-GRANTS-101526-002, package PKG00294412. The public package and active Apply route were verified; authenticated workspace contents were not accessed.",
     "deadline": "Dec. 11, 2026, at 11:59:59 p.m. Eastern Time",
     "deadlineTimeZone": "Eastern Time (EST on the program page)",

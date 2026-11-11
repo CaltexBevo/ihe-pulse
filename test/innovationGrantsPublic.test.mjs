@@ -85,6 +85,11 @@ test("November 11 additions preserve target dates, matching and international el
   assert.equal(ies.locationEligibility.scope, "nationwide");
   assert.match(ies.whatItFunds, /preservice teacher education/);
   assert.match(ies.costShareRequirement, /5%.*Year 1/);
+  assert.equal(classifyInnovationGrantCostShare(ies), "required");
+  assert.deepEqual(filterInnovationGrantOpportunities([ies], {
+    ...DEFAULT_INNOVATION_GRANT_DIRECTORY_FILTERS,
+    costShare: "required",
+  }, new Date("2026-11-11T18:00:00Z")).map((record) => record.id), [148]);
   assert.equal(ies.finalDeadlineAt, "2026-12-12T04:59:59Z");
   assert.notEqual(getInnovationGrantLifecycle(ies, getInnovationGrantPacificAsOfDate(new Date("2026-12-12T04:59:58Z"))), "closed");
   assert.equal(getInnovationGrantLifecycle(ies, getInnovationGrantPacificAsOfDate(new Date("2026-12-12T04:59:59Z"))), "closed");
