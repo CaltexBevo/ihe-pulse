@@ -18,8 +18,8 @@ test("all three grant surfaces display the shared released-update date", () => {
 });
 
 test("release freshness is explicit metadata, distinct from inventory and discovery checks", () => {
-  assert.equal(metadata.INNOVATION_GRANTS_UPDATED_DATE, "2026-11-11");
-  assert.equal(metadata.INNOVATION_GRANTS_UPDATED_ON, "Nov 11, 2026");
+  assert.equal(metadata.INNOVATION_GRANTS_UPDATED_DATE, "2026-11-12");
+  assert.equal(metadata.INNOVATION_GRANTS_UPDATED_ON, "Nov 12, 2026");
   const source = read("../lib/innovation-grants-shared.ts");
   assert.match(source, /INNOVATION_GRANTS_UPDATED_DATE = "\d{4}-\d{2}-\d{2}"/);
   for (const path of ["../app/innovation-grants/page.tsx", "../app/innovation-grants/directory/InnovationGrantsDirectory.tsx"]) {
