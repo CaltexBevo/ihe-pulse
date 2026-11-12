@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 11, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 11, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 11, 2026",
+      "lastVerified": "Nov 12, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 11, 2026",
+      "lastVerified": "Nov 12, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2580,7 +2580,7 @@ grant({
   grant({
     id: 119,
     portalAddedDate: "2026-10-06",
-    lastVerified: "Nov 11, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 34,
     title: "AmeriHealth Caritas Bridge Pilot for Short-Term Healthcare Pathways",
     source: "North Carolina Community Colleges Foundation and NC Community College System",
@@ -2767,7 +2767,7 @@ grant({
   grant({
     id: 125,
     portalAddedDate: "2026-10-14",
-    lastVerified: "Nov 11, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 48,
     title: "Open Nebraska Affordable Content Grants: Fall 2026",
     source: "University of Nebraska Omaha Criss Library and Open Nebraska",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 11, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2978,7 +2978,7 @@ grant({
   grant({
     id: 132,
     portalAddedDate: "2026-10-21",
-    lastVerified: "Nov 10, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 46,
     title: "Tulane CELT Graduate Pedagogy Development Grant: 2026–27",
     source: "Tulane University Center for Engaged Learning and Teaching",
@@ -2991,7 +2991,7 @@ grant({
     whatItFunds: "Pedagogy-focused professional development that strengthens preparation for teaching, with a presentation, workshop or syllabus deliverable by the end of the semester.",
     geography: "Tulane University only",
     costShareRequirement: notStated,
-    applicationAccess: "Application availability is under review: the public form displays No grants for its required Grant Cycle field, although the official page describes rolling applications. Confirm availability with CELT before preparing an application.",
+    applicationAccess: "The public application displays the Graduate Pedagogy Development Grant - AY 26-27 option in its required Grant Cycle field and is available through Submit. No application was submitted.",
     deadline: "Rolling until funds are exhausted for the 2026–27 academic year",
     deadlineTimeZone: "No fixed application cutoff stated",
     audiences: ["students-graduate-researchers", "faculty-teaching-centers"],
@@ -3002,7 +3002,7 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 21, 2026",
     qualifiers: ["Continuing education, licensing and professional-credit activities are excluded."],
-    sourceNotes: "Nov. 11 partial check: the current public form displays No grants for its required Grant Cycle field, while the official program page still says rolling until funds are exhausted. Current application availability is under review; retain the prior full-verification date. Current RFP and matching public application verified Oct. 21: https://tulane.box.com/s/1nn2fihiccxjglet48kjhw2l5cj70243 . CELT pays approved costs rather than reimbursing the student. The June 1 fiscal-cycle date is not an application deadline. No total program pool is published or inferred from the per-request cap.",
+    sourceNotes: "Nov. 12 recheck: the public form again displays the current AY 26-27 grant cycle, resolving the Nov. 11 availability warning. The official page, complete current RFP and public form agree on rolling applications and the published grant terms. Current RFP and matching public application verified Oct. 21: https://tulane.box.com/s/1nn2fihiccxjglet48kjhw2l5cj70243 . CELT pays approved costs rather than reimbursing the student. The June 1 fiscal-cycle date is not an application deadline. No total program pool is published or inferred from the per-request cap.",
   }),
   grant({
     id: 133,
@@ -3038,7 +3038,7 @@ grant({
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 11, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3068,7 +3068,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 11, 2026",
+    lastVerified: "Nov 12, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3093,7 +3093,7 @@ grant({
     eligibilityBadge: "Full-time faculty or permanent nonprofit researchers",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 26, 2026",
-    sourceNotes: "Current call, rules and public login entry verified Oct. 29. The call now lists Nov. 11 instead of Nov. 4: https://www.amazon.science/research-awards/program-rules . Cash goes to the institution as a one-time gift. The call excludes administrative overhead. No program-wide pool is published; cash averages and in-kind credits are excluded from the tally.",
+    sourceNotes: "Nov. 12 lifecycle check: the unchanged Nov. 11 at 11:59 p.m. Pacific final deadline has passed; no extension was found. Retained in Closed/Past. Current call, rules and public login entry verified Oct. 29. The call now lists Nov. 11 instead of Nov. 4: https://www.amazon.science/research-awards/program-rules . Cash goes to the institution as a one-time gift. The call excludes administrative overhead. No program-wide pool is published; cash averages and in-kind credits are excluded from the tally.",
   }),
   grant({
     id: 136,
@@ -3329,7 +3329,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 11, 2026",
+    "lastVerified": "Nov 12, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3368,7 +3368,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 11, 2026",
+    "lastVerified": "Nov 12, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3407,7 +3407,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 11, 2026",
+    "lastVerified": "Nov 12, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3471,7 +3471,7 @@ innovationGrants.push(
       "includesTerritories": false
     },
     "costShareRequirement": "Voluntary committed cost sharing is prohibited.",
-    "applicationAccess": "Full proposals may be submitted through Research.gov or Grants.gov. Separately submitted collaborative proposals must use Research.gov. The official proposal entry resolves to Research.gov Sign In with NSF ID, Login.gov or InCommon; no authenticated proposal workspace was inspected.",
+    "applicationAccess": "Full proposals may be submitted through Research.gov or Grants.gov. Separately submitted collaborative proposals must use Research.gov. The proposal entry reached NSF Sign In on Nov. 11, but did not finish loading in the Nov. 12 check; confirm current access before preparing a submission. No authenticated proposal workspace was inspected.",
     "deadline": "Proposals accepted year-round; next annual target date April 3, 2027. The target is not a final submission deadline.",
     "deadlineTimeZone": "No final cutoff; annual target date",
     "audiences": [
@@ -3497,7 +3497,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-11",
-    "lastVerified": "Nov 11, 2026",
+    "lastVerified": "Nov 12, 2026",
     "applicationStatus": "open-now",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 11, 2026",
@@ -3544,7 +3544,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-11",
-    "lastVerified": "Nov 11, 2026",
+    "lastVerified": "Nov 12, 2026",
     "applicationStatus": "open-now",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 11, 2026",
