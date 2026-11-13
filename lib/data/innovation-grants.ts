@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 12, 2026",
+    lastVerified: "Nov 13, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 12, 2026",
+    lastVerified: "Nov 13, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 12, 2026",
+      "lastVerified": "Nov 13, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2593,7 +2593,7 @@ grant({
     whatItFunds: "A coordinated student-success pilot combining financial assistance, proactive success coaching and structured healthcare pathways from enrollment through credentials and employment.",
     geography: "North Carolina community colleges only",
     costShareRequirement: "Not stated in the official source",
-    applicationAccess: "Prepare your college's proposal using the official RFP templates, then complete the Smartsheet application and required institutional attestations.",
+    applicationAccess: "The official linked Smartsheet application did not render its form in the Nov. 13 check. The current program terms remain available; confirm application access before preparing a submission. The prior full-verification date is retained.",
     deadline: "Nov. 18, 2026 at 11:59 p.m.",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-18",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 12, 2026",
+    lastVerified: "Nov 13, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -3012,16 +3012,17 @@ grant({
     title: "Educating Character Initiative: 2027 Capacity-Building Grants",
     source: "Wake Forest University Educating Character Initiative",
     officialUrl: "https://leadershipandcharacter.wfu.edu/eci/grants/2027-request-for-proposals-institutional-grants/",
-    applicationStatus: "opening-soon",
-    openDate: "2026-11-15",
+    applicationStatus: "open-now",
+    applicationUrl: "https://2027-cb-application.zapier.app/",
+    openDate: "2026-11-13",
     announcedDate: "2027 call published in 2026; exact announcement date not stated",
     awardAmount: "Up to $50,000 for a project lasting no more than one year",
     eligibility: "Accredited U.S. two- and four-year colleges and universities; project leaders must hold or be contracted to long-term faculty or staff positions. Cross-institutional networks may apply with funds based at one college or university. Applicant team members must join the ECI Community.",
     whatItFunds: "Character-education pilots, curriculum and co-curricular development, faculty and staff development, assessment, and institutional planning capacity.",
     geography: "United States",
     costShareRequirement: notStated,
-    applicationAccess: "The official page and 2027 RFP announce that the Capacity-Building Grant Portal will open Nov. 15, 2026. No capacity-building application link is posted yet; use the official page for the forthcoming portal.",
-    deadline: "Applications open Nov. 15 and are due Dec. 15, 2026 at 5 p.m. Eastern Time",
+    applicationAccess: "The official page now links a live Capacity-Building application. Its public first section and Go to uploads continuation were checked Nov. 13; no proposal data was entered or submitted. The full RFP specifies the required documents.",
+    deadline: "Applications available as of Nov. 13; due Dec. 15, 2026 at 5 p.m. Eastern Time",
     deadlineTimeZone: "Eastern Time",
     finalDeadlineDate: "2026-12-15",
     finalDeadlineAt: "2026-12-15T22:00:00Z",
@@ -3033,12 +3034,12 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 21, 2026",
     qualifiers: ["ECI does not permit generative or assistive AI in composing grant proposals.", "For this funding cycle, the same proposal cannot enter both Institutional Impact and Capacity-Building; an individual cannot be listed as PI or co-PI on multiple grants across these streams."],
-    sourceNotes: "Current 2027 institutional RFP pp.10–14: https://prod.wp.cdn.aws.wfu.edu/sites/340/2026/08/ECI-2027-Request-for-Proposals-Institutional-Grants.pdf . Project begins no earlier than July 1, 2027. The capacity-building program is distinct from Institutional Impact and Communities of Impact. The per-award cap and historical ECI awards are not a current-call pool and are excluded from the cash tally.",
+    sourceNotes: "Nov. 13 lifecycle check: the official page removed its future-opening label and now links the live application, earlier than the originally announced Nov. 15 opening. The structured opening date records first observed availability, not an inferred launch time. Current 2027 institutional RFP pp.10–14: https://prod.wp.cdn.aws.wfu.edu/sites/340/2026/08/ECI-2027-Request-for-Proposals-Institutional-Grants.pdf . Project begins no earlier than July 1, 2027. The capacity-building program is distinct from Institutional Impact and Communities of Impact. The per-award cap and historical ECI awards are not a current-call pool and are excluded from the cash tally.",
   }),
   grant({
     id: 134,
     portalAddedDate: "2026-10-23",
-    lastVerified: "Nov 12, 2026",
+    lastVerified: "Nov 13, 2026",
     recommendationRank: 31,
     title: "JFEW Research Grants: 2026–27",
     source: "Jewish Foundation for Education of Women",
@@ -3068,7 +3069,7 @@ grant({
   grant({
     id: 135,
     portalAddedDate: "2026-10-26",
-    lastVerified: "Nov 12, 2026",
+    lastVerified: "Nov 13, 2026",
     recommendationRank: 32,
     title: "Amazon Research Awards: Multilingual and Contextual AI Evaluation, Fall 2026",
     source: "Amazon Research Awards",
@@ -3110,10 +3111,10 @@ grant({
     whatItFunds: "An AI teaching-and-learning project with coaching and peer support, including course and assessment redesign, shared guidelines, faculty development, student AI literacy, or tool evaluation.",
     geography: "California community colleges only",
     costShareRequirement: "Not stated in the official source",
-    applicationAccess: "Apply through the official public Google form by Nov. 15. The form requests a team lead, college, project track and full-participation commitment. No information was entered or submitted.",
-    deadline: "Nov. 15, 2026; time and time zone not stated",
+    applicationAccess: "The official page and public Google form extend the deadline to Nov. 20. The first page of the eight-page form was inspected; later required sections were not traversed. No application was submitted.",
+    deadline: "Nov. 20, 2026; time and time zone not stated",
     deadlineTimeZone: "Not stated in the official source",
-    finalDeadlineDate: "2026-11-15",
+    finalDeadlineDate: "2026-11-20",
     audiences: ["community-colleges", "faculty-teaching-centers"],
     innovationAreas: ["ai-emerging-technology", "teaching-learning", "student-success", "community-college-innovation", "faculty-development"],
     scopeDisposition: "included",
@@ -3122,7 +3123,7 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 28, 2026",
     qualifiers: ["Jan. 19–June 18, 2027 participation requires an estimated 40–60 hours per team member, plus local planning time. The application requires an in-person convening; details are forthcoming.", "Teams produce an openly licensed project artifact and participate in program evaluation."],
-    sourceNotes: "Official call and linked application verified Oct. 28. The form announces 15 selected colleges, but no aggregate funding pool is explicitly published. The $10,000 per-college amount is excluded from the program-pool tally; no multiplication or assumption of unrestricted cash. Cohort 2 interest in the form is not a separately verified open funding call.",
+    sourceNotes: "Nov. 13 partial recheck: the official page and application agree on the extended Nov. 20 deadline; the prior full-verification date is retained because the complete form was not inspected. Official call and linked application verified Oct. 28. The form announces 15 selected colleges, but no aggregate funding pool is explicitly published. The $10,000 per-college amount is excluded from the program-pool tally; no multiplication or assumption of unrestricted cash. Cohort 2 interest in the form is not a separately verified open funding call.",
   }),
   grant({
     "id": 137,
@@ -3200,6 +3201,136 @@ grant({
     ],
     "sourceNotes": "Official current call, expanded full instructions, AY 2027 application, department approval form and rubric verified Oct. 30. The application and full instructions require departmental matching for applicants, beyond the overview’s administrator shorthand. The $20,000 annual fund is not isolated to this call and is excluded from the aggregate; the $1,000 individual cap is also excluded."
 }),
+  grant({
+    "applicationStatus": "open-now",
+    "announcementWindow": "Broad discovery, Nov. 13, 2026",
+    "portalAddedDate": "2026-11-13",
+    "lastVerified": "Nov 13, 2026",
+    "inventoryOrigin": "weekly-new",
+    "scopeDisposition": "included",
+    "announcedDate": "Current 2026–27 call; exact announcement date not stated",
+    "costShareRequirement": "Not stated in the current official application materials.",
+    "id": 150,
+    "recommendationRank": 48,
+    "title": "Iowa Career Academy Incentive Fund: 2026–27",
+    "source": "Iowa Department of Education",
+    "officialUrl": "https://educate.iowa.gov/higher-ed/cte/iowa-quality/partnerships-and-centers/career-academy-incentive-fund",
+    "applicationUrl": "https://educate.iowa.gov/media/11625/download?inline=",
+    "awardAmount": "Award amount not stated in the current application materials",
+    "eligibility": "Iowa partnerships including at least one school district and one community college. Priority favors regional-center delivery; a regional center must offer at least four career academies and serve at least 120 students from two districts or at least four districts. Other career-academy proposals may qualify under the rubric.",
+    "whatItFunds": "Career-academy and regional-center partnerships expanding access to career and technical education, concurrent enrollment and pathways into community-college programs.",
+    "geography": "Iowa",
+    "locationEligibility": {
+      "scope": "state-or-territory",
+      "jurisdictions": [
+        "IA"
+      ]
+    },
+    "applicationAccess": "Download the current CAIF application and a program template for each career academy. Submit those forms and supporting documents to the official email address in the submission instructions; no email was sent.",
+    "deadline": "Nov. 13, 2026; cutoff time and time zone not stated",
+    "deadlineTimeZone": "Not stated in the current instructions",
+    "finalDeadlineDate": "2026-11-13",
+    "audiences": [
+      "community-colleges"
+    ],
+    "innovationAreas": [
+      "workforce-pathways",
+      "community-college-innovation",
+      "student-success"
+    ],
+    "bestFit": "Iowa college and school-district teams seeking support to expand shared career-academy pathways.",
+    "eligibilityBadge": "Iowa school district and community college partnership",
+    "qualifiers": [
+      "Partner support letters, board-approved agreements, five-year enrollment projections, a comprehensive budget and one template per career academy are required."
+    ],
+    "sourceNotes": "Nov. 13 official page, current submission instructions, complete application/program templates and scoring rubric checked. Today’s date-only deadline remains open until safely passed or explicitly closed. The page describes up to $5 million annually, not a verified current-call pool; that annual amount and any historical caps are excluded from the USD tally."
+  }),
+  grant({
+    "applicationStatus": "open-now",
+    "announcementWindow": "Broad discovery, Nov. 13, 2026",
+    "portalAddedDate": "2026-11-13",
+    "lastVerified": "Nov 13, 2026",
+    "inventoryOrigin": "weekly-new",
+    "scopeDisposition": "included",
+    "announcedDate": "Current 2026–27 call; exact announcement date not stated",
+    "costShareRequirement": "Not stated in the current official application materials.",
+    "id": 151,
+    "recommendationRank": 49,
+    "title": "Elon CATL Scholarly Teaching & SoTL Professional Development Grant",
+    "source": "Elon University Center for the Advancement of Teaching and Learning",
+    "officialUrl": "https://www.elon.edu/u/academics/catl/programsservices/grants/catl-teaching-and-learning-grants/",
+    "applicationUrl": "https://forms.office.com/Pages/ResponsePage.aspx?id=bTIYuh9x4kqGgWEVSTp6UzTdC7GpcTZLuL8oWtJYbhFUQklNNktDTjZGNUYySFBFNURIWU1GM0NUTyQlQCNjPTEkJUAjdD1n",
+    "awardAmount": "Up to $1,500 for in-person conferences; up to $500 for virtual conferences",
+    "eligibility": "Individual full-time, ongoing teaching faculty at Elon University.",
+    "whatItFunds": "Conference or workshop participation to develop pedagogical skills or capacity for the scholarship of teaching and learning; disciplinary research and course-content training are excluded.",
+    "geography": "Elon University faculty only",
+    "locationEligibility": {
+      "scope": "institution-only"
+    },
+    "applicationAccess": "The public CATL Conference Travel Grant form includes separate options for Professional Development and Dissemination and reaches a Submit control. No personal data was entered or submitted.",
+    "deadline": "Next review Dec. 7, 2026; later reviews Feb. 8 and June 7, 2027. Cutoff time and time zone not stated.",
+    "deadlineTimeZone": "Not stated in the official source",
+    "priorityDeadlineDate": "2026-12-07",
+    "finalDeadlineDate": "2027-06-07",
+    "audiences": [
+      "four-year-colleges-universities",
+      "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+      "faculty-development",
+      "teaching-learning",
+      "research-evidence-building"
+    ],
+    "bestFit": "Elon instructors seeking reimbursement support for professional learning about pedagogy and teaching research.",
+    "eligibilityBadge": "Full-time, ongoing Elon teaching faculty",
+    "qualifiers": [
+      "Complete the post-grant form with an impact overview and receipts after the conference and by the end of that semester."
+    ],
+    "sourceNotes": "Current official program page and shared public application checked Nov. 13. Four scheduled review dates are Sept. 7 and Dec. 7, 2026, Feb. 8 and June 7, 2027; the elapsed September round is not an active deadline. These are distinct grant purposes within one form, not duplicate records. Per-award caps only; no published program pool or aggregate inferred."
+  }),
+  grant({
+    "applicationStatus": "open-now",
+    "announcementWindow": "Broad discovery, Nov. 13, 2026",
+    "portalAddedDate": "2026-11-13",
+    "lastVerified": "Nov 13, 2026",
+    "inventoryOrigin": "weekly-new",
+    "scopeDisposition": "included",
+    "announcedDate": "Current 2026–27 call; exact announcement date not stated",
+    "costShareRequirement": "Not stated in the current official application materials.",
+    "id": 152,
+    "recommendationRank": 50,
+    "title": "Elon CATL SoTL Dissemination Grant",
+    "source": "Elon University Center for the Advancement of Teaching and Learning",
+    "officialUrl": "https://www.elon.edu/u/academics/catl/programsservices/grants/catl-teaching-and-learning-grants/",
+    "applicationUrl": "https://forms.office.com/Pages/ResponsePage.aspx?id=bTIYuh9x4kqGgWEVSTp6UzTdC7GpcTZLuL8oWtJYbhFUQklNNktDTjZGNUYySFBFNURIWU1GM0NUTyQlQCNjPTEkJUAjdD1n",
+    "awardAmount": "Up to $1,500 for in-person conferences; up to $500 for virtual conferences",
+    "eligibility": "Individual full-time, ongoing teaching faculty at Elon University.",
+    "whatItFunds": "Travel to present research on the scholarship of teaching and learning; disciplinary research presentations are excluded.",
+    "geography": "Elon University faculty only",
+    "locationEligibility": {
+      "scope": "institution-only"
+    },
+    "applicationAccess": "The public CATL Conference Travel Grant form includes separate options for Professional Development and Dissemination and reaches a Submit control. No personal data was entered or submitted.",
+    "deadline": "Next review Dec. 7, 2026; later reviews Feb. 8 and June 7, 2027. Cutoff time and time zone not stated.",
+    "deadlineTimeZone": "Not stated in the official source",
+    "priorityDeadlineDate": "2026-12-07",
+    "finalDeadlineDate": "2027-06-07",
+    "audiences": [
+      "four-year-colleges-universities",
+      "faculty-teaching-centers"
+    ],
+    "innovationAreas": [
+      "faculty-development",
+      "teaching-learning",
+      "research-evidence-building"
+    ],
+    "bestFit": "Elon instructors seeking reimbursement support to share teaching-and-learning research with colleagues.",
+    "eligibilityBadge": "Full-time, ongoing Elon teaching faculty",
+    "qualifiers": [
+      "Complete the post-grant reimbursement form with an impact overview and receipts by the end of the conference semester, and share the work with the Elon teaching community."
+    ],
+    "sourceNotes": "Current official program page and shared public application checked Nov. 13. Four scheduled review dates are Sept. 7 and Dec. 7, 2026, Feb. 8 and June 7, 2027; the elapsed September round is not an active deadline. These are distinct grant purposes within one form, not duplicate records. Per-award caps only; no published program pool or aggregate inferred."
+  }),
 ];
 
 innovationGrants.push(
@@ -3249,9 +3380,10 @@ innovationGrants.push(
     whatItFunds: "Team-based AI integration across courses or a degree program, combined with experiential learning, reimagined assessment or civic learning. Eligible costs include course buyouts, reassigned time, software, materials, student support and related professional development.",
     geography: "Penn State faculty teams only",
     costShareRequirement: "The official application listing states that no funds will be matched",
-    applicationAccess: "Official InfoReady full terms are public. Apply opens a Penn State login gateway; authenticated form contents were not inspected.",
+    applicationAccess: "On Nov. 13 the official center page explicitly says there are currently no open grants. InfoReady still displays the Nov. 13 date and an Apply control. This record is archived using the funder closure notice; confirm any reopening with the center.",
     deadline: "Nov. 13, 2026 at 12:00 a.m. on the official grants index; InfoReady gives the date only. Time zone not stated; confirm the cutoff before applying",
     deadlineTimeZone: "Not stated in the official source",
+    applicationClosedOn: "2026-11-13",
     finalDeadlineDate: "2026-11-13",
     audiences: ["four-year-colleges-universities", "faculty-teaching-centers"],
     innovationAreas: ["ai-emerging-technology", "teaching-learning", "faculty-development"],
@@ -3261,7 +3393,7 @@ innovationGrants.push(
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 2, 2026",
     qualifiers: ["Funds support academic year 2027–28 and must be spent in FY2028 without carry-forward. Supplemental salary, conference-presentation travel and unrelated equipment are excluded.", "The proposal must require participating students to complete AI Essentials. Institutional data beyond existing access needs documented authorization. Recipients submit a 2,000–3,000-word report and present at a university showcase."],
-    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official center page, public InfoReady full terms and Apply login route verified Nov. 2. The explicit $350,000 total pool is included once; the ten possible awards are not multiplied by the $50,000 cap. This is distinct from the individual microgrant program.",
+    sourceNotes: "Nov. 13 lifecycle check: the official center announces no open grants while InfoReady retains its dated listing. The closure notice controls current availability; the Nov. 6 full-verification date and source qualification remain. Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official center page, public InfoReady full terms and Apply login route verified Nov. 2. The explicit $350,000 total pool is included once; the ten possible awards are not multiplied by the $50,000 cap. This is distinct from the individual microgrant program.",
   }),
 );
 
@@ -3325,11 +3457,11 @@ innovationGrants.push(
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Nov. 6, 2026",
     qualifiers: ["Projects run Jan. 25–May 24, 2027. Teams attend required budget check-ins and bi-monthly sessions, create a toolkit and share results through a Teaching Talk and/or the MARS repository.", "Submit the proposal and administrative support letters as one PDF plus the required Excel budget. Fringe is deducted from the stipend allocation; confirm the current rate and eligibility with the Financial Point of Contact."],
-    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official full call, parent eligibility page, linked budget workbook and institutional login boundary checked Nov. 6. Funding for two teams is stated, but no aggregate pool is inferred by multiplying per-team caps. The generic budget template retains an older fiscal-year label; current stipend and fringe instructions come from the call, and net pay is not guaranteed.",
+    sourceNotes: "Nov. 13 lifecycle check: the unchanged Nov. 12 final date has safely passed, with no extension found. Retained in Closed/Past; application access remains qualified. Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official full call, parent eligibility page, linked budget workbook and institutional login boundary checked Nov. 6. Funding for two teams is stated, but no aggregate pool is inferred by multiplying per-team caps. The generic budget template retains an older fiscal-year label; current stipend and fringe instructions come from the call, and net pay is not guaranteed.",
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 12, 2026",
+    "lastVerified": "Nov 13, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3368,7 +3500,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 12, 2026",
+    "lastVerified": "Nov 13, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3407,7 +3539,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 12, 2026",
+    "lastVerified": "Nov 13, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3497,7 +3629,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-11",
-    "lastVerified": "Nov 12, 2026",
+    "lastVerified": "Nov 13, 2026",
     "applicationStatus": "open-now",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 11, 2026",
@@ -3544,7 +3676,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-11",
-    "lastVerified": "Nov 12, 2026",
+    "lastVerified": "Nov 13, 2026",
     "applicationStatus": "open-now",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 11, 2026",
@@ -3565,9 +3697,10 @@ innovationGrants.push(
       "scope": "institution-only"
     },
     "costShareRequirement": "Not stated in the official call.",
-    "applicationAccess": "The university's Google Form first page displays the current call, Nov. 13 extension and full group-eligibility article. Later pages require acknowledgment; they were not traversed. Full application requirements are specified in Article 5 and Annex 1 of the official call. No application data was entered or submitted.",
+    "applicationAccess": "The official university Google Form explicitly states that it is no longer accepting responses, observed Nov. 13. The record is archived on that affirmative closure evidence; no timezone or absolute deadline is inferred.",
     "deadline": "Nov. 13, 2026, at noon; timezone not stated",
     "deadlineTimeZone": "Not stated in the official call or inspected application",
+    "applicationClosedOn": "2026-11-13",
     "finalDeadlineDate": "2026-11-13",
     "audiences": [
       "four-year-colleges-universities",

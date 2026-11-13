@@ -10,7 +10,7 @@ const now = new Date("2026-09-15T18:00:00Z");
 const records = getPublicInnovationGrants().map(record => record.id === 106
   ? { ...record, publishedProgramPoolUsd: 55_849_990 } : record);
 test("November 11 homepage archives elapsed funding and includes three new calls without inferred pools", () => {
-  const current = getPublicInnovationGrants();
+  const current = getPublicInnovationGrants().filter(record => record.portalAddedDate <= "2026-11-11");
   const result = getHomepageGrantSummary(current, new Date("2026-11-11T18:00:00Z"));
   assert.equal(current.find(record => record.id === 106).publishedProgramPoolUsd, 52_849_990);
   assert.equal(result.funding.publishedProgramPoolUsd, 84_799_990);
