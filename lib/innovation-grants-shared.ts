@@ -109,6 +109,8 @@ export interface InnovationGrantOpportunity {
   deadlineTimeZone: string;
   lastVerified: string;
   finalDeadlineDate?: string;
+  /** First date an official source affirmatively reported closure; not an inferred deadline. */
+  applicationClosedOn?: string;
   /** Verified absolute cutoff; never inferred from date-only or unspecified-zone sources. */
   finalDeadlineAt?: string;
   priorityDeadlineDate?: string;
@@ -128,15 +130,15 @@ export interface InnovationGrantOpportunity {
 }
 
 /** Advance only with a released grant-content update, never from the runtime clock. */
-export const INNOVATION_GRANTS_UPDATED_DATE = "2026-11-12";
+export const INNOVATION_GRANTS_UPDATED_DATE = "2026-11-13";
 export const INNOVATION_GRANTS_UPDATED_ON = new Intl.DateTimeFormat("en-US", {
   month: "short", day: "numeric", year: "numeric", timeZone: "UTC",
 }).format(new Date(`${INNOVATION_GRANTS_UPDATED_DATE}T12:00:00Z`));
 
-export const INNOVATION_GRANTS_VERIFIED_ON = "Nov 12, 2026";
-export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-11-12";
-export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Nov 11, 2026";
-export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-11-11";
+export const INNOVATION_GRANTS_VERIFIED_ON = "Nov 13, 2026";
+export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-11-13";
+export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Nov 13, 2026";
+export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-11-13";
 export const INNOVATION_GRANTS_TIME_ZONE = "America/Los_Angeles";
 export const INNOVATION_GRANTS_SCOPE =
   "Actionable higher-ed innovation funding across AI & Emerging Technology, Teaching & Learning, Student Success, Workforce/Pathways, Community College Innovation, Digital Transformation/Infrastructure, Research/Evidence-Building, and Faculty Development";
@@ -337,6 +339,8 @@ export function getInnovationGrantLifecycle(
   }
 
   const today = utcDay(asOf);
+  const confirmedClosure = isoDay(opportunity.applicationClosedOn);
+  if (confirmedClosure !== undefined && confirmedClosure <= today) return "closed";
   const finalDeadline = isoDay(opportunity.finalDeadlineDate);
   const priorityDeadline = isoDay(opportunity.priorityDeadlineDate);
   const openingDate = isoDay(opportunity.openDate);
