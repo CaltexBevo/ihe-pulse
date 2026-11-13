@@ -29,25 +29,40 @@ export async function generateMetadata({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { share } = await searchParams;
-  // Only this approved, dated campaign selects frozen artwork.
-  // Unknown or repeated query values keep the current dynamic preview.
-  const campaign = share === "grants-20260929";
+  // Only an exact, allowlisted campaign selects frozen artwork.
+  const campaign = share === "grants-20261112"
+    ? {
+        imagePath: "/images/grants/grants-share-20261112.png",
+        imageAlt: "A glowing blue portal frames the grant finder beside “Funding? Indeed there’s a portal for that.” The portal tracks 94 programs with 38 open, including eight closing soon. Three opportunities were added in the latest search. Reported current program funding is $84,799,990.",
+      }
+    : share === "grants-20260929"
+      ? {
+          imagePath: "/images/grants/grants-share-20260929.png",
+          imageAlt: "Grant Portal from Innovating Higher Ed. Grant funding snapshot as of September 29, 2026.",
+        }
+      : undefined;
   const summary = getHomepageGrantSummary(getPublicInnovationGrants());
-  return pageMetadata({
-  title: "Grant Portal | Innovating Higher Ed",
-  description:
-    "Find current higher-education innovation grant opportunities by who can apply, what they fund, and when they close.",
-  path: "/innovation-grants",
-  imagePath: campaign
-    ? "/images/grants/grants-share-20260929.png"
-    : `/innovation-grants/opengraph-image?v=hero-total-v2-${summary.asOfDate}-${summary.funding.publishedProgramPoolUsd}`,
-  imageAlt: campaign
-    ? "Grant Portal from Innovating Higher Ed. Grant funding snapshot as of September 29, 2026."
-    : "Your innovation. Our grant portal. Reported current program funding from Innovating Higher Ed.",
-  imageWidth: campaign ? 1672 : 1200,
-  imageHeight: campaign ? 941 : 630,
-  twitterCard: "summary_large_image",
-});
+  const metadata = pageMetadata({
+    title: "Grant Portal | Innovating Higher Ed",
+    description:
+      "Find current higher-education innovation grant opportunities by who can apply, what they fund, and when they close.",
+    path: "/innovation-grants",
+    imagePath: campaign?.imagePath ??
+      `/innovation-grants/opengraph-image?v=hero-total-v2-${summary.asOfDate}-${summary.funding.publishedProgramPoolUsd}`,
+    imageAlt: campaign?.imageAlt ??
+      "Your innovation. Our grant portal. Reported current program funding from Innovating Higher Ed.",
+    imageWidth: campaign ? 1672 : 1200,
+    imageHeight: campaign ? 941 : 630,
+    twitterCard: "summary_large_image",
+  });
+
+  if (share === "grants-20261112" && campaign && metadata.twitter) {
+    metadata.twitter.images = [{
+      url: campaign.imagePath,
+      alt: campaign.imageAlt,
+    }];
+  }
+  return metadata;
 }
 
 export const dynamic = "force-dynamic";
