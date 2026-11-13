@@ -173,6 +173,7 @@
 .homeSocial .socialIcon,.homeSocial .socialIcon svg { width:22px; height:22px; }
 .homeShare { display:flex; align-items:center; gap:4px; min-height:44px; padding:6px 4px; color:var(--cyan); font-size:.7rem; cursor:pointer; }
 .homeShare:focus-visible,.homeLegal a:focus-visible,.homeContact:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
+.homeContactLinks { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; column-gap:12px; }
 .homeLegal { display:flex; align-items:center; gap:10px; font-size:.7rem; }
 .homeLegal a,.homeContact { display:flex; align-items:center; min-height:44px; white-space:nowrap; }
 .homeContact { font-size:.75rem; color:var(--cyan); }

@@ -16,6 +16,7 @@ const communityLinks = [
   { href: '/podcast', label: 'Podcast' },
   { href: '/tinker-lab', label: 'Tinker Lab' },
   { href: '/about', label: 'About' },
+  { href: '/advertise', label: 'Media & Advertising' },
 ];
 
 export default function Footer() {
@@ -31,7 +32,10 @@ export default function Footer() {
         {PLATFORM_LINKS.map(platform => <a key={platform.name} href={platform.href} target="_blank" rel="noopener noreferrer" className={`${styles.socialLink} ${styles[platform.name]}`} aria-label={platform.accessibleLabel} title={platform.label}><span className={styles.socialIcon}><PlatformIcon name={platform.name} /></span></a>)}
         <FooterShareButton className={styles.homeShare} />
       </div>
-      <a className={styles.homeContact} href="mailto:info@innovatinghighered.com">Contact Us</a>
+      <div className={styles.homeContactLinks}>
+        <a className={styles.homeContact} href="mailto:info@innovatinghighered.com">Contact Us</a>
+        <Link className={styles.homeContact} href="/advertise">Media &amp; Advertising</Link>
+      </div>
       <nav className={styles.homeLegal} aria-label="Legal links">
         <Link href="/about">About</Link>
         <Link href="/terms">Terms of Use</Link>

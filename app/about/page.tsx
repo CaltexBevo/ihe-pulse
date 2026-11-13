@@ -209,6 +209,12 @@ export default function AboutPage() {
                 </svg>
                 Contact Us
               </a>
+              <Link
+                href="/advertise"
+                className="inline-flex min-h-11 items-center px-3 text-sm font-semibold text-[var(--cyan)] underline underline-offset-4"
+              >
+                Media &amp; Advertising
+              </Link>
             </div>
             <div className="mt-5 text-sm text-[var(--text-secondary)]">
               <p className="select-all break-all">info@innovatinghighered.com</p>
