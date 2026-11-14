@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 13, 2026",
+    lastVerified: "Nov 14, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 13, 2026",
+    lastVerified: "Nov 14, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 13, 2026",
+      "lastVerified": "Nov 14, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 12, 2026",
+      "lastVerified": "Nov 14, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2593,7 +2593,7 @@ grant({
     whatItFunds: "A coordinated student-success pilot combining financial assistance, proactive success coaching and structured healthcare pathways from enrollment through credentials and employment.",
     geography: "North Carolina community colleges only",
     costShareRequirement: "Not stated in the official source",
-    applicationAccess: "The official linked Smartsheet application did not render its form in the Nov. 13 check. The current program terms remain available; confirm application access before preparing a submission. The prior full-verification date is retained.",
+    applicationAccess: "The official linked Smartsheet application did not render its form in the Nov. 14 check. The current program terms remain available; confirm application access before preparing a submission. The prior full-verification date is retained.",
     deadline: "Nov. 18, 2026 at 11:59 p.m.",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-18",
@@ -2836,10 +2836,10 @@ grant({
     whatItFunds: "Adapting or creating openly licensed course materials, with monthly librarian check-ins and publication in the library repository. Projects normally finish within six months unless otherwise approved. Wholly AI-generated components are ineligible.",
     geography: "National University only",
     costShareRequirement: notStated,
-    applicationAccess: "The linked LibWizard page renders the AY27 OER Grant Application and Begin control. No application was started or submitted.",
-    deadline: "Nov. 13, 2026; time and time zone not stated",
+    applicationAccess: "The official AY27 program page extends the proposal deadline to Nov. 16. The public application introduction and Begin control are available; the complete form was not inspected. Confirm remaining requirements before applying.",
+    deadline: "Nov. 16, 2026; time and time zone not stated",
     deadlineTimeZone: "Not stated in the official source",
-    finalDeadlineDate: "2026-11-13",
+    finalDeadlineDate: "2026-11-16",
     audiences: ["four-year-colleges-universities", "faculty-teaching-centers"],
     innovationAreas: ["teaching-learning", "student-success", "digital-transformation-infrastructure"],
     scopeDisposition: "included",
@@ -2847,7 +2847,7 @@ grant({
     eligibilityBadge: "National University faculty and staff only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
-    sourceNotes: "Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official AY27 call and actual linked application entry checked Oct. 14. Per-person stipends are not a published program pool and are excluded from the cash tally.",
+    sourceNotes: "Nov. 14 partial recheck: the official program page extends Nov. 13 to Nov. 16, so this record remains active. The prior full-verification date is retained because only the application introduction was inspected. Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official AY27 call and actual linked application entry checked Oct. 14. Per-person stipends are not a published program pool and are excluded from the cash tally.",
   }),
   grant({
     id: 128,
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 13, 2026",
+    lastVerified: "Nov 14, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -3205,7 +3205,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 13, 2026",
+    "lastVerified": "Nov 14, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3243,13 +3243,13 @@ grant({
     "qualifiers": [
       "Partner support letters, board-approved agreements, five-year enrollment projections, a comprehensive budget and one template per career academy are required."
     ],
-    "sourceNotes": "Nov. 13 official page, current submission instructions, complete application/program templates and scoring rubric checked. Today’s date-only deadline remains open until safely passed or explicitly closed. The page describes up to $5 million annually, not a verified current-call pool; that annual amount and any historical caps are excluded from the USD tally."
+    "sourceNotes": "Nov. 14 daily check: the official page, current submission instructions, application, program template and rubric remain unchanged, with no extension found. The Nov. 13 date-only deadline has safely passed and the record is retained in Closed/Past. The page describes up to $5 million annually, not a verified current-call pool; that annual amount and any historical caps remain excluded from the USD tally."
   }),
   grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 13, 2026",
+    "lastVerified": "Nov 14, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3292,7 +3292,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 13, 2026",
+    "lastVerified": "Nov 14, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3461,7 +3461,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 13, 2026",
+    "lastVerified": "Nov 14, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3500,7 +3500,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 13, 2026",
+    "lastVerified": "Nov 14, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3539,7 +3539,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 13, 2026",
+    "lastVerified": "Nov 14, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3629,7 +3629,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-11",
-    "lastVerified": "Nov 13, 2026",
+    "lastVerified": "Nov 14, 2026",
     "applicationStatus": "open-now",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 11, 2026",

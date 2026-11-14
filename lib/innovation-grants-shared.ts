@@ -130,13 +130,13 @@ export interface InnovationGrantOpportunity {
 }
 
 /** Advance only with a released grant-content update, never from the runtime clock. */
-export const INNOVATION_GRANTS_UPDATED_DATE = "2026-11-13";
+export const INNOVATION_GRANTS_UPDATED_DATE = "2026-11-14";
 export const INNOVATION_GRANTS_UPDATED_ON = new Intl.DateTimeFormat("en-US", {
   month: "short", day: "numeric", year: "numeric", timeZone: "UTC",
 }).format(new Date(`${INNOVATION_GRANTS_UPDATED_DATE}T12:00:00Z`));
 
-export const INNOVATION_GRANTS_VERIFIED_ON = "Nov 13, 2026";
-export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-11-13";
+export const INNOVATION_GRANTS_VERIFIED_ON = "Nov 14, 2026";
+export const INNOVATION_GRANTS_VERIFICATION_DATE = "2026-11-14";
 export const INNOVATION_GRANTS_FULL_SEARCH_DATE = "Nov 13, 2026";
 export const INNOVATION_GRANTS_FULL_SEARCH_DATE_ISO = "2026-11-13";
 export const INNOVATION_GRANTS_TIME_ZONE = "America/Los_Angeles";
