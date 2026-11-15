@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 14, 2026",
+    lastVerified: "Nov 15, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 14, 2026",
+    lastVerified: "Nov 15, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 14, 2026",
+      "lastVerified": "Nov 15, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 14, 2026",
+      "lastVerified": "Nov 15, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 14, 2026",
+    lastVerified: "Nov 15, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -3205,7 +3205,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 14, 2026",
+    "lastVerified": "Nov 15, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3249,7 +3249,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 14, 2026",
+    "lastVerified": "Nov 15, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3292,7 +3292,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 14, 2026",
+    "lastVerified": "Nov 15, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3461,7 +3461,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 14, 2026",
+    "lastVerified": "Nov 15, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3500,7 +3500,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 14, 2026",
+    "lastVerified": "Nov 15, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3539,7 +3539,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 14, 2026",
+    "lastVerified": "Nov 15, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
