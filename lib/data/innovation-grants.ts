@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13", "2026-11-17"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -1138,7 +1138,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 76,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 15, 2026",
+    lastVerified: "Nov 17, 2026",
     recommendationRank: 3,
     title: "MHEC Strategic Impact and Innovation Grants",
     source: "Midwestern Higher Education Compact",
@@ -1283,7 +1283,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Aug. 31",
     qualifiers: [],
-    sourceNotes: "Sep. 9, 2026 official recheck: Phase II submissions are due Sept. 11 at 5 p.m. EDT and Phase III submissions Dec. 31 at 5 p.m. EST. After Sept. 11 the next displayed deadline advances to Dec. 31. Phase I has passed. Phase II and III base allocations are approximately $3.8 million each, but the static directory tally cannot expire them separately, so neither they nor the former $11.574 million total are counted. Expected award count is omitted because official materials differ (15 versus 20). Public application handoffs were checked, not authenticated submission workspaces.",
+    sourceNotes: "Nov. 17 partial recheck: the complete NOFO is now accessible and confirms the existing terms. The public synopsis was checked, but application-package continuation was not reverified; the prior full-verification date is retained. Sep. 9, 2026 official recheck: Phase II submissions are due Sept. 11 at 5 p.m. EDT and Phase III submissions Dec. 31 at 5 p.m. EST. After Sept. 11 the next displayed deadline advances to Dec. 31. Phase I has passed. Phase II and III base allocations are approximately $3.8 million each, but the static directory tally cannot expire them separately, so neither they nor the former $11.574 million total are counted. Expected award count is omitted because official materials differ (15 versus 20). Public application handoffs were checked, not authenticated submission workspaces.",
   }),
   grant({
     id: 81,
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 15, 2026",
+    lastVerified: "Nov 17, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1375,7 +1375,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     eligibilityBadge: "Two- or four-year U.S. college",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Aug. 31",
-    sourceNotes: "This active record covers Institutional Impact only. New applicants must meet the Nov. 16 LOI deadline; March 15 is for invited full proposals, not a later entry point. The separate Capacity-Building call is future planning information: scheduled to open Nov. 15 with a Dec. 15 deadline and awards up to $50,000. It is not included in this active award scope. The public LOI form is healthy, but no application was filled or submitted. No program-level cash pool is counted.",
+    sourceNotes: "Nov. 17 recheck: the mandatory Nov. 16 LOI deadline has passed; this call is archived for new applicants. This record covers Institutional Impact only. New applicants must meet the Nov. 16 LOI deadline; March 15 is for invited full proposals, not a later entry point. The separate Capacity-Building call has a Dec. 15 deadline and awards up to $50,000; it is tracked separately. The public LOI form is healthy, but no application was filled or submitted. No program-level cash pool is counted.",
   }),
   grant({
     id: 84,
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 15, 2026",
+      "lastVerified": "Nov 17, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 15, 2026",
+      "lastVerified": "Nov 17, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2836,7 +2836,7 @@ grant({
     whatItFunds: "Adapting or creating openly licensed course materials, with monthly librarian check-ins and publication in the library repository. Projects normally finish within six months unless otherwise approved. Wholly AI-generated components are ineligible.",
     geography: "National University only",
     costShareRequirement: notStated,
-    applicationAccess: "The official AY27 program page extends the proposal deadline to Nov. 16. The public application introduction and Begin control are available; the complete form was not inspected. Confirm remaining requirements before applying.",
+    applicationAccess: "Nov. 17 recheck: the official Nov. 16 proposal deadline has passed with no further extension; this call is archived. The public application introduction and Begin control are available; the complete form was not inspected. Confirm remaining requirements before applying.",
     deadline: "Nov. 16, 2026; time and time zone not stated",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-16",
@@ -2847,7 +2847,7 @@ grant({
     eligibilityBadge: "National University faculty and staff only",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 14, 2026",
-    sourceNotes: "Nov. 14 partial recheck: the official program page extends Nov. 13 to Nov. 16, so this record remains active. The prior full-verification date is retained because only the application introduction was inspected. Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official AY27 call and actual linked application entry checked Oct. 14. Per-person stipends are not a published program pool and are excluded from the cash tally.",
+    sourceNotes: "Nov. 17 partial recheck: the Nov. 16 date has safely elapsed; no cutoff time or time zone is stated. The application still exposes only its introduction in this check, so the prior full-verification date is retained. Nov. 14 partial recheck: the official program page extends Nov. 13 to Nov. 16, so this record remains active. The prior full-verification date is retained because only the application introduction was inspected. Nov. 7 partial recheck: official terms remain available, but the public application did not finish loading or returned an access error in this check. Confirm application access with the funder; the prior full-verification date is retained. Official AY27 call and actual linked application entry checked Oct. 14. Per-person stipends are not a published program pool and are excluded from the cash tally.",
   }),
   grant({
     id: 128,
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 15, 2026",
+    lastVerified: "Nov 17, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -3205,7 +3205,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 15, 2026",
+    "lastVerified": "Nov 17, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3249,7 +3249,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 15, 2026",
+    "lastVerified": "Nov 17, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3292,7 +3292,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 15, 2026",
+    "lastVerified": "Nov 17, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3330,6 +3330,48 @@ grant({
       "Complete the post-grant reimbursement form with an impact overview and receipts by the end of the conference semester, and share the work with the Elon teaching community."
     ],
     "sourceNotes": "Current official program page and shared public application checked Nov. 13. Four scheduled review dates are Sept. 7 and Dec. 7, 2026, Feb. 8 and June 7, 2027; the elapsed September round is not an active deadline. These are distinct grant purposes within one form, not duplicate records. Per-award caps only; no published program pool or aggregate inferred."
+  }),
+  grant({
+      "id": 153,
+      "portalAddedDate": "2026-11-17",
+      "lastVerified": "Nov 17, 2026",
+      "inventoryOrigin": "weekly-new",
+      "announcementWindow": "Broad discovery, Nov. 17, 2026",
+      "scopeDisposition": "included",
+      "recommendationRank": 51,
+      "title": "ASU Principled Innovation Teaching Grants: Summer/Fall 2027",
+      "source": "Arizona State University",
+      "officialUrl": "https://pi.asu.edu/story/teaching-grants/",
+      "applicationUrl": "https://pi.asu.edu/wp-content/uploads/2026/09/Lastname_PI_Course_Application_2026.docx",
+      "announcedDate": "Current Summer/Fall 2027 call; exact announcement date not stated",
+      "awardAmount": "Up to $10,000 per request",
+      "eligibility": "Full-time Arizona State University faculty or staff. Department chair or school director approval is required.",
+      "whatItFunds": "Course revision or creation integrating Principled Innovation, with support for course buyout, multimedia, instructional design, guest-speaker honoraria or software and digital tools.",
+      "geography": "Arizona State University only",
+      "locationEligibility": {
+          "scope": "institution-only"
+      },
+      "costShareRequirement": "Not stated in the official application.",
+      "applicationAccess": "Download the complete Word application and email the completed .docx to the program contact specified in the form. The full application was inspected; no application was completed or sent.",
+      "deadline": "Feb. 28, 2027 at 5 p.m.; time zone not stated",
+      "deadlineTimeZone": "Not stated in the official application",
+      "finalDeadlineDate": "2027-02-28",
+      "audiences": [
+          "four-year-colleges-universities",
+          "faculty-teaching-centers"
+      ],
+      "innovationAreas": [
+          "teaching-learning",
+          "faculty-development",
+          "research-evidence-building"
+      ],
+      "bestFit": "Arizona State University instructors seeking funds and a teaching-development community to revise or create a course around Principled Innovation.",
+      "eligibilityBadge": "Full-time ASU faculty or staff",
+      "qualifiers": [
+          "Recipients attend orientation, two Community of Practice meetings, a research kickoff and the Fall 2027 convening.",
+          "Required evaluation includes faculty and student surveys, researcher access to course artifacts, and reporting of course outcomes."
+      ],
+      "sourceNotes": "Official program page and complete linked Word application checked Nov. 17, 2026. The application specifies Summer/Fall 2027 funding and a Feb. 28, 2027 deadline despite the 2026 filename. Chair/director approval is required, including forwarding course-buyout approval as instructed. No program-level pool is published; the per-request cap is excluded from the cash tally. No time zone is inferred."
   }),
 ];
 
@@ -3461,7 +3503,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 15, 2026",
+    "lastVerified": "Nov 17, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3500,7 +3542,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 15, 2026",
+    "lastVerified": "Nov 17, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3539,7 +3581,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 15, 2026",
+    "lastVerified": "Nov 17, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
