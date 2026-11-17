@@ -453,8 +453,8 @@ test('workflow is read-only, full-scope, runtime-bound, and runs independent gat
   assert.match(workflow, /git -c credential\.helper= fetch --no-tags --no-recurse-submodules origin "\$EXPECTED_HEAD" "\$BASE_REVISION"/);
   assert.match(workflow, /git -c submodule\.recurse=false checkout --detach "\$EXPECTED_HEAD"/);
   assert.match(workflow, /actions\/setup-node v7\.0\.0\s*\n\s*uses: actions\/setup-node@820762786026740c76f36085b0efc47a31fe5020/);
-  assert.match(workflow, /node-version:\s*'20'/);
-  assert.match(workflow, /process\.versions\.node\.split\('\.'\)\[0\] !== '20'/);
+  assert.match(workflow, /node-version:\s*'24'/);
+  assert.match(workflow, /process\.versions\.node\.split\('\.'\)\[0\] !== '24'/);
   assert.match(workflow, /github\.sha/);
   assert.match(workflow, /github\.event\.pull_request\.base\.sha/);
   assert.doesNotMatch(workflow, /expected-(?:input|source)-sha256\s+[a-f0-9]{64}/i);
