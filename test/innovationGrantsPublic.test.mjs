@@ -1,21 +1,6 @@
 import assert from "node:assert/strict";
 
-test("November 19 archives the elapsed Bridge Pilot while preserving source qualifications", () => {
-  const records = getCurrentPublicInnovationGrants();
-  const now = getInnovationGrantPacificAsOfDate(new Date("2026-11-19T18:00:00Z"));
-  const bridge = records.find(r => r.id === 119);
-  assert.equal(getInnovationGrantLifecycle(bridge, now), "closed");
-  assert.equal(bridge.lastVerified, "Nov 12, 2026");
-  assert.equal(records.find(r => r.id === 76).lastVerified, "Nov 18, 2026");
-  assert.match(records.find(r => r.id === 83).applicationAccess, /LOI window is closed/);
-  assert.equal(getInnovationGrantLifecycle(records.find(r => r.id === 133), now), "open-now");
-  const snapshot = getInnovationGrantFundingSnapshot(records, now);
-  assert.equal(records.length, 98);
-  assert.equal(snapshot.openOpportunityCount, 36);
-  assert.equal(snapshot.closingSoonCount, 4);
-  assert.equal(snapshot.publishedProgramPoolUsd, 84449990);
-  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Nov 18, 2026");
-});
+
 import test from "node:test";
 import { readFileSync } from "node:fs";
 import { register } from "node:module";
@@ -1378,3 +1363,20 @@ test("November 13 explicit closures and early opening do not invent cutoff insta
 });
 
  test("November 14 retains the National extension and archives elapsed Iowa without changing discovery",()=>{const records=getCurrentPublicInnovationGrants().filter(r=>r.id<153),now=getInnovationGrantPacificAsOfDate(new Date("2026-11-14T18:00:00Z"));const national=records.find(r=>r.id===127),iowa=records.find(r=>r.id===150);assert.equal(national.finalDeadlineDate,"2026-11-16");assert.equal(national.lastVerified,"Nov 6, 2026");assert.equal(getInnovationGrantLifecycle(national,now),"closing-soon");assert.equal(getInnovationGrantLifecycle(iowa,now),"closed");assert.equal(iowa.portalAddedDate,"2026-11-13");assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE,"Nov 18, 2026");const snapshot=getInnovationGrantFundingSnapshot(records,now);assert.equal(records.length,97);assert.equal(snapshot.openOpportunityCount,38);assert.equal(snapshot.publishedProgramPoolUsd,84449990);});
+
+test("November 19 archives the elapsed Bridge Pilot while preserving source qualifications", () => {
+  const records = getCurrentPublicInnovationGrants();
+  const now = getInnovationGrantPacificAsOfDate(new Date("2026-11-19T18:00:00Z"));
+  const bridge = records.find(r => r.id === 119);
+  assert.equal(getInnovationGrantLifecycle(bridge, now), "closed");
+  assert.equal(bridge.lastVerified, "Nov 12, 2026");
+  assert.equal(records.find(r => r.id === 76).lastVerified, "Nov 18, 2026");
+  assert.match(records.find(r => r.id === 83).applicationAccess, /LOI window is closed/);
+  assert.equal(getInnovationGrantLifecycle(records.find(r => r.id === 133), now), "open-now");
+  const snapshot = getInnovationGrantFundingSnapshot(records, now);
+  assert.equal(records.length, 98);
+  assert.equal(snapshot.openOpportunityCount, 36);
+  assert.equal(snapshot.closingSoonCount, 4);
+  assert.equal(snapshot.publishedProgramPoolUsd, 84449990);
+  assert.equal(INNOVATION_GRANTS_FULL_SEARCH_DATE, "Nov 18, 2026");
+});
