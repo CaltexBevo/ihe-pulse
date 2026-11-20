@@ -4,7 +4,7 @@ export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; im
     imagePath: "/images/stories/edition23/story-013-x-card-v1.png",
     imageWidth: 1734,
     imageHeight: 907,
-    twitterTitle: "Stanford’s probability tutorials",
+    twitterTitle: "Stanford",
   },
   "georgia-tech-shows-two-ways-to-make-ai-practice-count": {
     imagePath: "/images/stories/social/georgia-tech-ai-practice-card-v3.png",
