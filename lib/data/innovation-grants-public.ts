@@ -137,6 +137,7 @@ const LOCATION_ELIGIBILITY_BY_ID: Readonly<Record<number, InnovationGrantLocatio
   151: { scope: "institution-only" },
   152: { scope: "institution-only" },
   153: { scope: "institution-only" },
+  154: { scope: "institution-only" },
 };
 
 export function getPublicInnovationGrants(): InnovationGrantOpportunity[] {

@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13", "2026-11-17"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13", "2026-11-17", "2026-11-20"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 19, 2026",
+    lastVerified: "Nov 20, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1363,7 +1363,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     whatItFunds: "Institution-wide character-education integration, faculty and student development, institutional capacity, and implementation planning.",
     geography: "United States",
     costShareRequirement: "Co-funding is encouraged, not a fixed match; overhead and indirect costs are prohibited",
-    applicationAccess: "Nov. 19 recheck: the official program page explicitly says the LOI window is closed. The public form still renders, but it does not establish that new applications are accepted. The form cannot save drafts. Generative or assistive AI may not be used to compose the proposal.",
+    applicationAccess: "Nov. 20 recheck: the official program page and application both confirm the LOI window is closed; the application states Nov. 16, 2026 at 5 p.m. ET. The form cannot save drafts. Generative or assistive AI may not be used to compose the proposal.",
     deadline: "Mandatory letter of intent for new applicants due Nov. 16, 2026 at 5 p.m. ET; invited full proposals due Mar. 15, 2027 at 5 p.m. ET",
     deadlineTimeZone: "Eastern Time",
     openDate: "2026-09-15",
@@ -1375,7 +1375,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
     eligibilityBadge: "Two- or four-year U.S. college",
     inventoryOrigin: "weekly-new",
     announcementWindow: "Monday discovery, verified Aug. 31",
-    sourceNotes: "Nov. 19 official confirmation: the LOI window is closed; invited full-proposal applicants will receive next-step notice in mid-January. Nov. 17 recheck: the mandatory Nov. 16 LOI deadline has passed; this call is archived for new applicants. This record covers Institutional Impact only. New applicants must meet the Nov. 16 LOI deadline; March 15 is for invited full proposals, not a later entry point. The separate Capacity-Building call has a Dec. 15 deadline and awards up to $50,000; it is tracked separately. The public LOI form remains accessible despite the official closure; no application was filled or submitted. No program-level cash pool is counted.",
+    sourceNotes: "Nov. 19 official confirmation: the LOI window is closed; invited full-proposal applicants will receive next-step notice in mid-January. Nov. 17 recheck: the mandatory Nov. 16 LOI deadline has passed; this call is archived for new applicants. This record covers Institutional Impact only. New applicants must meet the Nov. 16 LOI deadline; March 15 is for invited full proposals, not a later entry point. The separate Capacity-Building call has a Dec. 15 deadline and awards up to $50,000; it is tracked separately. The Nov. 20 application recheck explicitly confirms the Institutional Impact LOI closure and separately points to Capacity-Building; no application was filled or submitted. No program-level cash pool is counted.",
   }),
   grant({
     id: 84,
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 19, 2026",
+      "lastVerified": "Nov 20, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 19, 2026",
+      "lastVerified": "Nov 20, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 19, 2026",
+    lastVerified: "Nov 20, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -3205,7 +3205,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 19, 2026",
+    "lastVerified": "Nov 20, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3249,7 +3249,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 19, 2026",
+    "lastVerified": "Nov 20, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3292,7 +3292,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 19, 2026",
+    "lastVerified": "Nov 20, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3334,7 +3334,7 @@ grant({
   grant({
       "id": 153,
       "portalAddedDate": "2026-11-17",
-      "lastVerified": "Nov 19, 2026",
+      "lastVerified": "Nov 20, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Broad discovery, Nov. 17, 2026",
       "scopeDisposition": "included",
@@ -3374,6 +3374,52 @@ grant({
       ],
       "sourceNotes": "Official program page and complete linked Word application checked Nov. 17, 2026. The application specifies Summer/Fall 2027 funding and a Feb. 28, 2027 deadline despite the 2026 filename. Chair/director approval is required, including forwarding course-buyout approval as instructed. No program-level pool is published; the per-request cap is excluded from the cash tally. No time zone is inferred."
   }),
+  grant({
+    "id": 154,
+    "portalAddedDate": "2026-11-20",
+    "lastVerified": "Nov 20, 2026",
+    "inventoryOrigin": "weekly-new",
+    "announcementWindow": "Broad discovery, Nov. 20, 2026",
+    "scopeDisposition": "included",
+    "recommendationRank": 52,
+    "title": "UMB LEAPS Instructional Innovation Seed Grants: 2027–28",
+    "source": "University of Maryland, Baltimore, Leaders in Education: Academy of Presidential Scholars",
+    "officialUrl": "https://www.umaryland.edu/leaps/about-leaps/-educational-innovation/",
+    "applicationUrl": "https://www.umaryland.edu/leaps/about-leaps/-educational-innovation/",
+    "announcedDate": "Nov 11, 2026",
+    "announcedDateIso": "2026-11-11",
+    "applicationStatus": "open-now",
+    "deadline": "February 1, 2027",
+    "deadlineTimeZone": "Not stated in the official guidelines",
+    "finalDeadlineDate": "2027-02-01",
+    "awardAmount": "Two $5,000 awards, two $7,500 awards, and one $7,500 collaboration award",
+    "eligibility": "UMB tenured or tenure-track faculty, full- or part-time faculty contracted to teach during the grant year, and staff with at least one year at UMB may lead. All UMB teaching-community members may participate, except LEAPS Council and Committee members. Previously LEAPS-funded projects are ineligible. The collaboration award requires faculty leaders and students from at least two UMB schools.",
+    "geography": "University of Maryland, Baltimore only; Maryland, United States",
+    "costShareRequirement": "Not stated in the official guidelines",
+    "applicationAccess": "Public full application instructions; email one combined PDF to LEAPS@umaryland.edu with subject Instructional Innovation Seed Grant Proposal. No portal registration stated. No email sent.",
+    "whatItFunds": "Testing or implementing teaching innovations, instructional equipment and emerging technology, course materials, assessment tools, teaching-related field visits, student wages, honoraria and project-team conference travel.",
+    "innovationAreas": [
+        "teaching-learning",
+        "student-success",
+        "research-evidence-building",
+        "faculty-development",
+        "ai-emerging-technology"
+    ],
+    "audiences": [
+        "four-year-colleges-universities",
+        "faculty-teaching-centers"
+    ],
+    "bestFit": "UMB faculty and experienced staff testing a teaching change with an assessment plan and potential use beyond a single course.",
+    "openDate": "2026-11-15",
+    "locationEligibility": {
+        "scope": "institution-only"
+    },
+    "eligibilityBadge": "UMB faculty and eligible staff",
+    "qualifiers": [
+        "A final project and financial report is due June 1, 2028; awardees present findings at the Spring 2028 LEAPS Symposium."
+    ],
+    "sourceNotes": "Full official 2027–28 guidelines and PDF/email application instructions checked Nov. 20, 2026. The proposal, including references, is limited to 1,000 words and includes project rationale, equity and inclusion, research design, schedule and budget. The Nov. 11 official announcement confirms the new cycle. No deadline time or timezone is stated. Award tiers are retained without treating their calculated sum as an officially published program pool."
+}),
 ];
 
 innovationGrants.push(
@@ -3504,7 +3550,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 19, 2026",
+    "lastVerified": "Nov 20, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3543,7 +3589,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 19, 2026",
+    "lastVerified": "Nov 20, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3582,7 +3628,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 19, 2026",
+    "lastVerified": "Nov 20, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
