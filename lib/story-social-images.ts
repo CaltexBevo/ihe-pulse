@@ -1,5 +1,11 @@
 // Social card crops are independent of the artwork displayed on the story page.
 export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number; twitterImagePath?: string; twitterTitle?: string }>> = {
+  "when-the-homework-problem-changes-the-reasoning-has-to-trave": {
+    imagePath: "/images/stories/edition23/story-013-x-card-v1.png",
+    imageWidth: 1734,
+    imageHeight: 907,
+    twitterTitle: "Stanford’s probability tutorials",
+  },
   "georgia-tech-shows-two-ways-to-make-ai-practice-count": {
     imagePath: "/images/stories/social/georgia-tech-ai-practice-card-v3.png",
     imageWidth: 2048,

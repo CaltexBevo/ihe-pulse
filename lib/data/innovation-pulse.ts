@@ -8,6 +8,7 @@ import path from 'path';
 export * from './innovation-pulse-types';
 
 import type { InnovationPulseEpisode } from './innovation-pulse-types';
+import standaloneStoriesData from '@/data/pulse-standalone-stories.json';
 import { StoryImageAssigner } from '@/lib/utils/story-images';
 
 // ── Data Loading Utilities ───────────────────────────────────────────────────
@@ -359,6 +360,7 @@ export function getEpisodeDates(): string[] {
 // ── Story Aggregation Types ─────────────────────────────────────────────────
 
 export interface AggregatedStory {
+  storyId?: string;
   publishedAt?: string;
   title: string;
   summary: string;
@@ -366,7 +368,7 @@ export interface AggregatedStory {
   source: string;
   sourceUrl: string;
   sourceLinks?: import('./innovation-pulse-types').StorySourceLink[];
-  category: import('./innovation-pulse-types').StoryCategory;
+  category: import('./innovation-pulse-types').StoryCategory | V4Category;
   date: string;
   type: 'deepDive' | 'quickHit';
   isCallback?: boolean;
@@ -375,11 +377,22 @@ export interface AggregatedStory {
   heroImage?: string; // Reviewed wide derivative when available
 }
 
+type StandaloneStory = AggregatedStory & { storyId: string; publishedAt: string };
+
+const standaloneStories: StandaloneStory[] = standaloneStoriesData.map((story) => ({
+  ...story,
+  category: story.category as V4Category,
+  date: story.publishedAt,
+  type: 'quickHit',
+}));
+
+const standaloneStorySlugs = new Set(standaloneStories.map((story) => generateSlug(story.title)));
+
 // ── Story Aggregation Utilities ─────────────────────────────────────────────
 
 export function getAllStoriesAggregated(): AggregatedStory[] {
   const episodes = getAllEpisodes();
-  const stories: AggregatedStory[] = [];
+  const stories: AggregatedStory[] = [...standaloneStories];
 
   for (const episode of episodes) {
     // Add deep dive
@@ -421,9 +434,9 @@ export function getAllStoriesAggregated(): AggregatedStory[] {
   }
 
   // Sort by date (newest first)
-  return stories.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return stories
+    .filter((story) => story.storyId || !standaloneStorySlugs.has(generateSlug(story.title)))
+    .sort((a, b) => b.date.localeCompare(a.date));
 }
 
 export function getStoriesByCategory(): Record<
@@ -478,11 +491,33 @@ export interface StoryWithContext extends AggregatedStory {
   audioUrl?: string;
   fullText?: string;
   editorialTake?: string;
+  standalone?: boolean;
   image?: string; // Pre-assigned at data load time
+}
+
+function withStandaloneContext(
+  story: AggregatedStory,
+  episodes: InnovationPulseEpisode[],
+): StoryWithContext {
+  const slug = generateSlug(story.title);
+  const episode = episodes.find((item) =>
+    [item.deepDive, ...item.quickHits].some((entry) => generateSlug(entry.title) === slug),
+  );
+
+  return {
+    ...story,
+    slug,
+    standalone: true,
+    episodeDate: episode?.date ?? '',
+    editionNumber: episode?.editionNumber,
+    editorialLens: '',
+  };
 }
 
 export function getStoryBySlug(slug: string): StoryWithContext | null {
   const episodes = getAllEpisodes();
+  const standalone = standaloneStories.find((story) => generateSlug(story.title) === slug);
+  if (standalone) return withStandaloneContext(standalone, episodes);
 
   for (const episode of episodes) {
     // Check deep dive
@@ -548,16 +583,16 @@ export function getStoryBySlug(slug: string): StoryWithContext | null {
 
 export function getAllStorySlugs(): string[] {
   const episodes = getAllEpisodes();
-  const slugs: string[] = [];
+  const slugs = new Set(standaloneStorySlugs);
 
   for (const episode of episodes) {
-    slugs.push(generateSlug(episode.deepDive.title));
+    slugs.add(generateSlug(episode.deepDive.title));
     for (const hit of episode.quickHits) {
-      slugs.push(generateSlug(hit.title));
+      slugs.add(generateSlug(hit.title));
     }
   }
 
-  return slugs;
+  return [...slugs];
 }
 
 // ── V4 Category Utilities ─────────────────────────────────────────────────
@@ -663,6 +698,10 @@ export function getStoriesByV4Category(v4Category: V4Category): StoryWithContext
     const mappedCategory = mapToV4Category(story.category);
     if (mappedCategory !== v4Category) continue;
 
+    if (story.storyId) {
+      stories.push(withStandaloneContext(story, episodes));
+      continue;
+    }
     const episode = episodes.find(ep => ep.date === story.date);
     if (!episode) continue;
 
@@ -693,6 +732,12 @@ export function getRelatedStories(currentSlug: string, category: string, limit: 
     const slug = generateSlug(story.title);
     if (slug === currentSlug) continue;
     if (story.category !== category && related.length >= limit) continue;
+
+    if (story.storyId) {
+      related.push(withStandaloneContext(story, episodes));
+      if (related.length >= limit) break;
+      continue;
+    }
 
     // Get episode context
     const episode = episodes.find(ep => ep.date === story.date);

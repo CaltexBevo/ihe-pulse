@@ -1,0 +1,23 @@
+[
+  {
+    "storyId": "IHE-STORY-2026-10-30-013",
+    "publishedAt": "2026-11-20",
+    "title": "When the homework problem changes, the reasoning has to travel",
+    "preview": "Stanford probability tutorials asked students to adapt prepared work aloud. Participants scored higher on shared exams, while tutorial grades rewarded preparation and engagement.",
+    "summary": "A homework problem about poker became a problem about bridge when students reached the board. The calculation they had prepared was no longer enough. In a Stanford probability-course experiment, students had to explain how the underlying reasoning applied to a variation they had not rehearsed.\n\nJohn C. Duchi, Will Hartog and Dennis L. Sun describe the spring 2026 experiment in an October 29 preprint. Four students met with an instructor or teaching assistant for 50 minutes each week. Each presented a variation on a homework problem without notes, learning which one they would receive when their turn began.\n\nThe grading rule made room for difficulty. Preparation, engagement and participation earned the tutorial grade. A prepared student who became stuck could receive the same score as someone who solved the problem smoothly. Peers could offer suggestions, and tutors could ask follow-up questions. Getting stuck did not end the work or automatically reduce the grade.\n\nStudents were randomly assigned within groups based on an initial probability pretest. Both groups submitted written homework, attended the same lectures and took the same exams. For the tutorial group, the discussion replaced ordinary written homework grading.\n\nAmong 66 consenting students in the midterm analysis, tutorial participants averaged 72.7%, compared with 58.4% for controls. With 64 participants remaining for the final, the averages were 59.5% and 50.0%. The comparison evaluates the complete tutorial arrangement, including participation: controls were offered weekly sections of the same length, but attendance was not enforced.\n\nExams still measured mastery. The tutorial grade recognized the preparation and engagement through which students worked toward it. That separation allowed a student to struggle with an unfamiliar problem while meeting the expectations of the course. Prepared homework became the starting point for reasoning with other people, rather than the finished product submitted for a score.",
+    "source": "Duchi, Hartog and Sun, original preprint",
+    "sourceUrl": "https://arxiv.org/pdf/2610.39538",
+    "sourceLinks": [
+      {
+        "label": "Duchi, Hartog and Sun, full original preprint",
+        "url": "https://arxiv.org/pdf/2610.39538"
+      },
+      {
+        "label": "archive and submission history",
+        "url": "https://arxiv.org/abs/2610.39538"
+      }
+    ],
+    "category": "Research",
+    "image": "/images/stories/edition23/story-013-B-v2.png"
+  }
+]
