@@ -21,6 +21,7 @@ const V4_CATEGORY_CONFIG: Record<string, { color: string; slug: string }> = {
   "Practical Tips": { color: "var(--cyan)", slug: "practical-tips" },
   "Ethical AI": { color: "var(--amber)", slug: "ethical-ai" },
   "Latest AI Products": { color: "var(--purple)", slug: "latest-ai-products" },
+  "Research": { color: "var(--purple)", slug: "research" },
   "Beyond Ed": { color: "var(--cyan)", slug: "beyond-ed" },
   "Week in Review": { color: "var(--magenta)", slug: "week-in-review" },
   "Tool Spotlight": { color: "var(--cyan)", slug: "practical-tips" },
@@ -117,7 +118,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           Back to Innovation Pulse
         </Link>
         <span className="font-mono text-[0.68rem] text-[var(--text-muted)] ml-auto">
-          {formatPulseDate(story.publishedAt || story.episodeDate)}
+          {formatPulseDate(story.publishedAt || story.date)}
         </span>
       </div>
 
@@ -133,9 +134,9 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           src={storyImage}
           alt={story.title}
           fill={usesSeptember04Card}
-          width={usesSeptember04Card ? undefined : 1200}
-          height={usesSeptember04Card ? undefined : 800}
-          className={usesSeptember04Card ? "object-contain" : "block w-full h-auto"}
+          width={usesSeptember04Card ? undefined : story.standalone ? 1536 : 1200}
+          height={usesSeptember04Card ? undefined : story.standalone ? 1024 : 800}
+          className={usesSeptember04Card ? "object-contain" : `block w-full h-auto ${story.standalone ? "rounded-[var(--image-radius)]" : ""}`}
           sizes="(max-width: 820px) 100vw, 820px"
           priority
         />
@@ -162,11 +163,11 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
           >
             {v4Category}
           </Link>
-          <span className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded-[5px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
+          {story.editorialLens && <span className="font-mono text-[0.6rem] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded-[5px] bg-[var(--magenta-dim)] text-[var(--magenta)]">
             {story.editorialLens}
-          </span>
+          </span>}
           <span className="font-mono text-[0.7rem] text-[var(--text-muted)]">
-            {formatShortDate(story.publishedAt || story.episodeDate)}
+            {formatShortDate(story.publishedAt || story.date)}
           </span>
           <span className="font-mono text-[0.68rem] text-[var(--text-muted)]">
             · {Math.max(1, Math.ceil(story.summary.trim().split(/\s+/).length / 200))} min read
@@ -177,6 +178,8 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
         <h1 className="text-[clamp(1.8rem,4vw,2.6rem)] font-bold leading-[1.15] mb-4 tracking-[-0.02em]">
           {story.title}
         </h1>
+
+        {story.standalone && <p className="text-sm text-[var(--text-secondary)] mb-6">The Innovation Pulse · Innovating Higher Ed</p>}
 
         {/* Story Audio Clip (if lead story) */}
         {story.type === "deepDive" && story.audioUrl && (
@@ -287,7 +290,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
               intro={related.preview || related.summary} category={mapToV4Category(related.category)}
               image={related.omitImage ? undefined : related.image || DEFAULT_STORY_IMAGE}
               source={related.source} sourceUrl={related.sourceUrl}
-              dateLabel={formatShortDate(related.publishedAt || related.episodeDate)} />)}
+              dateLabel={formatShortDate(related.publishedAt || related.date)} />)}
           </div>
         </div>
       )}
@@ -304,7 +307,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
             </span>
             <span className="text-[0.9rem] font-semibold">Innovation Pulse</span>
           </Link>
-          <Link
+          {story.episodeDate && <Link
             href={`/innovation-pulse/${story.episodeDate}`}
             className="bg-[var(--bg-card)] border border-[var(--border)] rounded-[14px] p-5 hover:border-[var(--border-hover)] transition-all text-right"
           >
@@ -312,7 +315,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
               Full edition →
             </span>
             <span className="text-[0.9rem] font-semibold">{story.editionNumber ? `Weekly Edition ${story.editionNumber}` : formatShortDate(story.episodeDate)}</span>
-          </Link>
+          </Link>}
         </div>
       </div>
     </div>
