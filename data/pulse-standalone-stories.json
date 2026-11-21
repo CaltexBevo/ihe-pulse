@@ -19,5 +19,22 @@
     ],
     "category": "Research",
     "image": "/images/stories/edition23/story-013-B-v2.png"
+  },
+  {
+    "storyId": "IHE-STORY-2026-10-30-096",
+    "publishedAt": "2026-11-21",
+    "title": "AI Helped a Reef Survey See 42 More Days",
+    "preview": "Underwater cameras and an AI detector extended the record ecologists could analyze, revealing daily patterns even when individual fish went undetected.",
+    "summary": "Five adapted trail cameras produced nearly 192,000 usable underwater images during two seasonal deployments at Bajo de Diez reef in Yucatán. Set to take pictures about every three minutes, the cameras recorded fish alongside murky, blurry and apparently empty views. The collection contained far more observations than the researchers’ manually annotated sample.\n\nEdlin José Guerra-Castro and colleagues had experts annotate more than 27,000 images covering 68 dates. They compared the resulting record with one produced by a computer vision model. The model grouped fish differently from the experts and detected 65% of annotated objects on a held-out image test.\n\nYet the two records broadly agreed about which days had more similar fish communities and which days differed. Missing some fish in individual frames did not prevent the model from recovering a useful pattern across dates. That distinction matters when the research question concerns changes in a community over time.\n\nRunning the detector across the full usable archive extended the record available for analysis from 68 to 110 dates. Those 42 additional dates came from periods already covered by the cameras. The AI made more of the existing collection available for analysis; it did not create observations for days when the cameras were not working.\n\nThe model retained detections on 108 of the 110 dates. The other two still had usable images, but no retained detections. A zero in that record means the detector found nothing in the available frames, rather than establishing that no fish were present at the reef.\n\nThe expanded record gives ecologists more dates to compare when examining how the community changes. Evaluating each detected fish remains important, but the study also evaluates what the sequence can reveal. An imperfect image detector can contribute to ecological understanding when its record preserves meaningful patterns across days.",
+    "source": "Guerra-Castro and colleagues, original field study",
+    "sourceUrl": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1969343/full",
+    "sourceLinks": [
+      {
+        "label": "Guerra-Castro and colleagues, original field study",
+        "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1969343/full"
+      }
+    ],
+    "category": "Beyond Ed",
+    "image": "/images/stories/edition23/story-096-A-v1.png"
   }
 ]
