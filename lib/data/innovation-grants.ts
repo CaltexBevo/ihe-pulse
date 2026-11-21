@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 20, 2026",
+    lastVerified: "Nov 21, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1716,7 +1716,7 @@ grant({
       "announcedDate": "Reopened Feb. 3, 2025",
       "announcedDateIso": "2025-02-03",
       "fundingType": "in-kind",
-      "awardAmount": "Up to $1,000 in OpenAI API credits; not cash. Credits expire one year after award.",
+      "awardAmount": "Up to $1,000 in OpenAI API credits; not cash. Credits normally expire after 12 months; for users in Japan, grants dated after Nov. 13, 2026 expire after 180 days.",
       "eligibility": "Researchers actively affiliated with academic or research organizations, and nonprofits conducting research, in API-supported countries. Not nonprofit operational support.",
       "whatItFunds": "Research on responsible AI deployment, fairness, risk mitigation, and societal impacts. Included only for clearly education-linked studies, such as equitable or safe AI use in higher-education learning and assessment.",
       "geography": "OpenAI API-supported countries, including the United States; no U.S. state restriction stated",
@@ -1737,7 +1737,7 @@ grant({
       ],
       "bestFit": "Education researchers evaluating responsible, fair, or safe AI deployment with a limited API budget, not buying ordinary campus software access.",
       "eligibilityBadge": "In-kind API credits, not cash",
-      "sourceNotes": "An older program remains eligible because the current official page and Apply entry point show it is actionable. Eligibility and quarterly review: https://help.openai.com/en/articles/10139500-researcher-access-program-faq . Geography: https://help.openai.com/en/articles/5347006-openai-api-supported-countries-and-territories . Higher-education and community-college relevance are conditional project-fit judgments, not education-earmarked funding. Sharing/publication and usage policies apply."
+      "sourceNotes": "Nov. 21 partial recheck: the official FAQ confirms the Japan-specific 180-day expiry for grants dated after Nov. 13, 2026. Authenticated application contents remain uninspected; the prior full-verification date is retained. An older program remains eligible because the current official page and Apply entry point show it is actionable. Eligibility and quarterly review: https://help.openai.com/en/articles/10139500-researcher-access-program-faq . Geography: https://help.openai.com/en/articles/5347006-openai-api-supported-countries-and-territories . Higher-education and community-college relevance are conditional project-fit judgments, not education-earmarked funding. Sharing/publication and usage policies apply."
   }),
 grant({
       "portalAddedDate": "2026-09-15",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 20, 2026",
+      "lastVerified": "Nov 21, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 20, 2026",
+      "lastVerified": "Nov 21, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 20, 2026",
+    lastVerified: "Nov 21, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -2930,7 +2930,7 @@ grant({
     whatItFunds: "Faculty support to adopt OpenStax nursing resources in two or three courses, or develop or improve open resources for three to five workforce courses.",
     geography: "Texas public higher-education institutions only",
     costShareRequirement: "Not stated in the official source",
-    applicationAccess: "Official Fluxx institutional registration and login gateway verified. Applications must be submitted by an authorized institutional agent; no notice of intent required.",
+    applicationAccess: "The Nov. 20, 2026 at 5 p.m. Central Time deadline has passed with no verified extension. The Fluxx registration/login gateway remains available, but does not reopen this call. Applications required an authorized institutional agent; no notice of intent was required.",
     deadline: "Nov. 20, 2026 at 5 p.m. Central Time",
     deadlineTimeZone: "Central Time",
     finalDeadlineDate: "2026-11-20",
@@ -2943,7 +2943,7 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 19, 2026",
     qualifiers: ["To receive additional grant funds, courses must be taught at least twice during the grant period, with the first offering by Dec. 16, 2027. Addendum 1 replaces the original Aug. 16 date."],
-    sourceNotes: "Oct. 26 access check: the official program page is accessible again and agrees with the current RFA. Official program, RFA 1801, FAQ and Fluxx gateway verified Oct. 19. RFA: https://reportcenter.highered.texas.gov/contracts/rfo-rfp-rfq-rfa/oergp-50/open-educational-resources-grant-program-rfa1801-2026-28/ . Award figures are estimates, not caps. Only the explicitly estimated $1 million current-call pool enters the tally, not a calculation from anticipated awards. Projects run from Jan. 4, 2027 or executed award, whichever is later, through Aug. 31, 2028.",
+    sourceNotes: "Nov. 21 recheck: the final Nov. 20, 5 p.m. Central Time cutoff has passed with no verified extension; the record is archived and its approximate $1 million pool is excluded from active funding. Oct. 26 access check: the official program page is accessible again and agrees with the current RFA. Official program, RFA 1801, FAQ and Fluxx gateway verified Oct. 19. RFA: https://reportcenter.highered.texas.gov/contracts/rfo-rfp-rfq-rfa/oergp-50/open-educational-resources-grant-program-rfa1801-2026-28/ . Award figures are estimates, not caps. Only the explicitly estimated $1 million current-call pool enters the tally, not a calculation from anticipated awards. Projects run from Jan. 4, 2027 or executed award, whichever is later, through Aug. 31, 2028.",
   }),
   grant({
     id: 131,
@@ -3111,7 +3111,7 @@ grant({
     whatItFunds: "An AI teaching-and-learning project with coaching and peer support, including course and assessment redesign, shared guidelines, faculty development, student AI literacy, or tool evaluation.",
     geography: "California community colleges only",
     costShareRequirement: "Not stated in the official source",
-    applicationAccess: "The official page and public Google form extend the deadline to Nov. 20. The first page of the eight-page form was inspected; later required sections were not traversed. No application was submitted.",
+    applicationAccess: "Nov. 21 recheck: the official Google application explicitly says it is no longer accepting responses. The Nov. 20 deadline has passed. Earlier inspection covered only the first page of the eight-page form; the prior full-verification date is retained. No application was submitted.",
     deadline: "Nov. 20, 2026; time and time zone not stated",
     deadlineTimeZone: "Not stated in the official source",
     finalDeadlineDate: "2026-11-20",
@@ -3123,7 +3123,7 @@ grant({
     inventoryOrigin: "weekly-new",
     announcementWindow: "Broad discovery, Oct. 28, 2026",
     qualifiers: ["Jan. 19–June 18, 2027 participation requires an estimated 40–60 hours per team member, plus local planning time. The application requires an in-person convening; details are forthcoming.", "Teams produce an openly licensed project artifact and participate in program evaluation."],
-    sourceNotes: "Nov. 13 partial recheck: the official page and application agree on the extended Nov. 20 deadline; the prior full-verification date is retained because the complete form was not inspected. Official call and linked application verified Oct. 28. The form announces 15 selected colleges, but no aggregate funding pool is explicitly published. The $10,000 per-college amount is excluded from the program-pool tally; no multiplication or assumption of unrestricted cash. Cohort 2 interest in the form is not a separately verified open funding call.",
+    sourceNotes: "Nov. 21: the application explicitly confirms closure after the extended Nov. 20 deadline; this record is archived. Nov. 13 partial recheck: the official page and application agreed on the extended Nov. 20 deadline; the prior full-verification date is retained because the complete form was not inspected. Official call and linked application verified Oct. 28. The form announces 15 selected colleges, but no aggregate funding pool is explicitly published. The $10,000 per-college amount is excluded from the program-pool tally; no multiplication or assumption of unrestricted cash. Cohort 2 interest in the form is not a separately verified open funding call.",
   }),
   grant({
     "id": 137,
@@ -3205,7 +3205,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 20, 2026",
+    "lastVerified": "Nov 21, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3249,7 +3249,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 20, 2026",
+    "lastVerified": "Nov 21, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3292,7 +3292,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 20, 2026",
+    "lastVerified": "Nov 21, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3334,7 +3334,7 @@ grant({
   grant({
       "id": 153,
       "portalAddedDate": "2026-11-17",
-      "lastVerified": "Nov 20, 2026",
+      "lastVerified": "Nov 21, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Broad discovery, Nov. 17, 2026",
       "scopeDisposition": "included",
@@ -3377,7 +3377,7 @@ grant({
   grant({
     "id": 154,
     "portalAddedDate": "2026-11-20",
-    "lastVerified": "Nov 20, 2026",
+    "lastVerified": "Nov 21, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 20, 2026",
     "scopeDisposition": "included",
@@ -3550,7 +3550,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 20, 2026",
+    "lastVerified": "Nov 21, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3589,7 +3589,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 20, 2026",
+    "lastVerified": "Nov 21, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3628,7 +3628,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 20, 2026",
+    "lastVerified": "Nov 21, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
