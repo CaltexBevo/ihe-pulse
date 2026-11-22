@@ -36,5 +36,26 @@
     ],
     "category": "Beyond Ed",
     "image": "/images/stories/edition23/story-096-A-v1.png"
+  },
+  {
+    "storyId": "IHE-STORY-2026-10-30-002",
+    "publishedAt": "2026-11-22",
+    "title": "The enrollment average hides where students are going",
+    "preview": "Early fall figures show health and repair programs growing while computing enrollment falls. Comparisons by field give program leaders a clearer picture than the national total.",
+    "summary": "Community college enrollment rose 1.2% this fall. Within that increase, health professions gained 4.3% and mechanic and repair programs grew 6.1%, while computer and information sciences fell 12.3%. For someone leading a computing program, the sector’s overall growth describes a very different experience from the one in their department.\n\nThe National Student Clearinghouse Research Center published its preliminary fall 2026 figures on October 29. Matthew Dembicki’s reporting for Community College Daily follows the differences among programs and age groups. Computing enrollment at two-year institutions had already fallen 5.9% the previous fall.\n\nThe latest decline extends across higher education. Computing enrollment fell 12.4% at four-year institutions and 10.4% at the graduate level. Health enrollment increased across all three levels. Comparing institutions alone would miss a shift that follows the field of study beyond a single sector.\n\nAge patterns also differ. At community colleges, enrollment among students 17 and younger rose 5.2%, while enrollment among 18-year-olds slipped 0.7%. The Clearinghouse’s Matthew Holsapple identified dual enrollment as an important contributor to growth in the younger group. Enrollment increased among students ages 19 to 20 and declined among those ages 21 to 24.\n\nNational undergraduate enrollment rose 0.6%. The Clearinghouse dashboard separates the figures by major, credential, age and institutional characteristics, using institutions that reported consistently across the years compared. These are preliminary estimates, with final fall estimates scheduled for January.\n\nFor a program leader, the discipline-level figures offer a comparison that the national total cannot. A computing department losing enrollment may be experiencing a shift shared across several levels of higher education, even while undergraduate enrollment overall is growing.",
+    "source": "National Student Clearinghouse Research Center",
+    "sourceUrl": "https://nscresearchcenter.org/prelim-fall-enrollment-trends/",
+    "sourceLinks": [
+      {
+        "label": "National Student Clearinghouse Research Center, October 29",
+        "url": "https://nscresearchcenter.org/prelim-fall-enrollment-trends/"
+      },
+      {
+        "label": "Matthew Dembicki, Community College Daily, October 29",
+        "url": "https://www.ccdaily.com/2026/10/an-early-look-at-fall-enrollments/"
+      }
+    ],
+    "category": "Insights & Trends",
+    "image": "/images/stories/edition23/story-002-A-v1.png"
   }
 ]

@@ -1,5 +1,11 @@
 // Social card crops are independent of the artwork displayed on the story page.
 export const STORY_SOCIAL_IMAGES: Partial<Record<string, { imagePath: string; imageWidth: number; imageHeight: number; twitterImagePath?: string; twitterTitle?: string }>> = {
+  "the-enrollment-average-hides-where-students-are-going": {
+    imagePath: "/images/stories/edition23/story-002-x-card-v1.png",
+    imageWidth: 1734,
+    imageHeight: 907,
+    twitterTitle: "Enrollment",
+  },
   "ai-helped-a-reef-survey-see-42-more-days": {
     imagePath: "/images/stories/edition23/story-096-x-card-v1.png",
     imageWidth: 1734,
