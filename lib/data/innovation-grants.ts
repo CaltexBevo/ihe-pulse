@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13", "2026-11-17", "2026-11-20"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13", "2026-11-17", "2026-11-20", "2026-11-23"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 22, 2026",
+    lastVerified: "Nov 23, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 22, 2026",
+      "lastVerified": "Nov 23, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 22, 2026",
+      "lastVerified": "Nov 23, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 22, 2026",
+    lastVerified: "Nov 23, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -3205,7 +3205,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 22, 2026",
+    "lastVerified": "Nov 23, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3249,7 +3249,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 22, 2026",
+    "lastVerified": "Nov 23, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3292,7 +3292,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 22, 2026",
+    "lastVerified": "Nov 23, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3334,7 +3334,7 @@ grant({
   grant({
       "id": 153,
       "portalAddedDate": "2026-11-17",
-      "lastVerified": "Nov 22, 2026",
+      "lastVerified": "Nov 23, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Broad discovery, Nov. 17, 2026",
       "scopeDisposition": "included",
@@ -3377,7 +3377,7 @@ grant({
   grant({
     "id": 154,
     "portalAddedDate": "2026-11-20",
-    "lastVerified": "Nov 22, 2026",
+    "lastVerified": "Nov 23, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 20, 2026",
     "scopeDisposition": "included",
@@ -3550,7 +3550,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 22, 2026",
+    "lastVerified": "Nov 23, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3589,7 +3589,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 22, 2026",
+    "lastVerified": "Nov 23, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3628,7 +3628,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 22, 2026",
+    "lastVerified": "Nov 23, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3811,6 +3811,97 @@ innovationGrants.push(
     ],
     "sourceNotes": "Full Italian decree/call, application requirements in Article 5 and Annex 1, and rendered application first page checked Nov. 11. Italian Article 3 and footnote 3 govern mandatory Turin membership, the recent-graduate exception and the Turin-affiliated lead; the English summary is less precise. UNITA participants count toward group size but do not replace the mandatory Turin student/staff roles. The explicit ordinary pool is €48,000; foreign-currency funding is excluded from the USD cash aggregate, with no conversion inferred. Additional awards depend on a tie, available resources and authorization; none assumed. No absolute cutoff instant is inferred without a stated timezone."
   }),
+);
+
+innovationGrants.push(
+  grant({
+  "id": 155,
+  "recommendationRank": 48,
+  "title": "Unity3D Grant for Educators: AnatomyXR & Classroom-Ready XR",
+  "source": "Texas State University, Office of Creative Technologies and Media Engagement; supported by Unity Technologies",
+  "officialUrl": "https://www.provost.txst.edu/academicinnovation/micro-grants.html",
+  "applicationUrl": "https://www.provost.txst.edu/academicinnovation/micro-grants.html",
+  "announcedDate": "Not stated",
+  "awardAmount": "Track 1: three $2,000 stipends; Track 2: three $3,000 stipends",
+  "eligibility": "Full-time Texas State faculty who will be instructor of record in Fall 2027 or Spring 2028; one award per person per cycle.",
+  "whatItFunds": "One-time faculty stipends for classroom implementation, paid after completed project and accepted final report; not early-stage software development.",
+  "geography": "Texas State University, Texas, United States",
+  "locationEligibility": {
+    "scope": "institution-only"
+  },
+  "costShareRequirement": "Not stated in the official program guidance.",
+  "deadline": "March 5, 2027 at 5:00 p.m.",
+  "deadlineTimeZone": "Not stated",
+  "audiences": [
+    "four-year-colleges-universities",
+    "faculty-teaching-centers"
+  ],
+  "innovationAreas": [
+    "ai-emerging-technology",
+    "teaching-learning",
+    "faculty-development"
+  ],
+  "bestFit": "Texas State instructors integrating AnatomyXR or their substantially complete XR experience into a course.",
+  "eligibilityBadge": "Full-time Texas State faculty teaching the implementation course",
+  "portalAddedDate": "2026-11-23",
+  "lastVerified": "Nov 23, 2026",
+  "inventoryOrigin": "weekly-new",
+  "announcementWindow": "Broad discovery, Nov. 23, 2026",
+  "scopeDisposition": "included",
+  "applicationStatus": "opening-soon",
+  "openDate": "2026-11-30",
+  "finalDeadlineDate": "2027-03-05",
+  "applicationAccess": "Opens Nov. 30, 2026. Complete email/PDF application instructions are public: arrange a required 30-minute consultation with Dr. Khoi Nguyen, then email a two-page proposal and department-chair course-assignment note to khn15@txstate.edu. No separate application form.",
+  "qualifiers": [
+    "The stipend is paid through payroll only after classroom implementation and acceptance of the final report; it is not upfront funding.",
+    "Track 1 supports AnatomyXR in anatomy courses. Track 2 requires an already built, substantially complete XR experience; early-stage software development is ineligible.",
+    "Feb. 26, 2027 is the recommended last consultation date, not a priority application deadline. The March 5 cutoff has no stated timezone."
+  ],
+  "sourceNotes": "Full official call, expanded XR FAQ and complete application instructions inspected Nov. 23. Track 1 requires at least one graded AnatomyXR activity per agreed section; Track 2 requires two structured sessions and a graded assessment. The proposal describes course/sections/enrollment/term, XR use, 1–3 assessed learning outcomes, feasibility, impact and sustainability; Track 2 also describes platform/devices/current state and a demo if available. Implementation is Fall 2027 or Spring 2028, with a planning meeting and mid-term check-in; the two-page final report is due within 30 days of final grades. Three $2,000 and three $3,000 stipends are award counts, not an explicitly published program pool; no aggregate is inferred. The separate AI micro-credential call on the same page is closed and is not this opportunity."
+}),
+  grant({
+  "id": 156,
+  "recommendationRank": 49,
+  "title": "UCSB Hybrid, Online and Technology-Enhanced (HOT) Teaching Mini-Grants: 2026–27",
+  "source": "University of California, Santa Barbara, Office of the Executive Vice Chancellor / Office of Teaching and Learning",
+  "officialUrl": "https://otl.ucsb.edu/funding/funding-faculty/mini-grants",
+  "applicationUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdPVIxs5k5_7Rx8HmeqsTZTwrsex4JbOVVh-X24ksZO1_uqLg/viewform?usp=sf_link",
+  "announcedDate": "Not stated",
+  "awardAmount": "Up to$1,000 incremental revisions; up to $2,000 small-scale projects; up to $5,000 medium-scale or pilot projects",
+  "eligibility": "All ranks of UCSB instructors or instructor/graduate-student teams; undergraduate course projects; one application per academic year; previous recipient final report must be on file.",
+  "whatItFunds": "Course-material development/student assistance, OER, digital activities, limited production equipment(maximum $200), student-use course equipment and project-aligned professional development; excludes instructor compensation, ongoing software, conference travel, permanent equipment and administration.",
+  "geography": "University of California, Santa Barbara, California, United States",
+  "locationEligibility": {
+    "scope": "institution-only"
+  },
+  "costShareRequirement": "Not stated in the official program guidance.",
+  "deadline": "Rolling until fiscal-year funds are exhausted",
+  "deadlineTimeZone": "Not applicable; no fixed deadline stated",
+  "audiences": [
+    "four-year-colleges-universities",
+    "faculty-teaching-centers"
+  ],
+  "innovationAreas": [
+    "teaching-learning",
+    "digital-transformation-infrastructure",
+    "faculty-development"
+  ],
+  "bestFit": "UCSB instructors developing course materials or piloting instructional technology with an evaluation plan.",
+  "eligibilityBadge": "UCSB instructors and instructor/graduate-student teams",
+  "portalAddedDate": "2026-11-23",
+  "lastVerified": "Nov 23, 2026",
+  "inventoryOrigin": "weekly-new",
+  "announcementWindow": "Broad discovery, Nov. 23, 2026",
+  "scopeDisposition": "included",
+  "applicationStatus": "open-now",
+  "applicationAccess": "The actual 2026–2027 Google Form displays the complete questions through Submit. Google sign-in is required to fill it out; no authenticated session or submission was inspected.",
+  "qualifiers": [
+    "Apply once per academic year. Previous recipients must have their prior final report on file before applying.",
+    "The official page requires spending within the fiscal year requested and within one year of disbursement; unused funds must be returned.",
+    "Instructor compensation, permanent equipment, ongoing software licenses, conference travel and administrative support are excluded. Production/delivery equipment is capped at $200."
+  ],
+  "sourceNotes": "Full official guidance and actual 2026–2027 application inspected Nov. 23. Applications close when fiscal-year funds are exhausted; no fixed final or priority date is stated. The form requests instructor/team/course/quarter/enrollment, a 250–500-word project, learner benefit, campus technology alternatives, evaluation, ongoing support and itemized budget justification. Recipients provide a public project description, evaluation and expenditure report. The award tiers are per project, not an aggregate program pool; no total is inferred."
+}),
 );
 
 export const INNOVATION_GRANTS_ACTIONABLE_COUNT = innovationGrants.filter(
