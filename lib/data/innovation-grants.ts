@@ -37,7 +37,7 @@ function grant(input: GrantInput): InnovationGrantOpportunity {
         ? ["2026-08-30"]
         : inventoryOrigin === "recurring-watchlist"
           ? ["2026-08-30", "2026-08-31", "2026-09-22"]
-          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13", "2026-11-17", "2026-11-20", "2026-11-23"];
+          : ["2026-08-31", "2026-09-07", "2026-09-14", "2026-09-15", "2026-09-22", "2026-09-28", "2026-10-03", "2026-10-06", "2026-10-09", "2026-10-12", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-19", "2026-10-21", "2026-10-23", "2026-10-26", "2026-10-28", "2026-10-30", "2026-11-02", "2026-11-06", "2026-11-09", "2026-11-11", "2026-11-13", "2026-11-17", "2026-11-20", "2026-11-23", "2026-11-25"];
 
   if (!expectedPortalAddedDates.includes(input.portalAddedDate)) {
     throw new Error(
@@ -1350,7 +1350,7 @@ export const innovationGrants: InnovationGrantOpportunity[] = [
   grant({
     id: 83,
     portalAddedDate: "2026-08-31",
-    lastVerified: "Nov 24, 2026",
+    lastVerified: "Nov 25, 2026",
     recommendationRank: 18,
     title: "Wake Forest ECI 2027 Institutional Impact Grants",
     source: "Wake Forest University Educating Character Initiative",
@@ -1815,7 +1815,7 @@ grant({
   }),
   grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 24, 2026",
+      "lastVerified": "Nov 25, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -1931,7 +1931,7 @@ grant({
   }),
 grant({
       "portalAddedDate": "2026-09-15",
-      "lastVerified": "Nov 24, 2026",
+      "lastVerified": "Nov 25, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Focused corporate sweep, verified Sep. 15",
       "scopeDisposition": "included",
@@ -2915,7 +2915,7 @@ grant({
   grant({
     id: 130,
     portalAddedDate: "2026-10-19",
-    lastVerified: "Nov 24, 2026",
+    lastVerified: "Nov 25, 2026",
     recommendationRank: 40,
     title: "Texas Open Educational Resources Grant Program: Round 5 Second RFA",
     source: "Texas Higher Education Coordinating Board",
@@ -3205,7 +3205,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 24, 2026",
+    "lastVerified": "Nov 25, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3249,7 +3249,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 24, 2026",
+    "lastVerified": "Nov 25, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3292,7 +3292,7 @@ grant({
     "applicationStatus": "open-now",
     "announcementWindow": "Broad discovery, Nov. 13, 2026",
     "portalAddedDate": "2026-11-13",
-    "lastVerified": "Nov 24, 2026",
+    "lastVerified": "Nov 25, 2026",
     "inventoryOrigin": "weekly-new",
     "scopeDisposition": "included",
     "announcedDate": "Current 2026–27 call; exact announcement date not stated",
@@ -3334,7 +3334,7 @@ grant({
   grant({
       "id": 153,
       "portalAddedDate": "2026-11-17",
-      "lastVerified": "Nov 24, 2026",
+      "lastVerified": "Nov 25, 2026",
       "inventoryOrigin": "weekly-new",
       "announcementWindow": "Broad discovery, Nov. 17, 2026",
       "scopeDisposition": "included",
@@ -3377,7 +3377,7 @@ grant({
   grant({
     "id": 154,
     "portalAddedDate": "2026-11-20",
-    "lastVerified": "Nov 24, 2026",
+    "lastVerified": "Nov 25, 2026",
     "inventoryOrigin": "weekly-new",
     "announcementWindow": "Broad discovery, Nov. 20, 2026",
     "scopeDisposition": "included",
@@ -3550,7 +3550,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 24, 2026",
+    "lastVerified": "Nov 25, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3589,7 +3589,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 24, 2026",
+    "lastVerified": "Nov 25, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3628,7 +3628,7 @@ innovationGrants.push(
   }),
   grant({
     "portalAddedDate": "2026-11-09",
-    "lastVerified": "Nov 24, 2026",
+    "lastVerified": "Nov 25, 2026",
     "source": "Western Michigan University Office of Faculty Development",
     "officialUrl": "https://wmich.edu/x/teaching-learning/faculty-development/grants",
     "announcedDate": "2026–27 cycle; announcement date not stated",
@@ -3844,7 +3844,7 @@ innovationGrants.push(
   "bestFit": "Texas State instructors integrating AnatomyXR or their substantially complete XR experience into a course.",
   "eligibilityBadge": "Full-time Texas State faculty teaching the implementation course",
   "portalAddedDate": "2026-11-23",
-  "lastVerified": "Nov 24, 2026",
+  "lastVerified": "Nov 25, 2026",
   "inventoryOrigin": "weekly-new",
   "announcementWindow": "Broad discovery, Nov. 23, 2026",
   "scopeDisposition": "included",
@@ -3889,7 +3889,7 @@ innovationGrants.push(
   "bestFit": "UCSB instructors developing course materials or piloting instructional technology with an evaluation plan.",
   "eligibilityBadge": "UCSB instructors and instructor/graduate-student teams",
   "portalAddedDate": "2026-11-23",
-  "lastVerified": "Nov 24, 2026",
+  "lastVerified": "Nov 25, 2026",
   "inventoryOrigin": "weekly-new",
   "announcementWindow": "Broad discovery, Nov. 23, 2026",
   "scopeDisposition": "included",
@@ -3901,6 +3901,95 @@ innovationGrants.push(
     "Instructor compensation, permanent equipment, ongoing software licenses, conference travel and administrative support are excluded. Production/delivery equipment is capped at $200."
   ],
   "sourceNotes": "Full official guidance and actual 2026–2027 application inspected Nov. 23. Applications close when fiscal-year funds are exhausted; no fixed final or priority date is stated. The form requests instructor/team/course/quarter/enrollment, a 250–500-word project, learner benefit, campus technology alternatives, evaluation, ongoing support and itemized budget justification. Recipients provide a public project description, evaluation and expenditure report. The award tiers are per project, not an aggregate program pool; no total is inferred."
+}),
+  grant({
+  "id": 157,
+  "recommendationRank": 50,
+  "title": "Sam Houston State University Teaching Innovation Grant: FY2027",
+  "source": "Sam Houston State University, Teaching and Learning Center",
+  "officialUrl": "https://www.shsu.edu/offices-departments/teaching-learning-center/teaching-innovation-grant-tig",
+  "applicationUrl": "https://www.shsu.edu/offices-departments/teaching-learning-center/tig-application-fy27.pdf",
+  "announcedDate": "Not stated",
+  "awardAmount": "Up to $10,000 per team; instructor stipends up to $2,000 each. The current call expects to fund up to $60,000 overall.",
+  "eligibility": "SHSU instructors of all ranks; teams of 2–5 encouraged; one TIG per instructor per cycle. Non-exempt instructors cannot receive stipends. Application requires PI, department-chair and dean approvals.",
+  "whatItFunds": "Instructor stipends and project supplies such as books/software, within a maximum $10,000 team award. Stipends follow accepted final reports.",
+  "geography": "Sam Houston State University, Texas, United States",
+  "locationEligibility": {
+    "scope": "institution-only"
+  },
+  "costShareRequirement": "Not stated in call/application",
+  "deadline": "December 4, 2026",
+  "deadlineTimeZone": "Not stated",
+  "audiences": [
+    "four-year-colleges-universities",
+    "faculty-teaching-centers"
+  ],
+  "innovationAreas": [
+    "teaching-learning",
+    "student-success",
+    "research-evidence-building",
+    "faculty-development"
+  ],
+  "bestFit": "SHSU instructor teams testing and evaluating a teaching change in a course or series of courses.",
+  "portalAddedDate": "2026-11-25",
+  "lastVerified": "Nov 25, 2026",
+  "inventoryOrigin": "weekly-new",
+  "announcementWindow": "Broad discovery, Nov. 25, 2026",
+  "scopeDisposition": "included",
+  "applicationStatus": "open-now",
+  "applicationAccess": "Full five-page PDF application public, including signatures, summary, practices checklist, project plan and budget. Submit project PDF via email to tlc@shsu.edu; no separate portal specified. No contact made.",
+  "finalDeadlineDate": "2026-12-04",
+  "publishedProgramPoolUsd": 60000,
+  "publishedProgramPoolApproximate": true,
+  "eligibilityBadge": "Sam Houston State instructor teams",
+  "qualifiers": [
+    "Instructor teams of 2–5 are encouraged; each instructor may participate in one grant per cycle. Non-exempt instructors cannot receive stipends.",
+    "Faculty stipends are paid after final reports are submitted and approved at the end of the grant period.",
+    "The Dec. 4 deadline has no stated cutoff time or time zone. The $60,000 current-cycle pool is an expected maximum, not a guaranteed allocation."
+  ],
+  "sourceNotes": "Full official current call, five-page application, three-page review rubric and syllabus examples read Nov. 25. Submit the signed application and a 2–5-page evidence-supported project plan, excluding references, with assessment, student support, dissemination, team-meeting and budget plans. Department-chair and dean approval are required. The official call explicitly expects to fund up to $60,000 in proposals this application cycle; this approximate maximum enters the cash tally without multiplying per-award caps. The grant period is just over one year; final reports are normally due in May of the following year."
+}),
+  grant({
+  "id": 158,
+  "recommendationRank": 51,
+  "title": "Dartmouth Teaching Professional Development Grants",
+  "source": "Dartmouth Center for the Advancement of Learning",
+  "officialUrl": "https://dcal.dartmouth.edu/resources/funding",
+  "applicationUrl": "https://dcal.dartmouth.edu/sites/dcal/files/center_for_advancement_learning/wysiwyg/dcal_pd_grant_app.pdf",
+  "announcedDate": "Not stated",
+  "awardAmount": "Up to $1,000",
+  "eligibility": "Dartmouth faculty, graduate students or professional staff directly involved with student instruction; chair/program-director/dean signature confirms eligibility and expense outside normal departmental budget.",
+  "whatItFunds": "Pedagogy-related professional development attendance; excludes events intended merely to increase course/curriculum content knowledge. Reimbursement after event against original itemized receipts, submitted within travel fiscal year.",
+  "geography": "Dartmouth College, New Hampshire, United States",
+  "locationEligibility": {
+    "scope": "institution-only"
+  },
+  "costShareRequirement": "No required match stated; application asks about other funding.",
+  "deadline": "Before the conference or meeting; no retroactive applications",
+  "deadlineTimeZone": "Not stated; no fixed calendar deadline",
+  "audiences": [
+    "four-year-colleges-universities",
+    "faculty-teaching-centers"
+  ],
+  "innovationAreas": [
+    "faculty-development",
+    "teaching-learning"
+  ],
+  "bestFit": "Dartmouth instructors attending pedagogy workshops, seminars or conferences to improve teaching, course design or understanding of learning.",
+  "portalAddedDate": "2026-11-25",
+  "lastVerified": "Nov 25, 2026",
+  "inventoryOrigin": "weekly-new",
+  "announcementWindow": "Broad discovery, Nov. 25, 2026",
+  "scopeDisposition": "included",
+  "applicationStatus": "open-now",
+  "applicationAccess": "Complete public one-page PDF; submit by email dcal@dartmouth.edu, fax or campus mail. Applicant and department-chair/program-director/dean signatures required. No separate portal.",
+  "eligibilityBadge": "Dartmouth faculty, graduate students and instructional staff",
+  "qualifiers": [
+    "Apply before the conference or meeting; retroactive applications are not considered.",
+    "The event must explicitly develop teaching practice. Attendance solely to increase course-content knowledge is excluded.",
+    "Reimbursement follows the event with original itemized receipts submitted in the travel fiscal year; recipients share their learning with the teaching community."
+  ],
+  "sourceNotes": "Full current official guidelines and complete one-page PDF application read Nov. 25. The chair, program director or dean confirms eligibility and that the expense falls outside the normal departmental budget. The application asks for event details, pedagogical benefit, expenses and other funding. This undated rolling opportunity is distinct from the course-redesign and UDL grants on the same page. No program-level pool is published, so the $1,000 per-award cap is excluded from the cash tally."
 }),
 );
 
